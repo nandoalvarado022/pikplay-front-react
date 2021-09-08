@@ -14,8 +14,8 @@ class SubcategoryPage extends React.Component {
   render() {
     const { subcategory } = this.props
     const url = "https://pikajuegos.com/subcategory/" + subcategory
-    const meta_title = "Pikajuegos | " + capitalize(subcategory)
-    const descripcion = "Pikajuegos es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas de venta de videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch de alto prestigio en Colombia"
+    const meta_title = "Pik-Play | " + capitalize(subcategory)
+    const descripcion = "Pik-Play es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas de venta de videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch de alto prestigio en Colombia"
     return <Layout meta_url={url} subcategory={subcategory} meta_descripcion={descripcion} meta_title={meta_title} title={meta_title}>
       <Portada subcategory={subcategory} feed={this.props.feed} />
     </Layout>

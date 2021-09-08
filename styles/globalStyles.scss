@@ -1,6 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap");
 
+@media screen and (max-width: 420px) {
+    .actions button.nextStep {
+        bottom: 80px;
+        position: fixed;
+        right: 20px;
+        z-index: 2;
+    }
+
+    .actions button.previousStep {
+        bottom: 80px;
+        position: fixed;
+        left: 20px;
+        z-index: 2;
+    }
+}
+
 .svg-question {
     margin-left: 10px;
 }
@@ -459,11 +475,16 @@ main {
     margin: 0;
 }
 
-section > h2 {
-    text-align: center;
-    @media screen and (max-width: 420px) {
-        padding-left: 20px;
-        text-align: initial;
+section {
+    h2 {
+        text-align: center;
+        @media screen and (max-width: 420px) {
+            padding-left: 20px;
+            text-align: initial;
+        }
+    }
+    svg {
+        margin-left: 10px;
     }
 }
 

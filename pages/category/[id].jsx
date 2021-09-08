@@ -13,9 +13,9 @@ class CategoryPage extends React.Component {
 
   render() {
     const { category } = this.props
-    const url = "https://pikajuegos.com/category/" + category
-    const meta_title = "Pikajuegos | " + capitalize(category)
-    const descripcion = "Pikajuegos es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas de venta de videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch de alto prestigio en Colombia"
+    const url = "https://pik-play.com/category/" + category
+    const meta_title = "Pik-Play | " + capitalize(category)
+    const descripcion = "Pik-Play es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas de venta de videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch de alto prestigio en Colombia"
     return <Layout meta_url={url} category={category} meta_descripcion={descripcion} meta_title={meta_title} title={meta_title}>
       <Portada category={category} feed={this.props.feed} />
     </Layout>

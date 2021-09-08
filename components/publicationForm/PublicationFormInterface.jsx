@@ -29,14 +29,14 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
   const { accept_changues, description, is_new, quantity, sale_price, title, warranty } = publicationFormData
 
   if (!!publicationFormData?.title || !isEdit) {
-    return <div className={styles.content}>
+    return <section className={styles.content}>
       <Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} />
-      <h2 style={{ textAlign: "center" }}>
+      <h2>
         Crear publicación
-        <FontAwesomeIcon style={{ float: "right" }} icon={faQuestionCircle} onClick={() => {
+        <FontAwesomeIcon icon={faQuestionCircle} onClick={() => {
           setMessage(<div>
             <p>Bienvenido al modulo de creación de publicaciones</p>
-            - Al vender articulos por Pikajuegos recibiras el 1% devuelta del valor del producto que vendiste
+            - Al vender articulos por Pik-Play recibiras el 1% devuelta del valor del producto que vendiste
             <p><b>Recuerda</b> que la publicación una vez creada debe ser revisada</p>
             <p>Juntos somos mejor 🤝</p>
           </div>)
@@ -134,11 +134,11 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
           }
           <div className="actions" style={{ textAlign: "right" }}>
             {
-              currentStep != 1 && <Button animation={false} onClick={previusStep} color="yellow">
+              currentStep != 1 && <Button className="previousStep" animation={false} onClick={previusStep} color="yellow">
                 Anterior
               </Button>
             }
-            <Button animation={currentStep != 3} onClick={nextStep} color="blue">{textButton}</Button>
+            <Button className="nextStep" animation={currentStep != 3} onClick={nextStep} color="blue">{textButton}</Button>
           </div>
         </div>
         {
@@ -153,7 +153,7 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
           </div>
         }
       </div>
-    </div>
+    </section>
   }
   else return <div></div>
 }

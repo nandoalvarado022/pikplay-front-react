@@ -3,7 +3,6 @@ import { gql, useLazyQuery, useMutation } from '@apollo/client'
 import { useContext, useEffect, useState } from "react"
 import { PikContext } from "../../states/PikState"
 import styles from "./styles.module.scss"
-// import pagar from "./scriptPagarTransaccion.jsx";
 
 moment.locale('es')
 

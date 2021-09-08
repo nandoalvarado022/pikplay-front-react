@@ -146,15 +146,15 @@ class Layout extends React.Component {
         <meta property="og:image" content={meta_image} />
         <meta name="url" content={meta_url} />
         <meta name="og:url" content={meta_url} />
-        <meta name="og:site_name" content="Pikajuegos" />
+        <meta name="og:site_name" content="Pik-Play" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
         <meta name="theme-color" content="#4d9afa" />
         <meta name="google-site-verification" content="4IqXj9YLrm5eo3s_c3cTKcAqBwUhCf8qgJgL2sLtJko" />
         <meta name="twitter:description" content={meta_descripcion} />
         <meta name="keywords" value="" />
         <meta name="country" content="COL" />
-        <meta name="author" content="pikajuegos.com" />
-        <meta name="copyright" content="pikajuegos.com" />
+        <meta name="author" content="pik-play.com" />
+        <meta name="copyright" content="pik-play.com" />
         <meta name="language" content="es-CO"></meta>
         {/* Global site tag (gtag.js) - Google Ads: 941382150 */}
         <link rel="alternate" href={meta_url} hrefLang="es-CO" />
@@ -164,7 +164,8 @@ class Layout extends React.Component {
         {/* <link rel="stylesheet" href="/css/swiper.min.css"></link> */}
         {/* <link rel="stylesheet" href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css"></link> */}
         {/* <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" /> */}
-        <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script>
+        {/* <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script> */}
+        {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4730353912478910" crossorigin="anonymous"></script> */}
         {/* <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> */}
         {() => {
           window.dataLayer = window.dataLayer || [];

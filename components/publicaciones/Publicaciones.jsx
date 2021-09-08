@@ -64,13 +64,13 @@ const Publicaciones = () => {
 
     return <div className={styles.content}>
         <Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} />
-        <h2 style={{ textAlign: "center" }}>
+        <h2>
             Publicaciones
             <FontAwesomeIcon style={{ float: "right" }} icon={faQuestionCircle} onClick={() => {
                 setMessage({
                     id: 0, message: <div>
                         <p>🔵 Bienvenido al panel de tus publicaciones</p>
-                        <p>💙 En Pikajuegos te premiamos por cada cosa que haces, por eso cada vez que realices una venta recibiras 1 moneda</p>
+                        <p>💙 En Pik-Play te premiamos por cada cosa que haces, por eso cada vez que realices una venta recibiras 1 moneda</p>
                         <p>🤝 Juntos somos mejor</p>
                     </div>
                 })

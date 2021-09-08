@@ -20,7 +20,11 @@ const MenuMovil = () => {
       </Link>
     </ol>
     <ol>
-      <FontAwesomeIcon className={styles.bell} icon={faPercentage} />
+      <Link href="/category/[id]" as="/category/nintendo-switch">
+        <a>
+          <img src="/images/icons/nintendo.svg" alt="Nintendo switch" />
+        </a>
+      </Link>
     </ol>
     <ol onClick={() => setIsOpenPreviewProfile(!isOpenPreviewProfile)}>
       {context.user.id != 0 && <Link href="/perfil" as="/perfil">
@@ -32,9 +36,15 @@ const MenuMovil = () => {
         <img src="/images/icons/user.png" alt="Login" />
       </div>}
     </ol>
-    <ol>
+    {/* <ol>
       {context.user.id != 0 && <UserNotifications />}
-
+    </ol> */}
+    <ol>
+      <Link href="/category/[id]" as="/category/playstation">
+        <a>
+          <img src="/images/icons/play.svg" alt="Playstation" />
+        </a>
+      </Link>
     </ol>
     <ol>
       <a target="_BLANK" href="https://api.whatsapp.com/send?phone=573052665725&text=Escribe%20aqu%C3%AD%20tu%20pregunta">

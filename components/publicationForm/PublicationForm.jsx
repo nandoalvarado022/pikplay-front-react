@@ -35,6 +35,7 @@ const MUTATION_PUBLICATION = gql`
 `
 
 const PublicationForm = (props) => {
+	const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
 	const router = useRouter()
 	const [imageLoading, setImageLoading] = useState()
 	const [dispatchCreate, { data: resCrePub, error: errCrePub, loading: loadingCrepub }] = useMutation(MUTATION_PUBLICATION);
@@ -83,6 +84,7 @@ const PublicationForm = (props) => {
 	function handleSubmit() {
 		const validators = () => {
 			if (!publicationFormData.title || !publicationFormData.description || !publicationFormData.quantity || !publicationFormData.category || !publicationFormData.image_link) {
+				isMobile && alert("Por favor completa todos los campos de tu publicación")
 				setErrors("Por favor completa todos los campos de tu publicación")
 				return false
 			}

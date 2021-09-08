@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faQuestionCircle, faUser, faNewspaper, faBell } from "@fortawesome/free-regular-svg-icons"
 import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons"
 import { TextField } from "@material-ui/core"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import Button from "../../components/button/Button"
 import CiudadControl from "../../components/ciudadControl/CiudadControl"
 import Coins from "../../components/previewUser/Coins"
@@ -16,9 +16,13 @@ import Publicaciones from '../../components/publicaciones/Publicaciones'
 
 const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }) => {
     const context = useContext(PikContext)
+    const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
+    const [tab, setTab] = useState(1)
+
     const goTo = (value) => {
-        const top = document.body.getElementsByClassName(value)[0].offsetTop
+        const top = document.body.getElementsByClassName(value)[0].offsetTop + -50
         scrollTo(window, { top }).then(() => { })
+        setTab(value)
     }
 
     return <section className={styles.perfil}>
@@ -29,7 +33,7 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
                     <h2>Perfil</h2>
                     <p>
                         <h3>Coins</h3>
-                        <p>En Pikajuegos te premiamos por cada cosa que haces, por eso cada vez que realices una venta recibiras 1 moneda</p>
+                        <p>En Pik-Play te premiamos por cada cosa que haces, por eso cada vez que realices una venta recibiras 1 moneda</p>
                     </p>
                     <p>
                         Puedes comprar el pase ORO el cual es una suscripcion mensual que te otorga los siguientes beneficios:
@@ -45,20 +49,22 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
             }} />
         </h2>
 
-        <div className={styles.tabs}>
-            <ol className={styles.active}>
-                <FontAwesomeIcon icon={faUser} onClick={() => goTo("profile-content")} />
-            </ol>
-            <ol>
-                <FontAwesomeIcon icon={faBell} onClick={() => goTo("notifications-content")} />
-            </ol>
-            <ol>
-                <FontAwesomeIcon icon={faNewspaper} onClick={() => goTo("publications-content")} />
-            </ol>
-            <ol>
-                <FontAwesomeIcon icon={faShoppingBasket} onClick={() => goTo("transactions-content")} />
-            </ol>
-        </div>
+        {
+            isMobile && <div className={styles.tabs}>
+                <ol className={tab == "profile-content" ? styles.active : ""}>
+                    <FontAwesomeIcon icon={faUser} onClick={() => goTo("profile-content")} />
+                </ol>
+                <ol className={tab == "notifications-content" ? styles.active : ""}>
+                    <FontAwesomeIcon icon={faBell} onClick={() => goTo("notifications-content")} />
+                </ol>
+                <ol className={tab == "publications-content" ? styles.active : ""}>
+                    <FontAwesomeIcon icon={faNewspaper} onClick={() => goTo("publications-content")} />
+                </ol>
+                <ol className={tab == "transactions-content" ? styles.active : ""}>
+                    <FontAwesomeIcon icon={faShoppingBasket} onClick={() => goTo("transactions-content")} />
+                </ol>
+            </div>
+        }
 
         <div className={styles.content}>
             <div className={`Card ${styles.imageAndLevel}`}>
@@ -92,16 +98,18 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
                 <h3>Notificaciones</h3>
                 <UserNotifications />
             </div>
+            {
+                isMobile && <React.Fragment>
+                    <div className="Card publications-content">
+                        <Publicaciones />
+                    </div>
 
-            <div className="Card publications-content">
-                <h2>Publicaciones</h2>
-                <Publicaciones />
-            </div>
-
-            <div className="Card transactions-content">
-                <h2>Transacciones</h2>
-                <Transacciones />
-            </div>
+                    <div className="Card transactions-content">
+                        <h2>Transacciones</h2>
+                        <Transacciones />
+                    </div>
+                </React.Fragment>
+            }
         </div>
     </section>
 }

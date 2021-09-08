@@ -11,9 +11,9 @@ class Index extends React.Component {
   }
 
   render() {
-    const url = "https://pikajuegos.com"
+    const url = "https://pik-play.com"
     const meta_title = "Videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch al mejor precio del mercado"
-    const descripcion = "Pikajuegos es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas de venta de videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch de alto prestigio en Colombia"
+    const descripcion = "Pik-Play es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas de venta de videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch de alto prestigio en Colombia"
     return <Layout meta_url={url} meta_descripcion={descripcion} meta_title={meta_title} title={meta_title}>
       {this.props.feed && <Portada feed={this.props.feed} />}
     </Layout>

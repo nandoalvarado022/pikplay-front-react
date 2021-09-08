@@ -1,7 +1,5 @@
 // Descripción: Notificaciones generales en la aplicacion
-
 import React, { useContext } from "react"
-import { useState } from "react"
 import { PikContext } from "../../states/PikState"
 import styles from "./notificacion.module.scss"
 

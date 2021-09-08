@@ -28,15 +28,8 @@ const Footer = ({ filtrarRodadas }) => {
     <hr />
     <div>
       <h3>Contáctanos</h3>
-      <p>Medellín - Colombia</p>
       <p>
-        pikajuegoscolombia@gmail.com
-      </p>
-      <p>
-        <a target="_BLANK" href="https://www.instagram.com/pikajuegos">https://www.instagram.com/pikajuegos</a>
-      </p>
-      <p>
-        <a target="_BLANK" href="https://www.facebook.com/pikajuegos">https://www.facebook.com/pikajuegos</a>
+        Realizado en Medellín - Colombia
       </p>
     </div>
   </div>

@@ -88,7 +88,7 @@ const CardProducto = ({ banner_bottom, meta_url, title, descuento = 0, descripti
             </div>
 
             <p>
-              <a className="underline f-s-12" target="_BLANK" href="https://api.whatsapp.com/send?phone=573187414972&text=Quiero denunciar una publicación en pikajuegos.com">Denunciar</a>
+              <a className="underline f-s-12" target="_BLANK" href="https://api.whatsapp.com/send?phone=573187414972&text=Quiero denunciar una publicación en pik-play.com">Denunciar</a>
             </p>
 
             <div>
