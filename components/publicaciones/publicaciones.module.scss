@@ -1,0 +1,67 @@
+.content {
+    margin: 20px auto;
+    width: 1200px;
+    @media screen and (max-width: 420px) {
+        width: auto;
+    }
+     :global(.Card) {
+        margin: 0;
+    }
+    div {
+        box-sizing: border-box;
+    }
+    h2 {
+        font-size: 20px;
+        margin: 50px auto 20px;
+        text-align: center;
+        svg {
+            cursor: pointer;
+            position: relative;
+            top: 5px;
+        }
+    }
+    ul {
+        .flex-table {
+            // cada item
+            box-shadow: 0px 2px 2px #152c4412;
+            display: flex;
+            font-size: 14px;
+            // flex-flow: row wrap;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            position: relative;
+            transition: 0.5s;
+            img {
+                max-width: 50px;
+            }
+            a>div {}
+            .flex-row {
+                align-items: center;
+                display: flex;
+                flex: 1;
+                justify-content: center;
+                text-align: center;
+            }
+            .actions {
+                border-right: none;
+                display: flex;
+                flex-basis: 150px;
+                justify-content: flex-start;
+                width: auto;
+                >* {
+                    height: 40px;
+                }
+                .verPublicacion {
+                    margin: 15px 20px 0 0;
+                }
+            }
+            &.disabled {
+                >a>div {
+                    opacity: .3;
+                }
+            }
+        }
+    }
+}

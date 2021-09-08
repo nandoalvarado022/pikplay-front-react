@@ -1,0 +1,130 @@
+.steps {
+    display: flex;
+    font-size: 12px;
+    margin-left: 40px;
+    width: 540px;
+    @media screen and (max-width: 420px) {
+        margin-left: 10px;
+        width: auto;
+    }
+    >* {
+        margin: 0 10px;
+        &.active {
+            font-weight: bold;
+        }
+    }
+}
+
+.tipoPublicacion {
+    li {
+        text-transform: capitalize;
+    }
+}
+
+.fields {
+    >div:not(.actions) {
+        margin-bottom: 10px;
+    }
+}
+
+.actions {
+    margin-top: 5px;
+    text-align: right;
+    button {
+        @media screen and (max-width: 420px) {
+            position: fixed;
+            bottom: 0px;
+            height: 50px;
+            top: initial;
+            z-index: 10;
+            width: 100%;
+            border-radius: 0;
+            margin-left: -10px !important;
+        }
+    }
+}
+
+.fechaSalida {
+    width: 200px;
+    margin: 10px 0;
+}
+
+.images_list {
+    @media screen and (min-width: 768px) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .fileWrapper {
+        align-items: center;
+        border: #04a4c4 1px dashed;
+        color: #04a4c4;
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+        justify-content: center;
+        margin: 10px 5px;
+        padding: 10px;
+        position: relative;
+        width: 100px;
+        input {
+            display: none;
+            padding: 5px;
+        }
+        p {
+            margin: 5px 5px 0 0;
+        }
+        .remove {
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0px 0px 2px #5f5f5fa6;
+            color: #ff4c3f;
+            cursor: pointer;
+            padding: 5px 6px;
+            position: absolute;
+            right: -14px;
+            top: -15px;
+        }
+    }
+}
+
+.content {
+    margin: 20px auto;
+    width: 1200px;
+    @media screen and (max-width: 420px) {
+        width: auto;
+    }
+}
+
+.formAndPreviewPublicacion {
+    margin: 20px auto;
+    @media screen and (min-width: 768px) {
+        display: flex;
+        >* {
+            width: 45%;
+        }
+    }
+}
+
+.button_category {
+    padding: 10px 10px;
+    margin: 20px 0 0;
+    background: none;
+}
+
+.errors {
+    background: #f9d0d0;
+    font-size: 14px;
+    margin: 0 0 10px 0;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ff4c3f;
+}
+
+.preview_card {
+    margin: 0 auto 10px;
+    width: max-content;
+    @media screen and (max-width: 420px) {
+        display: none;
+    }
+}

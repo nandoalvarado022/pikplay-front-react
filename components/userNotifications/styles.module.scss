@@ -1,0 +1,63 @@
+.UserNotifications {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: -2px 2px 2px #52525233;
+    color: #24292e;
+    flex-direction: column;
+    font-size: 14px;
+    height: 250px;
+    justify-content: flex-start;
+    left: -250px;
+    overflow-y: scroll;
+    padding: 10px 0;
+    position: absolute;
+    right: 0;
+    top: 24px;
+    transition: 0.5s ease;
+    width: 250px;
+    z-index: 0;
+    ol {
+        align-items: start;
+        border-bottom: 1px solid #42495029;
+        display: flex;
+        height: min-content;
+        margin: 5px 0;
+        max-height: 50px;
+        overflow: hidden;
+        padding: 0 10px 10px;
+        text-align: center;
+        transition: 0.5s ease;
+        &.open {
+            max-height: initial;
+        }
+        > * {
+            flex: 1;
+        }
+        &:nth-of-type(1) {
+            margin-top: 30px;
+        }
+        i {
+            display: block;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .content_close {
+            svg {
+                margin-left: 8px;
+            }
+        }
+        span {
+            font-size: 12px;
+            flex: 5;
+        }
+        .coin {
+            margin-right: 10px;
+            position: relative;
+            top: 5px;
+            width: 20px;
+        }
+        button {
+            height: 35px;
+        }
+    }
+}

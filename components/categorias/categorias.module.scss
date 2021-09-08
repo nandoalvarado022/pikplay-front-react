@@ -1,0 +1,113 @@
+.Categorias {
+    background-color: white;
+    box-shadow: 0px 2px 2px #5252522e;
+    position: sticky;
+    top: 50px;
+    width: calc(100vw - 8px);
+    z-index: 2;
+    @media screen and (max-width: 420px) {
+        width: initial;
+        top: -215px;
+        position: absolute;
+    }
+    &.active {
+        @media screen and (max-width: 420px) {
+            top: 60px;
+        }
+    }
+    .perfil {
+        display: block;
+        padding: 8px 0;
+        &:hover {
+            .PreviewUser {
+                height: 180px;
+            }
+        }
+        :global(.content_image) {
+            height: 40px;
+            width: 40px;
+            &::after {
+                display: none;
+            }
+        }
+        .notyQuantity {
+            background: #ea4d42;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            font-size: 12px;
+            height: 20px;
+            line-height: 20px;
+            margin: -42px 0px 50px -32px;
+            padding: 0;
+            position: absolute;
+            text-align: center;
+            width: 20px;
+            z-index: 1;
+        }
+        .arrow {
+            color: #b3b3b3;
+            margin-left: 10px;
+            &.actived {
+                transform: rotate(180deg);
+            }
+        }
+        .picture {
+            border-radius: 50%;
+            height: 35px;
+            width: 35px;
+            background-size: 40px;
+            margin-right: 10px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+    > ul {
+        align-items: center;
+        display: flex;
+        justify-content: space-around;
+        margin: 0 auto;
+        padding: 0;
+        width: 1366px;
+        @media screen and (max-width: 420px) {
+            flex-wrap: wrap;
+        }
+        li {
+            cursor: pointer;
+            // flex: 1;
+            height: 40px;
+            list-style: none;
+            padding: 0px 20px;
+            position: relative;
+            text-align: center;
+            &:hover {
+                a {
+                }
+            }
+            > a {
+                align-items: center;
+                cursor: pointer;
+                display: flex;
+                font-size: 13px;
+                font-weight: bold;
+                height: 100%;
+                justify-content: center;
+            }
+            img {
+                max-width: 50px;
+                max-height: 28px;
+                margin: 0 10px 0 0;
+            }
+            &.crear-publicacion {
+                padding-right: 0;
+                a {
+                    background: linear-gradient(to bottom right, #4d6f92 0%, #426d98 100%);
+                    border-radius: 20px;
+                    color: white;
+                    justify-content: center;
+                    width: 120px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+.SideToSide {
+    background: #fcfcfc;
+    box-shadow: 0px -5px 5px 0 #ababab52;
+    color: #585858;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 50px 0 0;
+    padding: 20px;
+    @media screen and (max-width: 420px) {
+        align-items: center;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    >div {
+        width: 50%;
+        text-align: center;
+    }
+    h3 {}
+    a {
+        color: #585858;
+    }
+    .somos {
+        p {
+            font-size: 14px;
+        }
+    }
+    hr {
+        background: #d4d4d4;
+        border: none;
+        margin: 0 40px;
+        width: 1px;
+    }
+}
