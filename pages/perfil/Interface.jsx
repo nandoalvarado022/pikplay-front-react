@@ -30,8 +30,8 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
             Perfil
             <FontAwesomeIcon className="svg-question" icon={faQuestionCircle} onClick={() => {
                 const htmlMessage = <div>
-                    <h2>Perfil</h2>
-                    <p>
+                    <p>Perfil</p>
+                    {/* <p>
                         <h3>Coins</h3>
                         <p>En Pik-Play te premiamos por cada cosa que haces, por eso cada vez que realices una venta recibiras 1 moneda</p>
                     </p>
@@ -41,8 +41,8 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
                             <ol>No tienes límite de publicaciones diarias</ol>
                             <ol>Con el pase ORO puedes participar en <b>todos</b> sorteos que hacemos vía instagram</ol>
                         </ul>
-                    </p>
-                    <p>🤝 Juntos somos mejor</p>
+                    </p> */}
+                    <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
                 </div>
                 const message = { id: "perfil", message: htmlMessage }
                 context.customDispatch({ type: "SET_MESSAGE", payload: { message } })

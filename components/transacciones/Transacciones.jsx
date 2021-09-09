@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
 import moment from "moment"
 import { gql, useLazyQuery, useMutation } from '@apollo/client'
 import { useContext, useEffect, useState } from "react"
@@ -74,8 +76,19 @@ const Transacciones = () => {
     transactionConfirmed({ variables: { id } });
   }
 
-  return <div>
-    <ul className={`${styles.Transactions} Card`}>
+  return <section className={`${styles.Transactions}`}>
+    <h2>Transacciones
+      <FontAwesomeIcon class="svg-question" icon={faQuestionCircle} onClick={() => {
+        const message = {
+          id: 0, message: <div>
+            <p>Bienvenido a tus transacciones</p>
+            <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
+          </div>
+        }
+        context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
+      }} />
+    </h2>
+    <ul className="Card">
       {transactions && transactions.map(({ created, detail, id, status, type, u_name, user }) => <ol style={{ display: "flex" }}>
         <div>
           <div className={styles.id}>ID</div>
@@ -112,7 +125,7 @@ const Transacciones = () => {
       </ol>
       )}
     </ul>
-  </div>
+  </section>
 }
 
 export default Transacciones

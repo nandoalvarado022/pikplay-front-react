@@ -6,14 +6,16 @@ import Router from 'next/router'
 import Card from '../../components/card/Card'
 import styles from './publicaciones.module.scss'
 import Button from '../../components/button/Button'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { format_number } from '../../lib/utils'
 import moment from "moment"
 import Notification from "../../components/notification"
+import { PikContext } from "../../states/PikState"
 
 moment.locale('es')
 
 const Publicaciones = () => {
+    const context = useContext(PikContext)
     const [showDescription, setShowDescription] = useState(false)
     const [message, setMessage] = useState({})
     const phone = typeof window != "undefined" ? JSON.parse(localStorage.getItem("user")).phone : null
@@ -62,19 +64,18 @@ const Publicaciones = () => {
         getPublications()
     }, [])
 
-    return <div className={styles.content}>
+    return <section className={styles.content}>
         <Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} />
         <h2>
             Publicaciones
-            <FontAwesomeIcon style={{ float: "right" }} icon={faQuestionCircle} onClick={() => {
+            <FontAwesomeIcon className="svg-question" icon={faQuestionCircle} onClick={() => {
                 setMessage({
                     id: 0, message: <div>
-                        <p>🔵 Bienvenido al panel de tus publicaciones</p>
-                        <p>💙 En Pik-Play te premiamos por cada cosa que haces, por eso cada vez que realices una venta recibiras 1 moneda</p>
-                        <p>🤝 Juntos somos mejor</p>
+                        <p>Bienvenido a tus publicaciones</p>
+                        <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
                     </div>
                 })
-                setShowDescription(true)
+                context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
             }} />
         </h2>
         <ul className="Card">
@@ -117,7 +118,7 @@ const Publicaciones = () => {
                 })
             }
         </ul>
-    </div>
+    </section>
 }
 
 export default Publicaciones

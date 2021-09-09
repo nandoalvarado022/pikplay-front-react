@@ -25,9 +25,9 @@
     display: none;
 }
 
-.guide_images{
+.guide_images {
     display: none;
-    &.show{
+    &.show {
         display: block;
     }
 }
@@ -491,8 +491,9 @@ main {
 }
 
 section {
+    margin: 20px auto;
+    width: 1200px;
     > h2 {
-        text-align: center;
         @media screen and (max-width: 420px) {
             padding-left: 20px;
             text-align: initial;

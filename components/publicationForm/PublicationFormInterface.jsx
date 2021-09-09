@@ -1,22 +1,22 @@
-import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
 import { faImage, faTrash } from "@fortawesome/free-solid-svg-icons"
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
-import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
-import Select from '@material-ui/core/Select'
 import Card from '../card/Card'
-import { Input, TextField } from "@material-ui/core"
-import { useEffect, useState } from 'react'
+import { TextField } from "@material-ui/core"
+import { useContext, useState } from 'react'
 import Fade from '@material-ui/core/Fade'
 import styles from "./publicationForm.module.scss"
 import Button from '../button/Button'
 import { getCategories } from "../../lib/utils"
 import Notification from '../notification'
+import { PikContext } from '../../states/PikState'
 
 const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, handleSubmit, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, screenWidth, setPublicationFormData, textButton }) => {
+  const context = useContext(PikContext)
   const [showDescription, setShowDescription] = useState(false)
   const [message, setMessage] = useState(null)
   const [menuPosition, setMenuPosition] = useState(null)
@@ -33,14 +33,14 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
       <Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} />
       <h2>
         Crear publicación
-        <FontAwesomeIcon icon={faQuestionCircle} onClick={() => {
-          setMessage(<div>
-            <p>Bienvenido al modulo de creación de publicaciones</p>
-            - Al vender articulos por Pik-Play recibiras el 1% devuelta del valor del producto que vendiste
-            <p><b>Recuerda</b> que la publicación una vez creada debe ser revisada</p>
-            <p>Juntos somos mejor 🤝</p>
-          </div>)
-          setShowDescription(true)
+        <FontAwesomeIcon class="svg-question" icon={faQuestionCircle} onClick={() => {
+          const message = {
+            id: 0, message: <div>
+              <p>Creación de publicaciones</p>
+              <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
+            </div>
+          }
+          context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
         }} />
       </h2>
 

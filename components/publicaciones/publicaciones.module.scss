@@ -1,6 +1,4 @@
 .content {
-    margin: 20px auto;
-    width: 1200px;
     @media screen and (max-width: 420px) {
         width: auto;
     }
@@ -9,13 +7,6 @@
     }
     div {
         box-sizing: border-box;
-    }
-    h2 {
-        svg {
-            cursor: pointer;
-            position: relative;
-            top: 5px;
-        }
     }
     ul {
         .flex-table {
