@@ -18,21 +18,21 @@
         width: calc(100% + 8px);
         z-index: 0;
     }
-    &.bronce {
+    &.Bronce {
         &::after {
             background: #945a41;
             background: linear-gradient( 90deg, #945a41 0%, #f1cca7 50%);
             box-shadow: 0 0 10px #945a41;
         }
     }
-    &.plata {
+    &.Plata {
         &::after {
             background: #d5d5d6;
             background: linear-gradient( 90deg, #d5d5d6 0%, #777779 50%);
             box-shadow: 0 0 10px #d5d5d6;
         }
     }
-    &.oro {
+    &.Oro {
         &::after {
             background: #e7d841;
             background: linear-gradient( 90deg, #e7d841 0%, #c27a0f 50%);

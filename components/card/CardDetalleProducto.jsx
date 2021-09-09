@@ -29,7 +29,21 @@ const CardProducto = ({ banner_bottom, meta_url, title, descuento = 0, descripti
   let like = null;
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
 
+  useEffect(() => {
+    (function () { // Comentarios disqus
+      var d = document, s = d.createElement('script');
+      s.src = 'https://pik-play.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }, [])
+
   return <div key={indice_item} className={`Card ${styles.DetalleProducto}`}>
+    <ins class="adsbygoogle"
+      style={{ display: "inline-block", width: "320px", height: "100px" }}
+      data-ad-client="ca-pub-4730353912478910"
+      data-ad-slot="2850501582"></ins>
+
     <Grow key={indice_item} timeout={500} in={true} style={{ opacity: 1 }}>
       <div ref={ref_descripcion_imagen} className={styles.descripcion_imagen}>
         <div className={styles.left}>
@@ -91,9 +105,10 @@ const CardProducto = ({ banner_bottom, meta_url, title, descuento = 0, descripti
               <a className="underline f-s-12" target="_BLANK" href="https://api.whatsapp.com/send?phone=573187414972&text=Quiero denunciar una publicación en pik-play.com">Denunciar</a>
             </p>
 
-            <div>
+            {/* <div>
               <DiscussionEmbed shortname="pikajuegos" config={{ url: meta_url, identifier: meta_url, title: title, language: "es_ES" }} />
-            </div>
+            </div> */}
+            <div id="disqus_thread"></div>
           </div>
         )}
 

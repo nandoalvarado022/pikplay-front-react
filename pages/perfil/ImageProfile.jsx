@@ -5,7 +5,6 @@ import styles from "./imageProfile.module.scss"
 const ImageProfile = ({ isOpenPreviewProfile, setIsOpenPreviewProfile }) => {
   const context = useContext(PikContext)
   const { category, picture } = context?.user
-
   return <div onClick={() => setIsOpenPreviewProfile && setIsOpenPreviewProfile(!isOpenPreviewProfile)} className={`content_image ${styles.content_image} ${styles[category]}`}>
     <span className={styles.picture} style={{ "background-image": `url(${picture})` }} />
   </div>
