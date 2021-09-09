@@ -17,6 +17,21 @@
     }
 }
 
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.guide_images{
+    display: none;
+    &.show{
+        display: block;
+    }
+}
+
 .svg-question {
     margin-left: 10px;
 }
@@ -476,15 +491,12 @@ main {
 }
 
 section {
-    h2 {
+    > h2 {
         text-align: center;
         @media screen and (max-width: 420px) {
             padding-left: 20px;
             text-align: initial;
         }
-    }
-    svg {
-        margin-left: 10px;
     }
 }
 

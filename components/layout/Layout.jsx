@@ -42,9 +42,10 @@ class Layout extends React.Component {
   club_short_name = null
   state = {
     growMenu: false,
-    swAdd: false,
     imagen_club_usuario: false,
-    tenemosCookies: true,
+    step: 0,
+    swAdd: false,
+    tenemosCookies: true
   }
 
   tenemosCookies = () => {
@@ -76,18 +77,37 @@ class Layout extends React.Component {
         : null;
     }
 
-    const message = {
-      id: "postRegistro", message: <div>
-        <p>
-          <b>Bienvenido,</b> {this.context.user.name}
-        </p>
-        <img style={{ display: "block", margin: "0 auto", width: "200px" }} src="/images/banners/completar-perfil.jpg" alt="Completar perfil" />
-        <p>🤝 Recuerda que puedes confiar plenamente en los aliados que tengan el icono <span style={{ color: "#04a4c4;" }}><FontAwesomeIcon icon={faCheckCircle} /></span> al lado de su nombre, a estos los respaldamos completamente.</p>
-        <p>Puedes completar tu perfil haciendo click <Link href="/perfil">aquí.</Link></p>
-      </div>
+    const handleAnterior = () => {
+      if (this.context.guide_step == 1) return
+      this.context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "guide_step", value: this.context.guide_step - 1 } })
+      document.querySelectorAll(".guide_images").forEach((element) => element.classList.remove("show"))
+      const element = document.querySelector(`#img_guide_step_${this.context.guide_step - 1}`)
+      if (element) element.classList.add("show")
     }
 
-    this.context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
+    const handleSiguiente = () => {
+      if (this.context.guide_step == 2) return
+      this.context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "guide_step", value: this.context.guide_step + 1 } })
+      document.querySelectorAll(".guide_images").forEach((element) => element.classList.remove("show"))
+      const element = document.querySelector(`#img_guide_step_${this.context.guide_step + 1}`)
+      if (element) element.classList.add("show")
+    }
+
+    const message = {
+      id: "postRegistro", message: <div>
+        <h3 style={{ "fontWeight": 100, color: "white" }}>
+          <b style={{ color: "white" }}>Bienvenido,</b>
+          &nbsp;{this.context.user.name}
+        </h3>
+        <img className="guide_images show" id="img_guide_step_1" src="/images/banners/guia/1.png" alt="Completar perfil" />
+        <img className="guide_images" id="img_guide_step_2" src="/images/banners/guia/2.png" alt="Completar perfil" />
+        <button onClick={handleAnterior}>anterior</button>
+        <button onClick={handleSiguiente}>siguiente</button>
+      </div>
+
+    }
+
+    // this.context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
 
     /*const script = document.createElement("script");
     script.src = "../../indigital/sdk.min.js";

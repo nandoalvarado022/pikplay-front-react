@@ -6,6 +6,8 @@ import { createContext } from "react"
 const PikState = (props) => {
   const initialState = {
     coins: 0,
+    current_date: new Date(),
+    guide_step: 1, // guia de bienvenida de primeros usuarios
     isOpenNotifications: false,
     isMobile: false,
     isOpenPreviewProfile: false,
@@ -13,7 +15,7 @@ const PikState = (props) => {
     messageModal: { id: "empty" },
     checkedNotifications: typeof window != "undefined" && localStorage.getItem("checkedNotifications") ? JSON.parse(localStorage.getItem("checkedNotifications")) : [],
     selectedUser: null,
-    user: {
+    user: typeof window != "undefined" && localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {
       id: 0
     },
     showNotification: true

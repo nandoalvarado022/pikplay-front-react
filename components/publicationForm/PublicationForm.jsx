@@ -115,7 +115,7 @@ const PublicationForm = (props) => {
 				sale_price: Number(publicationFormData.sale_price),
 			}
 		}
-		if (!isEdit) variables.slug = slug
+		if (!isEdit) variables.input.slug = slug
 		dispatchCreate({
 			variables
 		})

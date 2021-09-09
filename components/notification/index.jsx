@@ -5,7 +5,7 @@ import styles from "./notificacion.module.scss"
 
 const Notification = ({ }) => {
     const context = useContext(PikContext)
-    const isOpen = context.messageModal.id == "empty" ? false  : true
+    const isOpen = context.messageModal.id == "empty" ? false : true
     const { id = null, message: htmlMessage = null } = context?.messageModal
     const handleClose = () => {
         context.customDispatch({ type: "SET_MESSAGE", payload: null })

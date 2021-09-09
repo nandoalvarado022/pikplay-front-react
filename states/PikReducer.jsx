@@ -5,6 +5,7 @@ const PikReducer = (state, action) => {
       const { property, value } = payload
       return {
         ...state,
+        current_date: new Date(),
         [property]: value
       }
     case "SET_MESSAGE":
@@ -16,8 +17,8 @@ const PikReducer = (state, action) => {
         messageModal.id = "empty"
       }
       if (notifications1Time.indexOf(messageModal.id) != -1 && !notifications.find(item => item == messageModal.id)) {
-        notifications.push(messageModal.id)
-        localStorage.setItem("checkedNotifications", JSON.stringify(notifications))
+        // notifications.push(messageModal.id)
+        // localStorage.setItem("checkedNotifications", JSON.stringify(notifications))
       }
       return {
         ...state,

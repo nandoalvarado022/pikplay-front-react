@@ -3,7 +3,7 @@ import styles from './newsletter.module.scss'
 
 const handleSuscripcion = () => {
     const texto = `Hola, quisiera pertenecer al grupo de PIKAMIGOS para que me lleguen las promociones, cupones y noticias semanalmente =)`
-    window.open("https://api.whatsapp.com/send?phone=573124532441&text=" + texto)
+    window.open("https://api.whatsapp.com/send?phone=573052665725&text=" + texto)
 }
 
 const Newsletter = () => <div className={styles.Newsletter}>
