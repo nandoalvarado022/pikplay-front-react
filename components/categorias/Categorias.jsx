@@ -15,7 +15,7 @@ const Categorias = ({ scroll }) => {
   const [showNotifications, setShowNotifications] = useState(false)
   const picture = typeof localStorage != "undefined" && localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).picture
   const context = useContext(PikContext)
-  const notifications = context.notifications
+  const notifications = context.notifications.filter(item => item.closed == 0)
 
   return <div className={styles.Categorias}>
     <ul>
@@ -46,50 +46,10 @@ const Categorias = ({ scroll }) => {
         })
       }
 
-      {/* <li filter="game">
-        <Link scroll={scroll} href="/category/[id]" as="/category/suscripciones">
-          <a>
-            <img src="/images/icons/subscription.png" alt="suscripciones" />
-            Subscripciones
-          </a>
-        </Link>
-      </li>
-      <li filter="game">
-        <Link scroll={scroll} href="/category/[id]" as="/category/nintendo">
-          <a>
-            <img src="/images/icons/nintendo-switch.png" alt="nintendo (switch)" />
-            Nintendo (Switch)
-          </a>
-        </Link>
-      </li>
-      <li filter="game">
-        <Link scroll={scroll} href="/category/[id]" as="/category/playstation">
-          <a>
-            <img src="/images/icons/ps4.png" alt="playstation" />
-            Playstation
-          </a>
-        </Link>
-      </li>
-      <li filter="game">
-        <Link scroll={scroll} href="/category/[id]" as="/category/microsoft">
-          <a>
-            <img src="/images/icons/xbox.png" alt="Microsoft (PC, XBOX)" />
-            Microsoft (PC, XBOX)
-          </a>
-        </Link>
-      </li>
-      <li filter="game">
-        <Link scroll={scroll} href="/category/[id]" as="/category/otros">
-          <a>
-            Otros
-          </a>
-        </Link>
-      </li>
-      */}
       {
         typeof localStorage != "undefined" && localStorage.getItem("user") ? <React.Fragment>
           <li className={styles.perfil} title={`Nivel actual ${context.user.category}`}>
-            <ImageProfile {...{isOpenPreviewProfile, setIsOpenPreviewProfile}} />
+            <ImageProfile {...{ isOpenPreviewProfile, setIsOpenPreviewProfile }} />
             <span className={styles.notyQuantity}>
               {notifications.length}
             </span>

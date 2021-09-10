@@ -59,6 +59,7 @@ const Perfil = () => {
     localStorage.setItem("user", JSON.stringify({ ...userData, ...variables }))
     setTimeout(() => {
       setIsSaving(false)
+      context.getNotifications()
     }, 1000)
   }
 

@@ -23,8 +23,8 @@ button.btn {
         background: #ff9b51;
     }
     &.blue {
-        background: #04a4c4;
-        border: 1px solid #008ba7;
+        background: linear-gradient(180deg, #80a4ca 0%, #476e96 100%);
+        text-shadow: 1px 1px black;
     }
     &.red {
         background: #f05f70;
@@ -44,7 +44,7 @@ button.btn {
         align-items: center;
         svg {
             margin-left: 5px;
-            transition: .2s ease-in;
+            transition: 0.2s ease-in;
         }
     }
     &.animation:hover {

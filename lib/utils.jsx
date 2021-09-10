@@ -1,4 +1,5 @@
 // require('isomorphic-fetch');
+import { gql, useMutation } from '@apollo/client'
 import { faCheckCircle } from "@fortawesome/free-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import fetch from "node-fetch"
@@ -910,3 +911,26 @@ export function getSubcategories(id) {
   if (id) return subcategories.find(item => item.id == id)
   return subcategories
 }
+
+export const CREATE_COIN = gql`
+	mutation createCoin($id: Int){
+		createCoin(id: $id)
+	}`
+
+export const DELETE_NOTIFICATION = gql`
+	mutation deleteNotification($id: Int){
+		deleteNotification(id: $id)
+	}`
+
+export const GET_NOTIFICATIONS = gql`
+query getNotifications($user: Int, $closed: String){
+  getNotifications(user: $user, closed: $closed){
+    closed
+    coins
+    created
+    detail
+    id
+    type
+    user
+  }
+}`

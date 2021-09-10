@@ -28,7 +28,7 @@ const Transacciones = () => {
     }`
   const [createNotification, { }] = useMutation(MUTATION_NOTIFICATION, {
     onCompleted() {
-      context.gettingNotifications()
+      context.getNotifications()
     }
   });
   // Query transacciones

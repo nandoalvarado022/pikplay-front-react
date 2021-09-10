@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap");
-
+@font-face {
+    font-family: "Righteous";
+    src: /* Modern Browsers */ url("/fonts/Righteous-Regular.ttf") format("truetype");
+}
 @media screen and (max-width: 420px) {
     .actions button.nextStep {
         bottom: 80px;
@@ -644,6 +647,10 @@ body {
 
 .font-a {
     font-family: "Montserrat", sans-serif;
+}
+
+.font-b {
+    font-family: "Righteous", sans-serif;
 }
 
 .font-c {

@@ -4,24 +4,14 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons"
 import { useContext, useEffect, useState } from 'react'
 import { PikContext } from "../../states/PikState"
 import styles from "./styles.module.scss"
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import Button from "../button/Button"
+import { CREATE_COIN, DELETE_NOTIFICATION } from "../../lib/utils"
 
 const UserNotifications = () => {
   const context = useContext(PikContext)
-  const notifications = context.notifications
+  const notifications = context.notifications.filter(item => item.closed == 0)
   const [isOpenNotifications, setIsOpenNotifications] = useState(false)
-
-  const CREATE_COIN = gql`
-	mutation createCoin($id: Int){
-		createCoin(id: $id)
-	}`
-
-  const DELETE_NOTIFICATION = gql`
-	mutation deleteNotification($id: Int){
-		deleteNotification(id: $id)
-	}`
-
   const [deleteNotificationGraph] = useMutation(DELETE_NOTIFICATION);
   const [createCoin] = useMutation(CREATE_COIN);
 
@@ -36,9 +26,10 @@ const UserNotifications = () => {
   }
 
   const deleteNotification = (idNotification) => {
-    const _notifications = notifications.filter(item => item.id != idNotification)
+    const notifications = [...context.notifications]
+    notifications.find(item => item.id == idNotification).closed = "1"
     deleteNotificationGraph({ variables: { id: idNotification } })
-    context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: _notifications } })
+    context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: notifications } })
   }
 
   const handleNotification = (id) => {

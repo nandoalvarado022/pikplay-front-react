@@ -2,6 +2,7 @@ import { gql, useLazyQuery } from '@apollo/client'
 import React, { useContext, useEffect, useReducer } from "react"
 import PikReducer from "./PikReducer"
 import { createContext } from "react"
+import { GET_NOTIFICATIONS } from '../lib/utils'
 
 const PikState = (props) => {
   const initialState = {
@@ -23,20 +24,9 @@ const PikState = (props) => {
 
   const [state, dispatch] = useReducer(PikReducer, initialState);
 
-  // Getting notifications
-  const GET_NOTIFICATIONS = gql`
-	query getNotifications($user: Int){
-		getNotifications(user: $user){
-      id
-      user
-      detail
-      coins
-      created
-    }
-	}`
-
   const [getNotifications] = useLazyQuery(GET_NOTIFICATIONS, { // Obteniendo notificaciones
     fetchPolicy: "no-cache",
+    // polInterval: 5000,
     variables: {
       user: state.user.id
     },
@@ -70,7 +60,7 @@ const PikState = (props) => {
       value={{
         ...state,
         customDispatch,
-        gettingNotifications
+        getNotifications
       }}
     >
       {props.children}
