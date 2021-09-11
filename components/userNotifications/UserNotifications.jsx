@@ -11,16 +11,21 @@ import { CREATE_COIN, DELETE_NOTIFICATION } from "../../lib/utils"
 const UserNotifications = () => {
   const context = useContext(PikContext)
   const notifications = context.notifications.filter(item => item.closed == 0)
-  const [isOpenNotifications, setIsOpenNotifications] = useState(false)
-  const [deleteNotificationGraph] = useMutation(DELETE_NOTIFICATION);
-  const [createCoin] = useMutation(CREATE_COIN);
+  const [deleteNotificationGraph] = useMutation(DELETE_NOTIFICATION)
+  const [createCoin] = useMutation(CREATE_COIN)
 
-  const reclamarCoins = (coins, idNotification) => {
-    createCoin({
+  const reclamarCoins = async (coins, idNotification) => {
+    const req_res = await createCoin({
       variables: {
         id: idNotification
       }
     })
+    const res = req_res.data.createCoin
+    if (res == 400) {
+      const message = { id: 0, message: <div>Alcanzaste el límite de <b>Pikcoins</b> diarias para recibir</div> }
+      context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
+      return
+    }
     context.customDispatch({ type: "RECLAMAR_COINS", payload: { coins } })
     deleteNotification(idNotification)
   }
