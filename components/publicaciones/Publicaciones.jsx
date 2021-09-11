@@ -16,8 +16,6 @@ moment.locale('es')
 
 const Publicaciones = () => {
     const context = useContext(PikContext)
-    const [showDescription, setShowDescription] = useState(false)
-    const [message, setMessage] = useState({})
     const phone = typeof window != "undefined" ? JSON.parse(localStorage.getItem("user")).phone : null
     const UPDATE_MUTATION = gql`
 	mutation ChangeStatePublication($id: Int!, $status: Boolean!){
@@ -65,16 +63,15 @@ const Publicaciones = () => {
     }, [])
 
     return <section className={styles.content}>
-        <Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} />
         <h2>
             Publicaciones
             <FontAwesomeIcon className="svg-question" icon={faQuestionCircle} onClick={() => {
-                setMessage({
+                const message = {
                     id: 0, message: <div>
                         <p>Bienvenido a tus publicaciones</p>
                         <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
                     </div>
-                })
+                }
                 context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
             }} />
         </h2>
@@ -96,14 +93,15 @@ const Publicaciones = () => {
                             }
                             {
                                 !item.status && <span className={styles.verPublicacion} onClick={() => {
-                                    setShowDescription(true)
-                                    setMessage({
-                                        id: 0, message: <div>
-                                            <p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pikajuegos ó porque esta pausada</p>
-                                        </div>
-                                    })
                                 }}>
-                                    <FontAwesomeIcon style={{ position: "relative", left: "-5px", top: "2px" }} icon={faQuestionCircle} />
+                                    <FontAwesomeIcon style={{ position: "relative", left: "-5px", top: "2px" }} icon={faQuestionCircle} onClick={() => {
+                                        const message = {
+                                            id: 0, message: <div>
+                                                <p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pikajuegos ó porque esta pausada</p>
+                                            </div>
+                                        }
+                                        context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
+                                    }} />
                                     {/* No es posible ver la publicación */}
                                 </span>
                             }

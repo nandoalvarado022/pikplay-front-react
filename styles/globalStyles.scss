@@ -4,6 +4,15 @@
     font-family: "Righteous";
     src: /* Modern Browsers */ url("/fonts/Righteous-Regular.ttf") format("truetype");
 }
+
+input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 @media screen and (max-width: 420px) {
     .actions button.nextStep {
         bottom: 80px;

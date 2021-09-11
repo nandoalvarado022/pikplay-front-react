@@ -76,9 +76,11 @@ const Coins = () => {
     {/* <span>
       {previousCoins}
     </span> */}
-    <span className={`f-s-14 ${styles.number} number-coins`}>
+    <div className={`f-s-14 ${styles.number} number-coins`}>
       {format_number(coins)}
-    </span>
+      <br />
+      <span>Pikcoins</span>
+    </div>
   </div>
 }
 

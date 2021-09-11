@@ -45,6 +45,9 @@
             font-size: 12px;
             margin-top: 10px;
         }
+        :global(.number-coins) span{
+            display: none;
+        }
     }
 }
 

@@ -71,6 +71,9 @@
         padding: 10px;
         position: relative;
         width: 100px;
+        @media screen and (max-width: 420px) {
+            width: auto;
+        }
         input {
             display: none;
             padding: 5px;
@@ -111,9 +114,14 @@
 }
 
 .button_category {
-    padding: 10px 10px;
-    margin: 20px 0 0;
-    background: none;
+    // background: none;
+    // margin: 20px 0 0;
+    // padding: 10px 10px;
+    button {
+        font-size: 14px;
+        margin-left: 0;
+        padding-left: 0;
+    }
 }
 
 .errors {

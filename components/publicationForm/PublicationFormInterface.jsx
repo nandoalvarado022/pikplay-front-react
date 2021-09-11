@@ -69,6 +69,9 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
           {
             currentStep == 2 && <>
               <div className="Card">
+                <div className={styles.button_category}>
+                  <Button color="border-button" aria-controls="tipo_publicacion" onClick={handleRightClick} aria-haspopup="true">{!publicationFormData.category ? "Seleccionar la categoria" : getCategories(publicationFormData.category).name}</Button>
+                </div>
                 <div>
                   <TextField fullWidth={true} label="Precio" placeholder="" margin="normal" value={sale_price} type='number' onChange={e => setPublicationFormData({ ...publicationFormData, sale_price: Number(e.target.value) })} />
                 </div>
@@ -79,7 +82,6 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
 
               <div className="Card">
                 <div onContextMenu={handleRightClick} title="Categoria del articulo">
-                  <Button className="button_category" color="border-button" aria-controls="tipo_publicacion" onClick={handleRightClick} aria-haspopup="true">{!publicationFormData.category ? "Seleccionar la categoria" : getCategories(publicationFormData.category).name}</Button>
                   <Menu anchorReference="anchorPosition" anchorPosition={menuPosition} onClose={() => setMenuPosition(null)} TransitionComponent={Fade} keepMounted open={!!menuPosition} className={styles.tipoPublicacion}>
                     {getCategories().map(item => <MenuItem onClick={() => { setPublicationFormData({ ...publicationFormData, category: item.id }); setMenuPosition(null) }} value={item.id}>{item.name}</MenuItem>)}
                   </Menu>
@@ -113,7 +115,7 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
                     return <>
                       {
                         publicationFormData[item] == null && <label class={styles.fileWrapper}>
-                          <input type='file' id={item} onChange={() => onChangeImage(item)} />
+                          <input accept=".png,.jpg,.jpeg,.gif" type='file' id={item} onChange={() => onChangeImage(item)} />
                           <FontAwesomeIcon icon={faImage} />
                           <p>Subir imágen</p>
                         </label>

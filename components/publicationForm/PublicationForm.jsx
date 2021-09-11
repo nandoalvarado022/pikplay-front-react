@@ -64,6 +64,10 @@ const PublicationForm = (props) => {
 	}, [loadingPED])
 
 	async function onChangeImage(idImageElement) {
+		if (imageLoading) {
+			alert("Espere que termine de cargar la imagen anterior")
+			return
+		}
 		setImageLoading(true)
 		let image = await subirImagen({ tipoArchivo: "publications", idImageElement, isEdit })
 		let obj = { ...publicationFormData, [idImageElement]: image[1] }

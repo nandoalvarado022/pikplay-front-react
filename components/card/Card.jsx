@@ -60,12 +60,13 @@ const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, 
                 {quantity && <p className={styles.quantity}>{quantity} unidades disponibles</p>}
                 <div className={styles["likes-precio"]}>
                   <div className={styles.content_precio}>
-                    {/* Precio */
-                      Number(price) != 0 && <span className={styles.tachado}>
-                        ${format_number(price)}
-                      </span>
+                    {/* Precio tachado */
+                      // Number(price) != 0 && <span className={styles.tachado}>
+                      //   ${format_number(price)}
+                      // </span>
                     }
                     {
+                      // Precio sin tachar
                       Number(sale_price) != 0 &&
                       <React.Fragment>
                         <span className={styles.nuevoPrecio}>

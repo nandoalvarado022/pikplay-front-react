@@ -719,7 +719,7 @@ export const getFeed = async ({ slug = "", category = null, subcategory = null }
       body: JSON.stringify({ query })
     })
     const _data = await res.json()
-    data = data?.data?.publications
+    data = _data?.data?.publications
   } catch (err) {
     console.log(err)
   }
