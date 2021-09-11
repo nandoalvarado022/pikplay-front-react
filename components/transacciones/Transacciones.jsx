@@ -5,6 +5,7 @@ import { gql, useLazyQuery, useMutation } from '@apollo/client'
 import { useContext, useEffect, useState } from "react"
 import { PikContext } from "../../states/PikState"
 import styles from "./styles.module.scss"
+import Button from '../button/Button'
 
 moment.locale('es')
 
@@ -13,8 +14,8 @@ const Transacciones = () => {
   const context = useContext(PikContext)
   // Mutation confirmar transacción
   const TRANSACTION_CONFIRMED = gql`
-    mutation transactionConfirmed($id: Int){
-      transactionConfirmed(id: $id)
+    mutation transactionConfirmed($id: Int, $publication: Int){
+      transactionConfirmed(id: $id, publication: $publication)
     }`
   const [transactionConfirmed, { }] = useMutation(TRANSACTION_CONFIRMED, {
     onCompleted() {
@@ -38,6 +39,7 @@ const Transacciones = () => {
         created
         detail
         id
+        publication
         status
         type
         type
@@ -72,8 +74,8 @@ const Transacciones = () => {
     // pagar({ idTransaccion: id })
   }
 
-  const handleConfirmarTransaccion = (id) => {
-    transactionConfirmed({ variables: { id } });
+  const handleConfirmarTransaccion = (id, publication) => {
+    transactionConfirmed({ variables: { id, publication } });
   }
 
   return <section className={`${styles.Transactions}`}>
@@ -88,8 +90,8 @@ const Transacciones = () => {
         context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
       }} />
     </h2>
-    <ul className="Card">
-      {transactions && transactions.map(({ created, detail, id, status, type, u_name, user }) => <ol style={{ display: "flex" }}>
+    <ul>
+      {transactions && transactions.map(({ created, detail, id, publication, status, type, u_name, user }) => <ol className="Card" style={{ display: "flex" }}>
         <div>
           <div className={styles.id}>ID</div>
           #{id}
@@ -118,7 +120,7 @@ const Transacciones = () => {
           </div>
         </div>
         <div className={styles.actions}>
-          {type == "Venta" && status == 0 && <button onClick={() => handleConfirmarTransaccion(id)}>Confirmar transacción</button>}
+          {type == "Venta" && status == 0 && <Button color="blue" onClick={() => handleConfirmarTransaccion(id, publication)}>Confirmar transacción</Button>}
           {/* {type == "Venta" && status == 0 && <button onClick={() => handleConfirmarTransaccion(id)} title="El cliente podrá pagar en linea">Habilitar pago en linea</button>} */}
           {/* {type == "Compra" && status == 0 && <button onClick={() => handlePagarTransaccion(id)}>Pagar</button>} */}
         </div>

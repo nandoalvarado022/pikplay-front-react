@@ -45,6 +45,9 @@ const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popul
   }, [])
 
   return <React.Fragment>
+    {feed.length < 1 && <h3 style={{ textAlign: "center" }}>
+      Mantenimiento programado en progreso
+    </h3>}
     {!category && <HolaJuanito />}
     {
       // showVideo && <div className={styles.videoContent}>

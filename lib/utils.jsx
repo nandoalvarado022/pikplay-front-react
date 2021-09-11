@@ -711,14 +711,19 @@ export const getFeed = async ({ slug = "", category = null, subcategory = null }
         warranty
       }
     }`
-
-  const res = await fetch(VARS.API_URL_GRAPHQL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query })
-  })
-  const data = await res.json()
-  return data?.data?.publications
+  let data = []
+  try {
+    const res = await fetch(VARS.API_URL_GRAPHQL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query })
+    })
+    const _data = await res.json()
+    data = data?.data?.publications
+  } catch (err) {
+    console.log(err)
+  }
+  return data
 }
 
 export const capitalize = (s) => {
