@@ -44,7 +44,7 @@ const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, 
                 {accept_changues && <span className={styles.condition} title="El vendedor acepta productos como parte de pago o incluso cambiar el producto por otro de su interés">Acepto cambios</span>}
                 {
                   tags && JSON.parse(tags).map((item, ind) => {
-                    return (<span key={ind} /*style={{ background: item.background }}*/>
+                    return (<span key={ind}>
                       {item.texto}
                     </span>
                     );
@@ -59,25 +59,19 @@ const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, 
                 <h2>{title ? title : "Espacio para el título de la publicación"}</h2>
                 {quantity && <p className={styles.quantity}>{quantity} unidades disponibles</p>}
                 <div className={styles["likes-precio"]}>
-                  {/* <div className="likes">
-                    <FontAwesomeIcon icon={faHeart} />
-                    <span>12</span>
-                  </div> */}
                   <div className={styles.content_precio}>
                     {/* Precio */
-                      price && <span className={styles.tachado}>
+                      Number(price) != 0 && <span className={styles.tachado}>
                         ${format_number(price)}
                       </span>
                     }
-
                     {
-                      sale_price && sale_price != 0 && (
-                        <React.Fragment>
-                          <span className={styles.nuevoPrecio}>
-                            ${format_number(sale_price)}
-                          </span>
-                        </React.Fragment>
-                      )
+                      Number(sale_price) != 0 &&
+                      <React.Fragment>
+                        <span className={styles.nuevoPrecio}>
+                          ${format_number(sale_price)}
+                        </span>
+                      </React.Fragment>
                     }
                   </div>
                 </div>

@@ -3,7 +3,8 @@
     margin: 50px auto 50px;
     width: 1300px;
     @media screen and (max-width: 420px) {
-        display: none;
+        margin-top: 100px;
+        width: auto;
     }
     .banners {
         display: flex;
@@ -20,6 +21,18 @@
             padding: 10px 20px;
             position: relative;
             z-index: 1;
+            @media screen and (max-width: 420px) {
+                margin: 0px 20px 20px;
+            }
+            &.ads {
+                @media screen and (max-width: 420px) {
+                    border-radius: 0;
+                    margin: 20px 0 0;
+                }
+            }
+            ol {
+                padding: 0;
+            }
         }
         .texts {
             width: 500px;
@@ -36,6 +49,9 @@
     }
     img {
         max-width: 500px;
+        @media screen and (max-width: 420px) {
+            max-width: 100%;
+        }
     }
     .reclamar_monedas {
         background: linear-gradient(180deg, #ff7524 0%, #f71b1b 100%);

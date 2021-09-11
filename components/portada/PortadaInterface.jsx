@@ -45,7 +45,7 @@ const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popul
   }, [])
 
   return <React.Fragment>
-    <HolaJuanito />
+    {!category && <HolaJuanito />}
     {
       // showVideo && <div className={styles.videoContent}>
       //   <video onClick={handlePlay} className="block-center" src="/videos/video1.mp4" />
@@ -60,7 +60,7 @@ const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popul
         <div className="listadoRodadas">
           {feed && feed.map((item, ind) => {
             return <React.Fragment>
-              {ind == 4 && <ins class="adsbygoogle"style={{ display: "inline-block", width: "336px", height: "280px" }}data-ad-client="ca-pub-4730353912478910"data-ad-slot="4411619983"></ins>}
+              {ind == 4 && <ins class="adsbygoogle" style={{ display: "inline-block", width: "336px", height: "280px" }} data-ad-client="ca-pub-4730353912478910" data-ad-slot="4411619983"></ins>}
               {/* <video className="block-center video-evita-estafas" src="/videos/evita-estafas.mp4" /> */}
               <Card special_title="Más vendido" handleLike={handleLike} {...item} />
             </React.Fragment>

@@ -98,7 +98,7 @@ const HolaJuanito = () => {
                     }
                 </div>
 
-                <ul>
+                <ul className={styles.ads}>
                     <ol>
                         <Link href="/publicacion/[id]" as="/publicacion/bandeja-paisa-prueba-384">
                             <a>

@@ -24,8 +24,10 @@
         // transform: scale(1.1);
     }
     .bg {
-        animation: rotate 10s infinite linear;
-        // background: linear-gradient(270deg, #426d98 0%, #1e4368 100%);
+        animation: rotate 2s infinite alternate;
+        background: linear-gradient(45deg, #426d98 0%, #1e4368 100%);
+        background-size: 300%;
+        background-repeat: no-repeat;
         height: 100%;
         margin: 0 auto;
         position: absolute;
@@ -35,7 +37,7 @@
         z-index: 0;
     }
     .content {
-        background: linear-gradient(to bottom right, #4d6f92 0%, #426d98 100%);
+        background-color: #426d98;
         margin: 5px;
         padding: 20px 20px;
         position: relative;
@@ -58,10 +60,10 @@
 }
 
 @keyframes rotate {
-    100% {
-        background: linear-gradient(3160deg, #426d98 0%, #1e4368 100%);
-    }
     0% {
-        background: linear-gradient(0deg, #426d98 0%, #1e4368 100%);
+        background-position: left;    
+    }
+    100% {
+        background-position: right;
     }
 }

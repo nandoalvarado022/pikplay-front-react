@@ -119,8 +119,8 @@ const Transacciones = () => {
         </div>
         <div className={styles.actions}>
           {type == "Venta" && status == 0 && <button onClick={() => handleConfirmarTransaccion(id)}>Confirmar transacción</button>}
-          {type == "Venta" && status == 0 && <button onClick={() => handleConfirmarTransaccion(id)} title="El cliente podrá pagar en linea">Habilitar pago en linea</button>}
-          {type == "Compra" && status == 0 && <button onClick={() => handlePagarTransaccion(id)}>Pagar</button>}
+          {/* {type == "Venta" && status == 0 && <button onClick={() => handleConfirmarTransaccion(id)} title="El cliente podrá pagar en linea">Habilitar pago en linea</button>} */}
+          {/* {type == "Compra" && status == 0 && <button onClick={() => handlePagarTransaccion(id)}>Pagar</button>} */}
         </div>
       </ol>
       )}

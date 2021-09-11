@@ -17,7 +17,7 @@ import Publicaciones from '../../components/publicaciones/Publicaciones'
 const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }) => {
     const context = useContext(PikContext)
     const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
-    const [tab, setTab] = useState(1)
+    const [tab, setTab] = useState("profile-content")
 
     const goTo = (value) => {
         const top = document.body.getElementsByClassName(value)[0].offsetTop + -50
@@ -26,6 +26,23 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
     }
 
     return <section className={styles.perfil}>
+        {
+            isMobile && <div className={styles.tabs}>
+                <ol className={tab == "profile-content" ? styles.active : ""}>
+                    <FontAwesomeIcon icon={faUser} onClick={() => goTo("profile-content")} />
+                </ol>
+                <ol className={tab == "notifications-content" ? styles.active : ""}>
+                    <FontAwesomeIcon icon={faBell} onClick={() => goTo("notifications-content")} />
+                </ol>
+                <ol className={tab == "publications-content" ? styles.active : ""}>
+                    <FontAwesomeIcon icon={faNewspaper} onClick={() => goTo("publications-content")} />
+                </ol>
+                <ol className={tab == "transactions-content" ? styles.active : ""}>
+                    <FontAwesomeIcon icon={faShoppingBasket} onClick={() => goTo("transactions-content")} />
+                </ol>
+            </div>
+        }
+
         <h2>
             Perfil
             <FontAwesomeIcon className="svg-question" icon={faQuestionCircle} onClick={() => {
@@ -48,23 +65,6 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
                 context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
             }} />
         </h2>
-
-        {
-            isMobile && <div className={styles.tabs}>
-                <ol className={tab == "profile-content" ? styles.active : ""}>
-                    <FontAwesomeIcon icon={faUser} onClick={() => goTo("profile-content")} />
-                </ol>
-                <ol className={tab == "notifications-content" ? styles.active : ""}>
-                    <FontAwesomeIcon icon={faBell} onClick={() => goTo("notifications-content")} />
-                </ol>
-                <ol className={tab == "publications-content" ? styles.active : ""}>
-                    <FontAwesomeIcon icon={faNewspaper} onClick={() => goTo("publications-content")} />
-                </ol>
-                <ol className={tab == "transactions-content" ? styles.active : ""}>
-                    <FontAwesomeIcon icon={faShoppingBasket} onClick={() => goTo("transactions-content")} />
-                </ol>
-            </div>
-        }
 
         <div className={styles.content}>
             <div className={`Card ${styles.imageAndLevel}`}>
@@ -105,7 +105,6 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
                     </div>
 
                     <div className="Card transactions-content">
-                        <h2>Transacciones</h2>
                         <Transacciones />
                     </div>
                 </React.Fragment>

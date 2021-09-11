@@ -15,6 +15,9 @@ h3.title_destacada {
     position: relative;
     z-index: 1;
     width: 320px;
+    @media screen and (max-width: 420px) {
+        margin: 0px 20px 20px;
+    }
     &.small {
         height: 360px;
         @media screen and (min-width: 1024px) {
@@ -107,27 +110,21 @@ h3.title_destacada {
         background-size: 10px;
         padding: 0 8px;
     }
-    /*&:hover {
-      .image-front {
-        display: none;
-      }
-      .image-back {
-        display: block !important;
-      }
-    }*/
     .descripcion_imagen {
         @media screen and (min-width: 1024px) {
             display: flex;
             flex-direction: column;
         }
+        @media screen and (max-width: 420px) {
+            display: flex;
+        }
         .content_imagen {
-            text-align: center;
             margin: 0 10px;
             position: relative;
+            text-align: center;
             @media screen and (max-width: 420px) {
-                width: auto;
-                height: 220px;
                 margin-bottom: 10px;
+                width: auto;
             }
             img {
                 max-height: 220px;
