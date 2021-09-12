@@ -10,6 +10,7 @@ export default function Login() {
 	const context = useContext(PikContext)
 	const [isOpen, setIsOpen] = useState(false)
 	const [isCodeSended, setIsCodeSended] = useState(false)
+	const [phone, setPhone] = useState(null)
 	const [buttonText, setButtonText] = useState("Enviar")
 	const VALIDATE_QUERY = gql`
 	query validateLogin($phone: String, $code: Int){
@@ -19,8 +20,8 @@ export default function Login() {
 	const [validateLogin, { data: dataValidate, error: errorValidate }] = useLazyQuery(VALIDATE_QUERY, {
 		onCompleted: (data) => {
 			const { validateLogin } = dataValidate
-			const token = JSON.parse(validateLogin).token
 			if (validateLogin) {
+				const token = JSON.parse(validateLogin).token
 				localStorage.setItem("user", validateLogin)
 				context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: JSON.parse(validateLogin) } })
 				localStorage.setItem("token", token)
@@ -69,17 +70,16 @@ export default function Login() {
 		setIsOpen(true)
 	}
 
-	const handleKeyUp = async () => {
+	const handleKeyUp = async (e) => {
 		const verificationCode = document.getElementById("verificationCode").value
-		const phone = "57" + document.getElementById("phoneLogin").value
 		if (verificationCode) Number(verificationCode)
 		if (verificationCode < 999) return
 		setButtonText("Validando...")
-		validateLogin({ variables: { phone, code: parseInt(verificationCode) } })
+		validateLogin({ variables: { phone: "57" + phone, code: parseInt(verificationCode) } })
 	}
 
 	useEffect(() => {
 	}, [])
 
-	return <LoginInterface {...{ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog }} />
+	return <LoginInterface {...{ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, phone, setPhone }} />
 }
