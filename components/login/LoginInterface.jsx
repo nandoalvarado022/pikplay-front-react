@@ -22,11 +22,14 @@ export default function LoginInterface({ buttonText, isCodeSended, isOpen, handl
           <TextField autoFocus margin="dense" id="phoneLogin" label="Número de celular" type="number" fullWidth />
         </div>
         {isCodeSended && <TextField type="number" disabled={buttonText == "Validando..." ? true : false} onKeyUp={handleKeyUp} autoFocus margin="dense" id="verificationCode" label="Escribe aquí el código de 4 dígitos que te envíamos" fullWidth />}
+        <small style={{ marginTop: "20px", display: "block" }}>
+          Al hacer clic en "Enviar", aceptas nuestras Condiciones, la Política de datos y la Política de cookies. Es posible que te enviemos notificaciones por SMS, que puedes desactivar cuando quieras.
+        </small>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleCloseDialog} color="normal">
           Cancelar
-          </Button>
+        </Button>
         <Button onClick={handleEnviar} color="blue">{buttonText}</Button>
       </DialogActions>
     </Dialog>

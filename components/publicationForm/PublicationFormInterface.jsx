@@ -60,7 +60,7 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
           {
             currentStep == 1 && <>
               <div className={`Card ${styles.card}`}>
-                <TextField autoFocus fullWidth={true} label="Título" margin="normal" fullWidth value={title} onChange={e => setPublicationFormData({ ...publicationFormData, title: e.target.value })} />
+                <TextField fullWidth={true} label="Título" margin="normal" fullWidth value={title} onChange={e => setPublicationFormData({ ...publicationFormData, title: e.target.value })} />
                 <TextField rows={10} fullWidth={true} label="Descripción" value={description} multiline margin="normal" fullWidth onChange={e => setPublicationFormData({ ...publicationFormData, description: e.target.value })} />
               </div>
             </>
