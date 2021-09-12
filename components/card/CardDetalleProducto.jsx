@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Footer from "../footer/Footer"
 import Button from "../button/Button"
 import { DiscussionEmbed } from "disqus-react"
@@ -8,8 +9,9 @@ import ImageGallery from "react-image-gallery"
 import { useEffect, useRef } from "react"
 import styles from "./cardDetalleProducto.module.scss"
 import React from "react"
+import { faCheckCircle } from "@fortawesome/free-regular-svg-icons"
 
-const CardProducto = ({ banner_bottom, meta_url, title, descuento = 0, description = "", image_link, image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, setIsModalHablarVendedor, user_name, quantity, warranty } = {}) => {
+const CardProducto = ({ banner_bottom, certificate, meta_url, title, descuento = 0, description = "", image_link, image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, setIsModalHablarVendedor, user_name, quantity, warranty } = {}) => {
   const ref_descripcion_imagen = useRef(null)
   let images = []
 
@@ -67,50 +69,53 @@ const CardProducto = ({ banner_bottom, meta_url, title, descuento = 0, descripti
           </div>
         </div>
 
-        {description && (
-          <div className={`Card ${styles.Card} ${styles.descripcion}`}>
-            {warranty && <img title="El producto tiene garantía" className={styles.verified} src="/images/icons/verified.jpg" />}
-            <h1>{title}</h1>
-            <div className={styles.content_precio}>
-              {/* Precio */}
-              <span className={styles.tachado}>
-                {price && <React.Fragment>$&nbsp;{price}</React.Fragment>}
+        {description && <div className={`Card ${styles.Card} ${styles.descripcion}`}>
+          {certificate && <FontAwesomeIcon className={styles.verified} icon={faCheckCircle} />}
+          <h1>{title}</h1>
+          <div className={styles.content_precio}>
+            {/* Precio */}
+            <span className={styles.tachado}>
+              {price && <React.Fragment>$&nbsp;{price}</React.Fragment>}
+            </span>
+
+            {descuento > 0 && (
+              <span className={"descuento" + (logDetalle ? " logDetalle" : "")}> -{descuento}% </span>
+            )}
+
+            {sale_price && (<React.Fragment>
+              <br />
+              <span className={styles.nuevoPrecio}>
+                ${format_number(sale_price)}
               </span>
+            </React.Fragment>
+            )}
+          </div>
 
-              {descuento > 0 && (
-                <span className={"descuento" + (logDetalle ? " logDetalle" : "")}> -{descuento}% </span>
-              )}
+          {quantity > 0 && (<Button color="blue" onClick={setIsModalHablarVendedor}>Me interesa este artículo</Button>)}
 
-              {sale_price && (<React.Fragment>
-                <br />
-                <span className={styles.nuevoPrecio}>
-                  ${format_number(sale_price)}
-                </span>
-              </React.Fragment>
-              )}
-            </div>
+          {certificate && <div className={styles.certificate}>
+            Puedes hacer esta compra sin preocuparte por estafas, tiene nuestro sello de garantía
+          </div>}
 
-            {quantity > 0 && (<Button color="blue" onClick={setIsModalHablarVendedor}>Me interesa este artículo</Button>)}
+          <p className={styles.vendidoPor}>
+            <b>Vendido por</b> {user_name}
+          </p>
 
-            <p className={styles.vendidoPor}>
-              <b>Vendido por</b> {user_name}
-            </p>
+          <div className={styles.description}>
+            <p className={styles.title}>Descripción</p>
+            <ReactMarkdown source={description}></ReactMarkdown>
+          </div>
 
-            <div className={styles.description}>
-              <p className={styles.title}>Descripción</p>
-              <ReactMarkdown source={description}></ReactMarkdown>
-            </div>
+          <p>
+            <a className="underline f-s-12" target="_BLANK" href="https://api.whatsapp.com/send?phone=573187414972&text=Quiero denunciar una publicación en pik-play.com">Denunciar</a>
+          </p>
 
-            <p>
-              <a className="underline f-s-12" target="_BLANK" href="https://api.whatsapp.com/send?phone=573187414972&text=Quiero denunciar una publicación en pik-play.com">Denunciar</a>
-            </p>
-
-            {/* <div>
+          {/* <div>
               <DiscussionEmbed shortname="pikajuegos" config={{ url: meta_url, identifier: meta_url, title: title, language: "es_ES" }} />
             </div> */}
-            <div id="disqus_thread"></div>
-          </div>
-        )}
+          <div id="disqus_thread"></div>
+        </div>
+        }
 
       </div>
     </Grow>

@@ -9,9 +9,10 @@
     }
     .verified {
         float: left;
-        left: -10px;
+        height: 20px;
+        margin-right: 8px;
         position: relative;
-        top: 10px;
+        top: 11px;
         width: 20px;
     }
     h1 {
@@ -64,7 +65,7 @@
             width: calc(100% + 20px);
         }
     }
-    >.descripcion_imagen {
+    > .descripcion_imagen {
         justify-content: center;
         @media screen and (min-width: 1024px) {
             display: flex;
@@ -104,20 +105,30 @@
                 }
             }
         }
-        >.descripcion {
+        > .descripcion {
             font-size: 14px;
             padding: 20px 30px 0;
             @media screen and (min-width: 1024px) {
                 margin: 0 20px;
+                padding: 20px 10px 0;
                 width: 450px;
             }
-            .vendidoPor {}
+            .vendidoPor {
+            }
+            .certificate {
+                background: linear-gradient(180deg, #7de2aa 0%, #1fcb6b 100%);
+                // background: #1fcb6b;
+                color: white;
+                padding: 10px 15px;
+                margin: 10px 0 0;
+                border-radius: 10px;
+                text-shadow: 1px 1px 2px #24292e;
+            }
             .description {
                 overflow: hidden;
                 font-size: 14px;
                 .title {
                     font-weight: bold;
-                    margin: 50px 0 0;
                 }
             }
         }

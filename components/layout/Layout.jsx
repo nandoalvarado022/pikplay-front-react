@@ -20,7 +20,9 @@ import { PikContext } from '../../states/PikState';
 toastr.options.progressBar = true;
 toastr.options.timeOut = 5000;
 
-Router.onRouteChangeStart = (url) => NProgress.start();
+Router.onRouteChangeStart = (url) => {
+  NProgress.start();
+}
 Router.onRouteBeforeHistoryChange = (url) => NProgress.start();
 Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteChangeError = () => NProgress.done();
@@ -65,10 +67,8 @@ class Layout extends React.Component {
   }
 
   componentDidMount() {
-    // const context = this.context;
-    /* AOS.init({
-       delay: 500,
-     });*/
+    const context = this.context;
+    context.getNotifications()
     register();
     if (localStorage.getItem("user")) {
       this.club_short_name = JSON.parse(localStorage.getItem("user"))
