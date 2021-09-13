@@ -6,7 +6,7 @@
         margin-top: 100px;
         width: auto;
     }
-    .banners {
+    .content {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -24,18 +24,13 @@
             @media screen and (max-width: 420px) {
                 margin: 0px 20px 20px;
             }
-            &.ads {
-                @media screen and (max-width: 420px) {
-                    border-radius: 0;
-                    margin: 20px 0 0;
-                }
-            }
             ol {
                 padding: 0;
             }
         }
         .texts {
             width: 500px;
+            z-index: 2;
             .text1 {
                 color: #575656;
                 font-size: 36px;
@@ -45,6 +40,56 @@
                 color: #575656;
                 display: inline-block;
             }
+        }
+    }
+    .ads {
+        width: 50%;
+        @media screen and (max-width: 420px) {
+            height: 350px;
+            width: 100%;
+        }
+        ul {
+            display: flex;
+            position: absolute;
+            transition: 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            @media screen and (max-width: 420px) {
+                padding: 0;
+                width: 1200px;
+            }
+            ol {
+                margin-right: 50px;
+                opacity: 1;
+                transition: 0.5s ease;
+                @media screen and (max-width: 420px) {
+                    margin-right: 0;
+                    width: calc(100vw - 40px);
+                }
+                img {
+                    max-height: 350px;
+                    @media screen and (max-width: 420px) {
+                        display: block;
+                        margin: 0 auto;
+                        max-height: 270px;
+                    }
+                }
+            }
+        }
+        .next,
+        .prev {
+            position: absolute;
+            top: -10px;
+            svg {
+                color: #466e96;
+                cursor: pointer;
+                height: 22px;
+                width: 22px;
+            }
+        }
+        .next {
+            right: 10px;
+        }
+        .prev {
+            right: 60px;
         }
     }
     img {
@@ -67,6 +112,24 @@
         text-shadow: 1px 1px black;
         &.disabled {
             background: linear-gradient(180deg, #b3b3b3 0%, #6b6b6b 100%);
+        }
+    }
+    .aliados {
+        .rows {
+            display: flex;
+            > * {
+                // flex: 1;
+                margin: 10px 20px;
+                width: 50px;
+                img {
+                    max-width: 100%;
+                }
+                span {
+                    display: block;
+                    font-size: 12px;
+                    margin-top: 10px;
+                }
+            }
         }
     }
 }

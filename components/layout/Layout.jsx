@@ -176,6 +176,7 @@ class Layout extends React.Component {
         <meta name="author" content="pik-play.com" />
         <meta name="copyright" content="pik-play.com" />
         <meta name="language" content="es-CO"></meta>
+        <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
         {/* Global site tag (gtag.js) - Google Ads: 941382150 */}
         <link rel="alternate" href={meta_url} hrefLang="es-CO" />
         <link rel="canonical" href={meta_url} />

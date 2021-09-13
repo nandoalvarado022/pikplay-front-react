@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChevronCircleLeft, faChevronCircleRight } from "@fortawesome/free-solid-svg-icons"
 import { useMutation, useQuery } from "@apollo/client"
 import Link from "next/link"
 import { useContext, useEffect, useState } from "react"
@@ -6,6 +8,8 @@ import { PikContext } from "../../states/PikState"
 import styles from "./holaJuanito.module.scss"
 
 const HolaJuanito = () => {
+    const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
+    const [leftIndicator, setLeftIndicator] = useState(0)
     const [deleteNotification] = useMutation(DELETE_NOTIFICATION);
     const context = useContext(PikContext)
     const [idNotification, setIdNotification] = useState(null)
@@ -59,9 +63,25 @@ const HolaJuanito = () => {
         width: "20px"
     }} src="/images/icons/moneda2.svg" alt="Reclamar monedas por completar el perfil" />
 
+    const handleActions = (value) => {
+        let _leftIndicator = leftIndicator + value
+        if (_leftIndicator > 0 || _leftIndicator <= -1260) return
+        setLeftIndicator(_leftIndicator)
+    }
+
+    const tam1 = isMobile ? -360 : -420
+    const tam2 = isMobile ? -720 : -840
+
+    const opacity1 = leftIndicator == tam1 ? .3 : leftIndicator == tam2 ? 0 : 1
+    const opacity2 = leftIndicator == 0 ? .3 : 1
+    const opacity3 = leftIndicator == tam1 ? .3 : 1
+
+    const prev = isMobile ? window.screen.width - 40 : 420
+    const next = isMobile ? Number(`-${window.screen.width - 40}`) : -420
+
     return <div className={styles.HolaJuanito}>
         <div className="content">
-            <div className={styles.banners}>
+            <div className={styles.content}>
                 <div className={`Card ${styles.texts}`}>
                     <div className={`${styles.text1} font-c`}>
                         Hola,
@@ -96,17 +116,56 @@ const HolaJuanito = () => {
                     {
                         isProfileComplete && gotProfileCompletedCoins && <button className={`${styles.reclamar_monedas} ${styles.disabled}`} title="Solo para categoria Plata" color="blue">Ver siguientes desafios</button>
                     }
+                    <div className={styles.aliados}>
+                        <h3>Nuevos Aliados</h3>
+                        <div className={styles.rows}>
+                            <div>
+                                <img src="/images/aliados/panter.jpg" title="bluepanthervideogames" />
+                                <span>Barranquilla</span>
+                            </div>
+                            <div>
+                                <img src="/images/aliados/juancho.jpg" title="juanchofenixstore" />
+                                <span>Bogotá</span>
+                            </div>
+                            <div>
+                                <img src="/images/aliados/bodega.jpg" title="bodegadelvideojuego" />
+                                <span>Medellín</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <ul className={styles.ads}>
-                    <ol>
-                        <Link href="/publicacion/[id]" as="/publicacion/bandeja-paisa-prueba-384">
-                            <a>
-                                <img src="/images/banners/3.jpg" alt="" />
-                            </a>
-                        </Link>
-                    </ol>
-                </ul>
+                <div className={styles.ads}>
+                    <ul style={{ left: `${leftIndicator}px` }}>
+                        <ol style={{ opacity: opacity1 }}>
+                            <Link href="/publicacion/[id]" as="/publicacion/bandeja-paisa-prueba-384">
+                                <a>
+                                    <img src="/images/banners/3.jpg" alt="" />
+                                </a>
+                            </Link>
+                        </ol>
+                        <ol style={{ opacity: opacity2 }}>
+                            <Link href="/publicacion/[id]" as="/publicacion/bandeja-paisa-prueba-384">
+                                <a>
+                                    <img src="/images/banners/4.jpg" alt="" />
+                                </a>
+                            </Link>
+                        </ol>
+                        <ol style={{ opacity: opacity3 }}>
+                            <Link href="/publicacion/[id]" as="/publicacion/bandeja-paisa-prueba-384">
+                                <a>
+                                    <img src="/images/banners/2.jpg" alt="" />
+                                </a>
+                            </Link>
+                        </ol>
+                    </ul>
+                    <div className={styles.prev} onClick={() => handleActions(prev)}>
+                        <FontAwesomeIcon icon={faChevronCircleLeft} />
+                    </div>
+                    <div className={styles.next} onClick={() => handleActions(next)}>
+                        <FontAwesomeIcon icon={faChevronCircleRight} />
+                    </div>
+                </div>
             </div>
         </div>
     </div >

@@ -8,9 +8,10 @@ import styles from "./styles.module.scss"
 import UserNotifications from '../userNotifications/UserNotifications'
 
 export const PreviewUser = ({ isOpenPreviewProfile }) => {
+  const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
   const context = useContext(PikContext)
   return <div className={`${styles.PreviewUser} PreviewUser ${isOpenPreviewProfile ? styles.actived : null}`}>
-    <UserNotifications />
+    {!isMobile && <UserNotifications />}
     <ol>
       <Link href="/perfil" as="/perfil">
         <a>
