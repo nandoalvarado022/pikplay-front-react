@@ -97,7 +97,7 @@ const Publicaciones = () => {
                                     <FontAwesomeIcon style={{ position: "relative", left: "-5px", top: "2px" }} icon={faQuestionCircle} onClick={() => {
                                         const message = {
                                             id: 0, message: <div>
-                                                <p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pikajuegos ó porque esta pausada</p>
+                                                <p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pik-Play ó porque esta pausada</p>
                                             </div>
                                         }
                                         context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
