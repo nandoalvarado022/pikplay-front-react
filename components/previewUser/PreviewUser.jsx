@@ -7,9 +7,10 @@ import Coins from './Coins'
 import styles from "./styles.module.scss"
 import UserNotifications from '../userNotifications/UserNotifications'
 
-export const PreviewUser = ({ isOpenPreviewProfile }) => {
+export const PreviewUser = ({ isOpenPreviewProfile, setIsOpenPreviewProfile }) => {
   const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
   const context = useContext(PikContext)
+  const notifications = context.notifications.filter(item => item.closed == 0)
   return <div className={`${styles.PreviewUser} PreviewUser ${isOpenPreviewProfile ? styles.actived : null}`}>
     {!isMobile && <UserNotifications />}
     <ol>
@@ -20,6 +21,14 @@ export const PreviewUser = ({ isOpenPreviewProfile }) => {
         </a>
       </Link>
     </ol>
+    <ol onClick={() => setIsOpenPreviewProfile(false)}>
+      <Link href="/perfil#notificaciones" as="/perfil#notificaciones">
+        Notificaciones
+      </Link>
+      {isMobile && <span className={styles.notyQuantity}>
+        {notifications.length}
+      </span>}
+    </ol>
     <ol>
       <Link href="/transacciones" as="/transacciones">
         Transacciones
@@ -27,7 +36,7 @@ export const PreviewUser = ({ isOpenPreviewProfile }) => {
     </ol>
     <ol>
       <Link href="/publicaciones" as="/publicaciones">
-        <a>Mis publicaciones</a>
+        <a>Publicaciones</a>
       </Link>
     </ol>
     <ol onClick={() => handleLogout()}>

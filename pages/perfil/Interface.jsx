@@ -94,7 +94,7 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
                 </div>
             </div>
 
-            <div className="Card notifications-content">
+            <div className="Card notifications-content" id="notificaciones">
                 <h3>Notificaciones</h3>
                 <UserNotifications />
             </div>

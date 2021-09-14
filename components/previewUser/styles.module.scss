@@ -51,6 +51,16 @@
             display: none;
         }
     }
+    .notyQuantity {
+        background: #ea4d42;
+        border-radius: 50%;
+        color: white;
+        font-size: 12px;
+        height: 20px;
+        line-height: 20px;
+        margin: 0 0 0 10px;
+        width: 20px;
+    }
 }
 
 @keyframes like {

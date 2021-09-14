@@ -39,7 +39,7 @@ const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, 
           </div>
           <div className={styles.descripcion_imagen}>
             <div className={styles.content_imagen}>
-              <div className={styles.tags}>
+              <div className={`${styles.tags} desktop`}>
                 {!is_new && <span title="El articulo es de segunda mano" className={styles.condition}>Usado</span>}
                 {accept_changues && <span className={styles.condition} title="El vendedor acepta productos como parte de pago o incluso cambiar el producto por otro de su interés">Acepto cambios</span>}
                 {
@@ -75,6 +75,18 @@ const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, 
                       </React.Fragment>
                     }
                   </div>
+                </div>
+                <div className={`${styles.tags} mobile`}>
+                  {!is_new && <span title="El articulo es de segunda mano" className={styles.condition}>Usado</span>}
+                  {accept_changues && <span className={styles.condition} title="El vendedor acepta productos como parte de pago o incluso cambiar el producto por otro de su interés">Acepto cambios</span>}
+                  {
+                    tags && JSON.parse(tags).map((item, ind) => {
+                      return (<span key={ind}>
+                        {item.texto}
+                      </span>
+                      );
+                    })
+                  }
                 </div>
               </div >
             }

@@ -72,9 +72,10 @@ const HolaJuanito = () => {
     const tam1 = isMobile ? -360 : -420
     const tam2 = isMobile ? -720 : -840
 
-    const opacity1 = leftIndicator == tam1 ? .3 : leftIndicator == tam2 ? 0 : 1
-    const opacity2 = leftIndicator == 0 ? .3 : 1
-    const opacity3 = leftIndicator == tam1 ? .3 : 1
+    const opacity1 = leftIndicator == tam1 ? 1 : leftIndicator == tam2 ? 0 : 1
+    // const opacity1 = leftIndicator == tam1 ? .3 : leftIndicator == tam2 ? 0 : 1
+    // const opacity2 = leftIndicator == 0 ? .3 : 1
+    // const opacity3 = leftIndicator == tam1 ? .3 : 1
 
     const prev = isMobile ? window.screen.width - 40 : 420
     const next = isMobile ? Number(`-${window.screen.width - 40}`) : -420
@@ -91,7 +92,7 @@ const HolaJuanito = () => {
                     </div>
                     <div className={`${styles.text2} font-c`}>
                         Recuerda que puedes confiar <span style={{ color: "green" }}>100%</span> en los aliados de <b>PikaPlay</b>.
-                        Entregamos garantia por las compras que hagas a nuestros aliados certificados así que no te preocupes por estafas en tus compras.
+                        Entregamos garantía por las compras que hagas a nuestros aliados certificados así que no te preocupes por estafas en tus compras.
                     </div>
                     {
                         context.user.id == 0 && <button onClick={() => document.getElementById("btnStart").click()} className={styles.reclamar_monedas}>
@@ -144,14 +145,14 @@ const HolaJuanito = () => {
                                 </a>
                             </Link>
                         </ol>
-                        <ol style={{ opacity: opacity2 }}>
+                        <ol>
                             <Link href="/publicacion/[id]" as="/publicacion/bandeja-paisa-prueba-384">
                                 <a>
                                     <img src="/images/banners/4.jpg" alt="" />
                                 </a>
                             </Link>
                         </ol>
-                        <ol style={{ opacity: opacity3 }}>
+                        <ol>
                             <Link href="/publicacion/[id]" as="/publicacion/bandeja-paisa-prueba-384">
                                 <a>
                                     <img src="/images/banners/2.jpg" alt="" />

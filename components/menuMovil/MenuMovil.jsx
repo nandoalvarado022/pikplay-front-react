@@ -14,7 +14,7 @@ const MenuMovil = () => {
   const context = useContext(PikContext)
   const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
   return <div className={styles.MenuMovil}>
-    {context.user.id != 0 && <PreviewUser {...{ isOpenPreviewProfile }} />}
+    {context.user.id != 0 && <PreviewUser {...{ isOpenPreviewProfile, setIsOpenPreviewProfile }} />}
     <ol>
       <Link href="/publicacion/crear" as="/publicacion/crear">
         <a className={styles.vender}>

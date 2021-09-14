@@ -37,7 +37,7 @@ h3.title_destacada {
         padding: 5px 5px 10px 10px;
         position: absolute;
         right: 0;
-        transition: .3s ease;
+        transition: 0.3s ease;
         max-width: 80%;
         width: max-content;
         z-index: 1;
@@ -136,26 +136,31 @@ h3.title_destacada {
                     display: none;
                 }
             }
-            .tags {
-                position: absolute;
-                left: 0;
-                right: 0;
-                bottom: -5px;
-                span {
-                    background: #f1f1f1;
-                    border-radius: 10px;
-                    box-shadow: 2px 2px 5px 0 #17171752;
-                    color: #585858;
-                    font-size: 10px;
-                    margin: 0 10px;
-                    padding: 5px 10px;
-                    width: min-content;
-                }
+        }
+        .tags {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -5px;
+            @media screen and (max-width: 420px) {
+                position: relative;
+                margin-bottom: 10px;
+                width: 200px;
+            }
+            span {
+                background: #f1f1f1;
+                border-radius: 10px;
+                box-shadow: 2px 2px 5px 0 #17171752;
+                color: #585858;
+                font-size: 10px;
+                margin: 0 10px;
+                padding: 5px 10px;
+                width: min-content;
             }
         }
         .content_precio {
             font-size: 16px;
-            >* {
+            > * {
                 display: block;
             }
             &.tachado {
@@ -194,7 +199,8 @@ h3.title_destacada {
     .fecha_sistema {
         margin-left: 10px;
     }
-    .quantity {}
+    .quantity {
+    }
     .date {
         margin: 10px 0 20px 10px;
         span {
