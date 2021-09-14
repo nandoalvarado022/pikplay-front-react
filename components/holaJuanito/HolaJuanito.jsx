@@ -139,21 +139,21 @@ const HolaJuanito = () => {
                 <div className={styles.ads}>
                     <ul style={{ left: `${leftIndicator}px` }}>
                         <ol style={{ opacity: opacity1 }}>
-                            <Link href="/publicacion/[id]" as="/publicacion/bandeja-paisa-prueba-384">
+                            <Link href="/publicacion/[id]" as="/publicacion/preventa-fifa-22-juanchofenix-502">
                                 <a>
-                                    <img src="/images/banners/3.jpg" alt="" />
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/mi-club2ruedas.appspot.com/o/images%2Fpublications%2F13_9_2021_23_1_56_12_1080x1080.jpg?alt=media&token=87dbe489-6f7f-4500-a9e5-15430dc78458" alt="" />
                                 </a>
                             </Link>
                         </ol>
                         <ol>
-                            <Link href="/publicacion/[id]" as="/publicacion/bandeja-paisa-prueba-384">
+                            <Link href="/publicacion/[id]" as="/publicacion/preventa-fifa-22-juanchofenix-502">
                                 <a>
                                     <img src="/images/banners/4.jpg" alt="" />
                                 </a>
                             </Link>
                         </ol>
                         <ol>
-                            <Link href="/publicacion/[id]" as="/publicacion/bandeja-paisa-prueba-384">
+                            <Link href="/publicacion/[id]" as="/publicacion/preventa-fifa-22-juanchofenix-502">
                                 <a>
                                     <img src="/images/banners/2.jpg" alt="" />
                                 </a>
