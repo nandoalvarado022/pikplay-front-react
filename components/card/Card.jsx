@@ -7,7 +7,7 @@ import { useQuery, gql } from '@apollo/client'
 import styles from "./card.module.scss"
 import { faStar } from "@fortawesome/free-solid-svg-icons"
 
-const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
+const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, user_transactions, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
   const usuario = typeof localStorage != "undefined" ? localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).email : null : null
   let like = null
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
@@ -30,6 +30,10 @@ const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, 
                 {certificate && <FontAwesomeIcon icon={faCheckCircle} />}
                 {user_name}
               </h3>
+              {user_transactions > 0 && <span className={styles.transactions}>
+                {user_transactions} ventas
+              </span>
+              }
               {
                 certificate && <div className={styles.stars}>
                   <FontAwesomeIcon icon={faStar} /> 4,5
@@ -91,8 +95,8 @@ const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, 
               </div >
             }
           </div >
-        </div >
-      </a >
+        </div>
+      </a>
     </Link >
   </Grow >
 };

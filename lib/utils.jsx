@@ -707,6 +707,7 @@ export const getFeed = async ({ slug = "", category = null, subcategory = null }
         user_name
         user_phone
         user_picture
+        user_transactions
         views
         warranty
       }

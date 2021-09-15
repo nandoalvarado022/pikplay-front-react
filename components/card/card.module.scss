@@ -41,6 +41,9 @@ h3.title_destacada {
         max-width: 80%;
         width: max-content;
         z-index: 1;
+        > p > * {
+            font-size: 12px;
+        }
         span {
             border-radius: 50%;
             height: 30px;
@@ -59,7 +62,6 @@ h3.title_destacada {
         }
         h3 {
             color: white;
-            font-size: 10px;
             font-weight: 100;
             margin: 0;
             svg {
