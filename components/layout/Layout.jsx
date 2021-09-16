@@ -109,7 +109,8 @@ class Layout extends React.Component {
 
     // this.context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
 
-    /*const script = document.createElement("script");
+    // Notificaciones push
+    const script = document.createElement("script");
     script.src = "../../indigital/sdk.min.js";
     script.async = true;
     script.onload = () => {
@@ -119,7 +120,7 @@ class Layout extends React.Component {
         requestLocation: true,
       });
     };
-    document.body.appendChild(script);*/
+    document.body.appendChild(script);
 
     if (localStorage.getItem("user")) {
       this.setState({

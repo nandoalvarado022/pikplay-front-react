@@ -9,9 +9,10 @@ import ImageGallery from "react-image-gallery"
 import { useEffect, useRef } from "react"
 import styles from "./cardDetalleProducto.module.scss"
 import React from "react"
-import { faCheckCircle } from "@fortawesome/free-regular-svg-icons"
+import { faCheckCircle, faHandshake } from "@fortawesome/free-regular-svg-icons"
+import Author from "./Author"
 
-const CardProducto = ({ banner_bottom, certificate, meta_url, title, descuento = 0, description = "", image_link, image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, setIsModalHablarVendedor, user_name, quantity, warranty } = {}) => {
+const CardProducto = ({ banner_bottom, certificate, meta_url, title, descuento = 0, description = "", image_link, image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, setIsModalHablarVendedor, user_name, user_picture, user_transactions, quantity, warranty } = {}) => {
   const ref_descripcion_imagen = useRef(null)
   let images = []
 
@@ -91,15 +92,12 @@ const CardProducto = ({ banner_bottom, certificate, meta_url, title, descuento =
             )}
           </div>
 
-          {quantity > 0 && (<Button color="blue" onClick={setIsModalHablarVendedor}>Me interesa este artículo</Button>)}
-
-          {certificate && <div className={styles.certificate}>
-            Puedes hacer esta compra sin preocuparte por estafas, tiene nuestro sello de garantía
-          </div>}
-
-          <p className={styles.vendidoPor}>
-            <b>Vendido por</b> {user_name}
-          </p>
+          <div className={`flex ${styles.compra_author}`}>
+            {quantity > 0 && (<Button color="blue" onClick={setIsModalHablarVendedor}>Me interesa este artículo</Button>)}
+            <div className={styles.content_author}>
+              <Author {...{ user_certificate: certificate, user_name, user_picture, user_transactions }} />
+            </div>
+          </div>
 
           <div className={styles.description}>
             <p className={styles.title}>Descripción</p>

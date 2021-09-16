@@ -12,6 +12,7 @@ import VARS from "../lib/variables"
 import "../styles/globalStyles.scss"
 import "../styles/articlesList.scss"
 import "react-image-gallery/styles/css/image-gallery.css"
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 
 const httpLink = createHttpLink({
   uri: VARS.API_URL_GRAPHQL,
@@ -37,6 +38,16 @@ const client = new ApolloClient({
 
 export default function MyApp(props) {
   const { Component, pageProps, router } = props
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: "#466e96"
+      },
+      secondary: {
+        main: '#E33E7F'
+      }
+    }
+  });
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -48,7 +59,9 @@ export default function MyApp(props) {
 
   return <ApolloProvider client={client} >
     <PikState>
-      <Component {...pageProps} key={router.name} />
+      <MuiThemeProvider theme={theme}>
+        <Component {...pageProps} key={router.name} />
+      </MuiThemeProvider>
     </PikState>
   </ApolloProvider>
 }

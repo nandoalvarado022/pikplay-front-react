@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
+import { faRocket } from "@fortawesome/free-solid-svg-icons"
 import { gql, useMutation, useLazyQuery } from '@apollo/client'
 import Router from 'next/router'
 import Card from '../../components/card/Card'
@@ -11,8 +12,87 @@ import { format_number } from '../../lib/utils'
 import moment from "moment"
 import Notification from "../../components/notification"
 import { PikContext } from "../../states/PikState"
+import { Box, Tab, Tabs, Typography } from "@material-ui/core"
+import { Doughnut } from 'react-chartjs-2'
 
 moment.locale('es')
+
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+    return (
+        <div role="tabpanel" hidden={value !== index} id={`simple-tabpanel-${index}`} aria-labelledby={`simple-tab-${index}`} {...other}>
+            {value === index && (
+                <Box sx={{ p: 3 }}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
+}
+
+const CakeReport = ({ publications = [] }) => {
+    const data = {
+        labels: publications.map(item => item.title),
+        datasets: [
+            {
+                label: '# of Votes',
+                data: publications.map(item => item.views),
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                ],
+                borderWidth: 1,
+            },
+        ],
+    }
+
+    return <div className={`${styles.report}`}>
+        <h2>Informe de tus publicaciones</h2>
+        <div className="Card">
+            <div className={styles.graphic}>
+                <Doughnut data={data} />
+            </div>
+            <table cellspacing="0">
+                <tr>
+                    <td>Publicación</td>
+                    <td>Visualizaciones</td>
+                    {/* <td>Ciudades</td> */}
+                </tr>
+                {publications.map(item => {
+                    return <tr>
+                        <td>{item.title}</td>
+                        <td>{item.views}</td>
+                        <td>
+                            <a target="_BLANK" className="a_whatsapp" href="https://api.whatsapp.com/send?phone=573052665725&text=Quiero impulsar una publicación en Pik-Play">
+                                <Button color="blue">
+                                    Impulsar&nbsp;
+                                    <FontAwesomeIcon icon={faRocket} />
+                                </Button>
+                            </a>
+                        </td>
+                        {/* <td>
+                            Barranquilla
+                            <br />
+                            Medellín
+                        </td> */}
+                    </tr>
+                })}
+            </table>
+        </div>
+    </div >
+}
 
 const Publicaciones = () => {
     const context = useContext(PikContext)
@@ -62,60 +142,78 @@ const Publicaciones = () => {
         getPublications()
     }, [])
 
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    }
+
+    const [value, setValue] = React.useState(0);
+
     return <section className={styles.content}>
-        <h2>
-            Publicaciones
-            <FontAwesomeIcon className="svg-question" icon={faQuestionCircle} onClick={() => {
-                const message = {
-                    id: 0, message: <div>
-                        <p>Bienvenido a tus publicaciones</p>
-                        <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
-                    </div>
-                }
-                context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
-            }} />
-        </h2>
-        <ul className="Card">
-            {
-                reqPublications && reqPublications.publications.map((item, ind) => {
-                    return <li className={`${styles["flex-table"]} ${item.status ? '' : styles.disabled}`}>
-                        <div><img src={item.image_link} /></div>
-                        <div className={styles["flex-row"]}>{item.title}</div>
-                        <div className={styles["flex-row"]}>${format_number(item.sale_price)}</div>
-                        <div className={styles["flex-row"]}>{moment(parseInt(item.created)).format("MMMM DD YYYY, h:mm:ss a")}</div>
-                        <div className={styles["flex-row"]}>{item.views} visitas</div>
-                        <div className={styles["flex-row"]}>{item.is_verified ? item.status ? "Activa" : "Pausada" : "En revisión"}</div>
-                        <div className={`${styles["flex-row"]} ${styles.actions}`}>
-                            {
-                                item.status && <Link href="/publicacion/[id]" as={`/publicacion/${item.slug}`}>
-                                    <a className={styles.verPublicacion}>Ver</a>
-                                </Link>
-                            }
-                            {
-                                !item.status && <span className={styles.verPublicacion} onClick={() => {
-                                }}>
-                                    <FontAwesomeIcon style={{ position: "relative", left: "-5px", top: "2px" }} icon={faQuestionCircle} onClick={() => {
-                                        const message = {
-                                            id: 0, message: <div>
-                                                <p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pik-Play ó porque esta pausada</p>
-                                            </div>
-                                        }
-                                        context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
-                                    }} />
-                                    {/* No es posible ver la publicación */}
-                                </span>
-                            }
-                            <Button onClick={() => handleEdit(item.slug)} color="blue">Editar</Button>
-                            <Button onClick={() => item.is_verified ? handleChangeState(item.id, !item.status) : null} color={item.is_verified ? item.status ? "red" : "green" : "disabled"}>
-                                {
-                                    item.status == true ? <>Desactivar</> : <>Activar</>
-                                }
-                            </Button>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Tabs textColor="primary" style={{ background: "white" }} value={value} onChange={handleChange} aria-label="basic tabs example">
+                <Tab label="Publicaciones" />
+                <Tab label="Informe" />
+            </Tabs>
+        </Box>
+
+        <TabPanel value={value} index={0}>
+            <h2>
+                Listado de publicaciones
+                <FontAwesomeIcon className="svg-question" icon={faQuestionCircle} onClick={() => {
+                    const message = {
+                        id: 0, message: <div>
+                            <p>Bienvenido a tus publicaciones</p>
+                            <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
                         </div>
-                    </li>
-                })
-            }
-        </ul>
+                    }
+                    context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
+                }} />
+            </h2>
+            <ul className="Card">
+                {
+                    reqPublications && reqPublications.publications.map((item, ind) => {
+                        return <li className={`${styles["flex-table"]} ${item.status ? '' : styles.disabled}`}>
+                            <div><img src={item.image_link} /></div>
+                            <div className={styles["flex-row"]}>{item.title}</div>
+                            <div className={styles["flex-row"]}>${format_number(item.sale_price)}</div>
+                            <div className={styles["flex-row"]}>{moment(parseInt(item.created)).format("MMMM DD YYYY, h:mm:ss a")}</div>
+                            <div className={styles["flex-row"]}>{item.views} visitas</div>
+                            <div className={styles["flex-row"]}>{item.is_verified ? item.status ? "Activa" : "Pausada" : "En revisión"}</div>
+                            <div className={`${styles["flex-row"]} ${styles.actions}`}>
+                                {
+                                    item.status && <Link href="/publicacion/[id]" as={`/publicacion/${item.slug}`}>
+                                        <a className={styles.verPublicacion}>Ver</a>
+                                    </Link>
+                                }
+                                {
+                                    !item.status && <span className={styles.verPublicacion} onClick={() => {
+                                    }}>
+                                        <FontAwesomeIcon style={{ position: "relative", left: "-5px", top: "2px" }} icon={faQuestionCircle} onClick={() => {
+                                            const message = {
+                                                id: 0, message: <div>
+                                                    <p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pik-Play ó porque esta pausada</p>
+                                                </div>
+                                            }
+                                            context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
+                                        }} />
+                                        {/* No es posible ver la publicación */}
+                                    </span>
+                                }
+                                <Button onClick={() => handleEdit(item.slug)} color="blue">Editar</Button>
+                                <Button onClick={() => item.is_verified ? handleChangeState(item.id, !item.status) : null} color={item.is_verified ? item.status ? "red" : "green" : "disabled"}>
+                                    {
+                                        item.status == true ? <>Desactivar</> : <>Activar</>
+                                    }
+                                </Button>
+                            </div>
+                        </li>
+                    })
+                }
+            </ul>
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+            <CakeReport {...{ publications: reqPublications?.publications }} />
+        </TabPanel>
     </section>
 }
 
