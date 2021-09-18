@@ -41,6 +41,7 @@ const Perfil = () => {
 
     let variables = {
       city: context.user.city,
+      email: context.user.email,
       id: userData.id,
       name: userData.name
     }

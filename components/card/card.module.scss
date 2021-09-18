@@ -17,6 +17,7 @@ h3.title_destacada {
     width: 320px;
     @media screen and (max-width: 420px) {
         margin: 0px 20px 20px;
+        padding-bottom: 40px;
     }
     &.small {
         height: 360px;
@@ -95,14 +96,13 @@ h3.title_destacada {
             right: 0;
             bottom: -5px;
             @media screen and (max-width: 420px) {
-                position: relative;
+                bottom: 10px;
                 margin-bottom: 10px;
-                width: 200px;
             }
             span {
                 background: #f1f1f1;
                 border-radius: 10px;
-                box-shadow: 2px 2px 5px 0 #17171752;
+                box-shadow: 2px 2px 5px 0 #1717172e;
                 color: #585858;
                 font-size: 10px;
                 margin: 0 10px;
@@ -239,5 +239,40 @@ h3.title_destacada {
                 padding: 10px 10px 20px;
             }
         }
+    }
+
+    .apply_cashback {
+        background: radial-gradient(circle, #fee960 0%, #feb724 100%) !important;
+        padding-left: 20px;
+        position: relative;
+        .coin {
+            background-image: url("/images/gifs/sprite-monedas-pequenas.png");
+            background-position-x: 0px;
+            background-position-y: 0px;
+            background-size: 210px;
+            display: inline-block;
+            height: 31px;
+            margin: 0;
+            transform: scale(0.8);
+            transition: 0.5s linear;
+            width: 31px;
+            position: absolute;
+            top: -4px;
+            left: -15px;
+        }
+    }
+    &:hover {
+        .apply_cashback .coin {
+            animation: rotate 0.5s steps(6) infinite, appear 1s steps(1);
+        }
+    }
+}
+
+@keyframes rotate {
+    0% {
+        background-position-x: 0px;
+    }
+    100% {
+        background-position-x: -179px;
     }
 }

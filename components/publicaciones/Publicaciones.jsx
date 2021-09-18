@@ -4,7 +4,6 @@ import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
 import { faRocket } from "@fortawesome/free-solid-svg-icons"
 import { gql, useMutation, useLazyQuery } from '@apollo/client'
 import Router from 'next/router'
-import Card from '../../components/card/Card'
 import styles from './publicaciones.module.scss'
 import Button from '../../components/button/Button'
 import { useContext, useEffect, useState } from 'react'
@@ -60,7 +59,7 @@ const CakeReport = ({ publications = [] }) => {
 
     return <div className={`${styles.report}`}>
         <h2>Informe de tus publicaciones</h2>
-        <div className="Card">
+        <div className="Card main">
             <div className={styles.graphic}>
                 <Doughnut data={data} />
             </div>

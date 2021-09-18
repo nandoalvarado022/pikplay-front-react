@@ -39,6 +39,7 @@ const Transacciones = () => {
         created
         detail
         id
+        p_title
         publication
         status
         type
@@ -91,7 +92,7 @@ const Transacciones = () => {
       }} />
     </h2>
     <ul>
-      {transactions && transactions.map(({ created, detail, id, publication, status, type, u_name, user }) => <ol className="Card" style={{ display: "flex" }}>
+      {transactions && transactions.map(({ created, detail, id, p_title, publication, status, type, u_name, user }) => <ol className="Card" style={{ display: "flex" }}>
         <div>
           <div className={styles.id}>ID</div>
           #{id}
@@ -104,7 +105,7 @@ const Transacciones = () => {
           {type}
         </div>
         <div>
-          <div className={styles.detail}><b>Detalles</b></div>
+          {p_title}
           {detail}
         </div>
         <div>

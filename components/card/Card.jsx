@@ -16,6 +16,8 @@ const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, 
     }
   }`)
 
+  const apply_cashback = true
+
   return <Grow key={id_publication} in={true} style={{ opacity: 1 }}>
     <Link href={slug ? "/publicacion/[id]" : "javascript:void(0)"} as={slug ? `/publicacion/${slug}` : "javascript:void(0)"}>
       <a className={id_publication == 1 ? styles.destacada_Card : ""}>
@@ -26,6 +28,11 @@ const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, 
             <div className={styles.content_imagen}>
               <div className={`${styles.tags} desktop`}>
                 {!is_new && <span title="El articulo es de segunda mano" className={styles.condition}>Usado</span>}
+                {/* Si aplica cashback */}
+                {apply_cashback && <span title="Ganarás Pikcoins por hacer esta compra" className={styles.apply_cashback}>
+                  <picture className={styles.coin} />
+                  ¡Cashback!
+                </span>}
                 {accept_changues && <span className={styles.condition} title="El vendedor acepta productos como parte de pago o incluso cambiar el producto por otro de su interés">Acepto cambios</span>}
                 {
                   tags && JSON.parse(tags).map((item, ind) => {
@@ -63,6 +70,11 @@ const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, 
                 </div>
                 <div className={`${styles.tags} mobile`}>
                   {!is_new && <span title="El articulo es de segunda mano" className={styles.condition}>Usado</span>}
+                  {/* Si aplica cashback */}
+                  {apply_cashback && <span title="Ganarás Pikcoins por hacer esta compra" className={styles.apply_cashback}>
+                    <picture className={styles.coin} />
+                    ¡Cashback!
+                  </span>}
                   {accept_changues && <span className={styles.condition} title="El vendedor acepta productos como parte de pago o incluso cambiar el producto por otro de su interés">Acepto cambios</span>}
                   {
                     tags && JSON.parse(tags).map((item, ind) => {

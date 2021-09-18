@@ -1,12 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faCheck } from "@fortawesome/free-solid-svg-icons"
 import { useRouter, withRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { gql, useMutation, useQuery } from '@apollo/client'
 import rn from 'random-number'
 import { slugify } from "../../lib/utils"
 import { subirImagen } from '../../lib/utils'
 import PublicationForminterface from './PublicationFormInterface'
+import { PikContext } from "../../states/PikState"
 
 const QUERY_PUBLICATION = gql`
 	query Publications($slug: String){
@@ -35,6 +36,7 @@ const MUTATION_PUBLICATION = gql`
 `
 
 const PublicationForm = (props) => {
+	const context = useContext(PikContext)
 	const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
 	const router = useRouter()
 	const [imageLoading, setImageLoading] = useState()
@@ -108,7 +110,7 @@ const PublicationForm = (props) => {
 		const random_num = rn({ min: 0, max: 1000, integer: true })
 		const slug_prepared = slugify(publicationFormData.title, 60)
 		const slug = slug_prepared + "-" + random_num
-		const phone = JSON.parse(localStorage.getItem("user")).phone
+		const phone = context.user.phone
 		delete publicationFormData.__typename
 		const variables = {
 			input: {
@@ -117,6 +119,7 @@ const PublicationForm = (props) => {
 				phone,
 				quantity: Number(publicationFormData.quantity),
 				sale_price: Number(publicationFormData.sale_price),
+				user: context.user.id
 			}
 		}
 		if (!isEdit) variables.input.slug = slug
