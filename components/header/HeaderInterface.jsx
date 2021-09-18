@@ -6,7 +6,7 @@ const HeaderInterface = ({ active }) =>
     <Newsletter />
     <header id={styles.view_Header} className={active ? styles.active : null}>
       <a href="https://pik-play.com/">
-        <img className={styles["logo-blanco"]} alt="Logo en blanco de Pik-Play" src="/images/logos/logo-blanco-pikajuegos.png" />
+        <img className={styles["logo-blanco"]} alt="Logo en blanco de Pik-Play" src="/images/logos/logo-cola.png" />
       </a>
       <nav className="f-l">
       </nav>
