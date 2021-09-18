@@ -684,6 +684,7 @@ export const getFeed = async ({ slug = "", category = null, subcategory = null }
   const query = `query {
       publications(status: true, slug: "${slug}", category: ${category}, subcategory: ${subcategory}) {
         accept_changues
+        apply_cashback
         banner_bottom
         banner_top
         category

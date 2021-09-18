@@ -5,7 +5,7 @@ import { useQuery, gql } from '@apollo/client'
 import styles from "./card.module.scss"
 import Author from "./Author"
 
-const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, user_transactions, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
+const Card = ({ accept_changues, apply_cashback, certificate, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, user_transactions, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
   const usuario = typeof localStorage != "undefined" ? localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).email : null : null
   let like = null
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
@@ -15,8 +15,6 @@ const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, 
       title
     }
   }`)
-
-  const apply_cashback = true
 
   return <Grow key={id_publication} in={true} style={{ opacity: 1 }}>
     <Link href={slug ? "/publicacion/[id]" : "javascript:void(0)"} as={slug ? `/publicacion/${slug}` : "javascript:void(0)"}>
