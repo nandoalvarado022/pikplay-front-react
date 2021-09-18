@@ -1,13 +1,15 @@
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import Autocomplete from "@material-ui/lab/Autocomplete"
 import Button from "../../components/button/Button"
 import TextField from "@material-ui/core/TextField"
 import { gql, useMutation } from '@apollo/client'
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react'
 import styles from "../../public/css/modalIngresoInfo.module.scss"
-import { PikContext } from "../../states/PikState";
-import CiudadControl from "../../components/ciudadControl/CiudadControl";
+import { PikContext } from "../../states/PikState"
+import CiudadControl from "../../components/ciudadControl/CiudadControl"
+import Link from "next/link"
+import { Alert } from "@material-ui/lab"
 
-const ModalHablarVendedor = ({ datosPublicacion, onChange, setIsModalHablarVendedor }) => {
+const ModalHablarVendedor = ({ datosPublicacion, setIsModalHablarVendedor }) => {
   const context = useContext(PikContext)
   const CREATE_TRANSACTION = gql`
     mutation createTransaction($user: Int, $user_to: Int, $publication: Int, $type: String){
@@ -48,8 +50,13 @@ const ModalHablarVendedor = ({ datosPublicacion, onChange, setIsModalHablarVende
     <div className={styles.background}></div>
     <div className={`Card ${styles.Card}`}>
       <h2>Tus datos para la entrega y pago</h2>
-      <TextField value={context.user.name} autoComplete="nombre" name="nombre_completo" fullWidth={true} onChange={onChange} label="Nombre" margin="normal" size={25} />
+      <TextField disabled value={context.user.name} autoComplete="nombre" name="nombre_completo" fullWidth={true} label="Nombre" margin="normal" size={25} />
       <CiudadControl />
+      <Alert severity="info">
+        <Link href="/perfil" as="/perfil">
+          Puedes hacer clic aquí para cambiar estos datos
+        </Link>
+      </Alert>
       <div className={styles.actions}>
         <Button onClick={() => { setIsModalHablarVendedor() }} color="normal">Cancelar</Button>
         <Button onClick={handlePagar} color="blue">Hablar con el vendedor</Button>

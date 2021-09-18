@@ -107,7 +107,34 @@
                 padding: 20px 10px 0;
                 width: 450px;
             }
+            .apply_cashback {
+                background: radial-gradient(circle, #fee960 0%, #feb724 100%) !important;
+                border-radius: 10px;
+                display: inline-block;
+                font-size: 12px;
+                font-weight: 600;
+                margin: 10px 0 0 14px;
+                padding: 5px 10px 5px 20px;
+                position: relative;
+                .coin {
+                    background-image: url("/images/gifs/sprite-monedas-pequenas.png");
+                    background-position-x: 0px;
+                    background-position-y: 0px;
+                    background-size: 210px;
+                    display: inline-block;
+                    height: 31px;
+                    margin: 0;
+                    transition: 0.5s linear;
+                    width: 31px;
+                    position: absolute;
+                    top: -2px;
+                    left: -15px;
+                }
+            }
             .content_author {
+                @media screen and (max-width: 420px) {
+                    margin-top: 20px;
+                }
                 @media screen and (min-width: 1024px) {
                     margin-left: 20px;
                 }

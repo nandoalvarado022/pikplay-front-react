@@ -19,9 +19,9 @@ export default function LoginInterface({ buttonText, isCodeSended, isOpen, handl
         <div className={styles.flex} style={{ display: isCodeSended ? "none" : "flex" }}>
           <img height="42" width="40" className={styles.icon_colombia} src="/images/icons/colombia.png" alt="" />
           <span>(+57)</span>
-          <TextField onKeyUp={(e) => setPhone(e.target.value)} autoFocus margin="dense" id="phoneLogin" label="Número de celular" type="number" fullWidth />
+          <TextField onKeyUp={(e) => setPhone(e.target.value)} margin="dense" id="phoneLogin" label="Número de celular" type="number" fullWidth />
         </div>
-        {isCodeSended && <TextField type="number" disabled={buttonText == "Validando..." ? true : false} onKeyUp={handleKeyUp} autoFocus margin="dense" id="verificationCode" label={`Escribe aquí el código de 4 dígitos que te envíamos al número ${phone}`} fullWidth />}
+        {isCodeSended && <TextField type="number" disabled={buttonText == "Validando..." ? true : false} onKeyUp={handleKeyUp} margin="dense" id="verificationCode" label={`Escribe aquí el código de 4 dígitos que te envíamos al número ${phone}`} fullWidth />}
         <small style={{ marginTop: "20px", display: "block" }}>
           Al hacer clic en "Enviar", aceptas nuestras Condiciones, la Política de datos y la Política de cookies. Es posible que te enviemos notificaciones por SMS, que puedes desactivar cuando quieras.
         </small>

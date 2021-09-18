@@ -9,12 +9,12 @@ const SpecialBanner = ({ category, handleLike, popularyItem, starItem }) => {
   if (!category && popularyItem && starItem) {
     return <div id={styles.SpecialBanner}>
       <div className={styles.box}>
-        <div className={styles.title}>Lo más popular</div>
+        <div className={styles.title}>Lo más visto por los gamers</div>
         <Card key={popularyItem.id} handleLike={handleLike} permitirLink={true} {...popularyItem} />
       </div>
       <img src="/images/banners/banner-varios-juegos.png" alt="Juegos SSwitch en promoción" />
       <div className={styles.box}>
-        <div className={styles.title}>Lo más vendido</div>
+        <div className={styles.title}>Anuncio</div>
         <Card key={starItem.id} handleLike={handleLike} permitirLink={true} {...starItem} />
       </div>
     </div>

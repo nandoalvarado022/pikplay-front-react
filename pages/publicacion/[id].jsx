@@ -6,9 +6,11 @@ import React from "react"
 import Layout from "../../components/layout/Layout"
 // import PuedeInteresarte from "../../components/puedeInteresarte/PuedeInteresarte"
 import { getFeed, transformarFeed } from "../../lib/utils"
-import ModalHablarVendedor from "./ModalHablarVendedor";
+import ModalHablarVendedor from "./ModalHablarVendedor"
+import { PikContext } from '../../states/PikState'
 
 export default class PublicacionPage extends React.Component {
+  static contextType = PikContext
   static async getInitialProps({ req, query }) {
     let slug = query.id
     let datosPublicacion = await getFeed({ slug })
@@ -25,6 +27,7 @@ export default class PublicacionPage extends React.Component {
   onChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
+    debugger
     this.setState({
       [name]: value,
     });
@@ -54,6 +57,11 @@ export default class PublicacionPage extends React.Component {
         precio: nuevoPrecio,
       });
     }
+  }
+
+  handleHablarVendedor = () => {
+    // context = this.context
+    this.context.user.id != 0 ? this.setState({ modalHablarVendedor: true }) : document.querySelector("#btnStart").click()
   }
 
   mostrarAlerta(mensaje) {
@@ -125,10 +133,10 @@ export default class PublicacionPage extends React.Component {
 
     return <Layout meta_image={datosPublicacion} meta_title={title} title={title} descripcion={description} meta_url={slug}>
       <div className="_publicacion">
-        <CardDetalleProducto meta_url={slug} handleResponder={this.handleResponder} nuevoPrecio={this.state.nuevoPrecio} handleCupon={this.handleCupon} setIsModalHablarVendedor={() => this.setState({ modalHablarVendedor: !this.state.modalHablarVendedor })} doc_id={datosPublicacion} handleLike={this.handleLike} logDetalle={true} {...datosPublicacion} />
+        <CardDetalleProducto {...{ handleHablarVendedor: this.handleHablarVendedor }} meta_url={slug} handleResponder={this.handleResponder} nuevoPrecio={this.state.nuevoPrecio} handleCupon={this.handleCupon} doc_id={datosPublicacion} handleLike={this.handleLike} logDetalle={true} {...datosPublicacion} />
         {
           // Modal para confirmar datos
-          this.state.modalHablarVendedor && <ModalHablarVendedor {...{ datosPublicacion, onChange: this.onChange, setIsModalHablarVendedor: () => this.setState({ modalHablarVendedor: !this.state.modalHablarVendedor }) }} />
+          this.state.modalHablarVendedor && <ModalHablarVendedor {...{ datosPublicacion, setIsModalHablarVendedor: () => this.setState({ modalHablarVendedor: !this.state.modalHablarVendedor }) }} />
         }
         {
           // Modal para ingresar cupón

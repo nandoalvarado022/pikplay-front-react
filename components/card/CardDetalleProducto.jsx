@@ -12,7 +12,7 @@ import React from "react"
 import { faCheckCircle, faHandshake } from "@fortawesome/free-regular-svg-icons"
 import Author from "./Author"
 
-const CardProducto = ({ banner_bottom, certificate, meta_url, title, descuento = 0, description = "", image_link, image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, setIsModalHablarVendedor, user_name, user_picture, user_transactions, quantity, warranty } = {}) => {
+const CardProducto = ({ apply_cashback, banner_bottom, certificate, meta_url, title, descuento = 0, description = "", handleHablarVendedor, image_link, image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, setIsModalHablarVendedor, user_name, user_picture, user_transactions, quantity, warranty } = {}) => {
   const ref_descripcion_imagen = useRef(null)
   let images = []
 
@@ -73,6 +73,11 @@ const CardProducto = ({ banner_bottom, certificate, meta_url, title, descuento =
         {description && <div className={`Card ${styles.Card} ${styles.descripcion}`}>
           {certificate && <FontAwesomeIcon className={styles.verified} icon={faCheckCircle} />}
           <h1>{title}</h1>
+          {/* Si aplica cashback */}
+          {apply_cashback && <span title="Ganarás Pikcoins por hacer esta compra" className={styles.apply_cashback}>
+            <picture className={styles.coin} />
+            ¡Cashback!
+          </span>}
           <div className={styles.content_precio}>
             {/* Precio */}
             <span className={styles.tachado}>
@@ -93,7 +98,7 @@ const CardProducto = ({ banner_bottom, certificate, meta_url, title, descuento =
           </div>
 
           <div className={`flex ${styles.compra_author}`}>
-            {quantity > 0 && (<Button color="blue" onClick={setIsModalHablarVendedor}>Me interesa este artículo</Button>)}
+            {quantity > 0 && (<Button color="blue" onClick={handleHablarVendedor}>Me interesa este artículo</Button>)}
             <div className={styles.content_author}>
               <Author {...{ user_certificate: certificate, user_name, user_picture, user_transactions }} />
             </div>
