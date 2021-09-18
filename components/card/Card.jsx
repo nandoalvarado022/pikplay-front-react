@@ -1,13 +1,11 @@
 import Link from "next/link"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCheckCircle, faHeart } from "@fortawesome/free-regular-svg-icons"
 import Grow from "@material-ui/core/Grow"
 import { format_number } from "../../lib/utils"
 import { useQuery, gql } from '@apollo/client'
 import styles from "./card.module.scss"
-import { faStar } from "@fortawesome/free-solid-svg-icons"
+import Author from "./Author"
 
-const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
+const Card = ({ accept_changues, apply_cashback, certificate, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, user_transactions, type, likes, price, sale_price, logDetalle, quantity } = {}) => {
   const usuario = typeof localStorage != "undefined" ? localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).email : null : null
   let like = null
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
@@ -23,24 +21,16 @@ const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, 
       <a className={id_publication == 1 ? styles.destacada_Card : ""}>
         {special_title && (<h3 className={styles.title_destacada}>{special_title}</h3>)}
         <div key={id_publication} className={`${styles.Card} ${destacada ? styles.destacada : ""}`} >
-          <div className={styles.author}>
-            <span className={styles.user_picture} style={{ backgroundImage: `url(${user_picture})` }} />
-            <p title={certificate ? "El usuario esta certificado, puedes confiar en esta oferta" : ""}>
-              <h3>
-                {certificate && <FontAwesomeIcon icon={faCheckCircle} />}
-                {user_name}
-              </h3>
-              {
-                certificate && <div className={styles.stars}>
-                  <FontAwesomeIcon icon={faStar} /> 4,5
-                </div>
-              }
-            </p>
-          </div>
+          <Author {...{ user_certificate: certificate, user_name, user_picture, user_transactions }} />
           <div className={styles.descripcion_imagen}>
             <div className={styles.content_imagen}>
               <div className={`${styles.tags} desktop`}>
                 {!is_new && <span title="El articulo es de segunda mano" className={styles.condition}>Usado</span>}
+                {/* Si aplica cashback */}
+                {apply_cashback && <span title="Ganarás Pikcoins por hacer esta compra" className={styles.apply_cashback}>
+                  <picture className={styles.coin} />
+                  ¡Cashback!
+                </span>}
                 {accept_changues && <span className={styles.condition} title="El vendedor acepta productos como parte de pago o incluso cambiar el producto por otro de su interés">Acepto cambios</span>}
                 {
                   tags && JSON.parse(tags).map((item, ind) => {
@@ -78,6 +68,11 @@ const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, 
                 </div>
                 <div className={`${styles.tags} mobile`}>
                   {!is_new && <span title="El articulo es de segunda mano" className={styles.condition}>Usado</span>}
+                  {/* Si aplica cashback */}
+                  {apply_cashback && <span title="Ganarás Pikcoins por hacer esta compra" className={styles.apply_cashback}>
+                    <picture className={styles.coin} />
+                    ¡Cashback!
+                  </span>}
                   {accept_changues && <span className={styles.condition} title="El vendedor acepta productos como parte de pago o incluso cambiar el producto por otro de su interés">Acepto cambios</span>}
                   {
                     tags && JSON.parse(tags).map((item, ind) => {
@@ -91,8 +86,8 @@ const Card = ({ accept_changues, certificate, id: id_publication, is_new, tags, 
               </div >
             }
           </div >
-        </div >
-      </a >
+        </div>
+      </a>
     </Link >
   </Grow >
 };

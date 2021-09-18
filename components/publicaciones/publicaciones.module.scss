@@ -1,9 +1,13 @@
 .content {
+    margin-top: 0;
     @media screen and (max-width: 420px) {
         width: auto;
     }
-     :global(.Card) {
+    :global(.Card.main) {
         margin: 0;
+        @media screen and (max-width: 420px) {
+            flex-direction: column;
+        }
     }
     div {
         box-sizing: border-box;
@@ -24,7 +28,8 @@
             img {
                 max-width: 50px;
             }
-            a>div {}
+            a > div {
+            }
             .flex-row {
                 align-items: center;
                 display: flex;
@@ -38,7 +43,7 @@
                 flex-basis: 150px;
                 justify-content: flex-start;
                 width: auto;
-                >* {
+                > * {
                     height: 40px;
                 }
                 .verPublicacion {
@@ -46,8 +51,30 @@
                 }
             }
             &.disabled {
-                >a>div {
-                    opacity: .3;
+                > a > div {
+                    opacity: 0.3;
+                }
+            }
+        }
+    }
+    .report {
+        :global(.Card) {
+            display: flex;
+            .graphic {
+                margin: 0 auto;
+                width: 400px;
+                @media screen and (max-width: 420px) {
+                    width: 100%;
+                }
+            }
+            table {
+                font-size: 14px;
+                tr:nth-child(even) {
+                    background: #d7ecfb;
+                }
+                td {
+                    margin: 0;
+                    text-align: center;
                 }
             }
         }

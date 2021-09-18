@@ -35,12 +35,6 @@
         margin-top: 30px;
         width: 1280px;
     }
-    .boton_comprar {
-        margin: 20px 0 0 !important;
-        display: block;
-        padding: 10px;
-        background-color: #ea4d42;
-    }
     .swiper-button-next,
     .swiper-button-prev {
         box-shadow: -2px 0px 5px 0px #575757b5;
@@ -113,21 +107,31 @@
                 padding: 20px 10px 0;
                 width: 450px;
             }
-            .vendidoPor {
-            }
-            .certificate {
-                background: linear-gradient(180deg, #7de2aa 0%, #1fcb6b 100%);
-                // background: #1fcb6b;
-                color: white;
-                padding: 10px 15px;
-                margin: 10px 0 0;
-                border-radius: 10px;
+            .content_author {
+                @media screen and (min-width: 1024px) {
+                    margin-left: 20px;
+                }
             }
             .description {
-                overflow: hidden;
                 font-size: 14px;
+                margin: 10px 20px 0 0;
+                overflow: hidden;
                 .title {
                     font-weight: bold;
+                }
+            }
+        }
+        .compra_author {
+            @media screen and (max-width: 420px) {
+                flex-direction: column;
+            }
+            :global(button) {
+                margin: 0;
+            }
+            @media screen and (max-width: 420px) {
+                :global(.autor) {
+                    margin-top: 10px;
+                    width: initial;
                 }
             }
         }

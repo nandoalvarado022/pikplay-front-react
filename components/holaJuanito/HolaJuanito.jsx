@@ -15,7 +15,7 @@ const HolaJuanito = () => {
     const [idNotification, setIdNotification] = useState(null)
     const [createCoin] = useMutation(CREATE_COIN);
     const name = context.user.name ? context.user.name : "Invitado"
-    const isProfileComplete = context.user.name && context.user.email && context.user.picture != "/images/icons/user.png" && context.user.email
+    const isProfileComplete = context.user.name && context.user.email && context.user.picture != "/images/icons/user.png" && context.user.email && context.user.city
     // const isProfileComplete = true
     const [gotProfileCompletedCoins, setGotProfileCompletedCoins] = useState(false)
     const coins = 2500 // monedas que se le dara al usuario por completar el perfil
