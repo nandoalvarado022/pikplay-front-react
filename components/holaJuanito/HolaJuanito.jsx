@@ -91,8 +91,7 @@ const HolaJuanito = () => {
                         </div>
                     </div>
                     <div className={`${styles.text2} font-c`}>
-                        Recuerda que puedes confiar <span style={{ color: "green" }}>100%</span> en los aliados de <b>PikaPlay</b>.
-                        Entregamos garantía por las compras que hagas a nuestros aliados certificados así que no te preocupes por estafas en tus compras.
+                        Recuerda que puedes confiar <b style={{ color: "green" }}>100%</b> en nuestros aliados certificados. Entregamos garantía por las compras que realices a estos, así que tu compra será confiable, rápida y segura.
                     </div>
                     {
                         context.user.id == 0 && <button onClick={() => document.getElementById("btnStart").click()} className={styles.reclamar_monedas}>

@@ -14,6 +14,7 @@ import Button from '../button/Button'
 import { getCategories } from "../../lib/utils"
 import Notification from '../notification'
 import { PikContext } from '../../states/PikState'
+import { Alert } from '@material-ui/lab'
 
 const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, handleSubmit, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, screenWidth, setPublicationFormData, textButton }) => {
   const context = useContext(PikContext)
@@ -43,6 +44,10 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
           context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
         }} />
       </h2>
+
+      <Alert severity="success" style={{ marginBottom: "10px" }}>
+        Crea tu anuncio 100% gratis y sin comisiónes
+      </Alert>
 
       <div className={styles.steps}>
         <div className={currentStep == 1 && styles.active}>
@@ -151,7 +156,7 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
               </div>
               <Card {...publicationFormData} slug={null} />
             </div>
-            {errors && <div className={styles.errors}>{errors}</div>}
+            {errors && <Alert severity="error">{errors}</Alert>}
           </div>
         }
       </div>
