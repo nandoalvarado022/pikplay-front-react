@@ -6,6 +6,7 @@ button.btn {
     margin: 5px;
     padding: 10px 20px;
     text-transform: initial;
+    text-shadow: 1px 1px #5a5a5a;
     &:hover {
         box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     }
@@ -23,7 +24,6 @@ button.btn {
     }
     &.blue {
         background: linear-gradient(180deg, #80a4ca 0%, #476e96 100%);
-        text-shadow: 1px 1px black;
     }
     &.red {
         background: #f05f70;

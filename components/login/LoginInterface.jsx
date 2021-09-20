@@ -7,7 +7,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import Button from "../button/Button"
 import styles from "./login.module.scss"
 
-export default function LoginInterface({ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, phone, setPhone }) {
+export default function LoginInterface({ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, handleTengoCodigo, phone, setPhone }) {
   return <div>
     <Button alt="Ingersar con número de teléfono" color="blue" id="btnStart" onClick={handleClickOpen}>Play</Button>
     <Dialog fullWidth maxWidth="sm" open={isOpen} onClose={handleCloseDialog} aria-labelledby="form-dialog-title">
@@ -30,6 +30,7 @@ export default function LoginInterface({ buttonText, isCodeSended, isOpen, handl
         <Button onClick={handleCloseDialog} color="normal">
           Cancelar
         </Button>
+        <Button onClick={handleEnviar} onClick={handleTengoCodigo} color="yellow">Ya tengo código</Button>
         <Button onClick={handleEnviar} color="blue">{buttonText}</Button>
       </DialogActions>
     </Dialog>

@@ -17,6 +17,11 @@ export default function Login() {
 		validateLogin(phone: $phone, code: $code)
 	}`
 
+	const handleTengoCodigo = () =>{
+		setButtonText("Validar")
+		setIsCodeSended(true)
+	}
+
 	const [validateLogin, { data: dataValidate, error: errorValidate }] = useLazyQuery(VALIDATE_QUERY, {
 		onCompleted: (data) => {
 			const { validateLogin } = dataValidate
@@ -80,5 +85,5 @@ export default function Login() {
 	useEffect(() => {
 	}, [])
 
-	return <LoginInterface {...{ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, phone, setPhone }} />
+	return <LoginInterface {...{ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, handleTengoCodigo, phone, setPhone }} />
 }
