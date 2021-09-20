@@ -1,4 +1,6 @@
 // Descripción: Notificaciones generales en la aplicacion
+import { faClosedCaptioning, faTimesCircle } from "@fortawesome/free-regular-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React, { useContext } from "react"
 import { PikContext } from "../../states/PikState"
 import styles from "./notificacion.module.scss"
@@ -6,7 +8,7 @@ import styles from "./notificacion.module.scss"
 const Notification = ({ }) => {
     const context = useContext(PikContext)
     const isOpen = context.messageModal.id == "empty" ? false : true
-    const { id = null, message: htmlMessage = null } = context?.messageModal
+    const { id = null, isHiddenButton, message: htmlMessage = null } = context?.messageModal
     const handleClose = () => {
         context.customDispatch({ type: "SET_MESSAGE", payload: null })
     }
@@ -16,7 +18,9 @@ const Notification = ({ }) => {
         <div className={styles.bg}></div>
         <div className={styles.content}>
             {htmlMessage}
-            <div className={styles.close} onClick={handleClose}>Cerrar</div>
+            {!isHiddenButton &&
+                <FontAwesomeIcon className={styles.close} icon={faTimesCircle} onClick={handleClose} />
+            }
         </div>
     </div>
 }
