@@ -22,6 +22,7 @@
     "@material-ui/icons": "4.5.1",
     "@material-ui/lab": "4.0.0-alpha.57",
     "apollo-boost": "0.4.9",
+    "canvas-confetti": "^1.4.0",
     "chart.js": "^3.5.1",
     "cross-env": "6.0.3",
     "date-and-time": "0.12.0",

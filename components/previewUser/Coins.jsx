@@ -1,6 +1,6 @@
 import { gql, useLazyQuery } from '@apollo/client'
 import { useContext, useEffect, useRef, useState } from "react"
-import { format_number, loadAudio } from "../../lib/utils"
+import { format_number } from "../../lib/utils"
 import { PikContext } from "../../states/PikState"
 import styles from "./coins.module.scss"
 
@@ -67,8 +67,6 @@ const Coins = () => {
   useEffect(() => {
     animateValue(previousCoins, context.coins, 1000)
     animate()
-    playSound && loadAudio("/audios/coin.wav")
-    setPlaySound(true)
   }, [context.coins])
 
   return <div className={`${styles.Coins} ${isAnimate ? styles.animated : ""}`} onClick={animate}>

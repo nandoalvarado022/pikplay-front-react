@@ -6,7 +6,8 @@ import { PikContext } from "../../states/PikState"
 import styles from "./styles.module.scss"
 import { useMutation } from '@apollo/client'
 import Button from "../button/Button"
-import { CREATE_COIN, DELETE_NOTIFICATION } from "../../lib/utils"
+import { CREATE_COIN, DELETE_NOTIFICATION, loadAudio } from "../../lib/utils"
+import confetti from "canvas-confetti"
 
 const UserNotifications = () => {
   const context = useContext(PikContext)
@@ -26,6 +27,7 @@ const UserNotifications = () => {
       context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
       return
     }
+    confetti()
     context.customDispatch({ type: "RECLAMAR_COINS", payload: { coins } })
     deleteNotification(idNotification)
   }

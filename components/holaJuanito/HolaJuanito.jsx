@@ -120,15 +120,19 @@ const HolaJuanito = () => {
                         <h3>Nuevos Aliados</h3>
                         <div className={styles.rows}>
                             <div>
-                                <img src="/images/aliados/panter.jpg" title="bluepanthervideogames" />
+                                <img src="/images/aliados/akavideogames.jpg" title="Akavideogames" />
                                 <span>Barranquilla</span>
                             </div>
                             <div>
-                                <img src="/images/aliados/juancho.jpg" title="juanchofenixstore" />
+                                <img src="/images/aliados/panter.jpg" title="Bluepanthervideogames" />
+                                <span>Barranquilla</span>
+                            </div>
+                            <div>
+                                <img src="/images/aliados/juancho.jpg" title="Juanchofenixstore" />
                                 <span>Bogotá</span>
                             </div>
                             <div>
-                                <img src="/images/aliados/bodega.jpg" title="bodegadelvideojuego" />
+                                <img src="/images/aliados/bodega.jpg" title="Bodegadelvideojuego" />
                                 <span>Medellín</span>
                             </div>
                         </div>
