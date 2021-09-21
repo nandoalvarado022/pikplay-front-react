@@ -95,18 +95,19 @@ class Layout extends React.Component {
 
     const message = {
       id: "postRegistro", message: <div>
-        <h3 style={{ "fontWeight": 100, color: "white" }}>
+        {/* <h3 style={{ "fontWeight": 100, color: "white" }}>
           <b style={{ color: "white" }}>Bienvenido,</b>
           &nbsp;{this.context.user.name}
-        </h3>
-        <img className="guide_images show" id="img_guide_step_1" src="/images/banners/guia/1.png" alt="Completar perfil" />
+        </h3> */}
+        <img style={{ maxHeight: "calc(100vh - 200px)", margin: "0 auto" }} className="guide_images show" id="img_guide_step_1" src="/images/banners/guia/1.png" alt="Completar perfil" />
         <img className="guide_images" id="img_guide_step_2" src="/images/banners/guia/2.png" alt="Completar perfil" />
         <button onClick={handleAnterior}>anterior</button>
         <button onClick={handleSiguiente}>siguiente</button>
       </div>
 
     }
-
+    
+    // Pending
     // this.context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
 
     // Notificaciones push

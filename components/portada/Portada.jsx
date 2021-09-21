@@ -34,6 +34,7 @@ function Portada({ category, feed }) {
       id: 1,
       message: <ModalLead />
     }
+    // Pending
     // context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
   }, [])
 
