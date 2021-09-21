@@ -13,9 +13,7 @@ function Portada({ category, feed }) {
   const context = useContext(PikContext)
   const router = useRouter()
   const [open, setOpen] = useState(false)
-  const popularyItem = feed && feed.reduce((prev, current) => {
-    return prev.views > current.views ? prev : current
-  }, [])
+  const popularyItem = feed[0]
 
   const starItem = feed && feed.find((item) => item.id == 68)
 

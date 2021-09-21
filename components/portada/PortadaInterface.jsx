@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faClock } from "@fortawesome/free-regular-svg-icons"
 import Card from '../card/Card'
 import Footer from '../footer/Footer'
 import styles from "./portada.module.scss"
@@ -46,6 +48,7 @@ const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popul
 
   return <React.Fragment>
     {feed.length < 1 && <h3 style={{ textAlign: "center" }}>
+    <FontAwesomeIcon icon={faClock} />
       Mantenimiento programado en progreso
     </h3>}
     {!category && <HolaJuanito />}
