@@ -11,14 +11,20 @@ export default function Login() {
 	const [isOpen, setIsOpen] = useState(false)
 	const [isCodeSended, setIsCodeSended] = useState(false)
 	const [phone, setPhone] = useState(null)
-	const [buttonText, setButtonText] = useState("Enviar")
+	const [buttonText, setButtonText] = useState("Enviar código")
 	const VALIDATE_QUERY = gql`
 	query validateLogin($phone: String, $code: Int){
 		validateLogin(phone: $phone, code: $code)
 	}`
 
-	const handleTengoCodigo = () =>{
-		setButtonText("Validar")
+	const handleTengoCodigo = () => {
+		const phone = document.getElementById("phoneLogin").value
+		if (!phone) {
+			alert("Debes escribir el número de celular vinculado a tu cuenta")
+			setButtonText("Enviar código")
+			return
+		}
+		setButtonText("Ingresar")
 		setIsCodeSended(true)
 	}
 
@@ -57,7 +63,7 @@ export default function Login() {
 		const phone = document.getElementById("phoneLogin").value
 		if (!phone) {
 			alert("Debes escribir un número celular, recuerda que a este número llegará el código de acceso")
-			setButtonText("Enviar")
+			setButtonText("Enviar código")
 			return false
 		}
 		dispatchLogin({ variables: { phone: "57" + phone } });
@@ -82,8 +88,5 @@ export default function Login() {
 		validateLogin({ variables: { phone: "57" + phone, code: parseInt(verificationCode) } })
 	}
 
-	useEffect(() => {
-	}, [])
-
-	return <LoginInterface {...{ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, handleTengoCodigo, phone, setPhone }} />
+	return <LoginInterface {...{ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, handleTengoCodigo, phone, setIsCodeSended, setPhone }} />
 }
