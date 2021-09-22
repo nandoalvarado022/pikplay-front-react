@@ -54,7 +54,7 @@ const Categorias = ({ scroll }) => {
               {notifications.length}
             </span>
             {/* Perfil <FontAwesomeIcon className={`${styles.arrow} ${isOpenPreviewProfile ? styles.actived : null}`} icon={faArrowDown} /> */}
-            <PreviewUser {...{ isOpenPreviewProfile }} />
+            <PreviewUser {...{ isOpenPreviewProfile, setIsOpenPreviewProfile }} />
           </li>
         </React.Fragment>
           :

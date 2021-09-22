@@ -116,7 +116,7 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
 
               <div className={`Card ${styles.images_list}`}>
                 {
-                  ["image_link", "image_1", "image_2", "image_3", "image_4", "image_5"].map(item => {
+                  ["image_1", "image_2", "image_3"].map(item => {
                     return <>
                       {
                         publicationFormData[item] == null && <label class={styles.fileWrapper}>

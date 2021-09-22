@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Footer from "../footer/Footer"
 import Button from "../button/Button"
-import { DiscussionEmbed } from "disqus-react"
 import ReactMarkdown from "react-markdown/with-html"
 import Grow from "@material-ui/core/Grow"
 import { format_number } from "../../lib/utils"
@@ -16,7 +15,6 @@ const CardProducto = ({ apply_cashback, banner_bottom, certificate, meta_url, ti
   const ref_descripcion_imagen = useRef(null)
   let images = []
 
-  if (image_link) images.push({ original: image_link, thumbnail: image_link, })
   if (image_1) images.push({ original: image_1, thumbnail: image_1, })
   if (image_2) images.push({ original: image_2, thumbnail: image_2, })
   if (image_3) images.push({ original: image_3, thumbnail: image_3, })
@@ -32,14 +30,6 @@ const CardProducto = ({ apply_cashback, banner_bottom, certificate, meta_url, ti
   let like = null;
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
 
-  useEffect(() => {
-    (function () { // Comentarios disqus
-      var d = document, s = d.createElement('script');
-      s.src = 'https://pik-play.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  }, [])
 
   return <div key={indice_item} className={`Card ${styles.DetalleProducto}`}>
     <ins class="adsbygoogle"
@@ -112,11 +102,6 @@ const CardProducto = ({ apply_cashback, banner_bottom, certificate, meta_url, ti
           <p>
             <a className="underline f-s-12" target="_BLANK" href="https://api.whatsapp.com/send?phone=573187414972&text=Quiero denunciar una publicación en pik-play.com">Denunciar</a>
           </p>
-
-          {/* <div>
-              <DiscussionEmbed shortname="pikajuegos" config={{ url: meta_url, identifier: meta_url, title: title, language: "es_ES" }} />
-            </div> */}
-          <div id="disqus_thread"></div>
         </div>
         }
 
