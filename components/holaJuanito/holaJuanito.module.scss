@@ -73,6 +73,11 @@
                         max-height: 270px;
                     }
                 }
+                iframe {
+                    @media screen and (max-width: 420px) {
+                        width: 100%;
+                    }
+                }
             }
         }
         .next,

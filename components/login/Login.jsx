@@ -47,7 +47,7 @@ export default function Login() {
 
 	const LOGIN_MUTATION = gql`
 	mutation Login($phone: String){
-			setLoginCode(phone: $phone)
+		setLoginCode(phone: $phone)
 	}`
 
 	const [dispatchLogin, { }] = useMutation(LOGIN_MUTATION);

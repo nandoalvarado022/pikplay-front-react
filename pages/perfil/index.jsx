@@ -39,13 +39,10 @@ const Perfil = () => {
       picture = picture[0]
     } else picture = null
 
-    let variables = {
-      city: context.user.city,
-      email: context.user.email,
-      id: userData.id,
-      name: userData.name
-    }
-
+    let variables = { id: userData.id }
+    if (context.user.city) variables.city = context.user.city
+    if (userData.email) variables.email = userData.email
+    if (userData.name) variables.name = userData.name
     if (picture) variables.picture = picture // Setting picture
 
     context.customDispatch({

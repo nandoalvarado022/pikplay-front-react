@@ -12,7 +12,7 @@ import confetti from "canvas-confetti"
 const UserNotifications = () => {
   const context = useContext(PikContext)
   const notifications = context.notifications.filter(item => item.closed == 0)
-  const [deleteNotificationGraph] = useMutation(DELETE_NOTIFICATION)
+  const [deleteNotification] = useMutation(DELETE_NOTIFICATION)
   const [createCoin] = useMutation(CREATE_COIN)
 
   const reclamarCoins = async (coins, idNotification) => {
@@ -22,6 +22,10 @@ const UserNotifications = () => {
       }
     })
     const res = req_res.data.createCoin
+    if (res == 401) {
+      alert("Accion no permitida")
+      return
+    }
     if (res == 400) {
       const message = { id: 0, message: <div>Alcanzaste el límite diario de <b>Pikcoins</b> a recibir, intentalo mañana </div> }
       context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
@@ -29,13 +33,13 @@ const UserNotifications = () => {
     }
     confetti()
     context.customDispatch({ type: "RECLAMAR_COINS", payload: { coins } })
-    deleteNotification(idNotification)
+    handleDeleteNotification(idNotification)
   }
 
-  const deleteNotification = (idNotification) => {
+  const handleDeleteNotification = (idNotification) => {
     const notifications = [...context.notifications]
     notifications.find(item => item.id == idNotification).closed = "1"
-    deleteNotificationGraph({ variables: { id: idNotification } })
+    deleteNotification({ variables: { id: idNotification, user_request: context.user.id } })
     context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: notifications } })
   }
 
@@ -59,7 +63,7 @@ const UserNotifications = () => {
       </span>
       {!!coins && <Button color="blue" onClick={() => { reclamarCoins(coins, id) }}>Reclamar</Button>}
       {!coins && <div className={styles.content_close}>
-        <FontAwesomeIcon onClick={() => deleteNotification(id)} icon={faTimes} />
+        <FontAwesomeIcon onClick={() => handleDeleteNotification(id)} icon={faTimes} />
       </div>
       }
     </ol>

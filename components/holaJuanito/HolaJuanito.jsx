@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react"
 import { CREATE_COIN, DELETE_NOTIFICATION, GET_NOTIFICATIONS } from "../../lib/utils"
 import { PikContext } from "../../states/PikState"
 import styles from "./holaJuanito.module.scss"
+import confetti from "canvas-confetti"
 
 const HolaJuanito = () => {
     const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
@@ -15,7 +16,7 @@ const HolaJuanito = () => {
     const [idNotification, setIdNotification] = useState(null)
     const [createCoin] = useMutation(CREATE_COIN);
     const name = context.user.name ? context.user.name : "Invitado"
-    const isProfileComplete = context.user.name && context.user.email && context.user.picture != "/images/icons/user.png" && context.user.email && context.user.city
+    const isProfileComplete = context.user.name && context.user.email && context.user.email && context.user.city
     // const isProfileComplete = true
     const [gotProfileCompletedCoins, setGotProfileCompletedCoins] = useState(false)
     const coins = 2500 // monedas que se le dara al usuario por completar el perfil
@@ -47,11 +48,12 @@ const HolaJuanito = () => {
                 id: idNotification
             }
         })
-        deleteNotification({ variables: { id: idNotification } })
+        deleteNotification({ variables: { id: idNotification, user_request: context.user.id } })
         context.customDispatch({ type: "RECLAMAR_COINS", payload: { coins } })
         setTimeout(() => {
             context.getNotifications()
             setGotProfileCompletedCoins(true)
+            confetti()
         }, 500)
     }
     const classButton = isProfileComplete && gotProfileCompletedCoins ? styles.disabled : ""
@@ -144,21 +146,21 @@ const HolaJuanito = () => {
                         <ol style={{ opacity: opacity1 }}>
                             <Link href="/publicacion/[id]" as="/publicacion/preventa-fifa-22-juanchofenix-502">
                                 <a>
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/U_oewgFysiY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </a>
+                            </Link>
+                        </ol>
+                        <ol>
+                            <Link href="/publicacion/[id]" as="/publicacion/preventa-fifa-22-juanchofenix-502">
+                                <a>
+                                    <img src="/images/banners/lost judgment.jpg" alt="" />
+                                </a>
+                            </Link>
+                        </ol>
+                        <ol>
+                            <Link href="/publicacion/[id]" as="/publicacion/preventa-fifa-22-juanchofenix-502">
+                                <a>
                                     <img src="https://firebasestorage.googleapis.com/v0/b/mi-club2ruedas.appspot.com/o/images%2Fpublications%2F13_9_2021_23_1_56_12_1080x1080.jpg?alt=media&token=87dbe489-6f7f-4500-a9e5-15430dc78458" alt="" />
-                                </a>
-                            </Link>
-                        </ol>
-                        <ol>
-                            <Link href="/publicacion/[id]" as="/publicacion/preventa-fifa-22-juanchofenix-502">
-                                <a>
-                                    <img src="/images/banners/4.jpg" alt="" />
-                                </a>
-                            </Link>
-                        </ol>
-                        <ol>
-                            <Link href="/publicacion/[id]" as="/publicacion/preventa-fifa-22-juanchofenix-502">
-                                <a>
-                                    <img src="/images/banners/2.jpg" alt="" />
                                 </a>
                             </Link>
                         </ol>

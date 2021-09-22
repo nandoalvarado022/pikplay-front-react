@@ -925,8 +925,8 @@ export const CREATE_COIN = gql`
 	}`
 
 export const DELETE_NOTIFICATION = gql`
-	mutation deleteNotification($id: Int){
-		deleteNotification(id: $id)
+	mutation deleteNotification($id: Int, $user_request: Int){
+		deleteNotification(id: $id, user_request: $user_request)
 	}`
 
 export const GET_NOTIFICATIONS = gql`
