@@ -16,6 +16,7 @@ import styles from "./layout.module.scss"
 import Categorias from "../categorias/Categorias"
 import MenuMovil from "../menuMovil/MenuMovil"
 import { PikContext } from '../../states/PikState';
+import Subcategories from '../subcategories';
 
 toastr.options.progressBar = true;
 toastr.options.timeOut = 5000;
@@ -106,7 +107,7 @@ class Layout extends React.Component {
       </div>
 
     }
-    
+
     // Pending
     // this.context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
 
@@ -198,6 +199,7 @@ class Layout extends React.Component {
         <audio />
         <main className={styles.principal}>
           <Categorias scroll={false} />
+          <Subcategories />
           {isMobile && <MenuMovil />}
           <Notification isOpen={this.context.showNotification} />
           {props.children}

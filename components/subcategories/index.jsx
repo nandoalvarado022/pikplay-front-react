@@ -8,10 +8,10 @@ const Subcategories = () => {
     <ul>
       {
         list.map(item => <Link href={item.url}>
-          <a className="Card">
-            <h3>
+          <a className="">
+            <h2>
               {item.name}
-            </h3>
+            </h2>
           </a>
         </Link>
         )
