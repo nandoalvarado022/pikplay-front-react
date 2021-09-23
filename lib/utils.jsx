@@ -717,7 +717,10 @@ export const getFeed = async ({ slug = "", category = null, subcategory = null }
   try {
     const res = await fetch(VARS.API_URL_GRAPHQL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        "Cache-Control": "max-age=300"
+       },
       body: JSON.stringify({ query })
     })
     const _data = await res.json()

@@ -194,7 +194,7 @@ class Layout extends React.Component {
         }}()
       </Head>
       <body className="App font-a">
-        <Header {...props} />
+        {/* <Header {...props} /> */}
         <LogoBuscador partner={is_partner ? partner : null} />
         <audio />
         <main className={styles.principal}>

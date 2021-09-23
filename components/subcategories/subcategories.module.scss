@@ -9,7 +9,7 @@
         z-index: 5;
     }
     ul {
-        background: #24292e;
+        background: #b0b0b0;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -21,14 +21,12 @@
             width: max-content;
         }
         a {
-            background-repeat: no-repeat;
-            color: white;
             margin: 0 20px;
             @media screen and (max-width: 420px) {
                 width: max-content;
             }
             h2 {
-                color: #a0a0a0;
+                color: white;
                 font-weight: normal;
                 font-size: 14px;
                 @media screen and (max-width: 420px) {
