@@ -681,6 +681,7 @@ export default class Funciones {
 }
 
 export const getFeed = async ({ slug = "", category = null, subcategory = null }) => {
+  debugger
   const query = `query {
       publications(status: true, slug: "${slug}", category: ${category}, subcategory: ${subcategory}) {
         accept_changues
@@ -715,17 +716,18 @@ export const getFeed = async ({ slug = "", category = null, subcategory = null }
     }`
   let data = []
   try {
-    const res = await fetch(VARS.API_URL_GRAPHQL, {
+    const res = await fetch(VARS.API_URL, {
       method: "POST",
       headers: { 
         "Content-Type": "application/json",
-        "Cache-Control": "max-age=300"
+        // "Cache-Control": "max-age=300"
        },
       body: JSON.stringify({ query })
     })
     const _data = await res.json()
     data = _data?.data?.publications
   } catch (err) {
+    console.log("Ha ocurrido un eror")
     console.log(err)
   }
   return data
