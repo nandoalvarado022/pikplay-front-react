@@ -31,11 +31,11 @@ function TabPanel(props) {
 
 const CakeReport = ({ publications = [] }) => {
     const data = {
-        labels: publications.map(item => item.title),
+        labels: !publications ? [] : publications.map(item => item.title),
         datasets: [
             {
                 label: '# of Votes',
-                data: publications.map(item => item.views),
+                data: !publications ? [] : publications.map(item => item.views),
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -69,7 +69,7 @@ const CakeReport = ({ publications = [] }) => {
                     <td>Visualizaciones</td>
                     {/* <td>Ciudades</td> */}
                 </tr>
-                {publications.map(item => {
+                {publications && publications.map(item => {
                     return <tr>
                         <td>{item.title}</td>
                         <td>{item.views}</td>
@@ -170,7 +170,7 @@ const Publicaciones = () => {
             </h2>
             <ul className="Card">
                 {
-                    reqPublications && reqPublications.publications.map((item, ind) => {
+                    reqPublications?.publications && reqPublications.publications.map((item, ind) => {
                         return <li className={`${styles["flex-table"]} ${item.status ? '' : styles.disabled}`}>
                             <div><img src={item.image_link} /></div>
                             <div className={styles["flex-row"]}>{item.title}</div>

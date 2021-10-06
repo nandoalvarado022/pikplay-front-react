@@ -14,8 +14,8 @@ const Transacciones = () => {
   const context = useContext(PikContext)
   // Mutation confirmar transacción
   const TRANSACTION_CONFIRMED = gql`
-    mutation transactionConfirmed($id: Int, $publication: Int){
-      transactionConfirmed(id: $id, publication: $publication)
+    mutation transactionConfirmed($id: Int, $publication: Int, $user_request: Int){
+      transactionConfirmed(id: $id, publication: $publication, user_request: $user_request)
     }`
   const [transactionConfirmed, { }] = useMutation(TRANSACTION_CONFIRMED, {
     onCompleted() {
@@ -76,7 +76,7 @@ const Transacciones = () => {
   }
 
   const handleConfirmarTransaccion = (id, publication) => {
-    transactionConfirmed({ variables: { id, publication } });
+    transactionConfirmed({ variables: { id, publication, user_request: context.user.id } });
   }
 
   return <section className={`${styles.Transactions}`}>
@@ -92,7 +92,7 @@ const Transacciones = () => {
       }} />
     </h2>
     <ul>
-      {transactions && transactions.map(({ created, detail, id, p_title, publication, status, type, u_name, user }) => <ol className="Card" style={{ display: "flex" }}>
+      {transactions && transactions.map(({ created, detail, id, p_title, publication, status, type, u_name, user, user_to }) => <ol className="Card" style={{ display: "flex" }}>
         <div>
           <div className={styles.id}>ID</div>
           #{id}
@@ -121,7 +121,9 @@ const Transacciones = () => {
           </div>
         </div>
         <div className={styles.actions}>
-          {type == "Venta" && status == 0 && <Button color="blue" onClick={() => handleConfirmarTransaccion(id, publication)}>Confirmar transacción</Button>}
+          {
+            user_to == context.user.id && status == 0 && <Button color="blue" onClick={() => handleConfirmarTransaccion(id, publication)}>Confirmar transacción</Button>
+          }
           {/* {type == "Venta" && status == 0 && <button onClick={() => handleConfirmarTransaccion(id)} title="El cliente podrá pagar en linea">Habilitar pago en linea</button>} */}
           {/* {type == "Compra" && status == 0 && <button onClick={() => handlePagarTransaccion(id)}>Pagar</button>} */}
         </div>

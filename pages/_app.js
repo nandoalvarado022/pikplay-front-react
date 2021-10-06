@@ -15,7 +15,7 @@ import "react-image-gallery/styles/css/image-gallery.css"
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 
 const httpLink = createHttpLink({
-  uri: VARS.API_URL_GRAPHQL,
+  uri: VARS.API_URL,
   fetch: fetch,
 });
 
@@ -26,7 +26,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      authorization: token
     }
   }
 });

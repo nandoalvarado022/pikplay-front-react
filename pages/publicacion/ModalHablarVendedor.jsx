@@ -20,7 +20,7 @@ const ModalHablarVendedor = ({ datosPublicacion, setIsModalHablarVendedor }) => 
 
   const handleCreateTransaction = () => {
     // Mutation para registrar la pre orden
-    createTransaction({ variables: { user: context.user.id, user_to: datosPublicacion.user, publication: datosPublicacion.id, type: "Compra" } });
+    createTransaction({ variables: { user: context.user.id, user_to: datosPublicacion.user, publication: datosPublicacion.id, type: "PURCHASE" } });
 
     const user = localStorage.getItem("user")
     if (!user) {

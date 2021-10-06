@@ -58,9 +58,6 @@ const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popul
       // </div>
     }
     <SpecialBanner {...{ category, handleLike, popularyItem, starItem }} />
-    {
-      <Subcategories />
-    }
     <div className={styles.view_Rodadas}>
       <div className={styles.main}>
         <div className="listadoRodadas">

@@ -125,7 +125,8 @@
 }
 
 .preview_card {
-    margin: 0 auto 10px;
+    margin: -120px auto 10px;
+    position: relative;
     width: max-content;
     @media screen and (max-width: 420px) {
         display: none;

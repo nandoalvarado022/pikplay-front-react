@@ -2,12 +2,13 @@ import Layout from "../components/layout/Layout"
 import { getFeed } from "../lib/utils"
 import Portada from "../components/portada/Portada"
 
-export async function getStaticProps({ req, query }) {
+export async function getServerSideProps({ req, query }) {
   let feed = await getFeed({})
   return { props: { feed } }
 }
 
 const Index = ({ feed }) => {
+  console.log("Feed:" + feed)
   const url = "https://pik-play.com"
   const meta_title = "Videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch al mejor precio del mercado"
   const descripcion = "Pik-Play es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas de venta de videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch de alto prestigio en Colombia"
