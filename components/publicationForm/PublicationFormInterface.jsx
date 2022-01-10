@@ -13,11 +13,11 @@ import styles from "./publicationForm.module.scss"
 import Button from '../button/Button'
 import { getCategories } from "../../lib/utils"
 import Notification from '../notification'
-import { PikContext } from '../../states/PikState'
 import { Alert } from '@material-ui/lab'
+import { useSelector, useDispatch } from "react-redux"
 
 const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, handleSubmit, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, screenWidth, setPublicationFormData, textButton }) => {
-  const context = useContext(PikContext)
+  const dispatch = useDispatch()
   const [showDescription, setShowDescription] = useState(false)
   const [message, setMessage] = useState(null)
   const [menuPosition, setMenuPosition] = useState(null)
@@ -31,7 +31,7 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
 
   if (!!publicationFormData?.title || !isEdit) {
     return <section className={styles.content}>
-      <Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} />
+      {/* <Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} /> */}
       <h2>
         Crear publicación
         <FontAwesomeIcon class="svg-question" icon={faQuestionCircle} onClick={() => {
@@ -41,7 +41,7 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
               <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
             </div>
           }
-          context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
+          dispatch({ type: "SET_MESSAGE", payload: { message } })
         }} />
       </h2>
 

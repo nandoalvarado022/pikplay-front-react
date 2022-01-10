@@ -11,9 +11,11 @@ import Router from "next/router";
 import "date-and-time/locale/es";
 // import { preguntaNotificaciones } from './push-notification'
 import VARS from "./variables"
+import { connect, useDispatch } from "react-redux"
+
 date.locale("es");
 
-export default class Funciones {
+class Funciones {
   db = null;
   constructor() {
   }
@@ -680,10 +682,12 @@ export default class Funciones {
   }
 }
 
-export const getFeed = async ({ slug = "", category = null, subcategory = null }) => {
-  debugger
+export default connect(null, useDispatch)(Funciones)
+
+export const getFeed = async ({ slug = "", category = null, subcategory = null, title = "" }) => {
+  // publications(status: true, slug: "${slug}", category: ${category}, subcategory: ${subcategory}, title: "${title}") {
   const query = `query {
-      publications(status: true, slug: "${slug}", category: ${category}, subcategory: ${subcategory}) {
+    publications(status: true, slug: "${slug}", category: ${category}, subcategory: ${subcategory}, title: "${title}") {
         accept_changues
         apply_cashback
         banner_bottom
@@ -705,7 +709,9 @@ export const getFeed = async ({ slug = "", category = null, subcategory = null }
         slug
         tags
         title        
-        user
+        user{
+          id
+        }
         user_name
         user_phone
         user_picture
@@ -718,10 +724,10 @@ export const getFeed = async ({ slug = "", category = null, subcategory = null }
   try {
     const res = await fetch(VARS.API_URL, {
       method: "POST",
-      headers: { 
+      headers: {
         "Content-Type": "application/json",
-        // "Cache-Control": "max-age=300"
-       },
+        "Cache-Control": "no-cache"
+      },
       body: JSON.stringify({ query })
     })
     const _data = await res.json()
@@ -800,12 +806,6 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
       );
     });
   });
-
-export const handleLogout = () => {
-  localStorage.removeItem("user")
-  localStorage.removeItem("token")
-  Router.push("/?logout")
-}
 
 export const loadAudio = function (fuente) {
   // const fuente = "/audios/noti.mp3"
@@ -946,3 +946,39 @@ query getNotifications($user: Int, $closed: String){
     user
   }
 }`
+
+const slug = null, category = null, subcategory = null, title = null, status = true
+export const GET_PUBLICATIONS = gql`
+  query publications($status: Boolean, $slug: String, $category: Int, $subcategory: Int, $title: String){
+    publications(status: $status, slug: $slug, category: $category, subcategory: $subcategory, title: $title) {
+      accept_changues
+      apply_cashback
+      banner_bottom
+      banner_top
+      category
+      certificate
+      description
+      id
+      image_1
+      image_2
+      image_3
+      image_4
+      image_5
+      image_link
+      is_new
+      price
+      quantity
+      sale_price
+      slug
+      tags
+      title        
+      user
+      user_name
+      user_phone
+      user_picture
+      user_transactions
+      views
+      warranty
+    }
+  }
+`

@@ -1,13 +1,11 @@
-import { gql, useLazyQuery, useMutation, useQuery } from '@apollo/client'
-import Router from "next/router"
-import { useContext, useEffect, useState } from "react"
+import { gql, useLazyQuery, useMutation } from '@apollo/client'
+import { useState } from "react"
 import LoginInterface from "./LoginInterface"
-import VARS from "../../lib/variables"
 import { loadAudio } from '../../lib/utils'
-import { PikContext } from '../../states/PikState'
+import { useDispatch } from 'react-redux'
 
-export default function Login() {
-	const context = useContext(PikContext)
+function Login(props) {
+	const dispatch = useDispatch()
 	const [isOpen, setIsOpen] = useState(false)
 	const [isCodeSended, setIsCodeSended] = useState(false)
 	const [phone, setPhone] = useState(null)
@@ -33,9 +31,7 @@ export default function Login() {
 			const { validateLogin } = dataValidate
 			if (validateLogin) {
 				const token = JSON.parse(validateLogin).token
-				localStorage.setItem("user", validateLogin)
-				context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: JSON.parse(validateLogin) } })
-				localStorage.setItem("token", token)
+				dispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: JSON.parse(validateLogin) } })
 				setIsOpen(false)
 				loadAudio("/audios/login.mp3")
 			} else {
@@ -90,3 +86,5 @@ export default function Login() {
 
 	return <LoginInterface {...{ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, handleTengoCodigo, phone, setIsCodeSended, setPhone }} />
 }
+
+export default Login

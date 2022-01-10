@@ -1,12 +1,14 @@
 import { gql, useLazyQuery } from '@apollo/client'
 import { useContext, useEffect, useRef, useState } from "react"
 import { format_number } from "../../lib/utils"
-import { PikContext } from "../../states/PikState"
+// import { PikContext } from "../../states/PikState"
 import styles from "./coins.module.scss"
+import { useSelector } from "react-redux"
 
 const Coins = () => {
+  const user = useSelector((state) => state.user)
   const [isAnimate, setIsAnimate] = useState(false)
-  const context = useContext(PikContext)
+  // const context = useContext(PikContext)
   const [coins, setCoins] = useState(0)
   const prevCountCoins = useRef()
   const [playSound, setPlaySound] = useState(false)
@@ -35,11 +37,11 @@ const Coins = () => {
   const [getCoins] = useLazyQuery(GET_COINS, {
     fetchPolicy: "no-cache",
     variables: {
-      user: typeof localStorage != "undefined" && JSON.parse(localStorage.getItem("user")).id
+      user
     },
     onCompleted: ({ getCoins }) => {
       const coins = getCoins ? getCoins.reduce((total, coin) => coin.value + total, 0) : 0
-      context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "coins", value: coins } })
+      // context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "coins", value: coins } })
     }
   })
 
@@ -65,9 +67,10 @@ const Coins = () => {
   }
 
   useEffect(() => {
-    animateValue(previousCoins, context.coins, 1000)
+    const initialCoins = 0
+    animateValue(previousCoins, initialCoins, 1000)
     animate()
-  }, [context.coins])
+  }, [])
 
   return <div className={`${styles.Coins} ${isAnimate ? styles.animated : ""}`} onClick={animate}>
     <picture className={styles.coin} />

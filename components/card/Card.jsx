@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from "next/link"
 import Grow from "@material-ui/core/Grow"
 import { format_number } from "../../lib/utils"

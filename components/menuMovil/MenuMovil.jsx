@@ -5,10 +5,10 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons"
 import Link from "next/link"
 import { useContext, useState } from "react"
 import ImageProfile from "../../pages/perfil/ImageProfile"
-import { PreviewUser } from "../previewUser/PreviewUser"
+import PreviewUser from "../previewUser/PreviewUser"
 import UserNotifications from "../userNotifications/UserNotifications"
 import styles from "./menuMovil.module.scss"
-import { PikContext } from "../../states/PikState"
+// import { PikContext } from "../../states/PikState"
 
 const MenuMovil = () => {
   const context = useContext(PikContext)

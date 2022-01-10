@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import React, { createContext } from 'react'
 import Funciones from '../lib/utils'
 
 const { Provider, Consumer } = createContext();
@@ -52,7 +52,5 @@ const WrapperConsumer = (Component) => {
 	}
 }
 
-
-
-export default WrapperConsumer;
+export default WrapperConsumer
 export { ContextStore }

@@ -1,16 +1,13 @@
-import Autocomplete from "@material-ui/lab/Autocomplete"
 import Button from "../../components/button/Button"
 import TextField from "@material-ui/core/TextField"
 import { gql, useMutation } from '@apollo/client'
-import { useContext, useEffect, useState } from 'react'
 import styles from "../../public/css/modalIngresoInfo.module.scss"
-import { PikContext } from "../../states/PikState"
 import CiudadControl from "../../components/ciudadControl/CiudadControl"
 import Link from "next/link"
 import { Alert } from "@material-ui/lab"
 
-const ModalHablarVendedor = ({ datosPublicacion, setIsModalHablarVendedor }) => {
-  const context = useContext(PikContext)
+const ModalHablarVendedor = (props) => {
+  const { datosPublicacion, setIsModalHablarVendedor, user } = props
   const CREATE_TRANSACTION = gql`
     mutation createTransaction($user: Int, $user_to: Int, $publication: Int, $type: String){
         createTransaction(user: $user, user_to: $user_to, publication: $publication, type: $type)
@@ -20,7 +17,7 @@ const ModalHablarVendedor = ({ datosPublicacion, setIsModalHablarVendedor }) => 
 
   const handleCreateTransaction = () => {
     // Mutation para registrar la pre orden
-    createTransaction({ variables: { user: context.user.id, user_to: datosPublicacion.user, publication: datosPublicacion.id, type: "PURCHASE" } });
+    createTransaction({ variables: { user: user.id, user_to: datosPublicacion.user, publication: datosPublicacion.id, type: "PURCHASE" } });
 
     const user = localStorage.getItem("user")
     if (!user) {
@@ -36,7 +33,7 @@ const ModalHablarVendedor = ({ datosPublicacion, setIsModalHablarVendedor }) => 
 
   const enviarWhatsapp = () => {
     const url = window.location
-    const texto = `Hola mi *nombre* es ${context.user.name}, estoy interesado en este producto ${url} para envío a ${context.user.city}`
+    const texto = `Hola mi *nombre* es ${user.name}, estoy interesado en este producto ${url} para envío a ${user.city}`
     window.open("https://api.whatsapp.com/send?phone=" + datosPublicacion.user_phone + "&text=" + texto)
   }
 
@@ -50,7 +47,7 @@ const ModalHablarVendedor = ({ datosPublicacion, setIsModalHablarVendedor }) => 
     <div className={styles.background}></div>
     <div className={`Card ${styles.Card}`}>
       <h2>Tus datos para la entrega y pago</h2>
-      <TextField disabled value={context.user.name} autoComplete="nombre" name="nombre_completo" fullWidth={true} label="Nombre" margin="normal" size={25} />
+      <TextField disabled value={user.name} autoComplete="nombre" name="nombre_completo" fullWidth={true} label="Nombre" margin="normal" size={25} />
       <CiudadControl />
       <Alert severity="info">
         <Link href="/perfil" as="/perfil">

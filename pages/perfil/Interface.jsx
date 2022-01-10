@@ -3,19 +3,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faQuestionCircle, faUser, faNewspaper, faBell } from "@fortawesome/free-regular-svg-icons"
 import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons"
 import { TextField } from "@material-ui/core"
-import { useContext, useState } from "react"
+import { useState } from "react"
 import Button from "../../components/button/Button"
-import CiudadControl from "../../components/ciudadControl/CiudadControl"
+// import CiudadControl from "../../components/ciudadControl/CiudadControl"
 import Coins from "../../components/previewUser/Coins"
 import ImageProfile from "./ImageProfile"
 import styles from "./perfil.module.scss"
-import { PikContext } from "../../states/PikState"
 import UserNotifications from "../../components/userNotifications/UserNotifications"
-import Transacciones from '../../components/transacciones/Transacciones'
-import Publicaciones from '../../components/publicaciones/Publicaciones'
+// import Transacciones from '../../components/transacciones/Transacciones'
+// import Publicaciones from '../../components/publicaciones/Publicaciones'
 
 const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }) => {
-    const context = useContext(PikContext)
     const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
     const [tab, setTab] = useState("profile-content")
 
@@ -62,7 +60,7 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
                     <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
                 </div>
                 const message = { id: "perfil", message: htmlMessage }
-                context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
+                // context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
             }} />
         </h2>
 
@@ -79,7 +77,7 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
                 <TextField fullWidth={true} label="Tú nombre o el nombre de tu tienda" margin="normal" value={userData?.name} onChange={(e) => setUserData({ ...userData, name: e.target.value })} />
                 <TextField fullWidth={true} label="Correo electrónico" margin="normal" value={userData?.email} onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
                 <TextField disabled={true} fullWidth={true} label="Número registrado" margin="normal" value={userData?.phone} />
-                <CiudadControl />
+                {/* <CiudadControl /> */}
                 <p>
                     <label>Cambiar imagen de perfil</label>
                     <div>
@@ -101,11 +99,11 @@ const Interface = ({ userData, isSaving, handleSave, handleLogout, setUserData }
             {
                 isMobile && <React.Fragment>
                     <div className="Card publications-content">
-                        <Publicaciones />
+                        {/* <Publicaciones /> */}
                     </div>
 
                     <div className="Card transactions-content">
-                        <Transacciones />
+                        {/* <Transacciones /> */}
                     </div>
                 </React.Fragment>
             }

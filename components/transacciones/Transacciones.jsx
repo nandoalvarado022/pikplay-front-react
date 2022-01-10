@@ -2,16 +2,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
 import moment from "moment"
 import { gql, useLazyQuery, useMutation } from '@apollo/client'
-import { useContext, useEffect, useState } from "react"
-import { PikContext } from "../../states/PikState"
+import { useEffect, useState } from "react"
 import styles from "./styles.module.scss"
 import Button from '../button/Button'
+import { connect } from 'react-redux'
 
 moment.locale('es')
 
-const Transacciones = () => {
+const Transacciones = (props) => {
+  const { user } = props
   const [transactions, setTransactions] = useState([])
-  const context = useContext(PikContext)
   // Mutation confirmar transacción
   const TRANSACTION_CONFIRMED = gql`
     mutation transactionConfirmed($id: Int, $publication: Int, $user_request: Int){
@@ -29,7 +29,7 @@ const Transacciones = () => {
     }`
   const [createNotification, { }] = useMutation(MUTATION_NOTIFICATION, {
     onCompleted() {
-      context.getNotifications()
+      // context.getNotifications()
     }
   });
   // Query transacciones
@@ -52,11 +52,11 @@ const Transacciones = () => {
   const [getTransactions] = useLazyQuery(GET_TRANSACTIONS, { // Obteniendo notificaciones
     fetchPolicy: "no-cache",
     variables: {
-      user: context.user.id
+      user: user.id
     },
     onCompleted: ({ getTransactions }) => {
       const _transactions = getTransactions && getTransactions.map(t => {
-        if (t.type == "Compra" && t.user_to == context.user.id) {
+        if (t.type == "Compra" && t.user_to == user.id) {
           t.type = "Venta"
         }
         return t
@@ -76,7 +76,7 @@ const Transacciones = () => {
   }
 
   const handleConfirmarTransaccion = (id, publication) => {
-    transactionConfirmed({ variables: { id, publication, user_request: context.user.id } });
+    transactionConfirmed({ variables: { id, publication, user_request: user.id } });
   }
 
   return <section className={`${styles.Transactions}`}>
@@ -122,7 +122,7 @@ const Transacciones = () => {
         </div>
         <div className={styles.actions}>
           {
-            user_to == context.user.id && status == 0 && <Button color="blue" onClick={() => handleConfirmarTransaccion(id, publication)}>Confirmar transacción</Button>
+            user_to == user.id && status == 0 && <Button color="blue" onClick={() => handleConfirmarTransaccion(id, publication)}>Confirmar transacción</Button>
           }
           {/* {type == "Venta" && status == 0 && <button onClick={() => handleConfirmarTransaccion(id)} title="El cliente podrá pagar en linea">Habilitar pago en linea</button>} */}
           {/* {type == "Compra" && status == 0 && <button onClick={() => handlePagarTransaccion(id)}>Pagar</button>} */}
@@ -133,4 +133,10 @@ const Transacciones = () => {
   </section>
 }
 
-export default Transacciones
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, null)(Transacciones)

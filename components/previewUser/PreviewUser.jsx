@@ -1,16 +1,23 @@
+import Router from "next/router"
 import Link from "next/link"
 import React from "react"
-import { useContext, useEffect, useState } from 'react'
-import { handleLogout } from '../../lib/utils'
-import { PikContext } from "../../states/PikState"
 import Coins from './Coins'
 import styles from "./styles.module.scss"
 import UserNotifications from '../userNotifications/UserNotifications'
+import { useSelector, useDispatch } from "react-redux"
 
-export const PreviewUser = ({ isOpenPreviewProfile, setIsOpenPreviewProfile }) => {
+const PreviewUser = (props) => {
+  const dispatch = useDispatch()
+  const notifications = useSelector((state) => state.notifications)
+  const user = useSelector((state) => state.user)
+  const { isOpenPreviewProfile, setIsOpenPreviewProfile } = props
   const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
-  const context = useContext(PikContext)
-  const notifications = context.notifications.filter(item => item.closed == 0)
+
+  const handleLogout = () => {
+    dispatch({ type: 'LOGOUT' })
+    Router.push('/?logout')
+  }
+
   return <div className={`${styles.PreviewUser} PreviewUser ${isOpenPreviewProfile ? styles.actived : null}`}>
     {!isMobile && <UserNotifications />}
     <ol>
@@ -44,3 +51,5 @@ export const PreviewUser = ({ isOpenPreviewProfile, setIsOpenPreviewProfile }) =
     </ol>
   </div>
 }
+
+export default PreviewUser

@@ -71,17 +71,6 @@ const HolaJuanito = () => {
         setLeftIndicator(_leftIndicator)
     }
 
-    const tam1 = isMobile ? -360 : -420
-    const tam2 = isMobile ? -720 : -840
-
-    const opacity1 = leftIndicator == tam1 ? 1 : leftIndicator == tam2 ? 0 : 1
-    // const opacity1 = leftIndicator == tam1 ? .3 : leftIndicator == tam2 ? 0 : 1
-    // const opacity2 = leftIndicator == 0 ? .3 : 1
-    // const opacity3 = leftIndicator == tam1 ? .3 : 1
-
-    const prev = isMobile ? window.screen.width - 40 : 420
-    const next = isMobile ? Number(`-${window.screen.width - 40}`) : -420
-
     return <div className={styles.HolaJuanito}>
         <div className="content">
             <div className={styles.content}>
@@ -142,35 +131,18 @@ const HolaJuanito = () => {
                 </div>
 
                 <div className={styles.ads}>
-                    <ul style={{ left: `${leftIndicator}px` }}>
-                        <ol style={{ opacity: opacity1 }}>
+                    <ul>
+                        <ol>
                             <Link href="/publicacion/[id]" as="/publicacion/preventa-fifa-22-juanchofenix-502">
                                 <a>
                                     <iframe width="560" height="315" src="https://www.youtube.com/embed/U_oewgFysiY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </a>
                             </Link>
-                        </ol>
-                        <ol>
-                            <Link href="/publicacion/[id]" as="/publicacion/preventa-fifa-22-juanchofenix-502">
-                                <a>
-                                    <img src="/images/banners/lost judgment.jpg" alt="" />
-                                </a>
-                            </Link>
-                        </ol>
-                        <ol>
-                            <Link href="/publicacion/[id]" as="/publicacion/preventa-fifa-22-juanchofenix-502">
-                                <a>
-                                    <img src="https://firebasestorage.googleapis.com/v0/b/mi-club2ruedas.appspot.com/o/images%2Fpublications%2F13_9_2021_23_1_56_12_1080x1080.jpg?alt=media&token=87dbe489-6f7f-4500-a9e5-15430dc78458" alt="" />
-                                </a>
-                            </Link>
+                            <div className={styles.description}>
+                                Lost Judgement es una entrega de acción y aventura desarrollada por Ryu Ga Gotoku Studio y publicada por Sega, estrenada el 21 de septiembre de 2021 a nivel mundial.
+                            </div>
                         </ol>
                     </ul>
-                    <div className={styles.prev} onClick={() => handleActions(prev)}>
-                        <FontAwesomeIcon icon={faChevronCircleLeft} />
-                    </div>
-                    <div className={styles.next} onClick={() => handleActions(next)}>
-                        <FontAwesomeIcon icon={faChevronCircleRight} />
-                    </div>
                 </div>
             </div>
         </div>

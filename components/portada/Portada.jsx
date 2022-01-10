@@ -1,19 +1,25 @@
+import React from 'react'
 import date from 'date-and-time'
 import PortadaInterface from './PortadaInterface'
-import { useContext, useState } from 'react';
-import { useRouter } from 'next/router'
+import { useState } from 'react';
 import 'date-and-time/locale/es'
 import { useEffect } from 'react';
-import { PikContext } from '../../states/PikState';
 import ModalLead from '../modalLoead/ModalLead';
 
 date.locale('es');
 
-function Portada({ category, feed }) {
-  const context = useContext(PikContext)
-  const router = useRouter()
+function Portada({ category, feed = [] }) {
   const [open, setOpen] = useState(false)
   const popularyItem = feed[0]
+
+  // const [getPublications] = useLazyQuery(GET_PUBLICATIONS, {
+  //   fetchPolicy: "no-cache",
+  //   onCompleted: ({ publications }) => {
+  //     if (publications) {
+  //       setFeed({ publications })
+  //     }
+  //   }
+  // })
 
   const starItem = feed && feed.find((item) => item.id == 68)
 

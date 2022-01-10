@@ -6,37 +6,67 @@ import Autocomplete from "@material-ui/lab/Autocomplete"
 import React, { useState, useEffect, useMemo } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
+import useConstant from 'use-constant'
+import AwesomeDebouncePromise from 'awesome-debounce-promise'
+import {
+  useAsync,
+  useAsyncAbortable,
+  useAsyncCallback,
+  UseAsyncReturn,
+} from 'react-async-hook'
 import styles from "./logoBuscador.module.scss"
+import { getFeed } from '../../lib/utils'
+
+const searchStarwarsHero = async (text, abortSignal) => {
+  // const result = await fetch(`https://swapi.dev/api/people/?search=${encodeURIComponent(text)}`, {
+  //   signal: abortSignal,
+  // })
+  // if (result.status !== 200) {
+  //   throw new Error('bad status = ' + result.status)
+  // }
+  // const json = await result.json()
+  // return json.results
+  return results = await getFeed({ title: text })
+}
+
+const useSearchStarwarsHero = () => {
+  // Handle the input text state
+  const [inputText, setInputText] = useState('');
+
+  // Debounce the original search async function
+  const debouncedSearchStarwarsHero = useConstant(() =>
+    AwesomeDebouncePromise(searchStarwarsHero, 300)
+  )
+
+  const search = useAsyncAbortable(
+    async (abortSignal, text) => {
+      // If the input is empty, return nothing immediately (without the debouncing delay!)
+      if (text.length === 0) {
+        return [];
+      }
+      // Else we use the debounced api
+      else {
+        return debouncedSearchStarwarsHero(text, abortSignal);
+      }
+    },
+    // Ensure a new request is made everytime the text changes (even if it's debounced)
+    [inputText]
+  );
+
+  // Return everything needed for the hook consumer
+  return {
+    inputText,
+    setInputText,
+    search,
+  };
+}
 
 function LogoBuscador({ partner }) {
+  const { inputText, setInputText, search } = useSearchStarwarsHero()
   const router = useRouter()
   const [textSearch, setTextSearch] = useState("")
   const [results, setResults] = useState([])
   const [showSearchBox, setShowSearchBox] = useState(false)
-  const PUBLICATIONS_QUERY = gql`
-  query Publications($slug: String, $title: String){
-    publications(slug: $slug, status: true, title: $title){
-      category
-      description
-      image_2
-      image_3
-      image_4
-      image_link
-      is_new
-      sale_price
-      title      
-      slug
-    }
-  }`
-
-  const [getPublications, { data: products }] = useLazyQuery(PUBLICATIONS_QUERY, {
-    variables: {
-      title: textSearch
-    },
-    fetchPolicy: "no-cache", onCompleted: ({ publications }) => {
-      setResults(publications)
-    }
-  })
 
   useEffect(() => {
     if (window.screen.width > 420) setShowSearchBox(true)
@@ -49,13 +79,14 @@ function LogoBuscador({ partner }) {
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
-      await getPublications()
+      // await getPublications()
     }, 3000)
 
     return () => clearTimeout(delayDebounceFn)
-  }, [textSearch])
+  }, [])
 
   return (<div id={styles.LogoBuscador} className={partner ? "partner" : ""}>
+    <div>{JSON.stringify(search)}</div>
     <ul>
       {!partner && (
         <Link href="/">
@@ -73,7 +104,19 @@ function LogoBuscador({ partner }) {
       </div>
       {
         <div className={styles.content_buscador} style={{ display: showSearchBox ? "block" : "none" }}>
-          <TextField onChange={(e) => setTextSearch(e.target.value)} fullWidth label="nintendo switch, ps5, controles de xbox" variant="outlined" />
+          <input
+            value={inputText}
+            onChange={e => setInputText(e.target.value)}
+            placeholder="Search starwars hero"
+            style={{
+              marginTop: 20,
+              padding: 10,
+              border: 'solid thin',
+              borderRadius: 5,
+              width: 300,
+            }}
+          />
+          {/* <TextField onChange={(e) => setTextSearch(e.target.value)} fullWidth label="nintendo switch, ps5, controles de xbox" variant="outlined" /> */}
           <div className={styles.results}>
             <div className={styles.rows}>
               {

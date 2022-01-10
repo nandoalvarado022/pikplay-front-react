@@ -1,16 +1,14 @@
-import Router from "next/router";
-import date from "date-and-time";
-import toastr from "toastr";
+import Router from "next/router"
+import date from "date-and-time"
+import toastr from "toastr"
 import CardDetalleProducto from "../../components/card/CardDetalleProducto"
 import React from "react"
 import Layout from "../../components/layout/Layout"
 // import PuedeInteresarte from "../../components/puedeInteresarte/PuedeInteresarte"
 import { getFeed, transformarFeed } from "../../lib/utils"
 import ModalHablarVendedor from "./ModalHablarVendedor"
-import { PikContext } from '../../states/PikState'
-
-export default class PublicacionPage extends React.Component {
-  static contextType = PikContext
+import { connect } from "react-redux"
+class PublicacionPage extends React.Component {
   static async getInitialProps({ req, query }) {
     let slug = query.id
     let datosPublicacion = await getFeed({ slug })
@@ -61,7 +59,7 @@ export default class PublicacionPage extends React.Component {
 
   handleHablarVendedor = () => {
     // context = this.context
-    this.context.user.id != 0 ? this.setState({ modalHablarVendedor: true }) : document.querySelector("#btnStart").click()
+    this.props.user.id != 0 ? this.setState({ modalHablarVendedor: true }) : document.querySelector("#btnStart").click()
   }
 
   mostrarAlerta(mensaje) {
@@ -122,12 +120,12 @@ export default class PublicacionPage extends React.Component {
     setTimeout(() => {
       this.setState({ loadingProductPage: true })
     }, 10000)
-    if (!this.props?.datosPublicacion) Router.push("/404")
+    // if (!this.props?.datosPublicacion) Router.push("/404")
   }
 
   render() {
     const datosPublicacion = this.props?.datosPublicacion
-    if (!datosPublicacion) return <div>Redireccionando...</div>
+    // if (!datosPublicacion) return <div>Redireccionando...</div>
     const { description, title, slug } = datosPublicacion
     const { pais, ciudad } = this.state
 
@@ -166,3 +164,9 @@ export default class PublicacionPage extends React.Component {
     </Layout>
   }
 }
+
+const mapDispatchToProps = (state) => ({
+  user: state.user
+})
+
+export default connect(mapDispatchToProps, null)(PublicacionPage)

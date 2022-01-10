@@ -2,7 +2,7 @@
 import { faClosedCaptioning, faTimesCircle } from "@fortawesome/free-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React, { useContext } from "react"
-import { PikContext } from "../../states/PikState"
+// import { PikContext } from "../../states/PikState"
 import styles from "./notificacion.module.scss"
 
 const Notification = ({ }) => {

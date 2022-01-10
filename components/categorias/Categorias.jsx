@@ -6,16 +6,17 @@ import Router from "next/router"
 import Login from "../login/Login"
 import styles from "./categorias.module.scss"
 import { getCategories, slugify } from "../../lib/utils"
-import { PreviewUser } from "../previewUser/PreviewUser"
-import { PikContext } from '../../states/PikState'
+import PreviewUser from "../previewUser/PreviewUser"
 import ImageProfile from '../../pages/perfil/ImageProfile'
+import { useSelector } from "react-redux"
 
-const Categorias = ({ scroll }) => {
+const Categorias = (props) => {
+  const user = useSelector((state) => state.user)
+  const { notifications = [], scroll } = props
   const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
   const [showNotifications, setShowNotifications] = useState(false)
   const picture = typeof localStorage != "undefined" && localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).picture
-  const context = useContext(PikContext)
-  const notifications = context.notifications.filter(item => item.closed == 0)
+  const _notifications = notifications.filter(item => item.closed == 0)
 
   return <div className={styles.Categorias}>
     <ul>
@@ -47,11 +48,12 @@ const Categorias = ({ scroll }) => {
       }
 
       {
-        typeof localStorage != "undefined" && localStorage.getItem("user") ? <React.Fragment>
-          <li className={styles.perfil} title={`Nivel actual ${context.user.category}`}>
+        user ? <React.Fragment>
+          <li>
+            {/* <li className={styles.perfil} title={`Nivel actual ${context.user.category}`}> */}
             <ImageProfile {...{ isOpenPreviewProfile, setIsOpenPreviewProfile }} />
             <span className={styles.notyQuantity}>
-              {notifications.length}
+              {_notifications.length}
             </span>
             {/* Perfil <FontAwesomeIcon className={`${styles.arrow} ${isOpenPreviewProfile ? styles.actived : null}`} icon={faArrowDown} /> */}
             <PreviewUser {...{ isOpenPreviewProfile, setIsOpenPreviewProfile }} />

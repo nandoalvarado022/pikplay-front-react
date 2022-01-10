@@ -1,11 +1,12 @@
+import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClock } from "@fortawesome/free-regular-svg-icons"
 import Card from '../card/Card'
 import Footer from '../footer/Footer'
 import styles from "./portada.module.scss"
 import { useEffect, useState } from 'react';
-import Subcategories from '../subcategories';
-import HolaJuanito from "../holaJuanito/HolaJuanito"
+// import Subcategories from '../subcategories';
+// import HolaJuanito from "../holaJuanito/HolaJuanito"
 
 const SpecialBanner = ({ category, handleLike, popularyItem, starItem }) => {
   if (!category && popularyItem && starItem) {
@@ -32,7 +33,7 @@ const SpecialBanner = ({ category, handleLike, popularyItem, starItem }) => {
   }
 }
 
-const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popularyItem, starItem }) => {
+const PortadaInterface = ({ category, handleLike, feed, popularyItem, starItem }) => {
   const [showVideo, setShowVideo] = useState(false)
   const isOpen = typeof sessionStorage != "undefined" && JSON.parse(sessionStorage.getItem("notifications"))?.home
   const [showNotification, setShowNotification] = useState(!!!isOpen)
@@ -51,7 +52,7 @@ const PortadaInterface = ({ handleSubcategory, category, handleLike, feed, popul
       <FontAwesomeIcon icon={faClock} style={{ marginRight: "10px" }} />
       Mantenimiento programado en progreso
     </h3>}
-    {!category && <HolaJuanito />}
+    {/* {!category && <HolaJuanito />} */}
     {
       // showVideo && <div className={styles.videoContent}>
       //   <video onClick={handlePlay} className="block-center" src="/videos/video1.mp4" />

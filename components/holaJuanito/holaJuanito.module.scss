@@ -78,28 +78,15 @@
                         width: 100%;
                     }
                 }
+                .description {
+                    margin: 20px 0 0;
+                    background: #456d96;
+                    color: white;
+                    padding: 10px;
+                    border-radius: 10px;
+                    font-size: 14px;
+                }
             }
-        }
-        .next,
-        .prev {
-            position: absolute;
-            padding: 10px;
-            svg {
-                color: #466e96;
-                cursor: pointer;
-                height: 22px;
-                width: 22px;
-            }
-        }
-        .next {
-            right: 10px;
-            top: -40px;
-        }
-        .prev {
-            border-radius: 10px;
-            background: white;
-            right: 60px;
-            top: -30px;
         }
     }
     img {

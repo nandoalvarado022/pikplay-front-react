@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
@@ -6,11 +7,10 @@ import { gql, useMutation, useLazyQuery } from '@apollo/client'
 import Router from 'next/router'
 import styles from './publicaciones.module.scss'
 import Button from '../../components/button/Button'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { format_number } from '../../lib/utils'
 import moment from "moment"
 import Notification from "../../components/notification"
-import { PikContext } from "../../states/PikState"
 import { Box, Tab, Tabs, Typography } from "@material-ui/core"
 import { Doughnut } from 'react-chartjs-2'
 
@@ -94,7 +94,7 @@ const CakeReport = ({ publications = [] }) => {
 }
 
 const Publicaciones = () => {
-    const context = useContext(PikContext)
+    // const context = useContext(PikContext)
     const phone = typeof window != "undefined" ? JSON.parse(localStorage.getItem("user")).phone : null
     const UPDATE_MUTATION = gql`
 	mutation ChangeStatePublication($id: Int!, $status: Boolean!){

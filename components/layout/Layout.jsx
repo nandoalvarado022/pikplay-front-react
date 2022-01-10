@@ -8,15 +8,15 @@ import Button from "../button/Button"
 import { initGA, logPageView } from "../../public/analytics"
 import Router from "next/router"
 import NProgress from "nprogress"
-import Head from "next/head"
 import React, { useContext } from "react"
 import Header from "../header/Header"
 import LogoBuscador from "../logoBuscador/LogoBuscador"
 import styles from "./layout.module.scss"
 import Categorias from "../categorias/Categorias"
 import MenuMovil from "../menuMovil/MenuMovil"
-import { PikContext } from '../../states/PikState';
+// import { PikContext } from '../../states/PikState';
 import Subcategories from '../subcategories';
+import Head from './Head';
 
 toastr.options.progressBar = true;
 toastr.options.timeOut = 5000;
@@ -41,7 +41,7 @@ const events = {
 }
 
 class Layout extends React.Component {
-  static contextType = PikContext
+  // static contextType = PikContext
   club_short_name = null
   state = {
     growMenu: false,
@@ -69,7 +69,7 @@ class Layout extends React.Component {
 
   componentDidMount() {
     const context = this.context;
-    context.getNotifications()
+    // context.getNotifications()
     register();
     if (localStorage.getItem("user")) {
       this.club_short_name = JSON.parse(localStorage.getItem("user"))
@@ -160,39 +160,7 @@ class Layout extends React.Component {
     let { meta_url, is_partner, partner } = this.props
 
     return <React.Fragment>
-      <Head>
-        <title>{meta_title}</title>
-        <meta property="title" content={meta_title} />
-        <meta property="og:title" content={meta_title} />
-        <meta name="description" content={meta_descripcion} />
-        <meta property="og:description" content={meta_descripcion} />
-        <meta property="og:image" content={meta_image} />
-        <meta name="url" content={meta_url} />
-        <meta name="og:url" content={meta_url} />
-        <meta name="og:site_name" content="Pik-Play" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
-        <meta name="theme-color" content="#4d9afa" />
-        <meta name="google-site-verification" content="4IqXj9YLrm5eo3s_c3cTKcAqBwUhCf8qgJgL2sLtJko" />
-        <meta name="twitter:description" content={meta_descripcion} />
-        <meta name="keywords" value="" />
-        <meta name="country" content="COL" />
-        <meta name="author" content="pik-play.com" />
-        <meta name="copyright" content="pik-play.com" />
-        <meta name="language" content="es-CO"></meta>
-        <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
-        {/* Global site tag (gtag.js) - Google Ads: 941382150 */}
-        <link rel="alternate" href={meta_url} hrefLang="es-CO" />
-        <link rel="canonical" href={meta_url} />
-        <link rel="icon" type="image/png" href="/images/logos/logo48x48.png" />
-        <link rel="manifest" href={`/manifest.json`} />
-        {() => {
-          window.dataLayer = window.dataLayer || [];
-          function gtag() { dataLayer.push(arguments); }
-          gtag('js', new Date());
-          gtag('config', 'AW-941382150');
-          gtag('event', 'conversion', { 'send_to': 'AW-941382150/e71oCMvon-0BEIa08cAD' });
-        }}()
-      </Head>
+      {/* <Header />  */}
       <body className="App font-a">
         {/* <Header {...props} /> */}
         <LogoBuscador partner={is_partner ? partner : null} />
@@ -200,8 +168,8 @@ class Layout extends React.Component {
         <main className={styles.principal}>
           <Categorias scroll={false} />
           <Subcategories />
-          {isMobile && <MenuMovil />}
-          <Notification isOpen={this.context.showNotification} />
+          {/* {isMobile && <MenuMovil />} */}
+          {/* <Notification isOpen={this.context.showNotification} /> */}
           {props.children}
           <a target="_BLANK" className="a_whatsapp" href="https://api.whatsapp.com/send?phone=573052665725&text=Escribe%20aqu%C3%AD%20tu%20pregunta">
             <button className={styles["btn-whatsapp"]}>

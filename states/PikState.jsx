@@ -1,3 +1,5 @@
+import { createStore } from 'redux'
+import { createWrapper, HYDRATE } from 'next-redux-wrapper'
 import { gql, useLazyQuery } from '@apollo/client'
 import React, { useContext, useEffect, useReducer } from "react"
 import PikReducer from "./PikReducer"
@@ -45,29 +47,45 @@ const PikState = (props) => {
   }
 
   useEffect(() => { // Al iniciar
-    sessionStorage.setItem("notifications", "{}")
-    if (!localStorage.getItem("checkedNotifications")) {
-      localStorage.setItem("checkedNotifications", "[]")
-    }
-    if (!!localStorage.getItem("user")) {
-      dispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: JSON.parse(localStorage.getItem("user")) } })
-      getNotifications()
-    }
+    // sessionStorage.setItem("notifications", "{}")
+    // if (!localStorage.getItem("checkedNotifications")) {
+    //   localStorage.setItem("checkedNotifications", "[]")
+    // }
+    // if (!!localStorage.getItem("user")) {
+    //   dispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: JSON.parse(localStorage.getItem("user")) } })
+    //   getNotifications()
+    // }
   }, [])
-
-  return (
-    <PikContext.Provider
-      value={{
-        ...state,
-        customDispatch,
-        getNotifications
-      }}
-    >
-      {props.children}
-    </PikContext.Provider>
-  )
 }
 
-export const PikContext = createContext()
+const reducer = (state = { tick: 'init' }, action) => {
+  switch (action.type) {
+    case HYDRATE:
+      return { ...state, ...action.payload };
+    case 'TICK':
+      return { ...state, tick: action.payload };
+    default:
+      return state;
+  }
+}
 
-export default PikState
+const makeStore = context => createStore(reducer)
+
+export const wrapper = createWrapper(makeStore, { debug: true })
+
+//   return (
+//     <PikContext.Provider
+//       value={{
+//         ...state,
+//         customDispatch,
+//         getNotifications
+//       }}
+//     >
+//       {props.children}
+//     </PikContext.Provider>
+//   )
+// }
+
+// export const PikContext = createContext()
+
+// export default PikState
