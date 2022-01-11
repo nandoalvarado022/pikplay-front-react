@@ -165,8 +165,8 @@ class PublicacionPage extends React.Component {
   }
 }
 
-const mapDispatchToProps = (state) => ({
+const mapStateToProps = (state) => ({
   user: state.user
 })
 
-export default connect(mapDispatchToProps, null)(PublicacionPage)
+export default connect(mapStateToProps)(PublicacionPage)

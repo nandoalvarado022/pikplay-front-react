@@ -15,7 +15,6 @@ const Categorias = (props) => {
   const { notifications = [], scroll } = props
   const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
   const [showNotifications, setShowNotifications] = useState(false)
-  const picture = typeof localStorage != "undefined" && localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).picture
   const _notifications = notifications.filter(item => item.closed == 0)
 
   return <div className={styles.Categorias}>
@@ -48,13 +47,13 @@ const Categorias = (props) => {
       }
 
       {
-        user ? <React.Fragment>
+        user.id != 0 ? <React.Fragment>
           <li>
             {/* <li className={styles.perfil} title={`Nivel actual ${context.user.category}`}> */}
             <ImageProfile {...{ isOpenPreviewProfile, setIsOpenPreviewProfile }} />
-            <span className={styles.notyQuantity}>
+            {/* <span className={styles.notyQuantity}>
               {_notifications.length}
-            </span>
+            </span> */}
             {/* Perfil <FontAwesomeIcon className={`${styles.arrow} ${isOpenPreviewProfile ? styles.actived : null}`} icon={faArrowDown} /> */}
             <PreviewUser {...{ isOpenPreviewProfile, setIsOpenPreviewProfile }} />
           </li>

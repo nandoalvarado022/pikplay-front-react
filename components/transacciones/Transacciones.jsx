@@ -88,7 +88,7 @@ const Transacciones = (props) => {
             <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
           </div>
         }
-        context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
+        props.dispatch({ type: "SET_MESSAGE", payload: { message } })
       }} />
     </h2>
     <ul>
@@ -133,10 +133,8 @@ const Transacciones = (props) => {
   </section>
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  }
-}
+const mapStateToProps = state => ({
+  user: state.user
+})
 
-export default connect(mapStateToProps, null)(Transacciones)
+export default connect(mapStateToProps)(Transacciones)

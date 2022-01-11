@@ -685,9 +685,8 @@ class Funciones {
 export default connect(null, useDispatch)(Funciones)
 
 export const getFeed = async ({ slug = "", category = null, subcategory = null, title = "" }) => {
-  // publications(status: true, slug: "${slug}", category: ${category}, subcategory: ${subcategory}, title: "${title}") {
-  const query = `query {
-    publications(status: true, slug: "${slug}", category: ${category}, subcategory: ${subcategory}, title: "${title}") {
+    const query = `query {
+      publications(status: true, slug: "${slug}", category: ${category}, subcategory: ${subcategory}, title: "${title}") {
         accept_changues
         apply_cashback
         banner_bottom
@@ -733,7 +732,7 @@ export const getFeed = async ({ slug = "", category = null, subcategory = null, 
     const _data = await res.json()
     data = _data?.data?.publications
   } catch (err) {
-    console.log("Ha ocurrido un eror")
+    console.log("Ha ocurrido un error")
     console.log(err)
   }
   return data

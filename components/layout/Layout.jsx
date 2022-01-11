@@ -8,13 +8,12 @@ import Button from "../button/Button"
 import { initGA, logPageView } from "../../public/analytics"
 import Router from "next/router"
 import NProgress from "nprogress"
-import React, { useContext } from "react"
+import React from "react"
 import Header from "../header/Header"
 import LogoBuscador from "../logoBuscador/LogoBuscador"
 import styles from "./layout.module.scss"
 import Categorias from "../categorias/Categorias"
 import MenuMovil from "../menuMovil/MenuMovil"
-// import { PikContext } from '../../states/PikState';
 import Subcategories from '../subcategories';
 import Head from './Head';
 
@@ -169,7 +168,7 @@ class Layout extends React.Component {
           <Categorias scroll={false} />
           <Subcategories />
           {/* {isMobile && <MenuMovil />} */}
-          {/* <Notification isOpen={this.context.showNotification} /> */}
+          <Notification isOpen={this.context.showNotification} />
           {props.children}
           <a target="_BLANK" className="a_whatsapp" href="https://api.whatsapp.com/send?phone=573052665725&text=Escribe%20aqu%C3%AD%20tu%20pregunta">
             <button className={styles["btn-whatsapp"]}>

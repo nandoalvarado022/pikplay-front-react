@@ -26,7 +26,8 @@ const searchStarwarsHero = async (text, abortSignal) => {
   // }
   // const json = await result.json()
   // return json.results
-  return results = await getFeed({ title: text })
+  const results = await getFeed({ title: text })
+  return results
 }
 
 const useSearchStarwarsHero = () => {
@@ -46,7 +47,8 @@ const useSearchStarwarsHero = () => {
       }
       // Else we use the debounced api
       else {
-        return debouncedSearchStarwarsHero(text, abortSignal);
+        const res = debouncedSearchStarwarsHero(text, abortSignal);
+        return res
       }
     },
     // Ensure a new request is made everytime the text changes (even if it's debounced)
@@ -85,8 +87,7 @@ function LogoBuscador({ partner }) {
     return () => clearTimeout(delayDebounceFn)
   }, [])
 
-  return (<div id={styles.LogoBuscador} className={partner ? "partner" : ""}>
-    <div>{JSON.stringify(search)}</div>
+  return <div id={styles.LogoBuscador} className={partner ? "partner" : ""}>
     <ul>
       {!partner && (
         <Link href="/">
@@ -104,35 +105,27 @@ function LogoBuscador({ partner }) {
       </div>
       {
         <div className={styles.content_buscador} style={{ display: showSearchBox ? "block" : "none" }}>
-          <input
-            value={inputText}
-            onChange={e => setInputText(e.target.value)}
-            placeholder="Search starwars hero"
-            style={{
-              marginTop: 20,
-              padding: 10,
-              border: 'solid thin',
-              borderRadius: 5,
-              width: 300,
-            }}
-          />
-          {/* <TextField onChange={(e) => setTextSearch(e.target.value)} fullWidth label="nintendo switch, ps5, controles de xbox" variant="outlined" /> */}
-          <div className={styles.results}>
-            <div className={styles.rows}>
-              {
-                results && results.map(item => {
-                  return <Link href={item.slug ? "/publicacion/[id]" : "javascript:void(0)"} as={item.slug ? `/publicacion/${item.slug}` : "javascript:void(0)"}>
-                    <a>{item.title}</a>
-                  </Link>
-                })
-              }
+          <TextField onBlur={() => setInputText('')} onChange={e => setInputText(e.target.value)} fullWidth label="nintendo switch, ps5, controles de xbox" variant="outlined" />
+          {
+            search.result && search.result.length > 0 && <div className={styles.results}>
+              <div className={styles.rows}>
+                {
+                  search.result.map(item => {
+                    return <Link href={item.slug ? "/publicacion/[id]" : "javascript:void(0)"} as={item.slug ? `/publicacion/${item.slug}` : "javascript:void(0)"}>
+                      <article>
+                        <img src={item.image_link} alt="" />
+                        <a>{item.title}</a>
+                      </article>
+                    </Link>
+                  })
+                }
+              </div>
             </div>
-          </div>
+          }
         </div>
       }
     </ul>
   </div>
-  )
 }
 
 export default LogoBuscador

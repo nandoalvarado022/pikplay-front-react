@@ -13,6 +13,7 @@ import moment from "moment"
 import Notification from "../../components/notification"
 import { Box, Tab, Tabs, Typography } from "@material-ui/core"
 import { Doughnut } from 'react-chartjs-2'
+import { useSelector, useDispatch } from 'react-redux'
 
 moment.locale('es')
 
@@ -94,8 +95,8 @@ const CakeReport = ({ publications = [] }) => {
 }
 
 const Publicaciones = () => {
-    // const context = useContext(PikContext)
-    const phone = typeof window != "undefined" ? JSON.parse(localStorage.getItem("user")).phone : null
+    const dispatch = useDispatch()
+    const { phone } = useSelector((state) => state.user)
     const UPDATE_MUTATION = gql`
 	mutation ChangeStatePublication($id: Int!, $status: Boolean!){
 		changeStatePublication(id: $id, status: $status)
@@ -165,7 +166,7 @@ const Publicaciones = () => {
                             <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
                         </div>
                     }
-                    context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
+                    dispatch({ type: "SET_MESSAGE", payload: { message } })
                 }} />
             </h2>
             <ul className="Card">
@@ -193,7 +194,7 @@ const Publicaciones = () => {
                                                     <p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pik-Play ó porque esta pausada</p>
                                                 </div>
                                             }
-                                            context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
+                                            dispatch({ type: "SET_MESSAGE", payload: { message } })
                                         }} />
                                         {/* No es posible ver la publicación */}
                                     </span>
