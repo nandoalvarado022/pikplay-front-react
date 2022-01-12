@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react"
 import Layout from "../../components/layout/Layout"
 import { subirImagen } from "../../lib/utils"
 import Interface from "./Interface"
-import { connect } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 const CHANGE_PROFILE = gql`
 mutation ChangeProfileData($input: UserInput){
@@ -12,7 +12,8 @@ mutation ChangeProfileData($input: UserInput){
 }`
 
 const Perfil = (props) => {
-  const { user } = props
+  const user = useSelector((state) => state.user)
+  const dispatch = useDispatch()
   const router = useRouter()
   const showSavedMessage = !!Object.keys(router.query).find(x => x == "updated")
   const [changeProfileData, { data, error, loading }] = useMutation(CHANGE_PROFILE)
@@ -44,17 +45,16 @@ const Perfil = (props) => {
     if (userData.email) variables.email = userData.email
     if (userData.name) variables.name = userData.name
     if (picture) variables.picture = picture // Setting picture
-
-    // customDispatch({
-    //   type: "CHANGE_PROPERTY", payload: {
-    //     property: "user", value:
-    //       { ...userData, ...variables }
-    //   }
-    // })
+    dispatch({
+      type: "CHANGE_PROPERTY",
+      payload: {
+        property: "user", value:
+          { ...userData, ...variables }
+      }
+    })
     changeProfileData({ variables: { input: variables } }) // Guardando en BD
 
-    // saving in localstorage
-    localStorage.setItem("user", JSON.stringify({ ...userData, ...variables }))
+    // Message to user
     setTimeout(() => {
       setIsSaving(false)
       // context.getNotifications()
@@ -62,7 +62,7 @@ const Perfil = (props) => {
   }
 
   return <Layout>
-    <Interface {...{ userData, isSaving, handleSave, setUserData }} />
+    <Interface {...{ dispatch, userData, isSaving, handleSave, setUserData }} />
   </Layout>
 }
 
@@ -72,4 +72,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, null)(Perfil)
+export default Perfil

@@ -1,3 +1,4 @@
+import React from 'react'
 import Layout from "../../components/layout/Layout"
 import { getFeed, capitalize } from "../../lib/utils"
 import Portada from "../../components/portada/Portada"
