@@ -1,20 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBell, faTimesCircle } from "@fortawesome/free-regular-svg-icons"
 import { faTimes } from "@fortawesome/free-solid-svg-icons"
-import { useContext, useEffect, useState } from 'react'
-// import { PikContext } from "../../states/PikState"
-import styles from "./styles.module.scss"
-import { useMutation } from '@apollo/client'
-import Button from "../button/Button"
-import { CREATE_COIN, DELETE_NOTIFICATION, loadAudio } from "../../lib/utils"
+import { useEffect } from 'react'
+import { useLazyQuery, useMutation } from '@apollo/client'
 import confetti from "canvas-confetti"
+import { useSelector, useDispatch } from "react-redux"
+import { CREATE_COIN, DELETE_NOTIFICATION, GET_NOTIFICATIONS, loadAudio } from "../../lib/utils"
+import Button from "../button/Button"
+import styles from "./styles.module.scss"
 
 const UserNotifications = () => {
-  // const context = useContext(PikContext)
-  const notifications = [] // context.notifications.filter(item => item.closed == 0)
+  const loggedUser = useSelector((state) => state.user)
+  const notifications = useSelector((state) => state.notifications).filter(item => item.closed == 0)
   const [deleteNotification] = useMutation(DELETE_NOTIFICATION)
   const [createCoin] = useMutation(CREATE_COIN)
-
+  const dispatch = useDispatch()
   const reclamarCoins = async (coins, idNotification) => {
     const req_res = await createCoin({
       variables: {
@@ -28,19 +27,29 @@ const UserNotifications = () => {
     }
     if (res == 400) {
       const message = { id: 0, message: <div>Alcanzaste el límite diario de <b>Pikcoins</b> a recibir, intentalo mañana </div> }
-      // context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
+      dispatch({ type: "SET_MESSAGE", payload: { message } })
       return
     }
     confetti()
-    // context.customDispatch({ type: "RECLAMAR_COINS", payload: { coins } })
+    dispatch({ type: "RECLAMAR_COINS", payload: { coins } })
     handleDeleteNotification(idNotification)
   }
 
+  const [getNotifications] = useLazyQuery(GET_NOTIFICATIONS, { // Obteniendo notificaciones
+    fetchPolicy: "no-cache",
+    // polInterval: 5000,
+    variables: {
+      user: loggedUser.id
+    },
+    onCompleted: ({ getNotifications }) => {
+      getNotifications && dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: getNotifications } })
+    }
+  })
+
   const handleDeleteNotification = (idNotification) => {
-    const notifications = [] // [...context.notifications]
     notifications.find(item => item.id == idNotification).closed = "1"
-    deleteNotification({ variables: { id: idNotification, user_request: context.user.id } })
-    // context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: notifications } })
+    deleteNotification({ variables: { id: idNotification, user_request: loggedUser.id } })
+    dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: notifications } })
   }
 
   const handleNotification = (id) => {
@@ -51,8 +60,12 @@ const UserNotifications = () => {
         isOpen
       }
     })
-    // context.customDispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: _notifications } })
+    dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: _notifications } })
   }
+
+  useEffect(() => {
+    getNotifications()
+  }, [])
 
   return <ul className={`${styles.UserNotifications} UserNotifications`}>
     {notifications && notifications.map(({ coins, detail, id, isOpen }) => <ol className={isOpen ? styles.open : null}>
@@ -70,7 +83,7 @@ const UserNotifications = () => {
     )}
     {
       notifications.length < 1 && <ol>
-        <span>✅ Estas al día con tus notificaciones</span>
+        <span>✅ &nbsp;Estas al día con tus notificaciones</span>
       </ol>
     }
   </ul >

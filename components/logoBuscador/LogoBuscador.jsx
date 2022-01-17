@@ -105,16 +105,21 @@ function LogoBuscador({ partner }) {
       </div>
       {
         <div className={styles.content_buscador} style={{ display: showSearchBox ? "block" : "none" }}>
-          <TextField onBlur={() => setInputText('')} onChange={e => setInputText(e.target.value)} fullWidth label="nintendo switch, ps5, controles de xbox" variant="outlined" />
+          <TextField onBlur={() => setInputText('')} onFocus={e => setInputText(e.target.value)} onChange={e => setInputText(e.target.value)} fullWidth label="nintendo switch, ps5, controles de xbox" variant="outlined" />
           {
             search.result && search.result.length > 0 && <div className={styles.results}>
               <div className={styles.rows}>
                 {
                   search.result.map(item => {
                     return <Link href={item.slug ? "/publicacion/[id]" : "javascript:void(0)"} as={item.slug ? `/publicacion/${item.slug}` : "javascript:void(0)"}>
-                      <article>
+                      <article className={styles.row}>
                         <img src={item.image_link} alt="" />
-                        <a>{item.title}</a>
+                        <div>
+                          <a>{item.title}</a>
+                          <span className={styles.platform}>
+                            Playstation 4
+                          </span>
+                        </div>
                       </article>
                     </Link>
                   })

@@ -5,9 +5,11 @@ import styles from "../../public/css/modalIngresoInfo.module.scss"
 import CiudadControl from "../../components/ciudadControl/CiudadControl"
 import Link from "next/link"
 import { Alert } from "@material-ui/lab"
+import { useSelector } from "react-redux"
 
 const ModalHablarVendedor = (props) => {
-  const { datosPublicacion, setIsModalHablarVendedor, user } = props
+  const user = useSelector((state) => state.user)
+  const { datosPublicacion, setIsModalHablarVendedor } = props
   const CREATE_TRANSACTION = gql`
     mutation createTransaction($user: Int, $user_to: Int, $publication: Int, $type: String){
         createTransaction(user: $user, user_to: $user_to, publication: $publication, type: $type)
@@ -17,9 +19,9 @@ const ModalHablarVendedor = (props) => {
 
   const handleCreateTransaction = () => {
     // Mutation para registrar la pre orden
-    createTransaction({ variables: { user: user.id, user_to: datosPublicacion.user, publication: datosPublicacion.id, type: "PURCHASE" } });
+    debugger
+    createTransaction({ variables: { user: user.id, user_to: datosPublicacion.user.id, publication: datosPublicacion.id, type: "PURCHASE" } });
 
-    const user = localStorage.getItem("user")
     if (!user) {
       const mensaje = toastr;
       mensaje.options.onclick = () => Router.push("/login")

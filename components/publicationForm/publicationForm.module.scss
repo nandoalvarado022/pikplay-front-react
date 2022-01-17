@@ -1,16 +1,38 @@
-.steps {
+.steps_and_actions {
     display: flex;
-    font-size: 12px;
-    margin-left: 40px;
-    width: 540px;
-    @media screen and (max-width: 420px) {
-        margin-left: 10px;
-        width: auto;
+    justify-content: space-between;
+
+    .steps {
+        display: flex;
+        font-size: 12px;
+        width: 540px;
+        @media screen and (max-width: 420px) {
+            margin-left: 10px;
+            width: auto;
+        }
+        > * {
+            margin: 0 10px;
+            &.active {
+                font-weight: bold;
+            }
+        }
     }
-    > * {
-        margin: 0 10px;
-        &.active {
-            font-weight: bold;
+
+    .actions {
+        margin-top: 5px;
+        text-align: right;
+        button {
+            @media screen and (max-width: 420px) {
+                position: fixed;
+                bottom: 0px;
+                height: 50px;
+                top: initial;
+                z-index: 10;
+                width: 100%;
+                border-radius: 0;
+                margin-left: -10px !important;
+                z-index: 2;
+            }
         }
     }
 }
@@ -27,24 +49,6 @@
     }
     > div:not(.actions) {
         margin-bottom: 10px;
-    }
-}
-
-.actions {
-    margin-top: 5px;
-    text-align: right;
-    button {
-        @media screen and (max-width: 420px) {
-            position: fixed;
-            bottom: 0px;
-            height: 50px;
-            top: initial;
-            z-index: 10;
-            width: 100%;
-            border-radius: 0;
-            margin-left: -10px !important;
-            z-index: 2;
-        }
     }
 }
 
@@ -104,11 +108,10 @@
 }
 
 .formAndPreviewPublicacion {
-    margin: 20px auto;
+    margin: 10px auto;
     @media screen and (min-width: 768px) {
-        display: flex;
         > * {
-            width: 45%;
+            width: 100%;
         }
     }
 }

@@ -25,7 +25,6 @@ class PublicacionPage extends React.Component {
   onChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-    debugger
     this.setState({
       [name]: value,
     });

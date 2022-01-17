@@ -49,17 +49,32 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
         Crea tu anuncio 100% gratis y sin comisiónes
       </Alert>
 
-      <div className={styles.steps}>
-        <div className={currentStep == 1 && styles.active}>
-          1. Informacion general
+      <div className={styles.steps_and_actions}>
+        <div className={styles.steps}>
+          <div className={currentStep == 1 && styles.active}>
+            1. Informacion general
+          </div>
+          <div className={currentStep == 2 && styles.active}>
+            2. Precio e inventario
+          </div>
+          <div className={currentStep == 3 && styles.active}>
+            3. Fotos del producto
+          </div>
+          <div className={currentStep == 4 && styles.active}>
+            4. Así se verá tu publicación
+          </div>
         </div>
-        <div className={currentStep == 2 && styles.active}>
-          2. Precio e inventario
-        </div>
-        <div className={currentStep == 3 && styles.active}>
-          3. Fotos del producto
+
+        <div className="actions" style={{ textAlign: "right" }}>
+          {
+            currentStep != 1 && <Button className="previousStep" animation={false} onClick={previusStep} color="yellow">
+              Anterior
+            </Button>
+          }
+          <Button className="nextStep" animation={currentStep != 3} onClick={nextStep} color="blue">{textButton}</Button>
         </div>
       </div>
+
       <div className={styles.formAndPreviewPublicacion}>
         <div className={styles.fields}>
           {
@@ -139,26 +154,17 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
               </div>
             </>
           }
-          <div className="actions" style={{ textAlign: "right" }}>
-            {
-              currentStep != 1 && <Button className="previousStep" animation={false} onClick={previusStep} color="yellow">
-                Anterior
-              </Button>
-            }
-            <Button className="nextStep" animation={currentStep != 3} onClick={nextStep} color="blue">{textButton}</Button>
-          </div>
         </div>
         {
-          screenWidth > 420 && <div>
-            <div className={styles.preview_card}>
-              <div className="f-s-12 t-a-c" style={{ margin: "-35px 0 20px 0" }}>
-                Vista previa de tu publicación:
-              </div>
-              <Card {...publicationFormData} slug={null} />
+          currentStep == 4 &&
+          <div className={styles.preview_card}>
+            <div className="f-s-12 t-a-c" style={{ margin: "-35px 0 20px 0" }}>
+              Vista previa de tu publicación:
             </div>
-            {errors && <Alert severity="error">{errors}</Alert>}
+            <Card {...publicationFormData} slug={null} />
           </div>
         }
+        {errors && <Alert severity="error">{errors}</Alert>}
       </div>
     </section>
   }

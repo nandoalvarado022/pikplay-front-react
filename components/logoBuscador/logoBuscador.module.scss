@@ -94,9 +94,25 @@
             top: 56px;
             width: 100%;
             z-index: 3;
-            a {
-                display: block;
-                margin: 5px 0 2px;
+            .row {
+                display: flex;
+                margin-bottom: 10px;
+                &:hover{
+                    cursor: pointer;
+                }
+                img {
+                    width: 100px;
+                }
+                > div:last-child {
+                    margin-left: 20px;
+                    text-align: left;
+                }
+                .platform {
+                }
+                a {
+                    display: block;
+                    margin: 5px 0 5px 0px;
+                }
             }
         }
         .input-buscador {

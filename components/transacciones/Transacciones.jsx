@@ -5,12 +5,12 @@ import { gql, useLazyQuery, useMutation } from '@apollo/client'
 import { useEffect, useState } from "react"
 import styles from "./styles.module.scss"
 import Button from '../button/Button'
-import { connect } from 'react-redux'
+import { useSelector } from "react-redux"
 
 moment.locale('es')
 
 const Transacciones = (props) => {
-  const { user } = props
+  const loggedUser = useSelector((state) => state.user)
   const [transactions, setTransactions] = useState([])
   // Mutation confirmar transacción
   const TRANSACTION_CONFIRMED = gql`
@@ -52,7 +52,7 @@ const Transacciones = (props) => {
   const [getTransactions] = useLazyQuery(GET_TRANSACTIONS, { // Obteniendo notificaciones
     fetchPolicy: "no-cache",
     variables: {
-      user: user.id
+      user: loggedUser.id
     },
     onCompleted: ({ getTransactions }) => {
       const _transactions = getTransactions && getTransactions.map(t => {
@@ -76,7 +76,7 @@ const Transacciones = (props) => {
   }
 
   const handleConfirmarTransaccion = (id, publication) => {
-    transactionConfirmed({ variables: { id, publication, user_request: user.id } });
+    transactionConfirmed({ variables: { id, publication, user_request: loggedUser.id } });
   }
 
   return <section className={`${styles.Transactions}`}>
@@ -93,16 +93,14 @@ const Transacciones = (props) => {
     </h2>
     <ul>
       {transactions && transactions.map(({ created, detail, id, p_title, publication, status, type, u_name, user, user_to }) => <ol className="Card" style={{ display: "flex" }}>
+        <div className={styles.id}>T#{id}</div>
+        {
+          user_to == loggedUser.id && <div className={styles.user}>
+            {u_name} (Comprador)
+          </div>
+        }
         <div>
-          <div className={styles.id}>ID</div>
-          #{id}
-        </div>
-        <div>
-          <div className={styles.user}><b>Usuario</b></div>
-          {u_name}
-        </div>
-        <div>
-          {type}
+          {user_to == loggedUser.id ? 'Venta' : 'Compra'}
         </div>
         <div>
           {p_title}
@@ -122,7 +120,7 @@ const Transacciones = (props) => {
         </div>
         <div className={styles.actions}>
           {
-            user_to == user.id && status == 0 && <Button color="blue" onClick={() => handleConfirmarTransaccion(id, publication)}>Confirmar transacción</Button>
+            user_to == loggedUser.id && status == 0 && <Button color="blue" onClick={() => handleConfirmarTransaccion(id, publication)}>Confirmar transacción</Button>
           }
           {/* {type == "Venta" && status == 0 && <button onClick={() => handleConfirmarTransaccion(id)} title="El cliente podrá pagar en linea">Habilitar pago en linea</button>} */}
           {/* {type == "Compra" && status == 0 && <button onClick={() => handlePagarTransaccion(id)}>Pagar</button>} */}
@@ -133,8 +131,4 @@ const Transacciones = (props) => {
   </section>
 }
 
-const mapStateToProps = state => ({
-  user: state.user
-})
-
-export default connect(mapStateToProps)(Transacciones)
+export default Transacciones

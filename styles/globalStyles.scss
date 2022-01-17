@@ -655,6 +655,7 @@ html,
 body {
     background: #f4f4f4;
     font-family: "Rowdies", cursive;
+    font-weight: 300;
     margin: 0;
     min-height: 100vh;
     overflow-x: hidden;
@@ -718,7 +719,7 @@ body {
     box-shadow: 2px 2px 5px 0 #ababab52;
     box-sizing: border-box;
     color: #585858;
-    margin: 0px 20px 40px;
+    margin: 0px auto 40px;
     padding: 10px 20px;
     position: relative;
     z-index: 1;

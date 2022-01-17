@@ -1,10 +1,10 @@
 section.Transactions {
     ul {
-        display: flex;
+        // display: flex;
         flex-direction: column;
         margin: 20px auto 0;
         padding: 0;
-        width: 800px;
+        // width: 800px;
         @media screen and (max-width: 420px) {
             padding: 0;
             width: initial;
@@ -25,7 +25,6 @@ section.Transactions {
             }
         }
         .id {
-            font-weight: bold;
         }
         .actions {
             display: flex;

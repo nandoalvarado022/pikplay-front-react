@@ -54,7 +54,7 @@ const PublicationForm = (props) => {
 		Siguiente
 		<FontAwesomeIcon icon={faChevronRight} />
 	</>
-	if (currentStep == 3) textButton = <>
+	if (currentStep == 4) textButton = <>
 		Guardar
 	</>
 
@@ -98,7 +98,7 @@ const PublicationForm = (props) => {
 		}
 
 		const validateUser = () => {
-			if (!!!localStorage.getItem("user")) {
+			if (user.id == 0) {
 				document.getElementById("btnStart").click()
 				return false
 			} else {

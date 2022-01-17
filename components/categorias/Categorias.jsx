@@ -1,8 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
-import React, { useContext, useState } from "react"
+import React, { useState } from "react"
 import Link from "next/link"
-import Router from "next/router"
 import Login from "../login/Login"
 import styles from "./categorias.module.scss"
 import { getCategories, slugify } from "../../lib/utils"
