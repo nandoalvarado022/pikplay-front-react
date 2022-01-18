@@ -11,7 +11,7 @@ import React from "react"
 import { faCheckCircle, faHandshake } from "@fortawesome/free-regular-svg-icons"
 import Author from "./Author"
 
-const CardProducto = ({ apply_cashback, banner_bottom, certificate, meta_url, title, descuento = 0, description = "", handleHablarVendedor, image_link, image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, setIsModalHablarVendedor, user_name, user_picture, user_transactions, quantity, warranty } = {}) => {
+const CardProducto = ({ apply_cashback, banner_bottom, certificate, meta_url, title, descuento = 0, description = "", handleHablarVendedor, image_link, image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, setIsModalHablarVendedor, user_name, user_picture, user_transactions, quantity, user, warranty } = {}) => {
   const ref_descripcion_imagen = useRef(null)
   let images = []
 
@@ -90,7 +90,7 @@ const CardProducto = ({ apply_cashback, banner_bottom, certificate, meta_url, ti
           <div className={`flex ${styles.compra_author}`}>
             {quantity > 0 && (<Button color="blue" onClick={handleHablarVendedor}>Me interesa este artículo</Button>)}
             <div className={styles.content_author}>
-              <Author {...{ user_certificate: certificate, user_name, user_picture, user_transactions }} />
+              <Author user={user} />
             </div>
           </div>
 

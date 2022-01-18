@@ -685,7 +685,7 @@ class Funciones {
 export default connect(null, useDispatch)(Funciones)
 
 export const getFeed = async ({ slug = "", category = null, subcategory = null, title = "" }) => {
-    const query = `query {
+  const query = `query {
       publications(status: true, slug: "${slug}", category: ${category}, subcategory: ${subcategory}, title: "${title}") {
         accept_changues
         apply_cashback
@@ -707,9 +707,13 @@ export const getFeed = async ({ slug = "", category = null, subcategory = null, 
         sale_price
         slug
         tags
-        title        
+        title
         user{
+          apply_cashback
+          certificate
           id
+          name
+          picture
         }
         user_name
         user_phone

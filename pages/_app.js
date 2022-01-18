@@ -68,7 +68,7 @@ const MyApp = (props) => {
     TagManager.initialize({ gtmId: 'GTM-5WB6P7C' })
   }, []);
 
-  return <MuiThemeProvider theme={theme}>
+  return process.browser ? <MuiThemeProvider theme={theme}>
     <Provider store={store}>
       <PersistGate loading={<div>loading</div>} persistor={persistor}>
         <ApolloProvider client={graphqlClient}>
@@ -77,6 +77,13 @@ const MyApp = (props) => {
       </PersistGate>
     </Provider>
   </MuiThemeProvider>
+    : <MuiThemeProvider theme={theme}>
+      <Provider store={store}>
+        <ApolloProvider client={graphqlClient}>
+          <Component {...pageProps} key={router.name} />
+        </ApolloProvider>
+      </Provider>
+    </MuiThemeProvider>
 }
 
 export default MyApp

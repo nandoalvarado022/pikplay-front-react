@@ -108,17 +108,6 @@ class PublicacionPage extends React.Component {
   }
 
   componentDidMount() {
-    /*if (localStorage.getItem("user")) {
-      const { pais, ciudad } = JSON.parse(localStorage.getItem("user"));
-      this.setState({
-        pais,
-        ciudad,
-      });
-    }*/
-    // if (this.props.datosPublicacion.length == 0) Router.push("/404")
-    setTimeout(() => {
-      this.setState({ loadingProductPage: true })
-    }, 10000)
     // if (!this.props?.datosPublicacion) Router.push("/404")
   }
 
