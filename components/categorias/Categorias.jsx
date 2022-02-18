@@ -16,15 +16,9 @@ const Categorias = (props) => {
 
   return <div className={styles.Categorias}>
     <ul>
-      {/* <li filter="game">
-        <Link scroll={scroll} href="/">
-          Ver todo
-        </Link>
-      </li> */}
       <li className={styles["crear-publicacion"]} >
         <Link href="/publicacion/crear" as="/publicacion/crear">
           <a>
-            {/* <img src="/images/icons/mas.svg" alt="Crear publicacion" /> */}
             Vender
           </a>
         </Link>

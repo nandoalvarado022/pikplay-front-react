@@ -15,6 +15,23 @@
             top: 60px;
         }
     }
+    .notyQuantity {
+        background: #ea4d42;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
+        font-size: 11px;
+        height: 20px;
+        line-height: 20px;
+        padding: 0;
+        position: absolute;
+        right: 4px;
+        text-align: center;
+        top: 0;
+        width: 20px;
+        z-index: 1;
+    }
+
     .perfil {
         display: block;
         padding: 8px 0;
@@ -30,21 +47,7 @@
                 display: none;
             }
         }
-        .notyQuantity {
-            background: #ea4d42;
-            border-radius: 50%;
-            color: white;
-            cursor: pointer;
-            font-size: 12px;
-            height: 20px;
-            line-height: 20px;
-            margin: -42px 0px 50px -32px;
-            padding: 0;
-            position: absolute;
-            text-align: center;
-            width: 20px;
-            z-index: 1;
-        }
+
         .arrow {
             color: #b3b3b3;
             margin-left: 10px;

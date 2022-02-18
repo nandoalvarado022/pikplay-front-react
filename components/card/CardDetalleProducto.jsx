@@ -32,14 +32,10 @@ const CardProducto = ({ apply_cashback, banner_bottom, certificate, meta_url, ti
 
 
   return <div key={indice_item} className={`Card ${styles.DetalleProducto}`}>
-    <ins class="adsbygoogle"
-      style={{ display: "inline-block", width: "320px", height: "100px" }}
-      data-ad-client="ca-pub-4730353912478910"
-      data-ad-slot="2850501582"></ins>
 
     <Grow key={indice_item} timeout={500} in={true} style={{ opacity: 1 }}>
       <div ref={ref_descripcion_imagen} className={styles.descripcion_imagen}>
-        <div className={styles.left}>
+        <div className={`Card ${styles.left}`}>
           <div className={styles.content_imagen}>
             <ImageGallery
               items={images}
@@ -60,51 +56,49 @@ const CardProducto = ({ apply_cashback, banner_bottom, certificate, meta_url, ti
           </div>
         </div>
 
-        {description && <div className={`Card ${styles.Card} ${styles.descripcion}`}>
-          {certificate && <FontAwesomeIcon className={styles.verified} icon={faCheckCircle} />}
+        <div className={styles.descripcion}>
           <h1>{title}</h1>
-          {/* Si aplica cashback */}
-          {apply_cashback && <span title="Ganarás Pikcoins por hacer esta compra" className={styles.apply_cashback}>
-            <picture className={styles.coin} />
-            ¡Cashback!
-          </span>}
-          <div className={styles.content_precio}>
-            {/* Precio */}
-            {/* <span className={styles.tachado}>
+          <div className={`Card ${styles.Card}`}>
+            {certificate && <FontAwesomeIcon className={styles.verified} icon={faCheckCircle} />}
+
+            {/* Si aplica cashback */}
+            {apply_cashback && <span title="Ganarás Pikcoins por hacer esta compra" className={styles.apply_cashback}>
+              <picture className={styles.coin} />
+              ¡Cashback!
+            </span>}
+            <div className={styles.content_precio}>
+              {/* Precio */}
+              {/* <span className={styles.tachado}>
               {price && <React.Fragment>$&nbsp;{price}</React.Fragment>}
             </span> */}
 
-            {descuento > 0 &&
-              <span className={"descuento" + (logDetalle ? " logDetalle" : "")}> -{descuento}% </span>
-            }
+              {descuento > 0 &&
+                <span className={"descuento" + (logDetalle ? " logDetalle" : "")}> -{descuento}% </span>
+              }
 
-            {(sale_price && sale_price != 0) && <React.Fragment>
-              <br />
-              <span className={styles.nuevoPrecio}>
-                ${format_number(sale_price)}
-              </span>
-            </React.Fragment>
-            }
-          </div>
-
-          <div className={`flex ${styles.compra_author}`}>
-            {quantity > 0 && (<Button color="blue" onClick={handleHablarVendedor}>Me interesa este artículo</Button>)}
-            <div className={styles.content_author}>
-              <Author user={user} />
+              {(sale_price && sale_price != 0) && <span className={styles.nuevoPrecio}>
+                  ${format_number(sale_price)}
+                </span>
+              }
             </div>
-          </div>
 
-          <div className={styles.description}>
-            <p className={styles.title}>Descripción</p>
-            <ReactMarkdown source={description}></ReactMarkdown>
-          </div>
+            <div className={`flex ${styles.compra_author}`}>
+              {quantity > 0 && (<Button color="blue" onClick={handleHablarVendedor}>Me interesa este artículo</Button>)}
+              <div className={styles.content_author}>
+                <Author user={user} />
+              </div>
+            </div>
 
-          <p>
-            <a className="underline f-s-12" target="_BLANK" href="https://api.whatsapp.com/send?phone=573187414972&text=Quiero denunciar una publicación en pik-play.com">Denunciar</a>
-          </p>
+            <div className={styles.description}>
+              <p className={styles.title}>Descripción</p>
+              <ReactMarkdown source={description}></ReactMarkdown>
+            </div>
+
+            <p>
+              <a className="underline f-s-12" target="_BLANK" href="https://api.whatsapp.com/send?phone=573187414972&text=Quiero denunciar una publicación en pik-play.com">Denunciar</a>
+            </p>
+          </div>
         </div>
-        }
-
       </div>
     </Grow>
     {

@@ -1,4 +1,5 @@
 .DetalleProducto {
+    background: #f4f4f4;
     padding-top: 20px;
     position: relative;
     z-index: 1;
@@ -65,6 +66,8 @@
             display: flex;
         }
         .left {
+            background: white;
+            margin: 20px 0 0 0;
             @media screen and (min-width: 1024px) {
                 width: 800px;
             }
@@ -101,7 +104,7 @@
         }
         > .descripcion {
             font-size: 14px;
-            padding: 20px 30px 0;
+            padding: 20px 30px;
             @media screen and (min-width: 1024px) {
                 margin: 0 20px;
                 padding: 20px 10px 0;

@@ -104,14 +104,15 @@ function LogoBuscador({ partner }) {
         <FontAwesomeIcon icon={faSearch} />
       </div>
       {
-        <div className={styles.content_buscador} style={{ display: showSearchBox ? "block" : "none" }}>
-          <TextField onBlur={() => setInputText('')} onFocus={e => setInputText(e.target.value)} onChange={e => setInputText(e.target.value)} fullWidth label="nintendo switch, ps5, controles de xbox" variant="outlined" />
+        <div onBlur={() => setTimeout(() => setInputText(''), 200)} className={styles.content_buscador} style={{ display: showSearchBox ? "block" : "none" }}>
+          <TextField onFocus={e => setInputText(e.target.value)} onChange={e => setInputText(e.target.value)} fullWidth label="nintendo switch, ps5, controles de xbox" variant="outlined" />
           {
             search.result && search.result.length > 0 && <div className={styles.results}>
               <div className={styles.rows}>
                 {
                   search.result.map(item => {
-                    return <Link href={item.slug ? "/publicacion/[id]" : "javascript:void(0)"} as={item.slug ? `/publicacion/${item.slug}` : "javascript:void(0)"}>
+                    const link = `/publicacion/${item.slug}`
+                    return <Link href={link}>
                       <article className={styles.row}>
                         <img src={item.image_link} alt="" />
                         <div>
