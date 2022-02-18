@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
 import { faImage, faTrash } from "@fortawesome/free-solid-svg-icons"
@@ -16,7 +17,7 @@ import Notification from '../notification'
 import { Alert } from '@material-ui/lab'
 import { useSelector, useDispatch } from "react-redux"
 
-const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, handleSubmit, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, screenWidth, setPublicationFormData, textButton }) => {
+const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, handleSubmit, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, screenWidth, setPublicationFormData, textButton, setCurrentStep }) => {
   const dispatch = useDispatch()
   const [showDescription, setShowDescription] = useState(false)
   const [message, setMessage] = useState(null)
@@ -33,6 +34,11 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
     return <section className={styles.content}>
       {/* <Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} /> */}
       <h2>
+        <small>
+          <Link href="/publicaciones">
+            <a>Listado de publicaciones / </a>
+          </Link>
+        </small>
         Crear publicación
         <FontAwesomeIcon class="svg-question" icon={faQuestionCircle} onClick={() => {
           const message = {
@@ -45,22 +51,22 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
         }} />
       </h2>
 
-      <Alert severity="success" style={{ marginBottom: "10px" }}>
+      <Alert className={styles.alert} severity="success" style={{ marginBottom: "10px" }}>
         Crea tu anuncio 100% gratis y sin comisiónes
       </Alert>
 
       <div className={styles.steps_and_actions}>
         <div className={styles.steps}>
-          <div className={currentStep == 1 && styles.active}>
+          <div onClick={() => setCurrentStep(1)} className={currentStep == 1 && styles.active}>
             1. Informacion general
           </div>
-          <div className={currentStep == 2 && styles.active}>
+          <div onClick={() => setCurrentStep(2)} className={currentStep == 2 && styles.active}>
             2. Precio e inventario
           </div>
-          <div className={currentStep == 3 && styles.active}>
+          <div onClick={() => setCurrentStep(3)} className={currentStep == 3 && styles.active}>
             3. Fotos del producto
           </div>
-          <div className={currentStep == 4 && styles.active}>
+          <div onClick={() => setCurrentStep(4)} className={currentStep == 4 && styles.active}>
             4. Así se verá tu publicación
           </div>
         </div>
@@ -131,17 +137,17 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
 
               <div className={`Card ${styles.images_list}`}>
                 {
-                  ["image_1", "image_2", "image_3"].map(item => {
+                  ["image_1", "image_2", "image_3", "image_4"].map(item => {
                     return <>
                       {
-                        publicationFormData[item] == null && <label class={styles.fileWrapper}>
-                          <input accept=".png,.jpg,.jpeg,.gif" type='file' id={item} onChange={() => onChangeImage(item)} />
+                        publicationFormData[item] == '' && <label class={(imageLoading ? styles.disabled : '') + ' ' + styles.fileWrapper}>
+                          <input disabled={imageLoading} accept=".png,.jpg,.jpeg,.gif" type='file' id={item} onChange={() => onChangeImage(item)} />
                           <FontAwesomeIcon icon={faImage} />
                           <p>Subir imágen</p>
                         </label>
                       }
                       {
-                        publicationFormData[item] != null && <label class={styles.fileWrapper}>
+                        publicationFormData[item] != '' && <label class={styles.fileWrapper}>
                           <span className={styles.remove} onClick={() => handleRemoveImage(item)}>
                             <FontAwesomeIcon icon={faTrash} />
                           </span>
@@ -158,9 +164,6 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
         {
           currentStep == 4 &&
           <div className={styles.preview_card}>
-            <div className="f-s-12 t-a-c" style={{ margin: "-35px 0 20px 0" }}>
-              Vista previa de tu publicación:
-            </div>
             <Card {...publicationFormData} slug={null} />
           </div>
         }

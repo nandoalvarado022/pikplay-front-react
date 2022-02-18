@@ -46,12 +46,10 @@ const Categorias = (props) => {
       {
         user.id != 0 ? <React.Fragment>
           <li>
-            {/* <li className={styles.perfil} title={`Nivel actual ${context.user.category}`}> */}
             <ImageProfile {...{ isOpenPreviewProfile, setIsOpenPreviewProfile }} />
-            {/* <span className={styles.notyQuantity}>
+            <span className={styles.notyQuantity}>
               {_notifications.length}
-            </span> */}
-            {/* Perfil <FontAwesomeIcon className={`${styles.arrow} ${isOpenPreviewProfile ? styles.actived : null}`} icon={faArrowDown} /> */}
+            </span>
             <PreviewUser {...{ isOpenPreviewProfile, setIsOpenPreviewProfile }} />
           </li>
         </React.Fragment>

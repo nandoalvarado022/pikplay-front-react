@@ -16,6 +16,7 @@ const QUERY_PUBLICATION = gql`
 			category
 			description
 			id
+			image_1
 			image_2
 			image_3
 			image_4
@@ -83,7 +84,7 @@ const PublicationForm = (props) => {
 	}
 
 	function nextStep() {
-		if (currentStep == 3) handleSubmit()
+		if (currentStep == 4) handleSubmit()
 		else setCurrentStep(currentStep + 1)
 	}
 
@@ -132,12 +133,12 @@ const PublicationForm = (props) => {
 	const handleRemoveImage = (item) => {
 		const _publicationFormData = {
 			...publicationFormData,
-			[item]: null
+			[item]: ''
 		}
 		setPublicationFormData(_publicationFormData)
 	}
 
-	return <PublicationForminterface {...{ currentStep, errors, handleRemoveImage, handleSubmit, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, screenWidth, setPublicationFormData, textButton }} />
+	return <PublicationForminterface {...{ currentStep, errors, handleRemoveImage, handleSubmit, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, screenWidth, setPublicationFormData, textButton, setCurrentStep }} />
 }
 
 export default withRouter(PublicationForm)

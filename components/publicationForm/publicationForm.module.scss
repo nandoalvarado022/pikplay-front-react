@@ -3,6 +3,7 @@
     justify-content: space-between;
 
     .steps {
+        cursor: pointer;
         display: flex;
         font-size: 12px;
         width: 540px;
@@ -61,7 +62,7 @@
     @media screen and (min-width: 768px) {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: space-evenly;
     }
     .fileWrapper {
         align-items: center;
@@ -77,6 +78,10 @@
         width: 100px;
         @media screen and (max-width: 420px) {
             width: auto;
+        }
+        &.disabled {
+            border: grey 1px dashed;
+            color: grey;
         }
         input {
             display: none;
@@ -128,10 +133,13 @@
 }
 
 .preview_card {
-    margin: -120px auto 10px;
-    position: relative;
+    margin: 20px auto 0px;
     width: max-content;
     @media screen and (max-width: 420px) {
         display: none;
     }
+}
+
+.alert {
+    border: rgb(30 70 32 / 20%) 1px solid;
 }
