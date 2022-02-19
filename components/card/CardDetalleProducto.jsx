@@ -30,9 +30,7 @@ const CardProducto = ({ apply_cashback, banner_bottom, certificate, meta_url, ti
   let like = null;
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
 
-
   return <div key={indice_item} className={`Card ${styles.DetalleProducto}`}>
-
     <Grow key={indice_item} timeout={500} in={true} style={{ opacity: 1 }}>
       <div ref={ref_descripcion_imagen} className={styles.descripcion_imagen}>
         <div className={`Card ${styles.left}`}>

@@ -1,4 +1,4 @@
-import Newsletter from "../newsletter/Newsletter"
+import React from "react"
 import styles from "./Header.module.scss"
 
 const HeaderInterface = ({ active }) =>

@@ -1,7 +1,4 @@
-import Link from 'next/link'
 import Notification from "../notification";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCheckCircle } from "@fortawesome/free-regular-svg-icons"
 import { register } from "next-offline/runtime"
 import toastr from "toastr"
 import Button from "../button/Button"
@@ -10,11 +7,10 @@ import Router from "next/router"
 import NProgress from "nprogress"
 import React from "react"
 import Header from "../header/Header"
-import LogoBuscador from "../logoBuscador/LogoBuscador"
 import styles from "./layout.module.scss"
 import Categorias from "../categorias/Categorias"
 import MenuMovil from "../menuMovil/MenuMovil"
-import Subcategories from '../subcategories';
+import Subcategories from '../subcategories/Subcategories'
 import Head from './Head';
 
 toastr.options.progressBar = true;
@@ -159,15 +155,14 @@ class Layout extends React.Component {
     let { meta_url, is_partner, partner } = this.props
 
     return <React.Fragment>
-      {/* <Header />  */}
+      <Head title={meta_title} descripcion={meta_descripcion} image={meta_image} url={meta_url} /> 
       <body className="App font-a">
-        {/* <Header {...props} /> */}
-        <LogoBuscador partner={is_partner ? partner : null} />
+        <Header partner={is_partner ? partner : null} />
         <audio />
         <main className={styles.principal}>
           <Categorias scroll={false} />
           <Subcategories />
-          {/* {isMobile && <MenuMovil />} */}
+          {/*isMobile && <MenuMovil />*/}
           <Notification isOpen={this.context.showNotification} />
           {props.children}
           <a target="_BLANK" className="a_whatsapp" href="https://api.whatsapp.com/send?phone=573052665725&text=Escribe%20aqu%C3%AD%20tu%20pregunta">

@@ -1,18 +1,11 @@
 import React, { useState } from "react"
 import Link from "next/link"
-import Login from "../login/Login"
-import styles from "./categorias.module.scss"
 import { getCategories, slugify } from "../../lib/utils"
-import PreviewUser from "../previewUser/PreviewUser"
-import ImageProfile from '../../pages/perfil/ImageProfile'
-import { useSelector } from "react-redux"
+import styles from "./styles.module.scss"
 
 const Categorias = (props) => {
-  const user = useSelector((state) => state.user)
-  const { notifications = [], scroll } = props
   const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
-  const [showNotifications, setShowNotifications] = useState(false)
-  const _notifications = notifications.filter(item => item.closed == 0)
+  const { scroll } = props
 
   return <div className={styles.Categorias}>
     <ul>
@@ -26,7 +19,7 @@ const Categorias = (props) => {
       {
         getCategories().map((category) => {
           const image = category.image ? category.image : "/images/icons/" + category.id + ".png"
-          return <li filter="game">
+          return <li filter="game" key={category.id}>
             <Link scroll={scroll} href="/category/[id]" as={"/category/" + slugify(category.name)}>
               <a>
                 <img src={image} alt={category.name} />
@@ -35,20 +28,6 @@ const Categorias = (props) => {
             </Link>
           </li>
         })
-      }
-
-      {
-        user.id != 0 ? <React.Fragment>
-          <li>
-            <ImageProfile {...{ isOpenPreviewProfile, setIsOpenPreviewProfile }} />
-            <span className={styles.notyQuantity}>
-              {_notifications.length}
-            </span>
-            <PreviewUser {...{ isOpenPreviewProfile, setIsOpenPreviewProfile }} />
-          </li>
-        </React.Fragment>
-          :
-          <Login />
       }
     </ul>
   </div >

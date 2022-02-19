@@ -1,54 +1,75 @@
+import React, { useState } from "react"
 import Router from "next/router"
 import Link from "next/link"
-import React from "react"
-import Coins from './Coins'
-import styles from "./styles.module.scss"
-import UserNotifications from '../userNotifications/UserNotifications'
 import { useSelector, useDispatch } from "react-redux"
+import Coins from './Coins'
+import UserNotifications from '../userNotifications/UserNotifications'
+import ImageProfile from '../../pages/perfil/ImageProfile'
+import Login from "../login/Login"
+import styles from "./styles.module.scss"
 
-const PreviewUser = (props) => {
+const PreviewUser = () => {
   const dispatch = useDispatch()
   const notifications = useSelector((state) => state.notifications)
-  const user = useSelector((state) => state.user)
-  const { isOpenPreviewProfile, setIsOpenPreviewProfile } = props
+  const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
   const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
+
+  const user = useSelector((state) => state.user)
+  const [showNotifications, setShowNotifications] = useState(false)
+  const _notifications = notifications.filter(item => item.closed == 0)
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' })
     Router.push('/?logout')
   }
 
+  const handleClickImage = () => {
+    setIsOpenPreviewProfile(!isOpenPreviewProfile)
+  }
+
   return <div className={`${styles.PreviewUser} PreviewUser ${isOpenPreviewProfile ? styles.actived : null}`}>
-    {!isMobile && <UserNotifications />}
-    <ol>
-      <Link href="/perfil" as="/perfil">
-        <a>
-          Mi cuenta<br />
-          <Coins />
-        </a>
-      </Link>
-    </ol>
-    <ol onClick={() => setIsOpenPreviewProfile(false)}>
-      <Link href="/perfil#notificaciones" as="/perfil#notificaciones">
-        Notificaciones
-      </Link>
-      {isMobile && <span className={styles.notyQuantity}>
-        {notifications.length}
-      </span>}
-    </ol>
-    <ol>
-      <Link href="/transacciones" as="/transacciones">
-        Transacciones
-      </Link>
-    </ol>
-    <ol>
-      <Link href="/publicaciones" as="/publicaciones">
-        <a>Publicaciones</a>
-      </Link>
-    </ol>
-    <ol onClick={() => handleLogout()}>
-      Salir
-    </ol>
+    {
+      user.id != 0 ? <React.Fragment>
+        <ImageProfile handleClickImage={handleClickImage} />
+        <span className={styles.notyQuantity}>
+          {_notifications.length}
+        </span>
+        <div className={styles.bg_black}>
+          {!isMobile && <UserNotifications />}
+          <ol>
+            <Link href="/perfil" as="/perfil">
+              <a>
+                Mi cuenta<br />
+                {/* <Coins /> */}
+              </a>
+            </Link>
+          </ol>
+          <ol onClick={() => setIsOpenPreviewProfile(false)}>
+            <Link href="/perfil#notificaciones" as="/perfil#notificaciones">
+              Notificaciones
+            </Link>
+            {isMobile && <span className={styles.notyQuantity}>
+              {notifications.length}
+            </span>}
+          </ol>
+          <ol>
+            <Link href="/transacciones" as="/transacciones">
+              Transacciones
+            </Link>
+          </ol>
+          <ol>
+            <Link href="/publicaciones" as="/publicaciones">
+              <a>Publicaciones</a>
+            </Link>
+          </ol>
+          <ol onClick={() => handleLogout()}>
+            Salir
+          </ol>
+        </div>
+      </React.Fragment>
+        :
+        <Login />
+    }
   </div>
 }
 

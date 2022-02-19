@@ -149,12 +149,6 @@ span.MuiBadge-badge {
     right: -5px;
 }
 
-.App {
-    @media screen and (min-width: 1024px) {
-        margin: 0px auto 0;
-    }
-}
-
 @media screen and (min-width: 1024px) {
     #view_Header,
     #view_BottomNavBar,
@@ -656,7 +650,7 @@ body {
     background: #f4f4f4;
     font-family: "Rowdies", cursive;
     font-weight: 300;
-    margin: 0;
+    margin: 17px auto 0;
     min-height: 100vh;
     overflow-x: hidden;
     padding: 0;

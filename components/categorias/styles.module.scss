@@ -15,56 +15,7 @@
             top: 60px;
         }
     }
-    .notyQuantity {
-        background: #ea4d42;
-        border-radius: 50%;
-        color: white;
-        cursor: pointer;
-        font-size: 11px;
-        height: 20px;
-        line-height: 20px;
-        padding: 0;
-        position: absolute;
-        right: 4px;
-        text-align: center;
-        top: 0;
-        width: 20px;
-        z-index: 1;
-    }
-
-    .perfil {
-        display: block;
-        padding: 8px 0;
-        &:hover {
-            .PreviewUser {
-                height: 180px;
-            }
-        }
-        :global(.content_image) {
-            height: 40px;
-            width: 40px;
-            &::after {
-                display: none;
-            }
-        }
-
-        .arrow {
-            color: #b3b3b3;
-            margin-left: 10px;
-            &.actived {
-                transform: rotate(180deg);
-            }
-        }
-        .picture {
-            border-radius: 50%;
-            height: 35px;
-            width: 35px;
-            background-size: 40px;
-            margin-right: 10px;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-    }
+    
     > ul {
         align-items: center;
         display: flex;
@@ -104,7 +55,7 @@
             &.crear-publicacion {
                 padding-right: 0;
                 a {
-                    background: linear-gradient(to bottom right, #4d6f92 0%, #426d98 100%);
+                    background: linear-gradient(rgb(128, 164, 202) 0%, rgb(71, 110, 150) 100%);
                     border-radius: 20px;
                     color: white;
                     justify-content: center;

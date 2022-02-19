@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { getSubcategories } from "../../lib/utils"
-import styles from "./subcategories.module.scss"
+import styles from "./styles.module.scss"
 
 const Subcategories = () => {
   const list = getSubcategories()
