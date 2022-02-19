@@ -1,3 +1,4 @@
+import React from 'react'
 import { scrollTo } from 'scroll-js'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faQuestionCircle, faUser, faNewspaper, faBell } from "@fortawesome/free-regular-svg-icons"
@@ -12,9 +13,10 @@ import styles from "./perfil.module.scss"
 import UserNotifications from "../../components/userNotifications/UserNotifications"
 import Transacciones from '../../components/transacciones/Transacciones'
 import Publicaciones from '../../components/publicaciones/Publicaciones'
+import VARS from "../../lib/variables"
+const { IS_MOBILE } = VARS
 
 const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, setUserData }) => {
-    const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
     const [tab, setTab] = useState("profile-content")
 
     const goTo = (value) => {
@@ -25,18 +27,12 @@ const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, set
 
     return <section className={styles.perfil}>
         {
-            isMobile && <div className={styles.tabs}>
+            IS_MOBILE && <div className={styles.tabs}>
                 <ol className={tab == "profile-content" ? styles.active : ""}>
                     <FontAwesomeIcon icon={faUser} onClick={() => goTo("profile-content")} />
                 </ol>
                 <ol className={tab == "notifications-content" ? styles.active : ""}>
                     <FontAwesomeIcon icon={faBell} onClick={() => goTo("notifications-content")} />
-                </ol>
-                <ol className={tab == "publications-content" ? styles.active : ""}>
-                    <FontAwesomeIcon icon={faNewspaper} onClick={() => goTo("publications-content")} />
-                </ol>
-                <ol className={tab == "transactions-content" ? styles.active : ""}>
-                    <FontAwesomeIcon icon={faShoppingBasket} onClick={() => goTo("transactions-content")} />
                 </ol>
             </div>
         }
@@ -96,17 +92,6 @@ const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, set
                 <h3>Notificaciones</h3>
                 <UserNotifications />
             </div>
-            {
-                isMobile && <React.Fragment>
-                    <div className="Card publications-content">
-                        <Publicaciones />
-                    </div>
-
-                    <div className="Card transactions-content">
-                        <Transacciones />
-                    </div>
-                </React.Fragment>
-            }
         </div>
     </section>
 }

@@ -27,6 +27,7 @@
         margin: 0;
         @media screen and (max-width: 420px) {
             display: flex;
+            justify-content: space-between;
             padding: 0 10px;
             text-align: center;
         }
@@ -75,27 +76,31 @@
         }
     }
     .content_buscador {
+        align-items: center;
         display: flex;
         position: relative;
         width: 500px;
         @media screen and (max-width: 420px) {
-            background: white;
-            box-shadow: 2px 2px 5px 0 #ababab52;
             height: 60px;
             margin: 0;
-            padding: 10px 10px 10px;
+            position: initial;
             width: 200px;
         }
         .results {
             background: white;
-            border-top: 0;
-            border: solid 1px #b0b0b0;
-            box-sizing: border-box;
+            height: 500px;
+            left: 0;
+            overflow: scroll;
             padding: 10px;
             position: absolute;
             top: 56px;
-            width: 100%;
+            width: 350px;
             z-index: 3;
+            @media screen and (max-width: 420px) {
+                height: 100vh;
+                top: 82px;
+                width: 100%;
+            }
             .row {
                 display: flex;
                 margin-bottom: 10px;
@@ -144,7 +149,7 @@
             cursor: pointer;
         }
     }
-    .Textfield{
+    .Textfield {
         width: 500px;
     }
 }

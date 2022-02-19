@@ -58,7 +58,7 @@ const CakeReport = ({ publications = [] }) => {
         ],
     }
 
-    return <div className={`${styles.report}`}>
+    return <div className={`${styles.report} m-20`}>
         <h2>Informe de tus publicaciones</h2>
         <div className="Card main">
             <div className={styles.graphic}>
@@ -156,7 +156,7 @@ const Publicaciones = () => {
             </Tabs>
         </Box>
 
-        <TabPanel value={value} index={0}>
+        <TabPanel value={value} index={0} className="m-20">
             <h2>
                 Listado de publicaciones
                 <FontAwesomeIcon className="svg-question" icon={faQuestionCircle} onClick={() => {
@@ -169,10 +169,10 @@ const Publicaciones = () => {
                     dispatch({ type: "SET_MESSAGE", payload: { message } })
                 }} />
             </h2>
-            <ul className="Card">
+            <ul className="">
                 {
                     reqPublications?.publications && reqPublications.publications.map((item, ind) => {
-                        return <li className={`${styles["flex-table"]} ${item.status ? '' : styles.disabled}`}>
+                        return <li className={`Card ${styles["flex-table"]} ${item.status ? '' : styles.disabled}`}>
                             <div><img src={item.image_link} /></div>
                             <div className={styles["flex-row"]}>{item.title}</div>
                             <div className={styles["flex-row"]}>${format_number(item.sale_price)}</div>
@@ -182,7 +182,9 @@ const Publicaciones = () => {
                             <div className={`${styles["flex-row"]} ${styles.actions}`}>
                                 {
                                     item.status && <Link href="/publicacion/[id]" as={`/publicacion/${item.slug}`}>
-                                        <a className={styles.verPublicacion}>Ver</a>
+                                        <Button color="blue">
+                                            Ver
+                                        </Button>
                                     </Link>
                                 }
                                 {
@@ -199,7 +201,7 @@ const Publicaciones = () => {
                                         {/* No es posible ver la publicación */}
                                     </span>
                                 }
-                                <Button onClick={() => handleEdit(item.slug)} color="blue">Editar</Button>
+                                <Button onClick={() => handleEdit(item.slug)} color="yellow">Editar</Button>
                                 <Button onClick={() => item.is_verified ? handleChangeState(item.id, !item.status) : null} color={item.is_verified ? item.status ? "red" : "green" : "disabled"}>
                                     {
                                         item.status == true ? <>Desactivar</> : <>Activar</>

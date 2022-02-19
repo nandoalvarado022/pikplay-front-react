@@ -48,9 +48,6 @@ const PreviewUser = () => {
             <Link href="/perfil#notificaciones" as="/perfil#notificaciones">
               Notificaciones
             </Link>
-            {isMobile && <span className={styles.notyQuantity}>
-              {notifications.length}
-            </span>}
           </ol>
           <ol>
             <Link href="/transacciones" as="/transacciones">
@@ -68,7 +65,7 @@ const PreviewUser = () => {
         </div>
       </React.Fragment>
         :
-        <Login />
+      <Login />
     }
   </div>
 }

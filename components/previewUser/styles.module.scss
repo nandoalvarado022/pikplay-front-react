@@ -3,12 +3,16 @@
     width: 180px;
     @media screen and (max-width: 420px) {
         border-radius: 10px 10px 0 0;
+        // position: initial;
         width: 80%;
     }
     &.actived {
         .bg_black {
             height: 306px;
             opacity: 1;
+            @media screen and (max-width: 420px) {
+                height: 196px;
+            }
         }
     }
     .bg_black {
@@ -25,33 +29,44 @@
         right: 40px;
         top: 40px;
         transition: 0.8s ease;
-    }
-    ol {
-        border-bottom: 1px solid #424950;
-        margin: 10px 0;
-        padding: 0 20px 10px;
-        text-align: center;
-        &:nth-of-type(1) {
-            // margin-top: 20px;
-        }
-        a {
-            color: white !important;
-            justify-content: center;
-        }
-        .flex {
-            align-items: center;
-            display: flex;
-            height: 20px;
-            justify-content: space-around;
+        @media screen and (max-width: 420px) {
+            border-radius: 10px 10px 0 0;
+            left: 0;
+            right: 0;
+            top: initial;
+            width: 180px;
+            position: fixed;
+            bottom: 70px;
             margin: 0 auto;
-            width: 80px;
         }
-        .text {
-            font-size: 12px;
-            margin-top: 10px;
-        }
-        :global(.number-coins) span {
-            display: none;
+
+        ol {
+            border-bottom: 1px solid #424950;
+            margin: 10px 0;
+            padding: 0 20px 10px;
+            text-align: center;
+            &:nth-of-type(1) {
+                // margin-top: 20px;
+            }
+            a {
+                color: white !important;
+                justify-content: center;
+            }
+            .flex {
+                align-items: center;
+                display: flex;
+                height: 20px;
+                justify-content: space-around;
+                margin: 0 auto;
+                width: 80px;
+            }
+            .text {
+                font-size: 12px;
+                margin-top: 10px;
+            }
+            :global(.number-coins) span {
+                display: none;
+            }
         }
     }
 }
@@ -71,6 +86,9 @@
     top: 0;
     width: 20px;
     z-index: 1;
+    @media screen and (max-width: 420px) {
+        right: 0;
+    }
 }
 
 @keyframes like {

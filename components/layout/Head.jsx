@@ -12,7 +12,7 @@ const Header = ({ title, description, image, url }) => {
         <meta name="og:url" content={url} />
         <meta name="og:site_name" content="Pik-Play" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
-        <meta name="theme-color" content="#4d9afa" />
+        <meta name="theme-color" content="#476E95" />
         <meta name="google-site-verification" content="4IqXj9YLrm5eo3s_c3cTKcAqBwUhCf8qgJgL2sLtJko" />
         <meta name="twitter:description" content={description} />
         <meta name="keywords" value="" />

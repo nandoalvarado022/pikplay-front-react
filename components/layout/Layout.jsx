@@ -6,12 +6,14 @@ import { initGA, logPageView } from "../../public/analytics"
 import Router from "next/router"
 import NProgress from "nprogress"
 import React from "react"
-import Header from "../header/Header"
+import MyHeader from "../myHeader/MyHeader"
 import styles from "./layout.module.scss"
 import Categorias from "../categorias/Categorias"
 import MenuMovil from "../menuMovil/MenuMovil"
 import Subcategories from '../subcategories/Subcategories'
 import Head from './Head';
+import VARS from "../../lib/variables"
+const { IS_MOBILE } = VARS
 
 toastr.options.progressBar = true;
 toastr.options.timeOut = 5000;
@@ -157,12 +159,12 @@ class Layout extends React.Component {
     return <React.Fragment>
       <Head title={meta_title} descripcion={meta_descripcion} image={meta_image} url={meta_url} /> 
       <body className="App font-a">
-        <Header partner={is_partner ? partner : null} />
-        <audio />
+        <MyHeader />
+        {/* <audio /> */}
         <main className={styles.principal}>
           <Categorias scroll={false} />
           <Subcategories />
-          {/*isMobile && <MenuMovil />*/}
+          {IS_MOBILE && <MenuMovil />}
           <Notification isOpen={this.context.showNotification} />
           {props.children}
           <a target="_BLANK" className="a_whatsapp" href="https://api.whatsapp.com/send?phone=573052665725&text=Escribe%20aqu%C3%AD%20tu%20pregunta">

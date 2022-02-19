@@ -812,10 +812,10 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
 
 export const loadAudio = function (fuente) {
   // const fuente = "/audios/noti.mp3"
-  const sonido = document.querySelector("audio")
-  sonido.src = fuente
-  sonido.volume = 0.2
-  sonido.play()
+  // const sonido = document.querySelector("audio")
+  // sonido.src = fuente
+  // sonido.volume = 0.2
+  // sonido.play()
 }
 
 export function getPaises() {
