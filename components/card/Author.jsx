@@ -7,16 +7,15 @@ const Author = ({ user = {} }) => {
         <img className={styles.user_picture} src={user?.picture} />
         <p title={user?.certificate ? "El usuario esta certificado, puedes confiar en esta oferta" : ""}>
             <h3>
-                {user?.certificate != 0 && <FontAwesomeIcon icon={faCheckCircle} />}
                 {user?.name}
             </h3>
-            {user?.certificate && <span className={styles.stars}>
+            {user?.certificate && <div className={styles.stars}>
                 <FontAwesomeIcon icon={faStar} /> 4,5
-            </span>}
-            {/* {user.transactions > 0 && <span className={styles.transactions}>
-                <FontAwesomeIcon icon={faHandshake} />
-                {user_transactions} ventas
-            </span> */}
+            </div>}
+            {user?.transactions > 0 && <div className={styles.transactions}>
+                <FontAwesomeIcon icon={faCheckCircle} />
+                {user?.transactions} ventas completadas
+            </div>}
         </p>
     </div>
 }

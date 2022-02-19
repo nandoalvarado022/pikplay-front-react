@@ -8,8 +8,8 @@
     }
     &.actived {
         .bg_black {
+            display: block;
             height: 306px;
-            opacity: 1;
             @media screen and (max-width: 420px) {
                 height: 196px;
             }
@@ -20,10 +20,10 @@
         border-radius: 10px;
         box-shadow: 0px 2px 2px #5252522e;
         color: white;
+        display: none;
         font-size: 14px;
         font-weight: bold;
         height: 0;
-        opacity: 0;
         position: absolute;
         padding-top: 10px;
         right: 40px;

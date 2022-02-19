@@ -10,8 +10,9 @@ import styles from "./cardDetalleProducto.module.scss"
 import React from "react"
 import { faCheckCircle, faHandshake } from "@fortawesome/free-regular-svg-icons"
 import Author from "./Author"
+import CoinsByBuy from "../coinsByBuy/CoinsByBuy"
 
-const CardProducto = ({ apply_cashback, banner_bottom, certificate, meta_url, title, descuento = 0, description = "", handleHablarVendedor, image_link, image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, setIsModalHablarVendedor, user_name, user_picture, user_transactions, quantity, user, warranty } = {}) => {
+const CardProducto = ({ apply_cashback, banner_bottom, meta_url, title, descuento = 0, description = "", handleHablarVendedor, image_link, image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, setIsModalHablarVendedor, user_name, user_picture, user_transactions, quantity, user, warranty } = {}) => {
   const ref_descripcion_imagen = useRef(null)
   let images = []
 
@@ -57,13 +58,12 @@ const CardProducto = ({ apply_cashback, banner_bottom, certificate, meta_url, ti
         <div className={styles.descripcion}>
           <h1>{title}</h1>
           <div className={`Card ${styles.Card}`}>
-            {certificate && <FontAwesomeIcon className={styles.verified} icon={faCheckCircle} />}
-
             {/* Si aplica cashback */}
             {apply_cashback && <span title="Ganarás Pikcoins por hacer esta compra" className={styles.apply_cashback}>
               <picture className={styles.coin} />
               ¡Cashback!
             </span>}
+
             <div className={styles.content_precio}>
               {/* Precio */}
               {/* <span className={styles.tachado}>
@@ -75,17 +75,19 @@ const CardProducto = ({ apply_cashback, banner_bottom, certificate, meta_url, ti
               }
 
               {(sale_price && sale_price != 0) && <span className={styles.nuevoPrecio}>
-                  ${format_number(sale_price)}
-                </span>
+                ${format_number(sale_price)}
+              </span>
               }
             </div>
 
             <div className={`flex ${styles.compra_author}`}>
-              {quantity > 0 && (<Button color="blue" onClick={handleHablarVendedor}>Me interesa este artículo</Button>)}
+              {quantity > 0 && (<Button color="blue" onClick={handleHablarVendedor}>Comprar</Button>)}
               <div className={styles.content_author}>
                 <Author user={user} />
               </div>
             </div>
+
+            {user?.certificate && <CoinsByBuy price={sale_price} />}
 
             <div className={styles.description}>
               <p className={styles.title}>Descripción</p>

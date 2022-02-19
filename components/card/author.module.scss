@@ -4,15 +4,21 @@
     border-radius: 5px;
     border: 1px solid #24292e;
     display: flex;
-    height: 30px;
+    height: 47px;
     left: 0;
     padding: 5px 5px 10px 10px;
     right: 0;
     transition: 0.3s ease;
     width: max-content;
     z-index: 1;
+    @media screen and (max-width: 420px) {
+        margin: 0 auto;
+    }
     > p > * {
         font-size: 12px;
+    }
+    img{
+        border-radius: 5px;
     }
     span {
         border-radius: 50%;

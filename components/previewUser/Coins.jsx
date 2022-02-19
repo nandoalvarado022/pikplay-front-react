@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { format_number } from "../../lib/utils"
 import styles from "./coins.module.scss"
 
-const Coins = () => {
+const Coins = ({ coins }) => {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   const [isAnimate, setIsAnimate] = useState(false)
-  const coins = useSelector((state) => state.coins)
+  coins = coins ? coins : useSelector((state) => state.coins)
   const prevCountCoins = useRef()
 
   useEffect(() => {
