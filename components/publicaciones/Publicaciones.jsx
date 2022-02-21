@@ -14,6 +14,9 @@ import Notification from "../../components/notification"
 import { Box, Tab, Tabs, Typography } from "@material-ui/core"
 import { Doughnut } from 'react-chartjs-2'
 import { useSelector, useDispatch } from 'react-redux'
+import ChangeSeller from './ChangeSeller'
+import VARS from "../../lib/variables"
+const { IS_ADMIN } = VARS
 
 moment.locale('es')
 
@@ -64,7 +67,7 @@ const CakeReport = ({ publications = [] }) => {
             <div className={styles.graphic}>
                 <Doughnut data={data} />
             </div>
-            <table cellspacing="0">
+            <table cellSpacing="0">
                 <tr>
                     <td>Publicación</td>
                     <td>Visualizaciones</td>
@@ -94,9 +97,62 @@ const CakeReport = ({ publications = [] }) => {
     </div >
 }
 
+const Publicacion = ({ item, ind }) => {
+    const [changeSeller, setChangeSeller] = useState(false)
+    const [showAdminOptions, setShowAdminOptions] = useState(false)
+
+    return <li className={`${item.status ? '' : styles.disabled}`}>
+        <div className={`Card ${styles["flex-table"]}`}>
+            <div><img src={item.image_link} /></div>
+            <div className={styles["flex-row"]}>{item.title}</div>
+            <div className={styles["flex-row"]}>${format_number(item.sale_price)}</div>
+            <div className={styles["flex-row"]} title="Fecha de creación">
+                {moment(parseInt(item.created)).format("MMMM DD YYYY, h:mm:ss a")}
+            </div>
+            <div className={styles["flex-row"]}>{item.views} visitas</div>
+            <div className={styles["flex-row"]}>{item.is_verified ? item.status ? "Activa" : "Pausada" : "En revisión"}</div>
+            <div className={`${styles["flex-row"]} ${styles.actions}`}>
+                {
+                    item.status && <Link href="/publicacion/[id]" as={`/publicacion/${item.slug}`}>
+                        <Button color="blue">
+                            Ver
+                        </Button>
+                    </Link>
+                }
+                {
+                    !item.status && <span className={styles.verPublicacion} onClick={() => {
+                    }}>
+                        <FontAwesomeIcon style={{ position: "relative", left: "-5px", top: "2px" }} icon={faQuestionCircle} onClick={() => {
+                            const message = {
+                                id: 0, message: <div>
+                                    <p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pik-Play ó porque esta pausada</p>
+                                </div>
+                            }
+                            dispatch({ type: "SET_MESSAGE", payload: { message } })
+                        }} />
+                        {/* No es posible ver la publicación */}
+                    </span>
+                }
+                <Button onClick={() => handleEdit(item.slug)} color="yellow">Editar</Button>
+                <Button onClick={() => item.is_verified ? handleChangeState(item.id, !item.status) : null} color={item.is_verified ? item.status ? "red" : "green" : "disabled"}>
+                    {
+                        item.status == true ? <>Desactivar</> : <>Activar</>
+                    }
+                </Button>
+                <Button color="link" onClick={() => setShowAdminOptions(!showAdminOptions)}>
+                    Más opciones
+                </Button>
+            </div>
+        </div>
+        {(IS_ADMIN && showAdminOptions) && <div className={styles.adminActions}>
+            <ChangeSeller id_publication={item.id} />
+        </div>}
+    </li>
+}
+
 const Publicaciones = () => {
     const dispatch = useDispatch()
-    const { phone } = useSelector((state) => state.user)
+    const { id: user_id } = useSelector((state) => state.user)
     const UPDATE_MUTATION = gql`
 	mutation ChangeStatePublication($id: Int!, $status: Boolean!){
 		changeStatePublication(id: $id, status: $status)
@@ -105,8 +161,8 @@ const Publicaciones = () => {
     const [changeStatePublication, { loading: loadingUpdate }] = useMutation(UPDATE_MUTATION);
 
     const PUBLICATIONS_QUERY = gql`
-	query Publications($phone: String, $order: Boolean){
-		publications(phone: $phone, order: $order){
+	query Publications($user_id: Int, $order: Boolean){
+		publications(user_id: $user_id, order: $order){
 			accept_changues
 			created
 			id
@@ -121,7 +177,7 @@ const Publicaciones = () => {
 	}`
 
     const [getPublications, { loading: loadingPublications, error, data: reqPublications }] = useLazyQuery(PUBLICATIONS_QUERY, {
-        variables: { phone, order: true },
+        variables: { user_id, order: true },
         fetchPolicy: "no-cache"
     })
 
@@ -172,43 +228,7 @@ const Publicaciones = () => {
             <ul className="">
                 {
                     reqPublications?.publications && reqPublications.publications.map((item, ind) => {
-                        return <li className={`Card ${styles["flex-table"]} ${item.status ? '' : styles.disabled}`}>
-                            <div><img src={item.image_link} /></div>
-                            <div className={styles["flex-row"]}>{item.title}</div>
-                            <div className={styles["flex-row"]}>${format_number(item.sale_price)}</div>
-                            <div className={styles["flex-row"]}>{moment(parseInt(item.created)).format("MMMM DD YYYY, h:mm:ss a")}</div>
-                            <div className={styles["flex-row"]}>{item.views} visitas</div>
-                            <div className={styles["flex-row"]}>{item.is_verified ? item.status ? "Activa" : "Pausada" : "En revisión"}</div>
-                            <div className={`${styles["flex-row"]} ${styles.actions}`}>
-                                {
-                                    item.status && <Link href="/publicacion/[id]" as={`/publicacion/${item.slug}`}>
-                                        <Button color="blue">
-                                            Ver
-                                        </Button>
-                                    </Link>
-                                }
-                                {
-                                    !item.status && <span className={styles.verPublicacion} onClick={() => {
-                                    }}>
-                                        <FontAwesomeIcon style={{ position: "relative", left: "-5px", top: "2px" }} icon={faQuestionCircle} onClick={() => {
-                                            const message = {
-                                                id: 0, message: <div>
-                                                    <p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pik-Play ó porque esta pausada</p>
-                                                </div>
-                                            }
-                                            dispatch({ type: "SET_MESSAGE", payload: { message } })
-                                        }} />
-                                        {/* No es posible ver la publicación */}
-                                    </span>
-                                }
-                                <Button onClick={() => handleEdit(item.slug)} color="yellow">Editar</Button>
-                                <Button onClick={() => item.is_verified ? handleChangeState(item.id, !item.status) : null} color={item.is_verified ? item.status ? "red" : "green" : "disabled"}>
-                                    {
-                                        item.status == true ? <>Desactivar</> : <>Activar</>
-                                    }
-                                </Button>
-                            </div>
-                        </li>
+                        return <Publicacion item={item} ind={ind} />
                     })
                 }
             </ul>

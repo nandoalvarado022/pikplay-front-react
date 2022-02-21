@@ -9,12 +9,6 @@ button.btn {
     &:hover {
         box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     }
-    &.border-button {
-        border-bottom: 1px solid #8c8c8c;
-        color: #8c8c8c;
-        border-radius: 0;
-        box-shadow: none;
-    }
     &.normal {
         background: #a9a9a9;
     }
@@ -26,6 +20,15 @@ button.btn {
     }
     &.red {
         background: #f05f70;
+    }
+    &.link {
+        color: #476e96;
+        font-weight: normal;
+        text-decoration: underline;
+        text-shadow: initial;
+        &:hover{
+            box-shadow: initial;
+        }
     }
     &.green {
         background: #53c060;

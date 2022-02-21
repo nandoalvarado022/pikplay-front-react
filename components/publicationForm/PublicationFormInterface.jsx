@@ -96,7 +96,7 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
             currentStep == 2 && <>
               <div className="Card">
                 <div className={styles.button_category}>
-                  <Button color="border-button" aria-controls="tipo_publicacion" onClick={handleRightClick} aria-haspopup="true">{!publicationFormData.category ? "Seleccionar la categoria" : getCategories(publicationFormData.category).name}</Button>
+                  <Button color="yellow" aria-controls="tipo_publicacion" onClick={handleRightClick} aria-haspopup="true">{!publicationFormData.category ? "Seleccionar la categoria" : getCategories(publicationFormData.category).name}</Button>
                 </div>
                 <div>
                   <TextField fullWidth={true} label="Precio" placeholder="" margin="normal" value={sale_price} type='number' onChange={e => setPublicationFormData({ ...publicationFormData, sale_price: Number(e.target.value) })} />

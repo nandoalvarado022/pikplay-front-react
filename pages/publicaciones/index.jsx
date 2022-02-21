@@ -2,7 +2,7 @@ import Layout from '../../components/layout/Layout'
 import Publicaciones from '../../components/publicaciones/Publicaciones'
 
 export default function MyPublications(props) {
-	return <Layout title="Crear publicación" meta_title="Crear publicación en club2ruedas.com" meta_url="https://club2ruedas.com/publicacion/crear">
+	return <Layout title="Publicaciones" meta_title="Publicaciones" meta_url="https://pik-play.com/publicaciones">
 		<Publicaciones />
 	</Layout >
 }
