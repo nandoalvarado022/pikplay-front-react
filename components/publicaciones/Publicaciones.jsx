@@ -15,8 +15,6 @@ import { Box, Tab, Tabs, Typography } from "@material-ui/core"
 import { Doughnut } from 'react-chartjs-2'
 import { useSelector, useDispatch } from 'react-redux'
 import ChangeSeller from './ChangeSeller'
-import VARS from "../../lib/variables"
-const { IS_ADMIN } = VARS
 
 moment.locale('es')
 
@@ -100,6 +98,7 @@ const CakeReport = ({ publications = [] }) => {
 const Publicacion = ({ item, ind }) => {
     const [changeSeller, setChangeSeller] = useState(false)
     const [showAdminOptions, setShowAdminOptions] = useState(false)
+    const { is_admin } = useSelector((state) => state.user)
 
     return <li className={`${item.status ? '' : styles.disabled}`}>
         <div className={`Card ${styles["flex-table"]}`}>
@@ -139,12 +138,12 @@ const Publicacion = ({ item, ind }) => {
                         item.status == true ? <>Desactivar</> : <>Activar</>
                     }
                 </Button>
-                <Button color="link" onClick={() => setShowAdminOptions(!showAdminOptions)}>
+                {is_admin && <Button color="link" onClick={() => setShowAdminOptions(!showAdminOptions)}>
                     Más opciones
-                </Button>
+                </Button>}
             </div>
         </div>
-        {(IS_ADMIN && showAdminOptions) && <div className={styles.adminActions}>
+        {(is_admin && showAdminOptions) && <div className={styles.adminActions}>
             <ChangeSeller id_publication={item.id} />
         </div>}
     </li>

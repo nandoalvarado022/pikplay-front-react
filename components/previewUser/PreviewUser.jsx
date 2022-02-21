@@ -27,7 +27,7 @@ const PreviewUser = () => {
     setIsOpenPreviewProfile(!isOpenPreviewProfile)
   }
 
-  return <div className={`${styles.PreviewUser} PreviewUser ${isOpenPreviewProfile ? styles.actived : null}`}>
+  return <div onBlur={() => setTimeout(() => alert(), 200)} className={`${styles.PreviewUser} PreviewUser ${isOpenPreviewProfile ? styles.actived : null}`}>
     {
       user.id != 0 ? <React.Fragment>
         <ImageProfile handleClickImage={handleClickImage} />
@@ -65,7 +65,7 @@ const PreviewUser = () => {
         </div>
       </React.Fragment>
         :
-      <Login />
+        <Login />
     }
   </div>
 }
