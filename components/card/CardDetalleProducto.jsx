@@ -65,19 +65,12 @@ const CardProducto = ({ apply_cashback, banner_bottom, meta_url, title, descuent
             </span>}
 
             <div className={styles.content_precio}>
-              {/* Precio */}
-              {/* <span className={styles.tachado}>
-              {price && <React.Fragment>$&nbsp;{price}</React.Fragment>}
-            </span> */}
-
               {descuento > 0 &&
-                <span className={"descuento" + (logDetalle ? " logDetalle" : "")}> -{descuento}% </span>
-              }
+                <span className={"descuento" + (logDetalle ? " logDetalle" : "")}> -{descuento}% </span>}
 
-              {(sale_price && sale_price != 0) && <span className={styles.nuevoPrecio}>
+              {sale_price != "0" && <span className={styles.nuevoPrecio}>
                 ${format_number(sale_price)}
-              </span>
-              }
+              </span>}
             </div>
 
             <div className={`flex ${styles.compra_author}`}>

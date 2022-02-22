@@ -3,7 +3,7 @@ import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
 import { faRocket } from "@fortawesome/free-solid-svg-icons"
-import { gql, useMutation, useLazyQuery } from '@apollo/client'
+import { useQuery, gql, useMutation, useLazyQuery } from '@apollo/client'
 import Router from 'next/router'
 import styles from './publicaciones.module.scss'
 import Button from '../../components/button/Button'
@@ -95,15 +95,43 @@ const CakeReport = ({ publications = [] }) => {
     </div >
 }
 
-const Publicacion = ({ item, ind }) => {
+const Publicacion = ({ item, ind, getPublications }) => {
     const [changeSeller, setChangeSeller] = useState(false)
     const [showAdminOptions, setShowAdminOptions] = useState(false)
     const { is_admin } = useSelector((state) => state.user)
 
+    const changeSellerHandle = (sellerUpdated) => {
+        item.user = sellerUpdated
+    }
+
+    const VERIFY_PUBLICATION = gql`
+    query verifyPublication($id_publication: Int){
+        verifyPublication(id_publication: $id_publication)
+    }`
+
+    const UPDATE_MUTATION = gql`
+	mutation ChangeStatePublication($id: Int!, $status: Boolean!){
+		changeStatePublication(id: $id, status: $status)
+	}`
+
+    const [changeStatePublication, { }] = useMutation(UPDATE_MUTATION);
+
+    const handleChangeState = (status) => {
+        changeStatePublication({
+            variables: { id: item.id, status },
+            fetchPolicy: "no-cache"
+        });
+        setTimeout(() => {
+            getPublications()
+        }, 500)
+    }
+
+    const [handleChangeApprove, { loading, error, data }] = useLazyQuery(VERIFY_PUBLICATION, { variables: { id_publication: item.id }, fetchPolicy: "no-cache" })
+
     return <li className={`${item.status ? '' : styles.disabled}`}>
         <div className={`Card ${styles["flex-table"]}`}>
             <div><img src={item.image_link} /></div>
-            <div className={styles["flex-row"]}>{item.title}</div>
+            <div className={styles["flex-row"]} title={`ID: ${item.id}`}>{item.title}</div>
             <div className={styles["flex-row"]}>${format_number(item.sale_price)}</div>
             <div className={styles["flex-row"]} title="Fecha de creación">
                 {moment(parseInt(item.created)).format("MMMM DD YYYY, h:mm:ss a")}
@@ -133,7 +161,7 @@ const Publicacion = ({ item, ind }) => {
                     </span>
                 }
                 <Button onClick={() => handleEdit(item.slug)} color="yellow">Editar</Button>
-                <Button onClick={() => item.is_verified ? handleChangeState(item.id, !item.status) : null} color={item.is_verified ? item.status ? "red" : "green" : "disabled"}>
+                <Button onClick={() => item.is_verified ? handleChangeState(!item.status) : null} color={item.is_verified ? item.status ? "red" : "green" : "disabled"}>
                     {
                         item.status == true ? <>Desactivar</> : <>Activar</>
                     }
@@ -144,24 +172,19 @@ const Publicacion = ({ item, ind }) => {
             </div>
         </div>
         {(is_admin && showAdminOptions) && <div className={styles.adminActions}>
-            <ChangeSeller id_publication={item.id} />
+            <ChangeSeller changeSellerHandle={changeSellerHandle} user_id={item.user.id} id_publication={item.id} />
+            <Button disabled={item.is_verified} color="blue" onClick={handleChangeApprove}>Dar de alta</Button>
         </div>}
     </li>
 }
 
 const Publicaciones = () => {
     const dispatch = useDispatch()
-    const { id: user_id } = useSelector((state) => state.user)
-    const UPDATE_MUTATION = gql`
-	mutation ChangeStatePublication($id: Int!, $status: Boolean!){
-		changeStatePublication(id: $id, status: $status)
-	}`
-
-    const [changeStatePublication, { loading: loadingUpdate }] = useMutation(UPDATE_MUTATION);
+    const { id: user_id, is_admin } = useSelector((state) => state.user)
 
     const PUBLICATIONS_QUERY = gql`
-	query Publications($user_id: Int, $order: Boolean){
-		publications(user_id: $user_id, order: $order){
+	query Publications($user_id: Int, $order: Boolean, $is_admin: Boolean){
+		publications(user_id: $user_id, order: $order, is_admin: $is_admin){
 			accept_changues
 			created
 			id
@@ -171,23 +194,17 @@ const Publicaciones = () => {
 			slug
 			status
 			title
+            user {
+                id
+            }
 			views
 		}
 	}`
 
     const [getPublications, { loading: loadingPublications, error, data: reqPublications }] = useLazyQuery(PUBLICATIONS_QUERY, {
-        variables: { user_id, order: true },
+        variables: { user_id, order: true, is_admin: !!is_admin },
         fetchPolicy: "no-cache"
     })
-
-    const handleChangeState = (id, status) => {
-        changeStatePublication({
-            variables: { id, status }
-        });
-        setTimeout(() => {
-            getPublications()
-        }, 1000)
-    }
 
     const handleEdit = (slug) => {
         Router.push("/publicacion/" + slug + "/editar")
@@ -227,7 +244,7 @@ const Publicaciones = () => {
             <ul className="">
                 {
                     reqPublications?.publications && reqPublications.publications.map((item, ind) => {
-                        return <Publicacion item={item} ind={ind} />
+                        return <Publicacion item={item} ind={ind} getPublications={getPublications} />
                     })
                 }
             </ul>

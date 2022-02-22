@@ -55,6 +55,8 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
         Crea tu anuncio 100% gratis y sin comisiónes
       </Alert>
 
+      {errors && <Alert className="m-b-20" severity="error">{errors}</Alert>}
+
       <div className={styles.steps_and_actions}>
         <div className={styles.steps}>
           <div onClick={() => setCurrentStep(1)} className={currentStep == 1 && styles.active}>
@@ -138,16 +140,17 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
               <div className={`Card ${styles.images_list}`}>
                 {
                   ["image_1", "image_2", "image_3", "image_4"].map(item => {
+                    const value = publicationFormData[item]
                     return <>
                       {
-                        publicationFormData[item] == '' && <label class={(imageLoading ? styles.disabled : '') + ' ' + styles.fileWrapper}>
+                        !value && <label class={(imageLoading ? styles.disabled : '') + ' ' + styles.fileWrapper}>
                           <input disabled={imageLoading} accept=".png,.jpg,.jpeg,.gif" type='file' id={item} onChange={() => onChangeImage(item)} />
                           <FontAwesomeIcon icon={faImage} />
                           <p>Subir imágen</p>
                         </label>
                       }
                       {
-                        publicationFormData[item] != '' && <label class={styles.fileWrapper}>
+                        value && <label class={styles.fileWrapper}>
                           <span className={styles.remove} onClick={() => handleRemoveImage(item)}>
                             <FontAwesomeIcon icon={faTrash} />
                           </span>
@@ -167,7 +170,6 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
             <Card {...publicationFormData} slug={null} />
           </div>
         }
-        {errors && <Alert severity="error">{errors}</Alert>}
       </div>
     </section>
   }

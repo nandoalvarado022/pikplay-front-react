@@ -30,7 +30,7 @@ const PreviewUser = () => {
   return <div className={`${styles.PreviewUser} PreviewUser ${isOpenPreviewProfile ? styles.actived : null}`}>
     {
       user.id != 0 ? <React.Fragment>
-        <ImageProfile handleClickImage={handleClickImage} />
+        <ImageProfile handleClickImage={isMobile ? handleClickImage : null} />
         <span className={styles.notyQuantity}>
           {_notifications.length}
         </span>

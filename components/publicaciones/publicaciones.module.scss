@@ -21,14 +21,16 @@
             list-style: none;
         }
         .adminActions {
+            border-radius: 0 0 10px 10px;
+            box-shadow: 2px 2px 5px 0 #ababab52;
             background: #ffffff;
+            column-gap: 20px;
+            display: flex;
+            margin: 0 auto;
+            padding: 10px 20px;
             position: relative;
             top: -20px;
             width: 90%;
-            margin: 0 auto;
-            padding: 10px 20px;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 2px 2px 5px 0 #ababab52;
         }
         .flex-table {
             // cada item

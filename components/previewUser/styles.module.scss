@@ -1,12 +1,12 @@
 .PreviewUser {
     position: relative;
-    width: 180px;
+    margin-left: 20px;
+    width: 70px;
     @media screen and (max-width: 420px) {
         border-radius: 10px 10px 0 0;
-        // position: initial;
         width: 80%;
     }
-    &.actived {
+    &:hover, &.actived {
         .bg_black {
             display: block;
             height: 306px;
@@ -26,7 +26,7 @@
         height: 0;
         position: absolute;
         padding-top: 10px;
-        right: 40px;
+        right: 10px;
         top: 40px;
         transition: 0.8s ease;
         @media screen and (max-width: 420px) {
@@ -81,14 +81,11 @@
     line-height: 20px;
     padding: 0;
     position: absolute;
-    right: 26px;
+    right: 0px;
     text-align: center;
     top: 0;
     width: 20px;
     z-index: 1;
-    @media screen and (max-width: 420px) {
-        right: 0;
-    }
 }
 
 @keyframes like {
