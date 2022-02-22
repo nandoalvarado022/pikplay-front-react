@@ -10,7 +10,7 @@ date.locale('es');
 
 function Portada({ category, feed = [] }) {
   const [open, setOpen] = useState(false)
-  const popularyItem = feed[0]
+  const popularyItem = feed ? feed[0] : null
 
   // const [getPublications] = useLazyQuery(GET_PUBLICATIONS, {
   //   fetchPolicy: "no-cache",

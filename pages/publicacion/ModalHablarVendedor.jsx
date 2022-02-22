@@ -19,7 +19,6 @@ const ModalHablarVendedor = (props) => {
 
   const handleCreateTransaction = () => {
     // Mutation para registrar la pre orden
-    debugger
     createTransaction({ variables: { user: user.id, user_to: datosPublicacion.user.id, publication: datosPublicacion.id, type: "PURCHASE" } });
 
     if (!user) {
@@ -34,9 +33,10 @@ const ModalHablarVendedor = (props) => {
   }
 
   const enviarWhatsapp = () => {
+    const seller_phone = props.datosPublicacion.user?.phone || null
     const url = window.location
-    const texto = `Hola mi *nombre* es ${user.name}, estoy interesado en este producto ${url} para envío a ${user.city}`
-    window.open("https://api.whatsapp.com/send?phone=" + datosPublicacion.user_phone + "&text=" + texto)
+    const texto = `Hola mi nombre es ${user.name}, estoy interesado en este producto ${url} para envío a ${user.city}`
+    window.open("https://api.whatsapp.com/send?phone=" + seller_phone + "&text=" + texto)
   }
 
   const handlePagar = async () => {

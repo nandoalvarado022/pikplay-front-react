@@ -713,6 +713,7 @@ export const getFeed = async ({ slug = "", category = null, subcategory = null, 
           certificate
           id
           name
+          phone
           picture
         }
         user_name

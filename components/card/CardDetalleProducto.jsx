@@ -30,6 +30,7 @@ const CardProducto = ({ apply_cashback, banner_bottom, meta_url, title, descuent
       : null;
   let like = null;
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
+  sale_price == sale_price == 0 || sale_price == '' ? null : sale_price
 
   return <div key={indice_item} className={`Card ${styles.DetalleProducto}`}>
     <Grow key={indice_item} timeout={500} in={true} style={{ opacity: 1 }}>
@@ -67,8 +68,7 @@ const CardProducto = ({ apply_cashback, banner_bottom, meta_url, title, descuent
             <div className={styles.content_precio}>
               {descuento > 0 &&
                 <span className={"descuento" + (logDetalle ? " logDetalle" : "")}> -{descuento}% </span>}
-
-              {sale_price != "0" && <span className={styles.nuevoPrecio}>
+              {sale_price && <span className={styles.nuevoPrecio}>
                 ${format_number(sale_price)}
               </span>}
             </div>
