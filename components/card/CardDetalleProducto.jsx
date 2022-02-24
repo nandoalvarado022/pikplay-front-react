@@ -68,13 +68,16 @@ const CardProducto = ({ apply_cashback, banner_bottom, meta_url, title, descuent
             <div className={styles.content_precio}>
               {descuento > 0 &&
                 <span className={"descuento" + (logDetalle ? " logDetalle" : "")}> -{descuento}% </span>}
-              {sale_price && <span className={styles.nuevoPrecio}>
+              {!!sale_price && <span className={styles.nuevoPrecio}>
                 ${format_number(sale_price)}
               </span>}
             </div>
 
             <div className={`flex ${styles.compra_author}`}>
-              {quantity > 0 && (<Button color="blue" onClick={handleHablarVendedor}>Comprar</Button>)}
+              <Button color="blue" onClick={handleHablarVendedor}>
+                {quantity > 0 && "Comprar"}
+                {quantity == 0 && "Reservar"}
+              </Button>
               <div className={styles.content_author}>
                 <Author user={user} />
               </div>

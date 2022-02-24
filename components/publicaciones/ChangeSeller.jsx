@@ -8,6 +8,7 @@ import Button from '../button/Button'
 
 const ChangeSeller = ({ changeSellerHandle, id_publication, user_id }) => {
     const [name, setName] = useState('')
+    const [users, setUsers] = useState([])
     const [defaultValue, setDefaultValue] = useState(null)
     const USERS_QUERY = gql`
 	query getUsers($name: String){
@@ -22,14 +23,19 @@ const ChangeSeller = ({ changeSellerHandle, id_publication, user_id }) => {
 		changeSeller(id_seller: $id_seller, id_publication: $id_publication)
 	}`
 
-    const [getUsers, { loading, error, data: users }] = useLazyQuery(USERS_QUERY, {
+    const [getUsers, { loading, error, data }] = useLazyQuery(USERS_QUERY, {
         variables: { name },
-        fetchPolicy: "no-cache"
+        fetchPolicy: "no-cache",
+        onCompleted: (data) => {
+            const users = data.getUsers.filter(item => item.name)
+            setUsers(users)
+        }
     })
 
     const [dispatch, { }] = useMutation(CHANGE_SELLER_MUTATION);
 
     const handleSubmit = (value) => {
+        if (!value) return
         dispatch({ variables: { id_publication, id_seller: value.id } })
         changeSellerHandle(value)
         setDefaultValue(value)
@@ -43,8 +49,7 @@ const ChangeSeller = ({ changeSellerHandle, id_publication, user_id }) => {
         console.log(users)
         if (users) {
             // const value = users.getUsers.indexOf(users.getUsers.find(item => item.id == user_id))
-            const value = users.getUsers.find(item => item.id == user_id)
-            console.log(value)
+            const value = users.find(item => item.id == user_id)
             setDefaultValue(value)
         }
     }, [users])
@@ -53,12 +58,13 @@ const ChangeSeller = ({ changeSellerHandle, id_publication, user_id }) => {
         <div className="flex">
             <Autocomplete
                 id="combo-box-demo"
-                options={users?.getUsers}
+                options={users}
                 onChange={(e, value) => { handleSubmit(value) }}
                 getOptionLabel={(option) => option.name}
                 style={{ width: 300 }}
                 renderInput={(params) => <TextField {...params} label="Cambiar Seller" />}
-                value={defaultValue}
+                placeholder="hola"
+                value={defaultValue ? defaultValue : null}
             />
         </div>
     </div>

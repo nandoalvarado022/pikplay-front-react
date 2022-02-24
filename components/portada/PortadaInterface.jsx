@@ -48,7 +48,7 @@ const PortadaInterface = ({ category, handleLike, feed, popularyItem, starItem }
   }, [])
 
   return <React.Fragment>
-    {feed.length < 1 && <h3 style={{ textAlign: "center" }}>
+    {(feed && feed.length < 1) && <h3 style={{ textAlign: "center" }}>
       <FontAwesomeIcon icon={faClock} style={{ marginRight: "10px" }} />
       Mantenimiento programado en progreso
     </h3>}

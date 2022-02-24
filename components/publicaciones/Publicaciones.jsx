@@ -126,11 +126,19 @@ const Publicacion = ({ item, ind, getPublications }) => {
         }, 500)
     }
 
+    const handleEdit = (slug) => {
+        Router.push("/publicacion/" + slug + "/editar")
+    }
+
     const [handleChangeApprove, { loading, error, data }] = useLazyQuery(VERIFY_PUBLICATION, { variables: { id_publication: item.id }, fetchPolicy: "no-cache" })
+
+    const moreOptions = is_admin || true
 
     return <li className={`${item.status ? '' : styles.disabled}`}>
         <div className={`Card ${styles["flex-table"]}`}>
-            <div><img src={item.image_link} /></div>
+            <div className={styles.image_link}>
+                <img src={item.image_link} />
+            </div>
             <div className={styles["flex-row"]} title={`ID: ${item.id}`}>{item.title}</div>
             <div className={styles["flex-row"]}>${format_number(item.sale_price)}</div>
             <div className={styles["flex-row"]} title="Fecha de creación">
@@ -166,14 +174,23 @@ const Publicacion = ({ item, ind, getPublications }) => {
                         item.status == true ? <>Desactivar</> : <>Activar</>
                     }
                 </Button>
-                {is_admin && <Button color="link" onClick={() => setShowAdminOptions(!showAdminOptions)}>
+                {!!is_admin && <Button color="link" onClick={() => setShowAdminOptions(!showAdminOptions)}>
                     Más opciones
                 </Button>}
             </div>
         </div>
-        {(is_admin && showAdminOptions) && <div className={styles.adminActions}>
-            <ChangeSeller changeSellerHandle={changeSellerHandle} user_id={item.user.id} id_publication={item.id} />
-            <Button disabled={item.is_verified} color="blue" onClick={handleChangeApprove}>Dar de alta</Button>
+        {moreOptions && <div className={styles.more_options}>
+            {!item.is_verified && <div className={styles.pending_aprove}>
+                <p>Gracias por tu paciencia.</p>
+                <p>
+                    Recibimos tu publicación, pero debe de ser aprobada por uno de los moderadores de Pik-Play para que puedan verla otras personas.
+                </p>
+            </div>}
+
+            {(!!is_admin && showAdminOptions) && <div className={styles.adminActions}>
+                <ChangeSeller changeSellerHandle={changeSellerHandle} user_id={item.user.id} id_publication={item.id} />
+                <Button disabled={item.is_verified} color="blue" onClick={handleChangeApprove}>Dar de alta</Button>
+            </div>}
         </div>}
     </li>
 }
@@ -205,10 +222,6 @@ const Publicaciones = () => {
         variables: { user_id, order: true, is_admin: !!is_admin },
         fetchPolicy: "no-cache"
     })
-
-    const handleEdit = (slug) => {
-        Router.push("/publicacion/" + slug + "/editar")
-    }
 
     useEffect(() => {
         getPublications()

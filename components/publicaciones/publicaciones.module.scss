@@ -20,17 +20,35 @@
         > li {
             list-style: none;
         }
-        .adminActions {
+        .more_options {
+            background: #ffffff;
             border-radius: 0 0 10px 10px;
             box-shadow: 2px 2px 5px 0 #ababab52;
-            background: #ffffff;
             column-gap: 20px;
             display: flex;
+            flex-direction: column;
             margin: 0 auto;
             padding: 10px 20px;
             position: relative;
+            row-gap: 10px;
             top: -20px;
             width: 90%;
+            .pending_aprove {
+                background: #ccd6e154;
+                border-radius: 10px;
+                font-size: 14px;
+                padding: 10px;
+                p{
+                    margin: 5px;
+                }
+                p:nth-of-type(2) {
+                    color: grey;
+                }
+            }
+            .adminActions {
+                display: flex;
+                column-gap: 20px;
+            }
         }
         .flex-table {
             // cada item
@@ -48,6 +66,9 @@
                 max-width: 50px;
             }
             a > div {
+            }
+            .image_link{
+                margin-right: 20px;
             }
             .flex-row {
                 align-items: center;

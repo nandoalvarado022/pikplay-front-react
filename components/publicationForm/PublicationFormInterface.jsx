@@ -34,11 +34,9 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
     return <section className={styles.content}>
       {/* <Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} /> */}
       <h2>
-        <small>
-          <Link href="/publicaciones">
-            <a>Listado de publicaciones / </a>
-          </Link>
-        </small>
+        <Link href="/publicaciones">
+          <a>Listado de publicaciones / </a>
+        </Link>
         Crear publicación
         <FontAwesomeIcon class="svg-question" icon={faQuestionCircle} onClick={() => {
           const message = {
