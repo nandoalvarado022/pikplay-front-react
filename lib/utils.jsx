@@ -684,7 +684,17 @@ class Funciones {
 
 export default connect(null, useDispatch)(Funciones)
 
-export const getFeed = async ({ slug = "", category = null, subcategory = null, title = "" }) => {
+export const getFeed = async (props) => {
+  const { slug = "", category = null, subcategory = null, title = "", attempt = 1 } = props
+  const getCache = () => {
+    let withoutCache = !!slug || !!category || !!subcategory || !!title
+    console.log('Sin cache: ', withoutCache)
+    if (withoutCache) return 'no-cache'
+    else return 'max-age=300000'
+  }
+
+  getCache()
+
   const query = `query {
       publications(status: true, slug: "${slug}", category: ${category}, subcategory: ${subcategory}, title: "${title}") {
         accept_changues
@@ -730,15 +740,17 @@ export const getFeed = async ({ slug = "", category = null, subcategory = null, 
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Cache-Control": "no-cache"
+        "Cache-Control": getCache()
       },
       body: JSON.stringify({ query })
     })
     const _data = await res.json()
     data = _data?.data?.publications
   } catch (err) {
-    console.log("Ha ocurrido un error")
+    console.log("Ha ocurrido un error, intento #", attempt)
     console.log(err)
+    props = { ...props, attempt: 2 }
+    if (attempt == 1) getFeed(props)
   }
   return data
 }
