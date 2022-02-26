@@ -9,7 +9,6 @@ import { Provider } from 'react-redux'
 
 // CSS/SCSS
 import "../styles/globalStyles.scss"
-import "../styles/articlesList.scss"
 import "react-image-gallery/styles/css/image-gallery.css"
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 
