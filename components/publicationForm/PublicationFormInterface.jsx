@@ -152,7 +152,7 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
                           <span className={styles.remove} onClick={() => handleRemoveImage(item)}>
                             <FontAwesomeIcon icon={faTrash} />
                           </span>
-                          <img style={{ maxWidth: "100px", display: "block" }} className="imageRodada" src={publicationFormData[item]} />
+                          <img alt="Imagen de publicacion" style={{ maxWidth: "100px", display: "block" }} className="imageRodada" src={publicationFormData[item]} />
                         </label>
                       }
                     </>

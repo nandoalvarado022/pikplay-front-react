@@ -746,6 +746,7 @@ export const getFeed = async (props) => {
     })
     const _data = await res.json()
     data = _data?.data?.publications
+    console.log("Ha marchado como esperabamos, intento #", attempt)
   } catch (err) {
     console.log("Ha ocurrido un error, intento #", attempt)
     console.log(err)

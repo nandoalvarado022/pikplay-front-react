@@ -99,7 +99,7 @@ const CardProducto = ({ apply_cashback, banner_bottom, meta_url, title, descuent
     </Grow>
     {
       banner_bottom && <div>
-        <img className={`${styles.banner_bottom} block-center`} src={banner_bottom} alt="" />
+        <img alt="Banner publicitario del seller" className={`${styles.banner_bottom} block-center`} src={banner_bottom} alt="" />
       </div>
     }
     <Footer />

@@ -137,7 +137,7 @@ const Publicacion = ({ item, ind, getPublications }) => {
     return <li className={`${item.status ? '' : styles.disabled}`}>
         <div className={`Card ${styles["flex-table"]}`}>
             <div className={styles.image_link}>
-                <img src={item.image_link} />
+                <img alt="Imagen de articulo" src={item.image_link} />
             </div>
             <div className={styles["flex-row"]} title={`ID: ${item.id}`}>{item.title}</div>
             <div className={styles["flex-row"]}>${format_number(item.sale_price)}</div>
@@ -197,6 +197,7 @@ const Publicacion = ({ item, ind, getPublications }) => {
 
 const Publicaciones = () => {
     const dispatch = useDispatch()
+    const [tryAgain, setTryAgain] = useState(false)
     const { id: user_id, is_admin } = useSelector((state) => state.user)
 
     const PUBLICATIONS_QUERY = gql`
@@ -220,7 +221,9 @@ const Publicaciones = () => {
 
     const [getPublications, { loading: loadingPublications, error, data: reqPublications }] = useLazyQuery(PUBLICATIONS_QUERY, {
         variables: { user_id, order: true, is_admin: !!is_admin },
-        fetchPolicy: "no-cache"
+        fetchPolicy: "no-cache",
+        onError: (error) => setTryAgain(true),
+        onCompleted: () => setTryAgain(false)
     })
 
     useEffect(() => {
@@ -254,6 +257,10 @@ const Publicaciones = () => {
                     dispatch({ type: "SET_MESSAGE", payload: { message } })
                 }} />
             </h2>
+            <center>
+                {loadingPublications && <div>Cargando publicaciones...</div>}
+                {tryAgain && !loadingPublications && <Button color='normal' onClick={getPublications}>Intentar nuevamente</Button>}
+            </center>
             <ul className="">
                 {
                     reqPublications?.publications && reqPublications.publications.map((item, ind) => {

@@ -22,7 +22,7 @@ const Categorias = (props) => {
           return <li filter="game" key={category.id}>
             <Link scroll={scroll} href="/category/[id]" as={"/category/" + slugify(category.name)}>
               <a>
-                <img src={image} alt={category.name} />
+                <img alt="Imagen categoria" src={image} alt={category.name} />
                 {category.name}
               </a>
             </Link>
