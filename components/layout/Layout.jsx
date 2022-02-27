@@ -11,7 +11,7 @@ import styles from "./layout.module.scss"
 import Categorias from "../categorias/Categorias"
 import MenuMovil from "../menuMovil/MenuMovil"
 import Subcategories from '../subcategories/Subcategories'
-import Head from './Head';
+import Head from "next/head"
 import VARS from "../../lib/variables"
 const { IS_MOBILE } = VARS
 
@@ -151,13 +151,43 @@ class Layout extends React.Component {
   }
 
   render() {
-    const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
-    const props = this.props
-    const { meta_descripcion, meta_title, meta_image } = this.props
-    let { meta_url, is_partner, partner } = this.props
+    const { descripcion, image, title, url } = this.props
 
     return <React.Fragment>
-      <Head title={meta_title} descripcion={meta_descripcion} image={meta_image} url={meta_url} /> 
+      <Head>
+        <title>{title}</title>
+        <meta property="title" content={title} />
+        <meta property="og:title" content={title} />
+        <meta name="description" content={descripcion} />
+        <meta property="og:description" content={descripcion} />
+        <meta property="og:image" content={image} />
+        <meta name="url" content={url} />
+        <meta name="og:url" content={url} />
+        <meta name="og:site_name" content="Pik-Play" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+        <meta name="theme-color" content="#476E95" />
+        <meta name="google-site-verification" content="4IqXj9YLrm5eo3s_c3cTKcAqBwUhCf8qgJgL2sLtJko" />
+        <meta name="twitter:description" content={descripcion} />
+        <meta name="keywords" value="" />
+        <meta name="country" content="COL" />
+        <meta name="author" content="pik-play.com" />
+        <meta name="copyright" content="pik-play.com" />
+        <meta name="language" content="es-CO"></meta>
+        <meta httpEquiv="ScreenOrientation" content="autoRotate:disabled" />
+        {/* Global site tag (gtag.js) - Google Ads: 941382150 */}
+        <link rel="alternate" href={url} hrefLang="es-CO" />
+        <link rel="canonical" href={url} />
+        <link rel="icon" type="image/png" href="/images/logos/logo48x48.png" />
+        <link rel="manifest" href={`/manifest.json`} />
+        {() => {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', 'AW-941382150');
+          gtag('event', 'conversion', { 'send_to': 'AW-941382150/e71oCMvon-0BEIa08cAD' });
+        }}()
+      </Head>
+
       <body className="App font-a">
         <MyHeader />
         {/* <audio /> */}
@@ -166,8 +196,8 @@ class Layout extends React.Component {
           <Subcategories />
           {IS_MOBILE && <MenuMovil />}
           <Notification isOpen={this.context.showNotification} />
-          {props.children}
-          <a target="_BLANK" className="a_whatsapp" href="https://api.whatsapp.com/send?phone=573052665725&text=Escribe%20aqu%C3%AD%20tu%20pregunta">
+          {this.props.children}
+          <a target="_BLANK" className="a_whatsapp" href="https://api.whatsapp.com/send?phone=573054202450&text=Hola Pik-Play, tengo una consulta sobre los servicios que ofrecen a los Gamers en Colombia">
             <button className={styles["btn-whatsapp"]}>
               <span>En cualquier momento puedes escribirnos para solucionar tus dudas</span>
               <img src="/images/icons/whatsapp.png" alt="Hablar con un asesor vía Whatsapp" />

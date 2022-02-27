@@ -4,10 +4,11 @@ import Portada from "../components/portada/Portada"
 
 const Index = (props) => {
   const { feed } = props
+  const descripcion = "Pik-Play es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas e independientes de alta confiabilidad ofreciendo videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch con los mejores precios del mercado en Colombia"
+  const image = ""
+  const title = "Pik-Play"
   const url = "https://pik-play.com"
-  const meta_title = "Videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch al mejor precio del mercado"
-  const descripcion = "Pik-Play es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas de venta de videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch de alto prestigio en Colombia"
-  return <Layout meta_url={url} meta_descripcion={descripcion} meta_title={meta_title} title={meta_title}>
+  return <Layout image={image} descripcion={descripcion} title={title} title={title} url={url}>
     <Portada feed={feed} />
   </Layout>
 }

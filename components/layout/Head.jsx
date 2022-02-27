@@ -1,6 +1,6 @@
 import Head from "next/head"
 
-const Header = ({ title, description, image, url }) => {
+const Header = ({ description, image, title, url }) => {
     return <Head>
         <title>{title}</title>
         <meta property="title" content={title} />

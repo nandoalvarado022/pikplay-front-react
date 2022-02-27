@@ -117,7 +117,7 @@ class PublicacionPage extends React.Component {
     const { description, title, slug } = datosPublicacion
     const { pais, ciudad } = this.state
 
-    return <Layout meta_image={datosPublicacion} meta_title={title} title={title} descripcion={description} meta_url={slug}>
+    return <Layout image={datosPublicacion.image_link} title={title} descripcion={description} url={slug}>
       <div className="_publicacion">
         <CardDetalleProducto {...{ handleHablarVendedor: this.handleHablarVendedor }} meta_url={slug} handleResponder={this.handleResponder} nuevoPrecio={this.state.nuevoPrecio} handleCupon={this.handleCupon} doc_id={datosPublicacion} handleLike={this.handleLike} logDetalle={true} {...datosPublicacion} />
         {
