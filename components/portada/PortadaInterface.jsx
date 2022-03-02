@@ -5,20 +5,20 @@ import Card from '../card/Card'
 import Footer from '../footer/Footer'
 import styles from "./portada.module.scss"
 import { useEffect, useState } from 'react';
+import HolaJuanito from "../holaJuanito/HolaJuanito"
 // import Subcategories from '../subcategories';
-// import HolaJuanito from "../holaJuanito/HolaJuanito"
 
-const SpecialBanner = ({ category, handleLike, popularyItem, starItem }) => {
+const SpecialBanner = ({ category, popularyItem, starItem }) => {
   if (!category && popularyItem && starItem) {
     return <div id={styles.SpecialBanner}>
       <div className={styles.box}>
         <div className={styles.title}>Lo más visto por los gamers</div>
-        <Card key={popularyItem.id} handleLike={handleLike} permitirLink={true} {...popularyItem} />
+        <Card key={popularyItem.id} permitirLink={true} {...popularyItem} />
       </div>
       <img alt="Banner" src="/images/banners/banner-varios-juegos.png" alt="Juegos SSwitch en promoción" />
       <div className={styles.box}>
         <div className={styles.title}>Anuncio</div>
-        <Card key={starItem.id} handleLike={handleLike} permitirLink={true} {...starItem} />
+        <Card key={starItem.id} permitirLink={true} {...starItem} />
       </div>
     </div>
   } else {
@@ -33,7 +33,7 @@ const SpecialBanner = ({ category, handleLike, popularyItem, starItem }) => {
   }
 }
 
-const PortadaInterface = ({ category, handleLike, feed, popularyItem, starItem }) => {
+const PortadaInterface = ({ category, feed, popularyItem, starItem }) => {
   const [showVideo, setShowVideo] = useState(false)
   const isOpen = typeof sessionStorage != "undefined" && JSON.parse(sessionStorage.getItem("notifications"))?.home
   const [showNotification, setShowNotification] = useState(!!!isOpen)
@@ -52,19 +52,21 @@ const PortadaInterface = ({ category, handleLike, feed, popularyItem, starItem }
       <FontAwesomeIcon icon={faClock} style={{ marginRight: "10px" }} />
       Mantenimiento programado en progreso
     </h3>}
+
     {/* {!category && <HolaJuanito />} */}
+    
     {
       // showVideo && <div className={styles.videoContent}>
       //   <video onClick={handlePlay} className="block-center" src="/videos/video1.mp4" />
       // </div>
     }
-    <SpecialBanner {...{ category, handleLike, popularyItem, starItem }} />
+    <SpecialBanner {...{ category, popularyItem, starItem }} />
     <div className={styles.view_Rodadas}>
       <div className={styles.main}>
         <div className="listadoRodadas">
           {feed && feed.map((item, ind) => {
             return <React.Fragment>
-              <Card special_title="Más vendido" handleLike={handleLike} {...item} />
+              <Card special_title="Más vendido" {...item} />
             </React.Fragment>
           })}
         </div>

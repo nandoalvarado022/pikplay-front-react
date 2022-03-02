@@ -1,8 +1,6 @@
 import React from 'react'
-import { scrollTo } from 'scroll-js'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faQuestionCircle, faUser, faNewspaper, faBell } from "@fortawesome/free-regular-svg-icons"
-import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons"
+import { faQuestionCircle, faUser, faBell } from "@fortawesome/free-regular-svg-icons"
 import { TextField } from "@material-ui/core"
 import { useState } from "react"
 import Button from "../../components/button/Button"
@@ -11,8 +9,6 @@ import Coins from "../../components/previewUser/Coins"
 import ImageProfile from "./ImageProfile"
 import styles from "./perfil.module.scss"
 import UserNotifications from "../../components/userNotifications/UserNotifications"
-import Transacciones from '../../components/transacciones/Transacciones'
-import Publicaciones from '../../components/publicaciones/Publicaciones'
 import VARS from "../../lib/variables"
 const { IS_MOBILE } = VARS
 
@@ -20,9 +16,6 @@ const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, set
     const [tab, setTab] = useState("profile-content")
 
     const goTo = (value) => {
-        const top = document.body.getElementsByClassName(value)[0].offsetTop + -50
-        scrollTo(window, { top }).then(() => { })
-        setTab(value)
     }
 
     return <section className={styles.perfil}>

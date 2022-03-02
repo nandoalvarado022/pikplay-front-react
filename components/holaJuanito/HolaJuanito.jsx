@@ -3,23 +3,26 @@ import { faChevronCircleLeft, faChevronCircleRight } from "@fortawesome/free-sol
 import { useMutation, useQuery } from "@apollo/client"
 import Link from "next/link"
 import { useContext, useEffect, useState } from "react"
-import { CREATE_COIN, DELETE_NOTIFICATION, GET_NOTIFICATIONS } from "../../lib/utils"
-import { PikContext } from "../../states/PikState"
+import { CREATE_COIN, DELETE_NOTIFICATION, getNotifications, GET_NOTIFICATIONS } from "../../lib/utils"
 import styles from "./holaJuanito.module.scss"
 import confetti from "canvas-confetti"
+import { useDispatch, useSelector } from "react-redux"
+import CountUp from 'react-countup'
 
 const HolaJuanito = () => {
+    const dispatch = useDispatch()
+    const { user } = useSelector((state) => state)
     const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
     const [leftIndicator, setLeftIndicator] = useState(0)
-    const [deleteNotification] = useMutation(DELETE_NOTIFICATION);
-    const context = useContext(PikContext)
+    const [deleteNotification] = useMutation(DELETE_NOTIFICATION)
     const [idNotification, setIdNotification] = useState(null)
-    const [createCoin] = useMutation(CREATE_COIN);
-    const name = context.user.name ? context.user.name : "Invitado"
-    const isProfileComplete = context.user.name && context.user.email && context.user.email && context.user.city
+    const [createCoin] = useMutation(CREATE_COIN)
+    const name = user.name ? user.name : "Invitado"
+    const isProfileComplete = user.name && user.email && user.email && user.city
     // const isProfileComplete = true
     const [gotProfileCompletedCoins, setGotProfileCompletedCoins] = useState(false)
     const coins = 2500 // monedas que se le dara al usuario por completar el perfil
+    const notifications = useSelector((state) => state.notifications).filter(item => item.closed == 0)
 
     // useQuery(GET_NOTIFICATIONS, {
     //     fetchPolicy: "no-cache",
@@ -32,30 +35,30 @@ const HolaJuanito = () => {
     // })
 
     useEffect(() => {
-        if (!context.notifications) return
-        const res = context.notifications.find(item => item.type == "PROFILE_COMPLETED")
+        if (!notifications) return
+        const res = notifications.find(item => item.type == "PROFILE_COMPLETED")
         if (res) {
             setIdNotification(res.id)
             setGotProfileCompletedCoins(res.closed == 0 ? false : true)
         }
-    }, [context.notifications])
+    }, [notifications])
 
     const reclamarCoins = () => {
-        document.querySelector("#content_image_profile_menu").click()
         if (!idNotification) return
         createCoin({
             variables: {
                 id: idNotification
             }
         })
-        deleteNotification({ variables: { id: idNotification, user_request: context.user.id } })
-        context.customDispatch({ type: "RECLAMAR_COINS", payload: { coins } })
+        deleteNotification({ variables: { id: idNotification, user_request: user.id } })
+        dispatch({ type: "RECLAMAR_COINS", payload: { coins } })
         setTimeout(() => {
-            context.getNotifications()
+            getNotifications({ user: user.id, closed: true })
             setGotProfileCompletedCoins(true)
             confetti()
         }, 500)
     }
+
     const classButton = isProfileComplete && gotProfileCompletedCoins ? styles.disabled : ""
 
     const Monedita = () => <img style={{
@@ -82,23 +85,27 @@ const HolaJuanito = () => {
                         </div>
                     </div>
                     <div className={`${styles.text2} font-c`}>
-                        Recuerda que puedes confiar <b style={{ color: "green" }}>100%</b> en nuestros aliados certificados. Entregamos garantía por las compras que realices a estos, así que tu compra será confiable, rápida y segura.
+                        Contigo ya somos&nbsp;
+                        <span>
+                            <CountUp end={1403} />
+                        </span> gamer en Pik-Play.
+                        <br />Recuerda que puedes confiar <b style={{ color: "green" }}>100%</b> en nuestros aliados certificados. Entregamos garantía por las compras que realices a estos, así que tu compra será confiable, rápida y segura.
                     </div>
                     {
-                        context.user.id == 0 && <button onClick={() => document.getElementById("btnStart").click()} className={styles.reclamar_monedas}>
+                        user.id == 0 && <button onClick={() => document.getElementById("btnStart").click()} className={styles.reclamar_monedas}>
                             <Monedita />
                             Registrate y obten tus primeras pikcoins
                         </button>
                     }
                     {
-                        context.user.id != 0 && isProfileComplete && !gotProfileCompletedCoins &&
+                        user.id != 0 && isProfileComplete && !gotProfileCompletedCoins &&
                         <button onClick={reclamarCoins} className={styles.reclamar_monedas}>
                             <Monedita />
                             Reclamar monedas, ya he completado mi perfil
                         </button>
                     }
                     {
-                        !isProfileComplete && context.user.id != 0 && <Link href="/perfil">
+                        !isProfileComplete && user.id != 0 && <Link href="/perfil">
                             <a className={styles.reclamar_monedas}>
                                 Completar perfil y ganar monedas
                             </a>

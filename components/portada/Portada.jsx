@@ -12,25 +12,7 @@ function Portada({ category, feed = [] }) {
   const [open, setOpen] = useState(false)
   const popularyItem = feed ? feed[0] : null
 
-  // const [getPublications] = useLazyQuery(GET_PUBLICATIONS, {
-  //   fetchPolicy: "no-cache",
-  //   onCompleted: ({ publications }) => {
-  //     if (publications) {
-  //       setFeed({ publications })
-  //     }
-  //   }
-  // })
-
   const starItem = feed && feed.find((item) => item.id == 68)
-
-  const handleLike = async (params = {}) => {
-    const elemento = params.event.currentTarget
-    const obj = {
-      docID: elemento.getAttribute("doc_id"),
-      tipo_coleccion: elemento.getAttribute("tipo_coleccion"),
-      elemento
-    }
-  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -44,7 +26,7 @@ function Portada({ category, feed = [] }) {
     // context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
   }, [])
 
-  return <PortadaInterface {...{ feed, category, handleLike, open, popularyItem, starItem }} />
+  return <PortadaInterface {...{ feed, category, open, popularyItem, starItem }} />
 }
 
 export default Portada

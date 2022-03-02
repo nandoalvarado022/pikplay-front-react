@@ -9,11 +9,12 @@ import Button from "../button/Button"
 import styles from "./styles.module.scss"
 
 const UserNotifications = () => {
-  const loggedUser = useSelector((state) => state.user)
+  const user = useSelector((state) => state.user)
   const notifications = useSelector((state) => state.notifications).filter(item => item.closed == 0)
   const [deleteNotification] = useMutation(DELETE_NOTIFICATION)
   const [createCoin] = useMutation(CREATE_COIN)
   const dispatch = useDispatch()
+
   const reclamarCoins = async (coins, idNotification) => {
     const req_res = await createCoin({
       variables: {
@@ -32,25 +33,26 @@ const UserNotifications = () => {
     }
     confetti()
     dispatch({ type: "RECLAMAR_COINS", payload: { coins } })
-    handleDeleteNotification(idNotification)
+    deleteNotification({ notifications, idNotification, userId: user.id })
+  }
+
+  const handleDeleteNotification = (id) => {
+    debugger
+    notifications.find(item => item.id == idNotification).closed = "1"
+    deleteNotification({ variables: { id: idNotification, user_request: userId } })
+    dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: notifications } })
   }
 
   const [getNotifications] = useLazyQuery(GET_NOTIFICATIONS, { // Obteniendo notificaciones
     fetchPolicy: "no-cache",
     // polInterval: 5000,
     variables: {
-      user: loggedUser.id
+      user: user.id
     },
     onCompleted: ({ getNotifications }) => {
       getNotifications && dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: getNotifications } })
     }
   })
-
-  const handleDeleteNotification = (idNotification) => {
-    notifications.find(item => item.id == idNotification).closed = "1"
-    deleteNotification({ variables: { id: idNotification, user_request: loggedUser.id } })
-    dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: notifications } })
-  }
 
   const handleNotification = (id) => {
     const _notifications = notifications.map((item) => {

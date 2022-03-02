@@ -14,9 +14,8 @@ const Index = (props) => {
 }
 
 Index.getInitialProps = async () => {
-  const feed = await getFeed({})
-  // console.log("FEED ES:" + feed.length)
-  // console.log('2. Page.getInitialProps uses the store to dispatch things');
+  const isSSR = typeof window == 'undefined'
+  const feed = await getFeed({ isSSR })
   // store.dispatch({ type: 'TICK', payload: 'was set in error page ' + pathname });
   return {
     feed

@@ -1,8 +1,7 @@
 import React, { useState } from "react"
-import Router from "next/router"
+import { useRouter } from "next/router"
 import Link from "next/link"
 import { useSelector, useDispatch } from "react-redux"
-import Coins from './Coins'
 import UserNotifications from '../userNotifications/UserNotifications'
 import ImageProfile from '../../pages/perfil/ImageProfile'
 import Login from "../login/Login"
@@ -13,14 +12,13 @@ const PreviewUser = () => {
   const notifications = useSelector((state) => state.notifications)
   const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
   const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
-
+	const router = useRouter()
   const user = useSelector((state) => state.user)
-  const [showNotifications, setShowNotifications] = useState(false)
   const _notifications = notifications.filter(item => item.closed == 0)
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' })
-    Router.push('/?logout')
+    router.reload('/')
   }
 
   const handleClickImage = () => {

@@ -91,17 +91,6 @@ class PublicacionPage extends React.Component {
     return result;
   }
 
-  handleLike = async (params = {}) => {
-    const elemento = params.event.currentTarget;
-    const obj = {
-      docID: elemento.getAttribute("doc_id"),
-      tipo_coleccion: elemento.getAttribute("tipo_coleccion"),
-      elemento,
-    };
-    const result = await instanciaFunc.handleLike(obj);
-    if (!result) return;
-  }
-
   configUbicacion() {
     localStorage.setItem("url_pendiente", window.location.pathname);
     Router.push("/ubicacion");
@@ -119,7 +108,7 @@ class PublicacionPage extends React.Component {
 
     return <Layout image={datosPublicacion.image_link} title={title} descripcion={description} url={slug}>
       <div className="_publicacion">
-        <CardDetalleProducto {...{ handleHablarVendedor: this.handleHablarVendedor }} meta_url={slug} handleResponder={this.handleResponder} nuevoPrecio={this.state.nuevoPrecio} handleCupon={this.handleCupon} doc_id={datosPublicacion} handleLike={this.handleLike} logDetalle={true} {...datosPublicacion} />
+        <CardDetalleProducto {...{ handleHablarVendedor: this.handleHablarVendedor }} meta_url={slug} handleResponder={this.handleResponder} nuevoPrecio={this.state.nuevoPrecio} handleCupon={this.handleCupon} doc_id={datosPublicacion} logDetalle={true} {...datosPublicacion} />
         {
           // Modal para confirmar datos
           this.state.modalHablarVendedor && <ModalHablarVendedor {...{ datosPublicacion, setIsModalHablarVendedor: () => this.setState({ modalHablarVendedor: !this.state.modalHablarVendedor }) }} />

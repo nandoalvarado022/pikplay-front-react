@@ -8,7 +8,7 @@ const Subcategories = () => {
     <ul>
       {
         list.map(item => <Link href={item.url}>
-          <a className="">
+          <a className="" key={item.name}>
             <h2>
               {item.name}
             </h2>

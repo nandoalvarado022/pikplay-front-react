@@ -3,8 +3,10 @@ import { useState } from "react"
 import LoginInterface from "./LoginInterface"
 import { loadAudio } from '../../lib/utils'
 import { useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
 
 function Login(props) {
+	const router = useRouter()
 	const dispatch = useDispatch()
 	const [isOpen, setIsOpen] = useState(false)
 	const [isCodeSended, setIsCodeSended] = useState(false)
@@ -32,8 +34,9 @@ function Login(props) {
 			if (validateLogin) {
 				const token = JSON.parse(validateLogin).token
 				dispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: JSON.parse(validateLogin) } })
-				setIsOpen(false)
-				loadAudio("/audios/login.mp3")
+				router.reload('/')
+				// setIsOpen(false)
+				// loadAudio("/audios/login.mp3")
 			} else {
 				document.getElementById("verificationCode").value = ""
 				alert("Código no valido")
