@@ -76,7 +76,7 @@ const CakeReport = ({ publications = [] }) => {
                         <td>{item.title}</td>
                         <td>{item.views}</td>
                         <td>
-                            <a target="_BLANK" className="a_whatsapp" href="https://api.whatsapp.com/send?phone=573052665725&text=Quiero impulsar una publicación en Pik-Play">
+                            <a target="_BLANK" className="a_whatsapp" href="https://api.whatsapp.com/send?phone=573052665725&text=Quiero impulsar una publicación en Pikplay">
                                 <Button color="blue">
                                     Impulsar&nbsp;
                                     <FontAwesomeIcon icon={faRocket} />
@@ -160,7 +160,7 @@ const Publicacion = ({ item, ind, getPublications }) => {
                         <FontAwesomeIcon style={{ position: "relative", left: "-5px", top: "2px" }} icon={faQuestionCircle} onClick={() => {
                             const message = {
                                 id: 0, message: <div>
-                                    <p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pik-Play ó porque esta pausada</p>
+                                    <p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pikplay ó porque esta pausada</p>
                                 </div>
                             }
                             dispatch({ type: "SET_MESSAGE", payload: { message } })
@@ -183,7 +183,7 @@ const Publicacion = ({ item, ind, getPublications }) => {
             {!item.is_verified && <div className={styles.pending_aprove}>
                 <p>Gracias por tu paciencia.</p>
                 <p>
-                    Recibimos tu publicación, pero debe de ser aprobada por uno de los moderadores de Pik-Play para que puedan verla otras personas.
+                    Recibimos tu publicación, pero debe de ser aprobada por uno de los moderadores de Pikplay para que puedan verla otras personas.
                 </p>
             </div>}
 

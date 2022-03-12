@@ -37,7 +37,7 @@ const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, set
                     <p>Perfil</p>
                     <p>
                         <h3>Coins</h3>
-                        <p>En Pik-Play te premiamos por cada cosa que haces, por eso cada vez que realices una venta recibiras 1 moneda</p>
+                        <p>En Pikplay te premiamos por cada cosa que haces, por eso cada vez que realices una venta recibiras 1 moneda</p>
                     </p>
                     <p>
                         Puedes comprar el pase ORO el cual es una suscripcion mensual que te otorga los siguientes beneficios:

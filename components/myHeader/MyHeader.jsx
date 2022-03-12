@@ -77,7 +77,7 @@ const Header = () => {
 		<ul>
 			<Link href="/">
 				<span style={{ textAlign: "left" }}>
-					<img alt="Logo de Pik-Play" className={styles.logo} src="/images/logos/logo.png" alt="" />
+					<img alt="Logo de Pikplay" className={styles.logo} src="/images/logos/logo.png" alt="" />
 					<div className={styles.slogan}>
 						<span>Compra y vende como <b><i>Gamer</i></b></span>
 					</div>

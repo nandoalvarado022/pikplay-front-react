@@ -163,15 +163,15 @@ class Layout extends React.Component {
         <meta property="og:image" content={image} />
         <meta name="url" content={url} />
         <meta name="og:url" content={url} />
-        <meta name="og:site_name" content="Pik-Play" />
+        <meta name="og:site_name" content="Pikplay" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
         <meta name="theme-color" content="#476E95" />
         <meta name="google-site-verification" content="4IqXj9YLrm5eo3s_c3cTKcAqBwUhCf8qgJgL2sLtJko" />
         <meta name="twitter:description" content={descripcion} />
         <meta name="keywords" value="" />
         <meta name="country" content="COL" />
-        <meta name="author" content="pik-play.com" />
-        <meta name="copyright" content="pik-play.com" />
+        <meta name="author" content="pikplay.co" />
+        <meta name="copyright" content="pikplay.co" />
         <meta name="language" content="es-CO"></meta>
         <meta httpEquiv="ScreenOrientation" content="autoRotate:disabled" />
         {/* Global site tag (gtag.js) - Google Ads: 941382150 */}
@@ -197,7 +197,7 @@ class Layout extends React.Component {
           {IS_MOBILE && <MenuMovil />}
           <Notification isOpen={this.context.showNotification} />
           {this.props.children}
-          <a target="_BLANK" className="a_whatsapp" href="https://api.whatsapp.com/send?phone=573054202450&text=Hola Pik-Play, tengo una consulta sobre los servicios que ofrecen a los Gamers en Colombia">
+          <a target="_BLANK" className="a_whatsapp" href="https://api.whatsapp.com/send?phone=573054202450&text=Hola Pikplay, tengo una consulta sobre los servicios que ofrecen a los Gamers en Colombia">
             <button className={styles["btn-whatsapp"]}>
               <span>En cualquier momento puedes escribirnos para solucionar tus dudas</span>
               <img src="/images/icons/whatsapp.png" alt="Hablar con un asesor vía Whatsapp" />

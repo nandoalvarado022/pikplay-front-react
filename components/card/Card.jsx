@@ -26,7 +26,7 @@ const Card = ({ accept_changues, apply_cashback, certificate, id: id_publication
           <div className={styles.descripcion_imagen}>
             <div className={styles.content_imagen}>
               <div className={`${styles.tags} desktop`}>
-                {!is_new && <span title="El articulo es de segunda mano" className={styles.condition}>Usado</span>}
+                {!!!is_new && <span title="El articulo es de segunda mano" className={styles.condition}>Usado</span>}
                 {/* Si aplica cashback */}
                 {apply_cashback && <span title="Ganarás Pikcoins por hacer esta compra" className={styles.apply_cashback}>
                   <picture className={styles.coin} />
@@ -34,7 +34,7 @@ const Card = ({ accept_changues, apply_cashback, certificate, id: id_publication
                 </span>}
                 {accept_changues && <span className={styles.condition} title="El vendedor acepta productos como parte de pago o incluso cambiar el producto por otro de su interés">Acepto cambios</span>}
                 {
-                  tags && JSON.parse(tags).map((item, ind) => {
+                  !!tags && JSON.parse(tags).map((item, ind) => {
                     return (<span key={ind}>
                       {item.texto}
                     </span>
@@ -48,7 +48,7 @@ const Card = ({ accept_changues, apply_cashback, certificate, id: id_publication
             {
               <div className={styles.descripcion}>
                 <h2>{title ? title : "Espacio para el título de la publicación"}</h2>
-                {quantity && <p className={styles.quantity}>{quantity} unidades disponibles</p>}
+                {!!quantity && <p className={styles.quantity}>{quantity} unidades disponibles</p>}
                 <div className={styles["likes-precio"]}>
                   <div className={styles.content_precio}>
                     {/* Precio tachado */
@@ -68,7 +68,7 @@ const Card = ({ accept_changues, apply_cashback, certificate, id: id_publication
                   </div>
                 </div>
                 <div className={`${styles.tags} mobile`}>
-                  {!is_new && <span title="El articulo es de segunda mano" className={styles.condition}>Usado</span>}
+                  {!!is_new && <span title="El articulo es de segunda mano" className={styles.condition}>Usado</span>}
                   {/* Si aplica cashback */}
                   {apply_cashback && <span title="Ganarás Pikcoins por hacer esta compra" className={styles.apply_cashback}>
                     <picture className={styles.coin} />

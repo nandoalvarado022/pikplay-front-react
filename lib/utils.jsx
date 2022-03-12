@@ -49,7 +49,7 @@ export const getNotifications = async (props) => {
 }
 
 export const getFeed = async (props) => {
-  const { isSSR = false, limit = 9, slug = "", category = null, subcategory = null, title = "", attempt = 1 } = props
+  const { isSSR = false, limit = 50, slug = "", category = null, subcategory = null, title = "", attempt = 1 } = props
   const getCache = () => {
     let withoutCache = !!slug || !!category || !!subcategory || !!title
     console.log('Sin cache: ', withoutCache)
