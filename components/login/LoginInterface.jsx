@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import Button from "../button/Button"
 import styles from "./login.module.scss"
 
-export default function LoginInterface({ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, handleTengoCodigo, onChangeReCaptcha, phone, setIsCodeSended, setPhone }) {
+export default function LoginInterface({ buttonText, isCodeSended, isHuman, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, handleTengoCodigo, onChangeReCaptcha, phone, setIsCodeSended, setPhone }) {
   return <div>
     <Button alt="Ingersar con número de teléfono" color="blue" id="btnStart" onClick={handleClickOpen}>Play</Button>
     <Dialog fullWidth maxWidth="sm" open={isOpen} onClose={handleCloseDialog} aria-labelledby="form-dialog-title">
@@ -24,7 +24,7 @@ export default function LoginInterface({ buttonText, isCodeSended, isOpen, handl
         </div>
         <div className="center">
           <ReCAPTCHA
-            sitekey={'6LduwN8eAAAAAGEUsbv-TGWliCh3nArZuGiHQFD8'}
+            sitekey="6Ldyz98eAAAAAFCJEbBSdSRqNu4Kn1XqZugCi9Qg"
             onChange={onChangeReCaptcha}
           />
         </div>
@@ -34,12 +34,14 @@ export default function LoginInterface({ buttonText, isCodeSended, isOpen, handl
         </small>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => isCodeSended ? setIsCodeSended(false) : handleCloseDialog()} color="normal">
+        <Button onClick={() => (isCodeSended && isHuman) ? setIsCodeSended(false) : handleCloseDialog()} color="normal">
           {!isCodeSended && "Cancelar"}
           {isCodeSended && "Intentar conn otro número"}
         </Button>
-        {!isCodeSended && <Button onClick={handleEnviar} onClick={handleTengoCodigo} color="yellow">Ya tengo código</Button>}
-        <Button color="blue" onClick={!isCodeSended ? handleEnviar : null}>
+        {!isCodeSended && <Button onClick={isHuman ? handleTengoCodigo : null} color={isHuman ? "yellow" : "normal"}>
+          Ya tengo código
+        </Button>}
+        <Button color={isHuman ? "blue" : "normal"} onClick={(!isCodeSended && isHuman) ? handleEnviar : null}>
           {buttonText}
         </Button>
       </DialogActions>

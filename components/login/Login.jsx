@@ -9,6 +9,7 @@ function Login(props) {
 	const router = useRouter()
 	const dispatch = useDispatch()
 	const [isOpen, setIsOpen] = useState(false)
+	const [isHuman, setIsHuman] = useState(false)
 	const [isCodeSended, setIsCodeSended] = useState(false)
 	const [phone, setPhone] = useState(null)
 	const [buttonText, setButtonText] = useState("Enviar código")
@@ -71,6 +72,7 @@ function Login(props) {
 	}
 
 	const handleCloseDialog = () => {
+		setIsHuman(false)
 		setIsCodeSended(false)
 		setIsOpen(false)
 	}
@@ -88,10 +90,11 @@ function Login(props) {
 	}
 
 	const onChangeReCaptcha = (value) => {
-		debugger
+		value = !!value
+		setIsHuman(value)
 	}
 
-	return <LoginInterface {...{ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, handleTengoCodigo, onChangeReCaptcha, phone, setIsCodeSended, setPhone }} />
+	return <LoginInterface {...{ buttonText, isCodeSended, isHuman, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, handleTengoCodigo, onChangeReCaptcha, phone, setIsCodeSended, setPhone }} />
 }
 
 export default Login
