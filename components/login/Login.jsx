@@ -18,10 +18,12 @@ function Login(props) {
 		validateLogin(phone: $phone, code: $code)
 	}`
 
+	const numberValidated = (phone) => phone.length == 10
+
 	const handleTengoCodigo = () => {
 		const phone = document.getElementById("phoneLogin").value
-		if (!phone) {
-			alert("Debes escribir el número de celular vinculado a tu cuenta")
+		if (!phone || !numberValidated(phone)) {
+			alert("Debes escribir un número de celular válido, recuerda que a este número llegará el código de acceso")
 			setButtonText("Enviar código")
 			return
 		}
@@ -61,8 +63,8 @@ function Login(props) {
 	const handleEnviar = async () => {
 		setButtonText("Enviando...")
 		const phone = document.getElementById("phoneLogin").value
-		if (!phone) {
-			alert("Debes escribir un número celular, recuerda que a este número llegará el código de acceso")
+		if (!phone || !numberValidated(phone)) {
+			alert("Debes escribir un número de celular válido, recuerda que a este número llegará el código de acceso")
 			setButtonText("Enviar código")
 			return false
 		}
