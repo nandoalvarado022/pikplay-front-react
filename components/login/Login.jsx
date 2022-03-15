@@ -87,7 +87,11 @@ function Login(props) {
 		validateLogin({ variables: { phone: "57" + phone, code: parseInt(verificationCode) } })
 	}
 
-	return <LoginInterface {...{ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, handleTengoCodigo, phone, setIsCodeSended, setPhone }} />
+	const onChangeReCaptcha = (value) => {
+		debugger
+	}
+
+	return <LoginInterface {...{ buttonText, isCodeSended, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, handleTengoCodigo, onChangeReCaptcha, phone, setIsCodeSended, setPhone }} />
 }
 
 export default Login

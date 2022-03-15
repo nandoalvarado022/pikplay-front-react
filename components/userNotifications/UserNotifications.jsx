@@ -21,11 +21,13 @@ const UserNotifications = () => {
         id: idNotification
       }
     })
+    
     const res = req_res.data.createCoin
     if (res == 401) {
-      alert("Accion no permitida")
+      alert("Acción no permitida")
       return
     }
+
     if (res == 400) {
       const message = { id: 0, message: <div>Alcanzaste el límite diario de <b>Pikcoins</b> a recibir, intentalo mañana </div> }
       dispatch({ type: "SET_MESSAGE", payload: { message } })
@@ -33,11 +35,10 @@ const UserNotifications = () => {
     }
     confetti()
     dispatch({ type: "RECLAMAR_COINS", payload: { coins } })
-    deleteNotification({ notifications, idNotification, userId: user.id })
+    deleteNotification({ variables: { notifications, id: idNotification, userId: user.id } })
   }
 
   const handleDeleteNotification = (id) => {
-    debugger
     notifications.find(item => item.id == idNotification).closed = "1"
     deleteNotification({ variables: { id: idNotification, user_request: userId } })
     dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: notifications } })

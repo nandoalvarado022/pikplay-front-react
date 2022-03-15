@@ -52,9 +52,7 @@ const PortadaInterface = ({ category, feed, popularyItem, starItem }) => {
       <FontAwesomeIcon icon={faClock} style={{ marginRight: "10px" }} />
       Mantenimiento programado en progreso
     </h3>}
-
-    {/* {!category && <HolaJuanito />} */}
-    
+    {!category && <HolaJuanito />}
     {
       // showVideo && <div className={styles.videoContent}>
       //   <video onClick={handlePlay} className="block-center" src="/videos/video1.mp4" />

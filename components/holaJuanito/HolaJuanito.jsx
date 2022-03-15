@@ -43,22 +43,6 @@ const HolaJuanito = () => {
         }
     }, [notifications])
 
-    const reclamarCoins = () => {
-        if (!idNotification) return
-        createCoin({
-            variables: {
-                id: idNotification
-            }
-        })
-        deleteNotification({ variables: { id: idNotification, user_request: user.id } })
-        dispatch({ type: "RECLAMAR_COINS", payload: { coins } })
-        setTimeout(() => {
-            getNotifications({ user: user.id, closed: true })
-            setGotProfileCompletedCoins(true)
-            confetti()
-        }, 500)
-    }
-
     const classButton = isProfileComplete && gotProfileCompletedCoins ? styles.disabled : ""
 
     const Monedita = () => <img style={{
@@ -97,13 +81,7 @@ const HolaJuanito = () => {
                             Registrate y obten tus primeras pikcoins
                         </button>
                     }
-                    {
-                        user.id != 0 && isProfileComplete && !gotProfileCompletedCoins &&
-                        <button onClick={reclamarCoins} className={styles.reclamar_monedas}>
-                            <Monedita />
-                            Reclamar monedas, ya he completado mi perfil
-                        </button>
-                    }
+
                     {
                         !isProfileComplete && user.id != 0 && <Link href="/perfil">
                             <a className={styles.reclamar_monedas}>
