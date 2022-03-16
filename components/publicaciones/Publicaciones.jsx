@@ -183,7 +183,7 @@ const Publicacion = ({ item, ind, getPublications }) => {
             {!item.is_verified && <div className={styles.pending_aprove}>
                 <p>Gracias por tu paciencia.</p>
                 <p>
-                    Recibimos tu publicación, pero debe de ser aprobada por uno de los moderadores de Pikplay para que puedan verla otras personas.
+                    Recibimos tu publicación. Debe de ser aprobada por uno de los moderadores de Pikplay para que puedan verla otras personas.
                 </p>
             </div>}
 
