@@ -20,7 +20,7 @@ const Footer = ({ filtrarRodadas }) => {
     </div>
     <hr />
     <div>
-      <h3>Aliados</h3>
+      <h3>Aliados verificados</h3>
       <a href="https://juanchofenix.pik.com.co/">
         Juancho Fenix
       </a>
