@@ -62,28 +62,17 @@
     @media screen and (max-width: 420px) {
         display: none;
     }
-    &:hover{
-        span{
+    &:hover {
+        span {
             display: block;
         }
     }
-    span {
-        background: white;
-        border-radius: 5px;
-        box-shadow: 1px 1px 4px #24292e42;
-        color: #24292eb0;
-        display: none;
-        font-weight: bold;
-        left: -300px;
-        padding-right: 20px;
-        padding: 5px 10px;
+    img.we-are-here {
+        left: -18px;
+        max-width: initial;
         position: absolute;
-        top: -20px;
-        transition: .5s ease;
-        z-index: -1;
-        @media screen and (max-width: 420px) {
-            display: none;
-        }
+        top: -10px;
+        width: 80px;
     }
     img {
         width: 45px;

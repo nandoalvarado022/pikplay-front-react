@@ -199,7 +199,7 @@ class Layout extends React.Component {
           {this.props.children}
           <a target="_BLANK" className="a_whatsapp" href="https://api.whatsapp.com/send?phone=573054202450&text=Hola Pikplay, tengo una consulta sobre los servicios que ofrecen a los Gamers en Colombia">
             <button className={styles["btn-whatsapp"]}>
-              <span>En cualquier momento puedes escribirnos para solucionar tus dudas</span>
+              <img className={styles["we-are-here"]} src="/images/others/we-are-here.svg" />
               <img src="/images/icons/whatsapp.png" alt="Hablar con un asesor vía Whatsapp" />
             </button>
           </a>

@@ -55,27 +55,15 @@ const useSearchStarwarsHero = () => {
 }
 
 const Header = () => {
+	const [isLoading, setIsLoading] = useState(false)
 	const { inputText, setInputText, search } = useSearchStarwarsHero()
 	const router = useRouter()
-	const [textSearch, setTextSearch] = useState("")
+	const [textSearch, setTextSearch] = useState('')
 	const [results, setResults] = useState([])
 	const [showSearchBox, setShowSearchBox] = useState(false)
 
 	useEffect(() => {
 		if (window.screen.width > 420) setShowSearchBox(true)
-	}, [])
-
-	function onTagsChange(event, values) {
-		const slug = products.publications.find((x) => x.title == values).slug;
-		router.push("/publicacion/" + slug);
-	}
-
-	useEffect(() => {
-		const delayDebounceFn = setTimeout(async () => {
-			// await getPublications()
-		}, 3000)
-
-		return () => clearTimeout(delayDebounceFn)
 	}, [])
 
 	return <div id={styles.Header}>
@@ -91,7 +79,7 @@ const Header = () => {
 
 			{
 				<div onBlur={() => setTimeout(() => setInputText(''), 200)} className={styles.content_buscador}>
-					<TextField className={styles.Textfield} onFocus={e => setInputText(e.target.value)} onChange={e => setInputText(e.target.value)} fullWidth label={IS_MOBILE ? '¿Buscas algo?' : <span>
+					<TextField className={styles.Textfield} disabled={isLoading} onFocus={e => setInputText(e.target.value)} onChange={e => setInputText(e.target.value)} fullWidth label={IS_MOBILE ? '¿Buscas algo?' : <span>
 						<FontAwesomeIcon className="m-r-10" icon={faSearch} />
 						Nintendo switch, ps5, controles de xbox
 					</span>} variant="standard" />
