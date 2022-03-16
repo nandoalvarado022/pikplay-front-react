@@ -6,7 +6,6 @@ import Footer from '../footer/Footer'
 import styles from "./portada.module.scss"
 import { useEffect, useState } from 'react';
 import HolaJuanito from "../holaJuanito/HolaJuanito"
-// import Subcategories from '../subcategories';
 
 const SpecialBanner = ({ category, popularyItem, starItem }) => {
   if (!category && popularyItem && starItem) {
@@ -15,7 +14,7 @@ const SpecialBanner = ({ category, popularyItem, starItem }) => {
         <div className={styles.title}>Lo más visto por los gamers</div>
         <Card key={popularyItem.id} permitirLink={true} {...popularyItem} />
       </div>
-      <img alt="Banner" src="/images/banners/banner-varios-juegos.png" alt="Juegos SSwitch en promoción" />
+      <img src="/images/banners/banner-varios-juegos.png" alt="Juegos SSwitch en promoción" />
       <div className={styles.box}>
         <div className={styles.title}>Anuncio</div>
         <Card key={starItem.id} permitirLink={true} {...starItem} />
@@ -24,9 +23,13 @@ const SpecialBanner = ({ category, popularyItem, starItem }) => {
   } else {
     switch (category) {
       case "playstation":
-        return <img alt="Banner" className="block-center m-t-20" src="https://www.combogamer.com/wp-content/uploads/2014/05/ps4-launch-banner.png" />
+        return <div className={styles['playstation-banner']}>
+          <img alt="Banner playstation" className="block-center" src="https://www.combogamer.com/wp-content/uploads/2014/05/ps4-launch-banner.png" />
+        </div>
       case "nintendo-switch":
-        return <img alt="Banner" className="block-center m-t-20" src="https://switchplayer.net/wp-content/uploads/2017/03/Nintendo-Switch-List-Banner-1-820x171.png" />
+        return <div className={styles['switch-banner']}>
+          <img alt="Banner nintendo switch" className="block-center" src="https://switchplayer.net/wp-content/uploads/2017/03/Nintendo-Switch-List-Banner-1-820x171.png" />
+        </div>
       default:
         return <div></div>
     }

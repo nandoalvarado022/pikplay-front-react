@@ -6,7 +6,7 @@ const Footer = ({ filtrarRodadas }) => {
   return (<div className={styles.SideToSide}>
     <div className={styles.logo}>
       <Link href="/">
-        <img alt="Footer" width="200" className="pikajuegos desktop logo" src="/images/logos/logo.png" alt="" />
+        <img alt="Footer" width="200" className="pikajuegos desktop logo" src="/images/logos/logo.png" />
       </Link>
     </div>
     <hr />
@@ -29,7 +29,7 @@ const Footer = ({ filtrarRodadas }) => {
     <div>
       <h3>Contáctanos</h3>
       <p>
-        Realizado en Medellín - Colombia
+        Estamos en Medellín Colombia
       </p>
     </div>
   </div>
