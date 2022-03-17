@@ -1,20 +1,20 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSearch } from "@fortawesome/free-solid-svg-icons"
-import { useRouter } from "next/router"
-import Link from "next/link"
-import React, { useState, useEffect } from "react"
-import { useAsyncAbortable } from 'react-async-hook'
-import TextField from "@material-ui/core/TextField"
-import useConstant from 'use-constant'
+const { IS_MOBILE } = VARS
 import AwesomeDebouncePromise from 'awesome-debounce-promise'
 import CountUp from 'react-countup'
-import { format_number, getFeed } from '../../lib/utils'
+import Link from "next/link"
 import PreviewUser from '../previewUser/PreviewUser'
+import React, { useState, useEffect } from "react"
+import TextField from "@material-ui/core/TextField"
 import VARS from '../../lib/variables'
 import recommended from '../../public/recommended'
 import stories from '../../public/stories'
-const { IS_MOBILE } = VARS
 import styles from "./styles.module.scss"
+import useConstant from 'use-constant'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSearch } from "@fortawesome/free-solid-svg-icons"
+import { format_number, getFeed } from '../../lib/utils'
+import { useAsyncAbortable } from 'react-async-hook'
+import { useRouter } from "next/router"
 
 const searchStarwarsHero = async (text, abortSignal) => {
 	const results = await getFeed({ title: text })

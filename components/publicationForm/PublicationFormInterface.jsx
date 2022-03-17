@@ -1,33 +1,23 @@
-import Link from "next/link"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
-import { faImage, faTrash } from "@fortawesome/free-solid-svg-icons"
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Switch from '@material-ui/core/Switch'
-import MenuItem from '@material-ui/core/MenuItem'
-import Menu from '@material-ui/core/Menu'
-import Card from '../card/Card'
-import { TextField } from "@material-ui/core"
-import { useContext, useState } from 'react'
-import Fade from '@material-ui/core/Fade'
-import styles from "./publicationForm.module.scss"
 import Button from '../button/Button'
-import { getCategories } from "../../lib/utils"
-import Notification from '../notification'
+import Card from '../card/Card'
+import CategoryControl from "./CategoryControl/CategoryControl"
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Link from "next/link"
+import Switch from '@material-ui/core/Switch'
+import styles from "./publicationForm.module.scss"
 import { Alert } from '@material-ui/lab'
-import { useSelector, useDispatch } from "react-redux"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { TextField } from "@material-ui/core"
+import { faImage, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
+import { useDispatch } from "react-redux"
 
-const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, handleSubmit, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, screenWidth, setPublicationFormData, textButton, setCurrentStep }) => {
+const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, setPublicationFormData, textButton, setCurrentStep }) => {
   const dispatch = useDispatch()
-  const [showDescription, setShowDescription] = useState(false)
-  const [message, setMessage] = useState(null)
-  const [menuPosition, setMenuPosition] = useState(null)
-  const handleRightClick = (event) => {
-    if (menuPosition) return
-    event.preventDefault();
-    setMenuPosition({ top: event.pageY, left: event.pageX });
+  const category = publicationFormData?.category ? Number(publicationFormData.category) : 1
+  const handleCategory = (event) => {
+    setPublicationFormData({ ...publicationFormData, category: Number(event.target.value) })
   }
-
   const { accept_changues, description, is_new, quantity, sale_price, title, warranty } = publicationFormData
 
   if (!!publicationFormData?.title || !isEdit) {
@@ -86,8 +76,8 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
           {
             currentStep == 1 && <>
               <div className={`Card ${styles.card}`}>
-                <TextField fullWidth={true} label="Título" margin="normal" fullWidth value={title} onChange={e => setPublicationFormData({ ...publicationFormData, title: e.target.value })} />
-                <TextField rows={10} fullWidth={true} label="Descripción" value={description} multiline margin="normal" fullWidth onChange={e => setPublicationFormData({ ...publicationFormData, description: e.target.value })} />
+                <TextField fullWidth={true} label="Título" margin="normal" value={title} onChange={e => setPublicationFormData({ ...publicationFormData, title: e.target.value })} />
+                <TextField rows={10} fullWidth={true} label="Descripción" value={description} multiline margin="normal" onChange={e => setPublicationFormData({ ...publicationFormData, description: e.target.value })} />
               </div>
             </>
           }
@@ -95,9 +85,8 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
           {
             currentStep == 2 && <>
               <div className="Card">
-                <div className={styles.button_category}>
-                  <Button color="yellow" aria-controls="tipo_publicacion" onClick={handleRightClick} aria-haspopup="true">{!publicationFormData.category ? "Seleccionar la categoria" : getCategories(publicationFormData.category).name}</Button>
-                </div>
+                <CategoryControl category={category} handleCategory={handleCategory} publicationFormData={publicationFormData} />
+
                 <div>
                   <TextField fullWidth={true} label="Precio" placeholder="" margin="normal" value={sale_price} type='number' onChange={e => setPublicationFormData({ ...publicationFormData, sale_price: Number(e.target.value) })} />
                 </div>
@@ -107,11 +96,6 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, hand
               </div>
 
               <div className="Card">
-                <div onContextMenu={handleRightClick} title="Categoria del articulo">
-                  <Menu anchorReference="anchorPosition" anchorPosition={menuPosition} onClose={() => setMenuPosition(null)} TransitionComponent={Fade} keepMounted open={!!menuPosition} className={styles.tipoPublicacion}>
-                    {getCategories().map(item => <MenuItem onClick={() => { setPublicationFormData({ ...publicationFormData, category: item.id }); setMenuPosition(null) }} value={item.id}>{item.name}</MenuItem>)}
-                  </Menu>
-                </div>
                 <p>
                   <FormControlLabel control={<Switch checked={Boolean(is_new)} onChange={(e) => setPublicationFormData({ ...publicationFormData, is_new: e.target.checked })} inputProps={{ 'aria-label': 'primary checkbox' }} />} label="¿Articulo nuevo?" />
                 </p>

@@ -8,8 +8,9 @@ import graphqlClient from '../lib/graphqlClient'
 import { Provider } from 'react-redux'
 
 // CSS/SCSS
-import "../styles/globalStyles.scss"
+import "awesome-notifications/dist/style.css"
 import "react-image-gallery/styles/css/image-gallery.css"
+import "../styles/globalStyles.scss"
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 
 const MyApp = (props) => {

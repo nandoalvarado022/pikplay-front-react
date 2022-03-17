@@ -374,3 +374,9 @@ export const GET_PUBLICATIONS = gql`
     }
   }
 `
+
+export const notifierOptions = {
+	labels: {
+		success: ""
+	}
+}

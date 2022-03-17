@@ -509,8 +509,12 @@ main {
     margin: 0;
 }
 
+#awn-toast-container{
+    bottom: initial;
+    top: 200px;
+}
+
 section {
-    height: 100vh;
     margin: 20px auto;
     width: 1200px;
     @media screen and (max-width: 420px) {

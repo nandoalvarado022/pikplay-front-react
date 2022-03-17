@@ -26,6 +26,7 @@
     "@reduxjs/toolkit": "1.6.2",
     "apollo-boost": "0.4.9",
     "awesome-debounce-promise": "2.1.0",
+    "awesome-notifications": "3.1.2",
     "canvas-confetti": "^1.4.0",
     "chart.js": "^3.5.1",
     "cross-env": "6.0.3",

@@ -1,11 +1,12 @@
 button.btn {
     border-radius: 5px;
+    border: none;
     color: white;
     font-size: 12px;
     margin: 5px;
     padding: 10px 20px;
-    text-transform: initial;
     text-shadow: 1px 1px #5a5a5a;
+    text-transform: initial;
     &:hover {
         box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     }

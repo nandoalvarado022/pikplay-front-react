@@ -1,13 +1,16 @@
+import AWN from "awesome-notifications"
+import PublicationForminterface from './PublicationFormInterface'
+import React, { useEffect, useState } from 'react'
+import rn from 'random-number'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
-import { useRouter, withRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
 import { gql, useMutation, useQuery } from '@apollo/client'
-import rn from 'random-number'
-import { slugify } from "../../lib/utils"
+import { notifierOptions, slugify } from "../../lib/utils"
 import { subirImagen } from '../../lib/utils'
-import PublicationForminterface from './PublicationFormInterface'
+import { useRouter, withRouter } from 'next/router'
 import { useSelector } from "react-redux"
+
+const notifier = new AWN(notifierOptions)
 
 const QUERY_PUBLICATION = gql`
 	query Publications($slug: String){
@@ -41,7 +44,12 @@ const PublicationForm = (props) => {
 	const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
 	const router = useRouter()
 	const [imageLoading, setImageLoading] = useState()
-	const [dispatchCreate, { data: resCrePub, error: errCrePub, loading: loadingCrepub }] = useMutation(MUTATION_PUBLICATION);
+	const [dispatchCreate] = useMutation(MUTATION_PUBLICATION, {
+		onCompleted: ({ createPublication }) => {
+			if (createPublication == "401") notifier.warning('Se venció la sessión, ingresa nuevamente a tu cuenta')
+			if (createPublication == "200") notifier.success('Se guardo la publicación')
+		}
+	});
 	const [errors, setErrors] = useState()
 	const screenWidth = typeof window != "undefined" ? screen.width : 0
 	const slugPublication = router.query.id;
@@ -65,6 +73,9 @@ const PublicationForm = (props) => {
 			setTime(new Date)
 		}
 	}, [loadingPED])
+
+	useEffect(() => {
+	}, [])
 
 	async function onChangeImage(idImageElement) {
 		if (imageLoading) {
@@ -90,7 +101,7 @@ const PublicationForm = (props) => {
 
 	function handleSubmit() {
 		const validators = () => {
-			if (!publicationFormData.title || !publicationFormData.description || !publicationFormData.quantity || !publicationFormData.category || !publicationFormData.image_link) {
+			if (!publicationFormData.title || !publicationFormData.description || !publicationFormData.category || !publicationFormData.image_link) {
 				isMobile && alert("Por favor completa todos los campos de tu publicación")
 				setErrors("Por favor completa todos los campos de tu publicación")
 				return false
@@ -112,7 +123,7 @@ const PublicationForm = (props) => {
 		const slug_prepared = slugify(publicationFormData.title, 60)
 		const slug = slug_prepared + "-" + random_num
 		const phone = user.phone
-		delete publicationFormData.__typename
+		if (publicationFormData?.__typename) delete publicationFormData.__typename
 		const variables = {
 			input: {
 				...publicationFormData,

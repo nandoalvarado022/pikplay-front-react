@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import Link from "next/link"
 import { getCategories, slugify } from "../../lib/utils"
+import { motion } from 'framer-motion'
 import styles from "./styles.module.scss"
 
 const Categorias = (props) => {
@@ -11,9 +12,12 @@ const Categorias = (props) => {
     <ul>
       <li className={styles["crear-publicacion"]} >
         <Link href="/publicacion/crear" as="/publicacion/crear">
-          <a>
+          <motion.a
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.8 }}
+          >
             Vender
-          </a>
+          </motion.a>
         </Link>
       </li>
       {
@@ -22,7 +26,7 @@ const Categorias = (props) => {
           return <li filter="game" key={category.id}>
             <Link scroll={scroll} href="/category/[id]" as={"/category/" + slugify(category.name)}>
               <a>
-                <img alt="Imagen categoria" src={image} alt={category.name} />
+                <img src={image} alt={category.name} />
                 {category.name}
               </a>
             </Link>

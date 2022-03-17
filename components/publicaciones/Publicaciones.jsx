@@ -202,7 +202,7 @@ const Publicaciones = () => {
 
     const PUBLICATIONS_QUERY = gql`
 	query Publications($user_id: Int, $order: Boolean, $is_admin: Boolean){
-		publications(user_id: $user_id, order: $order, is_admin: $is_admin){
+		publications(user_id: $user_id, order: $order, is_admin: $is_admin, limit: 10){
 			accept_changues
 			created
 			id
