@@ -105,7 +105,13 @@
             top: 71px;
             width: 700px;
             z-index: 3;
-
+            @media screen and (max-width: 420px) {
+                height: 100vh;
+                left: 0;
+                top: 72px;
+                width: 100%;
+            }
+            
             &::before {
                 background: #2e2e2e75;
                 content: "";
@@ -114,12 +120,6 @@
                 position: fixed;
                 width: 100vw;
                 z-index: 0;
-            }
-
-            @media screen and (max-width: 420px) {
-                height: 100vh;
-                top: 82px;
-                width: 100%;
             }
 
             section {
@@ -155,7 +155,9 @@
             .recommended {
                 background: #f4f4f4;
                 padding: 10px 20px;
-
+                @media screen and (max-width: 420px) {
+                    display: none;
+                }
                 h3 {
                     font-size: 12px;
                 }

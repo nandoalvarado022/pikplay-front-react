@@ -90,18 +90,21 @@ const Header = () => {
 									Se encontraron <CountUp end={search.result.length} /> resultados:
 								</small>
 								<div className={styles['grid-container']}>
-									{search.result && search.result.length > 0 && <div className="primary">
-										<img className={styles.discount} src="/images/icons/discounts.png" />
-										<img src={search.result[0].image_link} alt="" />
-										<summary>
-											<span>
-												Llévalo por solo&nbsp;
-												<price>$12.500</price>
-											</span>
-											<h2>{search.result[0].title}</h2>
-											<p>{search.result[0].title}</p>
-										</summary>
-									</div>}
+									{search.result && search.result.length > 0 && <Link href={`/publicacion/${search.result[0].slug}`}>
+										<article className="primary">
+											<img className={styles.discount} src="/images/icons/discounts.png" />
+											<img src={search.result[0].image_link} alt="" />
+											<summary>
+												<span>
+													Llévalo por solo&nbsp;
+													<price>$12.500</price>
+												</span>
+												<h2>{search.result[0].title}</h2>
+												<p>{search.result[0].title}</p>
+											</summary>
+										</article>
+									</Link>
+									}
 								</div>
 								<div className={styles.rows}>
 									{

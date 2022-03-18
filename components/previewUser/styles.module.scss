@@ -4,6 +4,7 @@
     width: 70px;
     @media screen and (max-width: 420px) {
         border-radius: 10px 10px 0 0;
+        margin-left: initial;
         width: 80%;
     }
     &:hover, &.actived {

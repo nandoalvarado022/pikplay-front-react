@@ -1,9 +1,9 @@
 import { gql, useLazyQuery, useMutation } from '@apollo/client'
 import { useState } from "react"
 import LoginInterface from "./LoginInterface"
-import { loadAudio } from '../../lib/utils'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 
 function Login(props) {
 	const router = useRouter()
@@ -37,9 +37,8 @@ function Login(props) {
 			if (validateLogin) {
 				const token = JSON.parse(validateLogin).token
 				dispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: JSON.parse(validateLogin) } })
-				router.reload('/')
-				// setIsOpen(false)
-				// loadAudio("/audios/login.mp3")
+				toast('Bienvenido 😎')
+				router.push('/#logged-in')
 			} else {
 				document.getElementById("verificationCode").value = ""
 				alert("Código no valido")

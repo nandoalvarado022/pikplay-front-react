@@ -187,6 +187,7 @@ class Layout extends React.Component {
           gtag('config', 'AW-941382150');
           gtag('event', 'conversion', { 'send_to': 'AW-941382150/e71oCMvon-0BEIa08cAD' });
         }}()
+        <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/c978698ac64243ce2ef29b6e6/4be9bd12c4b83396ddca2a6d1.js");</script>
       </Head>
 
       <body className="App font-a">
