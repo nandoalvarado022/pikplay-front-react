@@ -1,10 +1,10 @@
-import { gql, useMutation } from "@apollo/client"
-import { useRouter } from 'next/router'
-import { useContext, useEffect, useState } from "react"
-import Layout from "../../components/layout/Layout"
-import { subirImagen } from "../../lib/utils"
 import Interface from "./Interface"
+import Layout from "../../components/layout/Layout"
+import { gql, useMutation } from "@apollo/client"
+import { subirImagen } from "../../lib/utils"
+import { useContext, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useRouter } from 'next/router'
 
 const CHANGE_PROFILE = gql`
 mutation ChangeProfileData($input: UserInput){

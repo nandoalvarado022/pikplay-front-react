@@ -1,17 +1,14 @@
 import React from 'react'
-import { persistStore } from 'redux-persist'
-import { PersistGate } from 'redux-persist/integration/react'
-import { useStore } from '../lib/store'
-import { ApolloProvider } from "@apollo/client"
 import TagManager from 'react-gtm-module'
 import graphqlClient from '../lib/graphqlClient'
+import { ApolloProvider } from "@apollo/client"
+import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core"
+import { persistStore } from 'redux-persist'
+import { useStore } from '../lib/store'
 
-// CSS/SCSS
-import "awesome-notifications/dist/style.css"
-import "react-image-gallery/styles/css/image-gallery.css"
-import "../styles/globalStyles.scss"
-import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+import '../styles/globalStyles.scss'
 
 const MyApp = (props) => {
   const { Component, pageProps, router } = props
@@ -37,7 +34,7 @@ const MyApp = (props) => {
       jssStyles.parentElement.removeChild(jssStyles);
     }
     TagManager.initialize({ gtmId: 'GTM-5WB6P7C' })
-  }, []);
+  }, [])
 
   return process.browser ? <MuiThemeProvider theme={theme}>
     <Provider store={store}>

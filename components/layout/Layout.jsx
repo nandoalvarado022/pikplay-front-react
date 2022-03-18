@@ -1,19 +1,20 @@
-import Notification from "../notification";
-import { register } from "next-offline/runtime"
-import toastr from "toastr"
-import Button from "../button/Button"
-import { initGA, logPageView } from "../../public/analytics"
-import Router from "next/router"
-import NProgress from "nprogress"
-import React from "react"
-import MyHeader from "../myHeader/MyHeader"
-import styles from "./layout.module.scss"
-import Categorias from "../categorias/Categorias"
-import MenuMovil from "../menuMovil/MenuMovil"
-import Subcategories from '../subcategories/Subcategories'
-import Head from "next/head"
-import VARS from "../../lib/variables"
 const { IS_MOBILE } = VARS
+import Button from "../button/Button"
+import Categorias from "../categorias/Categorias"
+import Head from "next/head"
+import MenuMovil from "../menuMovil/MenuMovil"
+import MyHeader from "../myHeader/MyHeader"
+import NProgress from "nprogress"
+import Notification from "../notification";
+import React from "react"
+import Router from "next/router"
+import Subcategories from '../subcategories/Subcategories'
+import VARS from "../../lib/variables"
+import styles from "./layout.module.scss"
+import toastr from "toastr"
+import { ToastContainer } from "react-toastify"
+import { initGA, logPageView } from "../../public/analytics"
+import { register } from "next-offline/runtime"
 
 toastr.options.progressBar = true;
 toastr.options.timeOut = 5000;
@@ -192,6 +193,7 @@ class Layout extends React.Component {
         <MyHeader />
         {/* <audio /> */}
         <main className={styles.principal}>
+          <ToastContainer />
           <Categorias scroll={false} />
           <Subcategories />
           {IS_MOBILE && <MenuMovil />}

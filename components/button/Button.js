@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import styles from './button.module.scss'
-import { motion } from 'framer-motion'
+const { motion } = require("framer-motion")
 
 export default function Button({ animation, disabled, id, children, color, className, onClick, databutton }) {
     className = `${className} ${animation ? styles.animation : null}`
@@ -8,5 +8,4 @@ export default function Button({ animation, disabled, id, children, color, class
     return <motion.button whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.05 }} id={id} databutton={databutton} onClick={disabled ? null : onClick} className={`${styles.btn} ${styles[color]} ${className}`}>
         <span className={styles.text}>{children}</span>
     </motion.button>
-
 }

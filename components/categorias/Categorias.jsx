@@ -1,24 +1,21 @@
-import React, { useState } from "react"
 import Link from "next/link"
-import { getCategories, slugify } from "../../lib/utils"
-import { motion } from 'framer-motion'
+import React, { lazy, useEffect, useState } from "react"
+import dynamic from 'next/dynamic'
 import styles from "./styles.module.scss"
+import { getCategories, slugify } from "../../lib/utils"
 
 const Categorias = (props) => {
   const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
   const { scroll } = props
 
+  const VenderButton = dynamic(() => import('./venderButton/VenderButton'), {
+    ssr: false
+  })
+
   return <div className={styles.Categorias}>
     <ul>
       <li className={styles["crear-publicacion"]} >
-        <Link href="/publicacion/crear" as="/publicacion/crear">
-          <motion.a
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.8 }}
-          >
-            Vender
-          </motion.a>
-        </Link>
+        {<VenderButton />}
       </li>
       {
         getCategories().map((category) => {

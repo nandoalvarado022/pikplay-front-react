@@ -1,4 +1,3 @@
-import AWN from "awesome-notifications"
 import PublicationForminterface from './PublicationFormInterface'
 import React, { useEffect, useState } from 'react'
 import rn from 'random-number'
@@ -9,8 +8,7 @@ import { notifierOptions, slugify } from "../../lib/utils"
 import { subirImagen } from '../../lib/utils'
 import { useRouter, withRouter } from 'next/router'
 import { useSelector } from "react-redux"
-
-const notifier = new AWN(notifierOptions)
+import { toast } from 'react-toastify'
 
 const QUERY_PUBLICATION = gql`
 	query Publications($slug: String){
@@ -46,8 +44,8 @@ const PublicationForm = (props) => {
 	const [imageLoading, setImageLoading] = useState()
 	const [dispatchCreate] = useMutation(MUTATION_PUBLICATION, {
 		onCompleted: ({ createPublication }) => {
-			if (createPublication == "401") notifier.warning('Se venció la sessión, ingresa nuevamente a tu cuenta')
-			if (createPublication == "200") notifier.success('Se guardo la publicación')
+			if (createPublication == "401") toast('Se venció la sessión, ingresa nuevamente a tu cuenta')
+			if (createPublication == "200") toast('Se guardo la publicación')
 		}
 	});
 	const [errors, setErrors] = useState()
@@ -73,9 +71,6 @@ const PublicationForm = (props) => {
 			setTime(new Date)
 		}
 	}, [loadingPED])
-
-	useEffect(() => {
-	}, [])
 
 	async function onChangeImage(idImageElement) {
 		if (imageLoading) {
