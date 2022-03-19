@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCheckCircle, faHandshake, faStar } from "@fortawesome/free-regular-svg-icons"
+import { faCheckCircle, faHandshake, faStar } from "@fortawesome/free-solid-svg-icons"
 import styles from "./author.module.scss"
 
 const Author = ({ user = {} }) => {

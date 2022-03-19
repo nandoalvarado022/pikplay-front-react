@@ -4,7 +4,7 @@ import rn from 'random-number'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import { gql, useMutation, useQuery } from '@apollo/client'
-import { notifierOptions, slugify } from "../../lib/utils"
+import { slugify } from "../../lib/utils"
 import { subirImagen } from '../../lib/utils'
 import { useRouter, withRouter } from 'next/router'
 import { useSelector } from "react-redux"
@@ -47,8 +47,7 @@ const PublicationForm = (props) => {
 			if (createPublication == "401") toast('Se venció la sessión, ingresa nuevamente a tu cuenta')
 			if (createPublication == "200") toast('Se guardo la publicación')
 		}
-	});
-	const [errors, setErrors] = useState()
+	})
 	const screenWidth = typeof window != "undefined" ? screen.width : 0
 	const slugPublication = router.query.id;
 	const variables = slugPublication ? { slug: slugPublication } : {}
@@ -97,8 +96,7 @@ const PublicationForm = (props) => {
 	function handleSubmit() {
 		const validators = () => {
 			if (!publicationFormData.title || !publicationFormData.description || !publicationFormData.category || !publicationFormData.image_link) {
-				isMobile && alert("Por favor completa todos los campos de tu publicación")
-				setErrors("Por favor completa todos los campos de tu publicación")
+				toast("Por favor completa todos los campos de tu publicación")
 				return false
 			}
 			return true
@@ -144,7 +142,7 @@ const PublicationForm = (props) => {
 		setPublicationFormData(_publicationFormData)
 	}
 
-	return <PublicationForminterface {...{ currentStep, errors, handleRemoveImage, handleSubmit, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, screenWidth, setPublicationFormData, textButton, setCurrentStep }} />
+	return <PublicationForminterface {...{ currentStep, handleRemoveImage, handleSubmit, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, screenWidth, setPublicationFormData, textButton, setCurrentStep }} />
 }
 
 export default withRouter(PublicationForm)

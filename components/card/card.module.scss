@@ -26,10 +26,11 @@ h3.title_destacada {
         }
     }
     :global(.author) {
-        margin: -30px auto;
+        margin: auto;
         position: absolute;
         height: 0;
         opacity: 0;
+        top: 18px;
     }
     &:hover {
         :global(.author) {

@@ -49,7 +49,17 @@ export const getNotifications = async (props) => {
 }
 
 export const getFeed = async (props) => {
-  const { isSSR = false, limit = 50, slug = "", category = null, subcategory = null, title = "", attempt = 1 } = props
+  const {
+    attempt = 1,
+    category = null,
+    isSSR = false,
+    is_verified = true,
+    limit = 50,
+    slug = "",
+    subcategory = null,
+    status = true,
+    title = "",
+  } = props
   const getCache = () => {
     let withoutCache = !!slug || !!category || !!subcategory || !!title
     console.log('Sin cache: ', withoutCache)
@@ -58,7 +68,15 @@ export const getFeed = async (props) => {
   }
 
   const query = `query {
-      publications(status: true, limit: ${limit} , slug: "${slug}", category: ${category}, subcategory: ${subcategory}, title: "${title}") {
+      publications(
+        category: ${category}, 
+        is_verified: ${is_verified},
+        limit: ${limit} , 
+        slug: "${slug}", 
+        status: ${status},
+        subcategory: ${subcategory}, 
+        title: "${title}"
+      ) {
         accept_changues
         apply_cashback
         banner_bottom
@@ -376,7 +394,7 @@ export const GET_PUBLICATIONS = gql`
 `
 
 export const notifierOptions = {
-	labels: {
-		success: ""
-	}
+  labels: {
+    success: ""
+  }
 }

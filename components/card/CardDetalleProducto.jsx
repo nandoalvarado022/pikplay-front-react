@@ -75,7 +75,7 @@ const CardProducto = ({ apply_cashback, banner_bottom, meta_url, title, descuent
 
             <div className={`flex ${styles.compra_author}`}>
               <Button color="blue" onClick={handleHablarVendedor}>
-                {quantity > 0 && "Comprar"}
+                {quantity > 0 && "Lo quiero"}
                 {quantity == 0 && "Reservar"}
               </Button>
               <div className={styles.content_author}>
@@ -99,7 +99,7 @@ const CardProducto = ({ apply_cashback, banner_bottom, meta_url, title, descuent
     </Grow>
     {
       banner_bottom && <div>
-        <img alt="Banner publicitario del seller" className={`${styles.banner_bottom} block-center`} src={banner_bottom} alt="" />
+        <img alt="Banner publicitario del seller" className={`${styles.banner_bottom} block-center`} src={banner_bottom} />
       </div>
     }
     <Footer />
