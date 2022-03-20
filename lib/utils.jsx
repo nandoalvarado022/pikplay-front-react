@@ -54,11 +54,11 @@ export const getFeed = async (props) => {
     category = null,
     isSSR = false,
     is_verified = true,
-    limit = 50,
-    slug = "",
+    limit = 12,
+    slug = '',
     subcategory = null,
     status = true,
-    title = "",
+    title = '',
   } = props
   const getCache = () => {
     let withoutCache = !!slug || !!category || !!subcategory || !!title
@@ -98,7 +98,7 @@ export const getFeed = async (props) => {
         slug
         tags
         title
-        user{
+        user {
           apply_cashback
           certificate
           id
@@ -106,18 +106,15 @@ export const getFeed = async (props) => {
           phone
           picture
         }
-        user_name
-        user_phone
-        user_picture
-        user_transactions
         views
         warranty
       }
     }`
   let data = []
   try {
-    if (isSSR) {
+    if (isSSR && false) {
       console.log('Entro por SSR')
+      // Haciendo fetch al JSON cacheado de productos
       const url = VARS.API_URL + '/products'
       const res = await fetch(url, {
         method: "GET",

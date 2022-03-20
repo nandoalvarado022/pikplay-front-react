@@ -9,12 +9,17 @@ const Author = ({ user = {} }) => {
             <h3>
                 {user?.name}
             </h3>
-            {user?.certificate && <div className={styles.stars}>
-                <FontAwesomeIcon icon={faStar} /> 4,5
+            {!!user?.certificate && <div className={styles.stars}>
+                <FontAwesomeIcon icon={faStar} />
+                <span>
+                    4,5
+                </span>
             </div>}
             {user?.transactions > 0 && <div className={styles.transactions}>
                 <FontAwesomeIcon icon={faCheckCircle} />
-                {user?.transactions} ventas completadas
+                <span>
+                    {user?.transactions} ventas completadas
+                </span>
             </div>}
         </p>
     </div>

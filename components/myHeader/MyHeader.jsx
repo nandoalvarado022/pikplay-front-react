@@ -78,7 +78,7 @@ const Header = () => {
 			</Link>
 
 			{
-				<div onBlur={() => setTimeout(() => setInputText(''), 200)} className={styles.content_buscador}>
+				<div onBlur={() => setTimeout(() => setShowSearchModal(false), 200)} className={styles.content_buscador}>
 					<TextField className={styles.Textfield} disabled={isLoading} onFocus={e => setShowSearchModal(true)} onChange={e => setInputText(e.target.value)} fullWidth label={IS_MOBILE ? '¿Buscas algo?' : <span>
 						<FontAwesomeIcon className="m-r-10" icon={faSearch} />
 						Nintendo switch, ps5, controles de xbox

@@ -26,16 +26,32 @@ h3.title_destacada {
         }
     }
     :global(.author) {
-        margin: auto;
-        position: absolute;
-        height: 0;
-        opacity: 0;
+        margin: 10px auto 10px;
+        padding: 5px 10px 0px;
+        height: 25px;
+        opacity: 1;
         top: 18px;
-    }
-    &:hover {
-        :global(.author) {
-            height: 30px;
-            opacity: 1;
+        p {
+            align-items: center;
+            display: flex;
+            grid-gap: 5px;
+            margin: none;
+            padding: 0;
+        }
+        img {
+            display: none;
+        }
+        .transactions {
+            display: flex;
+            align-items: center;
+        }
+        .stars {
+            align-items: center;
+            display: flex;
+            span {
+                height: initial;
+                margin: 0;
+            }
         }
     }
     .tachado {
@@ -140,10 +156,12 @@ h3.title_destacada {
                 margin-left: 20px;
             }
             h2 {
-                font-size: 18px;
+                font-size: 16px;
+                margin: 10px 10px;
                 max-height: 44px;
                 overflow: hidden;
-                text-transform: capitalize;
+                text-overflow: ellipsis;
+                white-space: nowrap;
                 @media screen and (max-width: 420px) {
                     margin: 20px 20px 0 10px;
                 }

@@ -22,7 +22,6 @@ const Card = ({ accept_changues, apply_cashback, certificate, id: id_publication
       <a className={id_publication == 1 ? styles.destacada_Card : ""}>
         {special_title && (<h3 className={styles.title_destacada}>{special_title}</h3>)}
         <div key={id_publication} className={`${styles.Card} ${destacada ? styles.destacada : ""}`} >
-          {user?.name && <Author user={user} />}
           <div className={styles.descripcion_imagen}>
             <div className={styles.content_imagen}>
               <div className={`${styles.tags} desktop`}>
@@ -48,6 +47,7 @@ const Card = ({ accept_changues, apply_cashback, certificate, id: id_publication
             {
               <div className={styles.descripcion}>
                 <h2>{title ? title : "Espacio para el título de la publicación"}</h2>
+                {user?.name && <Author user={user} />}
                 {!!quantity && <p className={styles.quantity}>{quantity} unidades disponibles</p>}
                 <div className={styles["likes-precio"]}>
                   <div className={styles.content_precio}>
