@@ -13,6 +13,10 @@ mutation ChangeProfileData($input: UserInput){
 }`
 
 const Index = (props) => {
+  const descripcion = "Pikplay es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas e independientes de alta confiabilidad ofreciendo videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch con los mejores precios del mercado en Colombia"
+  const image = ""
+  const title = "Pikplay | Perfil"
+  const url = "https://pikplay.co/perfil"
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const router = useRouter()
@@ -62,7 +66,7 @@ const Index = (props) => {
     }, 1000)
   }
 
-  return <Layout>
+  return <Layout image={image} descripcion={descripcion} title={title} url={url}>
     <Perfil {...{ dispatch, userData, isSaving, handleSave, setUserData }} />
   </Layout>
 }

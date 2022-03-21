@@ -1,10 +1,11 @@
+import Button from '../button/Button'
+import moment from "moment"
+import styles from "./styles.module.scss"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
-import moment from "moment"
 import { gql, useLazyQuery, useMutation } from '@apollo/client'
+import { toast } from 'react-toastify'
 import { useEffect, useState } from "react"
-import styles from "./styles.module.scss"
-import Button from '../button/Button'
 import { useSelector } from "react-redux"
 
 moment.locale('es')
@@ -82,13 +83,11 @@ const Transacciones = (props) => {
   return <section className={`page ${styles.Transactions}`}>
     <h2 className='Card'>Transacciones
       <FontAwesomeIcon class="svg-question" icon={faQuestionCircle} onClick={() => {
-        const message = {
-          id: 0, message: <div>
-            <p>Bienvenido a tus transacciones</p>
-            <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
-          </div>
-        }
-        props.dispatch({ type: "SET_MESSAGE", payload: { message } })
+        const message = <div>
+          <p>Bienvenido a tus <b>transacciones</b></p>
+          <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
+        </div>
+        toast(message)
       }} />
     </h2>
     <ul>

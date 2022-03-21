@@ -68,12 +68,13 @@ const HolaJuanito = () => {
                             <b className="font-a">{name}</b>
                         </div>
                     </div>
-                    <div className={`${styles.text2} font-c`}>
-                        Contigo ya somos&nbsp;
-                        <span>
-                            <CountUp end={1403} />
-                        </span> gamers en Pikplay.
-                        <br />Recuerda que puedes confiar <b style={{ color: "green" }}>100%</b> en nuestros aliados certificados. Entregamos garantía por las compras que realices a estos, así que tu compra será confiable, rápida y segura.
+                    <div className={`${styles.text2} font-a`}>
+                        <p>Contigo ya somos&nbsp;
+                            <span>
+                                <CountUp end={165} />
+                            </span> gamers en Pikplay.
+                        </p>
+                        Recuerda que puedes confiar <b style={{ color: "green" }}>100%</b> en nuestros aliados certificados. Entregamos garantía por las compras que realices a estos, así que tu compra será confiable, rápida y segura.
                     </div>
                     {
                         user.id == 0 && <button onClick={() => document.getElementById("btnStart").click()} className={styles.reclamar_monedas}>

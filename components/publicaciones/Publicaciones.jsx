@@ -1,20 +1,21 @@
-import React from 'react'
+import Button from '../../components/button/Button'
+import ChangeSeller from './ChangeSeller'
 import Link from "next/link"
+import Notification from "../../components/notification"
+import React from 'react'
+import Router from 'next/router'
+import moment from "moment"
+import styles from './publicaciones.module.scss'
+import { Box, Tab, Tabs, Typography } from "@material-ui/core"
+import { Doughnut } from 'react-chartjs-2'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
 import { faRocket } from "@fortawesome/free-solid-svg-icons"
-import { useQuery, gql, useMutation, useLazyQuery } from '@apollo/client'
-import Router from 'next/router'
-import styles from './publicaciones.module.scss'
-import Button from '../../components/button/Button'
-import { useEffect, useState } from 'react'
 import { format_number } from '../../lib/utils'
-import moment from "moment"
-import Notification from "../../components/notification"
-import { Box, Tab, Tabs, Typography } from "@material-ui/core"
-import { Doughnut } from 'react-chartjs-2'
+import { toast } from 'react-toastify'
+import { useEffect, useState } from 'react'
+import { useQuery, gql, useMutation, useLazyQuery } from '@apollo/client'
 import { useSelector, useDispatch } from 'react-redux'
-import ChangeSeller from './ChangeSeller'
 
 moment.locale('es')
 
@@ -157,12 +158,10 @@ const Publicacion = ({ item, ind, getPublications }) => {
                     !item.status && <span className={styles.verPublicacion} onClick={() => {
                     }}>
                         <FontAwesomeIcon style={{ position: "relative", left: "-5px", top: "2px" }} icon={faQuestionCircle} onClick={() => {
-                            const message = {
-                                id: 0, message: <div>
-                                    <p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pikplay ó porque esta pausada</p>
-                                </div>
-                            }
-                            dispatch({ type: "SET_MESSAGE", payload: { message } })
+                            const message = <div>
+                                <p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pikplay o porque esta desactivada</p>
+                            </div>
+                            toast(message)
                         }} />
                         {/* No es posible ver la publicación */}
                     </span>
@@ -200,8 +199,8 @@ const Publicaciones = () => {
     const { id: user_id, is_admin } = useSelector((state) => state.user)
 
     const PUBLICATIONS_QUERY = gql`
-	query Publications($user_id: Int, $order: Boolean, $is_admin: Boolean){
-		publications(user_id: $user_id, order: $order, is_admin: $is_admin, limit: 20){
+	query Publications($user_id: Int, $order: Boolean, $is_admin: Boolean, $status: Boolean){
+		publications(user_id: $user_id, order: $order, is_admin: $is_admin, limit: 20, status: $status){
 			accept_changues
 			created
 			id
@@ -225,8 +224,8 @@ const Publicaciones = () => {
         onCompleted: () => setTryAgain(false)
     })
 
-    useEffect(() => {
-        getPublications()
+    useEffect(async () => {
+        getPublications({ variables: { status: false } })
     }, [])
 
     const handleChange = (event, newValue) => {

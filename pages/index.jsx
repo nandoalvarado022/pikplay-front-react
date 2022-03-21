@@ -6,7 +6,7 @@ const Index = (props) => {
   const { feed } = props
   const descripcion = "Pikplay es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas e independientes de alta confiabilidad ofreciendo videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch con los mejores precios del mercado en Colombia"
   const image = ""
-  const title = "Pikplay - Compras confiables"
+  const title = "Pikplay - Compras gamers confiables"
   const url = "https://pikplay.co"
   return <Layout image={image} descripcion={descripcion} title={title} url={url}>
     <Portada feed={feed} />

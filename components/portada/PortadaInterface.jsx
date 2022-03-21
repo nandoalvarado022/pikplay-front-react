@@ -57,18 +57,13 @@ const PortadaInterface = ({ category, feed, popularyItem, starItem }) => {
       Mantenimiento programado en progreso
     </h3>}
     {!category && <HolaJuanito />}
-    {
-      // showVideo && <div className={styles.videoContent}>
-      //   <video onClick={handlePlay} className="block-center" src="/videos/video1.mp4" />
-      // </div>
-    }
     <SpecialBanner {...{ category, popularyItem, starItem }} />
     <div className={styles.view_Rodadas}>
       <div className={styles.main}>
         <div className="listadoRodadas">
           {feed && feed.map((item, ind) => {
             return <React.Fragment>
-              {ind == 4 && <Groot />}
+              {(ind == 3 || ind == 6 || ind == 9) && !category && <Groot ind={ind} />}
               <Card special_title="Más vendido" {...item} />
             </React.Fragment>
           })}
