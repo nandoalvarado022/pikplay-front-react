@@ -1,7 +1,7 @@
-import { Alert } from "@material-ui/lab"
-import Link from "next/link"
 import Button from "../../components/button/Button"
 import Layout from "../../components/layout/Layout"
+import Link from "next/link"
+import { Alert } from "@material-ui/lab"
 
 const Page404 = () => {
   return <Layout meta_image="" meta_title="404" title="404" descripcion="Pagina no encontrada" meta_url="404">

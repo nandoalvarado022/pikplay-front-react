@@ -79,8 +79,8 @@ const Transacciones = (props) => {
     transactionConfirmed({ variables: { id, publication, user_request: loggedUser.id } });
   }
 
-  return <section className={`${styles.Transactions}`}>
-    <h2>Transacciones
+  return <section className={`page ${styles.Transactions}`}>
+    <h2 className='Card'>Transacciones
       <FontAwesomeIcon class="svg-question" icon={faQuestionCircle} onClick={() => {
         const message = {
           id: 0, message: <div>

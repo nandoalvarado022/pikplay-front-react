@@ -60,7 +60,6 @@ const CakeReport = ({ publications = [] }) => {
     }
 
     return <div className={`${styles.report} m-20`}>
-        <h2>Informe de tus publicaciones</h2>
         <div className="Card main">
             <div className={styles.graphic}>
                 <Doughnut data={data} />
@@ -236,7 +235,7 @@ const Publicaciones = () => {
 
     const [value, setValue] = React.useState(0);
 
-    return <section className={styles.content}>
+    return <section className={`page ${styles.content}`}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs textColor="primary" style={{ background: "white" }} value={value} onChange={handleChange} aria-label="basic tabs example">
                 <Tab label="Publicaciones" />
@@ -245,18 +244,6 @@ const Publicaciones = () => {
         </Box>
 
         <TabPanel value={value} index={0} className="m-20">
-            <h2>
-                Listado de publicaciones
-                <FontAwesomeIcon className="svg-question" icon={faQuestionCircle} onClick={() => {
-                    const message = {
-                        id: 0, message: <div>
-                            <p>Bienvenido a tus publicaciones</p>
-                            <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
-                        </div>
-                    }
-                    dispatch({ type: "SET_MESSAGE", payload: { message } })
-                }} />
-            </h2>
             <center>
                 {loadingPublications && <div>Cargando publicaciones...</div>}
                 {tryAgain && !loadingPublications && <Button color='normal' onClick={getPublications}>Intentar nuevamente</Button>}

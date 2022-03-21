@@ -138,6 +138,17 @@ button.image-gallery-thumbnail {
     opacity: 0.5;
 }
 
+.page h2{
+    margin: 0 auto;
+    text-align: center;
+    width: 300px;
+    svg{
+        float: right;
+        margin-top: 2px;
+        transform: scale(1.2);
+    }
+}
+
 .pointer {
     cursor: pointer;
 }

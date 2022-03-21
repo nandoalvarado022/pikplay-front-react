@@ -1,7 +1,8 @@
-import Interface from "./Interface"
+import Perfil from "./Perfil"
 import Layout from "../../components/layout/Layout"
 import { gql, useMutation } from "@apollo/client"
 import { subirImagen } from "../../lib/utils"
+import { toast } from 'react-toastify'
 import { useContext, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useRouter } from 'next/router'
@@ -11,7 +12,7 @@ mutation ChangeProfileData($input: UserInput){
   changeProfileData(input: $input)
 }`
 
-const Perfil = (props) => {
+const Index = (props) => {
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const router = useRouter()
@@ -57,12 +58,12 @@ const Perfil = (props) => {
     // Message to user
     setTimeout(() => {
       setIsSaving(false)
-      // context.getNotifications()
+      toast('Perfil actualizado')
     }, 1000)
   }
 
   return <Layout>
-    <Interface {...{ dispatch, userData, isSaving, handleSave, setUserData }} />
+    <Perfil {...{ dispatch, userData, isSaving, handleSave, setUserData }} />
   </Layout>
 }
 
@@ -72,4 +73,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default Perfil
+export default Index

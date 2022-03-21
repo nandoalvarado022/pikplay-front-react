@@ -1,12 +1,13 @@
+import Button from "../button/Button"
+import confetti from "canvas-confetti"
+import styles from "./styles.module.scss"
+import { CREATE_COIN, DELETE_NOTIFICATION, GET_NOTIFICATIONS, loadAudio } from "../../lib/utils"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTimes } from "@fortawesome/free-solid-svg-icons"
+import { faTimes, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { toast } from 'react-toastify'
 import { useEffect } from 'react'
 import { useLazyQuery, useMutation } from '@apollo/client'
-import confetti from "canvas-confetti"
 import { useSelector, useDispatch } from "react-redux"
-import { CREATE_COIN, DELETE_NOTIFICATION, GET_NOTIFICATIONS, loadAudio } from "../../lib/utils"
-import Button from "../button/Button"
-import styles from "./styles.module.scss"
 
 const UserNotifications = () => {
   const user = useSelector((state) => state.user)
@@ -15,13 +16,13 @@ const UserNotifications = () => {
   const [createCoin] = useMutation(CREATE_COIN)
   const dispatch = useDispatch()
 
-  const reclamarCoins = async (coins, idNotification) => {
+  const reclamarCoins = async (coins, id_notification) => {
     const req_res = await createCoin({
       variables: {
-        id: idNotification
+        id: id_notification
       }
     })
-    
+
     const res = req_res.data.createCoin
     if (res == 401) {
       alert("Acción no permitida")
@@ -29,18 +30,20 @@ const UserNotifications = () => {
     }
 
     if (res == 400) {
-      const message = { id: 0, message: <div>Alcanzaste el límite diario de <b>Pikcoins</b> a recibir, intentalo mañana </div> }
-      dispatch({ type: "SET_MESSAGE", payload: { message } })
+      const message = <div>Alcanzaste el límite diario de <b>Pikcoins</b> a recibir, intentalo mañana </div>
+      toast(message)
       return
     }
+
     confetti()
-    dispatch({ type: "RECLAMAR_COINS", payload: { coins } })
-    deleteNotification({ variables: { notifications, id: idNotification, userId: user.id } })
+    dispatch({ type: "RECLAMAR_COINS", payload: { coins } }) // Coins UI
+    toast(`Has recibido ${coins} Pikcoins, ¡felicidades!`)
+    handleDeleteNotification(id_notification) // Delete notificacion (BD and UI)
   }
 
   const handleDeleteNotification = (id) => {
-    notifications.find(item => item.id == idNotification).closed = "1"
-    deleteNotification({ variables: { id: idNotification, user_request: userId } })
+    notifications.find(item => item.id == id).closed = "1"
+    deleteNotification({ variables: { id, userId: user.id } }) // Delete notification BD
     dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: notifications } })
   }
 
@@ -79,7 +82,7 @@ const UserNotifications = () => {
       </span>
       {!!coins && <Button color="blue" onClick={() => { reclamarCoins(coins, id) }}>Reclamar</Button>}
       {!coins && <div className={styles.content_close}>
-        <FontAwesomeIcon onClick={() => handleDeleteNotification(id)} icon={faTimes} />
+        <FontAwesomeIcon onClick={() => handleDeleteNotification(id)} icon={faTrash} />
       </div>
       }
     </ol>

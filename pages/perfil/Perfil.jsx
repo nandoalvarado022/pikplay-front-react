@@ -18,7 +18,7 @@ const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, set
     const goTo = (value) => {
     }
 
-    return <section className={styles.perfil}>
+    return <section className={`page ${styles.perfil}`}>
         {
             IS_MOBILE && <div className={styles.tabs}>
                 <ol className={tab == "profile-content" ? styles.active : ""}>
@@ -30,7 +30,7 @@ const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, set
             </div>
         }
 
-        <h2>
+        <h2 className='Card'>
             Perfil
             <FontAwesomeIcon className="svg-question" icon={faQuestionCircle} onClick={() => {
                 const htmlMessage = <div>

@@ -1,11 +1,12 @@
-import React from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faClock } from "@fortawesome/free-regular-svg-icons"
 import Card from '../card/Card'
 import Footer from '../footer/Footer'
-import styles from "./portada.module.scss"
-import { useEffect, useState } from 'react';
+import Groot from '../groot/Groot'
 import HolaJuanito from "../holaJuanito/HolaJuanito"
+import React from 'react'
+import styles from "./portada.module.scss"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faClock } from "@fortawesome/free-regular-svg-icons"
+import { useEffect, useState } from 'react';
 
 const SpecialBanner = ({ category, popularyItem, starItem }) => {
   if (!category && popularyItem && starItem) {
@@ -67,6 +68,7 @@ const PortadaInterface = ({ category, feed, popularyItem, starItem }) => {
         <div className="listadoRodadas">
           {feed && feed.map((item, ind) => {
             return <React.Fragment>
+              {ind == 4 && <Groot />}
               <Card special_title="Más vendido" {...item} />
             </React.Fragment>
           })}
