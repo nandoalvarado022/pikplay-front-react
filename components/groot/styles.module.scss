@@ -6,6 +6,11 @@
     margin: 0 0 50px;
     position: relative;
     width: 1366px;
+    @media screen and (max-width: 420px) {
+        background: none;
+        margin: 0;
+        width: auto;
+    }
     &::after {
         background: #c9c9c9;
         box-shadow: 4px 0px 4px #c0c0c4;
@@ -32,6 +37,9 @@
         margin: 14px auto 0;
         text-align: center;
         width: 480px;
+        @media screen and (max-width: 420px) {
+            width: auto;
+        }
         span {
             font-size: 32px;
             font-weight: bold;

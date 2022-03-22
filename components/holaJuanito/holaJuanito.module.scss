@@ -3,6 +3,7 @@
     margin: 50px auto 50px;
     width: 1300px;
     @media screen and (max-width: 420px) {
+        margin: 10px auto 110px;
         width: auto;
     }
     .content {
@@ -45,7 +46,8 @@
         width: 50%;
         @media screen and (max-width: 420px) {
             height: 350px;
-            margin-top: 30px;
+            margin-top: 10px;
+            padding: 0;
             width: 100%;
         }
         ul {
@@ -85,6 +87,9 @@
                     margin: 15px 15px;
                     padding: 10px;
                     width: 520px;
+                    @media screen and (max-width: 420px) {
+                        width: auto;
+                    }
                 }
             }
         }

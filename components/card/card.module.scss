@@ -85,9 +85,6 @@ h3.title_destacada {
             display: flex;
             flex-direction: column;
         }
-        @media screen and (max-width: 420px) {
-            display: flex;
-        }
         .content_imagen {
             margin: 0 10px;
             position: relative;
