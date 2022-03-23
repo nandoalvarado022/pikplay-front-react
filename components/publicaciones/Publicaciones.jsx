@@ -149,9 +149,11 @@ const Publicacion = ({ item, ind, getPublications }) => {
             <div className={`${styles["flex-row"]} ${styles.actions}`}>
                 {
                     item.status && <Link href="/publicacion/[id]" as={`/publicacion/${item.slug}`}>
-                        <Button color="blue">
-                            Ver
-                        </Button>
+                        <a target='_BLANK'>
+                            <Button color="blue">
+                                Ver
+                            </Button>
+                        </a>
                     </Link>
                 }
                 {
@@ -173,7 +175,7 @@ const Publicacion = ({ item, ind, getPublications }) => {
                     }
                 </Button>
                 {!!is_admin && <Button color="link" onClick={() => setShowAdminOptions(!showAdminOptions)}>
-                    Más opciones
+                    Opciones
                 </Button>}
             </div>
         </div>

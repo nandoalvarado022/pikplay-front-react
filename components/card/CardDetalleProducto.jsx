@@ -12,56 +12,35 @@ import { faCheckCircle, faHandshake } from "@fortawesome/free-regular-svg-icons"
 import { format_number } from "../../lib/utils"
 import { useEffect, useRef } from "react"
 import Link from "next/link"
+import { useSelector } from "react-redux"
 
 const CardProducto = ({
   apply_cashback,
   banner_bottom,
   description = "",
   descuento = 0,
-  destacada,
-  fecha,
   handleHablarVendedor,
   image_1,
   image_2,
   image_3,
   image_4,
   image_5,
-  image_link,
   indice_item,
-  inventory,
-  likes,
-  meta_url,
-  price,
   quantity,
   sale_price,
   slug,
-  setIsModalHablarVendedor,
-  tipo_coleccion,
-  tipo_publicacion,
   title,
-  user,
-  user_name,
-  user_picture,
-  user_transactions,
-  warranty
+  user: seller,
 } = {}) => {
   const ref_descripcion_imagen = useRef(null)
   let images = []
-
+  const user = useSelector((state) => state.user)
   if (image_1) images.push({ original: image_1, thumbnail: image_1, })
   if (image_2) images.push({ original: image_2, thumbnail: image_2, })
   if (image_3) images.push({ original: image_3, thumbnail: image_3, })
   if (image_4) images.push({ original: image_4, thumbnail: image_4, })
   if (image_5) images.push({ original: image_5, thumbnail: image_5, })
-  indice_item = indice_item ? indice_item : 1;
-  const usuario =
-    typeof localStorage != "undefined"
-      ? localStorage.getItem("user")
-        ? JSON.parse(localStorage.getItem("user")).email
-        : null
-      : null;
-  let like = null;
-  if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
+  indice_item = indice_item ? indice_item : 1
   sale_price == sale_price == 0 || sale_price == '' ? null : sale_price
 
   return <div key={indice_item} className={`Card ${styles.DetalleProducto}`}>
@@ -91,9 +70,9 @@ const CardProducto = ({
         <div className={styles.descripcion}>
           <div className={`Card ${styles.Card}`}>
             <h1>{title}</h1>
-            {/* <Link href={'/publicacion/' + slug + '/editar'}>
-              <a>editar</a>
-            </Link> */}
+            {user.is_admin && <Link href={'/publicacion/' + slug + '/editar'}>
+              <a className='underline'>Editar</a>
+            </Link>}
             {/* Si aplica cashback */}
             {apply_cashback && <span title="Ganarás Pikcoins por hacer esta compra" className={styles.apply_cashback}>
               <picture className={styles.coin} />
@@ -114,11 +93,11 @@ const CardProducto = ({
                 {quantity == 0 && "Reservar"}
               </Button>
               <div className={styles.content_author}>
-                <Author user={user} />
+                <Author user={seller} />
               </div>
             </div>
 
-            {user?.certificate && <CoinsByBuy price={sale_price} />}
+            {seller?.certificate && <CoinsByBuy price={sale_price} />}
 
             <div className={styles.description}>
               <p className={styles.title}>Descripción</p>

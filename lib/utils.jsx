@@ -49,6 +49,9 @@ export const getNotifications = async (props) => {
 }
 
 export const getHome = async (props) => {
+  const {
+    attempt = 1
+  } = props
   const getCache = () => {
     let withoutCache = !!slug || !!category || !!subcategory || !!title
     console.log('Sin cache: ', withoutCache)
