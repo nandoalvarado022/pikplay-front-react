@@ -1,5 +1,5 @@
 import Layout from "../components/layout/Layout"
-import { getFeed } from "../lib/utils"
+import { getHome } from "../lib/utils"
 import Portada from "../components/portada/Portada"
 
 const Index = (props) => {
@@ -15,7 +15,7 @@ const Index = (props) => {
 
 Index.getInitialProps = async () => {
   const isSSR = typeof window == 'undefined'
-  const feed = await getFeed({ isSSR })
+  const feed = await getHome({ isSSR })
   // store.dispatch({ type: 'TICK', payload: 'was set in error page ' + pathname });
   return {
     feed

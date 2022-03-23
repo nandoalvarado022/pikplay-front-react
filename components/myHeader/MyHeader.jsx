@@ -16,6 +16,7 @@ import { format_number, getFeed } from '../../lib/utils'
 import { useAsyncAbortable } from 'react-async-hook'
 import { useRouter } from "next/router"
 import Author from '../card/Author'
+import Button from '../button/Button'
 
 const searchStarwarsHero = async (text, abortSignal) => {
 	const results = await getFeed({ title: text })
@@ -78,7 +79,9 @@ const Header = () => {
 			</Link>
 
 			{
-				<div onBlur={() => setTimeout(() => setShowSearchModal(false), 200)} className={styles.content_buscador}>
+				<div
+					onBlur={() => setTimeout(() => setShowSearchModal(false), 200)} 
+					className={styles.content_buscador}>
 					<TextField className={styles.Textfield} disabled={isLoading} onFocus={e => setShowSearchModal(true)} onChange={e => setInputText(e.target.value)} fullWidth label={IS_MOBILE ? '¿Buscas algo?' : <span>
 						<FontAwesomeIcon className="m-r-10" icon={faSearch} />
 						Nintendo switch, ps5, controles de xbox
@@ -86,26 +89,25 @@ const Header = () => {
 					{
 						showSearchModal && <div className={styles.results}>
 							<section>
-								{search.result && <small>
-									Se encontraron <CountUp end={search.result.length} /> resultados:
-								</small>}
+								{IS_MOBILE && <Button color='blue' onClick={() => setShowSearchModal(false)} style={{ float: 'left' }}>Volver</Button>}
+								{search.result && <small>Se encontraron <CountUp end={search.result.length} /> resultados:</small>}
 								<div className={styles['grid-container']}>
 									{/* Resultado principal  */}
 									{search.result && search.result.length > 0 && <Link href={`/publicacion/${search.result[0].slug}`}>
-											<article className="primary pointer">
-												<img className={styles.discount} src="/images/icons/discounts.png" />
-												<img src={search.result[0].image_link} alt="" />
-												<summary>
-													<span>
-														Llévalo por solo&nbsp;
-														{!!search.result[0].sale_price && <price className={styles.price}>
-															${format_number(search.result[0].sale_price)}
-														</price>}
-													</span>
-													<h2>{search.result[0].title}</h2>
-													<p>{search.result[0].title}</p>
-												</summary>
-											</article>
+										<article className="primary pointer">
+											<img className={styles.discount} src="/images/icons/discounts.png" />
+											<img src={search.result[0].image_link} alt="" />
+											<summary>
+												<span>
+													Llévalo por solo&nbsp;
+													{!!search.result[0].sale_price && <price className={styles.price}>
+														${format_number(search.result[0].sale_price)}
+													</price>}
+												</span>
+												<h2>{search.result[0].title}</h2>
+												<p>{search.result[0].title}</p>
+											</summary>
+										</article>
 									</Link>
 									}
 								</div>

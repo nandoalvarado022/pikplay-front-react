@@ -16,7 +16,7 @@ h3.title_destacada {
     z-index: 1;
     width: 320px;
     @media screen and (max-width: 420px) {
-        margin: 0px 20px 20px;
+        margin: 0px auto 20px;
         padding-bottom: 40px;
     }
     &.small {

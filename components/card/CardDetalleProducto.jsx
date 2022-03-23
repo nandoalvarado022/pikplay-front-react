@@ -11,8 +11,40 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCheckCircle, faHandshake } from "@fortawesome/free-regular-svg-icons"
 import { format_number } from "../../lib/utils"
 import { useEffect, useRef } from "react"
+import Link from "next/link"
 
-const CardProducto = ({ apply_cashback, banner_bottom, meta_url, title, descuento = 0, description = "", handleHablarVendedor, image_link, image_1, image_2, image_3, image_4, image_5, tipo_coleccion, indice_item, destacada, tipo_publicacion, likes, fecha, inventory, price, sale_price, setIsModalHablarVendedor, user_name, user_picture, user_transactions, quantity, user, warranty } = {}) => {
+const CardProducto = ({
+  apply_cashback,
+  banner_bottom,
+  description = "",
+  descuento = 0,
+  destacada,
+  fecha,
+  handleHablarVendedor,
+  image_1,
+  image_2,
+  image_3,
+  image_4,
+  image_5,
+  image_link,
+  indice_item,
+  inventory,
+  likes,
+  meta_url,
+  price,
+  quantity,
+  sale_price,
+  slug,
+  setIsModalHablarVendedor,
+  tipo_coleccion,
+  tipo_publicacion,
+  title,
+  user,
+  user_name,
+  user_picture,
+  user_transactions,
+  warranty
+} = {}) => {
   const ref_descripcion_imagen = useRef(null)
   let images = []
 
@@ -57,8 +89,11 @@ const CardProducto = ({ apply_cashback, banner_bottom, meta_url, title, descuent
         </div>
 
         <div className={styles.descripcion}>
-          <h1>{title}</h1>
           <div className={`Card ${styles.Card}`}>
+            <h1>{title}</h1>
+            {/* <Link href={'/publicacion/' + slug + '/editar'}>
+              <a>editar</a>
+            </Link> */}
             {/* Si aplica cashback */}
             {apply_cashback && <span title="Ganarás Pikcoins por hacer esta compra" className={styles.apply_cashback}>
               <picture className={styles.coin} />

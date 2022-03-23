@@ -13,7 +13,6 @@ import { useState } from "react"
 
 const MenuMovil = () => {
   const user = useSelector((state) => state.user)
-  const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
   return <div className={styles.MenuMovil}>
     <ol>
       <Link href="/publicacion/crear" as="/publicacion/crear">
@@ -33,7 +32,7 @@ const MenuMovil = () => {
         </motion.a>
       </Link>
     </ol>
-    <ol onClick={() => setIsOpenPreviewProfile(!isOpenPreviewProfile)}>
+    <ol>
       <PreviewUser />
     </ol>
     <ol>

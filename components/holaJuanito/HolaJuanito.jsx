@@ -124,9 +124,9 @@ const HolaJuanito = () => {
                                     <iframe width="560" height="315" src="https://www.youtube.com/embed/U_oewgFysiY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </a>
                             </Link>
-                            <div className={styles.description}>
+                            <p className={styles.description}>
                                 Lost Judgement es una entrega de acción y aventura desarrollada por Ryu Ga Gotoku Studio y publicada por Sega, estrenada el 21 de septiembre de 2021 a nivel mundial.
-                            </div>
+                            </p>
                         </ol>
                     </ul>
                 </div>

@@ -48,6 +48,72 @@ export const getNotifications = async (props) => {
   }
 }
 
+export const getHome = async (props) => {
+  const getCache = () => {
+    let withoutCache = !!slug || !!category || !!subcategory || !!title
+    console.log('Sin cache: ', withoutCache)
+    if (withoutCache) return 'no-cache'
+    else return 'max-age=300000'
+  }
+
+  const query = `query {
+      home {
+        accept_changues
+        apply_cashback
+        banner_bottom
+        banner_top
+        category
+        certificate
+        description
+        id
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
+        image_link
+        is_new
+        price
+        quantity
+        sale_price
+        slug
+        tags
+        title
+        user {
+          apply_cashback
+          certificate
+          id
+          name
+          phone
+          picture
+        }
+        views
+        warranty
+      }
+    }`
+  let data = []
+  try {
+    console.log('No entro por SSR')
+    const res = await fetch(VARS.API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": getCache(),
+        "fetchPolicy": 'cache-first'
+      },
+      body: JSON.stringify({ query })
+    })
+    const _data = await res.json()
+    data = _data?.data?.home
+  } catch (err) {
+    console.log("Ha ocurrido un error, intento #", attempt)
+    console.log(err)
+    props = { ...props, attempt: 2 }
+    if (attempt == 1) getFeed(props)
+  }
+  return data
+}
+
 export const getFeed = async (props) => {
   const {
     attempt = 1,
