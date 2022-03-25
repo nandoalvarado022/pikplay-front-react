@@ -18,6 +18,15 @@
     font-size: large;
 }
 
+.announcement {
+    background: #fff32cd1;
+    border-bottom: 1px solid #b8b103;
+    font-size: 12px;
+    font-style: italic;
+    padding: 7px 0;
+    text-align: center;
+}
+
 @keyframes App-logo-spin {
     from {
         transform: rotate(0deg);

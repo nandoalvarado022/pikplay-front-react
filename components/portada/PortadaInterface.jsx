@@ -1,3 +1,4 @@
+const { IS_MOBILE } = "../../lib/variables"
 import Card from '../card/Card'
 import Footer from '../footer/Footer'
 import Groot from '../groot/Groot'
@@ -6,10 +7,11 @@ import React from 'react'
 import styles from "./portada.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClock } from "@fortawesome/free-regular-svg-icons"
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
 const SpecialBanner = ({ category, popularyItem, starItem }) => {
-  if (!category && popularyItem && starItem) {
+  return <span />
+  if (false /*!category && popularyItem && starItem*/) {
     return <div id={styles.SpecialBanner}>
       <div className={styles.box}>
         <div className={styles.title}>Lo más visto por los gamers</div>
@@ -21,19 +23,6 @@ const SpecialBanner = ({ category, popularyItem, starItem }) => {
         <Card key={starItem.id} permitirLink={true} {...starItem} />
       </div>
     </div>
-  } else {
-    switch (category) {
-      case "playstation":
-        return <div className={styles['playstation-banner']}>
-          <img alt="Banner playstation" className="block-center" src="https://www.combogamer.com/wp-content/uploads/2014/05/ps4-launch-banner.png" />
-        </div>
-      case "nintendo-switch":
-        return <div className={styles['switch-banner']}>
-          <img alt="Banner nintendo switch" className="block-center" src="https://switchplayer.net/wp-content/uploads/2017/03/Nintendo-Switch-List-Banner-1-820x171.png" />
-        </div>
-      default:
-        return <div></div>
-    }
   }
 }
 
@@ -62,8 +51,24 @@ const PortadaInterface = ({ category, feed, popularyItem, starItem }) => {
       <div className={styles.main}>
         <div className="listadoRodadas">
           {feed && feed.map((item, ind) => {
+            let categoryId
+            switch (ind) {
+              case 0:
+                categoryId = 2
+                break;
+              case 6:
+                categoryId = 3
+                break;
+              case 12:
+                categoryId = 4
+                break;
+              default:
+                categoryId = null
+                break
+            }
+
             return <React.Fragment>
-              {(ind == 3 || ind == 6 || ind == 9) && !category && <Groot ind={ind} />}
+              {(!IS_MOBILE && categoryId && !category) && <Groot categoryId={categoryId} />}
               <Card special_title="Más vendido" {...item} />
             </React.Fragment>
           })}

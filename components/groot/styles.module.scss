@@ -1,13 +1,14 @@
 .Groot {
     background: linear-gradient(90deg, rgba(244, 119, 133, 1) 0%, rgba(98, 0, 15, 1) 100%);
-    background: #456d9630;
+    background: #c3dbf330;
     border-radius: 10px;
     height: 65px;
-    margin: 0 0 50px;
+    margin: 0 auto 50px;
     position: relative;
     width: 1366px;
     @media screen and (max-width: 420px) {
         background: none;
+        display: none;
         margin: 0;
         width: auto;
     }
@@ -29,14 +30,39 @@
         top: 0;
         width: 160px;
     }
+    a {
+        // Paralax effect
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        display: block;
+        background-position: 0 -80px;
+        border-radius: 5px 50px 5px 50px;
+        height: 220px;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        &::before {
+            content: "";
+            background: #3131319c;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+        }
+    }
     p {
-        color: #575656;
+        color: white;
         display: block;
         font-family: "Montserrat", sans-serif;
         font-size: 22px;
-        margin: 14px auto 0;
+        margin: 34px auto 0;
+        position: relative;
         text-align: center;
         width: 480px;
+        z-index: 1;
         @media screen and (max-width: 420px) {
             width: auto;
         }
@@ -44,13 +70,13 @@
             font-size: 32px;
             font-weight: bold;
             &.switch {
-                color: #c83a4f;
+                // color: #c83a4f;
             }
             &.playstation {
-                color: #001e66;
+                // color: #001e66;
             }
             &.xbox {
-                color: #117710;
+                // color: #117710;
             }
         }
     }

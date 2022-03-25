@@ -191,7 +191,7 @@ class Layout extends React.Component {
 
       <body className="App font-a">
         <MyHeader />
-        {/* <audio /> */}
+        <div className={styles.announcement}>Actualmente estamos en una versión piloto</div>
         <main className={styles.principal}>
           <ToastContainer />
           <Categorias scroll={false} />

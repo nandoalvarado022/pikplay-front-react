@@ -1,27 +1,27 @@
 import Link from 'next/link'
 import styles from './styles.module.scss'
 
-const Groot = ({ ind }) => {
+const Groot = ({ categoryId }) => {
     let image, link, text
-    switch (ind) {
-        case 3:
-            image = '/images/characters/super-mario.png'
+    switch (categoryId) {
+        case 2:
+            image = '/images/backgrounds/switch.jpeg'
             link = '/category/nintendo-switch'
             text = <p>
                 <span className={styles.switch}>Switch</span> para toda la familia
             </p>
             break;
 
-        case 6:
-            image = '/images/characters/super-mario.png'
+        case 3:
+            image = '/images/backgrounds/playstation.png'
             link = '/'
             text = <p>
                 Lo más jugado de <span className={styles.playstation}>Playstation</span>
             </p>
             break;
 
-        case 9:
-            image = '/images/characters/super-mario.png'
+        case 4:
+            image = '/images/backgrounds/xbox.png'
             link = '/'
             text = <p>
                 Universo <span className={styles.xbox}>XBOX</span>
@@ -32,9 +32,8 @@ const Groot = ({ ind }) => {
             break;
     }
     return <div className={styles.Groot}>
-        <img alt={text} src={image} />
         <Link href={link}>
-            <a>
+            <a style={{backgroundImage: `url(${image}`}}>
                 {text}
             </a>
         </Link>
