@@ -17,6 +17,7 @@ import { useAsyncAbortable } from 'react-async-hook'
 import { useRouter } from "next/router"
 import Author from '../card/Author'
 import Button from '../button/Button'
+import { useSelector } from 'react-redux'
 
 const searchStarwarsHero = async (text, abortSignal) => {
 	const results = await getFeed({ title: text })
@@ -58,11 +59,12 @@ const useSearchStarwarsHero = () => {
 
 const Header = () => {
 	const [isLoading, setIsLoading] = useState(false)
-	const { inputText, setInputText, search } = useSearchStarwarsHero()
-	const router = useRouter()
-	const [textSearch, setTextSearch] = useState('')
 	const [results, setResults] = useState([])
 	const [showSearchModal, setShowSearchModal] = useState(false)
+	const [textSearch, setTextSearch] = useState('')
+	const router = useRouter()
+	const user = useSelector((state) => state.user)
+	const { inputText, setInputText, search } = useSearchStarwarsHero()
 
 	useEffect(() => {
 	}, [])
@@ -77,14 +79,18 @@ const Header = () => {
 					</div>
 				</span>
 			</Link>
+			{/* <div style={{overflowWrap: 'anywhere'}}>
+				{user.token}
+			</div> */}
 
 			{
+
 				<div
-					onBlur={() => setTimeout(() => setShowSearchModal(false), 200)} 
+					// onBlur={() => setTimeout(() => setShowSearchModal(false), 200)} 
 					className={styles.content_buscador}>
 					<TextField className={styles.Textfield} disabled={isLoading} onFocus={e => setShowSearchModal(true)} onChange={e => setInputText(e.target.value)} fullWidth label={IS_MOBILE ? '¿Buscas algo?' : <span>
 						<FontAwesomeIcon className="m-r-10" icon={faSearch} />
-						Nintendo switch, ps5, controles de xbox
+						¿Buscas algún videojuego?
 					</span>} variant="standard" />
 					{
 						showSearchModal && <div className={styles.results}>

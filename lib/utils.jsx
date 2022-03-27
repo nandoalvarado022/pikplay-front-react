@@ -50,7 +50,8 @@ export const getNotifications = async (props) => {
 
 export const getHome = async (props) => {
   const {
-    attempt = 1
+    attempt = 1,
+    seller = null
   } = props
   const getCache = () => {
     let withoutCache = !!slug || !!category || !!subcategory || !!title
@@ -60,7 +61,7 @@ export const getHome = async (props) => {
   }
 
   const query = `query {
-      home {
+      home (seller: ${seller}){
         accept_changues
         apply_cashback
         banner_bottom
@@ -124,6 +125,7 @@ export const getFeed = async (props) => {
     isSSR = false,
     is_verified = true,
     limit = 12,
+    seller = null,
     slug = '',
     subcategory = null,
     status = true,
@@ -141,6 +143,7 @@ export const getFeed = async (props) => {
         category: ${category}, 
         is_verified: ${is_verified},
         limit: ${limit} , 
+        seller: ${seller} , 
         slug: "${slug}", 
         status: ${status},
         subcategory: ${subcategory}, 

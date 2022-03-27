@@ -30,8 +30,16 @@ export default function LoginInterface({ buttonText, isCodeSended, isHuman, isOp
             />
           </center>
         }
-        {isCodeSended && <TextField autoComplete={false} type="number" disabled={buttonText == "Validando..." ? true : false} onKeyUp={handleKeyUp} margin="dense" id="verificationCode" label={`Código de 4 dígitos`} fullWidth />}
-        <small style={{ marginTop: "20px", display: "block" }}>
+        {isCodeSended && <>
+          <TextField autoComplete={false} type="number" disabled={buttonText == "Validando..." ? true : false} onKeyUp={handleKeyUp} margin="dense" id="verificationCode" label={`Código de 4 dígitos`} fullWidth />
+          <small>
+            <a href="https://api.whatsapp.com/send?phone=573054202450&text=Tengo problemas al recibir mi código de ingreso" target='_BLANK'>
+              Tengo problemas al recibir mi código de ingreso
+            </a>
+          </small>
+        </>
+        }
+        <small className={styles.terminos_condiciones}>
           Al hacer clic en "Enviar", aceptas nuestras Condiciones, la Política de datos y la Política de cookies. Es posible que te enviemos notificaciones por SMS, que puedes desactivar cuando quieras.
         </small>
       </DialogContent>

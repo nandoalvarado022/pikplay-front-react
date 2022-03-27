@@ -95,8 +95,8 @@ const PublicationForm = (props) => {
 
 	function handleSubmit() {
 		const validators = () => {
-			if (!publicationFormData.title || !publicationFormData.description || !publicationFormData.category || !publicationFormData.image_link) {
-				toast("Por favor completa todos los campos de tu publicación")
+			if (!publicationFormData.title) {
+				toast("Añade un título a tu publicación")
 				return false
 			}
 			return true
