@@ -795,10 +795,9 @@ h3 {
 }
 
 a {
-    color: $secundary-color;
+    color: $primary-color;
     text-decoration: none;
     &.underline {
-        color: $secundary-color;
         text-decoration: underline;
     }
 }

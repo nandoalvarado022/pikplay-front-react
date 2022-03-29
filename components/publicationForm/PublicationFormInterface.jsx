@@ -8,9 +8,10 @@ import styles from "./publicationForm.module.scss"
 import { Alert } from '@material-ui/lab'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { TextField } from "@material-ui/core"
-import { faImage, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faAlignLeft, faArrowLeft, faChevronCircleLeft, faImage, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
 import { useDispatch } from "react-redux"
+import { toast } from 'react-toastify'
 
 const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, setPublicationFormData, textButton, setCurrentStep }) => {
   const dispatch = useDispatch()
@@ -23,19 +24,20 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imag
   if (!!publicationFormData?.title || !isEdit) {
     return <section className={styles.content}>
       {/* <Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} /> */}
+      <Link href="/publicaciones">
+        <a>
+          <FontAwesomeIcon className="svg-question m-r-5" icon={faArrowLeft} />
+          Listado de publicaciones
+        </a>
+      </Link>
       <h2>
-        <Link href="/publicaciones">
-          <a>Listado de publicaciones / </a>
-        </Link>
         Crear publicación
         <FontAwesomeIcon class="svg-question" icon={faQuestionCircle} onClick={() => {
-          const message = {
-            id: 0, message: <div>
-              <p>Creación de publicaciones</p>
-              <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
-            </div>
-          }
-          dispatch({ type: "SET_MESSAGE", payload: { message } })
+          const message = <div>
+            <p>Creación de publicaciones</p>
+            <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
+          </div>
+          toast(message)
         }} />
       </h2>
 
@@ -88,10 +90,10 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imag
                 <CategoryControl category={category} handleCategory={handleCategory} publicationFormData={publicationFormData} />
 
                 <div>
-                  <TextField fullWidth={true} label="Precio" placeholder="" margin="normal" value={sale_price} type='number' onChange={e => setPublicationFormData({ ...publicationFormData, sale_price: Number(e.target.value) })} />
+                  <TextField fullWidth={true} label="Precio" placeholder="" margin="normal" value={sale_price} type='text' onChange={e => setPublicationFormData({ ...publicationFormData, sale_price: e.target.value })} />
                 </div>
                 <div>
-                  <TextField fullWidth={true} label="Cantidad disponible" placeholder="" margin="normal" type='number' value={quantity} onChange={e => setPublicationFormData({ ...publicationFormData, quantity: e.target.value })} />
+                  <TextField fullWidth={true} label="Cantidad disponible" placeholder="" margin="normal" type='text' value={quantity} onChange={e => setPublicationFormData({ ...publicationFormData, quantity: e.target.value })} />
                 </div>
               </div>
 

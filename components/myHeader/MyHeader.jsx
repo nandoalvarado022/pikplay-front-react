@@ -72,10 +72,10 @@ const Header = () => {
 	return <div id={styles.Header}>
 		<ul>
 			<Link href="/">
-				<span style={{ textAlign: "left" }}>
-					<img alt="Logo de Pikplay" className={styles.logo} src="/images/logos/logo.png" />
+				<span>
+					<img alt="Logo de Pikplay" className={styles.logo} src="/images/logos/logo.svg" width={210} />
 					<div className={styles.slogan}>
-						<span>Compra y vende como <b><i>Gamer</i></b></span>
+						<span>Compra y vende como <b>Gamer</b></span>
 					</div>
 				</span>
 			</Link>
@@ -134,9 +134,9 @@ const Header = () => {
 									}
 								</div>
 							</section>
-							{/*  Seccion recomendados */}
+							{/*  Sección recomendados */}
 							<section className={styles.recommended}>
-								<h3>Recomendados</h3>
+								<h3>Más buscados</h3>
 								<div className={styles.rows}>
 									{
 										recommended.map(item => {
@@ -152,14 +152,6 @@ const Header = () => {
 													<img className={styles.product} src={item.image_link} alt="" />
 												</article>
 											</Link>
-										})
-									}
-									{
-										stories.map(item => {
-											return <article>
-												<h3>Por: {item.author}</h3>
-												<img src={item.image} alt={`Imagen de historia de ${item.author}`} />
-											</article>
 										})
 									}
 								</div>

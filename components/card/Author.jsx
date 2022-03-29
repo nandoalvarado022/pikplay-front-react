@@ -6,6 +6,7 @@ const Author = ({ user = {} }) => {
     return <div className={`${styles.author} author`}>
         <img alt={`Imagen de ${user?.name}`} className={styles.user_picture} src={user?.picture} />
         <p title={user?.certificate ? "El usuario esta certificado, puedes confiar en esta oferta" : ""}>
+            <small>Lo vende:</small>
             <h3>
                 {user?.name}
             </h3>

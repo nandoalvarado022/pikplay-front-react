@@ -1,9 +1,10 @@
 #Header {
     background: white;
-    padding: 20px 0 10px;
     border-bottom: 1px solid #dcdcdcb5;
-    text-align: right;
+    height: 70px;
+    padding: 20px 0 10px;
     position: fixed;
+    text-align: right;
     top: 0;
     width: 100%;
     z-index: 9;
@@ -16,8 +17,10 @@
     }
     .slogan {
         span {
+            color: #575656;
             display: block;
             font-size: 12px;
+            text-align: center;
             @media screen and (max-width: 420px) {
                 font-size: 10px;
             }
@@ -98,6 +101,7 @@
         }
         .results {
             background: white;
+            border-top: 1px solid #dcdcdcb5;
             display: flex;
             height: calc(100vh - 122px);
             left: -300px;
@@ -111,7 +115,7 @@
                 top: 72px;
                 width: 100%;
             }
-            
+
             &::before {
                 background: #2e2e2e75;
                 content: "";
@@ -123,17 +127,29 @@
             }
 
             section {
-                height: 100%;
+                height: calc(100% + 21px);
                 margin-top: 0;
                 overflow: scroll;
                 overflow-x: hidden;
-                padding: 10px;
+                padding: 0px;
                 z-index: 1;
+                article {
+                    padding: 10px;
+                    &:nth-child(even) {
+                        background: #476e961a;
+                    }
+                    :global(.author) {
+                        margin-top: 5px;
+                        img{
+                            display: none;
+                        }
+                    }
+                }
             }
 
             section:nth-of-type(1) {
                 background: white;
-                small {
+                > small {
                     display: inline-block;
                     margin: 10px;
                     text-align: left;
@@ -154,15 +170,17 @@
 
             .recommended {
                 background: #f4f4f4;
-                padding: 10px 20px;
                 @media screen and (max-width: 420px) {
                     display: none;
                 }
                 h3 {
                     font-size: 12px;
                 }
+                article:nth-of-type(1) {
+                    // background: rgb(0, 70, 98);
+                    // background: linear-gradient(90deg, rgba(0, 70, 98, 1) 0%, rgba(179, 119, 244, 1) 100%);
+                }
             }
-
             .row {
                 display: flex;
                 margin-bottom: 10px;
@@ -228,7 +246,7 @@
             width: 60px;
         }
         summary {
-            background: linear-gradient(#80a4ca80 0%, #476e9685 100%);
+            background: linear-gradient(#80a4cad6 0%, #476e96f2 100%);
             bottom: 4px;
             color: white;
             height: 90px;

@@ -38,7 +38,7 @@ function Login(props) {
 				const token = JSON.parse(validateLogin).token
 				dispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: JSON.parse(validateLogin) } })
 				toast('Bienvenido 😎')
-				router.push('/#logged-in')
+				router.reload('/#logged-in')
 			} else {
 				document.getElementById("verificationCode").value = ""
 				alert("Código no valido")

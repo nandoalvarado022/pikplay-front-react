@@ -41,7 +41,7 @@
                 cursor: pointer;
                 display: flex;
                 font-size: 13px;
-                font-weight: bold;
+                font-weight: 500;
                 height: 100%;
                 justify-content: center;
             }
@@ -53,9 +53,11 @@
             &.crear-publicacion {
                 padding-right: 0;
                 a {
-                    background: linear-gradient(rgb(128, 164, 202) 0%, rgb(71, 110, 150) 100%);
+                    background: #0095b3;
+                    // background: linear-gradient(#0095b3 0%, #0a7d94 100%);
                     border-radius: 20px;
                     color: white;
+                    text-shadow: 1px 1px #5a5a5a;
                     justify-content: center;
                     width: 120px;
                 }
