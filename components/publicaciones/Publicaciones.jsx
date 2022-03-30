@@ -201,8 +201,19 @@ const Publicaciones = () => {
     const { id: user_id, is_admin } = useSelector((state) => state.user)
 
     const PUBLICATIONS_QUERY = gql`
-	query Publications($user_id: Int, $order: Boolean, $is_admin: Boolean, $status: Boolean){
-		publications(user_id: $user_id, order: $order, is_admin: $is_admin, limit: 20, status: $status){
+	query Publications(
+        $is_admin: Boolean, 
+        $order: Boolean, 
+        $user_id: Int, 
+        ){
+		publications(
+            is_admin: $is_admin, 
+            is_verified: false,
+            limit: 20, 
+            order: $order, 
+            status: false
+            user_id: $user_id, 
+        ){
 			accept_changues
 			created
 			id
@@ -220,7 +231,10 @@ const Publicaciones = () => {
 	}`
 
     const [getPublications, { loading: loadingPublications, error, data: reqPublications }] = useLazyQuery(PUBLICATIONS_QUERY, {
-        variables: { user_id, order: true, is_admin: !!is_admin },
+        variables: {
+            is_admin: !!is_admin,
+            user_id, order: true, 
+        },
         fetchPolicy: "no-cache",
         onError: (error) => setTryAgain(true),
         onCompleted: () => setTryAgain(false)
