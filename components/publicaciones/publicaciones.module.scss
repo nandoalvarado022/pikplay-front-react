@@ -33,8 +33,11 @@
             padding: 10px 20px;
             position: relative;
             row-gap: 10px;
-            top: -20px;
+            top: -40px;
             width: 90%;
+            > * {
+                margin-top: 20px;
+            }
             .pending_aprove {
                 background: #ccd6e154;
                 border-radius: 10px;

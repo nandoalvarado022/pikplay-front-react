@@ -8,18 +8,16 @@ import styles from "./publicationForm.module.scss"
 import { Alert } from '@material-ui/lab'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { TextField } from "@material-ui/core"
-import { faAlignLeft, faArrowLeft, faChevronCircleLeft, faImage, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faArrowLeft, faImage, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
-import { useDispatch } from "react-redux"
 import { toast } from 'react-toastify'
 
-const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, setPublicationFormData, textButton, setCurrentStep }) => {
-  const dispatch = useDispatch()
+const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData = {}, setPublicationFormData, textButton, setCurrentStep }) => {
   const category = publicationFormData?.category ? Number(publicationFormData.category) : 1
   const handleCategory = (event) => {
     setPublicationFormData({ ...publicationFormData, category: Number(event.target.value) })
   }
-  const { accept_changes = 0, description, is_new, quantity, sale_price, title, warranty } = publicationFormData
+  const { accept_changes, description, is_new, quantity, sale_price, title, warranty } = publicationFormData
 
   if (!!publicationFormData?.title || !isEdit) {
     return <section className={styles.content}>

@@ -4,6 +4,14 @@ import styles from './styles.module.scss'
 const Groot = ({ categoryId }) => {
     let image, link, text
     switch (categoryId) {
+        case 1:
+            image = '/images/backgrounds/accesories.png'
+            link = '/category/accesories'
+            text = <p>
+                Los mejores <span className={styles.accesories}>Accesorios</span> para tu consola favorita
+            </p>
+            break;
+
         case 2:
             image = '/images/backgrounds/switch.jpeg'
             link = '/category/nintendo-switch'
@@ -27,20 +35,18 @@ const Groot = ({ categoryId }) => {
                 Universo <span className={styles.xbox}>XBOX</span>
             </p>
             break;
-        case 5:
-                image = '/images/backgrounds/geek.png'
-                link = '/'
-                text = <p>
-                    Productos <span className={styles.xbox}>Geek</span>
-                </p>
-                break;
 
-        default:
+        case 5:
+            image = '/images/backgrounds/geek.png'
+            link = '/'
+            text = <p>
+                Productos <span className={styles.xbox}>Geek</span>
+            </p>
             break;
     }
     return <div className={styles.Groot}>
         <Link href={link}>
-            <a style={{backgroundImage: `url(${image}`}}>
+            <a style={{ backgroundImage: `url(${image}` }}>
                 {text}
             </a>
         </Link>

@@ -106,7 +106,7 @@ const HolaJuanito = () => {
                             </div>
                             <div>
                                 <img src="/images/aliados/juancho.jpg" title="Juanchofenixstore" />
-                                <span>Bogotá</span>
+                                <span>Medellín</span>
                             </div>
                             <div>
                                 <img src="/images/aliados/bodega.jpg" title="Bodegadelvideojuego" />

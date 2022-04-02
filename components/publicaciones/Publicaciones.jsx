@@ -104,6 +104,11 @@ const Publicacion = ({ item, ind, getPublications }) => {
         item.user = sellerUpdated
     }
 
+    const DELETE_PUBLICATION = gql`
+    mutation deletePublication($id_publication: Int){
+        deletePublication(id_publication: $id_publication)
+    }`
+
     const VERIFY_PUBLICATION = gql`
     query verifyPublication($id_publication: Int){
         verifyPublication(id_publication: $id_publication)
@@ -130,7 +135,25 @@ const Publicacion = ({ item, ind, getPublications }) => {
         Router.push("/publicacion/" + slug + "/editar")
     }
 
-    const [handleChangeApprove, { loading, error, data }] = useLazyQuery(VERIFY_PUBLICATION, { variables: { id_publication: item.id }, fetchPolicy: "no-cache" })
+    const [handleChangeApprove, { loading, error, data }] = useLazyQuery(VERIFY_PUBLICATION, {
+        variables: { id_publication: item.id },
+        fetchPolicy: "no-cache",
+        onCompleted: () => {
+            setTimeout(() => {
+                getPublications()
+            }, 500)
+        }
+    })
+
+    const [handleDelete] = useMutation(DELETE_PUBLICATION, {
+        variables: { id_publication: item.id },
+        fetchPolicy: "no-cache",
+        onCompleted: () => {
+            setTimeout(() => {
+                getPublications()
+            }, 500)
+        }
+    })
 
     const moreOptions = is_admin || true
 
@@ -190,6 +213,7 @@ const Publicacion = ({ item, ind, getPublications }) => {
             {(!!is_admin && showAdminOptions) && <div className={styles.adminActions}>
                 <ChangeSeller changeSellerHandle={changeSellerHandle} user_id={item.user.id} id_publication={item.id} />
                 <Button disabled={item.is_verified} color="blue" onClick={handleChangeApprove}>Dar de alta</Button>
+                <Button color="red" onClick={handleDelete}>Eliminar</Button>
             </div>}
         </div>}
     </li>
@@ -233,7 +257,7 @@ const Publicaciones = () => {
     const [getPublications, { loading: loadingPublications, error, data: reqPublications }] = useLazyQuery(PUBLICATIONS_QUERY, {
         variables: {
             is_admin: !!is_admin,
-            user_id, order: true, 
+            user_id, order: true,
         },
         fetchPolicy: "no-cache",
         onError: (error) => setTryAgain(true),
