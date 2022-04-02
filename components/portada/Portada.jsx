@@ -11,7 +11,6 @@ date.locale('es');
 function Portada({ category, feed = [] }) {
   const [open, setOpen] = useState(false)
   const popularyItem = feed ? feed[0] : null
-
   const starItem = feed && feed.find((item) => item.id == 68)
 
   useEffect(() => {

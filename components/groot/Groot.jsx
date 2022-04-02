@@ -27,6 +27,13 @@ const Groot = ({ categoryId }) => {
                 Universo <span className={styles.xbox}>XBOX</span>
             </p>
             break;
+        case 5:
+                image = '/images/backgrounds/geek.png'
+                link = '/'
+                text = <p>
+                    Productos <span className={styles.xbox}>Geek</span>
+                </p>
+                break;
 
         default:
             break;

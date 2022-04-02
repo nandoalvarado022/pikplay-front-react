@@ -214,7 +214,7 @@ const Publicaciones = () => {
             status: false
             user_id: $user_id, 
         ){
-			accept_changues
+			accept_changes
 			created
 			id
 			is_verified

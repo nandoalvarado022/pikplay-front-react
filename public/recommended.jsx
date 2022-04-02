@@ -1,6 +1,6 @@
 const recommended = [
     {
-        "accept_changues": true,
+        "accept_changes": true,
         "apply_cashback": null,
         "banner_bottom": null,
         "banner_top": null,
@@ -37,7 +37,7 @@ const recommended = [
         "warranty": false
     },
     {
-        "accept_changues": null,
+        "accept_changes": null,
         "apply_cashback": null,
         "banner_bottom": null,
         "banner_top": null,
@@ -74,7 +74,7 @@ const recommended = [
         "warranty": false
     },
     {
-        "accept_changues": null,
+        "accept_changes": null,
         "apply_cashback": null,
         "banner_bottom": null,
         "banner_top": null,

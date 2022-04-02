@@ -19,7 +19,7 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imag
   const handleCategory = (event) => {
     setPublicationFormData({ ...publicationFormData, category: Number(event.target.value) })
   }
-  const { accept_changues, description, is_new, quantity, sale_price, title, warranty } = publicationFormData
+  const { accept_changes = 0, description, is_new, quantity, sale_price, title, warranty } = publicationFormData
 
   if (!!publicationFormData?.title || !isEdit) {
     return <section className={styles.content}>
@@ -102,7 +102,7 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imag
                   <FormControlLabel control={<Switch checked={Boolean(is_new)} onChange={(e) => setPublicationFormData({ ...publicationFormData, is_new: e.target.checked })} inputProps={{ 'aria-label': 'primary checkbox' }} />} label="¿Articulo nuevo?" />
                 </p>
                 <p>
-                  <FormControlLabel control={<Switch checked={Boolean(accept_changues)} onChange={(e) => setPublicationFormData({ ...publicationFormData, accept_changues: e.target.checked })} inputProps={{ 'aria-label': 'primary checkbox' }} />} label="¿Aceptas cambios o aceptar otro producto como parte de pago?" />
+                  <FormControlLabel control={<Switch checked={Boolean(accept_changes)} onChange={(e) => setPublicationFormData({ ...publicationFormData, accept_changes: e.target.checked })} inputProps={{ 'aria-label': 'primary checkbox' }} />} label="¿Aceptas cambios o aceptar otro producto como parte de pago?" />
                 </p>
                 <p>
                   <FormControlLabel control={<Switch checked={Boolean(warranty)} onChange={(e) => setPublicationFormData({ ...publicationFormData, warranty: e.target.checked })} />} label="¿Ofreces garantia?" />

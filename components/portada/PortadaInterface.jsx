@@ -62,6 +62,9 @@ const PortadaInterface = ({ category, feed, popularyItem, starItem }) => {
               case 12:
                 categoryId = 4
                 break;
+              case 18:
+                categoryId = 5
+                break;
               default:
                 categoryId = null
                 break

@@ -6,7 +6,7 @@ import { useQuery, gql } from '@apollo/client'
 import styles from "./card.module.scss"
 import Author from "./Author"
 
-const Card = ({ accept_changues, apply_cashback, certificate, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, user_transactions, type, likes, price, sale_price, logDetalle, quantity, user } = {}) => {
+const Card = ({ accept_changes, apply_cashback, certificate, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, user_transactions, type, likes, price, sale_price, logDetalle, quantity, user } = {}) => {
   const usuario = typeof localStorage != "undefined" ? localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).email : null : null
   let like = null
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
@@ -31,7 +31,7 @@ const Card = ({ accept_changues, apply_cashback, certificate, id: id_publication
                   <picture className={styles.coin} />
                   ¡Cashback!
                 </span>}
-                {accept_changues && <span className={styles.condition} title="El vendedor acepta productos como parte de pago o incluso cambiar el producto por otro de su interés">Acepto cambios</span>}
+                {accept_changes && <span className={styles.condition} title="El vendedor acepta productos como parte de pago o incluso cambiar el producto por otro de su interés">Acepto cambios</span>}
                 {
                   !!tags && JSON.parse(tags).map((item, ind) => {
                     return (<span key={ind}>
@@ -74,7 +74,7 @@ const Card = ({ accept_changues, apply_cashback, certificate, id: id_publication
                     <picture className={styles.coin} />
                     ¡Cashback!
                   </span>}
-                  {accept_changues && <span className={styles.condition} title="El vendedor acepta productos como parte de pago o incluso cambiar el producto por otro de su interés">Acepto cambios</span>}
+                  {accept_changes && <span className={styles.condition} title="El vendedor acepta productos como parte de pago o incluso cambiar el producto por otro de su interés">Acepto cambios</span>}
                   {
                     tags && JSON.parse(tags).map((item, ind) => {
                       return (<span key={ind}>

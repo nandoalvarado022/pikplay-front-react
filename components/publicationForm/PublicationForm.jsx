@@ -13,7 +13,7 @@ import { toast } from 'react-toastify'
 const QUERY_PUBLICATION = gql`
 	query Publications($slug: String){
 		publications(slug: $slug){
-			accept_changues
+			accept_changes
 			category
 			description
 			id

@@ -62,7 +62,7 @@ export const getHome = async (props) => {
 
   const query = `query {
       home (seller: ${seller}){
-        accept_changues
+        accept_changes
         apply_cashback
         banner_bottom
         banner_top
@@ -149,7 +149,7 @@ export const getFeed = async (props) => {
         subcategory: ${subcategory}, 
         title: "${title}"
       ) {
-        accept_changues
+        accept_changes
         apply_cashback
         banner_bottom
         banner_top
@@ -430,7 +430,7 @@ const slug = null, category = null, subcategory = null, title = null, status = t
 export const GET_PUBLICATIONS = gql`
   query publications($status: Boolean, $slug: String, $category: Int, $subcategory: Int, $title: String){
     publications(status: $status, slug: $slug, category: $category, subcategory: $subcategory, title: $title) {
-      accept_changues
+      accept_changes
       apply_cashback
       banner_bottom
       banner_top

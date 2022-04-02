@@ -5,7 +5,7 @@ import PreviewUser from "../previewUser/PreviewUser"
 import UserNotifications from "../userNotifications/UserNotifications"
 import styles from "./menuMovil.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPercentage } from "@fortawesome/free-solid-svg-icons"
+import { faCamera, faPercentage } from "@fortawesome/free-solid-svg-icons"
 import { faPlusSquare } from "@fortawesome/free-regular-svg-icons"
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons"
 import { useSelector } from "react-redux"
@@ -19,7 +19,7 @@ const MenuMovil = () => {
         <motion.a className={styles.vender}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.8 }}>
-          <FontAwesomeIcon icon={faPlusSquare} />
+          <FontAwesomeIcon icon={faCamera} />
         </motion.a>
       </Link>
     </ol>
