@@ -70,7 +70,7 @@ const CardProducto = ({
         <div className={styles.descripcion}>
           <div className={`Card ${styles.Card}`}>
             <h1>{title}</h1>
-            {user.is_admin && <Link href={'/publicacion/' + slug + '/editar'}>
+            {!!user.is_admin && <Link href={'/publicacion/' + slug + '/editar'}>
               <a className='underline'>Editar</a>
             </Link>}
             {/* Si aplica cashback */}

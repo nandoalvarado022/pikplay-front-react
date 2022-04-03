@@ -6,7 +6,7 @@ import React from 'react'
 import Router from 'next/router'
 import moment from "moment"
 import styles from './publicaciones.module.scss'
-import { Box, Tab, Tabs, Typography } from "@material-ui/core"
+import { Box, Tab, Tabs, TextField, Typography } from "@material-ui/core"
 import { Doughnut } from 'react-chartjs-2'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
@@ -99,6 +99,7 @@ const Publicacion = ({ item, ind, getPublications }) => {
     const [changeSeller, setChangeSeller] = useState(false)
     const [showAdminOptions, setShowAdminOptions] = useState(false)
     const { is_admin } = useSelector((state) => state.user)
+    const seller_id = !!item?.user?.id ? item.user.id : 0
 
     const changeSellerHandle = (sellerUpdated) => {
         item.user = sellerUpdated
@@ -211,7 +212,7 @@ const Publicacion = ({ item, ind, getPublications }) => {
             </div>}
 
             {(!!is_admin && showAdminOptions) && <div className={styles.adminActions}>
-                <ChangeSeller changeSellerHandle={changeSellerHandle} user_id={item.user.id} id_publication={item.id} />
+                <ChangeSeller changeSellerHandle={changeSellerHandle} user_id={seller_id} id_publication={item.id} />
                 <Button disabled={item.is_verified} color="blue" onClick={handleChangeApprove}>Dar de alta</Button>
                 <Button color="red" onClick={handleDelete}>Eliminar</Button>
             </div>}
@@ -228,15 +229,17 @@ const Publicaciones = () => {
 	query Publications(
         $is_admin: Boolean, 
         $order: Boolean, 
+        $title: String,
         $user_id: Int, 
         ){
 		publications(
-            is_admin: $is_admin, 
-            is_verified: false,
-            limit: 20, 
-            order: $order, 
+            is_admin: $is_admin
+            is_verified: false
+            limit: 20
+            order: $order
             status: false
-            user_id: $user_id, 
+            title: $title
+            user_id: $user_id
         ){
 			accept_changes
 			created
@@ -283,6 +286,18 @@ const Publicaciones = () => {
         </Box>
 
         <TabPanel value={value} index={0} className="m-20">
+            <div className={styles.controls}>
+                <div className={styles.search}>
+                    <TextField fullWidth={true} id="box-search-text" label="Buscar publicación" />
+                </div>
+                <Button color="blue" onClick={() => getPublications({
+                    variables: {
+                        title: document.getElementById('box-search-text').value
+                    }
+                })}>
+                    Buscar
+                </Button>
+            </div>
             <center>
                 {loadingPublications && <div>Cargando publicaciones...</div>}
                 {tryAgain && !loadingPublications && <Button color='normal' onClick={getPublications}>Intentar nuevamente</Button>}

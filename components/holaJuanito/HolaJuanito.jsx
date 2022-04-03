@@ -90,9 +90,6 @@ const HolaJuanito = () => {
                             </a>
                         </Link>
                     }
-                    {
-                        isProfileComplete && gotProfileCompletedCoins && <button className={`${styles.reclamar_monedas} ${styles.disabled}`} title="Solo para categoria Plata" color="blue">Ver siguientes desafios</button>
-                    }
                     <div className={styles.aliados}>
                         <h3>Nuevos Aliados</h3>
                         <div className={styles.rows}>

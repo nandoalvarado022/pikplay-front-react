@@ -14,6 +14,20 @@
     div {
         box-sizing: border-box;
     }
+    .controls{
+        background: white;
+        column-gap: 10px;
+        display: flex;
+        left: -10px;
+        margin: 0;
+        padding: 20px;
+        position: relative;
+        top: -9px;
+        width: calc(100% + 20px);
+        .search {
+            width: 220px;
+        }
+    }
     ul {
         padding: 0;
         :global(.Card) {

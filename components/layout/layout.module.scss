@@ -21,9 +21,13 @@
 .announcement {
     background: #fff32cd1;
     font-size: 12px;
-    font-style: italic;
     padding: 7px 0;
     text-align: center;
+    @media screen and (max-width: 420px) {
+        position: fixed;
+        width: 100%;
+        z-index: 3;
+    }
 }
 
 @keyframes App-logo-spin {
