@@ -3,7 +3,7 @@
     margin: 50px auto 50px;
     width: 1300px;
     @media screen and (max-width: 420px) {
-        margin: 10px auto 110px;
+        margin: 10px auto 20px;
         width: auto;
     }
     .content {
@@ -11,12 +11,14 @@
         flex-wrap: wrap;
         justify-content: center;
         vertical-align: top;
+        column-gap: 60px;
         > * {
             background: white;
             border-radius: 10px;
             box-shadow: 2px 2px 5px 0 #ababab52;
             box-sizing: border-box;
             color: #585858;
+            margin: 0;
             padding: 10px 20px;
             position: relative;
             z-index: 1;
@@ -30,6 +32,9 @@
         .texts {
             width: 500px;
             z-index: 2;
+            @media screen and (max-width: 420px) {
+                width: calc(100% - 20px);
+            }
             .text1 {
                 color: #575656;
                 font-size: 36px;
@@ -116,24 +121,6 @@
         text-shadow: 1px 1px black;
         &.disabled {
             background: linear-gradient(180deg, #b3b3b3 0%, #6b6b6b 100%);
-        }
-    }
-    .aliados {
-        .rows {
-            display: flex;
-            > * {
-                // flex: 1;
-                margin: 10px 20px;
-                width: 50px;
-                img {
-                    max-width: 100%;
-                }
-                span {
-                    display: block;
-                    font-size: 12px;
-                    margin-top: 10px;
-                }
-            }
         }
     }
 }

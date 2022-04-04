@@ -384,6 +384,17 @@ export function checkIsMobile(userAgent) {
   );
 }
 
+export const GET_ARTICLES = gql`
+query getArticles($id: Int, $slug: String){
+  getArticles(id: $id, slug: $slug){
+    content
+    id
+    slug
+    summary
+    title
+  }
+}`
+
 export function getCategories(id) {
   const categories = [
     { id: 1, name: "Accesorios", image: "/images/icons/accesorios.svg" },
@@ -397,12 +408,12 @@ export function getCategories(id) {
 
 export function getSubcategories(id) {
   const subcategories = [
-    { id: 1, name: "Membresias Nintendo Switch", url: "/subcategory/membresias-nintendo-switch" },
-    { id: 2, name: "Membresias Playstation", url: "/subcategory/membresias-playstation" },
-    { id: 3, name: "Promociones", url: "/subcategory/promociones" },
-    { id: 4, name: "Juegos Clasicos", url: "/subcategory/juegos-clasicos" },
-    { id: 5, name: "Combos", url: "/subcategory/combos" },
-    { id: 6, name: "Sorteos", url: "/subcategory/sorteos" },
+    { id: 1, name: "Membresias Nintendo Switch", url: "/subcategoria/membresias-nintendo-switch" },
+    { id: 2, name: "Membresias Playstation", url: "/subcategoria/membresias-playstation" },
+    { id: 3, name: "Promociones", url: "/subcategoria/promociones" },
+    { id: 4, name: "Juegos Clasicos", url: "/subcategoria/juegos-clasicos" },
+    { id: 5, name: "Combos", url: "/subcategoria/combos" },
+    { id: 6, name: "Sorteos", url: "/subcategoria/sorteos" },
   ]
   if (id) return subcategories.find(item => item.id == id)
   return subcategories

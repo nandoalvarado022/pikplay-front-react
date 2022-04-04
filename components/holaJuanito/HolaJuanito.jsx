@@ -4,10 +4,11 @@ import { useMutation, useQuery } from "@apollo/client"
 import Link from "next/link"
 import { useContext, useEffect, useState } from "react"
 import { CREATE_COIN, DELETE_NOTIFICATION, getNotifications, GET_NOTIFICATIONS } from "../../lib/utils"
-import styles from "./holaJuanito.module.scss"
+import styles from "./styles.module.scss"
 import confetti from "canvas-confetti"
 import { useDispatch, useSelector } from "react-redux"
 import CountUp from 'react-countup'
+import Articles from "../articles/Articles"
 
 const HolaJuanito = () => {
     const dispatch = useDispatch()
@@ -90,27 +91,12 @@ const HolaJuanito = () => {
                             </a>
                         </Link>
                     }
-                    <div className={styles.aliados}>
-                        <h3>Nuevos Aliados</h3>
-                        <div className={styles.rows}>
-                            <div>
-                                <img src="/images/aliados/akavideogames.jpg" title="Akavideogames" />
-                                <span>Barranquilla</span>
-                            </div>
-                            <div>
-                                <img src="/images/aliados/panter.jpg" title="Bluepanthervideogames" />
-                                <span>Barranquilla</span>
-                            </div>
-                            <div>
-                                <img src="/images/aliados/juancho.jpg" title="Juanchofenixstore" />
-                                <span>Medellín</span>
-                            </div>
-                            <div>
-                                <img src="/images/aliados/bodega.jpg" title="Bodegadelvideojuego" />
-                                <span>Medellín</span>
-                            </div>
-                        </div>
-                    </div>
+                    <p>
+                        <small>
+                            Últimas publicaciones
+                        </small>
+                    </p>
+                    <Articles />
                 </div>
 
                 <div className={styles.ads}>

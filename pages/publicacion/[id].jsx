@@ -1,11 +1,9 @@
 import Router from "next/router"
-import date from "date-and-time"
 import toastr from "toastr"
 import CardDetalleProducto from "../../components/card/CardDetalleProducto"
 import React from "react"
 import Layout from "../../components/layout/Layout"
-// import PuedeInteresarte from "../../components/puedeInteresarte/PuedeInteresarte"
-import { getFeed, transformarFeed } from "../../lib/utils"
+import { getFeed } from "../../lib/utils"
 import ModalHablarVendedor from "./ModalHablarVendedor"
 import { connect } from "react-redux"
 class PublicacionPage extends React.Component {

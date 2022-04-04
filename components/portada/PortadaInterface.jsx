@@ -8,6 +8,7 @@ import styles from "./portada.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClock } from "@fortawesome/free-regular-svg-icons"
 import { useEffect, useState } from 'react'
+import Articles from '../articles/Articles'
 
 const SpecialBanner = ({ category, popularyItem, starItem }) => {
   return <span />
@@ -47,6 +48,7 @@ const PortadaInterface = ({ category, feed, popularyItem, starItem }) => {
     </h3>}
     {!category && <HolaJuanito />}
     <SpecialBanner {...{ category, popularyItem, starItem }} />
+    {/* <Articles /> */}
     <div className={styles.view_Rodadas}>
       <div className={styles.main}>
         <div className="listadoRodadas">

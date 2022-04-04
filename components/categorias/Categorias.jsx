@@ -21,7 +21,7 @@ const Categorias = (props) => {
         getCategories().map((category) => {
           const image = category.image ? category.image : "/images/icons/" + category.id + ".png"
           return <li filter="game" key={category.id}>
-            <Link scroll={scroll} href="/category/[id]" as={"/category/" + slugify(category.name)}>
+            <Link scroll={scroll} href="/categoria/[id]" as={"/categoria/" + slugify(category.name)}>
               <a>
                 <img src={image} alt={category.name} />
                 {category.name}
