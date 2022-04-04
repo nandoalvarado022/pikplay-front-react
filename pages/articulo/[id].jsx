@@ -22,7 +22,7 @@ const ArticlePage = (props) => {
 
 ArticlePage.getInitialProps = async () => {
   const client = new ApolloClient({
-    uri: 'http://localhost:3000/',
+    uri: process.env.API_URL,
     cache: new InMemoryCache()
   });
 
