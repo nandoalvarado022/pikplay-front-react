@@ -7,6 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Button from "../button/Button"
 import styles from "./login.module.scss"
+import Link from "next/link"
 
 export default function LoginInterface({ buttonText, isCodeSended, isHuman, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, handleTengoCodigo, onChangeReCaptcha, phone, setIsCodeSended, setPhone }) {
   return <div>
@@ -40,7 +41,12 @@ export default function LoginInterface({ buttonText, isCodeSended, isHuman, isOp
         </>
         }
         <small className={styles.terminos_condiciones}>
-          Al hacer clic en "Enviar", aceptas nuestras Condiciones, la Política de datos y la Política de cookies. Es posible que te enviemos notificaciones por SMS, que puedes desactivar cuando quieras.
+          Al ingresar en Pikplay aceptas nuestros
+          <Link href="/articulo/[id]" as="/articulo/terminos-y-condiciones">
+            <a>términos y condiciones</a>
+          </Link>
+          <br />
+          Es posible que te enviemos notificaciones por SMS, que puedes desactivar cuando quieras.
         </small>
       </DialogContent>
       <DialogActions>

@@ -20,15 +20,28 @@ const ArticlePage = (props) => {
   </Layout>
 }
 
-ArticlePage.getInitialProps = async () => {
+ArticlePage.getInitialProps = async ({ query, req, res }) => {
   const client = new ApolloClient({
     uri: process.env.API_URL,
     cache: new InMemoryCache()
   });
 
+  const slug = query?.id
+
   const { data } = await client.query({
-    query: GET_ARTICLES
+    query: GET_ARTICLES,
+    variables: {
+      slug
+    }
   })
+
+  if (!data.getArticles) {
+    res.writeHead(301, {
+      Location: '/404'
+    });
+    res.end();
+  }
+
   return {
     data: data.getArticles
   }

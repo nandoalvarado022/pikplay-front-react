@@ -385,8 +385,8 @@ export function checkIsMobile(userAgent) {
 }
 
 export const GET_ARTICLES = gql`
-query getArticles($id: Int, $slug: String){
-  getArticles(id: $id, slug: $slug){
+query getArticles($id: Int, $limit: Int, $slug: String){
+  getArticles(id: $id, limit: $limit, slug: $slug){
     content
     id
     slug
