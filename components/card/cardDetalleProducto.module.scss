@@ -126,14 +126,6 @@
                     left: -15px;
                 }
             }
-            .content_author {
-                @media screen and (max-width: 420px) {
-                    margin-top: 20px;
-                }
-                @media screen and (min-width: 1024px) {
-                    margin-left: 20px;
-                }
-            }
             .description {
                 font-size: 14px;
                 margin: 10px 20px 0 0;
@@ -149,6 +141,7 @@
             }
             :global(button) {
                 margin: 0;
+                width: 110px;
             }
             @media screen and (max-width: 420px) {
                 :global(.autor) {

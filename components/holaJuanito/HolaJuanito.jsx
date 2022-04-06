@@ -91,11 +91,6 @@ const HolaJuanito = () => {
                             </a>
                         </Link>
                     }
-                    <p>
-                        <small>
-                            Últimas publicaciones
-                        </small>
-                    </p>
                     <Articles />
                 </div>
 

@@ -389,6 +389,7 @@ query getArticles($id: Int, $limit: Int, $slug: String){
   getArticles(id: $id, limit: $limit, slug: $slug){
     content
     id
+    image_card
     slug
     summary
     title

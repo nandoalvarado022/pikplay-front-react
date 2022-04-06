@@ -22,6 +22,7 @@ const Articles = () => {
                     >
                         <h1>{item.title}</h1>
                         <summary>{item.summary}</summary>
+                        <div className={styles.image_card} dangerouslySetInnerHTML={{ __html: item.image_card }}></div>
                     </motion.article>
                 </Link>
             })

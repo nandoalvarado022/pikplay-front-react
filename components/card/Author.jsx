@@ -2,31 +2,42 @@ import Zoom from '@material-ui/core/Zoom';
 import styles from "./author.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Tooltip } from "@material-ui/core"
-import { faCheckCircle, faStar } from "@fortawesome/free-solid-svg-icons"
+import { faCheckCircle, faStar, faStore } from "@fortawesome/free-solid-svg-icons"
 
-const Author = ({ user = {} }) => {
-    return <Tooltip TransitionComponent={Zoom} title="Información del vendedor">
-        <div className={`${styles.author} author`}>
-            <img alt={`Imagen de ${user?.name}`} className={styles.user_picture} src={user?.picture} />
-            <p title={user?.certificate ? "El usuario esta certificado, puedes confiar en esta oferta" : ""}>
+const Author = ({ user = {}, parentView }) => {
+    return <div className={`${styles.author} author ${styles[parentView]}`}>
+        <img alt={`Imagen de ${user?.name}`} className={styles.user_picture} src={user?.picture} />
+        <Tooltip TransitionComponent={Zoom} title="Informacion del aliado">
+            <div className={`content-icon-store ${styles['content-icon-store']}`}>
+                <FontAwesomeIcon icon={faStore} />
+            </div>
+        </Tooltip>
+        <p title={user?.certificate ? "El usuario esta certificado, puedes confiar en esta oferta" : ""}>
+            {!!user?.certificate && <Tooltip TransitionComponent={Zoom} title="Aliado certificado">
+                <div className="star-content">
+                    <FontAwesomeIcon className={styles.star} icon={faStar} />
+                </div>
+            </Tooltip>}
+            <Tooltip TransitionComponent={Zoom} title="Nombre de quien vende el articulo">
                 <h3>
                     {user?.name}
                 </h3>
-                {!!user?.certificate && <div className={styles.stars}>
-                    <FontAwesomeIcon icon={faStar} />
+            </Tooltip>
+            <Tooltip TransitionComponent={Zoom} title="Calificación">
+                <div className={styles.calification}>
                     <span>
-                        4,5
+                        (4,5)
                     </span>
-                </div>}
-                {user?.transactions > 0 && <div className={styles.transactions}>
-                    <FontAwesomeIcon icon={faCheckCircle} />
-                    <span>
-                        {user?.transactions} ventas completadas
-                    </span>
-                </div>}
-            </p>
-        </div>
-    </Tooltip>
+                </div>
+            </Tooltip>
+            {user?.transactions > 0 && <div className={styles.transactions}>
+                <FontAwesomeIcon icon={faCheckCircle} />
+                <span>
+                    {user?.transactions} ventas completadas
+                </span>
+            </div>}
+        </p>
+    </div>
 }
 
 export default Author

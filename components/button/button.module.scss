@@ -43,8 +43,9 @@ button.btn {
         display: none;
     }
     .text {
-        display: flex;
         align-items: center;
+        display: flex;
+        justify-content: center;
         svg {
             margin-left: 5px;
             transition: 0.2s ease-in;

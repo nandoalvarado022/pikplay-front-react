@@ -24,6 +24,7 @@
     padding: 7px 0;
     text-align: center;
     @media screen and (max-width: 420px) {
+        bottom: 70px;
         position: fixed;
         width: 100%;
         z-index: 3;

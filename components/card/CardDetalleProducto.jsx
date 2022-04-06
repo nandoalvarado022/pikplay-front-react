@@ -93,7 +93,7 @@ const CardProducto = ({
                 {quantity == 0 && "Reservar"}
               </Button>
               <div className={styles.content_author}>
-                <Author user={seller} />
+                <Author parentView='CardDetalleProducto' user={seller} />
               </div>
             </div>
 
@@ -105,7 +105,7 @@ const CardProducto = ({
             </div>
 
             <p>
-              <a className="underline f-s-12" target="_BLANK" href="https://api.whatsapp.com/send?phone=573187414972&text=Quiero denunciar una publicación de pikplay.co">Denunciar</a>
+              <a className="underline f-s-12" target="_BLANK" href="https://api.whatsapp.com/send?phone=573187414972&text=Quiero reportar una publicación de pikplay.co">Reportar publicación</a>
             </p>
           </div>
         </div>

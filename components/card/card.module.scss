@@ -25,35 +25,6 @@ h3.title_destacada {
             width: 320px;
         }
     }
-    :global(.author) {
-        margin: 10px auto 10px;
-        padding: 5px 10px 0px;
-        height: 25px;
-        opacity: 1;
-        top: 18px;
-        p {
-            align-items: center;
-            display: flex;
-            grid-gap: 5px;
-            margin: none;
-            padding: 0;
-        }
-        img {
-            display: none;
-        }
-        .transactions {
-            display: flex;
-            align-items: center;
-        }
-        .stars {
-            align-items: center;
-            display: flex;
-            span {
-                height: initial;
-                margin: 0;
-            }
-        }
-    }
     .tachado {
         font-size: 14px;
     }
