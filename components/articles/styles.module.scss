@@ -8,13 +8,16 @@
     }
     article:nth-of-type(2) {
         background: linear-gradient(90deg, #fab674 0%, #efba89 100%);
+    }
+    article {
         @media screen and (max-width: 420px) {
-            display: none;
+            padding: 10px;
         }
     }
     > * {
         font-size: 14px;
         margin: initial;
+        position: relative;
         width: 200px;
         h1 {
             color: white;
@@ -23,9 +26,18 @@
         summary {
             color: white;
             margin: 0;
-            // overflow: hidden;
-            // text-overflow: ellipsis;
-            // white-space: nowrap;
+            width: 120px;
+            @media screen and (max-width: 420px) {
+                width: initial;
+            }
+        }
+        img {
+            position: absolute;
+            right: -30px;
+            bottom: -5px;
+            @media screen and (max-width: 420px) {
+                display: none;
+            }
         }
     }
 }

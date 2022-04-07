@@ -29,6 +29,16 @@
                 padding: 0;
             }
         }
+        .contigo-somos{
+            font-size: 14px;
+            margin: -10px 0 20px;
+            text-align: right;
+            span{
+                display: inline-block;
+                text-align: center;
+                width: 25px;
+            }
+        }
         .texts {
             width: 500px;
             z-index: 2;
@@ -43,6 +53,7 @@
             .text2 {
                 color: #575656;
                 display: inline-block;
+                line-height: 22px;
             }
         }
     }

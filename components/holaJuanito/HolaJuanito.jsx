@@ -70,12 +70,12 @@ const HolaJuanito = () => {
                         </div>
                     </div>
                     <div className={`${styles.text2} font-a`}>
-                        <p>Contigo ya somos&nbsp;
+                        <p className={styles['contigo-somos']}>Contigo ya somos&nbsp;
                             <span>
-                                <CountUp end={165} />
+                                <b><CountUp end={165} /></b>
                             </span> gamers en Pikplay.
                         </p>
-                        Recuerda que puedes confiar <b style={{ color: "green" }}>100%</b> en nuestros aliados certificados. Entregamos garantía por las compras que realices a estos, así que tu compra será confiable, rápida y segura.
+                        💙 &nbsp;Recuerda que puedes confiar en nuestros aliados certificados. Entregamos garantía por las compras que realices a estos, así que tu compra será confiable, rápida y segura.
                     </div>
                     {
                         user.id == 0 && <button onClick={() => document.getElementById("btnStart").click()} className={styles.reclamar_monedas}>

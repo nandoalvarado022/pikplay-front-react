@@ -6,7 +6,7 @@ const Footer = ({ filtrarRodadas }) => {
   return (<div className={styles.SideToSide}>
     <div className={styles.logo}>
       <Link href="/">
-        <img alt="Footer" width="200" className="pikajuegos desktop logo" src="/images/logos/logo.png" />
+        <img alt="Footer" width="200" className="pikajuegos desktop logo" src="/images/logos/logo.svg" />
       </Link>
     </div>
     <hr />
