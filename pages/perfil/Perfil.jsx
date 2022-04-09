@@ -75,8 +75,7 @@ const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, set
                 </div>
             </div>
 
-            <div className="Card notifications-content" id="notificaciones">
-                <h3>Notificaciones</h3>
+            <div className="Card notifications-content" id={styles.notificaciones}>
                 <UserNotifications />
             </div>
         </div>

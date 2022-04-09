@@ -10,12 +10,15 @@ import styles from './styles.module.scss'
 
 const ArticlePage = (props) => {
   const { data } = props
-  const { content, title } = data[0]
+  const { content, summary, title } = data[0]
 
   return <Layout>
-    <div className={`Card`} id={styles.ArticlePage}>
-      <h1>{title}</h1>
-      <div className="post__content" dangerouslySetInnerHTML={{ __html: content }}></div>
+    <div id={styles.ArticlePage}>
+      <h1 className='Card'>
+        <small>{title}</small>
+        {summary}
+      </h1>
+      <div className="m-b-20 Card post__content" dangerouslySetInnerHTML={{ __html: content }}></div>
     </div>
   </Layout>
 }

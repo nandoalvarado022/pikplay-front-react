@@ -74,7 +74,7 @@ const Coins = ({ coins }) => {
     <div className={`f-s-14 ${styles.number} number-coins`}>
       {format_number(coins)}
       <br />
-      <span>Pikcoins</span>
+      <small>Pikcoins</small>
     </div>
   </div>
 }

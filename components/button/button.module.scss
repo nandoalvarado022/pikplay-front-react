@@ -4,7 +4,7 @@ button.btn {
     color: white;
     font-size: 12px;
     margin: 5px;
-    padding: 10px 20px;
+    padding: 0;
     text-shadow: 1px 1px #5a5a5a;
     text-transform: initial;
     &:hover {
@@ -29,7 +29,7 @@ button.btn {
         font-weight: normal;
         text-decoration: underline;
         text-shadow: initial;
-        &:hover{
+        &:hover {
             box-shadow: initial;
         }
     }
@@ -41,6 +41,14 @@ button.btn {
     }
     &.remove {
         display: none;
+    }
+    :global(.MuiButtonBase-root) {
+        // Boton de material UI
+        color: inherit;
+        font-size: inherit;
+        height: 100%;
+        margin: initial;
+        padding: 5px 20px;
     }
     .text {
         align-items: center;

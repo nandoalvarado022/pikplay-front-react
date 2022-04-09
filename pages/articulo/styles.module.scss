@@ -1,4 +1,4 @@
-#ArticlePage{
+#ArticlePage {
     color: #585858;
     margin: 20px auto;
     overflow: hidden;
@@ -6,8 +6,15 @@
     @media screen and (max-width: 420px) {
         width: auto;
     }
-    h1{
-        border-left: 5px solid #c93530;
-        padding-left: 10px;
+    h1 {
+        border-bottom: 2px solid #c93530;
+        border-radius: 0 10px 0 10px;
+        margin: 0 auto 20px;
+        top: 0px;
+        z-index: 2;
+        small{
+            display: block;
+            font-weight: 100;
+        }
     }
 }

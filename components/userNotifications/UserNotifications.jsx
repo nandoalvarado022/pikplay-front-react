@@ -1,17 +1,23 @@
+const { motion } = require("framer-motion")
 import Button from "../button/Button"
 import confetti from "canvas-confetti"
 import styles from "./styles.module.scss"
-import { CREATE_COIN, DELETE_NOTIFICATION, GET_NOTIFICATIONS, loadAudio } from "../../lib/utils"
+import { CREATE_COIN, DELETE_NOTIFICATION, format_number, GET_NOTIFICATIONS, loadAudio } from "../../lib/utils"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTimes, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faBell, faGift, faRing, faTimes, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { toast } from 'react-toastify'
 import { useEffect } from 'react'
 import { useLazyQuery, useMutation } from '@apollo/client'
 import { useSelector, useDispatch } from "react-redux"
+import classNames from "classnames"
+import { Tooltip } from "@material-ui/core"
+import moment from "moment"
+
+moment.locale('es-CO');
 
 const UserNotifications = () => {
   const user = useSelector((state) => state.user)
-  const notifications = useSelector((state) => state.notifications).filter(item => item.closed == 0)
+  const notifications = useSelector((state) => state.notifications) //.filter(item => item.closed == 0)
   const [deleteNotification] = useMutation(DELETE_NOTIFICATION)
   const [createCoin] = useMutation(CREATE_COIN)
   const dispatch = useDispatch()
@@ -37,7 +43,7 @@ const UserNotifications = () => {
 
     confetti()
     dispatch({ type: "RECLAMAR_COINS", payload: { coins } }) // Coins UI
-    toast(`Has recibido ${coins} Pikcoins, ¡felicidades!`)
+    toast(`Has recibido ${format_number(coins)} Pikcoins, ¡felicidades!`)
     handleDeleteNotification(id_notification) // Delete notificacion (BD and UI)
   }
 
@@ -73,25 +79,39 @@ const UserNotifications = () => {
     getNotifications()
   }, [])
 
+  const notificationsNotClosed = notifications.filter(item => !item.closed)
+
   return <ul className={`${styles.UserNotifications} UserNotifications`}>
-    {notifications && notifications.map(({ coins, detail, id, isOpen }) => <ol className={isOpen ? styles.open : null}>
-      {!!coins && <img className={styles.coin} src="/images/icons/moneda2.svg" />}
-      <span onClick={() => handleNotification(id)}>
-        {detail}
-        {isOpen && <i>Hace 5 minutos</i>}
-      </span>
-      {!!coins && <Button color="blue" onClick={() => { reclamarCoins(coins, id) }}>Reclamar</Button>}
-      {!coins && <div className={styles.content_close}>
-        <FontAwesomeIcon onClick={() => handleDeleteNotification(id)} icon={faTrash} />
-      </div>
-      }
-    </ol>
-    )}
-    {
-      notifications.length < 1 && <ol>
-        <span>✅ &nbsp;Estas al día con tus notificaciones</span>
-      </ol>
+    <h4>
+      <motion.span>
+        <FontAwesomeIcon icon={faBell} className='m-r-10' />
+      </motion.span>
+      Notificaciones
+    </h4>
+    {notificationsNotClosed.length < 1 && <ol className="m-b-20">
+      <span>Nada nuevo 😎</span>
+    </ol>}
+    {notifications && notifications.map(({ closed, coins, created, detail, id, isOpen }) => {
+      const disabled = closed
+      created = moment(created).fromNow()
+
+      return <Tooltip title={created}>
+        <ol className={classNames(null, { [styles.closed]: disabled })}>
+          <span onClick={() => handleNotification(id)}>
+            {disabled}
+            {detail}
+          </span>
+          {!!coins && !disabled && <Button color="blue" onClick={() => { disabled ? null : reclamarCoins(coins, id) }}>
+            <FontAwesomeIcon icon={faGift} />
+          </Button>}
+          {!coins && <div className={styles.content_close}>
+            <FontAwesomeIcon onClick={() => handleDeleteNotification(id)} icon={faTrash} />
+          </div>
+          }
+        </ol>
+      </Tooltip>
     }
+    )}
   </ul >
 }
 

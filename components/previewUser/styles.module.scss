@@ -27,7 +27,6 @@
         color: white;
         display: none;
         font-size: 14px;
-        font-weight: bold;
         height: 306px;
         position: absolute;
         padding-top: 10px;
@@ -48,8 +47,13 @@
         &.activated {
             display: block;
         }
-        ol {
+        :global(.UserNotifications) {
+            right: 165px;
+            position: absolute;
+        }
+        > ol {
             border-bottom: 1px solid #424950;
+            font-weight: bold;
             margin: 10px 0;
             padding: 0 20px 10px;
             text-align: center;
