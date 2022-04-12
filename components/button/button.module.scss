@@ -3,6 +3,7 @@ button.btn {
     border: none;
     color: white;
     font-size: 12px;
+    height: 34px;
     margin: 5px;
     padding: 0;
     text-shadow: 1px 1px #5a5a5a;
@@ -47,6 +48,7 @@ button.btn {
         color: inherit;
         font-size: inherit;
         height: 100%;
+        line-height: 14px;
         margin: initial;
         padding: 5px 20px;
     }
