@@ -119,7 +119,10 @@ const Transacciones = (props) => {
         </div>
         <div className={styles.actions}>
           {
-            user_to == loggedUser.id && status == 0 && <Button color="blue" onClick={() => handleConfirmarTransaccion(id, publication)}>Confirmar transacción</Button>
+            user_to == loggedUser.id && <>
+              <Button color="blue" disabled={status != 0} onClick={() => handleConfirmarTransaccion(id, publication)}>Confirmar transacción</Button>
+              <Button color='yellow'>Subir comprobante</Button>
+            </>
           }
           {/* {type == "Venta" && status == 0 && <button onClick={() => handleConfirmarTransaccion(id)} title="El cliente podrá pagar en linea">Habilitar pago en linea</button>} */}
           {/* {type == "Compra" && status == 0 && <button onClick={() => handlePagarTransaccion(id)}>Pagar</button>} */}

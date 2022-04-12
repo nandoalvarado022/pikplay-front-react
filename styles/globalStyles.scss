@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap");
 @import url("react-toastify/dist/ReactToastify.css");
 @import url("react-image-gallery/styles/css/image-gallery.css");
-@import './variables.scss';
+@import "./variables.scss";
 
 @font-face {
     font-family: "Righteous";
@@ -139,7 +139,7 @@ button.image-gallery-thumbnail {
     opacity: 0.5;
 }
 
-.page h2{
+.page h2 {
     border-bottom: 2px solid #c93530;
     border-radius: 0 10px 0 10px;
     margin: 0 auto;
@@ -147,7 +147,7 @@ button.image-gallery-thumbnail {
     top: 0px;
     width: 300px;
     z-index: 2;
-    svg{
+    svg {
         float: right;
         margin-top: 2px;
         transform: scale(1.2);
@@ -528,7 +528,7 @@ main {
     margin: 0;
 }
 
-#awn-toast-container{
+#awn-toast-container {
     bottom: initial;
     top: 200px;
 }
@@ -589,18 +589,18 @@ section {
     border-radius: 50%;
 }
 
-.m-10{
+.m-10 {
     margin: 10px;
 }
 
-.m-20{
+.m-20 {
     margin: 10px;
 }
-.m-b-10{
+.m-b-10 {
     margin-bottom: 10px !important;
 }
 
-.m-b-20{
+.m-b-20 {
     margin-bottom: 20px !important;
 }
 .m-t-20 {
@@ -796,6 +796,10 @@ h2,
 h3 {
     color: #585858;
     font-size: 18px;
+}
+
+.primary-color {
+    color: $primary-color;
 }
 
 a {

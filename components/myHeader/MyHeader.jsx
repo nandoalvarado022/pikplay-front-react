@@ -11,13 +11,14 @@ import stories from '../../public/stories'
 import styles from "./styles.module.scss"
 import useConstant from 'use-constant'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSearch } from "@fortawesome/free-solid-svg-icons"
+import { faPlus, faSearch } from "@fortawesome/free-solid-svg-icons"
 import { format_number, getFeed } from '../../lib/utils'
 import { useAsyncAbortable } from 'react-async-hook'
 import { useRouter } from "next/router"
 import Author from '../card/Author'
 import Button from '../button/Button'
 import { useSelector } from 'react-redux'
+import ChangeCity from './changeCity/ChangeCity'
 
 const searchStarwarsHero = async (text, abortSignal) => {
 	const results = await getFeed({ title: text })
@@ -66,9 +67,6 @@ const Header = () => {
 	const user = useSelector((state) => state.user)
 	const { inputText, setInputText, search } = useSearchStarwarsHero()
 
-	useEffect(() => {
-	}, [])
-
 	return <div id={styles.Header}>
 		<ul>
 			<Link href="/">
@@ -81,15 +79,18 @@ const Header = () => {
 			</Link>
 
 			{
-				<div
-					onBlur={() => setTimeout(() => setShowSearchModal(false), 200)} 
-					className={styles.content_buscador}>
-					<TextField className={styles.Textfield} disabled={isLoading} onFocus={e => setShowSearchModal(true)} onChange={e => setInputText(e.target.value)} fullWidth label={IS_MOBILE ? '¿Buscas algo?' : <span>
-						<FontAwesomeIcon className="m-r-10" icon={faSearch} />
-						¿Buscas algún videojuego?
-					</span>} variant="standard" />
+				<div className={styles.content_buscador}>
+					<div className={styles.content_Textfield}>
+						<TextField autoComplete='off' className={styles.Textfield} disabled={isLoading} id='inpSearchButton' onFocus={e => setShowSearchModal(true)} onChange={e => setInputText(e.target.value)} fullWidth label={IS_MOBILE ? '¿Buscas algo?' : <span>
+							<FontAwesomeIcon className="m-r-10" icon={faSearch} />
+							¿Buscas algún videojuego?
+						</span>} variant="standard" />
+						<ChangeCity />
+					</div>
+
 					{
 						showSearchModal && <div className={styles.results}>
+							<FontAwesomeIcon className={styles.close_icon} icon={faPlus} onClick={() => setShowSearchModal(false)} />
 							<section>
 								{IS_MOBILE && <Button color='blue' onClick={() => setShowSearchModal(false)} style={{ float: 'left' }}>Volver</Button>}
 								{search.result && <small>Se encontraron <CountUp end={search.result.length} /> resultados:</small>}

@@ -15,8 +15,17 @@
     transition: 0.5s ease;
     width: 250px;
     z-index: 0;
+    @media screen and (max-width: 420px) {
+        border-radius: 0;
+        height: 100%;
+        margin: 20px auto 50px;
+        width: 90%;
+    }
     h4 {
         text-align: center;
+        @media screen and (max-width: 420px) {
+            display: none;
+        }
         svg {
             color: #fdb723;
         }

@@ -105,7 +105,7 @@
             height: calc(100vh - 122px);
             left: -300px;
             position: absolute;
-            top: 68px;
+            top: 76px;
             width: 700px;
             z-index: 3;
             @media screen and (max-width: 420px) {
@@ -125,6 +125,20 @@
                 z-index: 0;
             }
 
+            .close_icon{
+                background: #f4f4f4;
+                border-radius: 50%;
+                color: #c93530;
+                left: -30px;
+                padding: 5px;
+                position: absolute;
+                top: 6px;
+                transform: rotate(45deg);
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+
             section {
                 height: calc(100% + 21px);
                 margin-top: 0;
@@ -134,14 +148,21 @@
                 z-index: 1;
                 article {
                     padding: 10px;
+                    
                     &:nth-child(even) {
                         background: #476e961a;
                     }
                     :global(.author) {
                         margin-top: 5px;
-                        img{
+                        img {
                             display: none;
                         }
+                    }
+                    :global(h3){
+                        overflow: hidden;
+                        white-space: nowrap;
+                        width: 80px;
+                        
                     }
                 }
             }
@@ -230,9 +251,10 @@
             cursor: pointer;
         }
     }
-
-    .Textfield {
+    .content_Textfield {
         width: 500px;
+        .Textfield {
+        }
     }
 
     .grid-container {

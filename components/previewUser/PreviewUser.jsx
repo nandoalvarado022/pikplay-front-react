@@ -43,8 +43,8 @@ const PreviewUser = () => {
               </a>
             </Link>
           </ol>
-          <ol onClick={() => setIsOpenPreviewProfile(false)}>
-            <Link href="/perfil#notificaciones" as="/perfil#notificaciones">
+          <ol>
+            <Link href="/notificaciones" as="/notificaciones">
               Notificaciones
             </Link>
           </ol>

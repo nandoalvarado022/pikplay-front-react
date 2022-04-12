@@ -306,20 +306,20 @@ export function getPaises() {
 
 export function getCiudades() {
   return [
-    { pais: "colombia", id: "medellin", nombre: "Medellín" },
-    { pais: "colombia", id: "bogota", nombre: "Bogotá" },
-    { pais: "colombia", id: "pereira", nombre: "Pereira" },
-    { pais: "colombia", id: "cartagena", nombre: "Cartagena" },
-    { pais: "colombia", id: "barranquilla", nombre: "Barranquilla" },
-    { pais: "colombia", id: "cali", nombre: "Cali" },
-    { pais: "mexico", id: "ciudad-mexico", nombre: "Ciudad de México" },
-    { pais: "mexico", id: "guadalajara", nombre: "Guadalajara" },
-    { pais: "mexico", id: "puebla-zaragoza", nombre: "Puebla de Zaragoza" },
-    { pais: "mexico", id: "ecatepec", nombre: "Ecatepec" },
-    { pais: "mexico", id: "tijuana", nombre: "Tijuana" },
-    { pais: "argentina", id: "buenos_aires", nombre: "Buenos Aires" },
-    { pais: "españa", id: "madrid", nombre: "Madrid" },
-    { pais: "salvador", id: "san_salvador", nombre: "San Salvador" },
+    { pais: "colombia", id: "bogota", label: "Bogotá" },
+    { pais: "colombia", id: "medellin", label: "Medellín" },
+    { pais: "colombia", id: "pereira", label: "Pereira" },
+    { pais: "colombia", id: "cartagena", label: "Cartagena" },
+    { pais: "colombia", id: "barranquilla", label: "Barranquilla" },
+    { pais: "colombia", id: "cali", label: "Cali" },
+    { pais: "mexico", id: "ciudad-mexico", label: "Ciudad de México" },
+    { pais: "mexico", id: "guadalajara", label: "Guadalajara" },
+    { pais: "mexico", id: "puebla-zaragoza", label: "Puebla de Zaragoza" },
+    { pais: "mexico", id: "ecatepec", label: "Ecatepec" },
+    { pais: "mexico", id: "tijuana", label: "Tijuana" },
+    { pais: "argentina", id: "buenos_aires", label: "Buenos Aires" },
+    { pais: "españa", id: "madrid", label: "Madrid" },
+    { pais: "salvador", id: "san_salvador", label: "San Salvador" },
   ]
 }
 
@@ -441,6 +441,11 @@ query getNotifications($user: Int, $closed: String){
     type
     user
   }
+}`
+
+export const VALIDATE_COUPON = gql`
+mutation validateCoupon($coupon: String, $user: Int){
+  validateCoupon(coupon: $coupon, user: $user)
 }`
 
 const slug = null, category = null, subcategory = null, title = null, status = true

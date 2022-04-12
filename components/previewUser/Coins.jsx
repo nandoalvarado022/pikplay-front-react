@@ -73,8 +73,6 @@ const Coins = ({ coins }) => {
     <picture className={styles.coin} />
     <div className={`f-s-14 ${styles.number} number-coins`}>
       {format_number(coins)}
-      <br />
-      <small>Pikcoins</small>
     </div>
   </div>
 }

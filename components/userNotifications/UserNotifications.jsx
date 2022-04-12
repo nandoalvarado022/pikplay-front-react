@@ -45,19 +45,21 @@ const UserNotifications = () => {
     dispatch({ type: "RECLAMAR_COINS", payload: { coins } }) // Coins UI
     toast(`Has recibido ${format_number(coins)} Pikcoins, ¡felicidades!`)
     handleDeleteNotification(id_notification) // Delete notificacion (BD and UI)
+    getNotifications()
   }
 
   const handleDeleteNotification = (id) => {
     notifications.find(item => item.id == id).closed = "1"
     deleteNotification({ variables: { id, userId: user.id } }) // Delete notification BD
-    dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: notifications } })
+    getNotifications()
+    // dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: notifications } })
   }
 
   const [getNotifications] = useLazyQuery(GET_NOTIFICATIONS, { // Obteniendo notificaciones
     fetchPolicy: "no-cache",
     // polInterval: 5000,
     variables: {
-      user: user.id
+      user: user?.id
     },
     onCompleted: ({ getNotifications }) => {
       getNotifications && dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: getNotifications } })
