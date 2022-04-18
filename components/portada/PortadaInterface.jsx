@@ -1,4 +1,5 @@
 const { IS_MOBILE } = "../../lib/variables"
+import Articles from '../articles/Articles'
 import Card from '../card/Card'
 import Footer from '../footer/Footer'
 import Groot from '../groot/Groot'
@@ -7,8 +8,9 @@ import React from 'react'
 import styles from "./portada.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClock } from "@fortawesome/free-regular-svg-icons"
+import { gql } from '@apollo/client'
 import { useEffect, useState } from 'react'
-import Articles from '../articles/Articles'
+import { useLazyQuery } from '@apollo/client'
 
 const SpecialBanner = ({ category, popularyItem, starItem }) => {
   return <span />
@@ -27,7 +29,7 @@ const SpecialBanner = ({ category, popularyItem, starItem }) => {
   }
 }
 
-const PortadaInterface = ({ category, feed, popularyItem, starItem }) => {
+const PortadaInterface = ({ category, feed, popularyItem, setFeed, starItem }) => {
   const [showVideo, setShowVideo] = useState(false)
   const isOpen = typeof sessionStorage != "undefined" && JSON.parse(sessionStorage.getItem("notifications"))?.home
   const [showNotification, setShowNotification] = useState(!!!isOpen)
@@ -39,7 +41,28 @@ const PortadaInterface = ({ category, feed, popularyItem, starItem }) => {
         item.play()
       })
     }, 2000)
+    getFollowing()
   }, [])
+
+  const [getFollowing, { data }] = useLazyQuery(gql`
+    query getFollowing($user: Int) {
+      getFollowing(user: $user)
+    }`
+    , {
+      variables: {
+        user: 61
+      },
+      onCompleted: ({ getFollowing }) => {
+        if (getFollowing.length > 0) {
+          const _publications = feed ? [...feed] : []
+          getFollowing.forEach(item => {
+            let element = _publications.find(p => p.id == item.publication)
+            if (element) _publications.find(p => p.id == item.publication).following = true
+          })
+          setFeed(_publications)
+        }
+      }
+    })
 
   return <React.Fragment>
     {(feed && feed.length < 1) && <h3 style={{ textAlign: "center" }}>

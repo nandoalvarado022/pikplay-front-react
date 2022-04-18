@@ -16,7 +16,7 @@ const CiudadControl = () => {
     <Autocomplete options={listadoCiudades}
       defaultValue={defaultValue}
       onChange={onInputChange}
-      getOptionLabel={(option) => option.label} style={{ width: "100%" }}
+      getOptionLabel={(option) => option.label && option.label} style={{ width: "100%" }}
       renderInput={(params) => <TextField {...params} label="Ciudad en la que te encuentras" />} />
   </div>
 }

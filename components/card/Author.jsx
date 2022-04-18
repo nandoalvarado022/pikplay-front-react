@@ -14,9 +14,9 @@ const Author = ({ user = {}, parentView }) => {
         </Tooltip>
         <p title={user?.certificate ? "El usuario esta certificado, puedes confiar en esta oferta" : ""}>
             {!!user?.certificate && <Tooltip TransitionComponent={Zoom} title="Aliado certificado">
-                <div className="star-content">
+                <span className="star-content">
                     <FontAwesomeIcon className={styles.star} icon={faStar} />
-                </div>
+                </span>
             </Tooltip>}
             <Tooltip TransitionComponent={Zoom} title="Nombre de quien vende el articulo">
                 <h3>

@@ -15,7 +15,7 @@ const Index = (props) => {
 
 Index.getInitialProps = async () => {
   const isSSR = typeof window == 'undefined'
-  const feed = await getHome({ isSSR })
+  const feed = await getHome({ isSSR, origin: 'indexPage' })
   // store.dispatch({ type: 'TICK', payload: 'was set in error page ' + pathname });
   return {
     feed

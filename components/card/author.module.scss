@@ -29,10 +29,8 @@
     }
     span {
         border-radius: 50%;
-        // height: 30px;
-        width: 30px;
         background-size: 40px;
-        margin-right: 10px;
+        // margin-right: 10px;
         background-repeat: no-repeat;
         background-position: center;
     }
@@ -78,7 +76,7 @@
         }
     }
     &.CardDetalleProducto {
-        height: 40px;
+        height: 32px;
         margin: 0 10px;
         .content-icon-store {
             display: none;
@@ -86,5 +84,8 @@
         img {
             display: block;
         }
+    }
+    &.HeaderSearch {
+        margin: 10px 0;
     }
 }

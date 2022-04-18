@@ -1,13 +1,12 @@
 .ChangeCity {
-    center {
+    p {
         cursor: pointer;
         display: flex;
         font-size: 12px;
-        margin-left: 0px !important;
-        margin-top: 5px;
+        margin-top: 8px;
         padding: 0px;
         svg{
-            margin-right: 5px;
+            margin: 0 5px;
         }
     }
 }

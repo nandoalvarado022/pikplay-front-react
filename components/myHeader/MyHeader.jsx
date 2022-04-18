@@ -1,5 +1,7 @@
 const { IS_MOBILE } = VARS
-import AwesomeDebouncePromise from 'awesome-debounce-promise'
+import Author from '../card/Author'
+import Button from '../button/Button'
+import ChangeCity from './changeCity/ChangeCity'
 import CountUp from 'react-countup'
 import Link from "next/link"
 import PreviewUser from '../previewUser/PreviewUser'
@@ -7,65 +9,56 @@ import React, { useState, useEffect } from "react"
 import TextField from "@material-ui/core/TextField"
 import VARS from '../../lib/variables'
 import recommended from '../../public/recommended'
-import stories from '../../public/stories'
 import styles from "./styles.module.scss"
-import useConstant from 'use-constant'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus, faSearch } from "@fortawesome/free-solid-svg-icons"
-import { format_number, getFeed } from '../../lib/utils'
-import { useAsyncAbortable } from 'react-async-hook'
-import { useRouter } from "next/router"
-import Author from '../card/Author'
-import Button from '../button/Button'
+import { format_number, getCiudades, getFeed } from '../../lib/utils'
 import { useSelector } from 'react-redux'
-import ChangeCity from './changeCity/ChangeCity'
+import ImageGallery from 'react-image-gallery'
 
-const searchStarwarsHero = async (text, abortSignal) => {
-	const results = await getFeed({ title: text })
-	return results
-}
+const useDebounce = (value, wait = 0) => {
+	const [debounceValue, setDebounceValue] = useState(value);
+	useEffect(() => {
+		const timeoutId = window.setTimeout(() => {
+			setDebounceValue(value)
+		}, wait)
 
-const useSearchStarwarsHero = () => {
-	// Handle the input text state
-	const [inputText, setInputText] = useState('');
-
-	// Debounce the original search async function
-	const debouncedSearchStarwarsHero = useConstant(() =>
-		AwesomeDebouncePromise(searchStarwarsHero, 300)
-	)
-
-	const search = useAsyncAbortable(
-		async (abortSignal, text) => {
-			// If the input is empty, return nothing immediately (without the debouncing delay!)
-			if (text.length === 0) {
-				return [];
-			}
-			// Else we use the debounced api
-			else {
-				const res = debouncedSearchStarwarsHero(text, abortSignal);
-				return res
-			}
-		},
-		// Ensure a new request is made everytime the text changes (even if it's debounced)
-		[inputText]
-	);
-
-	// Return everything needed for the hook consumer
-	return {
-		inputText,
-		setInputText,
-		search,
-	};
+		return () => {
+			window.clearTimeout(timeoutId)
+		}
+	}, [value])
+	return debounceValue
 }
 
 const Header = () => {
 	const [isLoading, setIsLoading] = useState(false)
 	const [results, setResults] = useState([])
 	const [showSearchModal, setShowSearchModal] = useState(false)
-	const [textSearch, setTextSearch] = useState('')
-	const router = useRouter()
 	const user = useSelector((state) => state.user)
-	const { inputText, setInputText, search } = useSearchStarwarsHero()
+	const [inputText, setInputText] = useState()
+	const searchTerm = useDebounce(inputText, 1000)
+	const cities = getCiudades()
+
+	const images = [
+		{
+			original: '/images/banners/ps3-azul.jpeg',
+			thumbnail: '/images/banners/ps3-azul.jpeg',
+		},
+		{
+			original: '/images/banners/juanchofenix.jpeg',
+			thumbnail: '/images/banners/juanchofenix.jpeg',
+		}
+	];
+
+	useEffect(() => {
+		if (searchTerm) {
+			setIsLoading(true)
+			getFeed({ origin: 'searchBox', title: searchTerm }).then(results => {
+				setResults(results)
+				setIsLoading(false)
+			})
+		}
+	}, [searchTerm])
 
 	return <div id={styles.Header}>
 		<ul>
@@ -93,22 +86,22 @@ const Header = () => {
 							<FontAwesomeIcon className={styles.close_icon} icon={faPlus} onClick={() => setShowSearchModal(false)} />
 							<section>
 								{IS_MOBILE && <Button color='blue' onClick={() => setShowSearchModal(false)} style={{ float: 'left' }}>Volver</Button>}
-								{search.result && <small>Se encontraron <CountUp end={search.result.length} /> resultados:</small>}
+								{results && <small>Se encontraron <CountUp end={results.length} /> resultados:</small>}
 								<div className={styles['grid-container']}>
 									{/* Resultado principal  */}
-									{search.result && search.result.length > 0 && <Link href={`/publicacion/${search.result[0].slug}`}>
+									{results && results.length > 0 && <Link href={`/publicacion/${results[0].slug}`}>
 										<article className="primary pointer">
 											<img className={styles.discount} src="/images/icons/discounts.png" />
-											<img src={search.result[0].image_link} alt="" />
+											<img src={results[0].image_link} alt="" />
 											<summary>
 												<span>
 													Llévalo por solo&nbsp;
-													{!!search.result[0].sale_price && <price className={styles.price}>
-														${format_number(search.result[0].sale_price)}
+													{!!results[0].sale_price && <price className={styles.price}>
+														${format_number(results[0].sale_price)}
 													</price>}
 												</span>
-												<h2>{search.result[0].title}</h2>
-												<p>{search.result[0].title}</p>
+												<h2>{results[0].title}</h2>
+												<p>{results[0].title}</p>
 											</summary>
 										</article>
 									</Link>
@@ -117,7 +110,7 @@ const Header = () => {
 								{/* Listado de resultados */}
 								<div className={styles.rows}>
 									{
-										search.result && search.result.map((item, ind) => {
+										results && results.map((item, ind) => {
 											const link = `/publicacion/${item.slug}`
 											if (ind > 0) return <Link href={link}>
 												<article className={styles.row}>
@@ -127,7 +120,10 @@ const Header = () => {
 														{!!item.sale_price && <price className={styles.price}>
 															${format_number(item.sale_price)}
 														</price>}
-														{item.user && <Author user={item.user} />}
+														{item.user && <Author parentView='HeaderSearch' user={item.user} />}
+														<small className={styles.location}>
+															{cities.find(row => row.id == item.city)?.label}
+														</small>
 													</div>
 												</article>
 											</Link>
@@ -137,24 +133,9 @@ const Header = () => {
 							</section>
 							{/*  Sección recomendados */}
 							<section className={styles.recommended}>
-								<h3>Más buscados</h3>
-								<div className={styles.rows}>
-									{
-										recommended.map(item => {
-											const link = `/publicacion/${item.slug}`
-											return <Link href={link}>
-												<article className={styles.row}>
-													<div>
-														<h2>{item.title}</h2>
-														{/* <span className={styles.platform}>
-														Playstation 4
-													</span> */}
-													</div>
-													<img className={styles.product} src={item.image_link} alt="" />
-												</article>
-											</Link>
-										})
-									}
+								<span>Contenido promocionado</span>
+								<div className={styles.gallery}>
+									<ImageGallery autoPlay={true} items={images} showThumbnails={false} showPlayButton={false} showFullscreenButton={false} showNav={false} />
 								</div>
 							</section>
 						</div>

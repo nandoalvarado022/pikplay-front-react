@@ -105,7 +105,7 @@
             height: calc(100vh - 122px);
             left: -300px;
             position: absolute;
-            top: 76px;
+            top: 80px;
             width: 700px;
             z-index: 3;
             @media screen and (max-width: 420px) {
@@ -125,7 +125,7 @@
                 z-index: 0;
             }
 
-            .close_icon{
+            .close_icon {
                 background: #f4f4f4;
                 border-radius: 50%;
                 color: #c93530;
@@ -134,7 +134,7 @@
                 position: absolute;
                 top: 6px;
                 transform: rotate(45deg);
-                &:hover{
+                &:hover {
                     cursor: pointer;
                 }
             }
@@ -148,7 +148,7 @@
                 z-index: 1;
                 article {
                     padding: 10px;
-                    
+
                     &:nth-child(even) {
                         background: #476e961a;
                     }
@@ -158,11 +158,10 @@
                             display: none;
                         }
                     }
-                    :global(h3){
+                    :global(h3) {
                         overflow: hidden;
                         white-space: nowrap;
                         width: 80px;
-                        
                     }
                 }
             }
@@ -189,16 +188,23 @@
             }
 
             .recommended {
-                background: #f4f4f4;
                 @media screen and (max-width: 420px) {
                     display: none;
                 }
-                h3 {
-                    font-size: 12px;
+                span {
+                    display: block;
+                    font-size: 14px;
+                    margin: 20px 6px 10px 0;
+                    text-align: right;
                 }
-                article:nth-of-type(1) {
-                    // background: rgb(0, 70, 98);
-                    // background: linear-gradient(90deg, rgba(0, 70, 98, 1) 0%, rgba(179, 119, 244, 1) 100%);
+                .gallery {
+                    background: #999999;
+                    margin: 10px 5px 10px 10px;
+                    padding: 0 10px;
+                    :global(.image-gallery-content .image-gallery-slide .image-gallery-image) {
+                        max-height: 400px;
+                        margin-left: 0;
+                    }
                 }
             }
             .row {
@@ -206,6 +212,11 @@
                 margin-bottom: 10px;
                 &:hover {
                     cursor: pointer;
+                }
+                .location {
+                    display: block;
+                    font-size: 10px;
+                    margin-top: 5px;
                 }
                 img.product {
                     width: 100px;

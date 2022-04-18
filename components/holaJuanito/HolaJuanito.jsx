@@ -99,7 +99,7 @@ const HolaJuanito = () => {
                         <ol>
                             <Link href="/publicacion/[id]" as="/publicacion/preventa-fifa-22-juanchofenix-502">
                                 <a>
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/U_oewgFysiY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/U_oewgFysiY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                                 </a>
                             </Link>
                             <p className={styles.description}>

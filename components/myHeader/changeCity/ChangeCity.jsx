@@ -28,10 +28,11 @@ const ChangeCity = (props) => {
     }
 
     return <div className={styles.ChangeCity}>
-        <center className='m-l-10' style={{ fontSize: '12px' }} onClick={() => setOpen(true)}>
+        <p className='m-l-10' onClick={() => setOpen(true)}>
+            Quiero obtener resultados en
             <FontAwesomeIcon className='primary-color' icon={faMapMarkerAlt} />
             &nbsp;{cityLabel}
-        </center>
+        </p>
         <Dialog
             open={open}
             onClose={handleClose}
@@ -48,7 +49,7 @@ const ChangeCity = (props) => {
                             value={defaultCity}
                             onChange={handleChange}>
                             {getCiudades().map((item => {
-                                return <MenuItem value={item.id}>{capitalize(item.pais)} - {item.label}</MenuItem>
+                                return <MenuItem key={item.id} value={item.id}>{capitalize(item.pais)} - {item.label}</MenuItem>
                             }))}
                         </Select>
                     </FormControl>

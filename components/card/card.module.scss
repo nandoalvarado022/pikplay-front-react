@@ -9,7 +9,7 @@ h3.title_destacada {
     box-sizing: border-box;
     color: #585858;
     cursor: pointer;
-    max-height: 420px;
+    // max-height: 420px;
     margin: 0px 20px 40px;
     padding: 10px 0;
     position: relative;
@@ -125,6 +125,23 @@ h3.title_destacada {
             white-space: pre-line;
             font-size: 14px;
             text-align: center;
+            > * {
+                margin: 10px auto;
+            }
+            .icons > *{
+                transition: 0.5s ease;
+                &:hover {
+                    transform: scale(1.4);
+                }
+            }
+            .faHeart {
+                &.active {
+                    color: #ea4d42;
+                }
+            }
+            .faShare {
+                margin-left: 15px;
+            }
             .user_picture {
                 float: left;
                 width: 50px;

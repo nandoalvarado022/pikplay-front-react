@@ -17,6 +17,7 @@ const Articles = () => {
                 return <Link target="_BLANK" href={`/articulo/${item.slug}`}>
                     <motion.article
                         className='Card'
+                        key={item.id}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.8 }}
                     >

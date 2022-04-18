@@ -51,7 +51,8 @@ export const getNotifications = async (props) => {
 export const getHome = async (props) => {
   const {
     attempt = 1,
-    seller = null
+    seller = null,
+    user_request = null
   } = props
   const getCache = () => {
     let withoutCache = !!slug || !!category || !!subcategory || !!title
@@ -61,14 +62,16 @@ export const getHome = async (props) => {
   }
 
   const query = `query {
-      home (seller: ${seller}){
+      home (seller: ${seller}, user_request: ${user_request}){
         accept_changes
         apply_cashback
         banner_bottom
         banner_top
         category
         certificate
+        city
         description
+        following
         id
         image_1
         image_2
@@ -125,11 +128,13 @@ export const getFeed = async (props) => {
     isSSR = false,
     is_verified = true,
     limit = 12,
+    origin,
     seller = null,
     slug = '',
-    subcategory = null,
     status = true,
+    subcategory = null,
     title = '',
+    user_request = 0,
   } = props
   const getCache = () => {
     let withoutCache = !!slug || !!category || !!subcategory || !!title
@@ -142,12 +147,13 @@ export const getFeed = async (props) => {
       publications(
         category: ${category}, 
         is_verified: ${is_verified},
-        limit: ${limit} , 
-        seller: ${seller} , 
-        slug: "${slug}", 
+        limit: ${limit}, 
+        seller: ${seller},
+        slug: "${slug}",
         status: ${status},
-        subcategory: ${subcategory}, 
-        title: "${title}"
+        subcategory: ${subcategory},
+        title: "${title}",
+        user_request: ${user_request}
       ) {
         accept_changes
         apply_cashback
@@ -459,6 +465,7 @@ export const GET_PUBLICATIONS = gql`
       category
       certificate
       description
+      following
       id
       image_1
       image_2

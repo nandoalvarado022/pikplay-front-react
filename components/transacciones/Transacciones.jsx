@@ -7,6 +7,7 @@ import { gql, useLazyQuery, useMutation } from '@apollo/client'
 import { toast } from 'react-toastify'
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
+import MyTable from './Table'
 
 moment.locale('es')
 
@@ -40,9 +41,11 @@ const Transacciones = (props) => {
         created
         detail
         id
+        p_image
         p_title
         publication
         status
+        slug
         type
         type
         u_name
@@ -90,46 +93,10 @@ const Transacciones = (props) => {
         toast(message)
       }} />
     </h2>
-    <ul>
-      {transactions && transactions.map(({ created, detail, id, p_title, publication, status, type, u_name, user, user_to }) => <ol className="Card" style={{ display: "flex" }}>
-        <div className={styles.id}>T#{id}</div>
-        {
-          user_to == loggedUser.id && <div className={styles.user}>
-            {u_name} (Comprador)
-          </div>
-        }
-        <div>
-          {user_to == loggedUser.id ? 'Venta' : 'Compra'}
-        </div>
-        <div>
-          {p_title}
-          {detail}
-        </div>
-        <div>
-          <div className={styles.status}>
-            <b>Estado</b></div>
-          {status == 0 && "En conversación"}
-          {status == 1 && "Transacción realizada y confirmada"}
-          {status == 2 && "Transacción cancelada"}
-        </div>
-        <div>
-          <div>
-            {moment(parseInt(created)).format("MMMM DD YYYY, h:mm:ss a")}
-          </div>
-        </div>
-        <div className={styles.actions}>
-          {
-            user_to == loggedUser.id && <>
-              <Button color="blue" disabled={status != 0} onClick={() => handleConfirmarTransaccion(id, publication)}>Confirmar transacción</Button>
-              <Button color='yellow'>Subir comprobante</Button>
-            </>
-          }
-          {/* {type == "Venta" && status == 0 && <button onClick={() => handleConfirmarTransaccion(id)} title="El cliente podrá pagar en linea">Habilitar pago en linea</button>} */}
-          {/* {type == "Compra" && status == 0 && <button onClick={() => handlePagarTransaccion(id)}>Pagar</button>} */}
-        </div>
-      </ol>
-      )}
-    </ul>
+
+    <div className="content m-t-20">
+      <MyTable loggedUser={loggedUser} transactions={transactions} />
+    </div>
   </section>
 }
 

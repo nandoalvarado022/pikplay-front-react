@@ -10,8 +10,8 @@ import styles from "./login.module.scss"
 import Link from "next/link"
 
 export default function LoginInterface({ buttonText, isCodeSended, isHuman, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, handleTengoCodigo, onChangeReCaptcha, phone, setIsCodeSended, setPhone }) {
-  return <div>
-    <Button alt="Ingersar con número de teléfono" color="blue" id="btnStart" onClick={handleClickOpen}>Play</Button>
+  return <div id={styles.LoginComponent}>
+    <Button alt="Ingersar con número de teléfono" className={styles.playButton} color="blue" id="btnStart" onClick={handleClickOpen}>Play</Button>
     <Dialog fullWidth maxWidth="sm" open={isOpen} onClose={handleCloseDialog} aria-labelledby="form-dialog-title">
       <DialogContent>
         <DialogContentText>
