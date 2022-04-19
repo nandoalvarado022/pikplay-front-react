@@ -136,7 +136,7 @@ const Header = () => {
 														</price>}
 														{item.user && <Author parentView='HeaderSearch' user={item.user} />}
 														<small className={styles.location}>
-															{cities.find(row => row.id == item.city)?.label}
+															{/* {cities.find(row => row.id == item.city)?.label} */}
 														</small>
 													</div>
 												</article>
