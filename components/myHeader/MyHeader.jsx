@@ -38,6 +38,7 @@ const Header = () => {
 	const [inputText, setInputText] = useState()
 	const searchTerm = useDebounce(inputText, 1000)
 	const cities = getCiudades()
+	const city = user?.city
 
 	const images = [
 		{
@@ -53,12 +54,25 @@ const Header = () => {
 	useEffect(() => {
 		if (searchTerm) {
 			setIsLoading(true)
-			getFeed({ origin: 'searchBox', title: searchTerm }).then(results => {
+			getFeed({ city, origin: 'searchBox', title: searchTerm }).then(results => {
 				setResults(results)
 				setIsLoading(false)
 			})
+				.catch(err => {
+					setIsLoading(false)
+				})
 		}
 	}, [searchTerm])
+
+	const handleCity = (city) => {
+		getFeed({ city, origin: 'cityChanged', title: searchTerm }).then(results => {
+			setResults(results)
+			setIsLoading(false)
+		})
+			.catch(err => {
+				setIsLoading(false)
+			})
+	}
 
 	return <div id={styles.Header}>
 		<ul>
@@ -78,7 +92,7 @@ const Header = () => {
 							<FontAwesomeIcon className="m-r-10" icon={faSearch} />
 							¿Buscas algún videojuego?
 						</span>} variant="standard" />
-						<ChangeCity />
+						<ChangeCity handleCity={handleCity} />
 					</div>
 
 					{

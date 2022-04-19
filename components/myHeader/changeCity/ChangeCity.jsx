@@ -5,31 +5,32 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import { useState } from 'react'
 import { Button as ButtonMat, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core'
 import { capitalize, getCiudades } from '../../../lib/utils'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { faMapMarkedAlt, faMapMarker, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './styles.module.scss'
 
 const ChangeCity = (props) => {
-    const { setInputText } = props
+    const { setInputText, handleCity } = props
     const user = useSelector((state) => state.user)
     const [defaultCity, setDefaultCity] = useState(user.city ? user.city : 'bogota')
     const [open, setOpen] = useState(false)
     const handleClose = () => { setOpen(false) }
     const cityLabel = getCiudades().find((city) => city.id === defaultCity).label
+    const dispatch = useDispatch()
     const handleChange = (event, value) => {
         const city = event.target.value
         setDefaultCity(city)
         setTimeout(() => {
             handleClose()
-            // let value = document.getElementById('inpSearchButton').value + ' '
-            // setInputText('')
+            handleCity(city)
+            dispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: { ...user, city } } })
         }, 500)
     }
 
     return <div className={styles.ChangeCity}>
         <p className='m-l-10' onClick={() => setOpen(true)}>
-            Quiero obtener resultados en
+            Quiero resultados de
             <FontAwesomeIcon className='primary-color' icon={faMapMarkerAlt} />
             &nbsp;{cityLabel}
         </p>
@@ -49,7 +50,7 @@ const ChangeCity = (props) => {
                             value={defaultCity}
                             onChange={handleChange}>
                             {getCiudades().map((item => {
-                                return <MenuItem key={item.id} value={item.id}>{capitalize(item.pais)} - {item.label}</MenuItem>
+                                return <MenuItem key={item.id} value={item.id}>{capitalize(item.pais)} {item.label}</MenuItem>
                             }))}
                         </Select>
                     </FormControl>

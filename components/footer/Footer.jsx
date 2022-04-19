@@ -12,18 +12,23 @@ const Footer = ({ filtrarRodadas }) => {
     <hr />
     <div>
       <h3>Artículos de interes</h3>
-      <Link href="/start">
+      <Link href="/articulo/conocenos">
         <a>
           Quienes somos
         </a>
       </Link>
     </div>
     <hr />
-    <div>
-      <h3>Aliados verificados</h3>
-      <a href="https://juanchofenix.pik.com.co/">
-        Juancho Fenix
-      </a>
+    <div className={styles.aliados}>
+      <h3>Aliados</h3>
+      <div className={styles.list}>
+        <a href='https://juanchofenix.pik.com.co/' target='_BLANK'>
+          Juancho Fenix
+        </a>
+        <a href='https://www.instagram.com/pixelmaker123/' target='_BLANK'>
+          PixelMaker
+        </a>
+      </div>
     </div>
     <hr />
     <div>

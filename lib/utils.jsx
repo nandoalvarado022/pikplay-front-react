@@ -125,6 +125,7 @@ export const getFeed = async (props) => {
   const {
     attempt = 1,
     category = null,
+    city = '',
     isSSR = false,
     is_verified = true,
     limit = 12,
@@ -146,6 +147,7 @@ export const getFeed = async (props) => {
   const query = `query {
       publications(
         category: ${category}, 
+        city: "${city}",
         is_verified: ${is_verified},
         limit: ${limit}, 
         seller: ${seller},
@@ -312,6 +314,7 @@ export function getPaises() {
 
 export function getCiudades() {
   return [
+    { pais: "", id: "all", label: "Cualquier lugar" },
     { pais: "colombia", id: "bogota", label: "Bogotá" },
     { pais: "colombia", id: "medellin", label: "Medellín" },
     { pais: "colombia", id: "pereira", label: "Pereira" },
