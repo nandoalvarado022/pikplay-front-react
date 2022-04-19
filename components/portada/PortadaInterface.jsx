@@ -11,6 +11,7 @@ import { faClock } from "@fortawesome/free-regular-svg-icons"
 import { gql } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import { useLazyQuery } from '@apollo/client'
+import Places from '../places/Places'
 
 const SpecialBanner = ({ category, popularyItem, starItem }) => {
   return <span />
@@ -69,10 +70,11 @@ const PortadaInterface = ({ category, feed, popularyItem, setFeed, starItem }) =
       <FontAwesomeIcon icon={faClock} style={{ marginRight: "10px" }} />
       Mantenimiento programado en progreso
     </h3>}
+    {/* <Places /> */}
     {!category && <HolaJuanito />}
     <SpecialBanner {...{ category, popularyItem, starItem }} />
     {/* <Articles /> */}
-    <div className={styles.view_Rodadas}>
+    <div className={styles.PortadaInterfaceComponent}>
       <div className={styles.main}>
         <div className="listadoRodadas">
           {feed && feed.map((item, ind) => {

@@ -11,8 +11,8 @@ import { useSelector } from "react-redux"
 import { toast } from 'react-toastify'
 
 const QUERY_PUBLICATION = gql`
-	query Publications($slug: String){
-		publications(slug: $slug){
+	query Publications($is_edit: Boolean, $slug: String){
+		publications(is_edit: $is_edit, slug: $slug){
 			accept_changes
 			category
 			description
@@ -50,11 +50,20 @@ const PublicationForm = (props) => {
 	})
 	const screenWidth = typeof window != "undefined" ? screen.width : 0
 	const slugPublication = router.query.id;
-	const variables = slugPublication ? { slug: slugPublication } : {}
 	const [publicationFormData, setPublicationFormData] = useState({})
-	const { data: publicationEditData, errorPED, loading: loadingPED } = slugPublication ? useQuery(QUERY_PUBLICATION, { variables }) : {}
-	const [time, setTime] = useState()
 	const isEdit = props.router.query?.id ? true : false
+	const variables = slugPublication ? { is_edit: true, slug: slugPublication } : {}
+	const { data: publicationEditData } = slugPublication ? useQuery(QUERY_PUBLICATION, {
+		fetchPolicy: "no-cache",
+		variables,
+		onCompleted: (data) => {
+			if (data.publications.length > 0) {
+				setPublicationFormData(publicationEditData.publications[0])
+				setTime(new Date)
+			}
+		}
+	}) : {}
+	const [time, setTime] = useState()
 	const [currentStep, setCurrentStep] = useState(1)
 	let textButton = <>
 		Siguiente
@@ -63,13 +72,6 @@ const PublicationForm = (props) => {
 	if (currentStep == 4) textButton = <>
 		Guardar
 	</>
-
-	useEffect(() => {
-		if (publicationEditData?.publications) {
-			setPublicationFormData(publicationEditData.publications[0])
-			setTime(new Date)
-		}
-	}, [loadingPED])
 
 	async function onChangeImage(idImageElement) {
 		if (imageLoading) {

@@ -1,0 +1,33 @@
+.PlacesComponent {
+    .places {
+        column-gap: 20px;
+        display: flex;
+        justify-content: center;
+        margin: 20px auto -10px;
+        svg{
+            background: white;
+            border-radius: 50%;
+            color: #0095b3;
+            margin-top: 7px;
+            padding: 10px;
+            transform: scale(1.5);
+        }
+        article {
+            h2{
+                color: white;
+            }
+            span {
+                background: #0095b3;
+                border-radius: 50%;
+                border: 1px solid #015a6b;
+                color: white;
+                cursor: pointer;
+                display: inline-block;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+                width: 50px;
+            }
+        }
+    }
+}
