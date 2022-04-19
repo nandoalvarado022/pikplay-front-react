@@ -69,7 +69,7 @@ const Card = ({ accept_changes, apply_cashback, certificate, city, following, ha
             </Link>
             {user?.name && <Author user={user} />}
             <small className={styles.location}>
-              {ciudades.find(item => item.id == city)?.label}
+              {/* {ciudades.find(item => item.id == city)?.label} */}
               &nbsp;-&nbsp; 
               {capitalize(ciudades.find(item => item.id == city)?.pais)}
             </small>
