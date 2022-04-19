@@ -125,7 +125,7 @@ const Header = () => {
 								<div className={styles.rows}>
 									{
 										results && results.map((item, ind) => {
-											const cityLabel = cities.find(row => row.id == item.city)?.label
+											const cityLabel = cities.find(row => row.id == item.city) ? cities.find(row => row.id == item.city)?.label : null
 											const link = `/publicacion/${item.slug}`
 											if (ind > 0) return <Link href={link}>
 												<article className={styles.row}>
