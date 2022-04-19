@@ -39,7 +39,7 @@ const Header = () => {
 	const searchTerm = useDebounce(inputText, 1000)
 	const cities = getCiudades()
 	const city = user?.city
-	const cityLabel = cities.find(row => row.id == item.city)?.label
+
 	const images = [
 		{
 			original: '/images/banners/ps3-azul.jpeg',
@@ -125,6 +125,7 @@ const Header = () => {
 								<div className={styles.rows}>
 									{
 										results && results.map((item, ind) => {
+											const cityLabel = cities.find(row => row.id == item.city)?.label
 											const link = `/publicacion/${item.slug}`
 											if (ind > 0) return <Link href={link}>
 												<article className={styles.row}>
