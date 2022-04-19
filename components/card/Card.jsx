@@ -21,8 +21,8 @@ const Card = ({ accept_changes, apply_cashback, certificate, city, following, ha
     }
   }`)
   const cities = getCiudades()
-  const city = cities.find(item => item.id == city)?.label
-  const country = capitalize(cities.find(item => item.id == city)?.pais)
+  const cityLabel = cities.find(item => item.id == city)?.label
+  const countryLabel = capitalize(cities.find(item => item.id == city)?.pais)
 
   return <Grow key={id_publication} in={true} style={{ opacity: 1 }}>
     <div key={id_publication} className={`${styles.Card} ${destacada ? styles.destacada : ""}`} >
@@ -71,9 +71,9 @@ const Card = ({ accept_changes, apply_cashback, certificate, city, following, ha
             </Link>
             {user?.name && <Author user={user} />}
             <small className={styles.location}>
-              {city}
+              {cityLabel}
               &nbsp;-&nbsp; 
-              {country}
+              {countryLabel}
             </small>
             {/* {!!quantity && <p className={styles.quantity}>{quantity} unidades disponibles</p>} */}
             <div className={styles["likes-precio"]}>
