@@ -39,7 +39,7 @@ const Header = () => {
 	const searchTerm = useDebounce(inputText, 1000)
 	const cities = getCiudades()
 	const city = user?.city
-
+	const cityLabel = cities.find(row => row.id == item.city)?.label
 	const images = [
 		{
 			original: '/images/banners/ps3-azul.jpeg',
@@ -136,7 +136,7 @@ const Header = () => {
 														</price>}
 														{item.user && <Author parentView='HeaderSearch' user={item.user} />}
 														<small className={styles.location}>
-															{/* {cities.find(row => row.id == item.city)?.label} */}
+															{cityLabel}
 														</small>
 													</div>
 												</article>
