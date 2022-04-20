@@ -2,7 +2,7 @@ const { IS_MOBILE } = "../../lib/variables"
 import Articles from '../articles/Articles'
 import Card from '../card/Card'
 import Footer from '../footer/Footer'
-import Groot from '../groot/Groot'
+import Groot from '../categoryBanner/CategoryBanner'
 import HolaJuanito from "../holaJuanito/HolaJuanito"
 import React from 'react'
 import styles from "./portada.module.scss"

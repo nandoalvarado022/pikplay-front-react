@@ -1,11 +1,11 @@
 import Zoom from '@material-ui/core/Zoom';
-import styles from "./author.module.scss"
+import styles from "./styles.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Tooltip } from "@material-ui/core"
 import { faCheckCircle, faStar, faStore } from "@fortawesome/free-solid-svg-icons"
 
 const Author = ({ user = {}, parentView }) => {
-    return <div className={`${styles.author} author ${styles[parentView]}`}>
+    return <div className={`${styles.AuthorComponent} author ${styles[parentView]}`}>
         <img alt={`Imagen de ${user?.name}`} className={styles.user_picture} src={user?.picture} />
         <Tooltip TransitionComponent={Zoom} title="Informacion del aliado">
             <div className={`content-icon-store ${styles['content-icon-store']}`}>

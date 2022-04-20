@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import styles from './styles.module.scss'
 
-const Groot = ({ categoryId }) => {
+const CategoryBanner = ({ categoryId }) => {
     let image, link, text
     switch (categoryId) {
         case 1:
@@ -44,7 +44,7 @@ const Groot = ({ categoryId }) => {
             </p>
             break;
     }
-    return <div className={styles.Groot}>
+    return <div className={styles.CategoryBanner}>
         <Link href={link}>
             <a style={{ backgroundImage: `url(${image}` }}>
                 {text}
@@ -53,4 +53,4 @@ const Groot = ({ categoryId }) => {
     </div>
 }
 
-export default Groot
+export default CategoryBanner
