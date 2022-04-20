@@ -16,7 +16,7 @@ const ChangeCity = (props) => {
     const [defaultCity, setDefaultCity] = useState(user.city ? user.city : 'bogota')
     const [open, setOpen] = useState(false)
     const handleClose = () => { setOpen(false) }
-    const cityLabel = getCiudades().find((city) => city.id === defaultCity).label
+    const cityLabel = getCiudades().find((city) => city.id === defaultCity)?.label || null
     const dispatch = useDispatch()
     const handleChange = (event, value) => {
         const city = event.target.value

@@ -5,12 +5,9 @@ import Footer from "../footer/Footer"
 import Grow from "@material-ui/core/Grow"
 import ImageGallery from "react-image-gallery"
 import React from "react"
-import ReactMarkdown from "react-markdown/with-html"
 import styles from "./cardDetalleProducto.module.scss"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCheckCircle, faHandshake } from "@fortawesome/free-regular-svg-icons"
 import { format_number } from "../../lib/utils"
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 import Link from "next/link"
 import { useSelector } from "react-redux"
 
@@ -101,7 +98,7 @@ const CardProducto = ({
 
             <div className={styles.description}>
               <p className={styles.title}>Descripción</p>
-              <ReactMarkdown source={description}></ReactMarkdown>
+              <pre className="font-a">{description}</pre>
             </div>
 
             <p>
