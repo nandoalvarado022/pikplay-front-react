@@ -499,3 +499,13 @@ export const notifierOptions = {
     success: ""
   }
 }
+
+export const interestsList = [
+  { name: 'Nintendo Switch', id: 1 },
+  { name: 'PC', id: 2 },
+  { name: 'Playstation', id: 3 },
+  { name: 'XBOX', id: 4 },
+  { name: 'Comprar', id: 5 },
+  { name: 'Vender', id: 6 },
+  { name: 'Truques', id: 7 }
+]

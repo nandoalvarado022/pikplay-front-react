@@ -19,10 +19,10 @@ const MyApp = (props) => {
   const theme = createMuiTheme({
     palette: {
       primary: {
-        main: "#466e96"
+        main: "#c93530"
       },
       secondary: {
-        main: '#E33E7F'
+        main: '#1b95b3'
       }
     }
   });

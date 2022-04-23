@@ -12,6 +12,7 @@ import { gql } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import { useLazyQuery } from '@apollo/client'
 import Places from '../places/Places'
+import ModalLead from '../modalLoead/ModalLead'
 
 const SpecialBanner = ({ category, popularyItem, starItem }) => {
   return <span />
@@ -73,6 +74,7 @@ const PortadaInterface = ({ category, feed, popularyItem, setFeed, starItem }) =
     {/* <Places /> */}
     {!category && <HolaJuanito />}
     <SpecialBanner {...{ category, popularyItem, starItem }} />
+    <ModalLead />
     {/* <Articles /> */}
     <div className={styles.PortadaInterfaceComponent}>
       <div className={styles.main}>

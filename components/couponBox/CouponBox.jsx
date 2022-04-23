@@ -68,7 +68,7 @@ const CouponBox = (props) => {
 
     return (
         <span>
-            <Button color='yellow' onClick={handleClickOpen}>
+            <Button color='link' onClick={handleClickOpen}>
                 Redimir cupón
             </Button>
 

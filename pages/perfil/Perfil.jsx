@@ -9,14 +9,62 @@ import UserNotifications from "../../components/userNotifications/UserNotificati
 import VARS from "../../lib/variables"
 import styles from "./perfil.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Modal, TextField } from "@material-ui/core"
+import { Box, Chip, Modal, Tab, Tabs, TextField, Typography } from "@material-ui/core"
 import { faQuestionCircle, faUser, faBell } from "@fortawesome/free-regular-svg-icons"
 import { toast } from 'react-toastify'
 import { useState } from "react"
+import { interestsList } from "../../lib/utils"
+import { Alert } from "@material-ui/lab"
+import classNames from "classnames"
 
 const { IS_MOBILE } = VARS
 
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{ p: 3 }}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
+}
+
+
+function a11yProps(index) {
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
+}
+
 const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, setUserData }) => {
+    const [value, setValue] = React.useState(0)
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    }
+
+    const [interests, setInterests] = useState(
+        [...interestsList.map(item => ({ ...item, selected: false }))]
+    )
+
+    const handleInterests = (id) => {
+        const _interests = [...interests]
+        const state = _interests.find(item => item.id == id).selected
+        _interests.find((item) => item.id == id).selected = !state
+        setInterests(_interests)
+    }
+
     return <section className={`page ${styles.perfil}`}>
         <motion.h2
             animate={{ opacity: 1 }}
@@ -53,17 +101,38 @@ const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, set
                 </div>
             </div>
 
-            <div className="Card profile-content">
-                <TextField fullWidth={true} label="Tú nombre o el nombre de tu tienda" margin="normal" value={userData?.name} onChange={(e) => setUserData({ ...userData, name: e.target.value })} />
-                <TextField fullWidth={true} label="Correo electrónico" margin="normal" value={userData?.email} onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
-                <TextField disabled={true} fullWidth={true} label="Número registrado" margin="normal" value={userData?.phone} />
-                <CiudadControl />
-                <p>
-                    <label>Cambiar imagen de perfil</label>
-                    <div>
-                        <input type='file' id="profileElement" label='Cambiar' placeholder="ad" text="asd" />
-                    </div>
-                </p>
+            <div className={classNames('Card', styles['profile-content'])}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                        <Tab label="Información del perfil" {...a11yProps(0)} />
+                        <Tab label="Intereses" {...a11yProps(1)} />
+                    </Tabs>
+                </Box>
+                <TabPanel value={value} index={0}>
+                    <TextField fullWidth={true} label="Tú nombre o el nombre de tu tienda" margin="normal" value={userData?.name} onChange={(e) => setUserData({ ...userData, name: e.target.value })} />
+                    <TextField fullWidth={true} label="Correo electrónico" margin="normal" value={userData?.email} onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
+                    <TextField disabled={true} fullWidth={true} label="Número registrado" margin="normal" value={userData?.phone} />
+                    <CiudadControl />
+                    <p>
+                        <label>Cambiar imagen de perfil</label>
+                        <div>
+                            <input type='file' id="profileElement" label='Cambiar' placeholder="ad" text="asd" />
+                        </div>
+                    </p>
+                </TabPanel>
+
+                <TabPanel value={value} index={1}>
+                    {/* Intereses */}
+                    <Alert className="m-t-20" severity="info">
+                        En Pikplay utilizamos los intereses para conocer a los usuarios y ofrecerle contenido de valor
+                    </Alert>
+                    <p className={styles.interests}>
+                        {interests.map(item => {
+                            return <Chip color={item.selected ? 'secondary' : ''} key={item.id} label={item.name} onClick={() => handleInterests(item.id)} />
+                        })}
+                    </p>
+                </TabPanel>
+
                 <div className="f-r">
                     <CouponBox user={userData} />
                     <Button color={!isSaving ? "blue" : "disabled"} onClick={handleSave}>

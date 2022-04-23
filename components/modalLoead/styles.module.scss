@@ -33,4 +33,19 @@
             }
         }
     }
+    video {
+        margin-left: 20px;
+    }
+}
+.interets {
+    .content {
+        column-gap: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 10px 20px;
+        row-gap: 10px;
+        div {
+        }
+    }
 }

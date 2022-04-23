@@ -79,4 +79,18 @@ section.perfil {
         ol {
         }
     }
+    .profile-content {
+        width: 600px;
+        @media screen and (max-width: 420px) {
+            width: 100%;
+        }
+    }
+
+    .interests {
+        column-gap: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        row-gap: 10px;
+    }
 }
