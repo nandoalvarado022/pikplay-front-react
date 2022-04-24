@@ -10,7 +10,7 @@ import { Box, Tab, Tabs, TextField, Typography } from "@material-ui/core"
 import { Doughnut } from 'react-chartjs-2'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
-import { faRocket } from "@fortawesome/free-solid-svg-icons"
+import { faHeart, faRocket } from "@fortawesome/free-solid-svg-icons"
 import { format_number } from '../../lib/utils'
 import { toast } from 'react-toastify'
 import { useEffect, useState } from 'react'
@@ -279,9 +279,13 @@ const Publicaciones = () => {
 
     return <section className={`page ${styles.content}`}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs textColor="primary" style={{ background: "white" }} value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tabs textColor="primary" style={{ background: "white" }} value={value} onChange={handleChange} aria-label="basic tabs example"
+            indicatorColor="primary">
                 <Tab label="Publicaciones" />
                 <Tab label="Informe" />
+                <Tab label={<span>Publicaciones que sigo
+                    &nbsp;<FontAwesomeIcon icon={faHeart} />
+                </span>} />
             </Tabs>
         </Box>
 
@@ -310,8 +314,13 @@ const Publicaciones = () => {
                 }
             </ul>
         </TabPanel>
+
         <TabPanel value={value} index={1}>
             <CakeReport {...{ publications: reqPublications?.publications }} />
+        </TabPanel>
+
+        <TabPanel value={value} index={2}>
+
         </TabPanel>
     </section>
 }

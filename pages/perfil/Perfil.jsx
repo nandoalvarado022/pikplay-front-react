@@ -103,7 +103,8 @@ const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, set
 
             <div className={classNames('Card', styles['profile-content'])}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example"
+                        indicatorColor="primary">
                         <Tab label="Información del perfil" {...a11yProps(0)} />
                         <Tab label="Intereses" {...a11yProps(1)} />
                     </Tabs>

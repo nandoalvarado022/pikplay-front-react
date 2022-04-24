@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux"
 import classNames from "classnames"
 import { Tooltip } from "@material-ui/core"
 import moment from "moment"
+import Link from "next/link"
 
 moment.locale('es-CO');
 
@@ -93,23 +94,27 @@ const UserNotifications = () => {
     {notificationsNotClosed.length < 1 && <ol className="m-b-20">
       <span>Nada nuevo 😎</span>
     </ol>}
-    {notifications && notifications.map(({ closed, coins, created, detail, id, isOpen }) => {
+    {notifications && notifications.map(({ closed, coins, created, detail, id, isOpen, link }) => {
+      link = link ? link : '#'
       const disabled = closed
       created = moment(created).fromNow()
 
       return <Tooltip title={created}>
         <ol className={classNames(null, { [styles.closed]: disabled })}>
-          <span onClick={() => handleNotification(id)}>
-            {disabled}
-            {detail}
-          </span>
-          {!!coins && !disabled && <Button color="blue" onClick={() => { disabled ? null : reclamarCoins(coins, id) }}>
-            <FontAwesomeIcon icon={faGift} />
-          </Button>}
-          {!coins && <div className={styles.content_close}>
-            <FontAwesomeIcon onClick={() => handleDeleteNotification(id)} icon={faTrash} />
-          </div>
-          }
+          <Link href={link}>
+            <a>
+              <span onClick={() => handleNotification(id)}>
+                {detail}
+              </span>
+              {!!coins && !disabled && <Button color="blue" onClick={() => { disabled ? null : reclamarCoins(coins, id) }}>
+                <FontAwesomeIcon icon={faGift} />
+              </Button>}
+              {!coins && <div className={styles.content_close}>
+                <FontAwesomeIcon onClick={() => handleDeleteNotification(id)} icon={faTrash} />
+              </div>
+              }
+            </a>
+          </Link>
         </ol>
       </Tooltip>
     }

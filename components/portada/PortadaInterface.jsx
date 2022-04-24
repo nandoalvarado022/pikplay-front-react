@@ -51,6 +51,7 @@ const PortadaInterface = ({ category, feed, popularyItem, setFeed, starItem }) =
       getFollowing(user: $user)
     }`
     , {
+      fetchPolicy: "no-cache",
       variables: {
         user: 61
       },

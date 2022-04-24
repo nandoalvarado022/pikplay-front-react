@@ -163,6 +163,7 @@ export const getFeed = async (props) => {
         banner_top
         category
         certificate
+        city
         description
         id
         image_1
@@ -447,6 +448,7 @@ query getNotifications($user: Int, $closed: String){
     created
     detail
     id
+    link
     type
     user
   }

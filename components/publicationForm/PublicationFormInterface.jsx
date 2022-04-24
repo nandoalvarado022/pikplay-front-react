@@ -88,10 +88,10 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imag
                 <CategoryControl category={category} handleCategory={handleCategory} publicationFormData={publicationFormData} />
 
                 <div>
-                  <TextField fullWidth={true} label="Precio" placeholder="" margin="normal" value={sale_price} type='text' onChange={e => setPublicationFormData({ ...publicationFormData, sale_price: e.target.value })} />
+                  <TextField defaultValue="0" fullWidth={true} inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} label="Precio" placeholder="" margin="normal" value={sale_price} onChange={e => setPublicationFormData({ ...publicationFormData, sale_price: e.target.value })} />
                 </div>
                 <div>
-                  <TextField fullWidth={true} label="Cantidad disponible" placeholder="" margin="normal" type='text' value={quantity} onChange={e => setPublicationFormData({ ...publicationFormData, quantity: e.target.value })} />
+                  <TextField defaultValue="0" fullWidth={true} label="Cantidad disponible" placeholder="" margin="normal" type='text' value={quantity} onChange={e => setPublicationFormData({ ...publicationFormData, quantity: e.target.value })} />
                 </div>
               </div>
 

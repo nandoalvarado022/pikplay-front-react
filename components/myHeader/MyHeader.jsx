@@ -15,6 +15,7 @@ import { faPlus, faSearch } from "@fortawesome/free-solid-svg-icons"
 import { format_number, getCiudades, getFeed } from '../../lib/utils'
 import { useSelector } from 'react-redux'
 import ImageGallery from 'react-image-gallery'
+import { Alert } from '@material-ui/lab'
 
 const useDebounce = (value, wait = 0) => {
 	const [debounceValue, setDebounceValue] = useState(value);
@@ -74,6 +75,9 @@ const Header = () => {
 			})
 	}
 
+	const cityLabelSearch = cities.find(row => row.id == city) ? cities.find(row => row.id == city)?.label : null
+	const premiumResult = results.length > 0 ? results[0] : null
+
 	return <div id={styles.Header}>
 		<ul>
 			<Link href="/">
@@ -100,22 +104,26 @@ const Header = () => {
 							<FontAwesomeIcon className={styles.close_icon} icon={faPlus} onClick={() => setShowSearchModal(false)} />
 							<section>
 								{IS_MOBILE && <Button color='blue' onClick={() => setShowSearchModal(false)} style={{ float: 'left' }}>Volver</Button>}
-								{results && <small>Se encontraron <CountUp end={results.length} /> resultados:</small>}
+								{results && <Alert severity="info">
+									Se encontraron <CountUp end={results.length} /> resultados para {inputText} en {cityLabelSearch}
+								</Alert>}
 								<div className={styles['grid-container']}>
 									{/* Resultado principal  */}
-									{results && results.length > 0 && <Link href={`/publicacion/${results[0].slug}`}>
+									{results && results.length > 0 && <Link href={`/publicacion/${premiumResult.slug}`}>
 										<article className="primary pointer">
 											<img className={styles.discount} src="/images/icons/discounts.png" />
-											<img src={results[0].image_link} alt="" />
+											<img src={premiumResult.image_link} alt="" />
 											<summary>
 												<span>
 													Llévalo por solo&nbsp;
-													{!!results[0].sale_price && <price className={styles.price}>
-														${format_number(results[0].sale_price)}
+													{!!premiumResult.sale_price && <price className={styles.price}>
+														${format_number(premiumResult.sale_price)}
 													</price>}
 												</span>
-												<h2>{results[0].title}</h2>
-												<p>{results[0].title}</p>
+												<h2>{premiumResult.title}</h2>
+												<p>
+													{cities.find(row => row.id == premiumResult.city) ? cities.find(row => row.id == premiumResult.city)?.label : null}
+												</p>
 											</summary>
 										</article>
 									</Link>

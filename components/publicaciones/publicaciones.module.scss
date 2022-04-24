@@ -14,7 +14,15 @@
     div {
         box-sizing: border-box;
     }
-    .controls{
+    :global(.MuiTabs-root) {
+        button {
+            svg {
+                position: relative;
+                top: 2px;
+            }
+        }
+    }
+    .controls {
         background: white;
         column-gap: 10px;
         display: flex;
@@ -57,7 +65,7 @@
                 border-radius: 10px;
                 font-size: 14px;
                 padding: 10px;
-                p{
+                p {
                     margin: 5px;
                 }
                 p:nth-of-type(2) {
@@ -86,7 +94,7 @@
             }
             a > div {
             }
-            .image_link{
+            .image_link {
                 margin-right: 20px;
             }
             .flex-row {
