@@ -44,11 +44,6 @@ const PreviewUser = () => {
             </Link>
           </ol>
           <ol>
-            <Link href="/notificaciones" as="/notificaciones">
-              Notificaciones
-            </Link>
-          </ol>
-          <ol>
             <Link href="/transacciones" as="/transacciones">
               Transacciones
             </Link>

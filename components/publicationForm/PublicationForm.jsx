@@ -2,7 +2,7 @@ import PublicationForminterface from './PublicationFormInterface'
 import React, { useEffect, useState } from 'react'
 import rn from 'random-number'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
+import { faCheck, faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { slugify } from "../../lib/utils"
 import { subirImagen } from '../../lib/utils'
@@ -45,7 +45,7 @@ const PublicationForm = (props) => {
 	const [dispatchCreate] = useMutation(MUTATION_PUBLICATION, {
 		onCompleted: ({ createPublication }) => {
 			if (createPublication == "401") toast('Se venció la sessión, ingresa nuevamente a tu cuenta')
-			if (createPublication == "200") toast('Se guardo la publicación')
+			if (createPublication == "200") toast(<span><FontAwesomeIcon className='secunday-color m-r-10 p-r t-2' icon={faCheck} />Se guardo la publicación</span>)
 		}
 	})
 	const screenWidth = typeof window != "undefined" ? screen.width : 0

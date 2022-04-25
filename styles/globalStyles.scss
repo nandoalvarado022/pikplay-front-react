@@ -694,6 +694,18 @@ html {
     height: 100%;
 }
 
+.secunday-color {
+    color: $secundary-color;
+}
+
+.p-r {
+    position: relative;
+}
+
+.t-2 {
+    top: 2px;
+}
+
 html,
 body {
     background: #f4f4f4;
@@ -810,7 +822,7 @@ h3 {
 }
 
 a {
-    color: $primary-color;
+    color: $secundary-color;
     text-decoration: none;
     &.underline {
         text-decoration: underline;

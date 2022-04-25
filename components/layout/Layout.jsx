@@ -193,7 +193,7 @@ class Layout extends React.Component {
         <MyHeader />
         {false && <div className={styles.announcement}>Actualmente estamos en una versión piloto</div>}
         <main className={styles.principal}>
-          <ToastContainer />
+          <ToastContainer hideProgressBar={true} />
           <Categorias scroll={false} />
           <Subcategories />
           {IS_MOBILE && <MenuMovil />}

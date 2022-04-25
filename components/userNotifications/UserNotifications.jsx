@@ -4,7 +4,7 @@ import confetti from "canvas-confetti"
 import styles from "./styles.module.scss"
 import { CREATE_COIN, DELETE_NOTIFICATION, format_number, GET_NOTIFICATIONS, loadAudio } from "../../lib/utils"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBell, faGift, faRing, faTimes, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faBell } from "@fortawesome/free-solid-svg-icons"
 import { toast } from 'react-toastify'
 import { useEffect } from 'react'
 import { useLazyQuery, useMutation } from '@apollo/client'
@@ -32,14 +32,14 @@ const UserNotifications = () => {
 
     const res = req_res.data.createCoin
     if (res == 401) {
-      alert("Acción no permitida")
-      return
+      toast("Acción no permitida")
+      return false
     }
 
     if (res == 400) {
       const message = <div>Alcanzaste el límite diario de <b>Pikcoins</b> a recibir, intentalo mañana </div>
       toast(message)
-      return
+      return false
     }
 
     confetti()
@@ -47,6 +47,7 @@ const UserNotifications = () => {
     toast(`Has recibido ${format_number(coins)} Pikcoins, ¡felicidades!`)
     handleDeleteNotification(id_notification) // Delete notificacion (BD and UI)
     getNotifications()
+    return true
   }
 
   const handleDeleteNotification = (id) => {
@@ -67,15 +68,12 @@ const UserNotifications = () => {
     }
   })
 
-  const handleNotification = (id) => {
-    const _notifications = notifications.map((item) => {
-      const isOpen = item.id == id ? true : false
-      return {
-        ...item,
-        isOpen
-      }
-    })
-    dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: _notifications } })
+  const handleNotification = async ({ coins, disabled, id }) => {
+    if (coins && !disabled) {
+      if (await reclamarCoins(coins, id)) handleDeleteNotification(id)
+    } else {
+      handleDeleteNotification(id)
+    }
   }
 
   useEffect(() => {
@@ -94,23 +92,18 @@ const UserNotifications = () => {
     {notificationsNotClosed.length < 1 && <ol className="m-b-20">
       <span>Nada nuevo 😎</span>
     </ol>}
-    {notifications && notifications.map(({ closed, coins, created, detail, id, isOpen, link }) => {
+    {notifications && notifications.map(({ closed: disabled, coins, created, detail, id, isOpen, link }) => {
       link = link ? link : '#'
-      const disabled = closed
       created = moment(created).fromNow()
 
       return <Tooltip title={created}>
-        <ol className={classNames(null, { [styles.closed]: disabled })}>
+        <ol className={classNames(null, { [styles.closed]: disabled })} onClick={() => handleNotification({ coins, disabled, id })}>
           <Link href={link}>
             <a>
-              <span onClick={() => handleNotification(id)}>
+              <span>
                 {detail}
               </span>
-              {!!coins && !disabled && <Button color="blue" onClick={() => { disabled ? null : reclamarCoins(coins, id) }}>
-                <FontAwesomeIcon icon={faGift} />
-              </Button>}
               {!coins && <div className={styles.content_close}>
-                <FontAwesomeIcon onClick={() => handleDeleteNotification(id)} icon={faTrash} />
               </div>
               }
             </a>

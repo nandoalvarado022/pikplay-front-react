@@ -49,7 +49,12 @@ function a11yProps(index) {
 
 const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, setUserData }) => {
     const [value, setValue] = React.useState(0)
-
+    const msgSubirCategoria = <div>
+        <h2>Subir de categoria en Pikplay</h2>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, suscipit repudiandae quae soluta iusto libero atque debitis laboriosam sit laborum sint eos amet quidem omnis ipsa ea? Reprehenderit, quos aliquam?
+        </p>
+    </div>
     const handleChange = (event, newValue) => {
         setValue(newValue);
     }
@@ -98,6 +103,9 @@ const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, set
                 <ImageProfile {...{ userData }} />
                 <div className={styles.coins}>
                     <Coins />
+                </div>
+                <div className="m-t-20">
+                    <Button color='link' onClick={() => toast(msgSubirCategoria)}>¿Como puedo subir de categoria y obtener más privilegios?</Button>
                 </div>
             </div>
 
