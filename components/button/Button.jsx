@@ -1,4 +1,4 @@
-const { motion } = require("framer-motion")
+import { motion } from 'framer-motion'
 import React, { lazy } from 'react'
 import styled from 'styled-components'
 import styles from './button.module.scss'

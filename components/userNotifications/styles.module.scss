@@ -38,7 +38,6 @@
         margin: 0;
         overflow: hidden;
         padding: 10px 20px;
-        text-align: center;
         transition: 0.5s ease;
         &:nth-child(even) {
             background: #476e961a;
@@ -67,6 +66,13 @@
             }
         }
         a {
+            align-items: center;
+            column-gap: 10px;
+            display: flex;
+            svg {
+                height: 8px;
+                width: 8px;
+            }
             span {
                 color: initial;
                 font-size: 12px;

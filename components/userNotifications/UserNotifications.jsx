@@ -4,7 +4,7 @@ import confetti from "canvas-confetti"
 import styles from "./styles.module.scss"
 import { CREATE_COIN, DELETE_NOTIFICATION, format_number, GET_NOTIFICATIONS, loadAudio } from "../../lib/utils"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBell } from "@fortawesome/free-solid-svg-icons"
+import { faBell, faCircle } from "@fortawesome/free-solid-svg-icons"
 import { toast } from 'react-toastify'
 import { useEffect } from 'react'
 import { useLazyQuery, useMutation } from '@apollo/client'
@@ -89,9 +89,6 @@ const UserNotifications = () => {
       </motion.span>
       Notificaciones
     </h4>
-    {notificationsNotClosed.length < 1 && <ol className="m-b-20">
-      <span>Nada nuevo 😎</span>
-    </ol>}
     {notifications && notifications.map(({ closed: disabled, coins, created, detail, id, isOpen, link }) => {
       link = link ? link : '#'
       created = moment(created).fromNow()
@@ -100,6 +97,7 @@ const UserNotifications = () => {
         <ol className={classNames(null, { [styles.closed]: disabled })} onClick={() => handleNotification({ coins, disabled, id })}>
           <Link href={link}>
             <a>
+              {!disabled && <FontAwesomeIcon icon={faCircle} />}
               <span>
                 {detail}
               </span>
