@@ -27,27 +27,20 @@ const UserNotifications = () => {
     const req_res = await createCoin({
       variables: {
         id: id_notification
-      }
+      },
     })
 
-    const res = req_res.data.createCoin
-    if (res == 401) {
-      toast("Acción no permitida")
-      return false
-    }
+    let { message, status } = req_res.data.createCoin
+    toast(message)
 
-    if (res == 400) {
-      const message = <div>Alcanzaste el límite diario de <b>Pikcoins</b> a recibir, intentalo mañana </div>
-      toast(message)
-      return false
+    if (status == 200) {
+      confetti()
+      dispatch({ type: "RECLAMAR_COINS", payload: { coins } }) // Coins UI
+      toast(`Has recibido ${format_number(coins)} Pikcoins, ¡felicidades!`)
+      handleDeleteNotification(id_notification) // Delete notificacion (BD and UI)
+      getNotifications()
+      return true
     }
-
-    confetti()
-    dispatch({ type: "RECLAMAR_COINS", payload: { coins } }) // Coins UI
-    toast(`Has recibido ${format_number(coins)} Pikcoins, ¡felicidades!`)
-    handleDeleteNotification(id_notification) // Delete notificacion (BD and UI)
-    getNotifications()
-    return true
   }
 
   const handleDeleteNotification = (id) => {

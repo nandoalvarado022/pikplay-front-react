@@ -16,8 +16,7 @@ import { ToastContainer } from "react-toastify"
 import { initGA, logPageView } from "../../public/analytics"
 import { register } from "next-offline/runtime"
 
-toastr.options.progressBar = true;
-toastr.options.timeOut = 5000;
+toastr.options.timeOut = 10000
 
 Router.onRouteChangeStart = (url) => {
   NProgress.start();
