@@ -39,7 +39,10 @@ const ModalLead = () => {
     const name = useField({ type: "text" })
     const email = useField({ type: "text" })
     const phone = useField({ type: "text" })
-    const handleClose = () => { setOpen(false) }
+    const handleClose = () => {
+        setOpen(false)
+        localStorage.setItem('modalLead', true)
+    }
     const [open, setOpen] = useState(true)
     const handleInterests = (id) => {
         const _interests = [...interests]
@@ -58,6 +61,7 @@ const ModalLead = () => {
                 phone: phone.value ? phone.value : '',
             }
         })
+        localStorage.setItem('modalLead', true)
     }
 
     return <Dialog
@@ -68,11 +72,12 @@ const ModalLead = () => {
         <DialogContent>
             <div className={`${styles.flex} flex`}>
                 <div>
-                    <h2>Bienvenido,
-                        <small>
-                            quisieramos conocerte mejor para darte una mejor experiencia 🤝
-                        </small>
+                    <h2>
+                        Bienvenid@,
                     </h2>
+                    <small>
+                        queremos conocerte mejor para darte una mejor experiencia
+                    </small>
                     <div>
                         <TextField {...name} fullWidth={true} label="Tú nombre o tú marca" margin="normal" />
                         <TextField {...email} fullWidth={true} label="Correo electrónico" margin="normal" />
@@ -86,7 +91,7 @@ const ModalLead = () => {
                 </div>
             </div>
             <p className={styles.interets}>
-                Ayúdanos a personalizar Pikplay para ti 😎 ¿Cuales son tus intereses?
+                <small>Ayúdanos a personalizar Pikplay para ti 😎 &nbsp;¿Cuales son tus intereses?</small>
                 <div className={styles.content}>
                     {interests.map((item => {
                         return <Chip color={item.selected ? 'secondary' : ''} key={item.id} label={item.name} onClick={() => handleInterests(item.id)} />

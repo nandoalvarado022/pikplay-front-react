@@ -35,6 +35,7 @@ const PortadaInterface = ({ category, feed, popularyItem, setFeed, starItem }) =
   const [showVideo, setShowVideo] = useState(false)
   const isOpen = typeof sessionStorage != "undefined" && JSON.parse(sessionStorage.getItem("notifications"))?.home
   const [showNotification, setShowNotification] = useState(!!!isOpen)
+  const showModalLead = typeof localStorage != 'undefined' ? !localStorage.getItem('modalLead') : true
 
   useEffect(() => {
     if (localStorage.getItem("user") == null) setShowVideo(true)
@@ -75,7 +76,7 @@ const PortadaInterface = ({ category, feed, popularyItem, setFeed, starItem }) =
     {/* <Places /> */}
     {!category && <HolaJuanito />}
     <SpecialBanner {...{ category, popularyItem, starItem }} />
-    <ModalLead />
+    {showModalLead && <ModalLead />}
     {/* <Articles /> */}
     <div className={styles.PortadaInterfaceComponent}>
       <div className={styles.main}>

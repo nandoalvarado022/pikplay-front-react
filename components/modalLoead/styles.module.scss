@@ -7,11 +7,13 @@
         }
     }
     h2 {
+        font-size: 22px;
         font-weight: normal;
-        small {
-            display: block;
-            font-weight: 600;
-        }
+        margin-bottom: 5px;
+    }
+    small {
+        display: block;
+        font-weight: 500;
     }
     button {
         @media screen and (max-width: 420px) {
@@ -45,7 +47,11 @@
         justify-content: center;
         margin: 10px 20px;
         row-gap: 10px;
-        div {
+        @media screen and (max-width: 420px) {
+            margin: 20px 0 0;
         }
+    }
+    small {
+        font-weight: 500;
     }
 }
