@@ -11,8 +11,8 @@ import { faClock } from "@fortawesome/free-regular-svg-icons"
 import { gql } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import { useLazyQuery } from '@apollo/client'
-import Places from '../places/Places'
 import ModalLead from '../modalLoead/ModalLead'
+import { GET_FOLLOWED_PUBLICATIONS } from '../../lib/utils'
 
 const SpecialBanner = ({ category, popularyItem, starItem }) => {
   return <span />
@@ -44,36 +44,31 @@ const PortadaInterface = ({ category, feed, popularyItem, setFeed, starItem }) =
         item.play()
       })
     }, 2000)
-    getFollowing()
+    getFollowedPublications()
   }, [])
 
-  const [getFollowing, { data }] = useLazyQuery(gql`
-    query getFollowing($user: Int) {
-      getFollowing(user: $user)
-    }`
-    , {
-      fetchPolicy: "no-cache",
-      variables: {
-        user: 61
-      },
-      onCompleted: ({ getFollowing }) => {
-        if (getFollowing.length > 0) {
-          const _publications = feed ? [...feed] : []
-          getFollowing.forEach(item => {
-            let element = _publications.find(p => p.id == item.publication)
-            if (element) _publications.find(p => p.id == item.publication).following = true
-          })
-          setFeed(_publications)
-        }
+  const [getFollowedPublications, { data }] = useLazyQuery(GET_FOLLOWED_PUBLICATIONS, {
+    fetchPolicy: "no-cache",
+    variables: {
+      user: 61
+    },
+    onCompleted: ({ getFollowedPublications }) => {
+      if (getFollowedPublications.length > 0) {
+        const _publications = feed ? [...feed] : []
+        getFollowedPublications.forEach(item => {
+          let element = _publications.find(p => p.id == item.id)
+          if (element) _publications.find(p => p.id == item.id).following = true
+        })
+        setFeed(_publications)
       }
-    })
+    }
+  })
 
   return <React.Fragment>
     {(feed && feed.length < 1) && <h3 style={{ textAlign: "center" }}>
       <FontAwesomeIcon icon={faClock} style={{ marginRight: "10px" }} />
       Mantenimiento programado en progreso
     </h3>}
-    {/* <Places /> */}
     {!category && <HolaJuanito />}
     <SpecialBanner {...{ category, popularyItem, starItem }} />
     {showModalLead && <ModalLead />}

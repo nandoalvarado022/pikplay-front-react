@@ -89,7 +89,7 @@ const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, set
                 </div>
                 toast(message)
             }}
-            className='Card'
+            className='Card main'
         // whileHover={{ scale: 1.1 }}
         // whileTap={{ scale: 0.8 }}
         >

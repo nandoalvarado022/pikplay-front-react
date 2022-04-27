@@ -440,6 +440,11 @@ export const DELETE_NOTIFICATION = gql`
 		deleteNotification(id: $id, userId: $userId)
 	}`
 
+export const DELETE_FOLLOWINED_PUBLICATION = gql`
+mutation deleteFollowinedPublication($id: Int, $user: Int){
+  deleteFollowinedPublication(id: $id, user: $user)
+}`
+
 export const GET_NOTIFICATIONS = gql`
 query getNotifications($user: Int, $closed: String){
   getNotifications(user: $user, closed: $closed){
@@ -457,6 +462,11 @@ query getNotifications($user: Int, $closed: String){
 export const VALIDATE_COUPON = gql`
 mutation validateCoupon($coupon: String, $user: Int){
   validateCoupon(coupon: $coupon, user: $user)
+}`
+
+export const GET_FOLLOWED_PUBLICATIONS = gql`
+query getFollowedPublications($user: Int){
+  getFollowedPublications(user: $user)
 }`
 
 const slug = null, category = null, subcategory = null, title = null, status = true

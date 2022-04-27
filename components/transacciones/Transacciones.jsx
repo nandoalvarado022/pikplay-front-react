@@ -84,7 +84,7 @@ const Transacciones = (props) => {
   }
 
   return <section className={`page ${styles.Transactions}`}>
-    <h2 className='Card'>Transacciones
+    <h2 className='Card main'>Transacciones
       <FontAwesomeIcon class="svg-question" icon={faQuestionCircle} onClick={() => {
         const message = <div>
           <p>Bienvenido a tus <b>transacciones</b></p>

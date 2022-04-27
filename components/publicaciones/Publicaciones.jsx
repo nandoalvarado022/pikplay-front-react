@@ -1,4 +1,5 @@
 import Button from '../../components/button/Button'
+import Card from '../card/Card'
 import ChangeSeller from './ChangeSeller'
 import Link from "next/link"
 import Notification from "../../components/notification"
@@ -6,12 +7,12 @@ import React from 'react'
 import Router from 'next/router'
 import moment from "moment"
 import styles from './publicaciones.module.scss'
-import { Box, Tab, Tabs, TextField, Typography } from "@material-ui/core"
+import { Box, Card as CardMat, Tab, Tabs, TextField, Typography } from "@material-ui/core"
 import { Doughnut } from 'react-chartjs-2'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
 import { faHeart, faRocket } from "@fortawesome/free-solid-svg-icons"
-import { format_number } from '../../lib/utils'
+import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
+import { DELETE_FOLLOWINED_PUBLICATION, format_number, GET_FOLLOWED_PUBLICATIONS, GET_PUBLICATIONS } from '../../lib/utils'
 import { toast } from 'react-toastify'
 import { useEffect, useState } from 'react'
 import { useQuery, gql, useMutation, useLazyQuery } from '@apollo/client'
@@ -100,6 +101,7 @@ const Publicacion = ({ item, ind, getPublications }) => {
     const [showAdminOptions, setShowAdminOptions] = useState(false)
     const { is_admin } = useSelector((state) => state.user)
     const seller_id = !!item?.user?.id ? item.user.id : 0
+    const moreOptions = is_admin || true
 
     const changeSellerHandle = (sellerUpdated) => {
         item.user = sellerUpdated
@@ -155,8 +157,6 @@ const Publicacion = ({ item, ind, getPublications }) => {
             }, 500)
         }
     })
-
-    const moreOptions = is_admin || true
 
     return <li className={`${item.status ? '' : styles.disabled}`}>
         <div className={`Card ${styles["flex-table"]}`}>
@@ -224,6 +224,7 @@ const Publicaciones = () => {
     const dispatch = useDispatch()
     const [tryAgain, setTryAgain] = useState(false)
     const { id: user_id, is_admin } = useSelector((state) => state.user)
+    const [followedPublications, setFollowedPublications] = useState([])
 
     const PUBLICATIONS_QUERY = gql`
 	query Publications(
@@ -257,6 +258,15 @@ const Publicaciones = () => {
 		}
 	}`
 
+    const [getFollowedPublications] = useLazyQuery(GET_FOLLOWED_PUBLICATIONS, {
+        variables: { user: user_id },
+        fetchPolicy: "no-cache",
+        onCompleted: ({ getFollowedPublications }) => {
+            debugger
+            getFollowedPublications.status == 200 && setFollowedPublications(getFollowedPublications.data)
+        }
+    })
+
     const [getPublications, { loading: loadingPublications, error, data: reqPublications }] = useLazyQuery(PUBLICATIONS_QUERY, {
         variables: {
             is_admin: !!is_admin,
@@ -269,6 +279,7 @@ const Publicaciones = () => {
 
     useEffect(async () => {
         getPublications({ variables: { status: false } })
+        getFollowedPublications()
     }, [])
 
     const handleChange = (event, newValue) => {
@@ -277,10 +288,22 @@ const Publicaciones = () => {
 
     const [value, setValue] = React.useState(0);
 
+    const [deleteFollowinedPublication] = useMutation(DELETE_FOLLOWINED_PUBLICATION, {
+        onCompleted: data => {
+            getFollowedPublications()
+        }
+    })
+
+    const handleFavorite = (id) => {
+        deleteFollowinedPublication({
+            variables: { id, user: user_id }
+        })
+    }
+
     return <section className={`page ${styles.content}`}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs textColor="primary" style={{ background: "white" }} value={value} onChange={handleChange} aria-label="basic tabs example"
-            indicatorColor="primary">
+                indicatorColor="primary">
                 <Tab label="Publicaciones" />
                 <Tab label="Informe" />
                 <Tab label={<span>Publicaciones que sigo
@@ -320,7 +343,13 @@ const Publicaciones = () => {
         </TabPanel>
 
         <TabPanel value={value} index={2}>
-
+            <div className={styles.followedPublications}>
+                {
+                    followedPublications && followedPublications.map((item, ind) => {
+                        return <Card handleFavorite={handleFavorite} {...item} ind={ind} />
+                    })
+                }
+            </div>
         </TabPanel>
     </section>
 }

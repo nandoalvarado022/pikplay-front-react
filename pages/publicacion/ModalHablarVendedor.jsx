@@ -58,7 +58,7 @@ const ModalHablarVendedor = (props) => {
       </Alert>
       <div className={styles.actions}>
         <Button onClick={() => { setIsModalHablarVendedor() }} color="normal">Cancelar</Button>
-        <Button onClick={handlePagar} color="blue">Hablar con el vendedor</Button>
+        <Button onClick={handlePagar} color="blue">Hablar con el seller</Button>
       </div>
     </div>
   </div>
