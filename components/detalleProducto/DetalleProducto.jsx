@@ -1,17 +1,17 @@
-import Author from "./Author"
 import Button from "../button/Button"
 import CoinsByBuy from "../coinsByBuy/CoinsByBuy"
 import Footer from "../footer/Footer"
 import Grow from "@material-ui/core/Grow"
 import ImageGallery from "react-image-gallery"
 import React from "react"
-import styles from "./cardDetalleProducto.module.scss"
+import styles from "./styles.module.scss"
 import { format_number } from "../../lib/utils"
 import { useRef } from "react"
 import Link from "next/link"
 import { useSelector } from "react-redux"
+import Author from "../card/Author"
 
-const CardProducto = ({
+const DetalleProducto = ({
   apply_cashback,
   banner_bottom,
   description = "",
@@ -117,4 +117,4 @@ const CardProducto = ({
   </div>
 }
 
-export default CardProducto
+export default DetalleProducto

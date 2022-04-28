@@ -1,22 +1,15 @@
-// require('isomorphic-fetch');
-import { gql } from '@apollo/client'
-import fetch from "node-fetch"
-import rn from "random-number";
-import date from "date-and-time";
-import { storage } from "./storage";
-import "date-and-time/locale/es";
+import "date-and-time/locale/es"
 import VARS from "./variables"
+import date from "date-and-time"
+import fetch from "node-fetch"
+import rn from "random-number"
 import { connect, useDispatch } from "react-redux"
+import { gql } from "@apollo/client"
+import { storage } from "./storage"
 
 date.locale("es");
 
-class Functions {
-  db = null;
-  constructor() {
-  }
-}
-
-export default connect(null, useDispatch)(Functions)
+// export default connect(null, useDispatch)(Functions)
 
 export const getNotifications = async (props) => {
   const { closed, user } = props
@@ -435,14 +428,19 @@ export const CREATE_COIN = gql`
 		createCoin(id: $id)
 	}`
 
+export const CREATE_FAVORITE = gql`
+mutation createFavorite($publication: Int, $user: Int){
+  createFavorite(publication: $publication, user: $user)
+}`
+
 export const DELETE_NOTIFICATION = gql`
 	mutation deleteNotification($id: Int, $userId: Int){
 		deleteNotification(id: $id, userId: $userId)
 	}`
 
 export const DELETE_FOLLOWINED_PUBLICATION = gql`
-mutation deleteFollowinedPublication($id: Int, $user: Int){
-  deleteFollowinedPublication(id: $id, user: $user)
+mutation deleteFollowinedPublication($publication: Int, $user: Int){
+  deleteFollowinedPublication(publication: $publication, user: $user)
 }`
 
 export const GET_NOTIFICATIONS = gql`

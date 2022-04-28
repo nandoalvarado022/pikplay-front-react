@@ -6,7 +6,7 @@ import Notification from "../../components/notification"
 import React from 'react'
 import Router from 'next/router'
 import moment from "moment"
-import styles from './publicaciones.module.scss'
+import styles from './styles.module.scss'
 import { Box, Card as CardMat, Tab, Tabs, TextField, Typography } from "@material-ui/core"
 import { Doughnut } from 'react-chartjs-2'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -262,7 +262,6 @@ const Publicaciones = () => {
         variables: { user: user_id },
         fetchPolicy: "no-cache",
         onCompleted: ({ getFollowedPublications }) => {
-            debugger
             getFollowedPublications.status == 200 && setFollowedPublications(getFollowedPublications.data)
         }
     })
@@ -288,17 +287,14 @@ const Publicaciones = () => {
 
     const [value, setValue] = React.useState(0);
 
-    const [deleteFollowinedPublication] = useMutation(DELETE_FOLLOWINED_PUBLICATION, {
+    const [handleFavorite] = useMutation(DELETE_FOLLOWINED_PUBLICATION, {
         onCompleted: data => {
+            toast(<p className='m-0'>
+                Ya no te llegarán notificaciones sobre esta publicación
+            </p>)
             getFollowedPublications()
         }
     })
-
-    const handleFavorite = (id) => {
-        deleteFollowinedPublication({
-            variables: { id, user: user_id }
-        })
-    }
 
     return <section className={`page ${styles.content}`}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -346,7 +342,7 @@ const Publicaciones = () => {
             <div className={styles.followedPublications}>
                 {
                     followedPublications && followedPublications.map((item, ind) => {
-                        return <Card handleFavorite={handleFavorite} {...item} ind={ind} />
+                        return <Card handleFavorite={handleFavorite} icon_favorite={false} {...item} ind={ind} />
                     })
                 }
             </div>

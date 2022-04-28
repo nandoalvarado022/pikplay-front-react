@@ -1,11 +1,11 @@
 import Router from "next/router"
 import toastr from "toastr"
-import CardDetalleProducto from "../../components/card/CardDetalleProducto"
 import React from "react"
 import Layout from "../../components/layout/Layout"
 import { getFeed } from "../../lib/utils"
 import ModalHablarVendedor from "./ModalHablarVendedor"
 import { connect } from "react-redux"
+import DetalleProducto from "../../components/detalleProducto/DetalleProducto"
 class PublicacionPage extends React.Component {
   static async getInitialProps({ req, query }) {
     let slug = query.id
@@ -106,7 +106,7 @@ class PublicacionPage extends React.Component {
 
     return <Layout image={datosPublicacion.image_link} title={title} descripcion={description} url={slug}>
       <div className="_publicacion">
-        <CardDetalleProducto {...{ handleHablarVendedor: this.handleHablarVendedor }} meta_url={slug} handleResponder={this.handleResponder} nuevoPrecio={this.state.nuevoPrecio} handleCupon={this.handleCupon} doc_id={datosPublicacion} logDetalle={true} {...datosPublicacion} />
+        <DetalleProducto {...{ handleHablarVendedor: this.handleHablarVendedor }} meta_url={slug} handleResponder={this.handleResponder} nuevoPrecio={this.state.nuevoPrecio} handleCupon={this.handleCupon} doc_id={datosPublicacion} logDetalle={true} {...datosPublicacion} />
         {
           // Modal para confirmar datos
           this.state.modalHablarVendedor && <ModalHablarVendedor {...{ datosPublicacion, setIsModalHablarVendedor: () => this.setState({ modalHablarVendedor: !this.state.modalHablarVendedor }) }} />

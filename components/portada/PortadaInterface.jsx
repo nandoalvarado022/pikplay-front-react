@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react'
 import { useLazyQuery } from '@apollo/client'
 import ModalLead from '../modalLoead/ModalLead'
 import { GET_FOLLOWED_PUBLICATIONS } from '../../lib/utils'
+import { DragHandle } from '@material-ui/icons'
 
 const SpecialBanner = ({ category, popularyItem, starItem }) => {
   return <span />
@@ -31,7 +32,7 @@ const SpecialBanner = ({ category, popularyItem, starItem }) => {
   }
 }
 
-const PortadaInterface = ({ category, feed, popularyItem, setFeed, starItem }) => {
+const PortadaInterface = ({ category, handleFavorite, feed, popularyItem, setFeed, starItem }) => {
   const [showVideo, setShowVideo] = useState(false)
   const isOpen = typeof sessionStorage != "undefined" && JSON.parse(sessionStorage.getItem("notifications"))?.home
   const [showNotification, setShowNotification] = useState(!!!isOpen)
@@ -101,7 +102,7 @@ const PortadaInterface = ({ category, feed, popularyItem, setFeed, starItem }) =
 
             return <React.Fragment>
               {(!IS_MOBILE && categoryId && !category) && <Groot categoryId={categoryId} />}
-              <Card special_title="Más vendido" {...item} />
+              <Card {...{ handleFavorite, ...item }} />
             </React.Fragment>
           })}
         </div>

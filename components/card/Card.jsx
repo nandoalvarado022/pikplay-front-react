@@ -6,11 +6,12 @@ import { useQuery, gql } from '@apollo/client'
 import styles from "./card.module.scss"
 import Author from "./Author"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faShare } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faHeartBroken, faShare } from '@fortawesome/free-solid-svg-icons'
 import { Tooltip } from "@material-ui/core"
 import classNames from 'classnames'
+import { useSelector } from 'react-redux'
 
-const Card = ({ accept_changes, apply_cashback, certificate, city, following, handleFavorite, handleShare, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, user_transactions, type, likes, price, sale_price, logDetalle, quantity, user } = {}) => {
+const Card = ({ accept_changes, apply_cashback, certificate, city, following, handleFavorite, handleShare, icon_favorite = true, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, user_transactions, type, likes, price, sale_price, logDetalle, quantity, user } = {}) => {
   const usuario = typeof localStorage != "undefined" ? localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).email : null : null
   let like = null
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
@@ -20,6 +21,8 @@ const Card = ({ accept_changes, apply_cashback, certificate, city, following, ha
       title
     }
   }`)
+
+  const loggedUser = useSelector(state => state.user)
   const cities = getCiudades()
   const cityLabel = cities.find(item => item.id == city)?.label
   const countryLabel = capitalize(cities.find(item => item.id == city)?.pais)
@@ -55,8 +58,11 @@ const Card = ({ accept_changes, apply_cashback, certificate, city, following, ha
         {
           <div className={styles.descripcion}>
             <div className={styles.icons}>
-              <Tooltip title='Marcar  Favorito' onClick={() => handleFavorite(id_publication)}>
-                <FontAwesomeIcon icon={faHeart} className={classNames(styles.faHeart, { [styles.active]: following })} />
+              <Tooltip title='Seguir publicación'>
+                <FontAwesomeIcon icon={icon_favorite ? faHeart : faHeartBroken} className={classNames(styles.faHeart, { [styles.active]: following || !icon_favorite })} onClick={() => {
+                  handleFavorite({ variables: { publication: id_publication, user: loggedUser?.id } })
+                }}
+                />
               </Tooltip>
               <Tooltip title='Compartir'>
                 <a href={`https://www.facebook.com/sharer/sharer.php?u=https://pikplay.co/publicacion/${slug}`} target='_BLANK'>
@@ -72,7 +78,7 @@ const Card = ({ accept_changes, apply_cashback, certificate, city, following, ha
             {user?.name && <Author user={user} />}
             <small className={styles.location}>
               {cityLabel}
-              &nbsp;-&nbsp; 
+              &nbsp;-&nbsp;
               {countryLabel}
             </small>
             {/* {!!quantity && <p className={styles.quantity}>{quantity} unidades disponibles</p>} */}

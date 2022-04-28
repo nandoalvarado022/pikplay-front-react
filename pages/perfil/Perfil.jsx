@@ -16,6 +16,7 @@ import { useState } from "react"
 import { interestsList } from "../../lib/utils"
 import { Alert } from "@material-ui/lab"
 import classNames from "classnames"
+import { useSelector } from "react-redux"
 
 const { IS_MOBILE } = VARS
 
@@ -48,6 +49,7 @@ function a11yProps(index) {
 }
 
 const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, setUserData }) => {
+    const handleFavorite = useSelector((state) => state.handleFavorite)
     const [value, setValue] = React.useState(0)
     const msgSubirCategoria = <div>
         <h2>Subir de categoria en Pikplay</h2>
