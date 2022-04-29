@@ -60,7 +60,7 @@ const Card = ({ accept_changes, apply_cashback, certificate, city, following, ha
             <div className={styles.icons}>
               <Tooltip title='Seguir publicación'>
                 <FontAwesomeIcon icon={icon_favorite ? faHeart : faHeartBroken} className={classNames(styles.faHeart, { [styles.active]: following || !icon_favorite })} onClick={() => {
-                  handleFavorite({ variables: { publication: id_publication, user: loggedUser?.id } })
+                  loggedUser?.id != 0 ? handleFavorite({ variables: { publication: id_publication, user: loggedUser?.id } }) : document.querySelector('#btnStart').click()
                 }}
                 />
               </Tooltip>
