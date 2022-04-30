@@ -19,7 +19,13 @@ moment.locale('es-CO');
 const UserNotifications = () => {
   const user = useSelector((state) => state.user)
   const notifications = useSelector((state) => state.notifications) //.filter(item => item.closed == 0)
-  const [deleteNotification] = useMutation(DELETE_NOTIFICATION)
+  const [deleteNotification] = useMutation(DELETE_NOTIFICATION, {
+    onCompleted: ({ data, message, status }) => {
+      if (status == 200) {
+        getNotifications()
+      }
+    }
+  })
   const [createCoin] = useMutation(CREATE_COIN)
   const dispatch = useDispatch()
 
@@ -46,13 +52,11 @@ const UserNotifications = () => {
   const handleDeleteNotification = (id) => {
     notifications.find(item => item.id == id).closed = "1"
     deleteNotification({ variables: { id, userId: user.id } }) // Delete notification BD
-    getNotifications()
-    // dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: notifications } })
   }
 
   const [getNotifications] = useLazyQuery(GET_NOTIFICATIONS, { // Obteniendo notificaciones
     fetchPolicy: "no-cache",
-    // polInterval: 5000,
+    polInterval: 5000,
     variables: {
       user: user?.id
     },
@@ -63,7 +67,7 @@ const UserNotifications = () => {
 
   const handleNotification = async ({ coins, disabled, id }) => {
     if (coins && !disabled) {
-      if (await reclamarCoins(coins, id)) handleDeleteNotification(id)
+      reclamarCoins(coins, id)
     } else {
       handleDeleteNotification(id)
     }

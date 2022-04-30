@@ -54,7 +54,7 @@ const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, set
     const msgSubirCategoria = <div>
         <h2>Subir de categoria en Pikplay</h2>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, suscipit repudiandae quae soluta iusto libero atque debitis laboriosam sit laborum sint eos amet quidem omnis ipsa ea? Reprehenderit, quos aliquam?
+            No disponible
         </p>
     </div>
     const handleChange = (event, newValue) => {
