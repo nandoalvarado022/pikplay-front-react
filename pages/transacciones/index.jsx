@@ -1,19 +1,26 @@
 import Layout from "../../components/layout/Layout"
 import Transacciones from "../../components/transacciones/Transacciones"
+import { validateLoginToken } from "../../lib/utils"
 
-const TransaccionesContainer = (props) => {
+export default function TransaccionesContainer(props) {
   const url = "https://pikajuegos.com/transacciones"
   const meta_title = "Pikplay | Mis Transacciones"
   const descripcion = "Pikplay | Mis Transacciones"
   return <Layout meta_url={url} meta_descripcion={descripcion} meta_title={meta_title} title={meta_title}>
-    <Transacciones props={props} />
+    <Transacciones />
   </Layout>
 }
 
-TransaccionesContainer.getInitialProps = () => {
-  return {
-    props: {}
+export const getServerSideProps = async (ctx) => {
+  const { token } = ctx.req.cookies
+  const res = await validateLoginToken({ token })
+  if (!res) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
   }
+  return { props: {} }
 }
-
-export default TransaccionesContainer

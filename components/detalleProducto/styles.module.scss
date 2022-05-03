@@ -138,7 +138,9 @@
         }
         .compra_author {
             @media screen and (max-width: 420px) {
+                align-items: center;
                 flex-direction: column;
+                row-gap: 20px;
             }
             :global(button) {
                 margin: 0;

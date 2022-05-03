@@ -1,3 +1,4 @@
+import cookieCutter from 'cookie-cutter'
 import { gql, useLazyQuery, useMutation } from '@apollo/client'
 import { useState } from "react"
 import LoginInterface from "./LoginInterface"
@@ -37,7 +38,8 @@ function Login(props) {
 			if (validateLogin) {
 				const token = JSON.parse(validateLogin).token
 				dispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: JSON.parse(validateLogin) } })
-				toast('Bienvenido 😎')
+				cookieCutter.set('token', token)
+				toast(`Bienvenido ${validateLogin?.name} 😎... Cargando tu portada`)
 				router.reload('/#logged-in')
 			} else {
 				document.getElementById("verificationCode").value = ""

@@ -462,6 +462,23 @@ mutation validateCoupon($coupon: String, $user: Int){
   validateCoupon(coupon: $coupon, user: $user)
 }`
 
+export const validateLoginToken = async ({ token }) => {
+  const validUser = await fetch(process.env.API_URL, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: `{
+        validateLoginToken(token: "${token}")
+      }`
+    })
+  })
+
+  const { data } = await validUser.json()
+  return data?.validateLoginToken
+}
+
 export const GET_FOLLOWED_PUBLICATIONS = gql`
 query getFollowedPublications($user: Int){
   getFollowedPublications(user: $user)

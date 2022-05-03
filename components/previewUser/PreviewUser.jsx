@@ -1,3 +1,4 @@
+import cookieCutter from 'cookie-cutter'
 const { IS_MOBILE } = VARS
 import ImageProfile from '../../pages/perfil/ImageProfile'
 import Link from "next/link"
@@ -13,12 +14,13 @@ const PreviewUser = () => {
   const dispatch = useDispatch()
   const notifications = useSelector((state) => state.notifications)
   const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
-	const router = useRouter()
+  const router = useRouter()
   const user = useSelector((state) => state.user)
   const _notifications = notifications.filter(item => item.closed == 0)
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' })
+    cookieCutter.set('token', '', { expires: new Date(0) })
     router.push('/#logout')
   }
 
