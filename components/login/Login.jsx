@@ -39,8 +39,10 @@ function Login(props) {
 				const token = JSON.parse(validateLogin).token
 				dispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: JSON.parse(validateLogin) } })
 				cookieCutter.set('token', token)
-				toast(`Bienvenido ${validateLogin?.name} 😎... Cargando tu portada`)
-				router.reload('/#logged-in')
+				const name = JSON.parse(validateLogin)?.name
+				toast(<div>Bienvenido {name} 😎<br /> 
+				<small>Cargando tus preferencias 👾 ...</small></div>)
+				// router.reload() // Sin saber porque es necessario así que se desactiva
 			} else {
 				document.getElementById("verificationCode").value = ""
 				alert("Código no valido")

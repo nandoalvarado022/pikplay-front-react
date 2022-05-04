@@ -7,7 +7,7 @@ import { gql, useMutation, useQuery } from '@apollo/client'
 import { slugify } from "../../lib/utils"
 import { subirImagen } from '../../lib/utils'
 import { useRouter, withRouter } from 'next/router'
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { toast } from 'react-toastify'
 
 const QUERY_PUBLICATION = gql`
@@ -38,19 +38,30 @@ const MUTATION_PUBLICATION = gql`
 `
 
 const PublicationForm = (props) => {
-	const user = useSelector((state) => state.user)
-	const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
-	const router = useRouter()
+	const dispatch = useDispatch()
 	const [imageLoading, setImageLoading] = useState()
+	const isMobile = typeof window != "undefined" ? window.screen.width < 420 : false
+	const user = useSelector((state) => state.user)
+	const router = useRouter()
 	const [dispatchCreate] = useMutation(MUTATION_PUBLICATION, {
 		onCompleted: ({ createPublication }) => {
 			if (createPublication == "401") toast('Se venció la sessión, ingresa nuevamente a tu cuenta')
-			if (createPublication == "200") toast(<span><FontAwesomeIcon className='secunday-color m-r-10 p-r t-2' icon={faCheck} />Se guardo la publicación</span>)
+			if (createPublication == "200") {
+				toast(<span>
+					<FontAwesomeIcon className='secunday-color m-r-10 p-r t-2' icon={faCheck} />
+					Se guardo la publicación
+				</span>)
+				dispatch({ type: "PUBLICATION_FORM", payload: {} })
+				setTimeout(() => {
+					router.push("/publicaciones")
+				}, 2000)
+			}
 		}
 	})
 	const screenWidth = typeof window != "undefined" ? screen.width : 0
 	const slugPublication = router.query.id;
-	const [publicationFormData, setPublicationFormData] = useState({})
+	const publicationFormSaved = useSelector((state) => state.publication_form) || {}
+	const [publicationFormData, setPublicationFormData] = useState(publicationFormSaved)
 	const isEdit = props.router.query?.id ? true : false
 	const variables = slugPublication ? { is_edit: true, slug: slugPublication } : {}
 	const { data: publicationEditData } = slugPublication ? useQuery(QUERY_PUBLICATION, {
@@ -129,11 +140,11 @@ const PublicationForm = (props) => {
 				user: user.id
 			}
 		}
+
 		if (!isEdit) variables.input.slug = slug
 		dispatchCreate({
 			variables
 		})
-		router.push("/publicaciones")
 	}
 
 	const handleRemoveImage = (item) => {
@@ -143,6 +154,12 @@ const PublicationForm = (props) => {
 		}
 		setPublicationFormData(_publicationFormData)
 	}
+
+	useEffect(() => {
+		if (Object.keys(publicationFormData).length > 0) {
+			dispatch({ type: "PUBLICATION_FORM", payload: publicationFormData })
+		}
+	}, [publicationFormData])
 
 	return <PublicationForminterface {...{ currentStep, handleRemoveImage, handleSubmit, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData, screenWidth, setPublicationFormData, textButton, setCurrentStep }} />
 }

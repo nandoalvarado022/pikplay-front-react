@@ -1,4 +1,3 @@
-import cookieCutter from 'cookie-cutter'
 const { IS_MOBILE } = VARS
 import ImageProfile from '../../pages/perfil/ImageProfile'
 import Link from "next/link"
@@ -20,7 +19,6 @@ const PreviewUser = () => {
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' })
-    cookieCutter.set('token', '', { expires: new Date(0) })
     router.push('/#logout')
   }
 
