@@ -307,6 +307,7 @@ export function getPaises() {
 }
 
 export function getCiudades() {
+  // Los paises que se coloquen en el campo ID deben ser separados por -
   return [
     { pais: "", id: "all", label: "Cualquier lugar" },
     { pais: "colombia", id: "bogota", label: "Bogotá" },
@@ -323,6 +324,7 @@ export function getCiudades() {
     { pais: "argentina", id: "buenos_aires", label: "Buenos Aires" },
     { pais: "españa", id: "madrid", label: "Madrid" },
     { pais: "salvador", id: "san_salvador", label: "San Salvador" },
+    { pais: "chile", id: "santiago-chile", label: "Santiago de Chile" },
   ]
 }
 
@@ -405,7 +407,8 @@ export function getCategories(id) {
     { id: 2, name: "Nintendo Switch", image: "/images/icons/nintendo.svg" },
     { id: 3, name: "Playstation", image: "/images/icons/play.svg" },
     { id: 4, name: "Xbox", image: "/images/icons/xbox.svg" },
-    { id: 5, name: "Otros", image: "/images/icons/otros1.svg" }]
+    { id: 5, name: "Otros", image: "/images/icons/otros1.svg" },
+    { id: 6, name: "PC Gamer", image: null }]
   if (id) return categories.find(item => item.id == id)
   return categories
 }

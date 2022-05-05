@@ -43,6 +43,13 @@ const CategoryBanner = ({ categoryId }) => {
                 Productos <span className={styles.xbox}>Geek</span>
             </p>
             break;
+        case 6:
+            image = '/images/backgrounds/pc-gamer.jpg'
+            link = '/'
+            text = <p>
+                PC <span className={styles.xbox}>Gamer</span>
+            </p>
+            break;
     }
     return <div className={styles.CategoryBanner}>
         <Link href={link}>

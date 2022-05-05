@@ -185,7 +185,7 @@ const Publicacion = ({ item, ind, getPublications }) => {
                     }}>
                         <FontAwesomeIcon style={{ position: "relative", left: "-5px", top: "2px" }} icon={faQuestionCircle} onClick={() => {
                             const message = <div>
-                                <p>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pikplay o porque esta desactivada</p>
+                                <p className='m-0'>Normalmente no es posible ir a la publicación cuando aún esta siendo revisada por Pikplay o porque esta desactivada</p>
                             </div>
                             toast(message)
                         }} />

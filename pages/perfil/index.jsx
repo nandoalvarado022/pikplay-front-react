@@ -1,7 +1,7 @@
 import Perfil from "./Perfil"
 import Layout from "../../components/layout/Layout"
 import { gql, useMutation } from "@apollo/client"
-import { subirImagen } from "../../lib/utils"
+import { subirImagen, validateLoginToken } from "../../lib/utils"
 import { toast } from 'react-toastify'
 import { useContext, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -71,10 +71,19 @@ const Index = (props) => {
   </Layout>
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
+export const getServerSideProps = async (ctx) => {
+	const { token } = ctx.req.cookies
+	const res = await validateLoginToken({ token })
+	if (!res) {
+	  return {
+		redirect: {
+		  destination: '/',
+		  permanent: false
+		}
+	  }
+	}
+	return { props: {} }
   }
-}
+  
 
 export default Index
