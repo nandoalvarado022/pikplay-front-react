@@ -127,6 +127,10 @@ button.image-gallery-thumbnail {
     margin-bottom: 20px;
 }
 
+.m-b-0 {
+    margin-bottom: 0px;
+}
+
 .banner_100 {
     margin: 0 0 20px;
 }
@@ -739,12 +743,24 @@ body {
     }
 }
 
+.coupon-field input{
+    text-transform: uppercase;
+}
+
 .font-a {
     font-family: "Montserrat", sans-serif;
 }
 
 .font-b {
     font-family: "Righteous", sans-serif;
+}
+
+.t-a-l{
+    text-align: left;
+}
+
+.t-a-r{
+    text-align: right;
 }
 
 * {

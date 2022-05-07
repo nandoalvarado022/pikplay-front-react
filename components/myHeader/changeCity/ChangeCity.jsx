@@ -18,8 +18,8 @@ const ChangeCity = (props) => {
     const handleClose = () => { setOpen(false) }
     const cityLabel = getCiudades().find((city) => city.id === defaultCity)?.label || null
     const dispatch = useDispatch()
-    const handleChange = (event, value) => {
-        const city = event.target.value
+    const handleChange = (event) => {
+        const city = event.target.value ? event.target.value : 'all'
         setDefaultCity(city)
         setTimeout(() => {
             handleClose()
@@ -45,10 +45,11 @@ const ChangeCity = (props) => {
                     <FormControl>
                         <InputLabel id="demo-simple-select-label">Cambiar ubicación</InputLabel>
                         <Select
-                            labelId="demo-simple-select-label"
                             id="demo-simple-select"
+                            labelId="demo-simple-select-label"
+                            onChange={handleChange}
                             value={defaultCity}
-                            onChange={handleChange}>
+                            width="200px">
                             {getCiudades().map((item => {
                                 return <MenuItem key={item.id} value={item.id}>{capitalize(item.pais)} {item.label}</MenuItem>
                             }))}
@@ -57,8 +58,11 @@ const ChangeCity = (props) => {
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <ButtonMat onClick={handleClose} color="primary">
+                <ButtonMat onClick={handleClose} color="secundary">
                     Cancelar
+                </ButtonMat>
+                <ButtonMat onClick={handleChange} color="primary">
+                    En cualquier lugar
                 </ButtonMat>
             </DialogActions>
         </Dialog>

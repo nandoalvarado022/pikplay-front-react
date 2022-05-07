@@ -461,8 +461,8 @@ query getNotifications($user: Int, $closed: String){
 }`
 
 export const VALIDATE_COUPON = gql`
-mutation validateCoupon($coupon: String, $user: Int){
-  validateCoupon(coupon: $coupon, user: $user)
+mutation validateCoupon($coupon: String, $publication: Int, $user: Int){
+  validateCoupon(coupon: $coupon, publication: $publication, user: $user)
 }`
 
 export const validateLoginToken = async ({ token }) => {

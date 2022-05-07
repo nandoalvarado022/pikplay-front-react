@@ -13,8 +13,10 @@ export default function TransaccionesContainer(props) {
 
 export const getServerSideProps = async (ctx) => {
   const { token } = ctx.req.cookies
+  console.log('Cookies: ', ctx.req.cookies);
   const res = await validateLoginToken({ token })
   if (!res) {
+    console.log('Token no valido');
     return {
       redirect: {
         destination: '/',

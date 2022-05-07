@@ -13,6 +13,7 @@ import classNames from "classnames"
 import { Tooltip } from "@material-ui/core"
 import moment from "moment"
 import Link from "next/link"
+import Router from "next/router"
 
 moment.locale('es-CO');
 
@@ -65,12 +66,13 @@ const UserNotifications = () => {
     }
   })
 
-  const handleNotification = async ({ coins, disabled, id }) => {
-    if (coins && !disabled) {
+  const handleNotification = async ({ coins, disabled, id, link, type }) => {
+    if (coins && !disabled && type == 'COUPON') {
       reclamarCoins(coins, id)
     } else {
       handleDeleteNotification(id)
     }
+    if(link) Router.push(link)
   }
 
   useEffect(() => {
@@ -86,23 +88,18 @@ const UserNotifications = () => {
       </motion.span>
       Notificaciones
     </h4>
-    {notifications && notifications.map(({ closed: disabled, coins, created, detail, id, isOpen, link }) => {
-      link = link ? link : '#'
+    {notifications && notifications.map(({ closed: disabled, coins, created, detail, id, isOpen, link, type }) => {
       created = moment(created).fromNow()
 
       return <Tooltip title={created}>
-        <ol className={classNames(null, { [styles.closed]: disabled })} onClick={() => handleNotification({ coins, disabled, id })}>
-          <Link href={link}>
-            <a>
-              {!disabled && <FontAwesomeIcon icon={faCircle} />}
-              <span>
-                {detail}
-              </span>
-              {!coins && <div className={styles.content_close}>
-              </div>
-              }
-            </a>
-          </Link>
+        <ol className={classNames(null, { [styles.closed]: disabled })} onClick={() => handleNotification({ coins, disabled, id, link, type })}>
+          {!disabled && <FontAwesomeIcon icon={faCircle} />}
+          <span>
+            {detail}
+          </span>
+          {!coins && <div className={styles.content_close}>
+          </div>
+          }
         </ol>
       </Tooltip>
     }

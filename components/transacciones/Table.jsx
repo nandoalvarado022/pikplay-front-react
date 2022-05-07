@@ -1,17 +1,19 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Button from '../button/Button';
-import moment from 'moment';
-import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import Button from '../button/Button'
+import moment from 'moment'
+import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck, faUserFriends } from '@fortawesome/free-solid-svg-icons'
+import styles from './styles.module.scss'
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 
 const useStyles = makeStyles({
     table: {
@@ -43,6 +45,7 @@ export default function MyTable({ loggedUser, transactions }) {
                     <TableCell align="right">Vistas</TableCell>
                     <TableCell align="right">Estado</TableCell>
                     <TableCell align="right">Tipo transacción</TableCell>
+                    <TableCell align="right">Otra información</TableCell>
                     <TableCell align="right">Fecha creación</TableCell>
                     <TableCell align="right">&nbsp;</TableCell>
                 </TableRow>
@@ -72,7 +75,17 @@ export default function MyTable({ loggedUser, transactions }) {
                             {status == 2 && "Transacción cancelada"}
                         </TableCell>
                         <TableCell align="right">
-                            {type == 'PURSHASE' ? <span>Compra</span> : <span>Venta</span>}
+                            {user_to == loggedUser.id ? <span>Venta</span> : <span>Compra</span>}
+                        </TableCell>
+                        <TableCell align="right">
+                            {user_to == loggedUser.id && <p className={styles.customer_box}>
+                                Cliente:<br />
+                                David Perea<br />
+                                <a href='https://api.whatsapp.com/send?phone=573164294357' target='_BLANK'>
+                                    <FontAwesomeIcon className='p-r t-2' icon={faWhatsapp} />
+                                    &nbsp;3187414325
+                                </a>
+                            </p>}
                         </TableCell>
                         <TableCell align="right">
                             {moment(parseInt(created)).format("MMMM DD YYYY, h:mm:ss a")}

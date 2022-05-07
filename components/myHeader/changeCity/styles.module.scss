@@ -5,8 +5,11 @@
         font-size: 12px;
         margin-top: 8px;
         padding: 0px;
-        svg{
+        svg {
             margin: 0 5px;
         }
+    }
+    :global(.MuiFormControl-root) {
+        width: 200px;
     }
 }

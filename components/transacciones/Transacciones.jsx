@@ -68,7 +68,6 @@ const Transacciones = (props) => {
       setTransactions(_transactions)
     }
   })
-  //
 
   useEffect(() => {
     getTransactions()
@@ -86,9 +85,9 @@ const Transacciones = (props) => {
   return <section className={`page ${styles.Transactions}`}>
     <h2 className='Card main'>Transacciones
       <FontAwesomeIcon class="svg-question" icon={faQuestionCircle} onClick={() => {
-        const message = <div>
-          <p>Bienvenido a tus <b>transacciones</b></p>
-          <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
+        const message = <div className='m-0'>
+          <p className='m-0'>Bienvenido a tus <b>transacciones</b></p>
+          <p className='m-b-0'>Juntos somos mejor 🤝</p>
         </div>
         toast(message)
       }} />
