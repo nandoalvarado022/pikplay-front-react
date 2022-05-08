@@ -64,6 +64,9 @@
             @media screen and (min-width: 1024px) {
                 width: 800px;
             }
+            @media screen and (max-width: 420px) {
+                margin: 15px 10px;
+            }
             .content_imagen {
                 text-align: center;
             }
@@ -97,11 +100,13 @@
         }
         > .descripcion {
             font-size: 14px;
-            padding: 20px 30px;
+            padding: 20px 10px 0;
             @media screen and (min-width: 1024px) {
                 margin: 0 20px;
-                padding: 20px 10px 0;
                 width: 450px;
+            }
+            @media screen and (max-width: 420px) {
+                padding: 0px 10px;
             }
             .apply_cashback {
                 background: radial-gradient(circle, #fee960 0%, #feb724 100%) !important;
@@ -147,9 +152,13 @@
                 width: 110px;
                 @media screen and (max-width: 420px) {
                     bottom: 80px;
+                    box-sizing: content-box;
+                    box-shadow: 0px 2px 4px 2px #cdcdcd;
+                    height: 42px;
                     position: fixed;
                     transform: none;
                     width: 90%;
+                    z-index: 2;
                 }
                 button span {
                     @media screen and (max-width: 420px) {
