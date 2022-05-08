@@ -1,14 +1,14 @@
 import Button from "../../components/button/Button"
 import TextField from "@material-ui/core/TextField"
-import { gql, useMutation } from '@apollo/client'
+import { gql, useLazyQuery, useMutation } from '@apollo/client'
 import styles from "../../public/css/modalIngresoInfo.module.scss"
 import CiudadControl from "../../components/ciudadControl/CiudadControl"
 import Link from "next/link"
 import { Alert } from "@material-ui/lab"
 import { useSelector } from "react-redux"
 import CouponBox from "../../components/couponBox/CouponBox"
-import { format_number } from "../../lib/utils"
-import { useState } from "react"
+import { format_number, GET_CLAIMED_COUPONS } from "../../lib/utils"
+import { useEffect, useState } from "react"
 import classNames from "classnames"
 
 const ModalHablarVendedor = (props) => {
@@ -21,9 +21,20 @@ const ModalHablarVendedor = (props) => {
     mutation createTransaction($user: Int, $user_to: Int, $publication: Int, $type: String){
         createTransaction(user: $user, user_to: $user_to, publication: $publication, type: $type)
     }`
-
   const [createTransaction, { }] = useMutation(CREATE_TRANSACTION);
-
+  const [getClaimedCoupons] = useLazyQuery(GET_CLAIMED_COUPONS, {
+    fetchPolicy: 'no-cache',
+    variables: {
+      publication: datosPublicacion.id,
+      user: user.id
+    },
+    onCompleted: ({ getClaimedCoupons }) => {
+      if (getClaimedCoupons && getClaimedCoupons.length > 0) {
+        setCouponCode(getClaimedCoupons[0].coupon)
+        setCouponValue(getClaimedCoupons[0].coins)
+      }
+    }
+  })
   const handleCreateTransaction = () => {
     // Mutation para registrar la pre orden
     createTransaction({ variables: { user: user.id, user_to: datosPublicacion.user.id, publication: datosPublicacion.id, type: "PURCHASE" } });
@@ -59,6 +70,10 @@ const ModalHablarVendedor = (props) => {
       setCouponCode(data.coupon)
     }
   }
+
+  useEffect(() => {
+    getClaimedCoupons()
+  }, [])
 
   return <div className={styles._modalIngresoInfo}>
     <div className={styles.background}></div>

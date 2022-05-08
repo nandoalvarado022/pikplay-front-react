@@ -51,7 +51,7 @@ export default function MyTable({ loggedUser, transactions }) {
                 </TableRow>
             </TableHead>
             <TableBody>
-                {transactions.map(({ created, detail, id, p_image, p_title, publication, status, type, u_name, user, user_to, slug }) => (
+                {transactions && transactions.map(({ created, detail, id, p_image, p_title, publication, status, type, u_name, u_phone, user, user_to, slug }) => (
                     <TableRow key={id}>
                         <TableCell align="right">
                             <img src={p_image} width={100} />
@@ -80,10 +80,10 @@ export default function MyTable({ loggedUser, transactions }) {
                         <TableCell align="right">
                             {user_to == loggedUser.id && <p className={styles.customer_box}>
                                 Cliente:<br />
-                                David Perea<br />
-                                <a href='https://api.whatsapp.com/send?phone=573164294357' target='_BLANK'>
+                                {u_name}<br />
+                                <a href={`https://api.whatsapp.com/send?phone=${u_phone}`} target='_BLANK'>
                                     <FontAwesomeIcon className='p-r t-2' icon={faWhatsapp} />
-                                    &nbsp;3187414325
+                                    &nbsp;Contactar cliente
                                 </a>
                             </p>}
                         </TableCell>

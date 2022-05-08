@@ -49,6 +49,7 @@ const Transacciones = (props) => {
         type
         type
         u_name
+        u_phone
         user
         user_to
       }

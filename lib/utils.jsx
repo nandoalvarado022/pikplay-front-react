@@ -465,6 +465,14 @@ mutation validateCoupon($coupon: String, $publication: Int, $user: Int){
   validateCoupon(coupon: $coupon, publication: $publication, user: $user)
 }`
 
+export const GET_CLAIMED_COUPONS = gql`
+query getClaimedCoupons($coupon: String, $publication: Int, $user: Int){
+  getClaimedCoupons(coupon: $coupon, publication: $publication, user: $user){
+    coins
+    coupon
+  }
+}`
+
 export const validateLoginToken = async ({ token }) => {
   const validUser = await fetch(process.env.API_URL, {
     method: "POST",
