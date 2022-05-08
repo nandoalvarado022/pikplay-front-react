@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import TagManager from 'react-gtm-module'
 import graphqlClient from '../lib/graphqlClient'
 import { ApolloProvider } from "@apollo/client"
@@ -27,7 +27,7 @@ const MyApp = (props) => {
     }
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
@@ -35,6 +35,19 @@ const MyApp = (props) => {
     }
     TagManager.initialize({ gtmId: 'GTM-5WB6P7C' })
   }, [])
+
+  useEffect(() => {
+    import('react-facebook-pixel')
+      .then((x) => x.default)
+      .then((ReactPixel) => {
+        ReactPixel.init('627225011598226') // facebookPixelId
+        ReactPixel.pageView()
+
+        router.events.on('routeChangeComplete', () => {
+          ReactPixel.pageView()
+        })
+      })
+  }, [router.events])
 
   return process.browser ? <MuiThemeProvider theme={theme}>
     <Provider store={store}>
