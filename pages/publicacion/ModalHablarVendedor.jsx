@@ -25,7 +25,7 @@ const ModalHablarVendedor = (props) => {
   const [getClaimedCoupons] = useLazyQuery(GET_CLAIMED_COUPONS, {
     fetchPolicy: 'no-cache',
     variables: {
-      publication: datosPublicacion.id,
+      publication: datosPublicacion?.id,
       user: user.id
     },
     onCompleted: ({ getClaimedCoupons }) => {
@@ -84,7 +84,7 @@ const ModalHablarVendedor = (props) => {
         <CiudadControl />
       </section>
       <section className={classNames("m-t-20 f-s-14 t-a-r", [styles.bottom])} >
-        {!!datosPublicacion.sale_price && <div className="flex">
+        {!!datosPublicacion?.sale_price && <div className="flex">
           <span>
             Total a pagar:
             &nbsp;
@@ -92,13 +92,13 @@ const ModalHablarVendedor = (props) => {
           <span>
             {couponValue && <>
               <div>
-                <del>{format_number(datosPublicacion.sale_price)}</del>
+                <del>{format_number(datosPublicacion?.sale_price)}</del>
               </div>
               <b>
-                {format_number(datosPublicacion.sale_price - couponValue)}
+                {format_number(datosPublicacion?.sale_price - couponValue)}
               </b>
             </>}
-            {!couponValue && format_number(datosPublicacion.sale_price)}
+            {!couponValue && format_number(datosPublicacion?.sale_price)}
           </span>
         </div>}
         {couponCode && <Alert className="m-t-10">
@@ -113,7 +113,7 @@ const ModalHablarVendedor = (props) => {
 
       </section>
       <section className={styles.actions}>
-        <CouponBox className="block m-t-10" callback={handleCoupon} publication={datosPublicacion.id} />
+        <CouponBox className="block m-t-10" callback={handleCoupon} publication={datosPublicacion?.id} />
         <Button onClick={() => { setIsModalHablarVendedor() }} color="normal">Cancelar</Button>
         <Button onClick={handlePagar} color="blue">Hablar con el seller</Button>
       </section>
