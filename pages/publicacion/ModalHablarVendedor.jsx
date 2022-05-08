@@ -69,7 +69,7 @@ const ModalHablarVendedor = (props) => {
         <CiudadControl />
       </section>
       <section className={classNames("m-t-20 f-s-14 t-a-r", [styles.bottom])} >
-        <div className="flex">
+        {!!datosPublicacion.sale_price && <div className="flex">
           <span>
             Total a pagar:
             &nbsp;
@@ -85,9 +85,9 @@ const ModalHablarVendedor = (props) => {
             </>}
             {!couponValue && format_number(datosPublicacion.sale_price)}
           </span>
-        </div>
+        </div>}
         {couponCode && <Alert className="m-t-10">
-          Tienes un cupón activo para esta compra: <b>{couponCode}</b>
+          Tienes un cupón activo para esta compra: <b>{couponCode.toUpperCase()}</b>
         </Alert>}
         <Alert className="m-t-10" icon={false} onClick={() => setShowConditions(!showConditions)} severity="info">
           <div className="t-a-r">Terminos y condiciones</div>

@@ -45,7 +45,7 @@ const CouponBox = (props) => {
 
     const [validateCoupon, { data }] = useMutation(VALIDATE_COUPON, {
         variables: {
-            coupon: couponValue,
+            coupon: couponValue.toUpperCase(),
             publication,
             user: user?.id
         },
