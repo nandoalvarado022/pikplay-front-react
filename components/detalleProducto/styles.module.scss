@@ -142,9 +142,20 @@
                 flex-direction: column;
                 row-gap: 20px;
             }
-            :global(button) {
+            > :global(button) {
                 margin: 0;
                 width: 110px;
+                @media screen and (max-width: 420px) {
+                    bottom: 80px;
+                    position: fixed;
+                    transform: none;
+                    width: 90%;
+                }
+                button span {
+                    @media screen and (max-width: 420px) {
+                        text-transform: uppercase;
+                    }
+                }
             }
             @media screen and (max-width: 420px) {
                 :global(.autor) {
