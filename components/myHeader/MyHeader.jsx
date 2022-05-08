@@ -103,7 +103,9 @@ const Header = () => {
 						showSearchModal && <div className={styles.results}>
 							<FontAwesomeIcon className={styles.close_icon} icon={faPlus} onClick={() => setShowSearchModal(false)} />
 							<section>
-								{IS_MOBILE && <Button color='blue' onClick={() => setShowSearchModal(false)}>Ir al home</Button>}
+								{IS_MOBILE && <Button color='blue' onClick={() => setShowSearchModal(false)}>
+									Cerrar buscador
+								</Button>}
 								{results && <Alert severity="info">
 									Se encontraron <CountUp end={results.length} /> resultados para {inputText} en {cityLabelSearch}
 								</Alert>}
