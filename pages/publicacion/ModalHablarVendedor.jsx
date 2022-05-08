@@ -80,7 +80,7 @@ const ModalHablarVendedor = (props) => {
     <div className={`Card ${styles.Card}`}>
       <h2>Tus datos para la entrega y pago</h2>
       <section>
-        <TextField disabled value={user.name} autoComplete="nombre" name="nombre_completo" fullWidth={true} label="Nombre" margin="normal" size={25} />
+        <TextField value={user.name} autoComplete="nombre" name="nombre_completo" fullWidth={true} label="Nombre" margin="normal" size={25} />
         <CiudadControl />
       </section>
       <section className={classNames("m-t-20 f-s-14 t-a-r", [styles.bottom])} >
