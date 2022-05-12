@@ -1,15 +1,8 @@
 const { motion } = require("framer-motion")
-import ImageProfile from "../../pages/perfil/ImageProfile"
 import Link from "next/link"
 import PreviewUser from "../previewUser/PreviewUser"
-import UserNotifications from "../userNotifications/UserNotifications"
 import styles from "./menuMovil.module.scss"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCamera, faPercentage } from "@fortawesome/free-solid-svg-icons"
-import { faPlusSquare } from "@fortawesome/free-regular-svg-icons"
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons"
 import { useSelector } from "react-redux"
-import { useState } from "react"
 
 const MenuMovil = () => {
   const user = useSelector((state) => state.user)
@@ -19,12 +12,12 @@ const MenuMovil = () => {
         <motion.a className={styles.vender}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.8 }}>
-          <FontAwesomeIcon icon={faCamera} />
+          <img style={{ height: '38px' }} src="https://icons.veryicon.com/png/o/miscellaneous/very-thin-linear-icon/camera-310.png" alt="" />
         </motion.a>
       </Link>
     </ol>
     <ol>
-      <Link href="/category/[id]" as="/category/nintendo-switch">
+      <Link href="/categoria/[id]" as="/categoria/nintendo-switch">
         <motion.a
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.8 }}>
@@ -36,7 +29,7 @@ const MenuMovil = () => {
       <PreviewUser />
     </ol>
     <ol>
-      <Link href="/category/[id]" as="/category/playstation">
+      <Link href="/categoria/[id]" as="/categoria/playstation">
         <motion.a
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.8 }}>
@@ -48,7 +41,7 @@ const MenuMovil = () => {
       <motion.a target="_BLANK" href="https://api.whatsapp.com/send?phone=573052665725&text=Escribe%20aqu%C3%AD%20tu%20pregunta"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.8 }}>
-        <FontAwesomeIcon icon={faWhatsapp} />
+        <img src="https://www.iconpacks.net/icons/1/free-whatsapp-icon-103-thumb.png" />
       </motion.a>
     </ol>
   </div>

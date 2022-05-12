@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 #Header {
     background: white;
     border-bottom: 1px solid #dcdcdcb5;
@@ -7,7 +9,7 @@
     top: 0;
     width: 100%;
     z-index: 9;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: $tablet) {
         padding: 10px 0 5px;
         position: fixed;
         top: 0;
@@ -20,7 +22,7 @@
             display: block;
             font-size: 12px;
             text-align: center;
-            @media screen and (max-width: 420px) {
+            @media screen and (max-width: $tablet) {
                 font-size: 10px;
             }
         }
@@ -28,7 +30,7 @@
 
     > ul {
         margin: 0;
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: $tablet) {
             display: flex;
             justify-content: space-between;
             padding: 0 10px;
@@ -54,7 +56,7 @@
                 display: block;
             }
         }
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: $tablet) {
             width: 160px;
             &.mobile {
                 display: block;
@@ -78,7 +80,7 @@
         right: 30px;
         top: 30px;
         display: none;
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: $tablet) {
             display: block;
         }
         svg {
@@ -92,7 +94,7 @@
         display: flex;
         position: relative;
         width: 500px;
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: $tablet) {
             height: 60px;
             margin: 0;
             position: initial;
@@ -108,7 +110,7 @@
             top: 84px;
             width: 700px;
             z-index: 3;
-            @media screen and (max-width: 420px) {
+            @media screen and (max-width: $tablet) {
                 height: 100vh;
                 left: 0;
                 top: 82px;
@@ -188,7 +190,7 @@
             }
 
             .recommended {
-                @media screen and (max-width: 420px) {
+                @media screen and (max-width: $tablet) {
                     display: none;
                 }
                 span {
