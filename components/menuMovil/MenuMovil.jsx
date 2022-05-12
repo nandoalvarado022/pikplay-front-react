@@ -38,7 +38,7 @@ const MenuMovil = () => {
       </Link>
     </ol>
     <ol>
-      <motion.a target="_BLANK" href="https://api.whatsapp.com/send?phone=573052665725&text=Escribe%20aqu%C3%AD%20tu%20pregunta"
+      <motion.a target="_BLANK" href="https://api.whatsapp.com/send?phone=573054202450&text=Escribe%20aqu%C3%AD%20tu%20pregunta"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.8 }}>
         <img src="https://www.iconpacks.net/icons/1/free-whatsapp-icon-103-thumb.png" />
