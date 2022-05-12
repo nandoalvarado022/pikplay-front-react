@@ -1,5 +1,24 @@
-$desktop: '1024px';
-$tablet: '768px';
-$mobile: '480px';
+$desktop: "1024px";
+$tablet: "768px";
+$mobile: "480px";
 $primary-color: #ea4d42;
 $secundary-color: #476e96;
+
+%floatButton {
+    @media screen and (min-width: $desktop) {
+    }
+    @media screen and (max-width: $mobile) {
+        bottom: 80px;
+        box-shadow: 0px 2px 4px 2px #51515157;
+        height: 42px;
+        left: 0;
+        margin: 0 auto;
+        position: fixed;
+        right: 0;
+        width: 90%;
+        z-index: 2;
+        button {
+            padding: 5px 20px;
+        }
+    }
+}

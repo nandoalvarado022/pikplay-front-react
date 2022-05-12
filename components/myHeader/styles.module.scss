@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 #Header {
     background: white;
@@ -100,6 +100,7 @@
             position: initial;
             width: 200px;
         }
+
         .results {
             background: white;
             border-top: 1px solid #dcdcdcb5;
@@ -125,6 +126,14 @@
                 position: fixed;
                 width: 100vw;
                 z-index: 0;
+            }
+
+            > :global(section > button) {
+                @extend %floatButton;
+                bottom: 80px;
+                @media screen and (min-width: $desktop) {
+                    display: none;
+                }
             }
 
             .close_icon {

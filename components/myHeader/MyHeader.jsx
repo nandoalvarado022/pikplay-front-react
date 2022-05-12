@@ -103,8 +103,8 @@ const Header = () => {
 						showSearchModal && <div className={styles.results}>
 							<FontAwesomeIcon className={styles.close_icon} icon={faPlus} onClick={() => setShowSearchModal(false)} />
 							<section>
-								{IS_MOBILE && <Button color='blue' onClick={() => setShowSearchModal(false)}>
-									Cerrar buscador
+								{IS_MOBILE && <Button color='yellow' onClick={() => setShowSearchModal(false)}>
+									CERRAR BUSCADOR
 								</Button>}
 								{results && <Alert severity="info">
 									Se encontraron <CountUp end={results.length} /> resultados para {inputText} en {cityLabelSearch}
@@ -138,19 +138,21 @@ const Header = () => {
 											const cityLabel = cities.find(row => row.id == item.city) ? cities.find(row => row.id == item.city)?.label : null
 											const link = `/publicacion/${item.slug}`
 											if (ind > 0) return <Link href={link}>
-												<article className={styles.row}>
-													<img className={styles.product} src={item.image_link} alt="" />
-													<div>
-														<h2>{item.title}</h2>
-														{!!item.sale_price && <price className={styles.price}>
-															${format_number(item.sale_price)}
-														</price>}
-														{item.user && <Author parentView='HeaderSearch' user={item.user} />}
-														<small className={styles.location}>
-															{cityLabel}
-														</small>
-													</div>
-												</article>
+												<a onClick={() => setShowSearchModal(false)}>
+													<article className={styles.row}>
+														<img className={styles.product} src={item.image_link} alt="" />
+														<div>
+															<h2>{item.title}</h2>
+															{!!item.sale_price && <price className={styles.price}>
+																${format_number(item.sale_price)}
+															</price>}
+															{item.user && <Author parentView='HeaderSearch' user={item.user} />}
+															<small className={styles.location}>
+																{cityLabel}
+															</small>
+														</div>
+													</article>
+												</a>
 											</Link>
 										})
 									}

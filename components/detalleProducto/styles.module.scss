@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .DetalleProducto {
     background: #f4f4f4;
     padding-top: 20px;
@@ -150,15 +152,11 @@
             > :global(button) {
                 margin: 0;
                 width: 110px;
+                @extend %floatButton;
                 @media screen and (max-width: 420px) {
-                    bottom: 80px;
                     box-sizing: content-box;
-                    box-shadow: 0px 2px 4px 2px #cdcdcd;
-                    height: 42px;
-                    position: fixed;
-                    transform: none;
+                    margin: 0 auto;
                     width: 90%;
-                    z-index: 2;
                 }
                 button span {
                     @media screen and (max-width: 420px) {
