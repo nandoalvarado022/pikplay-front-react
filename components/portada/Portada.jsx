@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import date from 'date-and-time'
 import PortadaInterface from './PortadaInterface'
 import { useState } from 'react';
@@ -12,11 +12,14 @@ import Link from 'next/link';
 date.locale('es')
 
 function Portada({ category, feed: data = [] }) {
-  const user = useSelector(state => state.user)
   const [feed, setFeed] = useState(data)
   const [open, setOpen] = useState(false)
   const popularyItem = feed ? feed[0] : null
   const starItem = feed && feed.find((item) => item.id == 68)
+
+  useEffect(() => {
+    setFeed(data)
+  }, [data])
 
   const [handleFavorite] = useMutation(CREATE_FAVORITE, {
     onCompleted: () => {
