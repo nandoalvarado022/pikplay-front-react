@@ -1,4 +1,3 @@
-import Checkbox from '@material-ui/core/Checkbox'
 import styles from './category.module.scss'
 import { FormControlLabel, FormLabel, Radio, RadioGroup } from '@material-ui/core'
 import { blue, green, red } from '@material-ui/core/colors'

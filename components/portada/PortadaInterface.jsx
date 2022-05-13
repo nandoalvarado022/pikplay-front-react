@@ -1,8 +1,8 @@
+import dynamic from 'next/dynamic'
 const { IS_MOBILE } = "../../lib/variables"
 import Articles from '../articles/Articles'
 import Card from '../card/Card'
 import Footer from '../footer/Footer'
-import Groot from '../categoryBanner/CategoryBanner'
 import HolaJuanito from "../holaJuanito/HolaJuanito"
 import React from 'react'
 import styles from "./portada.module.scss"
@@ -13,7 +13,11 @@ import { useEffect, useState } from 'react'
 import { useLazyQuery } from '@apollo/client'
 import ModalLead from '../modalLoead/ModalLead'
 import { GET_FOLLOWED_PUBLICATIONS } from '../../lib/utils'
-import { DragHandle } from '@material-ui/icons'
+
+const CategoryBanner = dynamic(
+  () => import('../categoryBanner/CategoryBanner.jsx'),
+  { ssr: false }
+)
 
 const SpecialBanner = ({ category, popularyItem, starItem }) => {
   return <span />
@@ -78,7 +82,7 @@ const PortadaInterface = ({ category, handleFavorite, feed, popularyItem, setFee
       <div className={styles.main}>
         <div className="listadoRodadas">
           {feed && feed.map((item, ind) => {
-            let categoryId
+            let categoryId = 0
             switch (ind) {
               case 0:
                 categoryId = 2
@@ -103,8 +107,10 @@ const PortadaInterface = ({ category, handleFavorite, feed, popularyItem, setFee
                 break
             }
 
+            const showCategoryBanner = !IS_MOBILE && categoryId && !category
+
             return <React.Fragment>
-              {(!IS_MOBILE && categoryId && !category) && <Groot categoryId={categoryId} />}
+              {showCategoryBanner && <CategoryBanner categoryId={categoryId} />}
               <Card {...{ handleFavorite, ...item }} />
             </React.Fragment>
           })}

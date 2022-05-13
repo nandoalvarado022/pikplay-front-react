@@ -2,7 +2,7 @@ import Link from 'next/link'
 import styles from './styles.module.scss'
 
 const CategoryBanner = ({ categoryId }) => {
-    let image, link, text
+    let image = '', link = '', text = ''
     switch (categoryId) {
         case 1:
             image = '/images/backgrounds/accesories.png'
