@@ -70,11 +70,11 @@ const HolaJuanito = () => {
                         </div>
                     </div>
                     <div className={`${styles.text2} font-a`}>
-                        <p className={styles['contigo-somos']}>Contigo ya somos&nbsp;
+                        {/* <p className={styles['contigo-somos']}>Contigo ya somos&nbsp;
                             <span>
                                 <b><CountUp end={165} /></b>
                             </span> gamers en Pikplay.
-                        </p>
+                        </p> */}
                         💙 &nbsp;Recuerda que puedes confiar en nuestros aliados certificados. Entregamos garantía por las compras que realices a estos, así que tu compra será confiable, rápida y segura.
                     </div>
                     {

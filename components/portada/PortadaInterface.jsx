@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic'
 const { IS_MOBILE } = "../../lib/variables"
-import Articles from '../articles/Articles'
 import Card from '../card/Card'
 import Footer from '../footer/Footer'
 import HolaJuanito from "../holaJuanito/HolaJuanito"
@@ -77,7 +76,6 @@ const PortadaInterface = ({ category, handleFavorite, feed, popularyItem, setFee
     {!category && <HolaJuanito />}
     <SpecialBanner {...{ category, popularyItem, starItem }} />
     {showModalLead && <ModalLead />}
-    {/* <Articles /> */}
     <div className={styles.PortadaInterfaceComponent}>
       <div className={styles.main}>
         <div className="listadoRodadas">

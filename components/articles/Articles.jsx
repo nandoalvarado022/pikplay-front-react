@@ -9,7 +9,7 @@ import styles from './styles.module.scss'
 const Articles = () => {
     const { data } = useQuery(GET_ARTICLES, {
         variables: {
-            limit: 2
+            limit: 4
         }
     })
 
@@ -28,7 +28,7 @@ const Articles = () => {
                         <motion.article
                             className='Card'
                             key={item.id}
-                            whileHover={{ scale: 1.1 }}
+                            // whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.8 }}>
                             <h1>{item.title}</h1>
                             <summary>{item.summary}</summary>
