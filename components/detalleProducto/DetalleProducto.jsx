@@ -94,7 +94,7 @@ const DetalleProducto = ({
               </div>
             </div>
 
-            {!!seller?.certificate && <CoinsByBuy price={sale_price} />}
+            {(!!seller?.certificate && sale_price) && <CoinsByBuy price={sale_price} />}
 
             <div className={styles.description}>
               <p className={styles.title}>Descripción</p>

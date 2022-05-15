@@ -126,7 +126,7 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imag
                     return <>
                       {
                         !value && <label class={(imageLoading ? styles.disabled : '') + ' ' + styles.fileWrapper}>
-                          <input disabled={imageLoading} accept=".png,.jpg,.jpeg,.gif" type='file' id={item} onChange={() => onChangeImage(item)} />
+                          <input disabled={imageLoading} accept=".png,.jpg,.jpeg,.gif,webp" type='file' id={item} onChange={() => onChangeImage(item)} />
                           <FontAwesomeIcon icon={faImage} />
                           <p>Subir imágen</p>
                         </label>
