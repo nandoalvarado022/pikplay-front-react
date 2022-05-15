@@ -15,8 +15,8 @@ const ArticlePage = (props) => {
   return <Layout>
     <div id={styles.ArticlePage}>
       <h1 className='Card'>
-        <small>{title}</small>
         {summary}
+        <small>{title}</small>
       </h1>
       <div className="m-b-20 Card post__content" dangerouslySetInnerHTML={{ __html: content }}></div>
     </div>
