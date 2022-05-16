@@ -21,8 +21,24 @@
         justify-content: center;
         margin: 0px;
         padding: 0;
+        position: relative;
+        top: -5px;
+        vertical-align: bottom;
         a {
             color: #575656;
+            height: 30px;
+            position: relative;
+            text-align: center;
+            width: 50px;
+            img {
+                height: 30px;
+            }
+            div {
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+            }
         }
         svg {
             height: 30px;
@@ -37,12 +53,6 @@
             border: none;
             span {
             }
-        }
-        img {
-            height: 30px;
-        }
-        label {
-            font-size: 12px;
         }
     }
 }

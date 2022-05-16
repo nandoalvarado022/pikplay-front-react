@@ -12,7 +12,8 @@ const MenuMovil = () => {
         <motion.a className={styles.vender}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.8 }}>
-          <img style={{ height: '38px' }} src="https://icons.veryicon.com/png/o/miscellaneous/very-thin-linear-icon/camera-310.png" alt="" />
+          <img style={{ height: '38px' }} src="https://icons.veryicon.com/png/o/miscellaneous/very-thin-linear-icon/camera-310.png" alt="Publicar articulo" />
+          <div className="f-s-10">PUBLICAR</div>
         </motion.a>
       </Link>
     </ol>
@@ -22,6 +23,7 @@ const MenuMovil = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.8 }}>
           <img src="/images/icons/nintendo.svg" alt="Nintendo switch" />
+          <div className="f-s-10">NINTENDO</div>
         </motion.a>
       </Link>
     </ol>
@@ -34,6 +36,7 @@ const MenuMovil = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.8 }}>
           <img src="/images/icons/play.svg" alt="Playstation" />
+          <div className="f-s-10">XBOX</div>
         </motion.a>
       </Link>
     </ol>
@@ -42,6 +45,7 @@ const MenuMovil = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.8 }}>
         <img src="https://www.iconpacks.net/icons/1/free-whatsapp-icon-103-thumb.png" />
+        <div className="f-s-10">AYUDA</div>
       </motion.a>
     </ol>
   </div>
