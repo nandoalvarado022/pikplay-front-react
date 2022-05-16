@@ -6,10 +6,21 @@
         cursor: pointer;
         display: flex;
         font-size: 14px;
+        outline: none;
         width: 540px;
         @media screen and (max-width: 420px) {
             margin-left: 10px;
+            padding-bottom: 6px;
+            overflow-x: scroll;
             width: auto;
+            &::-webkit-scrollbar-track {
+                background: #F4F4F4; /* color of the tracking area */
+                border: none;
+            }
+            &::-webkit-scrollbar-thumb {
+                border-radius: 20px; /* roundness of the scroll thumb */
+                border: 3px solid #F4F4F4; /* creates padding around scroll thumb */
+            }
         }
         > * {
             align-items: center;
@@ -20,16 +31,16 @@
                 // font-weight: bold;
             }
             &:nth-of-type(1) {
-                background-color: #B4CEE8;
+                background-color: #73a0ed;
             }
             &:nth-of-type(2) {
-                background-color: #BCCEA3;
+                background-color: #f0b986;
             }
             &:nth-of-type(3) {
-                background-color: #AAA6C5;
+                background-color: #aaa6c5;
             }
             &:nth-of-type(4) {
-                background-color: #E7CDB4;
+                background-color: #bccea3;
             }
         }
     }
@@ -61,7 +72,6 @@
 
 .fields {
     @media screen and (max-width: 420px) {
-        padding-bottom: 130px;
     }
     > div:not(.actions) {
         margin-bottom: 10px;
@@ -123,6 +133,7 @@
     margin: 20px auto;
     width: 1200px;
     @media screen and (max-width: 420px) {
+        margin-bottom: 120px;
         width: auto;
     }
 }

@@ -12,6 +12,7 @@ import { faArrowLeft, faImage, faTrash } from "@fortawesome/free-solid-svg-icons
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
 import { toast } from 'react-toastify'
 import classNames from 'classnames'
+import { IS_MOBILE } from '../../lib/variables'
 
 const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData = {}, setPublicationFormData, textButton, setCurrentStep }) => {
   const category = publicationFormData?.category ? Number(publicationFormData.category) : 1
@@ -23,12 +24,12 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imag
   if (!!publicationFormData?.title || !isEdit) {
     return <section className={classNames('page', { [styles.content]: true })}>
       {/* <Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} /> */}
-      <Link href="/publicaciones">
+      {!IS_MOBILE && <Link href="/publicaciones">
         <a className='f-s-14'>
           {/* <FontAwesomeIcon className="svg-question m-r-5" icon={faArrowLeft} /> */}
           Ir al listado de publicaciones
         </a>
-      </Link>
+      </Link>}
       <h2 className='Card main m-b-20'>
         Crear publicación
         <FontAwesomeIcon class="svg-question" icon={faQuestionCircle} onClick={() => {
