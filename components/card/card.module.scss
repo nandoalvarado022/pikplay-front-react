@@ -57,16 +57,26 @@ h3.title_destacada {
             flex-direction: column;
         }
         .content_imagen {
-            margin: 0 10px;
             position: relative;
             text-align: center;
             @media screen and (max-width: 420px) {
                 margin-bottom: 10px;
                 width: auto;
             }
+            .bg_picture {
+                content: "";
+                height: 180px;
+                left: 0;
+                opacity: 0.2;
+                position: absolute;
+                top: -10px;
+                width: 100%;
+            }
             img {
                 border-radius: 5px;
                 max-height: 220px;
+                position: relative;
+                z-index: 1;
                 transition: 0.2s ease;
                 @media screen and (max-width: 420px) {
                     margin: initial;
@@ -86,7 +96,7 @@ h3.title_destacada {
             left: 0;
             position: absolute;
             right: 0;
-            z-index: 1;
+            z-index: 2;
             @media screen and (max-width: 420px) {
                 bottom: 10px;
                 margin-bottom: 10px;
@@ -128,7 +138,7 @@ h3.title_destacada {
             > * {
                 margin: 10px auto;
             }
-            .icons > *{
+            .icons > * {
                 transition: 0.5s ease;
                 &:hover {
                     transform: scale(1.4);

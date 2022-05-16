@@ -51,6 +51,7 @@ const Card = ({ accept_changes, apply_cashback, certificate, city, following, ha
 
           {image_link && <Link href={slug ? "/publicacion/[id]" : "javascript:void(0)"} as={slug ? `/publicacion/${slug}` : "javascript:void(0)"}>
             <a className={id_publication == 1 ? styles.destacada_Card : ""}>
+              <div style={{ backgroundImage: `url(${image_link})` }} className={styles.bg_picture}></div>
               <img alt={title} className="image-front" src={`${image_link}`} />
             </a>
           </Link>}

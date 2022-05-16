@@ -1,4 +1,3 @@
-const { IS_MOBILE } = VARS
 import Button from "../button/Button"
 import Categorias from "../categorias/Categorias"
 import Head from "next/head"
@@ -9,7 +8,7 @@ import Notification from "../notification";
 import React from "react"
 import Router from "next/router"
 import Subcategories from '../subcategories/Subcategories'
-import VARS from "../../lib/variables"
+import { IS_MOBILE } from "../../lib/variables"
 import styles from "./layout.module.scss"
 import toastr from "toastr"
 import { ToastContainer } from "react-toastify"
@@ -192,7 +191,7 @@ class Layout extends React.Component {
         <MyHeader />
         {false && <div className={styles.announcement}>Actualmente estamos en una versión piloto</div>}
         <main className={styles.principal}>
-          <ToastContainer autoClose={5000} hideProgressBar={true}  />
+          <ToastContainer autoClose={5000} hideProgressBar={true} />
           <Categorias scroll={false} />
           <Subcategories />
           {IS_MOBILE && <MenuMovil />}

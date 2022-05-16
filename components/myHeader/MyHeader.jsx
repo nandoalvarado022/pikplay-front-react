@@ -1,4 +1,3 @@
-const { IS_MOBILE } = VARS
 import Author from '../card/Author'
 import Button from '../button/Button'
 import ChangeCity from './changeCity/ChangeCity'
@@ -7,7 +6,7 @@ import Link from "next/link"
 import PreviewUser from '../previewUser/PreviewUser'
 import React, { useState, useEffect } from "react"
 import TextField from "@material-ui/core/TextField"
-import VARS from '../../lib/variables'
+import { IS_MOBILE } from '../../lib/variables'
 import recommended from '../../public/recommended'
 import styles from "./styles.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"

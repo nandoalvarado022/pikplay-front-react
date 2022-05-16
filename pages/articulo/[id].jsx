@@ -1,24 +1,22 @@
-import Router from "next/router"
-import date from "date-and-time"
-import toastr from "toastr"
 import React from "react"
 import Layout from "../../components/layout/Layout"
 import { GET_ARTICLES } from "../../lib/utils"
 import { connect } from "react-redux"
 import { ApolloClient, InMemoryCache } from "@apollo/client"
 import styles from './styles.module.scss'
+import { IS_MOBILE } from "../../lib/variables"
 
 const ArticlePage = (props) => {
   const { data } = props
-  const { content, summary, title } = data[0]
-
+  const { content, mobile_content, summary, title } = data[0]
+  const article = mobile_content
   return <Layout>
     <div id={styles.ArticlePage}>
       <h1 className='Card'>
         {summary}
         <small>{title}</small>
       </h1>
-      <div className="m-b-20 Card post__content" dangerouslySetInnerHTML={{ __html: content }}></div>
+      <div className="m-b-20 Card post__content" dangerouslySetInnerHTML={{ __html: mobile_content }}></div>
     </div>
   </Layout>
 }

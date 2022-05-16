@@ -61,8 +61,9 @@
         }
         .left {
             background: white;
-            margin: 20px 0 0 0;
+            margin: 0;
             padding-top: 0;
+            padding-bottom: 0;
             @media screen and (min-width: 1024px) {
                 width: 800px;
             }
@@ -288,6 +289,7 @@
         display: block;
     }
     .Card.productos-relacionados {
+        display: none;
         margin: 20px 20px 0 0;
         width: 100%;
         @media screen and (max-width: 420px) {

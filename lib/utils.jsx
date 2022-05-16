@@ -393,6 +393,7 @@ export const GET_ARTICLES = gql`
 query getArticles($id: Int, $limit: Int, $slug: String){
   getArticles(id: $id, limit: $limit, slug: $slug){
     content
+    mobile_content
     id
     image_card
     slug

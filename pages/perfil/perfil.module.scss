@@ -94,4 +94,7 @@ section.perfil {
         margin-top: 20px;
         row-gap: 10px;
     }
+    :global(.f-r){
+        display: flex;
+    }
 }
