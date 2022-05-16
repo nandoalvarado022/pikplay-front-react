@@ -157,11 +157,10 @@
                 @media screen and (max-width: 420px) {
                     box-sizing: content-box;
                     margin: 0 auto;
-                    width: 90%;
+                    width: 200px;
                 }
-                button span {
+                button {
                     @media screen and (max-width: 420px) {
-                        text-transform: uppercase;
                     }
                 }
             }
