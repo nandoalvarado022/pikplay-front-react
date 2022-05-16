@@ -11,6 +11,7 @@ import { TextField } from "@material-ui/core"
 import { faArrowLeft, faImage, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
 import { toast } from 'react-toastify'
+import classNames from 'classnames'
 
 const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imageLoading, isEdit, nextStep, onChangeImage, previusStep, publicationFormData = {}, setPublicationFormData, textButton, setCurrentStep }) => {
   const category = publicationFormData?.category ? Number(publicationFormData.category) : 1
@@ -20,15 +21,15 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imag
   const { accept_changes, description, is_new, quantity, sale_price, title, warranty } = publicationFormData
 
   if (!!publicationFormData?.title || !isEdit) {
-    return <section className={styles.content}>
+    return <section className={classNames('page', { [styles.content]: true })}>
       {/* <Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} /> */}
       <Link href="/publicaciones">
-        <a>
-          <FontAwesomeIcon className="svg-question m-r-5" icon={faArrowLeft} />
-          Listado de publicaciones
+        <a className='f-s-14'>
+          {/* <FontAwesomeIcon className="svg-question m-r-5" icon={faArrowLeft} /> */}
+          Ir al listado de publicaciones
         </a>
       </Link>
-      <h2>
+      <h2 className='Card main m-b-20'>
         Crear publicación
         <FontAwesomeIcon class="svg-question" icon={faQuestionCircle} onClick={() => {
           const message = <div>
@@ -39,25 +40,21 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imag
         }} />
       </h2>
 
-      <Alert className={styles.alert} severity="success" style={{ marginBottom: "10px" }}>
-        Crea tu anuncio 100% gratis y sin comisiónes
-      </Alert>
-
       {errors && <Alert className="m-b-20" severity="error">{errors}</Alert>}
 
       <div className={styles.steps_and_actions}>
         <div className={styles.steps}>
-          <div onClick={() => setCurrentStep(1)} className={currentStep == 1 && styles.active}>
-            1. Informacion general
+          <div onClick={() => setCurrentStep(1)} className={classNames('Card', { [styles.active]: currentStep == 1 })}>
+            General
           </div>
-          <div onClick={() => setCurrentStep(2)} className={currentStep == 2 && styles.active}>
-            2. Precio e inventario
+          <div onClick={() => setCurrentStep(2)} className={classNames('Card', { [styles.active]: currentStep == 2 })}>
+            Precio e inventario
           </div>
-          <div onClick={() => setCurrentStep(3)} className={currentStep == 3 && styles.active}>
-            3. Fotos del producto
+          <div onClick={() => setCurrentStep(3)} className={classNames('Card', { [styles.active]: currentStep == 3 })}>
+            Fotos
           </div>
-          <div onClick={() => setCurrentStep(4)} className={currentStep == 4 && styles.active}>
-            4. Así se verá tu publicación
+          <div onClick={() => setCurrentStep(4)} className={classNames('Card', { [styles.active]: currentStep == 4 })}>
+            Preview
           </div>
         </div>
 
@@ -152,6 +149,9 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imag
             <Card {...publicationFormData} slug={null} />
           </div>
         }
+        <Alert className={styles.alert} severity="success" style={{ marginBottom: "10px" }}>
+          Crea tu anuncio 100% gratis y sin comisiónes
+        </Alert>
       </div>
     </section>
   }

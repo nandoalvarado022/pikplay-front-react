@@ -5,16 +5,31 @@
     .steps {
         cursor: pointer;
         display: flex;
-        font-size: 12px;
+        font-size: 14px;
         width: 540px;
         @media screen and (max-width: 420px) {
             margin-left: 10px;
             width: auto;
         }
         > * {
+            align-items: center;
+            color: white;
+            display: flex;
             margin: 0 10px;
             &.active {
-                font-weight: bold;
+                // font-weight: bold;
+            }
+            &:nth-of-type(1) {
+                background-color: #B4CEE8;
+            }
+            &:nth-of-type(2) {
+                background-color: #BCCEA3;
+            }
+            &:nth-of-type(3) {
+                background-color: #AAA6C5;
+            }
+            &:nth-of-type(4) {
+                background-color: #E7CDB4;
             }
         }
     }
