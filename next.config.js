@@ -5,4 +5,7 @@ module.exports = {
 	experimental: {
 		concurrentFeatures: true,
 	},
+	images: {
+		domains: ['firebasestorage.googleapis.com'],
+	  },
 }

@@ -1,5 +1,7 @@
 import Link from 'next/link'
+import { useEffect } from 'react'
 import styles from './styles.module.scss'
+import Image from 'next/image'
 
 const CategoryBanner = ({ categoryId }) => {
     let image = '', link = '', text = ''
@@ -51,9 +53,20 @@ const CategoryBanner = ({ categoryId }) => {
             </p>
             break;
     }
+
+    useEffect(() => {
+        console.log('se ejecuto')
+    }, [])
+
     return <div className={styles.CategoryBanner}>
         <Link href={link}>
-            <a style={{ backgroundImage: `url(${image}` }}>
+            <a>
+                <Image
+                    layout="fill"
+                    className="object-center object-cover pointer-events-none"
+                    src={image}
+                    alt="Categoría"
+                />
                 {text}
             </a>
         </Link>

@@ -107,19 +107,6 @@ class Layout extends React.Component {
     // Pending
     // this.context.customDispatch({ type: "SET_MESSAGE", payload: { message } })
 
-    // Notificaciones push
-    const script = document.createElement("script");
-    script.src = "../../indigital/sdk.min.js";
-    script.async = true;
-    script.onload = () => {
-      indigitall.init({
-        appKey: "206e8272-19eb-4ef5-a935-22ab1a9ee5df",
-        workerPath: "../../indigital/worker.min.js",
-        requestLocation: true,
-      });
-    };
-    document.body.appendChild(script);
-
     if (localStorage.getItem("user")) {
       this.setState({
         logueado: true,

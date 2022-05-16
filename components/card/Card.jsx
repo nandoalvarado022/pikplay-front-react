@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from "next/link"
 import Grow from "@material-ui/core/Grow"
 import { capitalize, format_number, getCiudades } from "../../lib/utils"
@@ -10,8 +10,9 @@ import { faHeart, faHeartBroken, faShare } from '@fortawesome/free-solid-svg-ico
 import { Tooltip } from "@material-ui/core"
 import classNames from 'classnames'
 import { useSelector } from 'react-redux'
+import Image from 'next/image'
 
-const Card = ({ accept_changes, apply_cashback, certificate, city, following, handleFavorite, handleShare, icon_favorite = true, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_link, slug, tipo_coleccion, destacada, user_name, user_picture, user_transactions, type, likes, price, sale_price, logDetalle, quantity, user } = {}) => {
+const Card = ({ accept_changes, apply_cashback, certificate, city, following, handleFavorite, handleShare, icon_favorite = true, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_1, slug, tipo_coleccion, destacada, user_name, user_picture, user_transactions, type, likes, price, sale_price, logDetalle, quantity, user } = {}) => {
   const usuario = typeof localStorage != "undefined" ? localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).email : null : null
   let like = null
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
@@ -49,10 +50,10 @@ const Card = ({ accept_changes, apply_cashback, certificate, city, following, ha
             }
           </div>
 
-          {image_link && <Link href={slug ? "/publicacion/[id]" : "javascript:void(0)"} as={slug ? `/publicacion/${slug}` : "javascript:void(0)"}>
-            <a className={id_publication == 1 ? styles.destacada_Card : ""}>
-              <div style={{ backgroundImage: `url(${image_link})` }} className={styles.bg_picture}></div>
-              <img alt={title} className="image-front" src={`${image_link}`} />
+          {/* Image */}
+          {image_1 && <Link href={slug ? "/publicacion/[id]" : "javascript:void(0)"} as={slug ? `/publicacion/${slug}` : "javascript:void(0)"}>
+            <a className={styles.image_wrapper}>
+              <Image alt={title} objectFit="cover" layout="fill" src={image_1} />
             </a>
           </Link>}
         </div>

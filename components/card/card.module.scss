@@ -11,7 +11,6 @@ h3.title_destacada {
     cursor: pointer;
     // max-height: 420px;
     margin: 0px 20px 40px;
-    padding: 10px 0;
     position: relative;
     z-index: 1;
     width: 320px;
@@ -68,7 +67,7 @@ h3.title_destacada {
                 height: 180px;
                 left: 0;
                 opacity: 0.2;
-                position: absolute;
+                position: absolute !important;
                 top: -10px;
                 width: 100%;
             }
@@ -84,11 +83,11 @@ h3.title_destacada {
                 &.image-back {
                     display: none;
                 }
-                &:hover {
-                    @media screen and (min-width: 1024px) {
-                        transform: scale(1.2) translate(0px, -3px);
-                    }
-                }
+                // &:hover {
+                //     @media screen and (min-width: 1024px) {
+                //         transform: scale(.9) translate(0px, -3px);
+                //     }
+                // }
             }
         }
         .tags {
@@ -240,6 +239,12 @@ h3.title_destacada {
                 margin-left: -20px;
             }
         }
+    }
+    .image_wrapper {
+        display: block;
+        position: relative;
+        height: 320px;
+        width: 320px;
     }
     @media screen and (min-width: 1024px) {
         &.destacada_Card {
