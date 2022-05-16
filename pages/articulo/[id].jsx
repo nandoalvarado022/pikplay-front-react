@@ -9,14 +9,14 @@ import { IS_MOBILE } from "../../lib/variables"
 const ArticlePage = (props) => {
   const { data } = props
   const { content, mobile_content, summary, title } = data[0]
-  const article = mobile_content
+  const article = IS_MOBILE ? mobile_content : content
   return <Layout>
     <div id={styles.ArticlePage}>
       <h1 className='Card'>
         {summary}
         <small>{title}</small>
       </h1>
-      <div className="m-b-20 Card post__content" dangerouslySetInnerHTML={{ __html: mobile_content }}></div>
+      <div className="m-b-20 Card post__content" dangerouslySetInnerHTML={{ __html: article }}></div>
     </div>
   </Layout>
 }
