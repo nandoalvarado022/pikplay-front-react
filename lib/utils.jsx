@@ -409,7 +409,7 @@ export function getCategories(id) {
     { id: 3, name: "Playstation", image: "/images/icons/play.svg" },
     { id: 4, name: "Xbox", image: "/images/icons/xbox.svg" },
     { id: 5, name: "Otros", image: "/images/icons/otros1.svg" },
-    { id: 6, name: "PC Gamer", image: null }]
+    { id: 6, name: "PC Gamer", image: "/images/icons/desktop.svg" }]
   if (id) return categories.find(item => item.id == id)
   return categories
 }

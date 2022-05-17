@@ -12,7 +12,7 @@
             top: 60px;
         }
     }
-    
+
     > ul {
         align-items: center;
         display: flex;
@@ -32,6 +32,12 @@
             &:hover {
                 a {
                 }
+            }
+            &:nth-of-type(3) {
+                width: 160px;
+            }
+            &:nth-of-type(7) {
+                width: 100px;
             }
             > a {
                 align-items: center;

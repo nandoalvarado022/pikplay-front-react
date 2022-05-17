@@ -61,12 +61,14 @@ const Card = ({ accept_changes, apply_cashback, certificate, city, following, ha
           <div className={styles.descripcion}>
             <div className={styles.icons}>
               <Tooltip title='Seguir publicación'>
-                <FontAwesomeIcon icon={icon_favorite ? faHeart : faHeartBroken} className={classNames(styles.faHeart, { [styles.active]: following || !icon_favorite })} onClick={() => {
-                  loggedUser?.id != 0 ? handleFavorite({ variables: { publication: id_publication, user: loggedUser?.id } }) : document.querySelector('#btnStart').click()
-                }}
-                />
+                <a>
+                  <FontAwesomeIcon icon={icon_favorite ? faHeart : faHeartBroken} className={classNames(styles.faHeart, { [styles.active]: following || !icon_favorite })} onClick={() => {
+                    loggedUser?.id != 0 ? handleFavorite({ variables: { publication: id_publication, user: loggedUser?.id } }) : document.querySelector('#btnStart').click()
+                  }}
+                  />
+                </a>
               </Tooltip>
-              <Tooltip title='Compartir'>
+              <Tooltip title='Compartir en Facebook'>
                 <a href={`https://www.facebook.com/sharer/sharer.php?u=https://pikplay.co/publicacion/${slug}`} target='_BLANK'>
                   <FontAwesomeIcon icon={faShare} className={styles.faShare} />
                 </a>
