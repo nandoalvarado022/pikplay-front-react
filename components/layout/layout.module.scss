@@ -97,3 +97,14 @@
         display: none;
     }
 }
+
+.wrapperBanner {
+    background: #FAFAFA;
+    .mainBanner {
+        display: block;
+        margin: 0 auto;
+        @media screen and (max-width: 420px) {
+            display: none;
+        }
+    }
+}

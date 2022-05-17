@@ -17,7 +17,9 @@
         justify-content: center;
         margin: 0;
         padding: 0;
+        position: relative;
         text-align: center;
+        z-index: 1;
         @media screen and (max-width: 420px) {
             width: max-content;
         }

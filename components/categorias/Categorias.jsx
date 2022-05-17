@@ -14,9 +14,6 @@ const Categorias = (props) => {
 
   return <div className={styles.Categorias}>
     <ul>
-      <li className={styles["crear-publicacion"]} >
-        {<VenderButton />}
-      </li>
       {
         getCategories().map((category) => {
           const image = category.image ? category.image : "/images/icons/" + category.id + ".png"
@@ -30,6 +27,9 @@ const Categorias = (props) => {
           </li>
         })
       }
+      <li className={styles["crear-publicacion"]} >
+        {<VenderButton />}
+      </li>
     </ul>
   </div >
 }

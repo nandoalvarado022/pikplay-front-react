@@ -181,6 +181,9 @@ class Layout extends React.Component {
           <ToastContainer autoClose={5000} hideProgressBar={true} />
           <Categorias scroll={false} />
           <Subcategories />
+          <div className={styles.wrapperBanner}>
+            <img className={styles.mainBanner} src="/images/banners/regalos-y-descuentos-mensuales.png" />
+          </div>
           {IS_MOBILE && <MenuMovil />}
           <Notification isOpen={this.context.showNotification} />
           {this.props.children}
