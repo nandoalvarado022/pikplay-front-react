@@ -14,6 +14,7 @@ import toastr from "toastr"
 import { ToastContainer } from "react-toastify"
 import { initGA, logPageView } from "../../public/analytics"
 import { register } from "next-offline/runtime"
+import Link from "next/link"
 
 toastr.options.timeOut = 10000
 
@@ -182,7 +183,11 @@ class Layout extends React.Component {
           <Categorias scroll={false} />
           <Subcategories />
           <div className={styles.wrapperBanner}>
-            <img className={styles.mainBanner} src="/images/banners/regalos-y-descuentos-mensuales.png" />
+            <Link href="/articulo/pikcoins-que-son-y-como-redimir-cupones">
+              <a>
+                <img src="/images/banners/banner-regalos-descuentos-pikcoins.svg" />
+              </a>
+            </Link>
           </div>
           {IS_MOBILE && <MenuMovil />}
           <Notification isOpen={this.context.showNotification} />
