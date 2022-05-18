@@ -14,13 +14,16 @@
             overflow-x: scroll;
             width: auto;
             &::-webkit-scrollbar-track {
-                background: #F4F4F4; /* color of the tracking area */
+                background: #f4f4f4; /* color of the tracking area */
                 border: none;
             }
             &::-webkit-scrollbar-thumb {
                 border-radius: 20px; /* roundness of the scroll thumb */
-                border: 3px solid #F4F4F4; /* creates padding around scroll thumb */
+                border: 3px solid #f4f4f4; /* creates padding around scroll thumb */
             }
+        }
+        :global(.Card) {
+            border-radius: 5px;
         }
         > * {
             align-items: center;

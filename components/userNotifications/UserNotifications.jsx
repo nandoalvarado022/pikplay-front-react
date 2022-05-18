@@ -67,7 +67,7 @@ const UserNotifications = () => {
   })
 
   const handleNotification = async ({ coins, disabled, id, link, type }) => {
-    if (coins && !disabled && type == 'COUPON') {
+    if (coins && !disabled) {
       reclamarCoins(coins, id)
     } else {
       handleDeleteNotification(id)
