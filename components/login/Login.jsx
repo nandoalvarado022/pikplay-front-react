@@ -4,7 +4,6 @@ import { useState } from "react"
 import LoginInterface from "./LoginInterface"
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
-import { toast } from 'react-toastify'
 
 function Login(props) {
 	const router = useRouter()
@@ -39,10 +38,7 @@ function Login(props) {
 				const token = JSON.parse(validateLogin).token
 				dispatch({ type: "CHANGE_PROPERTY", payload: { property: "user", value: JSON.parse(validateLogin) } })
 				cookieCutter.set('token', token)
-				const name = JSON.parse(validateLogin)?.name
-				toast(<div>Bienvenido {name} 😎<br /> 
-				<small>Cargando tus preferencias 👾 ...</small></div>)
-				// router.reload() // Sin saber porque es necessario así que se desactiva
+				router.push('/?action=login') // Es necesario porque cuando se carga la app setea el token en el graphqlClient.js
 			} else {
 				document.getElementById("verificationCode").value = ""
 				alert("Código no valido")

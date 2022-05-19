@@ -19,6 +19,7 @@ const PreviewUser = () => {
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' })
+    router.push('/?action=logout')
   }
 
   const handleClickImage = () => {

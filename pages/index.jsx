@@ -3,7 +3,7 @@ import { getHome } from "../lib/utils"
 import Portada from "../components/portada/Portada"
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
-import { toast } from "react-toastify"
+import { toast } from 'react-toastify'
 
 const Index = (props) => {
   const { action, feed } = props
@@ -18,6 +18,16 @@ const Index = (props) => {
       case 'not_authorized':
         dispatch({ type: 'LOGOUT' })
         toast('Debes ingresar con tu cuenta de Pikplay', { type: 'warning' })
+        break;
+
+      case 'login':
+        const name = JSON.parse(localStorage.getItem('persist:pikplay'))?.user?.name
+        toast(<div>Bienvenido {name} 😎<br />
+          <small>Cargando tus preferencias 👾 ...</small></div>)
+        break;
+
+      case 'logout':
+        toast('Regresa pronto 👋')
         break;
 
       default:
