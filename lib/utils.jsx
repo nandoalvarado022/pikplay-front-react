@@ -548,3 +548,7 @@ export const interestsList = [
   { name: 'Vender', id: 6 },
   { name: 'Truques', id: 7 }
 ]
+
+export const versions = [
+  '1.1.1'
+]

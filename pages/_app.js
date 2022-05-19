@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core"
 import { persistStore } from 'redux-persist'
 import { useStore } from '../lib/store'
-
+import { versions } from '../lib/utils'
 import '../styles/globalStyles.scss'
 
 const MyApp = (props) => {
@@ -34,6 +34,16 @@ const MyApp = (props) => {
       jssStyles.parentElement.removeChild(jssStyles);
     }
     TagManager.initialize({ gtmId: 'GTM-5WB6P7C' })
+    // Cleaning cache if version is not the same
+    const lastClientVersion = localStorage.getItem('current_version')
+    const lastVersion = versions[0]
+    if (lastClientVersion != lastVersion) {
+      localStorage.clear() // cleaning localStorage
+      // cleaning cache
+      document.cookie.replace(/(?<=^|;).+?(?=\=|;|$)/g, name => location.hostname.split('.').reverse().reduce(domain => (domain=domain.replace(/^\.?[^.]+/, ''),document.cookie=`${name}=;max-age=0;path=/;domain=${domain}`,domain), location.hostname))
+      localStorage.setItem('current_version', lastVersion)
+      window.location.reload(true)
+    }
   }, [])
 
   useEffect(() => {
