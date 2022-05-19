@@ -64,6 +64,9 @@
         top: 0;
         left: 0;
         width: 720px;
+        @media screen and (max-width: 420px) {
+            left: -190px;
+        }
     }
     video::-webkit-media-controls-panel {
         display: none !important;
