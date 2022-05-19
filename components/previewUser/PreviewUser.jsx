@@ -33,6 +33,7 @@ const PreviewUser = () => {
         <span className={styles.notyQuantity}>
           {_notifications.length}
         </span>
+        <div className={styles.bg_white}></div>
         <div className={styles.bg_black}>
           {!IS_MOBILE && <UserNotifications />}
           <ol>

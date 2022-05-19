@@ -59,10 +59,11 @@
             }
         }
     }
-    video {
+    img {
+        left: 0;
+        max-width: initial;
         position: absolute;
         top: 0;
-        left: 0;
         width: 720px;
         @media screen and (max-width: 420px) {
             left: -190px;

@@ -15,6 +15,8 @@ import { ToastContainer } from "react-toastify"
 import { initGA, logPageView } from "../../public/analytics"
 import { register } from "next-offline/runtime"
 import Link from "next/link"
+import Loading from "../loading/Loading"
+import classNames from "classnames"
 
 toastr.options.timeOut = 10000
 
@@ -43,9 +45,10 @@ class Layout extends React.Component {
   state = {
     growMenu: false,
     imagen_club_usuario: false,
+    isReady: false,
     step: 0,
     swAdd: false,
-    tenemosCookies: true
+    tenemosCookies: true,
   }
 
   tenemosCookies = () => {
@@ -137,8 +140,15 @@ class Layout extends React.Component {
     }
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ isReady: true })
+    }, 1000)
+  }
+
   render() {
     const { descripcion, image, title, url } = this.props
+    const { isReady } = this.state
 
     return <React.Fragment>
       <Head>
@@ -174,11 +184,11 @@ class Layout extends React.Component {
           gtag('event', 'conversion', { 'send_to': 'AW-941382150/e71oCMvon-0BEIa08cAD' });
         }}()
       </Head>
-
-      <body className="App font-a">
-        <MyHeader />
-        {false && <div className={styles.announcement}>Actualmente estamos en una versión piloto</div>}
-        <main className={styles.principal}>
+      <body className={classNames('App font-a', { [styles.AppComponent]: true, [styles.ready]: isReady })} >
+        <Loading isReady={isReady} />
+        <main style={{ opacity: 0 }} className={styles.main}>
+          <MyHeader />
+          {false && <div className={styles.announcement}>Actualmente estamos en una versión piloto</div>}
           <ToastContainer autoClose={5000} hideProgressBar={true} />
           <Categorias scroll={false} />
           <Subcategories />

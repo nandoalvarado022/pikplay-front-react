@@ -1,7 +1,7 @@
 import Button from "../button/Button"
 import styles from "./styles.module.scss"
-import { Chip, Dialog, DialogContent, TextField } from "@material-ui/core"
-import { gql, useMutation, useQuery } from '@apollo/client'
+import { Dialog, DialogContent, TextField } from "@material-ui/core"
+import { gql, useMutation } from '@apollo/client'
 import { interestsList } from './../../lib/utils'
 import { useState } from "react"
 import { toast } from "react-toastify"
@@ -75,9 +75,7 @@ const ModalLead = () => {
                 <h2>
                     ¿🤩 Nos permites <span>conocerte?</span>
                 </h2>
-                <video autoplay="autoplay" controls loop={true}>
-                    <source autoplay src="/videos/modal-formulario-lead.mp4" />
-                </video>
+                <img loading="lazy" src="/videos/modal-formulario-lead.gif" />
                 <div className={styles.form}>
                     <div>
                         <TextField {...name} fullWidth={true} label="👋 ¿Como te llamas?" margin="normal" />

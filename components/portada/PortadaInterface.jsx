@@ -10,7 +10,6 @@ import { faClock } from "@fortawesome/free-regular-svg-icons"
 import { gql } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import { useLazyQuery } from '@apollo/client'
-import ModalLead from '../modalLoead/ModalLead'
 import { GET_FOLLOWED_PUBLICATIONS } from '../../lib/utils'
 
 const CategoryBanner = dynamic(
@@ -35,20 +34,30 @@ const SpecialBanner = ({ category, popularyItem, starItem }) => {
   }
 }
 
+let ModalLead = () => <div />
+
 const PortadaInterface = ({ category, handleFavorite, feed, popularyItem, setFeed, starItem }) => {
   const [showVideo, setShowVideo] = useState(false)
   const isOpen = typeof sessionStorage != "undefined" && JSON.parse(sessionStorage.getItem("notifications"))?.home
   const [showNotification, setShowNotification] = useState(!!!isOpen)
-  const showModalLead = typeof localStorage != 'undefined' ? !localStorage.getItem('modal_lead') : true
+  const [showModalLead, setShowModalLead] = useState(false)
 
   useEffect(() => {
     if (localStorage.getItem("user") == null) setShowVideo(true)
-    setTimeout(() => {
-      document.querySelectorAll("video").forEach(item => {
-        item.play()
-      })
-    }, 2000)
     getFollowedPublications()
+
+    // show modal lead
+    if (!localStorage.getItem('modal_lead')) {
+      setTimeout(() => {
+        setShowModalLead(true)
+      }, 5000)
+    }
+
+    ModalLead = dynamic(
+      () => import('../modalLoead/ModalLead'),
+      { ssr: false }
+    )
+
   }, [])
 
   const [getFollowedPublications, { data }] = useLazyQuery(GET_FOLLOWED_PUBLICATIONS, {

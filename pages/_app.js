@@ -37,12 +37,16 @@ const MyApp = (props) => {
     // Cleaning cache if version is not the same
     const lastClientVersion = localStorage.getItem('current_version')
     const lastVersion = versions[0]
-    if (lastClientVersion != lastVersion) {
-      localStorage.clear() // cleaning localStorage
-      // cleaning cache
-      document.cookie.replace(/(?<=^|;).+?(?=\=|;|$)/g, name => location.hostname.split('.').reverse().reduce(domain => (domain=domain.replace(/^\.?[^.]+/, ''),document.cookie=`${name}=;max-age=0;path=/;domain=${domain}`,domain), location.hostname))
+    if (lastClientVersion) {
+      if (lastClientVersion != lastVersion) {
+        localStorage.clear() // cleaning localStorage
+        // cleaning cache
+        document.cookie.replace(/(?<=^|;).+?(?=\=|;|$)/g, name => location.hostname.split('.').reverse().reduce(domain => (domain = domain.replace(/^\.?[^.]+/, ''), document.cookie = `${name}=;max-age=0;path=/;domain=${domain}`, domain), location.hostname))
+        localStorage.setItem('current_version', lastVersion)
+        window.location.reload(true)
+      }
+    } else{
       localStorage.setItem('current_version', lastVersion)
-      window.location.reload(true)
     }
   }, [])
 

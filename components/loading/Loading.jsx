@@ -1,16 +1,23 @@
+import classNames from 'classnames'
+import { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 
-const Loading = () => {
-    return <div className={styles.LoadingComponenty}>
-        <center>
-            <img className={styles.p1} src="/images/logos/partido/1.jpeg" alt="" />
-            <img className={styles.p2} src="/images/logos/partido/2.jpeg" alt="" />
-            <img className={styles.p3} src="/images/logos/partido/3.jpeg" alt="" />
-            <img className={styles.p4} src="/images/logos/partido/4.jpeg" alt="" />
-            <img className={styles.p5} src="/images/logos/partido/5.jpeg" alt="" />
-            <img className={styles.p6} src="/images/logos/partido/6.jpeg" alt="" />
-            <img className={styles.p7} src="/images/logos/partido/7.jpeg" alt="" />
-        </center>
+const Loading = (props) => {
+    const { isReady } = props
+    const [out, setOut] = useState(false)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setOut(true)
+        }, 2000)
+    }, [isReady])
+
+    return <div className={classNames('', { [styles.LoadingComponenty]: true, [styles.out]: out })}>
+        <p>
+            <span>Cargando tu </span>
+            <span>contenido...</span>
+        </p>
+        <img loading="lazy" src="/images/gifs/loading.gif" alt="cargando contenido" />
     </div>
 }
 
