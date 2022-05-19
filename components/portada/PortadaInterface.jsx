@@ -39,7 +39,7 @@ const PortadaInterface = ({ category, handleFavorite, feed, popularyItem, setFee
   const [showVideo, setShowVideo] = useState(false)
   const isOpen = typeof sessionStorage != "undefined" && JSON.parse(sessionStorage.getItem("notifications"))?.home
   const [showNotification, setShowNotification] = useState(!!!isOpen)
-  const showModalLead = typeof localStorage != 'undefined' ? !localStorage.getItem('modalLead') : true
+  const showModalLead = typeof localStorage != 'undefined' ? !localStorage.getItem('modal_l ead') : true
 
   useEffect(() => {
     if (localStorage.getItem("user") == null) setShowVideo(true)

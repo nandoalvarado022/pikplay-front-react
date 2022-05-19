@@ -1,4 +1,12 @@
+.modal_lead {
+    [role="dialog"] {
+        height: 400px;
+        overflow: hidden;
+        width: 570px;
+    }
+}
 .flex {
+    overflow: hidden;
     :global(.Card) {
         width: 400px;
         @media screen and (max-width: 420px) {
@@ -6,10 +14,26 @@
             width: auto;
         }
     }
+    .form {
+        background: #ffffffae;
+        border-radius: 5px;
+        margin-top: 50px;
+        padding: 0 20px 20px;
+        position: relative;
+        width: 240px;
+        z-index: 1;
+    }
     h2 {
-        font-size: 22px;
-        font-weight: normal;
-        margin-bottom: 5px;
+        color: white;
+        font-size: 18px;
+        position: absolute;
+        top: 0px;
+        z-index: 1;
+        span{
+            font-size: 28px;
+            position: relative;
+            top: 10px;
+        }
     }
     small {
         display: block;
@@ -36,9 +60,22 @@
         }
     }
     video {
-        margin-left: 20px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 720px;
+    }
+    video::-webkit-media-controls-panel {
+        display: none !important;
+        opacity: 1 !important;
     }
 }
+
+.actions {
+    margin: 10px 0 0 32px;
+    position: relative;
+}
+
 .interets {
     .content {
         column-gap: 10px;

@@ -41,7 +41,7 @@ const ModalLead = () => {
     const phone = useField({ type: "text" })
     const handleClose = () => {
         setOpen(false)
-        localStorage.setItem('modalLead', true)
+        localStorage.setItem('modal_lead', true)
     }
     const [open, setOpen] = useState(true)
     const handleInterests = (id) => {
@@ -61,46 +61,43 @@ const ModalLead = () => {
                 phone: phone.value ? phone.value : '',
             }
         })
-        localStorage.setItem('modalLead', true)
+        localStorage.setItem('modal_lead', true)
     }
 
     return <Dialog
+        className={styles.modal_lead}
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description">
         <DialogContent>
-            <div className={`${styles.flex} flex`}>
-                <div>
-                    <h2>
-                        Bienvenid@,
-                    </h2>
-                    <small>
-                        queremos conocerte mejor para darte una mejor experiencia
-                    </small>
+            <div className={`${styles.flex}`}>
+                <h2>
+                    ¿🤩 Nos permites <span>conocerte?</span>
+                </h2>
+                <video autoplay="autoplay" controls loop={true}>
+                    <source autoplay src="/videos/modal-formulario-lead.mp4" />
+                </video>
+                <div className={styles.form}>
                     <div>
-                        <TextField {...name} fullWidth={true} label="Tú nombre o tú marca" margin="normal" />
-                        <TextField {...email} fullWidth={true} label="Correo electrónico" margin="normal" />
-                        <TextField {...phone} fullWidth={true} label="Número de contacto (celular)" margin="normal" />
+                        <TextField {...name} fullWidth={true} label="👋 ¿Como te llamas?" margin="normal" />
+                        <TextField {...email} fullWidth={true} label="📬 Correo electrónico" margin="normal" />
+                        <TextField {...phone} fullWidth={true} label="📱 Número de telefono" margin="normal" />
+                    </div>
+                    <div className={styles.actions}>
+                        {/* <Button color="link" onClick={handleClose}>Cancelar</Button> */}
+                        <Button color="blue" onClick={handleSubmit}>Enviar y continuar</Button>
                     </div>
                 </div>
-                <div>
-                    <video autoplay controls={true} loop={true} style={{ borderRadius: "10px", marginTop: "20px" }} width="300">
-                        <source src="/videos/No eres un comprador cualquiera, eres un comprador gamer.mp4" />
-                    </video>
-                </div>
-            </div>
-            <p className={styles.interets}>
+
+                {/* <p className={styles.interets}>
                 <small>Ayúdanos a personalizar Pikplay para ti 😎 &nbsp;¿Cuales son tus intereses?</small>
                 <div className={styles.content}>
                     {interests.map((item => {
                         return <Chip color={item.selected ? 'secondary' : ''} key={item.id} label={item.name} onClick={() => handleInterests(item.id)} />
                     }))}
                 </div>
-            </p>
-            <div className={`${styles.actions} f-r m-b-10"`}>
-                <Button color="link" onClick={handleClose}>Cancelar</Button>
-                <Button color="blue" onClick={handleSubmit}>Enviar y continuar</Button>
+            </p> */}
             </div>
         </DialogContent>
     </Dialog>
