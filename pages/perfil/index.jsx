@@ -72,18 +72,18 @@ const Index = (props) => {
 }
 
 export const getServerSideProps = async (ctx) => {
-	const { token } = ctx.req.cookies
-	const res = await validateLoginToken({ token })
-	if (!res) {
-	  return {
-		redirect: {
-		  destination: '/',
-		  permanent: false
-		}
-	  }
-	}
-	return { props: {} }
+  const { token } = ctx.req.cookies
+  const res = await validateLoginToken({ token })
+  if (!res) {
+    return {
+      redirect: {
+        destination: '/?action=not_authorized',
+        permanent: false
+      }
+    }
   }
-  
+  return { props: {} }
+}
+
 
 export default Index

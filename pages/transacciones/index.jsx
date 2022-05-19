@@ -19,7 +19,7 @@ export const getServerSideProps = async (ctx) => {
     console.log('Token no valido');
     return {
       redirect: {
-        destination: '/',
+        destination: '/?action=not_authorized',
         permanent: false
       }
     }
