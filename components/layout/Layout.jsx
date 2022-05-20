@@ -184,8 +184,7 @@ class Layout extends React.Component {
           gtag('event', 'conversion', { 'send_to': 'AW-941382150/e71oCMvon-0BEIa08cAD' });
         }}()
       </Head>
-      <body className={classNames('App font-a', { [styles.AppComponent]: true, [styles.ready]: isReady })} >
-        <Loading isReady={isReady} />
+      <body className={classNames('App font-a', { [styles.AppComponent]: true, [styles.ready]: isReady })}>
         <main style={{ opacity: 0 }} className={styles.main}>
           <MyHeader />
           {false && <div className={styles.announcement}>Actualmente estamos en una versión piloto</div>}

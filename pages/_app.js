@@ -8,11 +8,13 @@ import { createMuiTheme, MuiThemeProvider } from "@material-ui/core"
 import { persistStore } from 'redux-persist'
 import { useStore } from '../lib/store'
 import { versions } from '../lib/utils'
+import Loading from '../components/loading/Loading'
 import '../styles/globalStyles.scss'
 
 const MyApp = (props) => {
   const { Component, pageProps, router } = props
   const store = useStore(pageProps.initialReduxState)
+  const [isReady, setIsReady] = React.useState(false)
   const persistor = persistStore(store, {}, function () {
     persistor.persist()
   })
@@ -45,9 +47,13 @@ const MyApp = (props) => {
         localStorage.setItem('current_version', lastVersion)
         window.location.reload(true)
       }
-    } else{
+    } else {
       localStorage.setItem('current_version', lastVersion)
     }
+
+    setTimeout(() => {
+      setIsReady(true)
+    }, 1000)
   }, [])
 
   useEffect(() => {
@@ -63,22 +69,26 @@ const MyApp = (props) => {
       })
   }, [router.events])
 
-  return process.browser ? <MuiThemeProvider theme={theme}>
-    <Provider store={store}>
-      <PersistGate loading={<div>loading</div>} persistor={persistor}>
-        <ApolloProvider client={graphqlClient}>
-          <Component {...pageProps} key={router.name} />
-        </ApolloProvider>
-      </PersistGate>
-    </Provider>
-  </MuiThemeProvider>
-    : <MuiThemeProvider theme={theme}>
+  return <div>
+    <Loading isReady={isReady} />
+    {process.browser ? <MuiThemeProvider theme={theme}>
       <Provider store={store}>
-        <ApolloProvider client={graphqlClient}>
-          <Component {...pageProps} key={router.name} />
-        </ApolloProvider>
+        <PersistGate persistor={persistor}>
+          <ApolloProvider client={graphqlClient}>
+            <Component {...pageProps} key={router.name} />
+          </ApolloProvider>
+        </PersistGate>
       </Provider>
     </MuiThemeProvider>
+      : <MuiThemeProvider theme={theme}>
+        <Provider store={store}>
+          <ApolloProvider client={graphqlClient}>
+            <Component {...pageProps} key={router.name} />
+          </ApolloProvider>
+        </Provider>
+      </MuiThemeProvider>
+    }
+  </div>
 }
 
 export default MyApp
