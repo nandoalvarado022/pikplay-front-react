@@ -32,7 +32,8 @@ $border-color: #898989;
         box-shadow: 4px 4px 0px 2px #ababab;
         width: 400px;
         @media screen and (max-width: $mobile) {
-            border-top: 0;
+            border: 0;
+            width: 90%;
         }
     }
     p {
