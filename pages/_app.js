@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import TagManager from 'react-gtm-module'
 import graphqlClient from '../lib/graphqlClient'
 import { ApolloProvider } from "@apollo/client"
@@ -14,10 +14,11 @@ import '../styles/globalStyles.scss'
 const MyApp = (props) => {
   const { Component, pageProps, router } = props
   const store = useStore(pageProps.initialReduxState)
-  const [isReady, setIsReady] = React.useState(false)
+  const [isReady, setIsReady] = useState(false)
   const persistor = persistStore(store, {}, function () {
     persistor.persist()
   })
+  
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -70,23 +71,20 @@ const MyApp = (props) => {
   }, [router.events])
 
   return <div>
-    <Loading isReady={isReady} />
+
     {process.browser ? <MuiThemeProvider theme={theme}>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <ApolloProvider client={graphqlClient}>
-            <Component {...pageProps} key={router.name} />
+            <Loading isReady={isReady} />
+            <div style={{ opacity: isReady ? 1 : 0 }}>
+              <Component {...pageProps} key={router.name} />
+            </div>
           </ApolloProvider>
         </PersistGate>
       </Provider>
     </MuiThemeProvider>
-      : <MuiThemeProvider theme={theme}>
-        <Provider store={store}>
-          <ApolloProvider client={graphqlClient}>
-            <Component {...pageProps} key={router.name} />
-          </ApolloProvider>
-        </Provider>
-      </MuiThemeProvider>
+      : <div />
     }
   </div>
 }

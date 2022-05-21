@@ -14,8 +14,8 @@ $border-color: #898989;
     z-index: 99;
 
     &.out {
-        animation: fadeOut 1s;
-        animation-delay: 1s;
+        animation: fadeOut 0.2s;
+        animation-delay: 2s;
         animation-fill-mode: forwards;
         span:nth-of-type(1) {
             opacity: 0;
@@ -69,5 +69,9 @@ $border-color: #898989;
     }
     100% {
         margin-top: 100vh;
+        @media screen and (max-width: $mobile) {
+            margin-top: initial;
+            opacity: 0;
+        }
     }
 }

@@ -185,7 +185,7 @@ class Layout extends React.Component {
         }}()
       </Head>
       <body className={classNames('App font-a', { [styles.AppComponent]: true, [styles.ready]: isReady })}>
-        <main style={{ opacity: 0 }} className={styles.main}>
+        <main className={styles.main}>
           <MyHeader />
           {false && <div className={styles.announcement}>Actualmente estamos en una versión piloto</div>}
           <ToastContainer autoClose={5000} hideProgressBar={true} />
