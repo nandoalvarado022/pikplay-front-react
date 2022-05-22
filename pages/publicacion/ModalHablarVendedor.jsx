@@ -10,6 +10,7 @@ import CouponBox from "../../components/couponBox/CouponBox"
 import { format_number, GET_CLAIMED_COUPONS } from "../../lib/utils"
 import { useEffect, useState } from "react"
 import classNames from "classnames"
+import Checkout from "../../components/checkout/Checkout"
 
 const ModalHablarVendedor = (props) => {
   const [couponValue, setCouponValue] = useState(null)
@@ -115,7 +116,8 @@ const ModalHablarVendedor = (props) => {
       <section className={styles.actions}>
         <CouponBox className="block m-t-10" callback={handleCoupon} publication={datosPublicacion?.id} />
         <Button onClick={() => { setIsModalHablarVendedor() }} color="normal">Cancelar</Button>
-        <Button onClick={handlePagar} color="blue">Hablar con el seller</Button>
+        <Button onClick={handlePagar} color="yellow">Hablar con el seller</Button>
+        <Checkout />
       </section>
     </div>
   </div>
