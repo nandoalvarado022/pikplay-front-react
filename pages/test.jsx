@@ -1,8 +1,11 @@
 import Checkout from "../components/checkout/Checkout"
-import Loading from "../components/loading/Loading"
+import dynamic from 'next/dynamic'
+import Layout from "../components/layout/Layout"
 
 const Test = () => {
-  return <Checkout />
+  return <Layout>
+    <Checkout />
+  </Layout>
 }
 
 export default Test

@@ -176,6 +176,7 @@ class Layout extends React.Component {
         <link rel="canonical" href={url} />
         <link rel="icon" type="image/png" href="/images/logos/logo48x48.png" />
         <link rel="manifest" href={`/manifest.json`} />
+        <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script>
         {() => {
           window.dataLayer = window.dataLayer || [];
           function gtag() { dataLayer.push(arguments); }
