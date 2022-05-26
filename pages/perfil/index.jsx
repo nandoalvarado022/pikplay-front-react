@@ -49,6 +49,7 @@ const Index = (props) => {
     if (user.city) variables.city = user.city
     if (userData.email) variables.email = userData.email
     if (userData.name) variables.name = userData.name
+    if (userData.document_number) variables.document_number = userData.document_number
     if (picture) variables.picture = picture // Setting picture
     dispatch({
       type: "CHANGE_PROPERTY",

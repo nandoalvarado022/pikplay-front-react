@@ -124,6 +124,7 @@ const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, set
                     <TextField fullWidth={true} label="Correo electrónico" margin="normal" value={userData?.email} onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
                     <TextField disabled={true} fullWidth={true} label="Número registrado" margin="normal" value={userData?.phone} />
                     <CiudadControl />
+                    <TextField fullWidth={true} label="Número de documento de identificacion" margin="normal" value={userData?.document_number} helperText="Información utilizada para la compras de productos online" />
                     <p>
                         <label>Cambiar imagen de perfil</label>
                         <div>

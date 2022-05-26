@@ -3,7 +3,7 @@ import toastr from "toastr"
 import React from "react"
 import Layout from "../../components/layout/Layout"
 import { getFeed } from "../../lib/utils"
-import ModalHablarVendedor from "./ModalHablarVendedor"
+import ModalCheckout from "./modalCheckout/ModalCheckout"
 import { connect } from "react-redux"
 import DetalleProducto from "../../components/detalleProducto/DetalleProducto"
 class PublicacionPage extends React.Component {
@@ -109,7 +109,7 @@ class PublicacionPage extends React.Component {
         <DetalleProducto {...{ handleHablarVendedor: this.handleHablarVendedor }} meta_url={slug} handleResponder={this.handleResponder} nuevoPrecio={this.state.nuevoPrecio} handleCupon={this.handleCupon} doc_id={datosPublicacion} logDetalle={true} {...datosPublicacion} />
         {
           // Modal para confirmar datos
-          this.state.modalHablarVendedor && <ModalHablarVendedor {...{ datosPublicacion, setIsModalHablarVendedor: () => this.setState({ modalHablarVendedor: !this.state.modalHablarVendedor }) }} />
+          this.state.modalHablarVendedor && <ModalCheckout {...{ datosPublicacion, setIsModalHablarVendedor: () => this.setState({ modalHablarVendedor: !this.state.modalHablarVendedor }) }} />
         }
         {
           // Modal para ingresar cupón

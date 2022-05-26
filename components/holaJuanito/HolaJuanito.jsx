@@ -79,8 +79,7 @@ const HolaJuanito = () => {
                     </div>
                     {
                         user.id == 0 && <button onClick={() => document.getElementById("btnStart").click()} className={styles.reclamar_monedas}>
-                            <Monedita />
-                            Registrate y obten tus primeras pikcoins
+                            Registrate y obten tus primeros Pikcoins <Monedita />
                         </button>
                     }
 

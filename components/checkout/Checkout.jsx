@@ -1,44 +1,59 @@
+import { faShoppingBag } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React from "react"
 import Button from "../button/Button"
 
 const Checkout = (props) => {
+	const {
+		address_billing,
+		amount,
+		email_billing,
+		invoice,
+		mobilephone_billing,
+		name,
+		name_billing,
+		number_doc_billing
+	} = props
 
 	const openchekout = e => {
 		e.preventDefault();
 
 		var handler = window.ePayco.checkout.configure({
-			key: '15e4f81c38f66bb570bc33a5a97a5f0b',
+			key: 'b5bb21e660ef8dd79d82af917fd5ff89',
 			test: true
 		});
 
 		let data = {
-			name: "Vestido Mujer Primavera",
-			description: "Vestido Mujer Primavera",
-			invoice: "1234",
+			name,
+			description: name,
+			invoice,
 			currency: "cop",
-			amount: '119000',
-			tax_base: '100000',
-			tax: '19000',
+			amount,
+			tax_base: "0",
+			tax: "0",
 			country: "co",
 			lang: "es",
 			external: "false",
-			extra1: "extra1",
-			extra2: "extra2",
-			extra3: "extra3",
-			confirmation: "https://confirmacion.php",
-			response: "https://payco.co",
-			name_billing: 'john doe',
-			address_billing: "Carrera 19 numero 14 91",
+			extra1: "",
+			extra2: "",
+			extra3: "",
+			confirmation: "https://pikplay.co/transacciones",
+			response: "https://pikplay.co/transacciones",
+			name_billing,
+			address_billing,
 			type_doc_billing: "cc",
-			mobilephone_billing: "3050000000",
-			number_doc_billing: "100000000",
-			email_billing: 'example@mail.co'
+			mobilephone_billing,
+			number_doc_billing,
+			email_billing
 		}
 		handler.open(data);
 	}
 
 	return <React.Fragment>
-		<Button onClick={openchekout} color="blue">Pagar</Button>
+		<Button onClick={openchekout} color="blue">
+			<FontAwesomeIcon className="m-r-10" icon={faShoppingBag} />
+			Pagar
+		</Button>
 	</React.Fragment>
 }
 

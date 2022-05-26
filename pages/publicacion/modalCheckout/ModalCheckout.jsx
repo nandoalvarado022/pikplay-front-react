@@ -1,18 +1,20 @@
-import Button from "../../components/button/Button"
+import Button from "../../../components/button/Button"
 import TextField from "@material-ui/core/TextField"
 import { gql, useLazyQuery, useMutation } from '@apollo/client'
-import styles from "../../public/css/modalIngresoInfo.module.scss"
-import CiudadControl from "../../components/ciudadControl/CiudadControl"
+import styles from "./styles.module.scss"
+import CiudadControl from "../../../components/ciudadControl/CiudadControl"
 import Link from "next/link"
 import { Alert } from "@material-ui/lab"
 import { useSelector } from "react-redux"
-import CouponBox from "../../components/couponBox/CouponBox"
-import { format_number, GET_CLAIMED_COUPONS } from "../../lib/utils"
+import CouponBox from "../../../components/couponBox/CouponBox"
+import { format_number, GET_CLAIMED_COUPONS } from "../../../lib/utils"
 import { useEffect, useState } from "react"
 import classNames from "classnames"
-import Checkout from "../../components/checkout/Checkout"
+import Checkout from "../../../components/checkout/Checkout"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faComment } from '@fortawesome/free-solid-svg-icons'
 
-const ModalHablarVendedor = (props) => {
+const ModalCheckout = (props) => {
   const [couponValue, setCouponValue] = useState(null)
   const [couponCode, setCouponCode] = useState(null)
   const user = useSelector((state) => state.user)
@@ -85,23 +87,45 @@ const ModalHablarVendedor = (props) => {
         <CiudadControl />
       </section>
       <section className={classNames("m-t-20 f-s-14 t-a-r", [styles.bottom])} >
-        {!!datosPublicacion?.sale_price && <div className="flex">
-          <span>
-            Total a pagar:
-            &nbsp;
-          </span>
-          <span>
-            {couponValue && <>
-              <div>
-                <del>{format_number(datosPublicacion?.sale_price)}</del>
-              </div>
-              <b>
-                {format_number(datosPublicacion?.sale_price - couponValue)}
-              </b>
-            </>}
-            {!couponValue && format_number(datosPublicacion?.sale_price)}
-          </span>
+        {!!datosPublicacion?.sale_price && <table className={styles.payment_info}>
+          {couponValue && <>
+            <tr>
+              <td>Total:</td>
+              <td>
+                <del>${format_number(datosPublicacion?.sale_price)}</del>
+              </td>
+            </tr>
+
+            <tr className={styles.discount}>
+              <td>
+                Descuento:
+              </td>
+              <td>
+                -${format_number(couponValue)}
+              </td>
+            </tr>
+          </>}
+
+          <tr className={styles.sale_price}>
+            <td>Total a pagar:</td>
+            <td>
+              ${format_number(datosPublicacion?.sale_price - couponValue)}
+            </td>
+          </tr>
+        </table>}
+
+        <div className="clear"></div>
+
+        {/* Sin cupón
+        {!couponValue && <div className={styles.sale_price}>
+          <b>Total a pagar:</b>
+          ${format_number(datosPublicacion?.sale_price)}
         </div>}
+      </table>} */}
+
+        {/* Cupón */}
+        <CouponBox className="block m-t-10" callback={handleCoupon} publication={datosPublicacion?.id} />
+
         {couponCode && <Alert className="m-t-10">
           Tienes un cupón activo para esta compra: <b>{couponCode.toUpperCase()}</b>
         </Alert>}
@@ -114,13 +138,21 @@ const ModalHablarVendedor = (props) => {
 
       </section>
       <section className={styles.actions}>
-        <CouponBox className="block m-t-10" callback={handleCoupon} publication={datosPublicacion?.id} />
         <Button onClick={() => { setIsModalHablarVendedor() }} color="normal">Cancelar</Button>
-        <Button onClick={handlePagar} color="yellow">Hablar con el seller</Button>
-        <Checkout />
+        <Button onClick={handlePagar} color="yellow">
+          <FontAwesomeIcon className="m-r-10" icon={faComment} />
+          Contactar
+        </Button>
+        {/* <Checkout
+          amount={datosPublicacion?.sale_price}
+          invoice={datosPublicacion?.sale_price}
+          name={datosPublicacion?.title}
+          name_billing={user?.name}
+          number_doc_billing={user?.identificacion}
+        /> */}
       </section>
     </div>
-  </div>
+  </div >
 }
 
-export default ModalHablarVendedor
+export default ModalCheckout

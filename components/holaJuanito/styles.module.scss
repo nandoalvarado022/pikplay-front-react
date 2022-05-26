@@ -29,11 +29,11 @@
                 padding: 0;
             }
         }
-        .contigo-somos{
+        .contigo-somos {
             font-size: 14px;
             margin: -10px 0 20px;
             text-align: right;
-            span{
+            span {
                 display: inline-block;
                 text-align: center;
                 width: 25px;
@@ -119,19 +119,37 @@
         }
     }
     .reclamar_monedas {
-        background: linear-gradient(180deg, #ff7524 0%, #f71b1b 100%);
-        border-radius: 10px;
-        border: none;
-        color: white;
+        align-items: center;
+        background-image: linear-gradient(white, white),
+            linear-gradient(270deg, rgb(27, 149, 179), rgb(185, 93, 215) 50%, rgb(201, 53, 48) 100%);
+        background-origin: padding-box, border-box;
+        background-repeat: no-repeat;
+        border: 2px solid transparent;
+        box-shadow: 2px 2px 0px #6767676e;
+        color: #0c596b;
         cursor: pointer;
-        display: inline-block;
-        font-family: "Righteous", sans-serif;
-        font-size: 16px;
-        margin-top: 20px;
+        display: flex;
+        font-size: 12px;
+        justify-content: center;
+        margin: 10px auto 0;
         padding: 10px 15px;
-        text-shadow: 1px 1px black;
-        &.disabled {
-            background: linear-gradient(180deg, #b3b3b3 0%, #6b6b6b 100%);
+        text-align: center;
+        text-transform: uppercase;
+        transform: none;
+    }
+    .animated {
+        animation: highlight 1s infinite alternate;
+        background-image: linear-gradient(white, white),
+            linear-gradient(180deg, cornflowerblue, purple 50%, cornflowerblue);
+        background-origin: padding-box, border-box;
+        background-position: 0 0, 0 100%;
+        background-repeat: no-repeat;
+        background-size: 100% 100%, 100% 200%;
+    }
+
+    @keyframes highlight {
+        100% {
+            background-position: 0 0, 0 0;
         }
     }
 }
