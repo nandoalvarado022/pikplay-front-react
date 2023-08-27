@@ -11,12 +11,45 @@ import { Tooltip } from "@material-ui/core"
 import classNames from 'classnames'
 import { useSelector } from 'react-redux'
 import Image from 'next/image'
+import Product from '../../interfaces/Product'
 
-const Card = ({ accept_changes, apply_cashback, certificate, city, following, handleFavorite, handleShare, icon_favorite = true, id: id_publication, is_new, tags, special_title, title, descuento = 0, description, image_1, slug, tipo_coleccion, destacada, user_name, user_picture, user_transactions, type, likes, price, sale_price, logDetalle, quantity, user } = {}) => {
+const Card = (props: Product) => {
+  const { 
+    accept_changes,
+    apply_cashback,
+    certificate,
+    city,
+    description,
+    descuento = 0,
+    destacada,
+    following,
+    handleFavorite,
+    handleShare,
+    icon_favorite = true,
+    id: id_publication,
+    image_1,
+    is_new,
+    likes,
+    logDetalle,
+    price,
+    quantity,
+    sale_price,
+    slug,
+    special_title,
+    tags,
+    tipo_coleccion,
+    title,
+    type,
+    user,
+    user_name,
+    user_picture,
+    user_transactions,
+  } = props;
+
   const usuario = typeof localStorage != "undefined" ? localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).email : null : null
   let like = null
   if (usuario) like = likes ? !!likes.find((like) => like == usuario) : false
-  destacada = id_publication == 1 ? true : false
+  const isDestacada = id_publication == 1 ? true : false
   const { loading, error, data } = useQuery(gql`{
     publications{
       title
@@ -29,7 +62,7 @@ const Card = ({ accept_changes, apply_cashback, certificate, city, following, ha
   const countryLabel = capitalize(cities.find(item => item.id == city)?.pais)
 
   return <Grow key={id_publication} in={true} style={{ opacity: 1 }}>
-    <div key={id_publication} className={`${styles.Card} ${destacada ? styles.destacada : ""}`} >
+    <div key={id_publication} className={`${styles.Card} ${isDestacada ? styles.isDestacada : ""}`} >
       <div className={styles.descripcion_imagen}>
         <div className={styles.content_imagen}>
           <div className={`${styles.tags} desktop`}>

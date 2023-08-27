@@ -6,10 +6,29 @@ import rn from "random-number"
 import { connect, useDispatch } from "react-redux"
 import { gql } from "@apollo/client"
 import { storage } from "./storage"
+import { datadogRum } from '@datadog/browser-rum';
 
 date.locale("es");
 
 // export default connect(null, useDispatch)(Functions)
+const env = process.env.NODE_ENV
+datadogRum.init({
+  applicationId: 'e070617f-1352-46e4-9c21-4cb715efd297',
+  clientToken: 'pubffdccfc89da2b7156acfb7c7e44e317f',
+  site: 'datadoghq.com',
+  service: 'pikplay',
+  env,
+  // Specify a version number to identify the deployed version of your application in Datadog 
+  // version: '1.0.0', 
+  sessionSampleRate: 100,
+  sessionReplaySampleRate: 50,
+  trackUserInteractions: true,
+  trackResources: true,
+  trackLongTasks: true,
+  defaultPrivacyLevel: 'allow'
+});
+
+datadogRum.startSessionReplayRecording();
 
 export const getNotifications = async (props) => {
   const { closed, user } = props
@@ -47,6 +66,7 @@ export const getHome = async (props) => {
     seller = null,
     user_request = null
   } = props
+
   const getCache = () => {
     let withoutCache = !!slug || !!category || !!subcategory || !!title
     console.log('Sin cache: ', withoutCache)
@@ -475,20 +495,21 @@ query getClaimedCoupons($coupon: String, $publication: Int, $user: Int){
 }`
 
 export const validateLoginToken = async ({ token }) => {
-  const validUser = await fetch(process.env.API_URL, {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: `{
-        validateLoginToken(token: "${token}")
-      }`
-    })
-  })
+  // const validUser = await fetch(process.env.API_URL, {
+  //   method: "POST",
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({
+  //     query: `{
+  //       validateLoginToken(token: "${token}")
+  //     }`
+  //   })
+  // })
 
-  const { data } = await validUser.json()
-  return data?.validateLoginToken
+  // const { data } = await validUser.json()
+  // return data?.validateLoginToken
+  return true
 }
 
 export const GET_FOLLOWED_PUBLICATIONS = gql`

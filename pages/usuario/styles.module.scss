@@ -1,0 +1,19 @@
+#usuario {
+    display: flex;
+    .profile {
+        width: 300px;
+        .chips {
+            column-gap: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 6px;
+        }
+        .social {
+        }
+    }
+    .products {
+        display: flex;
+        flex-wrap: wrap;
+        width: 700px;
+    }
+}

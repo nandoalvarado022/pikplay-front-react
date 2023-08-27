@@ -13,10 +13,10 @@ const Loading = (props) => {
     }, [isReady])
 
     return <div className={classNames('', { [styles.LoadingComponenty]: true, [styles.out]: out })}>
-        <p>
+        {/* <p>
             <span>Cargando tu </span>
             <span>contenido...</span>
-        </p>
+        </p> */}
         <img loading="lazy" src="/images/gifs/loading.gif" alt="cargando contenido" />
     </div>
 }

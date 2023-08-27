@@ -72,13 +72,13 @@
 }
 
 .btn-whatsapp {
+    background: #0196b3;
+    border-radius: 50%;
     border: none;
+    bottom: 20px;
     position: fixed;
     right: 20px;
     z-index: 5;
-    bottom: 20px;
-    border-radius: 50%;
-    background: none;
     cursor: pointer;
     @media screen and (max-width: 420px) {
         display: none;

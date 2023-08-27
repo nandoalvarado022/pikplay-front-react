@@ -76,7 +76,7 @@ const MyApp = (props) => {
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <ApolloProvider client={graphqlClient}>
-            <Loading isReady={isReady} />
+            {/* <Loading isReady={isReady} /> */}
             <div style={{ opacity: isReady ? 1 : 0 }}>
               <Component {...pageProps} key={router.name} />
             </div>

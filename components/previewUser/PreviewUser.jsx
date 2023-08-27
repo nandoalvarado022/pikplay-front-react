@@ -1,8 +1,8 @@
+import React, { useState } from "react"
 const { IS_MOBILE } = VARS
-import ImageProfile from '../../pages/perfil/ImageProfile'
+import ImageProfile from '../imageProfile/ImageProfile'
 import Link from "next/link"
 import Login from "../login/Login"
-import React, { useState } from "react"
 import UserNotifications from '../userNotifications/UserNotifications'
 import VARS from "../../lib/variables"
 import styles from "./styles.module.scss"
@@ -40,6 +40,14 @@ const PreviewUser = () => {
             <Link href="/perfil" as="/perfil">
               <a>
                 Mi cuenta<br />
+                {/* <Coins /> */}
+              </a>
+            </Link>
+          </ol>
+          <ol>
+            <Link href="/usuario/me" as="/usuario/me">
+              <a>
+                Soy vendedor<br />
                 {/* <Coins /> */}
               </a>
             </Link>

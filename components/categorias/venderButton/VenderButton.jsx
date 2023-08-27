@@ -1,14 +1,13 @@
-import Link from "next/link"
-const { motion } = require("framer-motion")
+import React from 'react'
+import Link from 'next/link'
+import Button from '../../button/Button'
 
 const VenderButton = () => {
-    return <Link href="/publicacion/crear" as="/publicacion/crear">
-        <motion.a
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.8 }}>
-            Vender
-        </motion.a>
-    </Link>
+  return <Link href="/publicacion/crear" as="/publicacion/crear">
+    <Button color="blue" outline>
+      Vender
+    </Button>
+  </Link>
 }
 
 export default VenderButton

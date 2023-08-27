@@ -23,21 +23,21 @@
     &.Bronce {
         &::after {
             background: #945a41;
-            background: linear-gradient( 90deg, #945a41 0%, #f1cca7 50%);
+            background: linear-gradient(90deg, #945a41 0%, #f1cca7 50%);
             box-shadow: 0 0 10px #945a41;
         }
     }
     &.Plata {
         &::after {
             background: #d5d5d6;
-            background: linear-gradient( 90deg, #d5d5d6 0%, #777779 50%);
+            background: linear-gradient(90deg, #d5d5d6 0%, #777779 50%);
             box-shadow: 0 0 10px #d5d5d6;
         }
     }
     &.Oro {
         &::after {
             background: #e7d841;
-            background: linear-gradient( 90deg, #e7d841 0%, #c27a0f 50%);
+            background: linear-gradient(90deg, #e7d841 0%, #c27a0f 50%);
             box-shadow: 0 0 10px #e7d841;
         }
     }
@@ -55,14 +55,25 @@
         position: relative;
         width: 100%;
         z-index: 1;
+        &.star:before {
+            background-image: url("/images/gifs/stars-colors.gif");
+            background-size: 220px;
+            content: "";
+            display: block;
+            height: 70px;
+            left: -10px;
+            position: relative;
+            top: -10px;
+            width: 70px;
+        }
     }
 }
 
 @keyframes rotate {
     100% {
-        transform: rotate(365deg)
+        transform: rotate(365deg);
     }
     0% {
-        transform: rotate(0deg)
+        transform: rotate(0deg);
     }
 }

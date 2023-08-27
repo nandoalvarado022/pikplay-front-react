@@ -26,15 +26,15 @@ $border-color: #898989;
         }
     }
     img {
-        border-left: 1px solid $border-color;
-        border-right: 1px solid $border-color;
+        // border-left: 1px solid $border-color;
+        // border-right: 1px solid $border-color;
         border-top: 1px solid $border-color;
-        box-shadow: 4px 4px 0px 2px #ababab;
-        width: 400px;
-        @media screen and (max-width: $mobile) {
-            border: 0;
-            width: 90%;
-        }
+        // box-shadow: 4px 4px 0px 2px #ababab;
+        // width: 400px;
+        // @media screen and (max-width: $mobile) {
+        //     border: 0;
+        //     width: 90%;
+        // }
     }
     p {
         color: #c93530;

@@ -800,6 +800,7 @@ body {
     box-shadow: 2px 2px 5px 0 #ababab52;
     box-sizing: border-box;
     color: #585858;
+    display: block;
     margin: 0px auto 40px;
     padding: 10px 20px;
     position: relative;
@@ -879,4 +880,18 @@ a {
 video {
     
     
+}
+
+.close_icon {
+    background: #f4f4f4;
+    border-radius: 50%;
+    color: #c93530;
+    left: -30px;
+    padding: 5px;
+    position: absolute;
+    top: 6px;
+    transform: rotate(45deg);
+    &:hover {
+        cursor: pointer;
+    }
 }

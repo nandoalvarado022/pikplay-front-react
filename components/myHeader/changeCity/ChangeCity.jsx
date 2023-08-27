@@ -3,7 +3,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import { useState } from 'react'
-import { Button as ButtonMat, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core'
+import { Button as ButtonMat, FormControl, InputLabel, MenuItem, Select, Tooltip } from '@material-ui/core'
 import { capitalize, getCiudades } from '../../../lib/utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { faMapMarkedAlt, faMapMarker, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
@@ -29,11 +29,13 @@ const ChangeCity = (props) => {
     }
 
     return <div className={styles.ChangeCity}>
-        <p className='m-l-10' onClick={() => setOpen(true)}>
-            Quiero resultados de
-            <FontAwesomeIcon className='primary-color' icon={faMapMarkerAlt} />
-            &nbsp;{cityLabel}
-        </p>
+        <Tooltip title='Te priorizaremos publicaciones según el lugar que nos indiques'>
+            <p className='m-l-10' onClick={() => setOpen(true)}>
+                <FontAwesomeIcon icon={faMapMarkerAlt} />
+                Estas en
+                &nbsp;{cityLabel}
+            </p>
+        </Tooltip>
         <Dialog
             open={open}
             onClose={handleClose}

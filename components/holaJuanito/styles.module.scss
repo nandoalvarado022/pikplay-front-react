@@ -8,10 +8,14 @@
     }
     .content {
         display: flex;
-        flex-wrap: wrap;
+        // flex-wrap: wrap;
         justify-content: center;
         vertical-align: top;
         column-gap: 60px;
+        @media screen and (max-width: 420px) {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
         > * {
             background: white;
             border-radius: 10px;
@@ -21,9 +25,11 @@
             margin: 0;
             padding: 10px 20px;
             position: relative;
+            width: 50%;
             z-index: 1;
             @media screen and (max-width: 420px) {
                 margin: 0px 20px 20px;
+                width: 100%;
             }
             ol {
                 padding: 0;
@@ -44,6 +50,9 @@
             z-index: 2;
             @media screen and (max-width: 420px) {
                 width: calc(100% - 20px);
+            }
+            :global(.close_icon){
+                right: 0;
             }
             .text1 {
                 color: #575656;

@@ -20,10 +20,27 @@ button.btn {
     }
     &.blue {
         background: #0095b3;
-        // background: linear-gradient(180deg, #0095b3 0%, #476e96 100%);
+        &.outline {
+            background: transparent;
+            border: 1px solid #0095b3;
+            color: #0095b3;
+            &:hover {
+                background: #0095b3;
+                color: white;
+            }
+        }
     }
     &.red {
         background: #f05f70;
+        &.outline {
+            background: transparent;
+            border: 1px solid #f05f70;
+            color: #f05f70;
+            &:hover {
+                background: #f05f70;
+                color: white;
+            }
+        }
     }
     &.link {
         background: transparent;

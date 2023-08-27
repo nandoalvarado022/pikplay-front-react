@@ -1,9 +1,8 @@
 @import "../../styles/variables.scss";
 
-#Header {
+#header {
     background: white;
     border-bottom: 1px solid #dcdcdcb5;
-    height: 70px;
     padding: 20px 0 14px;
     position: fixed;
     top: 0;
@@ -15,6 +14,9 @@
         top: 0;
         z-index: 3;
         width: 100%;
+    }
+    @media screen and (min-width: 1024px) {
+        height: 70px;
     }
     .slogan {
         span {
@@ -30,11 +32,12 @@
 
     > ul {
         margin: 0;
+        padding: 0;
         @media screen and (max-width: $tablet) {
-            display: flex;
-            justify-content: space-between;
-            padding: 0 10px;
-            text-align: center;
+            // display: flex;
+            // justify-content: space-between;
+            // padding: 0 10px;
+            // text-align: center;
         }
         @media screen and (min-width: 1024px) {
             align-items: center;
@@ -93,12 +96,19 @@
         align-items: center;
         display: flex;
         position: relative;
-        width: 500px;
         @media screen and (max-width: $tablet) {
             height: 60px;
-            margin: 0;
+            margin: 0 auto;
             position: initial;
-            width: 200px;
+            width: max-content;
+        }
+
+        svg.ArrowLeft {
+            background: #d2d2d2;
+            border-radius: 50%;
+            color: white;
+            margin-right: 10px;
+            padding: 5px 6px;
         }
 
         .results {
@@ -106,10 +116,10 @@
             border-top: 1px solid #dcdcdcb5;
             display: flex;
             height: calc(100vh - 122px);
-            left: -300px;
-            position: absolute;
-            top: 84px;
-            width: 700px;
+            position: fixed;
+            right: 0;
+            top: 104px;
+            width: 70vw;
             z-index: 3;
             @media screen and (max-width: $tablet) {
                 height: 100vh;
@@ -126,10 +136,6 @@
                 position: fixed;
                 width: 100vw;
                 z-index: 0;
-            }
-
-            .closeSearch {
-                width: 200px;
             }
 
             > :global(section > button) {
@@ -161,22 +167,25 @@
                 overflow-x: hidden;
                 padding: 0px;
                 z-index: 1;
-                article {
-                    padding: 10px;
-
-                    &:nth-child(even) {
-                        background: #476e961a;
+                a:nth-child(even) {
+                    article {
+                        // background: #3095b31c;
                     }
-                    :global(.author) {
-                        margin-top: 5px;
-                        img {
-                            display: none;
+                }
+                a {
+                    margin: 10px;
+                    article {
+                        :global(.author) {
+                            margin-top: 5px;
+                            img {
+                                display: none;
+                            }
                         }
-                    }
-                    :global(h3) {
-                        overflow: hidden;
-                        white-space: nowrap;
-                        width: 80px;
+                        :global(h3) {
+                            overflow: hidden;
+                            white-space: nowrap;
+                            width: 80px;
+                        }
                     }
                 }
             }
@@ -230,11 +239,11 @@
                 }
                 .location {
                     display: block;
-                    font-size: 10px;
+                    font-size: 12px;
                     margin-top: 5px;
                 }
                 img.product {
-                    width: 100px;
+                    width: 120px;
                 }
                 > div:last-child {
                     margin-left: 20px;
@@ -278,7 +287,9 @@
         }
     }
     .content_Textfield {
-        width: 500px;
+        align-items: end;
+        display: flex;
+        width: 320px;
         .Textfield {
         }
     }
@@ -314,5 +325,16 @@
                 margin: 0 10px;
             }
         }
+    }
+}
+
+#most_popular_searches {
+    margin: 20px;
+    h5{
+        color: grey;
+        margin: 0 0 10px 0;
+    }
+    .items {
+        margin-right: 10px;
     }
 }

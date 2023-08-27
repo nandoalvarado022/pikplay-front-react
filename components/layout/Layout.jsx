@@ -2,7 +2,7 @@ import Button from "../button/Button"
 import Categorias from "../categorias/Categorias"
 import Head from "next/head"
 import MenuMovil from "../menuMovil/MenuMovil"
-import MyHeader from "../myHeader/MyHeader"
+import MyHeader from "../myHeader/MyHeader.tsx"
 import NProgress from "nprogress"
 import Notification from "../notification";
 import React from "react"

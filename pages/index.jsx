@@ -37,6 +37,7 @@ const Index = (props) => {
 
   return <Layout image={image} descripcion={descripcion} title={title} url={url}>
     <Portada feed={feed} />
+    {/* <Testimonials /> */}
   </Layout>
 }
 
