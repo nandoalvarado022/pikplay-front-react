@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import date from 'date-and-time'
 import PortadaInterface from './PortadaInterface'
-import { useState } from 'react';
-import { CREATE_FAVORITE } from '../../lib/utils'
+import { useState } from 'react'
+import { CREATE_FAVORITE } from '../../../../lib/utils'
 import 'date-and-time/locale/es'
-import { useSelector } from 'react-redux';
-import { useMutation, useQuery } from '@apollo/client';
-import { toast } from 'react-toastify';
-import Link from 'next/link';
+import { useSelector } from 'react-redux'
+import { useMutation, useQuery } from '@apollo/client'
+import { toast } from 'react-toastify'
+import Link from 'next/link'
 
 date.locale('es')
 

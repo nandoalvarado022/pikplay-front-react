@@ -11,6 +11,11 @@ const Articles = () => {
   const { data } = useQuery(GET_ARTICLES, {
     variables: {
       limit: 4
+    },
+    context: {
+      headers: {
+        'Operation-Name': 'getArticles'
+      }
     }
   })
 

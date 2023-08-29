@@ -18,7 +18,7 @@ const MyApp = (props) => {
   const persistor = persistStore(store, {}, function () {
     persistor.persist()
   })
-  
+
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -71,20 +71,17 @@ const MyApp = (props) => {
   }, [router.events])
 
   return <div>
-
     {process.browser ? <MuiThemeProvider theme={theme}>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <ApolloProvider client={graphqlClient}>
             {/* <Loading isReady={isReady} /> */}
-            <div style={{ opacity: isReady ? 1 : 0 }}>
-              <Component {...pageProps} key={router.name} />
-            </div>
+            <Component {...pageProps} key={router.name} />
           </ApolloProvider>
         </PersistGate>
       </Provider>
     </MuiThemeProvider>
-      : <div />
+      : <div/>
     }
   </div>
 }

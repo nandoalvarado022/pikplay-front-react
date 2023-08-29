@@ -4,7 +4,6 @@ import { Avatar } from '@material-ui/core'
 import styles from "../styles.module.scss"
 
 export const MostPopularSearches = ({ setInputText }) => {
-    debugger
     const array = [
         {
             avatar: "https://icons.iconarchive.com/icons/ph03nyx/super-mario/256/Paper-Mario-icon.png",

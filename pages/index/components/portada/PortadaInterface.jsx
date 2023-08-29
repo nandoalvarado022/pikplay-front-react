@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 const { IS_MOBILE } = "../../lib/variables"
-import Card from '../card/Card'
-import Footer from '../footer/Footer'
-import HolaJuanito from "../holaJuanito/HolaJuanito"
+import Card from '../../../../components/card/Card'
+import Footer from '../../../../components/footer/Footer'
+import HolaJuanito from "../../../../components/holaJuanito/HolaJuanito"
 import React from 'react'
 import styles from "./portada.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -10,10 +10,10 @@ import { faClock } from "@fortawesome/free-regular-svg-icons"
 import { gql } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import { useLazyQuery } from '@apollo/client'
-import { GET_FOLLOWED_PUBLICATIONS } from '../../lib/utils'
+import { GET_FOLLOWED_PUBLICATIONS } from '../../../../lib/utils'
 
 const CategoryBanner = dynamic(
-  () => import('../categoryBanner/CategoryBanner.jsx'),
+  () => import('../../../../components/categoryBanner/CategoryBanner.jsx'),
   { ssr: false }
 )
 
@@ -54,7 +54,7 @@ const PortadaInterface = ({ category, handleFavorite, feed, popularyItem, setFee
     }
 
     ModalLead = dynamic(
-      () => import('../modalLoead/ModalLead'),
+      () => import('../../../../components/modalLoead/ModalLead'),
       { ssr: false }
     )
 

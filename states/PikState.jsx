@@ -27,16 +27,17 @@ const PikState = (props) => {
   const [state, dispatch] = useReducer(PikReducer, initialState);
 
   const [getNotifications] = useLazyQuery(GET_NOTIFICATIONS, { // Obteniendo notificaciones
-    fetchPolicy: "no-cache",
+    fetchPolicy: 'no-cache',
     // polInterval: 5000,
     variables: {
       user: state.user.id
     },
     onCompleted: ({ getNotifications }) => {
-      getNotifications && dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: getNotifications } })
+      debugger
+      getNotifications && dispatch({ type: 'CHANGE_PROPERTY', payload: { property: 'notifications', value: getNotifications } })
     }
   })
-  //  
+  //
 
   const customDispatch = (values) => {
     dispatch(values)

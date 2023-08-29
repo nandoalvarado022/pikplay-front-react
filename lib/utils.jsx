@@ -1,14 +1,14 @@
-import "date-and-time/locale/es"
-import VARS from "./variables"
-import date from "date-and-time"
-import fetch from "node-fetch"
-import rn from "random-number"
-import { connect, useDispatch } from "react-redux"
-import { gql } from "@apollo/client"
-import { storage } from "./storage"
+import 'date-and-time/locale/es'
+import VARS from './variables'
+import date from 'date-and-time'
+import fetch from 'node-fetch'
+import rn from 'random-number'
+import { connect, useDispatch } from 'react-redux'
+import { gql } from '@apollo/client'
+import { storage } from './storage'
 import { datadogRum } from '@datadog/browser-rum';
 
-date.locale("es");
+date.locale('es')
 
 // export default connect(null, useDispatch)(Functions)
 const env = process.env.NODE_ENV
@@ -18,17 +18,17 @@ datadogRum.init({
   site: 'datadoghq.com',
   service: 'pikplay',
   env,
-  // Specify a version number to identify the deployed version of your application in Datadog 
-  // version: '1.0.0', 
+  // Specify a version number to identify the deployed version of your application in Datadog
+  // version: '1.0.0',
   sessionSampleRate: 100,
   sessionReplaySampleRate: 50,
   trackUserInteractions: true,
   trackResources: true,
   trackLongTasks: true,
   defaultPrivacyLevel: 'allow'
-});
+})
 
-datadogRum.startSessionReplayRecording();
+datadogRum.startSessionReplayRecording()
 
 export const getNotifications = async (props) => {
   const { closed, user } = props
@@ -46,10 +46,11 @@ export const getNotifications = async (props) => {
 
   try {
     const res = await fetch(VARS.API_URL, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "no-cache"
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
+        'Operation-Name': 'getNotifications'
       },
       body: JSON.stringify({ query })
     })
@@ -115,21 +116,22 @@ export const getHome = async (props) => {
   try {
     console.log('No entro por SSR')
     const res = await fetch(VARS.API_URL, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": getCache(),
-        "fetchPolicy": 'cache-first'
+        'Content-Type': 'application/json',
+        'Cache-Control': getCache(),
+        fetchPolicy: 'cache-first',
+        'Operation-Name': 'home'
       },
       body: JSON.stringify({ query })
     })
     const _data = await res.json()
     data = _data?.data?.home
   } catch (err) {
-    console.log("Ha ocurrido un error, intento #", attempt)
+    console.log('Error in fetch. Operation name: home, try number: #', attempt)
     console.log(err)
     props = { ...props, attempt: 2 }
-    if (attempt == 1) getFeed(props)
+    if (attempt === 1) getFeed(props)
   }
   return data
 }
@@ -211,20 +213,21 @@ export const getFeed = async (props) => {
       // Haciendo fetch al JSON cacheado de productos
       const url = VARS.API_URL + '/products'
       const res = await fetch(url, {
-        method: "GET",
+        method: 'GET',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         }
       })
       data = await res.json()
     } else {
       console.log('No entro por SSR')
       const res = await fetch(VARS.API_URL, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          "Cache-Control": getCache(),
-          "fetchPolicy": 'cache-first'
+          'Content-Type': 'application/json',
+          'Cache-Control': getCache(),
+          fetchPolicy: 'cache-first',
+          'Operation-Name': 'publications'
         },
         body: JSON.stringify({ query })
       })
@@ -232,7 +235,7 @@ export const getFeed = async (props) => {
       data = _data?.data?.publications
     }
   } catch (err) {
-    console.log("Ha ocurrido un error, intento #", attempt)
+    console.log('Ha ocurrido un error, intento #', attempt)
     console.log(err)
     props = { ...props, attempt: 2 }
     if (attempt == 1) getFeed(props)
@@ -252,28 +255,28 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
     const $imagenes = document.getElementById(idImageElement);
     Array.from($imagenes.files).forEach((file) => {
       const d = new Date();
-      const datestring = d.getDate() + "_" + (d.getMonth() + 1) + "_" + d.getFullYear() + "_" + d.getHours() + "_" + d.getMinutes() + "_" + d.getSeconds();
+      const datestring = d.getDate() + '_' + (d.getMonth() + 1) + '_' + d.getFullYear() + '_' + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds();
       const random = rn({ min: 0, max: 100, integer: true });
       const nombre_archivo = `${datestring}_${random}`;
-      let ubicacionGuardar = storage.ref("/images/" + tipoArchivo + "/" + nombre_archivo + ".jpg");
+      let ubicacionGuardar = storage.ref('/images/' + tipoArchivo + '/' + nombre_archivo + '.jpg');
       const uploadTask = ubicacionGuardar.put(file);
       uploadTask.on(
-        "state_changed",
+        'state_changed',
         function (snapshot) {
           var progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          if (document.querySelector("#progressUploadImage")) {
-            document.querySelector("#progressUploadImage").innerHTML =
-              progress + "%";
+          if (document.querySelector('#progressUploadImage')) {
+            document.querySelector('#progressUploadImage').innerHTML =
+              progress + '%';
           }
-          console.log("Upload is " + progress + "% done");
+          console.log('Upload is ' + progress + '% done');
         },
         function (err) {
           reject(err);
         },
         async function (snapshot) {
           const getIURL = async () => {
-            console.log("entro en getIURL")
+            console.log('entro en getIURL')
             try {
               return [await ref_thumbnail.getDownloadURL(), await ref_full.getDownloadURL()]
             }
@@ -283,12 +286,12 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
           }
 
           let url_thumbnail, url_full = null
-          const ref_thumbnail = storage.ref("/images/" + tipoArchivo + "/" + nombre_archivo + "_320x320.jpg");
-          const ref_full = storage.ref("/images/" + tipoArchivo + "/" + nombre_archivo + "_1080x1080.jpg");
+          const ref_thumbnail = storage.ref('/images/' + tipoArchivo + '/' + nombre_archivo + '_320x320.jpg');
+          const ref_full = storage.ref('/images/' + tipoArchivo + '/' + nombre_archivo + '_1080x1080.jpg');
           const myInterval = setInterval(async () => {
             const images = await getIURL(ref_thumbnail, ref_full)
             if (images) {
-              console.log("entro e imagenes");
+              console.log('entro e imagenes');
               clearInterval(myInterval)
               url_thumbnail = images[0]
               url_full = images[1]
@@ -298,7 +301,7 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
               resolve(arrayURLS)
               return arrayURLS
             } else {
-              console.log("entro y no imagenes");
+              console.log('entro y no imagenes');
             }
           }, 2000)
           /*const file_name = uploadTask.snapshot.ref.name
@@ -318,33 +321,33 @@ export const loadAudio = function (fuente) {
 
 export function getPaises() {
   return [
-    { id: "colombia", nombre: "Colombia" },
-    { id: "mexico", nombre: "México" },
-    { id: "argentina", nombre: "Argentina" },
-    { id: "españa", nombre: "España" },
-    { id: "salvador", nombre: "Salvador" },
+    { id: 'colombia', nombre: 'Colombia' },
+    { id: 'mexico', nombre: 'México' },
+    { id: 'argentina', nombre: 'Argentina' },
+    { id: 'españa', nombre: 'España' },
+    { id: 'salvador', nombre: 'Salvador' },
   ]
 }
 
 export function getCiudades() {
   // Los paises que se coloquen en el campo ID deben ser separados por -
   return [
-    { pais: "", id: "all", label: "Cualquier lugar" },
-    { pais: "colombia", id: "bogota", label: "Bogotá" },
-    { pais: "colombia", id: "medellin", label: "Medellín" },
-    { pais: "colombia", id: "pereira", label: "Pereira" },
-    { pais: "colombia", id: "cartagena", label: "Cartagena" },
-    { pais: "colombia", id: "barranquilla", label: "Barranquilla" },
-    { pais: "colombia", id: "cali", label: "Cali" },
-    { pais: "mexico", id: "ciudad-mexico", label: "Ciudad de México" },
-    { pais: "mexico", id: "guadalajara", label: "Guadalajara" },
-    { pais: "mexico", id: "puebla-zaragoza", label: "Puebla de Zaragoza" },
-    { pais: "mexico", id: "ecatepec", label: "Ecatepec" },
-    { pais: "mexico", id: "tijuana", label: "Tijuana" },
-    { pais: "argentina", id: "buenos_aires", label: "Buenos Aires" },
-    { pais: "españa", id: "madrid", label: "Madrid" },
-    { pais: "salvador", id: "san_salvador", label: "San Salvador" },
-    { pais: "chile", id: "santiago-chile", label: "Santiago de Chile" },
+    { pais: '', id: 'all', label: 'Cualquier lugar' },
+    { pais: 'colombia', id: 'bogota', label: 'Bogotá' },
+    { pais: 'colombia', id: 'medellin', label: 'Medellín' },
+    { pais: 'colombia', id: 'pereira', label: 'Pereira' },
+    { pais: 'colombia', id: 'cartagena', label: 'Cartagena' },
+    { pais: 'colombia', id: 'barranquilla', label: 'Barranquilla' },
+    { pais: 'colombia', id: 'cali', label: 'Cali' },
+    { pais: 'mexico', id: 'ciudad-mexico', label: 'Ciudad de México' },
+    { pais: 'mexico', id: 'guadalajara', label: 'Guadalajara' },
+    { pais: 'mexico', id: 'puebla-zaragoza', label: 'Puebla de Zaragoza' },
+    { pais: 'mexico', id: 'ecatepec', label: 'Ecatepec' },
+    { pais: 'mexico', id: 'tijuana', label: 'Tijuana' },
+    { pais: 'argentina', id: 'buenos_aires', label: 'Buenos Aires' },
+    { pais: 'españa', id: 'madrid', label: 'Madrid' },
+    { pais: 'salvador', id: 'san_salvador', label: 'San Salvador' },
+    { pais: 'chile', id: 'santiago-chile', label: 'Santiago de Chile' },
   ]
 }
 
@@ -424,24 +427,24 @@ query getArticles($id: Int, $limit: Int, $slug: String){
 
 export function getCategories(id) {
   const categories = [
-    { id: 1, name: "Accesorios", image: "/images/icons/accesorios.svg" },
-    { id: 2, name: "Nintendo Switch", image: "/images/icons/nintendo.svg" },
-    { id: 3, name: "Playstation", image: "/images/icons/play.svg" },
-    { id: 4, name: "Xbox", image: "/images/icons/xbox.svg" },
-    { id: 5, name: "Otros", image: "/images/icons/otros1.svg" },
-    { id: 6, name: "PC Gamer", image: "/images/icons/desktop.svg" }]
+    { id: 1, name: 'Accesorios', image: '/images/icons/accesorios.svg' },
+    { id: 2, name: 'Nintendo Switch', image: '/images/icons/nintendo.svg' },
+    { id: 3, name: 'Playstation', image: '/images/icons/play.svg' },
+    { id: 4, name: 'Xbox', image: '/images/icons/xbox.svg' },
+    { id: 5, name: 'Otros', image: '/images/icons/otros1.svg' },
+    { id: 6, name: 'PC Gamer', image: '/images/icons/desktop.svg' }]
   if (id) return categories.find(item => item.id == id)
   return categories
 }
 
 export function getSubcategories(id) {
   const subcategories = [
-    { id: 1, name: "Membresias Nintendo Switch", url: "/subcategoria/membresias-nintendo-switch" },
-    { id: 2, name: "Membresias Playstation", url: "/subcategoria/membresias-playstation" },
-    { id: 3, name: "Promociones", url: "/subcategoria/promociones" },
-    { id: 4, name: "Juegos Clasicos", url: "/subcategoria/juegos-clasicos" },
-    { id: 5, name: "Combos", url: "/subcategoria/combos" },
-    { id: 6, name: "Sorteos", url: "/subcategoria/sorteos" },
+    { id: 1, name: 'Membresias Nintendo Switch', url: '/subcategoria/membresias-nintendo-switch' },
+    { id: 2, name: 'Membresias Playstation', url: '/subcategoria/membresias-playstation' },
+    { id: 3, name: 'Promociones', url: '/subcategoria/promociones' },
+    { id: 4, name: 'Juegos Clasicos', url: '/subcategoria/juegos-clasicos' },
+    { id: 5, name: 'Combos', url: '/subcategoria/combos' },
+    { id: 6, name: 'Sorteos', url: '/subcategoria/sorteos' },
   ]
   if (id) return subcategories.find(item => item.id == id)
   return subcategories
@@ -556,7 +559,7 @@ export const GET_PUBLICATIONS = gql`
 
 export const notifierOptions = {
   labels: {
-    success: ""
+    success: ''
   }
 }
 

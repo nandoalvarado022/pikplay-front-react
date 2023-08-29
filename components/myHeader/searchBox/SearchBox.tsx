@@ -3,6 +3,7 @@ import useSearch from "./useSearch"
 import Link from "next/link"
 import Product from "../../../interfaces/Product"
 import Author from "../../card/Author"
+import { motion } from 'framer-motion'
 import { format_number, getCiudades, getFeed } from '../../../lib/utils'
 import { TextField } from "@material-ui/core"
 import { IS_MOBILE } from "../../../lib/variables"
@@ -46,9 +47,15 @@ const SearchBox = ({ inputText, isLoading, results, setInputText }) => {
     </div>
 
     {
-      showSearchModal && <div className={styles.results}>
-        <FontAwesomeIcon className={styles.close_icon} icon={faPlus} onClick={() => setShowSearchModal(false)} />
-        <section>
+      // Modal
+      showSearchModal && <motion.div
+        className={styles.results}
+        initial={{ x: "50%" }}
+        animate={{
+          x: 0,
+        }}
+      >
+        <section className={styles.barra_lateral}>
           <MostPopularSearches setInputText={setInputText} />
           {isLoading && <Loading />}
           {!isLoading && <ResultsBox results={results} />}
@@ -78,14 +85,12 @@ const SearchBox = ({ inputText, isLoading, results, setInputText }) => {
                 </div> */}
 
         </section>
-        {/*  Sección recomendados */}
-        {/* <section className={styles.recommended}>
-                <span>Contenido promocionado</span>
-                <div className={styles.gallery}>
-                  <ImageGallery autoPlay={true} items={images} showThumbnails={false} showPlayButton={false} showFullscreenButton={false} showNav={false} />
-                </div>
-              </section> */}
-      </div>
+        <div
+          className={styles.background}
+          onClick={() => setShowSearchModal(false)}
+        >
+        </div>
+      </motion.div>
     }
     {!IS_MOBILE && <PreviewUser />}
   </div>

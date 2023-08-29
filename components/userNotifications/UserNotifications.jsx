@@ -1,19 +1,20 @@
-const { motion } = require("framer-motion")
-import Button from "../button/Button"
-import confetti from "canvas-confetti"
-import styles from "./styles.module.scss"
-import { CREATE_COIN, DELETE_NOTIFICATION, format_number, GET_NOTIFICATIONS, loadAudio } from "../../lib/utils"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBell, faCircle } from "@fortawesome/free-solid-svg-icons"
+import React from 'react'
+const { motion } = require('framer-motion')
+import Button from '../button/Button'
+import confetti from 'canvas-confetti'
+import styles from './styles.module.scss'
+import { CREATE_COIN, DELETE_NOTIFICATION, format_number, GET_NOTIFICATIONS, loadAudio } from '../../lib/utils'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBell, faCircle } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'react-toastify'
 import { useEffect } from 'react'
 import { useLazyQuery, useMutation } from '@apollo/client'
-import { useSelector, useDispatch } from "react-redux"
-import classNames from "classnames"
-import { Tooltip } from "@material-ui/core"
-import moment from "moment"
-import Link from "next/link"
-import Router from "next/router"
+import { useSelector, useDispatch } from 'react-redux'
+import classNames from 'classnames'
+import { Tooltip } from '@material-ui/core'
+import moment from 'moment'
+import Link from 'next/link'
+import Router from 'next/router'
 
 moment.locale('es-CO');
 
@@ -42,7 +43,7 @@ const UserNotifications = () => {
 
     if (status == 200) {
       confetti()
-      dispatch({ type: "RECLAMAR_COINS", payload: { coins } }) // Coins UI
+      dispatch({ type: 'RECLAMAR_COINS', payload: { coins } }) // Coins UI
       toast(`Has recibido ${format_number(coins)} Pikcoins, ¡felicidades!`)
       handleDeleteNotification(id_notification) // Delete notificacion (BD and UI)
       getNotifications()
@@ -51,18 +52,23 @@ const UserNotifications = () => {
   }
 
   const handleDeleteNotification = (id) => {
-    notifications.find(item => item.id == id).closed = "1"
+    notifications.find(item => item.id == id).closed = '1'
     deleteNotification({ variables: { id, userId: user.id } }) // Delete notification BD
   }
 
   const [getNotifications] = useLazyQuery(GET_NOTIFICATIONS, { // Obteniendo notificaciones
-    fetchPolicy: "no-cache",
+    fetchPolicy: 'no-cache',
     polInterval: 5000,
     variables: {
       user: user?.id
     },
+    context: {
+      headers: {
+        'Operation-Name': 'getNotifications'
+      }
+    },
     onCompleted: ({ getNotifications }) => {
-      getNotifications && dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: getNotifications } })
+      getNotifications && dispatch({ type: 'CHANGE_PROPERTY', payload: { property: 'notifications', value: getNotifications } })
     }
   })
 
@@ -72,7 +78,7 @@ const UserNotifications = () => {
     } else {
       handleDeleteNotification(id)
     }
-    if(link) Router.push(link)
+    if (link) Router.push(link)
   }
 
   useEffect(() => {
