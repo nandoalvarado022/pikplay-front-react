@@ -1,0 +1,104 @@
+.ChallengeSection {
+	box-sizing: border-box;
+	display: grid;
+	max-width: 600px;
+	row-gap: 10px;
+	row-gap: 15px;
+	border-radius: 10px;
+	padding: 25px 35px;
+	.challengeHeader {
+		border-radius: 10px;
+		padding: 14px 20px;
+		background: linear-gradient(90deg, #c9d6ff, #e2e2e2);
+		h3 {
+			margin: 0;
+			font-weight: bold;
+		}
+		p {
+			line-height: 1.6;
+		}
+	}
+	.challenge {
+		box-sizing: border-box;
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		place-items: center;
+		box-shadow: 2px 2px 5px 0 #ababab52;
+		border-radius: 10px;
+		gap: 12px;
+		padding: 12px 16px;
+		picture {
+			background: black;
+			width: 60%;
+		}
+		.challengeDetails {
+			grid-column: 2/4;
+			width: 100%;
+			display: grid;
+			row-gap: 8px;
+			.goalTitle {
+				font-size: 1rem;
+				margin: 0;
+			}
+			.progressContainer {
+				background-color: #a8a8a8;
+				width: 100%;
+				border: 2px solid #373737;
+				border-radius: 32px;
+				text-align: center;
+				position: relative;
+				padding: 4px;
+				.progressBar {
+					background-color: yellowgreen;
+					position: absolute;
+					top: 0;
+					left: 0;
+					border-radius: 32px;
+					height: 100%;
+					z-index: 0;
+				}
+				.progressScore {
+					position: relative;
+					font-weight: bold;
+					z-index: 2;
+				}
+			}
+			p {
+				margin: 0;
+				font-weight: 400;
+				.deadLine {
+					font-weight: bold;
+				}
+			}
+		}
+
+		.prizeCoins {
+			box-sizing: border-box;
+			text-align: center;
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+			background-color: gold;
+			border: 2px solid #675353;
+			display: grid;
+			place-items: center;
+			justify-content: center;
+			span {
+				font-weight: bold;
+			}
+			span:nth-child(1) {
+				color: #765151;
+			}
+			span:nth-child(2) {
+				font-size: 8px;
+				word-spacing: 5px;
+				font-weight: bold;
+				border: 1px solid black;
+				padding: 2px;
+				border-radius: 8px;
+				place-self: start;
+			}
+		}
+	}
+}
