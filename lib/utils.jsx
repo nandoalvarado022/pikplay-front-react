@@ -320,7 +320,7 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
 						}
 					}, 2000)
 					/*const file_name = uploadTask.snapshot.ref.name
-          // uploadTask.snapshot.ref*/
+		  // uploadTask.snapshot.ref*/
 				}
 			)
 		})
@@ -435,14 +435,15 @@ export function checkIsMobile(userAgent) {
 }
 
 export const GET_CHALLENGES = gql`
-	query getChallenges($id: Int, $limit: Int, $slug: String) {
-		getChallenges(id: $id, limit: $limit, slug: $slug) {
-			content
-			mobile_content
+	query getChallenges {
+		getChallenges {
+			currentPoints
+			deadLine
+			description
+			finished
 			id
-			image_card
-			slug
-			summary
+			prizeCoins
+			targetPoints
 			title
 		}
 	}

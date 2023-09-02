@@ -8,7 +8,7 @@ import { GET_ARTICLES } from '../../lib/utils'
 import styles from './styles.module.scss'
 
 const Articles = () => {
-  const { data } = useQuery(GET_ARTICLES, {
+  const { data, loading } = useQuery(GET_ARTICLES, {
     variables: {
       limit: 4
     },
