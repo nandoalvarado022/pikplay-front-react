@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from "next/link"
 import Author from "../../card/Author"
-import { format_number, getCiudades, getFeed } from '../../../lib/utils'
+import { formatNumber, getCiudades, getFeed } from '../../../lib/utils'
 import Product from '../../../interfaces/Product'
 import styles from "../styles.module.scss"
 
@@ -22,7 +22,7 @@ export const ResultsBox = ({ results }) => {
                 <div>
                   <h2>{item.title}</h2>
                   {!!item.sale_price && <div className={styles.price}>
-                    ${format_number(item.sale_price)}
+                    ${formatNumber(item.sale_price)}
                   </div>}
                   {item.user && <Author parentView='HeaderSearch' user={item.user} />}
                   <small className={styles.location}>

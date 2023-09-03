@@ -6,7 +6,6 @@ const Recommendations = ({ Component, pageProps }) => {
   return (<div>
     <h1>Recommendations</h1>
     {message}
-    <button onClick={setMessage('Hi')}></button>
   </div>
   )
 }

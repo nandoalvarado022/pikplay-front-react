@@ -4,7 +4,7 @@ import Link from "next/link"
 import Product from "../../../interfaces/Product"
 import Author from "../../card/Author"
 import { motion } from 'framer-motion'
-import { format_number, getCiudades, getFeed } from '../../../lib/utils'
+import { formatNumber, getCiudades, getFeed } from '../../../lib/utils'
 import { TextField } from "@material-ui/core"
 import { IS_MOBILE } from "../../../lib/variables"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -71,7 +71,7 @@ const SearchBox = ({ inputText, isLoading, results, setInputText }) => {
                         <span>
                           Llévalo por solo&nbsp;
                           {!!premiumResult.sale_price && <price className={styles.price}>
-                            ${format_number(premiumResult.sale_price)}
+                            ${formatNumber(premiumResult.sale_price)}
                           </price>}
                         </span>
                         <h2>{premiumResult.title}</h2>

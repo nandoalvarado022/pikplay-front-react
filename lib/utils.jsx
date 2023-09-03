@@ -12,7 +12,7 @@ date.locale('es')
 
 // export default connect(null, useDispatch)(Functions)
 const env = process.env.NODE_ENV
-datadogRum.init({
+/*datadogRum.init({
   applicationId: 'e070617f-1352-46e4-9c21-4cb715efd297',
   clientToken: 'pubffdccfc89da2b7156acfb7c7e44e317f',
   site: 'datadoghq.com',
@@ -28,7 +28,7 @@ datadogRum.init({
   defaultPrivacyLevel: 'allow'
 })
 
-datadogRum.startSessionReplayRecording()
+datadogRum.startSessionReplayRecording()*/
 
 export const getNotifications = async (props) => {
   const { closed, user } = props
@@ -368,19 +368,18 @@ export function shuffle(array) {
     array[randomIndex] = temporaryValue;
   }
 
-  return array;
+  return array
 }
 
-export function format_number(input) {
+export function formatNumber(input) {
   input = String(input)
   var num = input.replace(/\./g, '');
   if (!isNaN(num)) {
-    num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+    num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.')
     num = num.split('').reverse().join('').replace(/^[\.]/, '');
-    input = num;
-  }
-  else {
-    input = input.replace(/[^\d\.]*/g, '');
+    input = num
+  } else {
+    input = input.replace(/[^\d\.]*/g, '')
   }
   return input
 }

@@ -9,7 +9,7 @@ import TextField from "@material-ui/core/TextField"
 import { IS_MOBILE } from '../../lib/variables'
 import recommended from '../../public/recommended'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { format_number, getCiudades, getFeed } from '../../lib/utils'
+import { formatNumber, getCiudades, getFeed } from '../../lib/utils'
 import { useSelector } from 'react-redux'
 import ImageGallery from 'react-image-gallery'
 import { Alert } from '@material-ui/lab'

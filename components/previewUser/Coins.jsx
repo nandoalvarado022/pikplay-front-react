@@ -1,8 +1,8 @@
 import { gql, useLazyQuery } from '@apollo/client'
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { format_number } from "../../lib/utils"
-import styles from "./coins.module.scss"
+import { formatNumber } from '../../lib/utils'
+import styles from './coins.module.scss'
 
 const Coins = ({ coins }) => {
   const dispatch = useDispatch()
@@ -22,24 +22,24 @@ const Coins = ({ coins }) => {
   }, [])
 
   const GET_COINS = gql`
-	query getCoins($user: Int){
-		getCoins(user: $user){
+  query getCoins($user: Int){
+    getCoins(user: $user){
       id
       user
       detail
       value
       created
     }
-	}`
+  }`
 
   const [getCoins] = useLazyQuery(GET_COINS, {
-    fetchPolicy: "no-cache",
+    fetchPolicy: 'no-cache',
     variables: {
       user: user.id
     },
     onCompleted: ({ getCoins }) => {
       const coins = getCoins ? getCoins.reduce((total, coin) => coin.value + total, 0) : 0
-      dispatch({ type: "CHANGE_PROPERTY", payload: { property: "coins", value: coins } })
+      dispatch({ type: 'CHANGE_PROPERTY', payload: { property: 'coins', value: coins } })
     }
   })
 
@@ -69,12 +69,12 @@ const Coins = ({ coins }) => {
     animate()
   }, [])
 
-  return <div className={`${styles.Coins} ${isAnimate ? styles.animated : ""}`} onClick={animate}>
+  return (<div className={`${styles.Coins} ${isAnimate ? styles.animated : ''}`} onMouseEnter={animate}>
     <picture className={styles.coin} />
     <div className={`f-s-14 ${styles.number} number-coins`}>
-      {format_number(coins)}
+      {formatNumber(coins)}
     </div>
-  </div>
+  </div>)
 }
 
 export default Coins

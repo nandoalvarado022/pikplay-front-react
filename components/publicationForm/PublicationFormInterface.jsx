@@ -1,15 +1,16 @@
+import React from 'react'
 import Button from '../button/Button'
 import Card from '../card/Card'
-import CategoryControl from "./CategoryControl/CategoryControl"
+import CategoryControl from './CategoryControl/CategoryControl'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Link from "next/link"
+import Link from 'next/link'
 import Switch from '@material-ui/core/Switch'
-import styles from "./publicationForm.module.scss"
+import styles from './publicationForm.module.scss'
 import { Alert } from '@material-ui/lab'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { TextField } from "@material-ui/core"
-import { faArrowLeft, faImage, faTrash } from "@fortawesome/free-solid-svg-icons"
-import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
+import { TextField } from '@material-ui/core'
+import { faArrowLeft, faImage, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
 import { toast } from 'react-toastify'
 import classNames from 'classnames'
 import { IS_MOBILE } from '../../lib/variables'
@@ -35,12 +36,15 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imag
         <FontAwesomeIcon class="svg-question" icon={faQuestionCircle} onClick={() => {
           const message = <div>
             <p>Creación de publicaciones</p>
-            <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
+            <p style={{ textAlign: 'right' }}>Juntos somos mejor 🤝</p>
           </div>
           toast(message)
         }} />
       </h2>
 
+      <Alert className={styles.alert} severity="success" style={{ marginBottom: '10px' }}>
+        Crea tu anuncio 100% gratis y sin comisiónes
+      </Alert>
       {errors && <Alert className="m-b-20" severity="error">{errors}</Alert>}
 
       <div className={styles.steps_and_actions}>
@@ -59,9 +63,9 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imag
           </div>
         </div>
 
-        <div className="actions" style={{ textAlign: "right" }}>
+        <div className="actions" style={{ textAlign: 'right' }}>
           {
-            currentStep != 1 && <Button className="previousStep" animation={false} onClick={previusStep} color="yellow">
+            currentStep !== 1 && <Button className="previousStep" animation={false} onClick={previusStep} color="yellow">
               Anterior
             </Button>
           }
@@ -119,7 +123,7 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imag
 
               <div className={`Card ${styles.images_list}`}>
                 {
-                  ["image_1", "image_2", "image_3", "image_4"].map(item => {
+                  ['image_1', 'image_2', 'image_3', 'image_4'].map(item => {
                     const value = publicationFormData[item]
                     return <>
                       {
@@ -134,7 +138,7 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imag
                           <span className={styles.remove} onClick={() => handleRemoveImage(item)}>
                             <FontAwesomeIcon icon={faTrash} />
                           </span>
-                          <img alt="Imagen de publicacion" style={{ maxWidth: "100px", display: "block" }} className="imageRodada" src={publicationFormData[item]} />
+                          <img alt="Imagen de publicacion" style={{ maxWidth: '100px', display: 'block' }} className="imageRodada" src={publicationFormData[item]} />
                         </label>
                       }
                     </>
@@ -150,9 +154,6 @@ const PublicationForminterface = ({ currentStep, errors, handleRemoveImage, imag
             <Card {...publicationFormData} slug={null} />
           </div>
         }
-        <Alert className={styles.alert} severity="success" style={{ marginBottom: "10px" }}>
-          Crea tu anuncio 100% gratis y sin comisiónes
-        </Alert>
       </div>
     </section>
   }

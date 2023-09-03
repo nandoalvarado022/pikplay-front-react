@@ -3,7 +3,7 @@ const { motion } = require('framer-motion')
 import Button from '../button/Button'
 import confetti from 'canvas-confetti'
 import styles from './styles.module.scss'
-import { CREATE_COIN, DELETE_NOTIFICATION, format_number, GET_NOTIFICATIONS, loadAudio } from '../../lib/utils'
+import { CREATE_COIN, DELETE_NOTIFICATION, formatNumber, GET_NOTIFICATIONS, loadAudio } from '../../lib/utils'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faCircle } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'react-toastify'
@@ -44,7 +44,7 @@ const UserNotifications = () => {
     if (status == 200) {
       confetti()
       dispatch({ type: 'RECLAMAR_COINS', payload: { coins } }) // Coins UI
-      toast(`Has recibido ${format_number(coins)} Pikcoins, ¡felicidades!`)
+      toast(`Has recibido ${formatNumber(coins)} Pikcoins, ¡felicidades!`)
       handleDeleteNotification(id_notification) // Delete notificacion (BD and UI)
       getNotifications()
       return true

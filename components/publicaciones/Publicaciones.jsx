@@ -12,7 +12,7 @@ import { Doughnut } from 'react-chartjs-2'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHeart, faRocket } from "@fortawesome/free-solid-svg-icons"
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons"
-import { DELETE_FOLLOWINED_PUBLICATION, format_number, GET_FOLLOWED_PUBLICATIONS, GET_PUBLICATIONS } from '../../lib/utils'
+import { DELETE_FOLLOWINED_PUBLICATION, formatNumber, GET_FOLLOWED_PUBLICATIONS, GET_PUBLICATIONS } from '../../lib/utils'
 import { toast } from 'react-toastify'
 import { useEffect, useState } from 'react'
 import { useQuery, gql, useMutation, useLazyQuery } from '@apollo/client'
@@ -164,7 +164,7 @@ const Publicacion = ({ item, ind, getPublications }) => {
                 <img alt="Imagen de articulo" src={item.image_link} />
             </div>
             <div className={styles["flex-row"]} title={`ID: ${item.id}`}>{item.title}</div>
-            <div className={styles["flex-row"]}>${format_number(item.sale_price)}</div>
+            <div className={styles["flex-row"]}>${formatNumber(item.sale_price)}</div>
             <div className={styles["flex-row"]} title="Fecha de creación">
                 {moment(parseInt(item.created)).format("MMMM DD YYYY, h:mm:ss a")}
             </div>

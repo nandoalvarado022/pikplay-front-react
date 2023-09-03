@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Link from "next/link"
 import Grow from "@material-ui/core/Grow"
-import { capitalize, format_number, getCiudades } from "../../lib/utils"
+import { capitalize, formatNumber, getCiudades } from "../../lib/utils"
 import { useQuery, gql } from '@apollo/client'
 import styles from "./card.module.scss"
 import Author from "./Author"
@@ -123,7 +123,7 @@ const Card = (props: Product) => {
               <div className={styles.content_precio}>
                 {/* Precio tachado */
                   // Number(price) != 0 && <span className={styles.tachado}>
-                  //   ${format_number(price)}
+                  //   ${formatNumber(price)}
                   // </span>
                 }
                 {
@@ -131,7 +131,7 @@ const Card = (props: Product) => {
                   Number(sale_price) != 0 &&
                   <React.Fragment>
                     <span className={styles.nuevoPrecio}>
-                      ${format_number(sale_price)}
+                      ${formatNumber(sale_price)}
                     </span>
                   </React.Fragment>
                 }
