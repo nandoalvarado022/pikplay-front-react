@@ -8,7 +8,7 @@ const getChallenges = {
 				"description": "Get your first product and earn 30 pikcoins",
 				"finished": true,
 				"id": "42d",
-				"image":"<img src=\"/images/challenges/challenge1.avif\" />",
+				"image":"<img src=\"https://img.freepik.com/free-vector/joystick-game-sport-technology_138676-2045.jpg?w=740&t=st=1693926830~exp=1693927430~hmac=72616409cc6495ef3494c9b94f35fe643c534d74e9f6944f146b4abe27031a1c\" />",
 				"prizeCoins": 30,
 				"targetPoints": 1,
 				"title": "Buy a product"
