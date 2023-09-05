@@ -7,18 +7,19 @@ import styles from './challenges.module.scss'
 import { useQuery } from '@apollo/client'
 import { GET_CHALLENGES } from '../../lib/utils.jsx'
 
-import Box from '@material-ui/core/Box'
+
 import Skeleton from '@material-ui/lab/Skeleton'
-import Grid from '@material-ui/core/Grid'
+
 
 const Challenges = () => {
-	const { data, loading, error } = useQuery(GET_CHALLENGES, {
+	const { data, loading } = useQuery(GET_CHALLENGES, {
 		context: {
 			headers: {
 				'Operation-Name': 'getChallenges'
 			}
-		},
+		}
 	})
+	
 
 	return (
 		<section className={styles.ChallengeSection}>
@@ -29,67 +30,62 @@ const Challenges = () => {
 					Cada dia habrá nuevos desafíos.
 				</p>
 			</div>
-			{loading && new Array(4).fill(null).map((_, i) => (
-				<Skeleton
-					key={i}
-					variant='rect'
-					width='100%'
-					height={120}
-					className='Card'
-				/>
-			))}
+		
 			{loading
-				? new Array(4)
-					.fill(null)
-					.map((_, i) => (
-						<Skeleton
-							key={i}
-							variant='rect'
-							width='100%'
-							height={120}
-							className='Card'
-						/>
-					))
+				? new Array(3)
+						.fill(null)
+						.map((_, i) => (
+							<Skeleton
+								key={i}
+								variant='rect'
+								width='100%'
+								height={120}
+								className='Card'
+							/>
+						))
 				: data.getChallenges.map(
-					({
-						id,
-						title,
-						targetPoints,
-						currentPoints,
-						prizeCoins,
-						deadLine,
-						finished
-					}) => (
-						<article key={id} className={`${styles.challenge} Card`}>
-							<picture className=''>
-								<img src='' alt='Thunder goal image' />
-							</picture>
-							<div className={styles.challengeDetails}>
-								<h3 className={styles.challengeTitle}>{title}</h3>
-								<div className={styles.progressContainer}>
-									<span
-										className={styles.progressBar}
-										style={{
-											width: `calc((100% * ${currentPoints}) / ${targetPoints})`
-										}}
-									></span>
-									<span className={styles.progressScore}>
-										{currentPoints}/{targetPoints}
-									</span>
+						({
+							id,
+							title,
+							targetPoints,
+							currentPoints,
+							prizeCoins,
+							deadLine,
+							image,
+							description,
+							finished
+						}) => (
+							<article key={id} className={`${styles.challenge}`}>
+								<picture className='' dangerouslySetInnerHTML={{ __html: image }}>
+									
+								</picture>
+								<div className={styles.challengeDetails}>
+									<h3 className={styles.challengeTitle}>{title}</h3>
+									<p>{description}</p>
+									<div className={styles.progressContainer}>
+										<span
+											className={styles.progressBar}
+											style={{
+												width: `calc((100% * ${currentPoints}) / ${targetPoints})`
+											}}
+										></span>
+										<span className={styles.progressScore}>
+											{currentPoints}/{targetPoints}
+										</span>
+									</div>
+									<p>
+										{' '}
+										Expires on: {''}
+										<span className={styles.deadLine}>{deadLine}</span>
+									</p>
 								</div>
-								<p>
-									{' '}
-									Expires on: {''}
-									<span className={styles.deadLine}>{deadLine}</span>
-								</p>
-							</div>
-							<div className={styles.prizeCoins}>
-								<span>{prizeCoins}</span>
-								<span>pikcoins</span>
-							</div>
-						</article>
-					)
-				)}
+								<div className={styles.prizeCoins}>
+									<span>{prizeCoins}</span>
+									<span>pikcoins</span>
+								</div>
+							</article>
+						)
+				  )}
 		</section>
 	)
 }

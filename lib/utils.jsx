@@ -442,6 +442,7 @@ export const GET_CHALLENGES = gql`
 			description
 			finished
 			id
+			image
 			prizeCoins
 			targetPoints
 			title

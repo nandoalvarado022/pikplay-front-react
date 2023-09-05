@@ -1,14 +1,19 @@
 #ArticlesComponent {
     position: relative;
-    overflow-x: scroll;
-    overflow-y: hidden;
+    overflow:auto;
+    scrollbar-color: silver white;
+    scrollbar-width:thin;
+  
     &::-webkit-scrollbar-track {
         background: white; /* color of the tracking area */
-        border: none;
+        
+        border-radius: 20px;
     }
     &::-webkit-scrollbar-thumb {
         border-radius: 20px; /* roundness of the scroll thumb */
         border: 3px solid white; /* creates padding around scroll thumb */
+
+        border-radius: 20px;
     }
     .arrows {
         display: flex;

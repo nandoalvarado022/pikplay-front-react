@@ -5,9 +5,10 @@ const getChallenges = {
 			{
 				"currentPoints": 1,
 				"deadLine": "17 Sep",
-				"description": "",
+				"description": "Get your first product and earn 30 pikcoins",
 				"finished": true,
 				"id": "42d",
+				"image":"<img src=\"/images/challenges/challenge1.avif\" />",
 				"prizeCoins": 30,
 				"targetPoints": 1,
 				"title": "Buy a product"
@@ -15,22 +16,24 @@ const getChallenges = {
 			{
 				"currentPoints": 4,
 				"deadLine": "17 Sep",
-				"description": "",
+				"description": "Tell your friends",
 				"finished": false,
 				"id": "42z",
 				"prizeCoins": 40,
 				"targetPoints": 5,
-				"title": "Invite 5 friends"
+				"title": "Invite 5 friends",
+				"image":"<img src=\"https://img.freepik.com/free-vector/illustration-young-people-waving-hand-set_52683-30276.jpg?w=1060&t=st=1693927446~exp=1693928046~hmac=9f158e68c37545a737829f68372f4e21330e354f27bf3ff71646f1c369ebb270\"/>"
 			},
 			{
 				"currentPoints": 1,
 				"deadLine": "17 Sep",
-				"description": "",
+				"description": "Share with your friends on instagram or twitter",
 				"finished": true,
 				"id": "34k",
 				"prizeCoins": 15,
 				"targetPoints": 1,
-				"title": "Share on instagram or twitter"
+				"title": "Share on social networks",
+				"image":"<img src=\"https://img.freepik.com/free-vector/digital-connectivity-technology-icon-neon-gradient-background_53876-119515.jpg?w=740&t=st=1693927550~exp=1693928150~hmac=830842342a1f65bbb3b68ac4f2a91cd4fef76294ecce690627fca9fbf7ceb033\"/>"
 			}
 		]
 	}
