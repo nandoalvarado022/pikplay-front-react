@@ -1,14 +1,13 @@
 import React from 'react'
 
-// import { goalImg } from '../../public/images/goals/lightning_bolt_2.jpg'
-// import { closeChest } from './'
-// import { openChest } from './open-chest.png'
 import styles from './challenges.module.scss'
 import { useQuery } from '@apollo/client'
 import { GET_CHALLENGES } from '../../lib/utils.jsx'
-
+import Coins from '../previewUser/Coins'
 
 import Skeleton from '@material-ui/lab/Skeleton'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import  {faCheck}  from '@fortawesome/free-solid-svg-icons'
 
 
 const Challenges = () => {
@@ -56,6 +55,9 @@ const Challenges = () => {
 							finished
 						}) => (
 							<article key={id} className={`${styles.challenge}`}>
+							
+								{finished && <FontAwesomeIcon icon={faCheck} className={styles.challengeCompleteIcon} />}
+
 								<picture className='' dangerouslySetInnerHTML={{ __html: image }}>
 									
 								</picture>
@@ -82,6 +84,7 @@ const Challenges = () => {
 								<div className={styles.prizeCoins}>
 									<span>{prizeCoins}</span>
 									<span>pikcoins</span>
+								{/* <Coins coins={prizeCoins}/> */}
 								</div>
 							</article>
 						)
