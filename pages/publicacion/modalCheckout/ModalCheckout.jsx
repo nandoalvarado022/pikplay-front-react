@@ -7,7 +7,7 @@ import Link from "next/link"
 import { Alert } from "@material-ui/lab"
 import { useSelector } from "react-redux"
 import CouponBox from "../../../components/couponBox/CouponBox"
-import { format_number, GET_CLAIMED_COUPONS } from "../../../lib/utils"
+import { formatNumber, GET_CLAIMED_COUPONS } from "../../../lib/utils"
 import { useEffect, useState } from "react"
 import classNames from "classnames"
 import Checkout from "../../../components/checkout/Checkout"
@@ -92,7 +92,7 @@ const ModalCheckout = (props) => {
             <tr>
               <td>Total:</td>
               <td>
-                <del>${format_number(datosPublicacion?.sale_price)}</del>
+                <del>${formatNumber(datosPublicacion?.sale_price)}</del>
               </td>
             </tr>
 
@@ -101,7 +101,7 @@ const ModalCheckout = (props) => {
                 Descuento:
               </td>
               <td>
-                -${format_number(couponValue)}
+                -${formatNumber(couponValue)}
               </td>
             </tr>
           </>}
@@ -109,7 +109,7 @@ const ModalCheckout = (props) => {
           <tr className={styles.sale_price}>
             <td>Total a pagar:</td>
             <td>
-              ${format_number(datosPublicacion?.sale_price - couponValue)}
+              ${formatNumber(datosPublicacion?.sale_price - couponValue)}
             </td>
           </tr>
         </table>}
@@ -119,7 +119,7 @@ const ModalCheckout = (props) => {
         {/* Sin cupón
         {!couponValue && <div className={styles.sale_price}>
           <b>Total a pagar:</b>
-          ${format_number(datosPublicacion?.sale_price)}
+          ${formatNumber(datosPublicacion?.sale_price)}
         </div>}
       </table>} */}
 

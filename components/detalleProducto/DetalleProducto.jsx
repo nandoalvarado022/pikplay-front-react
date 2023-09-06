@@ -5,7 +5,7 @@ import Grow from "@material-ui/core/Grow"
 import ImageGallery from "react-image-gallery"
 import React from "react"
 import styles from "./styles.module.scss"
-import { format_number } from "../../lib/utils"
+import { formatNumber } from "../../lib/utils"
 import { useRef } from "react"
 import Link from "next/link"
 import { useSelector } from "react-redux"
@@ -80,7 +80,7 @@ const DetalleProducto = ({
               {descuento > 0 &&
                 <span className={"descuento" + (logDetalle ? " logDetalle" : "")}> -{descuento}% </span>}
               {!!sale_price && <span className={styles.nuevoPrecio}>
-                ${format_number(sale_price)}
+                ${formatNumber(sale_price)}
               </span>}
             </div>
 

@@ -8,6 +8,7 @@ import Card from "../../components/card/Card"
 import { getHome } from "../../lib/utils"
 import Button from "../../components/button/Button"
 import { Avatar, Chip } from "@material-ui/core"
+import Reviews from "./components/Reviews/Reviews"
 
 const Usuario = (props) => {
   const { products } = props
@@ -58,7 +59,7 @@ const Usuario = (props) => {
             variant=""
           />
         </div>
-        <p>
+        <p className={styles.description}>
           GameStop Medellin
           Tienda de videojuegos
           🔴TIENDA #1 DE VIDEOJUEGOS EN MEDELLÍN🔴
@@ -77,10 +78,12 @@ const Usuario = (props) => {
             Instagram
           </Button>
         </div>
-        <div className={styles.social}>
+        {/* <div className={styles.social}>
           <img src="/images/others/ing-gamestop.png" />
-          B</div>
+        </div> */}
+        <Reviews />
       </motion.div>
+
       <div className={`${styles.products}`}>
         {
           products?.map((product, index) => (
