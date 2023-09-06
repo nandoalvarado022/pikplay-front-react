@@ -56,7 +56,10 @@ const Challenges = () => {
           }) => (
             <article key={id} className={`${styles.challenge}`}>
               {finished && <FontAwesomeIcon icon={faCheck} className={styles.challengeCompleteIcon} />}
+              <picture className={styles.image}>
+
               <img className={styles.image} src={image} />
+              </picture>
               <div className={styles.challengeDetails}>
                 <h3 className={styles.challengeTitle}>{title}</h3>
                 <p>{description}</p>
@@ -77,11 +80,9 @@ const Challenges = () => {
                   <span className={styles.deadLine}>{deadLine}</span>
                 </p>
               </div>
-              <div className={styles.prizeCoins}>
-                <span>{prizeCoins}</span>
-                <span>pikcoins</span>
-              </div>
+              
               <Coins coins={prizeCoins} />
+              
             </article>
           )
         )}
