@@ -1,108 +1,119 @@
 .ChallengeSection {
-	
-	box-sizing: border-box;
-	display: grid;
-	max-width: 600px;
-	row-gap: 10px;
-	row-gap: 15px;
-	border-radius: 10px;
-	padding: 25px 35px;
-	.challengeHeader {
-		box-shadow: 2px 2px 5px 0 #ababab52;
-		border-radius: 10px;
-		padding: 14px 20px;
-		background: linear-gradient(90deg, #c9d6ff, #e2e2e2);
-		h3 {
-			margin: 0;
-			font-weight: bold;
-		}
-		p {
-			line-height: 1.6;
-		}
-	}
-	
-	.challenge  {
-		box-sizing: border-box;
-		width: 100%;
-		display: grid;
-		position: relative;
-		grid-template-columns: repeat(4, 1fr);
-		place-items: center;
-		box-shadow: 2px 2px 5px 0 #ababab52;
-		border-radius: 10px;
-		gap: 12px;
-		background: white;
-		min-height: 150px;
-		cursor: pointer;
-		.challengeCompleteIcon {
-			position: absolute;
-			top: -5px;
-			left:-10px;
-			font-size: 32px;
-			color: #9ACD32;
-			padding: 6px;
-			background: white;
-			border: 1px solid black;
-			border-radius: 50%;
-			
-			box-shadow: 2px 2px 5px #05050552;
-		}
-		.image {
-			width: 100%;
-			height: 100%;
-			border-radius: 10px 0 0 10px;
-			color: white;
-			img{
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				border-radius: 10px 0 0 10px;
-			}
-		}
-		.challengeDetails {
-			box-sizing: border-box;
-			grid-column: 2/4;
-			width: 100%;
-			display: grid;
-			row-gap: 8px;
-			padding: 12px 0;
-			.challengeTitle {
-				font-size: 1rem;
-				margin: 0;
-			}
-			.progressContainer {
-				background-color: #a8a8a8;
-				width: 100%;
-				border: 2px solid #373737;
-				border-radius: 32px;
-				text-align: center;
-				position: relative;
-				padding: 4px;
-				box-shadow: 2px 2px 5px #05050552;
-				.progressBar {
-					background-color: yellowgreen;
-					position: absolute;
-					top: 0;
-					left: 0;
-					border-radius: 32px;
-					height: 100%;
-					
-				}
-				.progressScore {
-					position: relative;
-					font-weight: bold;
-					z-index: 2;
-				}
-			}
-			p {
-				margin: 0;
-				font-weight: 400;
-				.deadLine {
-					font-weight: bold;
-				}
-			}
-		}
+  box-sizing: border-box;
+  display: grid;
+  max-width: 600px;
+  row-gap: 10px;
+  row-gap: 15px;
+  border-radius: 10px;
+  padding: 25px 35px;
 
-		
-	}
+  .challengeHeader {
+    box-shadow: 2px 2px 5px 0 #ababab52;
+    border-radius: 10px;
+    padding: 14px 20px;
+    background: linear-gradient(90deg, #c9d6ff, #e2e2e2);
+
+    h3 {
+      margin: 0;
+      font-weight: bold;
+    }
+    p {
+      line-height: 1.6;
+    }
+  }
+
+  .challenge {
+    box-sizing: border-box;
+    width: 100%;
+    display: grid;
+    position: relative;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    box-shadow: 2px 2px 5px 0 #ababab52;
+    border-radius: 10px;
+    gap: 12px;
+    background: white;
+    min-height: 150px;
+    cursor: pointer;
+
+    .challengeCompleteIcon {
+      background: white;
+      border-radius: 50%;
+      box-shadow: 2px 2px 5px #05050552;
+      color: #9acd32;
+      font-size: 32px;
+      left: -10px;
+      padding: 6px;
+      position: absolute;
+      top: -5px;
+    }
+    .image {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px 0 0 10px;
+      color: white;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px 0 0 10px;
+      }
+    }
+    .challengeDetails {
+      box-sizing: border-box;
+      grid-column: 2/4;
+      width: 100%;
+      display: grid;
+      row-gap: 8px;
+      padding: 12px 0;
+      .challengeTitle {
+        font-size: 1rem;
+        margin: 0;
+      }
+      .progressContainer {
+        background-color: #a8a8a8;
+        border-radius: 32px;
+        padding: 4px;
+        position: relative;
+        text-align: center;
+        width: 100%;
+
+        .progressBar {
+          background-color: yellowgreen;
+          position: absolute;
+          top: 0;
+          left: 0;
+          border-radius: 32px;
+          height: 100%;
+        }
+        .progressScore {
+          position: relative;
+          font-weight: bold;
+          z-index: 2;
+        }
+      }
+      p {
+        margin: 0;
+        font-weight: 400;
+        .deadLine {
+          font-weight: bold;
+        }
+      }
+    }
+    .coins_wrapper {
+      background: #0196b329;
+      border-radius: 10px;
+      border: 2px solid #0196b370;
+      padding: 10px;
+      top: 10px;
+
+      :global(.number-coins) {
+        &:before {
+          content: "x";
+          position: relative;
+          left: -5px;
+        }
+      }
+    }
+  }
 }

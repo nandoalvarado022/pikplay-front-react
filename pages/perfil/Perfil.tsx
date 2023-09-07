@@ -130,9 +130,8 @@ const Interface = ({
         Perfil
         <FontAwesomeIcon className='svg-question' icon={faQuestionCircle} />
       </motion.h2>
-      <Challenges />
+
       <div className={styles.content}>
-        <Coins />
         <div className={`Card ${styles.imageAndLevel}`}>
           <label id={styles.category}>{userData?.category}</label>
           <ImageProfile {...{ userData }} />
@@ -156,6 +155,7 @@ const Interface = ({
             >
               <Tab label='Información del perfil' {...a11yProps(0)} />
               <Tab label='Intereses' {...a11yProps(1)} />
+              <Tab label='Desafios' {...a11yProps(1)} />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
@@ -224,6 +224,10 @@ const Interface = ({
                 )
               })}
             </p>
+          </TabPanel>
+
+          <TabPanel value={value} index={2}>
+            <Challenges />
           </TabPanel>
 
           <div className='f-r'>
