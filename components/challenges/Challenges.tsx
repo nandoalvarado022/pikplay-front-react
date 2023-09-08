@@ -8,7 +8,7 @@ import Coins from '../previewUser/Coins'
 import Skeleton from '@material-ui/lab/Skeleton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
-
+import Button from '../button/Button'
 
 const Challenges = () => {
   const { data, loading } = useQuery(GET_CHALLENGES, {
@@ -79,8 +79,18 @@ const Challenges = () => {
                   <span className={styles.deadLine}>{deadLine}</span>
                 </p>
               </div>
-              <div className={styles.coins_wrapper}>
-                <Coins coins={prizeCoins} />
+
+              <div>
+                <div className={styles.coins_wrapper}>
+                  <Coins coins={prizeCoins} />
+                </div>
+                <Button
+                  className={styles.btnReclamar}
+                  color='blue'
+                  disabled={!finished}
+                >
+                  Reclamar
+                </Button>
               </div>
             </article>
           )
