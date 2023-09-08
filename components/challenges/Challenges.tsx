@@ -60,8 +60,7 @@ const Challenges = () => {
                 <img className={styles.image} src={image} />
               </picture>
               <div className={styles.challengeDetails}>
-                <h3 className={styles.challengeTitle}>{title}</h3>
-                <p>{description}</p>
+                <h4 className={styles.challengeTitle}>{title}</h4>
                 <div className={styles.progressContainer}>
                   <span
                     className={styles.progressBar}
@@ -73,6 +72,7 @@ const Challenges = () => {
                     {currentPoints}/{targetPoints}
                   </span>
                 </div>
+                <p>{description}</p>
                 <p>
                   {' '}
                   Expires on: {''}
