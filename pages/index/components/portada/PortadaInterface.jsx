@@ -1,16 +1,17 @@
 import dynamic from 'next/dynamic'
-const { IS_MOBILE } = "../../lib/variables"
+const { IS_MOBILE } = '../../lib/variables'
 import Card from '../../../../components/card/Card'
 import Footer from '../../../../components/footer/Footer'
-import HolaJuanito from "../../../../components/holaJuanito/HolaJuanito"
+import HolaJuanito from '../../../../components/holaJuanito/HolaJuanito'
 import React from 'react'
-import styles from "./portada.module.scss"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faClock } from "@fortawesome/free-regular-svg-icons"
+import styles from './portada.module.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClock } from '@fortawesome/free-regular-svg-icons'
 import { gql } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import { useLazyQuery } from '@apollo/client'
 import { GET_FOLLOWED_PUBLICATIONS } from '../../../../lib/utils'
+import FullScreenWidget from '../fullScreenWidget/FullScreenWidget'
 
 const CategoryBanner = dynamic(
   () => import('../../../../components/categoryBanner/CategoryBanner.jsx'),
@@ -18,32 +19,29 @@ const CategoryBanner = dynamic(
 )
 
 const SpecialBanner = ({ category, popularyItem, starItem }) => {
-  return <span />
-  if (false /*!category && popularyItem && starItem*/) {
-    return <div id={styles.SpecialBanner}>
-      <div className={styles.box}>
-        <div className={styles.title}>Lo más visto por los gamers</div>
-        <Card key={popularyItem.id} permitirLink={true} {...popularyItem} />
-      </div>
-      <img src="/images/banners/banner-varios-juegos.png" alt="Juegos SSwitch en promoción" />
-      <div className={styles.box}>
-        <div className={styles.title}>Anuncio</div>
-        <Card key={starItem.id} permitirLink={true} {...starItem} />
-      </div>
+  return <div id={styles.SpecialBanner}>
+    <div className={styles.box}>
+      <div className={styles.title}>Lo más visto por los gamers</div>
+      <Card key={popularyItem.id} permitirLink={true} {...popularyItem} />
     </div>
-  }
+    <img src="/images/banners/banner-varios-juegos.png" alt="Juegos SSwitch en promoción" />
+    <div className={styles.box}>
+      <div className={styles.title}>Anuncio</div>
+      <Card key={starItem.id} permitirLink={true} {...starItem} />
+    </div>
+  </div>
 }
 
 let ModalLead = () => <div />
 
 const PortadaInterface = ({ category, handleFavorite, feed, popularyItem, setFeed, starItem }) => {
   const [showVideo, setShowVideo] = useState(false)
-  const isOpen = typeof sessionStorage != "undefined" && JSON.parse(sessionStorage.getItem("notifications"))?.home
+  const isOpen = typeof sessionStorage != 'undefined' && JSON.parse(sessionStorage.getItem('notifications'))?.home
   const [showNotification, setShowNotification] = useState(!!!isOpen)
   const [showModalLead, setShowModalLead] = useState(false)
 
   useEffect(() => {
-    if (localStorage.getItem("user") == null) setShowVideo(true)
+    if (localStorage.getItem('user') == null) setShowVideo(true)
     getFollowedPublications()
 
     // show modal lead
@@ -57,11 +55,10 @@ const PortadaInterface = ({ category, handleFavorite, feed, popularyItem, setFee
       () => import('../../../../components/modalLoead/ModalLead'),
       { ssr: false }
     )
-
   }, [])
 
   const [getFollowedPublications, { data }] = useLazyQuery(GET_FOLLOWED_PUBLICATIONS, {
-    fetchPolicy: "no-cache",
+    fetchPolicy: 'no-cache',
     variables: {
       user: 61
     },
@@ -78,12 +75,13 @@ const PortadaInterface = ({ category, handleFavorite, feed, popularyItem, setFee
   })
 
   return <React.Fragment>
-    {(feed && feed.length < 1) && <h3 style={{ textAlign: "center" }}>
-      <FontAwesomeIcon icon={faClock} style={{ marginRight: "10px" }} />
+    {(feed && feed.length < 1) && <h3 style={{ textAlign: 'center' }}>
+      <FontAwesomeIcon icon={faClock} style={{ marginRight: '10px' }} />
       Mantenimiento programado en progreso
     </h3>}
     {!category && <HolaJuanito />}
-    <SpecialBanner {...{ category, popularyItem, starItem }} />
+    {/* <SpecialBanner {...{ category, popularyItem, starItem }} /> */}
+    <BigScreenPublications />
     {showModalLead && <ModalLead />}
     <div className={styles.PortadaInterfaceComponent}>
       <div className={styles.main}>
@@ -93,22 +91,22 @@ const PortadaInterface = ({ category, handleFavorite, feed, popularyItem, setFee
             switch (ind) {
               case 0:
                 categoryId = 2
-                break;
+                break
               case 6:
                 categoryId = 3
-                break;
+                break
               case 12:
                 categoryId = 4
-                break;
+                break
               case 18:
                 categoryId = 5
-                break;
+                break
               case 24:
                 categoryId = 1
-                break;
+                break
               case 30:
                 categoryId = 6
-                break;
+                break
               default:
                 categoryId = null
                 break
@@ -116,10 +114,10 @@ const PortadaInterface = ({ category, handleFavorite, feed, popularyItem, setFee
 
             const showCategoryBanner = !IS_MOBILE && categoryId && !category
 
-            return <React.Fragment>
+            return (<>
               {showCategoryBanner && <CategoryBanner categoryId={categoryId} />}
               <Card {...{ handleFavorite, ...item }} />
-            </React.Fragment>
+            </>)
           })}
         </div>
       </div>
