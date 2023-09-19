@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 const { motion } = require('framer-motion')
 import Button from '../button/Button'
 import confetti from 'canvas-confetti'
@@ -7,7 +7,6 @@ import { CREATE_COIN, DELETE_NOTIFICATION, formatNumber, GET_NOTIFICATIONS, load
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faCircle } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'react-toastify'
-import { useEffect } from 'react'
 import { useLazyQuery, useMutation } from '@apollo/client'
 import { useSelector, useDispatch } from 'react-redux'
 import classNames from 'classnames'
@@ -16,7 +15,7 @@ import moment from 'moment'
 import Link from 'next/link'
 import Router from 'next/router'
 
-moment.locale('es-CO');
+moment.locale('es-CO')
 
 const UserNotifications = () => {
   const user = useSelector((state) => state.user)
@@ -97,7 +96,7 @@ const UserNotifications = () => {
     {notifications && notifications.map(({ closed: disabled, coins, created, detail, id, isOpen, link, type }) => {
       created = moment(created).fromNow()
 
-      return <Tooltip title={created}>
+      return (<Tooltip title={created}>
         <ol className={classNames(null, { [styles.closed]: disabled })} onClick={() => handleNotification({ coins, disabled, id, link, type })}>
           {!disabled && <FontAwesomeIcon icon={faCircle} />}
           <span>
@@ -107,7 +106,7 @@ const UserNotifications = () => {
           </div>
           }
         </ol>
-      </Tooltip>
+      </Tooltip>)
     }
     )}
   </ul >

@@ -14,6 +14,15 @@ button.btn {
     }
     &.normal {
         background: #a9a9a9;
+        &.outline {
+            background: transparent;
+            border: 1px solid #0095b3;
+            color: #0095b3;
+            &:hover {
+                background: #0095b3;
+                color: white;
+            }
+        }
     }
     &.yellow {
         background: #ff9b51;
@@ -50,6 +59,9 @@ button.btn {
         text-shadow: initial;
         &:hover {
             box-shadow: initial;
+            :global(button) {
+                background: transparent;
+            }
         }
     }
     &.green {

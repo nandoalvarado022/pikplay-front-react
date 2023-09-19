@@ -81,7 +81,7 @@ const PortadaInterface = ({ category, handleFavorite, feed, popularyItem, setFee
     </h3>}
     {!category && <HolaJuanito />}
     {/* <SpecialBanner {...{ category, popularyItem, starItem }} /> */}
-    <BigScreenPublications />
+    {/* <FullScreenWidget /> */}
     {showModalLead && <ModalLead />}
     <div className={styles.PortadaInterfaceComponent}>
       <div className={styles.main}>

@@ -7,14 +7,23 @@ import Link from 'next/link'
 import { GET_ARTICLES } from '../../lib/utils'
 import styles from './styles.module.scss'
 
-const Articles = () => {
+interface AticlesProps {
+  size?: number;
+  id?: number;
+}
+
+const Articles = (props: AticlesProps) => {
+  const { id, size } = props
+  const variables = {
+    limit: size ? size : 4,
+  }
+
   const { data } = useQuery(GET_ARTICLES, {
-    variables: {
-      limit: 4
-    },
+    variables,
     context: {
       headers: {
-        'Operation-Name': 'getArticles'
+        'Operation-Name': 'getArticles',
+        'Variables': JSON.stringify(variables)
       }
     }
   })

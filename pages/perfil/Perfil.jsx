@@ -2,7 +2,7 @@ import React from 'react'
 const { motion } = require("framer-motion")
 import Button from "../../components/button/Button"
 import CiudadControl from "../../components/ciudadControl/CiudadControl"
-import Coins from "../../components/previewUser/Coins"
+import Coins from "../../components/CoinIcon/CoinIcon"
 import CouponBox from "../../components/couponBox/CouponBox"
 import ImageProfile from "../../components/imageProfile/ImageProfile"
 import UserNotifications from "../../components/userNotifications/UserNotifications"

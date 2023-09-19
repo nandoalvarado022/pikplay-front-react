@@ -5,7 +5,9 @@
     height: 30px;
     &.animated {
         .coin {
-            animation: rotate .5s steps(6) infinite, appear 1s steps(1);
+            animation:
+                rotate 0.5s steps(6) infinite,
+                appear 1s steps(1);
         }
     }
     .coin {
@@ -29,6 +31,13 @@
         height: 20px;
         margin-left: 10px;
         position: relative;
+    }
+    label {
+        color: #e5961d;
+        font-family: revert;
+        font-weight: 500;
+        margin-left: 5px;
+        text-shadow: 2px 2px #cbcbcb;
     }
 }
 

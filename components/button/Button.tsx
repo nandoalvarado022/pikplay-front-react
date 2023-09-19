@@ -1,25 +1,47 @@
 import React, { lazy } from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import styles from './button.module.scss'
 import { Button as ButtonMat } from "@material-ui/core"
+import styles from './button.module.scss'
 
-export default function Button({
+interface ButtonProps {
+  animation?: boolean
+  children?: React.ReactNode
+  className?: string
+  color?: string
+  databutton?: string
+  disabled?: boolean
+  id?: string
+  isLink?: boolean
+  onClick?: () => void
+  outline?: boolean
+  style?: React.CSSProperties
+}
+
+const Button = ({
   animation,
   children,
   className,
   color,
   databutton,
   disabled,
+  isLink,
   id,
   onClick,
   outline,
-  style,
-}) {
+  style
+}: ButtonProps) => {
   className = `${className} ${animation ? styles.animation : null}`
   color = disabled ? 'disabled' : color
+
   return <motion.button
-    className={`${styles.btn} ${styles[color]} ${className} ${outline ? styles.outline : null}`}
+    className={`
+      ${styles.btn} 
+      ${styles[color]} 
+      ${className} 
+      ${outline ? styles.outline : null}
+      ${isLink ? styles.link : null}
+    `}
     databutton={databutton}
     id={id}
     onClick={disabled ? null : onClick}
@@ -30,3 +52,5 @@ export default function Button({
     <ButtonMat>{children}</ButtonMat>
   </motion.button>
 }
+
+export default Button

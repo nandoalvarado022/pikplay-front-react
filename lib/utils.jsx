@@ -6,13 +6,13 @@ import rn from 'random-number'
 import { connect, useDispatch } from 'react-redux'
 import { gql } from '@apollo/client'
 import { storage } from './storage'
-import { datadogRum } from '@datadog/browser-rum';
+import { datadogRum } from '@datadog/browser-rum'
 
 date.locale('es')
 
 // export default connect(null, useDispatch)(Functions)
 const env = process.env.NODE_ENV
-/*datadogRum.init({
+/* datadogRum.init({
   applicationId: 'e070617f-1352-46e4-9c21-4cb715efd297',
   clientToken: 'pubffdccfc89da2b7156acfb7c7e44e317f',
   site: 'datadoghq.com',
@@ -28,7 +28,7 @@ const env = process.env.NODE_ENV
   defaultPrivacyLevel: 'allow'
 })
 
-datadogRum.startSessionReplayRecording()*/
+datadogRum.startSessionReplayRecording() */
 
 export const getNotifications = async (props) => {
   const { closed, user } = props
@@ -69,7 +69,7 @@ export const getHome = async (props) => {
   } = props
 
   const getCache = () => {
-    let withoutCache = !!slug || !!category || !!subcategory || !!title
+    const withoutCache = !!slug || !!category || !!subcategory || !!title
     console.log('Sin cache: ', withoutCache)
     if (withoutCache) return 'no-cache'
     else return 'max-age=300000'
@@ -150,10 +150,10 @@ export const getFeed = async (props) => {
     status = true,
     subcategory = null,
     title = '',
-    user_request = 0,
+    user_request = 0
   } = props
   const getCache = () => {
-    let withoutCache = !!slug || !!category || !!subcategory || !!title
+    const withoutCache = !!slug || !!category || !!subcategory || !!title
     console.log('Sin cache: ', withoutCache)
     if (withoutCache) return 'no-cache'
     else return 'max-age=300000'
@@ -215,7 +215,7 @@ export const getFeed = async (props) => {
       const res = await fetch(url, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         }
       })
       data = await res.json()
@@ -250,48 +250,47 @@ export const capitalize = (s) => {
 
 export const subirImagen = ({ tipoArchivo, idImageElement }) =>
   new Promise(async (resolve, reject) => {
-    const arrayURLS = [];
+    const arrayURLS = []
     // const $imagenes = document.getElementById("subir_imagen");
-    const $imagenes = document.getElementById(idImageElement);
+    const $imagenes = document.getElementById(idImageElement)
     Array.from($imagenes.files).forEach((file) => {
-      const d = new Date();
-      const datestring = d.getDate() + '_' + (d.getMonth() + 1) + '_' + d.getFullYear() + '_' + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds();
-      const random = rn({ min: 0, max: 100, integer: true });
-      const nombre_archivo = `${datestring}_${random}`;
-      let ubicacionGuardar = storage.ref('/images/' + tipoArchivo + '/' + nombre_archivo + '.jpg');
-      const uploadTask = ubicacionGuardar.put(file);
+      const d = new Date()
+      const datestring = d.getDate() + '_' + (d.getMonth() + 1) + '_' + d.getFullYear() + '_' + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds()
+      const random = rn({ min: 0, max: 100, integer: true })
+      const nombre_archivo = `${datestring}_${random}`
+      const ubicacionGuardar = storage.ref('/images/' + tipoArchivo + '/' + nombre_archivo + '.jpg')
+      const uploadTask = ubicacionGuardar.put(file)
       uploadTask.on(
         'state_changed',
         function (snapshot) {
-          var progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
           if (document.querySelector('#progressUploadImage')) {
             document.querySelector('#progressUploadImage').innerHTML =
-              progress + '%';
+              progress + '%'
           }
-          console.log('Upload is ' + progress + '% done');
+          console.log('Upload is ' + progress + '% done')
         },
         function (err) {
-          reject(err);
+          reject(err)
         },
         async function (snapshot) {
           const getIURL = async () => {
             console.log('entro en getIURL')
             try {
               return [await ref_thumbnail.getDownloadURL(), await ref_full.getDownloadURL()]
-            }
-            catch (err) {
+            } catch (err) {
               return null
             }
           }
 
-          let url_thumbnail, url_full = null
-          const ref_thumbnail = storage.ref('/images/' + tipoArchivo + '/' + nombre_archivo + '_320x320.jpg');
-          const ref_full = storage.ref('/images/' + tipoArchivo + '/' + nombre_archivo + '_1080x1080.jpg');
+          let url_thumbnail; let url_full = null
+          const ref_thumbnail = storage.ref('/images/' + tipoArchivo + '/' + nombre_archivo + '_320x320.jpg')
+          const ref_full = storage.ref('/images/' + tipoArchivo + '/' + nombre_archivo + '_1080x1080.jpg')
           const myInterval = setInterval(async () => {
             const images = await getIURL(ref_thumbnail, ref_full)
             if (images) {
-              console.log('entro e imagenes');
+              console.log('entro e imagenes')
               clearInterval(myInterval)
               url_thumbnail = images[0]
               url_full = images[1]
@@ -301,15 +300,15 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
               resolve(arrayURLS)
               return arrayURLS
             } else {
-              console.log('entro y no imagenes');
+              console.log('entro y no imagenes')
             }
           }, 2000)
-          /*const file_name = uploadTask.snapshot.ref.name
-          // uploadTask.snapshot.ref*/
+          /* const file_name = uploadTask.snapshot.ref.name
+          // uploadTask.snapshot.ref */
         }
-      );
-    });
-  });
+      )
+    })
+  })
 
 export const loadAudio = function (fuente) {
   // const fuente = "/audios/noti.mp3"
@@ -319,17 +318,17 @@ export const loadAudio = function (fuente) {
   // sonido.play()
 }
 
-export function getPaises() {
+export function getPaises () {
   return [
     { id: 'colombia', nombre: 'Colombia' },
     { id: 'mexico', nombre: 'México' },
     { id: 'argentina', nombre: 'Argentina' },
     { id: 'españa', nombre: 'España' },
-    { id: 'salvador', nombre: 'Salvador' },
+    { id: 'salvador', nombre: 'Salvador' }
   ]
 }
 
-export function getCiudades() {
+export function getCiudades () {
   // Los paises que se coloquen en el campo ID deben ser separados por -
   return [
     { pais: '', id: 'all', label: 'Cualquier lugar' },
@@ -347,36 +346,35 @@ export function getCiudades() {
     { pais: 'argentina', id: 'buenos_aires', label: 'Buenos Aires' },
     { pais: 'españa', id: 'madrid', label: 'Madrid' },
     { pais: 'salvador', id: 'san_salvador', label: 'San Salvador' },
-    { pais: 'chile', id: 'santiago-chile', label: 'Santiago de Chile' },
+    { pais: 'chile', id: 'santiago-chile', label: 'Santiago de Chile' }
   ]
 }
 
-export function shuffle(array) {
+export function shuffle (array) {
   // Ordenar aleatoriamente un array
-  var currentIndex = array.length, temporaryValue, randomIndex;
+  let currentIndex = array.length; let temporaryValue; let randomIndex
 
   // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-
+  while (currentIndex !== 0) {
     // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
+    randomIndex = Math.floor(Math.random() * currentIndex)
+    currentIndex -= 1
 
     // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
+    temporaryValue = array[currentIndex]
+    array[currentIndex] = array[randomIndex]
+    array[randomIndex] = temporaryValue
   }
 
   return array
 }
 
-export function formatNumber(input) {
+export function formatNumber (input) {
   input = String(input)
-  var num = input.replace(/\./g, '');
+  let num = input.replace(/\./g, '')
   if (!isNaN(num)) {
     num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.')
-    num = num.split('').reverse().join('').replace(/^[\.]/, '');
+    num = num.split('').reverse().join('').replace(/^[\.]/, '')
     input = num
   } else {
     input = input.replace(/[^\d\.]*/g, '')
@@ -384,7 +382,7 @@ export function formatNumber(input) {
   return input
 }
 
-export function slugify(string, lenght) {
+export function slugify (string, lenght) {
   const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœøṕŕßśșțùúüûǘẃẍÿź·/_,:;'
   const b = 'aaaaaaaaceeeeghiiiimnnnooooooprssstuuuuuwxyz------'
   const p = new RegExp(a.split('').join('|'), 'g')
@@ -399,8 +397,8 @@ export function slugify(string, lenght) {
   return lenght ? cadena.substring(0, lenght) : cadena
 }
 
-export function checkIsMobile(userAgent) {
-  var ua = userAgent.toLowerCase();
+export function checkIsMobile (userAgent) {
+  const ua = userAgent.toLowerCase()
   return (
     /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(
       ua
@@ -437,7 +435,7 @@ query getArticles($id: Int, $limit: Int, $slug: String){
   }
 }`
 
-export function getCategories(id) {
+export function getCategories (id) {
   const categories = [
     { id: 1, name: 'Accesorios', image: '/images/icons/accesorios.svg' },
     { id: 2, name: 'Nintendo Switch', image: '/images/icons/nintendo.svg' },
@@ -449,23 +447,23 @@ export function getCategories(id) {
   return categories
 }
 
-export function getSubcategories(id) {
+export function getSubcategories (id) {
   const subcategories = [
     { id: 1, name: 'Membresias Nintendo Switch', url: '/subcategoria/membresias-nintendo-switch' },
     { id: 2, name: 'Membresias Playstation', url: '/subcategoria/membresias-playstation' },
     { id: 3, name: 'Promociones', url: '/subcategoria/promociones' },
     { id: 4, name: 'Juegos Clasicos', url: '/subcategoria/juegos-clasicos' },
     { id: 5, name: 'Combos', url: '/subcategoria/combos' },
-    { id: 6, name: 'Sorteos', url: '/subcategoria/sorteos' },
+    { id: 6, name: 'Sorteos', url: '/subcategoria/sorteos' }
   ]
   if (id) return subcategories.find(item => item.id == id)
   return subcategories
 }
 
 export const CREATE_COIN = gql`
-	mutation createCoin($id: Int){
-		createCoin(id: $id)
-	}`
+mutation createCoin($id: Int){
+  createCoin(id: $id)
+}`
 
 export const CREATE_FAVORITE = gql`
 mutation createFavorite($publication: Int, $user: Int){
@@ -473,9 +471,9 @@ mutation createFavorite($publication: Int, $user: Int){
 }`
 
 export const DELETE_NOTIFICATION = gql`
-	mutation deleteNotification($id: Int, $userId: Int){
-		deleteNotification(id: $id, userId: $userId)
-	}`
+mutation deleteNotification($id: Int, $userId: Int){
+  deleteNotification(id: $id, userId: $userId)
+}`
 
 export const DELETE_FOLLOWINED_PUBLICATION = gql`
 mutation deleteFollowinedPublication($publication: Int, $user: Int){
@@ -532,7 +530,7 @@ query getFollowedPublications($user: Int){
   getFollowedPublications(user: $user)
 }`
 
-const slug = null, category = null, subcategory = null, title = null, status = true
+const slug = null; const category = null; const subcategory = null; const title = null; const status = true
 export const GET_PUBLICATIONS = gql`
   query publications($status: Boolean, $slug: String, $category: Int, $subcategory: Int, $title: String){
     publications(status: $status, slug: $slug, category: $category, subcategory: $subcategory, title: $title) {
