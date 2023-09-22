@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import { Button as ButtonMat } from "@material-ui/core"

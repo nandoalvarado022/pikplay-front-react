@@ -2,13 +2,13 @@ const getNotifications = {
     "data": {
         "getNotifications": [
             {
-                "closed": true,
+                "closed": false,
                 "coins": 10000,
                 "created": "Thu May 26 2022 12:35:26 GMT-0500 (Colombia Standard Time)",
                 "detail": "Juancho Fenix y Pikplay te regalan 10.000 pikcoins para que compres Mario Paper, enjoy it!",
                 "id": 168,
                 "link": null,
-                "type": "PUBLICATION_COUPON",
+                "type": "COUPON_GIFT_AVAILABLE",
                 "user": "61",
                 "__typename": "Notification"
             },
@@ -19,7 +19,7 @@ const getNotifications = {
                 "detail": "La publicación Tales Of Arize PS4 Oferta tuvo algúnos cambios, se el primero en checarla ?",
                 "id": 167,
                 "link": "/publicacion/tales-of-arize-ps4-200",
-                "type": null,
+                "type": "COMPLETED_PROFILE",
                 "user": "61",
                 "__typename": "Notification"
             },
@@ -30,7 +30,7 @@ const getNotifications = {
                 "detail": "Juancho Fenix y Pikplay te regalan 5.000 para que los redimas comprando en Pikplay.co",
                 "id": 158,
                 "link": null,
-                "type": "COUPON",
+                "type": "COUPON_GIFT_AVAILABLE",
                 "user": "61",
                 "__typename": "Notification"
             },
@@ -41,7 +41,7 @@ const getNotifications = {
                 "detail": "Gravity y Pikplay te regalan 10.000 pikcoins para que compres tu soporte de controles y diademas",
                 "id": 157,
                 "link": null,
-                "type": "PUBLICATION_COUPON",
+                "type": "COINS_BY_PURCHASE",
                 "user": "61",
                 "__typename": "Notification"
             },
@@ -52,7 +52,7 @@ const getNotifications = {
                 "detail": "Gravity y Pikplay te regalan 5.000 pikcoins para que lo redimas comprando en Pikplay.co",
                 "id": 156,
                 "link": null,
-                "type": "COUPON",
+                "type": "COINS_BY_PURCHASE_COMPLETED",
                 "user": "61",
                 "__typename": "Notification"
             },
@@ -63,7 +63,7 @@ const getNotifications = {
                 "detail": "Obtuviste 10.000 para la compra de Mario Origami",
                 "id": 155,
                 "link": null,
-                "type": "PUBLICATION_COUPON",
+                "type": "COINS_BY_PURCHASE_COMPLETED",
                 "user": "61",
                 "__typename": "Notification"
             },
@@ -74,7 +74,7 @@ const getNotifications = {
                 "detail": "Obtuviste 10.000 para la compra de Mario Origami",
                 "id": 154,
                 "link": null,
-                "type": "PUBLICATION_COUPON",
+                "type": "COUPON_GIFT_AVAILABLE",
                 "user": "61",
                 "__typename": "Notification"
             },
@@ -85,7 +85,7 @@ const getNotifications = {
                 "detail": "Gravity y Pikplay te regalan 5.000 pikcoins para que lo redimas comprando en Pikplay.co",
                 "id": 138,
                 "link": null,
-                "type": "COUPON",
+                "type": "COUPON_GIFT_AVAILABLE",
                 "user": "61",
                 "__typename": "Notification"
             },
@@ -96,7 +96,7 @@ const getNotifications = {
                 "detail": "La publicación Kirby And The Forgotten Land tuvo algúnos cambios, se el primero en checarla ?",
                 "id": 136,
                 "link": "/publicacion/kirby-and-the-forgotten-land-338",
-                "type": null,
+                "type": "COMPLETED_PROFILE",
                 "user": "61",
                 "__typename": "Notification"
             },
@@ -104,10 +104,10 @@ const getNotifications = {
                 "closed": true,
                 "coins": 5000,
                 "created": "Sun Apr 24 2022 22:32:13 GMT-0500 (Colombia Standard Time)",
-                "detail": "Juancho Fenix y Pikplay te dan 5.000 para que compres en Pikplay.co",
+                "detail": "Juancho Fenix y Pikplay te dan 5.000 para que compres en Pikplay.co (Tus 10k coins están en proceso).",
                 "id": 132,
                 "link": null,
-                "type": "COUPON",
+                "type": "COINS_BY_PURCHASE",
                 "user": "61",
                 "__typename": "Notification"
             },
@@ -118,7 +118,7 @@ const getNotifications = {
                 "detail": "La publicación Kirby And The Forgotten Land tuvo algúnos cambios, se el primero en checarla ?",
                 "id": 133,
                 "link": "/publicacion/kirby-and-the-forgotten-land-338",
-                "type": null,
+                "type": "COMPLETED_PROFILE",
                 "user": "61",
                 "__typename": "Notification"
             },
@@ -129,7 +129,7 @@ const getNotifications = {
                 "detail": "Completaste el perfil",
                 "id": 126,
                 "link": null,
-                "type": "PROFILE_COMPLETED",
+                "type": "COMPLETED_PROFILE",
                 "user": "61",
                 "__typename": "Notification"
             },
@@ -137,10 +137,10 @@ const getNotifications = {
                 "closed": true,
                 "coins": 5000,
                 "created": "Sun Apr 10 2022 10:49:06 GMT-0500 (Colombia Standard Time)",
-                "detail": "Juancho Fenix y Pikplay te dan 10.000 para que compres en Pikplay.co",
+                "detail": "Juancho Fenix y Pikplay te dan 10.000 para que compres en Pikplay.co (Ya puedes reclamar tus creditos)",
                 "id": 123,
                 "link": null,
-                "type": "COUPON",
+                "type": "COINS_BY_PURCHASE_COMPLETED",
                 "user": "61",
                 "__typename": "Notification"
             },
@@ -148,10 +148,10 @@ const getNotifications = {
                 "closed": true,
                 "coins": 5000,
                 "created": "Sat Apr 09 2022 00:28:52 GMT-0500 (Colombia Standard Time)",
-                "detail": "Juancho Fenix y Pikplay te dan 10.000 para que compres en Pikplay.co",
+                "detail": "Juancho Fenix y Pikplay te dan 10.000 para que compres en Pikplay.co (Tus 10k coins están en proceso).",
                 "id": 122,
                 "link": null,
-                "type": "COUPON",
+                "type": "COINS_BY_PURCHASE",
                 "user": "61",
                 "__typename": "Notification"
             },
@@ -159,10 +159,10 @@ const getNotifications = {
                 "closed": true,
                 "coins": 5000,
                 "created": "Sat Apr 09 2022 00:07:52 GMT-0500 (Colombia Standard Time)",
-                "detail": "Juancho Fenix y Pikplay te dan 10.000 para que compres en Pikplay.co",
+                "detail": "Juancho Fenix y Pikplay te dan 10.000 para que compres en Pikplay.co (Tus 10k coins están en proceso).",
                 "id": 121,
                 "link": null,
-                "type": "COUPON",
+                "type": "COINS_BY_PURCHASE",
                 "user": "61",
                 "__typename": "Notification"
             },
@@ -170,10 +170,10 @@ const getNotifications = {
                 "closed": true,
                 "coins": 5000,
                 "created": "Sat Apr 09 2022 00:07:16 GMT-0500 (Colombia Standard Time)",
-                "detail": "Juancho Fenix y Pikplay te dan 10.000 para que compres en Pikplay.co",
+                "detail": "Juancho Fenix y Pikplay te dan 10.000 para que compres en Pikplay.co (Tus 10k coins están en proceso).",
                 "id": 120,
                 "link": null,
-                "type": "COUPON",
+                "type": "COINS_BY_PURCHASE",
                 "user": "61",
                 "__typename": "Notification"
             },
@@ -184,11 +184,12 @@ const getNotifications = {
                 "detail": "Completaste el perfil",
                 "id": 102,
                 "link": null,
-                "type": "PROFILE_COMPLETED",
+                "type": "COMPLETED_PROFILE",
                 "user": "61",
                 "__typename": "Notification"
             }
-        ]
+        ],
+       
     }
 }
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-tabs */
 import 'date-and-time/locale/es'
 import VARS from './variables'
 import date from 'date-and-time'
@@ -62,11 +63,7 @@ export const getNotifications = async (props) => {
 }
 
 export const getHome = async (props) => {
-  const {
-    attempt = 1,
-    seller = null,
-    user_request = null
-  } = props
+  const { attempt = 1, seller = null, user_request = null } = props
 
   const getCache = () => {
     const withoutCache = !!slug || !!category || !!subcategory || !!title
@@ -255,16 +252,28 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
     const $imagenes = document.getElementById(idImageElement)
     Array.from($imagenes.files).forEach((file) => {
       const d = new Date()
-      const datestring = d.getDate() + '_' + (d.getMonth() + 1) + '_' + d.getFullYear() + '_' + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds()
+      const datestring =
+        d.getDate() +
+        '_' +
+        (d.getMonth() + 1) +
+        '_' +
+        d.getFullYear() +
+        '_' +
+        d.getHours() +
+        '_' +
+        d.getMinutes() +
+        '_' +
+        d.getSeconds()
       const random = rn({ min: 0, max: 100, integer: true })
       const nombre_archivo = `${datestring}_${random}`
-      const ubicacionGuardar = storage.ref('/images/' + tipoArchivo + '/' + nombre_archivo + '.jpg')
+      let ubicacionGuardar = storage.ref(
+        '/images/' + tipoArchivo + '/' + nombre_archivo + '.jpg'
+      )
       const uploadTask = ubicacionGuardar.put(file)
       uploadTask.on(
         'state_changed',
         function (snapshot) {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
           if (document.querySelector('#progressUploadImage')) {
             document.querySelector('#progressUploadImage').innerHTML =
               progress + '%'
@@ -278,7 +287,10 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
           const getIURL = async () => {
             console.log('entro en getIURL')
             try {
-              return [await ref_thumbnail.getDownloadURL(), await ref_full.getDownloadURL()]
+              return [
+                await ref_thumbnail.getDownloadURL(),
+                await ref_full.getDownloadURL()
+              ]
             } catch (err) {
               return null
             }
@@ -303,8 +315,8 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
               console.log('entro y no imagenes')
             }
           }, 2000)
-          /* const file_name = uploadTask.snapshot.ref.name
-          // uploadTask.snapshot.ref */
+          /*const file_name = uploadTask.snapshot.ref.name
+      // uploadTask.snapshot.ref*/
         }
       )
     })
@@ -352,10 +364,12 @@ export function getCiudades () {
 
 export function shuffle (array) {
   // Ordenar aleatoriamente un array
-  let currentIndex = array.length; let temporaryValue; let randomIndex
+  var currentIndex = array.length,
+    temporaryValue,
+    randomIndex
 
   // While there remain elements to shuffle...
-  while (currentIndex !== 0) {
+  while (0 !== currentIndex) {
     // Pick a remaining element...
     randomIndex = Math.floor(Math.random() * currentIndex)
     currentIndex -= 1
@@ -386,9 +400,11 @@ export function slugify (string, lenght) {
   const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœøṕŕßśșțùúüûǘẃẍÿź·/_,:;'
   const b = 'aaaaaaaaceeeeghiiiimnnnooooooprssstuuuuuwxyz------'
   const p = new RegExp(a.split('').join('|'), 'g')
-  const cadena = string.toString().toLowerCase()
+  const cadena = string
+    .toString()
+    .toLowerCase()
     .replace(/\s+/g, '-') // Replace spaces with -
-    .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
+    .replace(p, (c) => b.charAt(a.indexOf(c))) // Replace special characters
     .replace(/&/g, '-and-') // Replace & with ‘and’
     .replace(/[^\w\-]+/g, '') // Remove all non-word characters
     .replace(/\-\-+/g, '-') // Replace multiple - with single -
@@ -397,8 +413,8 @@ export function slugify (string, lenght) {
   return lenght ? cadena.substring(0, lenght) : cadena
 }
 
-export function checkIsMobile (userAgent) {
-  const ua = userAgent.toLowerCase()
+export function checkIsMobile(userAgent) {
+  var ua = userAgent.toLowerCase()
   return (
     /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(
       ua
@@ -410,30 +426,34 @@ export function checkIsMobile (userAgent) {
 }
 
 export const GET_CHALLENGES = gql`
-query getArticles($id: Int, $limit: Int, $slug: String){
-  getArticles(id: $id, limit: $limit, slug: $slug){
-    content
-    mobile_content
-    id
-    image_card
-    slug
-    summary
-    title
-  }
-}`
+	query getChallenges {
+		getChallenges {
+			currentPoints
+			deadLine
+			description
+			finished
+			id
+			image
+			prizeCoins
+			targetPoints
+			title
+		}
+	}
+`
 
 export const GET_ARTICLES = gql`
-query getArticles($id: Int, $limit: Int, $slug: String){
-  getArticles(id: $id, limit: $limit, slug: $slug){
-    content
-    mobile_content
-    id
-    image_card
-    slug
-    summary
-    title
-  }
-}`
+	query getArticles($id: Int, $limit: Int, $slug: String) {
+		getArticles(id: $id, limit: $limit, slug: $slug) {
+			content
+			mobile_content
+			id
+			image_card
+			slug
+			summary
+			title
+		}
+	}
+`
 
 export function getCategories (id) {
   const categories = [
@@ -442,70 +462,86 @@ export function getCategories (id) {
     { id: 3, name: 'Playstation', image: '/images/icons/play.svg' },
     { id: 4, name: 'Xbox', image: '/images/icons/xbox.svg' },
     { id: 5, name: 'Otros', image: '/images/icons/otros1.svg' },
-    { id: 6, name: 'PC Gamer', image: '/images/icons/desktop.svg' }]
-  if (id) return categories.find(item => item.id == id)
+    { id: 6, name: 'PC Gamer', image: '/images/icons/desktop.svg' }
+  ]
+  if (id) return categories.find((item) => item.id == id)
   return categories
 }
 
 export function getSubcategories (id) {
   const subcategories = [
-    { id: 1, name: 'Membresias Nintendo Switch', url: '/subcategoria/membresias-nintendo-switch' },
-    { id: 2, name: 'Membresias Playstation', url: '/subcategoria/membresias-playstation' },
+    {
+      id: 1,
+      name: 'Membresias Nintendo Switch',
+      url: '/subcategoria/membresias-nintendo-switch'
+    },
+    {
+      id: 2,
+      name: 'Membresias Playstation',
+      url: '/subcategoria/membresias-playstation'
+    },
     { id: 3, name: 'Promociones', url: '/subcategoria/promociones' },
     { id: 4, name: 'Juegos Clasicos', url: '/subcategoria/juegos-clasicos' },
     { id: 5, name: 'Combos', url: '/subcategoria/combos' },
     { id: 6, name: 'Sorteos', url: '/subcategoria/sorteos' }
   ]
-  if (id) return subcategories.find(item => item.id == id)
+  if (id) return subcategories.find((item) => item.id == id)
   return subcategories
 }
 
 export const CREATE_COIN = gql`
-mutation createCoin($id: Int){
-  createCoin(id: $id)
-}`
+	mutation createCoin($id: Int) {
+		createCoin(id: $id)
+	}
+`
 
 export const CREATE_FAVORITE = gql`
-mutation createFavorite($publication: Int, $user: Int){
-  createFavorite(publication: $publication, user: $user)
-}`
+  mutation createFavorite($publication: Int, $user: Int) {
+    createFavorite(publication: $publication, user: $user)
+  }
+`
 
 export const DELETE_NOTIFICATION = gql`
-mutation deleteNotification($id: Int, $userId: Int){
-  deleteNotification(id: $id, userId: $userId)
-}`
+  mutation deleteNotification($id: Int, $userId: Int) {
+    deleteNotification(id: $id, userId: $userId)
+  }
+`
 
 export const DELETE_FOLLOWINED_PUBLICATION = gql`
-mutation deleteFollowinedPublication($publication: Int, $user: Int){
-  deleteFollowinedPublication(publication: $publication, user: $user)
-}`
+	mutation deleteFollowinedPublication($publication: Int, $user: Int) {
+		deleteFollowinedPublication(publication: $publication, user: $user)
+	}
+`
 
 export const GET_NOTIFICATIONS = gql`
-query getNotifications($user: Int, $closed: String){
-  getNotifications(user: $user, closed: $closed){
-    closed
-    coins
-    created
-    detail
-    id
-    link
-    type
-    user
-  }
-}`
+	query getNotifications($user: Int, $closed: String) {
+		getNotifications(user: $user, closed: $closed) {
+			closed
+			coins
+			created
+			detail
+			id
+			link
+			type
+			user
+		}
+	}
+`
 
 export const VALIDATE_COUPON = gql`
-mutation validateCoupon($coupon: String, $publication: Int, $user: Int){
-  validateCoupon(coupon: $coupon, publication: $publication, user: $user)
-}`
+	mutation validateCoupon($coupon: String, $publication: Int, $user: Int) {
+		validateCoupon(coupon: $coupon, publication: $publication, user: $user)
+	}
+`
 
 export const GET_CLAIMED_COUPONS = gql`
-query getClaimedCoupons($coupon: String, $publication: Int, $user: Int){
-  getClaimedCoupons(coupon: $coupon, publication: $publication, user: $user){
-    coins
-    coupon
-  }
-}`
+	query getClaimedCoupons($coupon: String, $publication: Int, $user: Int) {
+		getClaimedCoupons(coupon: $coupon, publication: $publication, user: $user) {
+			coins
+			coupon
+		}
+	}
+`
 
 export const validateLoginToken = async ({ token }) => {
   // const validUser = await fetch(process.env.API_URL, {
@@ -526,45 +562,62 @@ export const validateLoginToken = async ({ token }) => {
 }
 
 export const GET_FOLLOWED_PUBLICATIONS = gql`
-query getFollowedPublications($user: Int){
-  getFollowedPublications(user: $user)
-}`
+	query getFollowedPublications($user: Int) {
+		getFollowedPublications(user: $user)
+	}
+`
 
-const slug = null; const category = null; const subcategory = null; const title = null; const status = true
+const slug = null,
+  category = null,
+  subcategory = null,
+  title = null,
+  status = true
 export const GET_PUBLICATIONS = gql`
-  query publications($status: Boolean, $slug: String, $category: Int, $subcategory: Int, $title: String){
-    publications(status: $status, slug: $slug, category: $category, subcategory: $subcategory, title: $title) {
-      accept_changes
-      apply_cashback
-      banner_bottom
-      banner_top
-      category
-      certificate
-      description
-      following
-      id
-      image_1
-      image_2
-      image_3
-      image_4
-      image_5
-      image_link
-      is_new
-      price
-      quantity
-      sale_price
-      slug
-      tags
-      title        
-      user
-      user_name
-      user_phone
-      user_picture
-      user_transactions
-      views
-      warranty
-    }
-  }
+	query publications(
+		$status: Boolean
+		$slug: String
+		$category: Int
+		$subcategory: Int
+		$title: String
+	) {
+		publications(
+			status: $status
+			slug: $slug
+			category: $category
+			subcategory: $subcategory
+			title: $title
+		) {
+			accept_changes
+			apply_cashback
+			banner_bottom
+			banner_top
+			category
+			certificate
+			description
+			following
+			id
+			image_1
+			image_2
+			image_3
+			image_4
+			image_5
+			image_link
+			is_new
+			price
+			quantity
+			sale_price
+			slug
+			tags
+			title
+			user
+			user_name
+			user_phone
+			user_picture
+			user_transactions
+			views
+			warranty
+		}
+	}
 `
 
 export const notifierOptions = {
@@ -583,6 +636,4 @@ export const interestsList = [
   { name: 'Truques', id: 7 }
 ]
 
-export const versions = [
-  '1.1.1'
-]
+export const versions = ['1.1.1']

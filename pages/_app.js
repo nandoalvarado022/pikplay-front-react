@@ -65,29 +65,27 @@ const MyApp = (props) => {
       })
   }, [router.events])
 
-  return <Provider store={store}>
-    {/* <PersistGate persistor={persistor}> */}
-      <ApolloProvider client={graphqlClient}>
-        {/* <Loading /> */}
-        <Component {...pageProps} key={router.name} />
-      </ApolloProvider>
-    {/* </PersistGate> */}
-  </Provider>
+  return <Provider store={store} >
+    <ApolloProvider client={graphqlClient} >
+      {/* <Loading /> */}
+      < Component {...pageProps} key={router.name} />
+    </ApolloProvider>
+  </Provider >
 
-  return <div>
-    {process.browser ? <MuiThemeProvider theme={theme}>
-      <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <ApolloProvider client={graphqlClient}>
-            <Loading />
-            <Component {...pageProps} key={router.name} />
-          </ApolloProvider>
-        </PersistGate>
-      </Provider>
-    </MuiThemeProvider>
-      : <div />
-    }
-  </div>
+  // return <div>
+  //   {process.browser ? <MuiThemeProvider theme={theme}>
+  //     <Provider store={store}>
+  //       <PersistGate persistor={persistor}>
+  //         <ApolloProvider client={graphqlClient}>
+  //           <Loading />
+  //           <Component {...pageProps} key={router.name} />
+  //         </ApolloProvider>
+  //       </PersistGate>
+  //     </Provider>
+  //   </MuiThemeProvider>
+  //     : <div />
+  //   }
+  // </div>
 }
 
 export default MyApp

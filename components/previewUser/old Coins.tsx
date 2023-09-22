@@ -6,10 +6,9 @@ import styles from './styles.module.scss'
 
 interface CoinsProps {
   coins?: number;
-  isLabel?: boolean;
 }
 
-const CoinIcon = ({ coins, isLabel }: CoinsProps) => {
+const CoinIcon = ({ coins }: CoinsProps) => {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   const [isAnimate, setIsAnimate] = useState(false)
@@ -79,7 +78,7 @@ const CoinIcon = ({ coins, isLabel }: CoinsProps) => {
     <div className={`f-s-14 ${styles.number} number-coins`}>
       {formatNumber(coins)}
     </div>
-    {isLabel && <label>Pikcoins</label>}
+    <label>Pikcoins</label>
   </div>)
 }
 

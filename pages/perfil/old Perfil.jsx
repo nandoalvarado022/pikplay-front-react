@@ -1,22 +1,22 @@
 import React from 'react'
-const { motion } = require("framer-motion")
-import Button from "../../components/button/Button"
-import CiudadControl from "../../components/ciudadControl/CiudadControl"
-import Coins from "../../components/CoinIcon/CoinIcon"
-import CouponBox from "../../components/couponBox/CouponBox"
-import ImageProfile from "../../components/imageProfile/ImageProfile"
-import UserNotifications from "../../components/userNotifications/UserNotifications"
-import VARS from "../../lib/variables"
-import styles from "./perfil.module.scss"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Box, Chip, Modal, Tab, Tabs, TextField, Typography } from "@material-ui/core"
-import { faQuestionCircle, faUser, faBell } from "@fortawesome/free-regular-svg-icons"
+const { motion } = require('framer-motion')
+import Button from '../../components/button/Button'
+import CiudadControl from '../../components/ciudadControl/CiudadControl'
+import CouponBox from '../../components/couponBox/CouponBox'
+import ImageProfile from '../../components/imageProfile/ImageProfile'
+import UserNotifications from '../../components/userNotifications/UserNotifications'
+import VARS from '../../lib/variables'
+import styles from './perfil.module.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Box, Chip, Modal, Tab, Tabs, TextField, Typography } from '@material-ui/core'
+import { faQuestionCircle, faUser, faBell } from '@fortawesome/free-regular-svg-icons'
 import { toast } from 'react-toastify'
-import { useState } from "react"
-import { interestsList } from "../../lib/utils"
-import { Alert } from "@material-ui/lab"
-import classNames from "classnames"
-import { useSelector } from "react-redux"
+import { useState } from 'react'
+import { interestsList } from '../../lib/utils'
+import { Alert } from '@material-ui/lab'
+import classNames from 'classnames'
+import { useSelector } from 'react-redux'
+import CoinIcon from '../../components/CoinIcon/CoinIcon'
 
 const { IS_MOBILE } = VARS
 
@@ -86,7 +86,7 @@ const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, set
             <h4>Cupónes</h4>
             <p>Son códigos que te ofrecen Pikcoins de regalo de parte de tus sellers favoritos y tambien de Pikplay. Sigue atento a nuestras redes sociales que a veces lanzamos un par por ahí 😏 </p>
           </p>
-          <p style={{ textAlign: "right" }}>Juntos somos mejor 🤝</p>
+          <p style={{ textAlign: 'right' }}>Juntos somos mejor 🤝</p>
         </div>
         toast(message)
       }}
@@ -103,7 +103,7 @@ const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, set
         <label id={styles.category}>{userData?.category}</label>
         <ImageProfile {...{ userData }} />
         <div className={styles.coins}>
-          <Coins />
+          <CoinIcon />
         </div>
         <div className="m-t-20">
           <Button color='link' onClick={() => toast(msgSubirCategoria)}>¿Como puedo subir de categoria y obtener más privilegios?</Button>
@@ -146,8 +146,8 @@ const Interface = ({ dispatch, userData, isSaving, handleSave, handleLogout, set
 
         <div className="f-r">
           <CouponBox user={userData} />
-          <Button color={!isSaving ? "blue" : "disabled"} onClick={handleSave}>
-            {isSaving ? "Gaurdando..." : "Guardar"}
+          <Button color={!isSaving ? 'blue' : 'disabled'} onClick={handleSave}>
+            {isSaving ? 'Gaurdando...' : 'Guardar'}
           </Button>
         </div>
       </div>
