@@ -9,13 +9,18 @@ import { useQuery, gql } from "@apollo/client"
 
 const ArticlePage = (props) => {
   const { data: { slug } } = props
-  debugger
   // const slug = 'pikcoins-que-son-y-como-redimir-cupones'
   const { data, loading, error } = useQuery(GET_ARTICLES, {
+    context: {
+      headers: {
+        'Operation-Name': 'getArticles'
+      }
+    },
     variables: { slug }
   })
 
   if (loading) return <div>Loading...</div>
+  console.log(data)
   const { content, mobile_content, summary, title } = data.getArticles[0] || {}
   const article = IS_MOBILE ? mobile_content : content
 

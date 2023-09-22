@@ -16,7 +16,7 @@ export default function handler(req, res) {
       res.status(200).json(createTransaction);
       break;
     case 'getArticles':
-      if (variables.limit === 1) res.status(200).json(getArticlesLimit);
+      if (variables?.limit === 1) res.status(200).json(getArticlesLimit);
       res.status(200).json(getArticles);
       break;
     case 'getChallenges':
