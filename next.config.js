@@ -8,6 +8,10 @@ module.exports = {
     concurrentFeatures: true
   },
   images: {
-    domains: ['firebasestorage.googleapis.com']
+    domains: [
+      'firebasestorage.googleapis.com',
+      'www.sdpnoticias.com',
+      'encrypted-tbn0.gstatic.com'
+    ]
   }
 }

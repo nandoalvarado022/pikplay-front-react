@@ -721,19 +721,20 @@ html {
 
 html,
 body {
-	background: #f4f4f4;
-	font-family: 'Rowdies', cursive;
-	font-weight: 300;
-	margin: 34px auto 0;
-	min-height: 100vh;
-	overflow-x: hidden;
-	padding: 0;
-	@media screen and (max-width: 420px) {
-		margin-top: 28px;
-	}
-	.MuiTab-root {
-		text-transform: initial;
-	}
+    background: #f4f4f4;
+    font-family: "Montserrat", sans-serif;
+    // "Rowdies", cursive;
+    font-weight: 300;
+    margin: 34px auto 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 0;
+    @media screen and (max-width: 420px) {
+        margin-top: 28px;
+    }
+    .MuiTab-root {
+        text-transform: initial;
+    }
 }
 
 body {

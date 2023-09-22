@@ -2,9 +2,13 @@ import { gql, useLazyQuery } from '@apollo/client'
 import React, { useEffect, useRef, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { formatNumber } from '../../lib/utils'
-import styles from './coins.module.scss'
+import styles from './styles.module.scss'
 
-const Coins = ({ coins }) => {
+interface CoinsProps {
+  coins?: number;
+}
+
+const CoinIcon = ({ coins }: CoinsProps) => {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   const [isAnimate, setIsAnimate] = useState(false)
@@ -74,7 +78,8 @@ const Coins = ({ coins }) => {
     <div className={`f-s-14 ${styles.number} number-coins`}>
       {formatNumber(coins)}
     </div>
+    <label>Pikcoins</label>
   </div>)
 }
 
-export default Coins
+export default CoinIcon

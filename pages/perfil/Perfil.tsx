@@ -2,7 +2,6 @@ import React from 'react'
 const { motion } = require('framer-motion')
 import Button from '../../components/button/Button'
 import CiudadControl from '../../components/ciudadControl/CiudadControl'
-import Coins from '../../components/previewUser/Coins'
 import CouponBox from '../../components/couponBox/CouponBox'
 import ImageProfile from '../../components/imageProfile/ImageProfile'
 import UserNotifications from '../../components/userNotifications/UserNotifications'
@@ -30,6 +29,7 @@ import { Alert } from '@material-ui/lab'
 import classNames from 'classnames'
 import { useSelector } from 'react-redux'
 import Challenges from '../../components/challenges/Challenges'
+import CoinIcon from '../../components/CoinIcon/CoinIcon'
 
 const { IS_MOBILE } = VARS
 
@@ -136,7 +136,7 @@ const Interface = ({
           <label id={styles.category}>{userData?.category}</label>
           <ImageProfile {...{ userData }} />
           <div className={styles.coins}>
-            <Coins />
+            <CoinIcon coins={0} />
           </div>
           <div className='m-t-20'>
             <Button color='link' onClick={() => toast(msgSubirCategoria)}>

@@ -13,7 +13,7 @@ date.locale('es')
 
 // export default connect(null, useDispatch)(Functions)
 const env = process.env.NODE_ENV
-/*datadogRum.init({
+/* datadogRum.init({
   applicationId: 'e070617f-1352-46e4-9c21-4cb715efd297',
   clientToken: 'pubffdccfc89da2b7156acfb7c7e44e317f',
   site: 'datadoghq.com',
@@ -29,7 +29,7 @@ const env = process.env.NODE_ENV
   defaultPrivacyLevel: 'allow'
 })
 
-datadogRum.startSessionReplayRecording()*/
+datadogRum.startSessionReplayRecording() */
 
 export const getNotifications = async (props) => {
   const { closed, user } = props
@@ -66,7 +66,7 @@ export const getHome = async (props) => {
   const { attempt = 1, seller = null, user_request = null } = props
 
   const getCache = () => {
-    let withoutCache = !!slug || !!category || !!subcategory || !!title
+    const withoutCache = !!slug || !!category || !!subcategory || !!title
     console.log('Sin cache: ', withoutCache)
     if (withoutCache) return 'no-cache'
     else return 'max-age=300000'
@@ -150,7 +150,7 @@ export const getFeed = async (props) => {
     user_request = 0
   } = props
   const getCache = () => {
-    let withoutCache = !!slug || !!category || !!subcategory || !!title
+    const withoutCache = !!slug || !!category || !!subcategory || !!title
     console.log('Sin cache: ', withoutCache)
     if (withoutCache) return 'no-cache'
     else return 'max-age=300000'
@@ -296,14 +296,9 @@ export const subirImagen = ({ tipoArchivo, idImageElement }) =>
             }
           }
 
-          let url_thumbnail,
-            url_full = null
-          const ref_thumbnail = storage.ref(
-            '/images/' + tipoArchivo + '/' + nombre_archivo + '_320x320.jpg'
-          )
-          const ref_full = storage.ref(
-            '/images/' + tipoArchivo + '/' + nombre_archivo + '_1080x1080.jpg'
-          )
+          let url_thumbnail; let url_full = null
+          const ref_thumbnail = storage.ref('/images/' + tipoArchivo + '/' + nombre_archivo + '_320x320.jpg')
+          const ref_full = storage.ref('/images/' + tipoArchivo + '/' + nombre_archivo + '_1080x1080.jpg')
           const myInterval = setInterval(async () => {
             const images = await getIURL(ref_thumbnail, ref_full)
             if (images) {
@@ -335,7 +330,7 @@ export const loadAudio = function (fuente) {
   // sonido.play()
 }
 
-export function getPaises() {
+export function getPaises () {
   return [
     { id: 'colombia', nombre: 'Colombia' },
     { id: 'mexico', nombre: 'México' },
@@ -345,7 +340,7 @@ export function getPaises() {
   ]
 }
 
-export function getCiudades() {
+export function getCiudades () {
   // Los paises que se coloquen en el campo ID deben ser separados por -
   return [
     { pais: '', id: 'all', label: 'Cualquier lugar' },
@@ -367,7 +362,7 @@ export function getCiudades() {
   ]
 }
 
-export function shuffle(array) {
+export function shuffle (array) {
   // Ordenar aleatoriamente un array
   var currentIndex = array.length,
     temporaryValue,
@@ -388,16 +383,11 @@ export function shuffle(array) {
   return array
 }
 
-export function formatNumber(input) {
+export function formatNumber (input) {
   input = String(input)
-  var num = input.replace(/\./g, '')
+  let num = input.replace(/\./g, '')
   if (!isNaN(num)) {
-    num = num
-      .toString()
-      .split('')
-      .reverse()
-      .join('')
-      .replace(/(?=\d*\.?)(\d{3})/g, '$1.')
+    num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.')
     num = num.split('').reverse().join('').replace(/^[\.]/, '')
     input = num
   } else {
@@ -406,7 +396,7 @@ export function formatNumber(input) {
   return input
 }
 
-export function slugify(string, lenght) {
+export function slugify (string, lenght) {
   const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœøṕŕßśșțùúüûǘẃẍÿź·/_,:;'
   const b = 'aaaaaaaaceeeeghiiiimnnnooooooprssstuuuuuwxyz------'
   const p = new RegExp(a.split('').join('|'), 'g')
@@ -465,7 +455,7 @@ export const GET_ARTICLES = gql`
 	}
 `
 
-export function getCategories(id) {
+export function getCategories (id) {
   const categories = [
     { id: 1, name: 'Accesorios', image: '/images/icons/accesorios.svg' },
     { id: 2, name: 'Nintendo Switch', image: '/images/icons/nintendo.svg' },
@@ -478,7 +468,7 @@ export function getCategories(id) {
   return categories
 }
 
-export function getSubcategories(id) {
+export function getSubcategories (id) {
   const subcategories = [
     {
       id: 1,

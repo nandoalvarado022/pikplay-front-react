@@ -1,12 +1,18 @@
 // BEGIN: ed8c6549bwf9
 type Product = {
-    id: number;
-    title: string;
+    accept_changes?: boolean;
+    apply_cashback?: boolean;
+    certificate?: boolean;
+    city?: number;
     description: string;
-    price: number;
-    sale_price: number;
     descuento?: number;
-    tipo_coleccion?: string;
+    destacada?: boolean;
+    following?: boolean;
+    handleFavorite?: (args: any) => void;
+    handleShare?: (args: any) => void;
+    icon_favorite?: boolean;
+    id: number;
+    image_10?: string;
     image_1?: string;
     image_2?: string;
     image_3?: string;
@@ -16,31 +22,24 @@ type Product = {
     image_7?: string;
     image_8?: string;
     image_9?: string;
-    image_10?: string;
-    tags?: string;
-    user_name?: string;
-    user_picture?: string;
-    user_transactions?: number;
-    likes?: string[];
-    following?: boolean;
-    handleFavorite?: (args: any) => void;
-    handleShare?: (args: any) => void;
-    icon_favorite?: boolean;
-    certificate?: boolean;
-    accept_changes?: boolean;
-    city?: number;
     is_new?: boolean;
-    special_title?: string;
-    destacada?: boolean;
-    slug?: string;
+    likes?: string[];
     logDetalle?: boolean;
+    name: string;
+    picture: string;
+    price: number;
     quantity?: number;
+    sale_price: number;
+    slug?: string;
+    special_title?: string;
+    tags?: string;
+    tipo_coleccion?: string;
+    title: string;
     user?: {
-        id: number;
-        name: string;
-        picture: string;
+        user_name?: string;
+        user_picture?: string;
+        user_transactions?: number;
     };
-    apply_cashback?: boolean;
 };
 
 export default Product

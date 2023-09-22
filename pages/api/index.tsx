@@ -1,14 +1,22 @@
-import getNotifications from './mocks/getNotifications'
-import publicationsMock from './mocks/publications';
-import home from './mocks/home'
-import getArticles from './mocks/getArticles'
-import validateLogin from './mocks/validateLogin'
-import getChallenges from './mocks/getChallenges'
+import getNotifications from './mocks/get/getNotifications'
+import publicationsMock from './mocks/get/publications';
+import home from './mocks/get/home'
+import getArticles from './mocks/get/getArticles'
+import getArticlesLimit from './mocks/get/getArticlesLimit'
+import validateLogin from './mocks/get/validateLogin'
+import getChallenges from './mocks/get/getChallenges'
+import createTransaction from './mocks/post/createTransaction'
 
 export default function handler(req, res) {
   const operationName = req.headers?.['operation-name']
+  const variables = req.headers?.['variables'] ? JSON.parse(req.headers?.['variables']) : {}
   switch (operationName) {
+    case 'createTransaction':
+      debugger
+      res.status(200).json(createTransaction);
+      break;
     case 'getArticles':
+      if (variables?.limit === 1) res.status(200).json(getArticlesLimit);
       res.status(200).json(getArticles);
       break;
     case 'getChallenges':

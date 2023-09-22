@@ -1,0 +1,18 @@
+.ModalNotification {
+    h2 img {
+        position: relative;
+        top: 8px;
+        right: 5px;
+    }
+    .content {
+        color: #373737;
+        margin: 0px 20px;
+        .dont_show_again{
+            float: left;
+            height: 0;
+            position: relative;
+            top: 30px;
+            width: 200px;
+        }
+    }
+}

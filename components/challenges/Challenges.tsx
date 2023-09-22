@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './challenges.module.scss'
 import { useQuery } from '@apollo/client'
 import { GET_CHALLENGES } from '../../lib/utils.jsx'
-import Coins from '../previewUser/Coins'
+import Coins from '../previewUser/old Coins'
 
 import Skeleton from '@material-ui/lab/Skeleton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

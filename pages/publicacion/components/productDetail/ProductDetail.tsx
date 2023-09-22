@@ -1,34 +1,51 @@
-import Button from "../button/Button"
-import CoinsByBuy from "../coinsByBuy/CoinsByBuy"
-import Footer from "../footer/Footer"
-import Grow from "@material-ui/core/Grow"
-import ImageGallery from "react-image-gallery"
-import React from "react"
-import styles from "./styles.module.scss"
-import { formatNumber } from "../../lib/utils"
-import { useRef } from "react"
-import Link from "next/link"
-import { useSelector } from "react-redux"
-import Author from "../card/Author"
+/* eslint-disable camelcase */
+/* eslint-disable react/prop-types */
+import React, { useRef } from 'react'
+import Button from '../../../../components/button/Button'
+import CoinsByBuy from '../../../../components/coinsByBuy/CoinsByBuy'
+import Footer from '../../../../components/footer/Footer'
+import Grow from '@material-ui/core/Grow'
+import ImageGallery from 'react-image-gallery'
+import styles from './styles.module.scss'
+import { formatNumber } from '../../../../lib/utils'
+import Link from 'next/link'
+import { useSelector } from 'react-redux'
+import Author from '../../../../components/card/Author'
+import Product from '../../../../interfaces/Product'
+
+interface Props {
+  apply_cashback,
+  banner_bottom,
+  datosPublicacion: Product,
+  description,
+  descuento,
+  handleHablarVendedor,
+  indice_item,
+  user,
+}
 
 const DetalleProducto = ({
   apply_cashback,
   banner_bottom,
-  description = "",
+  datosPublicacion,
+  description = '',
   descuento = 0,
   handleHablarVendedor,
-  image_1,
-  image_2,
-  image_3,
-  image_4,
-  image_5,
   indice_item,
-  quantity,
-  sale_price,
-  slug,
-  title,
   user: seller,
-} = {}) => {
+}: Props) => {
+  const {
+    image_1,
+    image_2,
+    image_3,
+    image_4,
+    image_5,
+    quantity,
+    sale_price,
+    slug,
+    title,
+  } = datosPublicacion
+
   const ref_descripcion_imagen = useRef(null)
   let images = []
   const user = useSelector((state) => state.user)
@@ -53,7 +70,7 @@ const DetalleProducto = ({
               showFullscreenButton={false} />
           </div>
 
-          <div className={`${styles.Card} ${styles["productos-relacionados"]}`}>
+          <div className={`${styles.Card} ${styles['productos-relacionados']}`}>
             {/* <h3 className="text-center">Productos que te pueden interesar</h3> */}
             {/* <div className="listadoRodadas">
               {["", "", ""].map((current, ind) => {
@@ -78,7 +95,7 @@ const DetalleProducto = ({
 
             <div className={styles.content_precio}>
               {descuento > 0 &&
-                <span className={"descuento" + (logDetalle ? " logDetalle" : "")}> -{descuento}% </span>}
+                <span className={'descuento' + (logDetalle ? ' logDetalle' : '')}> -{descuento}% </span>}
               {!!sale_price && <span className={styles.nuevoPrecio}>
                 ${formatNumber(sale_price)}
               </span>}
@@ -86,8 +103,8 @@ const DetalleProducto = ({
 
             <div className={`flex ${styles.compra_author}`}>
               <Button color="blue" onClick={handleHablarVendedor}>
-                {quantity > 0 && "Lo quiero"}
-                {quantity == 0 && "Reservar"}
+                {quantity > 0 && 'Lo quiero'}
+                {quantity == 0 && 'Reservar'}
               </Button>
               <div className={styles.content_author}>
                 <Author parentView='CardDetalleProducto' user={seller} />

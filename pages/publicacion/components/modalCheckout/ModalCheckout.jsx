@@ -1,17 +1,17 @@
-import Button from "../../../components/button/Button"
-import TextField from "@material-ui/core/TextField"
+import React, { useEffect, useState } from 'react'
+import Button from '../../../../components/button/Button'
+import TextField from '@material-ui/core/TextField'
 import { gql, useLazyQuery, useMutation } from '@apollo/client'
-import styles from "./styles.module.scss"
-import CiudadControl from "../../../components/ciudadControl/CiudadControl"
-import Link from "next/link"
-import { Alert } from "@material-ui/lab"
-import { useSelector } from "react-redux"
-import CouponBox from "../../../components/couponBox/CouponBox"
-import { formatNumber, GET_CLAIMED_COUPONS } from "../../../lib/utils"
-import { useEffect, useState } from "react"
-import classNames from "classnames"
-import Checkout from "../../../components/checkout/Checkout"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import styles from './styles.module.scss'
+import CiudadControl from '../../../../components/ciudadControl/CiudadControl'
+import Link from 'next/link'
+import { Alert } from '@material-ui/lab'
+import { useSelector } from 'react-redux'
+import CouponBox from '../../../../components/couponBox/CouponBox'
+import { formatNumber, GET_CLAIMED_COUPONS } from '../../../../lib/utils'
+import classNames from 'classnames'
+import Checkout from '../../../../components/checkout/Checkout'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment } from '@fortawesome/free-solid-svg-icons'
 
 const ModalCheckout = (props) => {
@@ -24,7 +24,13 @@ const ModalCheckout = (props) => {
     mutation createTransaction($user: Int, $user_to: Int, $publication: Int, $type: String){
         createTransaction(user: $user, user_to: $user_to, publication: $publication, type: $type)
     }`
-  const [createTransaction, { }] = useMutation(CREATE_TRANSACTION);
+  const [createTransaction] = useMutation(CREATE_TRANSACTION, {
+    context: {
+      headers: {
+        'Operation-Name': 'createTransaction'
+      }
+    }
+  })
   const [getClaimedCoupons] = useLazyQuery(GET_CLAIMED_COUPONS, {
     fetchPolicy: 'no-cache',
     variables: {
@@ -39,15 +45,18 @@ const ModalCheckout = (props) => {
     }
   })
   const handleCreateTransaction = () => {
-    // Mutation para registrar la pre orden
-    createTransaction({ variables: { user: user.id, user_to: datosPublicacion.user.id, publication: datosPublicacion.id, type: "PURCHASE" } });
-
     if (!user) {
       const mensaje = toastr;
-      mensaje.options.onclick = () => Router.push("/login")
-      mensaje.warning("Debes ingresar para poder comprar")
+      mensaje.options.onclick = () => Router.push('/login')
+      mensaje.warning('Debes ingresar para poder comprar')
       return false
     }
+
+    // Mutation para registrar la pre orden
+    createTransaction({ variables: { user: user.id, user_to: datosPublicacion.user.id, publication: datosPublicacion.id, type: 'PURCHASE' } })
+      .then(data => {
+        alert('OK!')
+      })
 
     // const identificacion = JSON.parse(localStorage.getItem("user")).identificacion
     // const direccion = JSON.parse(localStorage.getItem("user")).direccion
@@ -58,7 +67,7 @@ const ModalCheckout = (props) => {
     const url = window.location
     let message = `Hola soy ${user.name}, estoy interesado en este producto ${url} para envío a ${user.city}. `
     if (couponCode) message = message + `Ademas he redimido el cupón ${couponCode}`
-    window.open("https://api.whatsapp.com/send?phone=" + seller_phone + "&text=" + message)
+    window.open('https://api.whatsapp.com/send?phone=' + seller_phone + '&text=' + message)
   }
 
   const handlePagar = async () => {
@@ -86,7 +95,7 @@ const ModalCheckout = (props) => {
         <TextField value={user.name} autoComplete="nombre" name="nombre_completo" fullWidth={true} label="Nombre" margin="normal" size={25} />
         <CiudadControl />
       </section>
-      <section className={classNames("m-t-20 f-s-14 t-a-r", [styles.bottom])} >
+      <section className={classNames('m-t-20 f-s-14 t-a-r', [styles.bottom])} >
         {!!datosPublicacion?.sale_price && <table className={styles.payment_info}>
           {couponValue && <>
             <tr>
