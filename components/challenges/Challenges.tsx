@@ -14,11 +14,10 @@ const Challenges = () => {
   const { data, loading } = useQuery(GET_CHALLENGES, {
     context: {
       headers: {
-        'Operation-Name': 'getChallenges'
-      }
-    }
+        'Operation-Name': 'getChallenges',
+      },
+    },
   })
-
 
   return (
     <section className={styles.ChallengeSection}>
@@ -32,70 +31,75 @@ const Challenges = () => {
 
       {loading
         ? new Array(3)
-          .fill(null)
-          .map((_, i) => (
-            <Skeleton
-              key={i}
-              variant='rect'
-              width='100%'
-              height={120}
-              className='Card'
-            />
-          ))
+            .fill(null)
+            .map((_, i) => (
+              <Skeleton
+                key={i}
+                variant='rect'
+                width='100%'
+                height={120}
+                className='Card'
+              />
+            ))
         : data.getChallenges.map(
-          ({
-            id,
-            title,
-            targetPoints,
-            currentPoints,
-            prizeCoins,
-            deadLine,
-            image,
-            description,
-            finished
-          }) => (
-            <article key={id} className={`${styles.challenge}`}>
-              {finished && <FontAwesomeIcon icon={faCheck} className={styles.challengeCompleteIcon} />}
-              <picture className={styles.image}>
-                <img className={styles.image} src={image} />
-              </picture>
-              <div className={styles.challengeDetails}>
-                <h4 className={styles.challengeTitle}>{title}</h4>
-                <div className={styles.progressContainer}>
-                  <span
-                    className={styles.progressBar}
-                    style={{
-                      width: `calc((100% * ${currentPoints}) / ${targetPoints})`
-                    }}
-                  ></span>
-                  <span className={styles.progressScore}>
-                    {currentPoints}/{targetPoints}
-                  </span>
+            ({
+              id,
+              title,
+              targetPoints,
+              currentPoints,
+              prizeCoins,
+              deadLine,
+              image,
+              description,
+              finished,
+            }) => (
+              <article key={id} className={`${styles.challenge}`}>
+                {finished && (
+                  <FontAwesomeIcon
+                    icon={faCheck}
+                    className={styles.challengeCompleteIcon}
+                  />
+                )}
+                <picture className={styles.image}>
+                  <img className={styles.image} src={image} />
+                </picture>
+                <div className={styles.challengeDetails}>
+                  <h4 className={styles.challengeTitle}>{title}</h4>
+                  <div className={styles.progressContainer}>
+                    <span
+                      className={styles.progressBar}
+                      style={{
+                        width: `calc((100% * ${currentPoints}) / ${targetPoints})`,
+                      }}
+                    ></span>
+                    <span className={styles.progressScore}>
+                      {currentPoints}/{targetPoints}
+                    </span>
+                  </div>
+                  <p>{description}</p>
+                  <p>
+                    {' '}
+                    Expires on: {''}
+                    <span className={styles.deadLine}>{deadLine}</span>
+                  </p>
                 </div>
-                <p>{description}</p>
-                <p>
-                  {' '}
-                  Expires on: {''}
-                  <span className={styles.deadLine}>{deadLine}</span>
-                </p>
-              </div>
 
-              <div>
-                <div className={styles.coins_wrapper}>
-                  <Coins coins={prizeCoins} />
+                <div>
+                  <div className={styles.coins_wrapper}>
+                    <Coins coins={prizeCoins} />
+                  </div>
+                  <Button
+                    className={styles.btnReclamar}
+                    color='blue'
+                    disabled={!finished}
+                  >
+                    Reclamar
+                  </Button>
                 </div>
-                <Button
-                  className={styles.btnReclamar}
-                  color='blue'
-                  disabled={!finished}
-                >
-                  Reclamar
-                </Button>
-              </div>
-            </article>
-          )
-        )}
-    </section >
+              </article>
+            ),
+          )}
+    </section>
   )
 }
 export default Challenges

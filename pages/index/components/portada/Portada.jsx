@@ -15,7 +15,7 @@ function Portada({ category, feed: data = [] }) {
   const [feed, setFeed] = useState(data)
   const [open, setOpen] = useState(false)
   const popularyItem = feed ? feed[0] : null
-  const starItem = feed && feed.find((item) => item.id == 68)
+  const starItem = feed && feed.find(item => item.id == 68)
 
   useEffect(() => {
     setFeed(data)
@@ -23,20 +23,36 @@ function Portada({ category, feed: data = [] }) {
 
   const [handleFavorite] = useMutation(CREATE_FAVORITE, {
     onCompleted: () => {
-      toast(<p className='m-0'>
-        Te avisaremos si hay un cambio de precio o si alguien más esta interesado en la publicación.
-        <span className='f-r'>🧐</span>
-        <br /><br />
-        <Link href='/publicaciones'>
-          <small>Puedes revisar las publicaciones que sigues haciendo click aquí</small>
-        </Link>
-      </p>)
-    }
+      toast(
+        <p className='m-0'>
+          Te avisaremos si hay un cambio de precio o si alguien más esta
+          interesado en la publicación.
+          <span className='f-r'>🧐</span>
+          <br />
+          <br />
+          <Link href='/publicaciones'>
+            <small>
+              Puedes revisar las publicaciones que sigues haciendo click aquí
+            </small>
+          </Link>
+        </p>,
+      )
+    },
   })
 
-  return <PortadaInterface {...{
-    feed, category, handleFavorite, open, popularyItem, setFeed, starItem
-  }} />
+  return (
+    <PortadaInterface
+      {...{
+        feed,
+        category,
+        handleFavorite,
+        open,
+        popularyItem,
+        setFeed,
+        starItem,
+      }}
+    />
+  )
 }
 
 export default Portada

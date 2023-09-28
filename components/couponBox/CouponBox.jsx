@@ -13,26 +13,40 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import Button from '../button/Button'
 import Link from 'next/link'
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
-import { getNotifications, GET_NOTIFICATIONS, VALIDATE_COUPON } from '../../lib/utils'
+import {
+  getNotifications,
+  GET_NOTIFICATIONS,
+  VALIDATE_COUPON,
+} from '../../lib/utils'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames'
 
-const CouponBox = (props) => {
+const CouponBox = props => {
   const dispatch = useDispatch()
-  const user = useSelector((state) => state.user)
-  const { callback, className, label = 'Redimir cupón', publication = null } = props
+  const user = useSelector(state => state.user)
+  const {
+    callback,
+    className,
+    label = 'Redimir cupón',
+    publication = null,
+  } = props
   const [couponValue, setCouponValue] = useState('')
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
 
-  const [getNotifications] = useLazyQuery(GET_NOTIFICATIONS, { // Obteniendo notificaciones
-    fetchPolicy: "no-cache",
+  const [getNotifications] = useLazyQuery(GET_NOTIFICATIONS, {
+    // Obteniendo notificaciones
+    fetchPolicy: 'no-cache',
     variables: {
-      user: user?.id
+      user: user?.id,
     },
     onCompleted: ({ getNotifications }) => {
-      getNotifications && dispatch({ type: "CHANGE_PROPERTY", payload: { property: "notifications", value: getNotifications } })
-    }
+      getNotifications &&
+        dispatch({
+          type: 'CHANGE_PROPERTY',
+          payload: { property: 'notifications', value: getNotifications },
+        })
+    },
   })
 
   const handleClickOpen = () => {
@@ -47,7 +61,7 @@ const CouponBox = (props) => {
     variables: {
       coupon: couponValue.toUpperCase(),
       publication,
-      user: user?.id
+      user: user?.id,
     },
     onCompleted: ({ validateCoupon: data }) => {
       toast(data.message)
@@ -59,7 +73,7 @@ const CouponBox = (props) => {
     },
     onError: err => {
       console.log(err)
-    }
+    },
   })
 
   const handleValidate = async () => {
@@ -70,39 +84,56 @@ const CouponBox = (props) => {
     validateCoupon()
   }
 
-  return <div className={classNames('', [className, styles.CouponBox])}>
-    <Button color='link' onClick={handleClickOpen}>
-      {label}
-    </Button>
+  return (
+    <div className={classNames('', [className, styles.CouponBox])}>
+      <Button color='link' onClick={handleClickOpen}>
+        {label}
+      </Button>
 
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description">
-      <DialogTitle id="alert-dialog-title">Redimir cupón promocional para obtener Pikcoins</DialogTitle>
-      <DialogContent>
-        <DialogContentText id="alert-dialog-description">
-          <TextField autoFocus={true} autoComplete='couponValue' className='m-b-10 coupon-field' onChange={(e) => setCouponValue(e.target.value)} label="Digita tu cupón aquí" size='small' />
-          <div>
-            <small>
-              <Link href="/articulo/[id]" as="/articulo/terminos-y-condiciones">
-                <a>Términos y condiciones acerca de la redención de cupones</a>
-              </Link>
-            </small>
-          </div>
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <ButtonMat onClick={handleClose} color="primary">
-          Cancelar
-        </ButtonMat>
-        <ButtonMat onClick={handleValidate} color="primary">
-          Validar
-        </ButtonMat>
-      </DialogActions>
-    </Dialog>
-  </div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'
+      >
+        <DialogTitle id='alert-dialog-title'>
+          Redimir cupón promocional para obtener Pikcoins
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id='alert-dialog-description'>
+            <TextField
+              autoFocus={true}
+              autoComplete='couponValue'
+              className='m-b-10 coupon-field'
+              onChange={e => setCouponValue(e.target.value)}
+              label='Digita tu cupón aquí'
+              size='small'
+            />
+            <div>
+              <small>
+                <Link
+                  href='/articulo/[id]'
+                  as='/articulo/terminos-y-condiciones'
+                >
+                  <a>
+                    Términos y condiciones acerca de la redención de cupones
+                  </a>
+                </Link>
+              </small>
+            </div>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <ButtonMat onClick={handleClose} color='primary'>
+            Cancelar
+          </ButtonMat>
+          <ButtonMat onClick={handleValidate} color='primary'>
+            Validar
+          </ButtonMat>
+        </DialogActions>
+      </Dialog>
+    </div>
+  )
 }
 
 export default CouponBox

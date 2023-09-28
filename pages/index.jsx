@@ -5,9 +5,10 @@ import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 
-const Index = (props) => {
+const Index = props => {
   const { action, feed } = props
-  const descripcion = 'Pikplay es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas e independientes de alta confiabilidad ofreciendo videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch con los mejores precios del mercado en Colombia'
+  const descripcion =
+    'Pikplay es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas e independientes de alta confiabilidad ofreciendo videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch con los mejores precios del mercado en Colombia'
   const image = ''
   const title = 'Pikplay - Compras gamers confiables'
   const url = 'https://pikplay.co'
@@ -21,9 +22,15 @@ const Index = (props) => {
         break
 
       case 'login':
-        const name = JSON.parse(localStorage.getItem('persist:pikplay'))?.user?.name
-        toast(<div>Bienvenido {name} 😎<br />
-          <small>Cargando tus preferencias 👾 ...</small></div>)
+        const name = JSON.parse(localStorage.getItem('persist:pikplay'))?.user
+          ?.name
+        toast(
+          <div>
+            Bienvenido {name} 😎
+            <br />
+            <small>Cargando tus preferencias 👾 ...</small>
+          </div>,
+        )
         break
 
       case 'logout':
@@ -35,19 +42,21 @@ const Index = (props) => {
     }
   }, [])
 
-  return <Layout image={image} descripcion={descripcion} title={title} url={url}>
-    <Portada feed={feed} />
-    {/* <Testimonials /> */}
-  </Layout>
+  return (
+    <Layout image={image} descripcion={descripcion} title={title} url={url}>
+      <Portada feed={feed} />
+      {/* <Testimonials /> */}
+    </Layout>
+  )
 }
 
-Index.getInitialProps = async (ctx) => {
+Index.getInitialProps = async ctx => {
   const action = ctx.query?.action
   const isSSR = typeof window === 'undefined'
   const feed = await getHome({ isSSR, origin: 'indexPage' })
   return {
     action,
-    feed
+    feed,
   }
 }
 

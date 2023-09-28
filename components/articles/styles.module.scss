@@ -1,86 +1,107 @@
 #ArticlesComponent {
-    position: relative;
-    overflow:auto;
-    scrollbar-color: silver white;
-    scrollbar-width:thin;
-  
-    &::-webkit-scrollbar-track {
-        background: white; /* color of the tracking area */
-        
-        border-radius: 20px;
-    }
-    &::-webkit-scrollbar-thumb {
-        border-radius: 20px; /* roundness of the scroll thumb */
-        border: 3px solid white; /* creates padding around scroll thumb */
+  position: relative;
+  overflow: auto;
+  scrollbar-color: silver white;
+  scrollbar-width: thin;
 
-        border-radius: 20px;
+  &::-webkit-scrollbar-track {
+    background: white; /* color of the tracking area */
+
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 20px; /* roundness of the scroll thumb */
+    border: 3px solid white; /* creates padding around scroll thumb */
+
+    border-radius: 20px;
+  }
+
+  .arrows {
+    display: flex;
+    display: none;
+    justify-content: space-between;
+    left: -40px;
+    position: absolute;
+    top: 60px;
+    width: calc(100% + 90px);
+    z-index: 1;
+    svg {
+      background: white;
+      border: 1px solid #d1d1d1;
+      border-radius: 50%;
+      color: #b3b3b3;
+      padding: 4px;
     }
-    .arrows {
-        display: flex;
-        display: none;
-        justify-content: space-between;
-        left: -40px;
-        position: absolute;
-        top: 60px;
-        width: calc(100% + 90px);
-        z-index: 1;
-        svg {
-            background: white;
-            border: 1px solid #d1d1d1;
-            border-radius: 50%;
-            color: #b3b3b3;
-            padding: 4px;
-        }
+  }
+
+  section.list {
+    display: flex;
+    justify-content: center;
+    margin: 10px auto;
+    padding: 10px;
+    width: max-content;
+
+    // scroll
+    // scroll-snap-type: x mandatory;
+    article:nth-of-type(1),
+    article:nth-of-type(3) {
+      background: linear-gradient(
+        90deg,
+        rgba(96, 152, 251, 1) 0%,
+        rgba(118, 162, 234, 1) 100%
+      );
     }
-    section.list {
-        column-gap: 50px;
-        display: flex;
-        justify-content: center;
-        margin: 10px auto;
+
+    article:nth-of-type(2),
+    article:nth-of-type(4) {
+      background: linear-gradient(90deg, #fab674 0%, #efba89 100%);
+    }
+
+    article {
+      // scroll-snap-align: center;
+      @media screen and (max-width: 420px) {
         padding: 10px;
-        width: max-content;
-        // scroll
-        // scroll-snap-type: x mandatory;
-        article:nth-of-type(1),
-        article:nth-of-type(3) {
-            background: linear-gradient(90deg, rgba(96, 152, 251, 1) 0%, rgba(118, 162, 234, 1) 100%);
-        }
-        article:nth-of-type(2),
-        article:nth-of-type(4) {
-            background: linear-gradient(90deg, #fab674 0%, #efba89 100%);
-        }
-        article {
-            // scroll-snap-align: center;
-            @media screen and (max-width: 420px) {
-                padding: 10px;
-            }
-        }
-        > * {
-            font-size: 14px;
-            margin: initial;
-            position: relative;
-            width: 200px;
-            h1 {
-                color: white;
-                margin: 0 0 10px 0;
-            }
-            summary {
-                color: white;
-                margin: 0;
-                width: 120px;
-                @media screen and (max-width: 420px) {
-                    width: initial;
-                }
-            }
-            img {
-                position: absolute;
-                right: -30px;
-                bottom: -5px;
-                @media screen and (max-width: 420px) {
-                    opacity: 0.2;
-                    right: 0;
-                }
-            }
-        }
+      }
     }
+    > * {
+      font-size: 14px;
+      margin: initial;
+      position: relative;
+      width: 200px;
+
+      h1 {
+        color: white;
+        margin: 0 0 10px 0;
+      }
+
+      summary {
+        color: white;
+        margin: 0;
+        width: 120px;
+        @media screen and (max-width: 420px) {
+          width: initial;
+        }
+      }
+
+      img {
+        position: absolute;
+        right: -30px;
+        bottom: -5px;
+        @media screen and (max-width: 420px) {
+          opacity: 0.2;
+          right: 0;
+        }
+      }
+    }
+  }
+
+  section.horizontal {
+    flex-direction: row;
+    gap: 0px 50px;
+  }
+
+  section.vertical {
+    flex-direction: column;
+    gap: 15px 0px;
+  }
 }

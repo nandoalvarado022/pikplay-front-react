@@ -1,150 +1,150 @@
 .content {
-    border-radius: 10px 10px 0 0;
-    margin-top: 10;
-    overflow: hidden;
+  border-radius: 10px 10px 0 0;
+  margin-top: 10;
+  overflow: hidden;
+  @media screen and (max-width: 420px) {
+    width: auto;
+  }
+  :global(.Card.main) {
+    margin: 0;
     @media screen and (max-width: 420px) {
-        width: auto;
+      flex-direction: column;
     }
-    :global(.Card.main) {
-        margin: 0;
-        @media screen and (max-width: 420px) {
-            flex-direction: column;
-        }
-    }
-    div {
-        box-sizing: border-box;
-    }
-    :global(.MuiTabs-root) {
-        button {
-            svg {
-                position: relative;
-                top: 2px;
-            }
-        }
-    }
-    .controls {
-        background: white;
-        column-gap: 10px;
-        display: flex;
-        left: -10px;
-        margin: 0;
-        padding: 20px;
+  }
+  div {
+    box-sizing: border-box;
+  }
+  :global(.MuiTabs-root) {
+    button {
+      svg {
         position: relative;
-        top: -9px;
-        width: calc(100% + 20px);
-        .search {
-            width: 220px;
-        }
+        top: 2px;
+      }
     }
-    ul {
-        padding: 0;
-        :global(.Card) {
-            list-style: none;
-        }
-        > li {
-            list-style: none;
-        }
-        .more_options {
-            background: #ffffff;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 2px 2px 5px 0 #ababab52;
-            column-gap: 20px;
-            display: flex;
-            flex-direction: column;
-            margin: 0 auto;
-            padding: 10px 20px;
-            position: relative;
-            row-gap: 10px;
-            top: -40px;
-            width: 90%;
-            > * {
-                margin-top: 20px;
-            }
-            .pending_aprove {
-                background: #ccd6e154;
-                border-radius: 10px;
-                font-size: 14px;
-                padding: 10px;
-                p {
-                    margin: 5px;
-                }
-                p:nth-of-type(2) {
-                    color: grey;
-                }
-            }
-            .adminActions {
-                display: flex;
-                column-gap: 20px;
-            }
-        }
-        .flex-table {
-            // cada item
-            // box-shadow: 0px 2px 2px #152c4412;
-            display: flex;
-            font-size: 14px;
-            // flex-flow: row wrap;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            position: relative;
-            transition: 0.5s;
-            img {
-                max-width: 50px;
-            }
-            a > div {
-            }
-            .image_link {
-                margin-right: 20px;
-            }
-            .flex-row {
-                align-items: center;
-                display: flex;
-                flex: 1;
-                justify-content: center;
-                text-align: center;
-            }
-            .actions {
-                border-right: none;
-                display: flex;
-                flex-basis: 150px;
-                justify-content: flex-start;
-                width: auto;
-                .verPublicacion {
-                }
-            }
-            &.disabled {
-                > a > div {
-                    opacity: 0.3;
-                }
-            }
-        }
+  }
+  .controls {
+    background: white;
+    column-gap: 10px;
+    display: flex;
+    left: -10px;
+    margin: 0;
+    padding: 20px;
+    position: relative;
+    top: -9px;
+    width: calc(100% + 20px);
+    .search {
+      width: 220px;
     }
-    .report {
-        :global(.Card) {
-            display: flex;
-            .graphic {
-                margin: 0 auto;
-                width: 400px;
-                @media screen and (max-width: 420px) {
-                    width: 100%;
-                }
-            }
-            table {
-                font-size: 14px;
-                tr:nth-child(even) {
-                    background: #d7ecfb;
-                }
-                td {
-                    margin: 0;
-                    text-align: center;
-                }
-            }
-        }
+  }
+  ul {
+    padding: 0;
+    :global(.Card) {
+      list-style: none;
     }
-    .followedPublications {
-        display: flex;
-        flex-wrap: wrap;
+    > li {
+      list-style: none;
+    }
+    .more_options {
+      background: #ffffff;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 2px 2px 5px 0 #ababab52;
+      column-gap: 20px;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      padding: 10px 20px;
+      position: relative;
+      row-gap: 10px;
+      top: -40px;
+      width: 90%;
+      > * {
         margin-top: 20px;
+      }
+      .pending_aprove {
+        background: #ccd6e154;
+        border-radius: 10px;
+        font-size: 14px;
+        padding: 10px;
+        p {
+          margin: 5px;
+        }
+        p:nth-of-type(2) {
+          color: grey;
+        }
+      }
+      .adminActions {
+        display: flex;
+        column-gap: 20px;
+      }
     }
+    .flex-table {
+      // cada item
+      // box-shadow: 0px 2px 2px #152c4412;
+      display: flex;
+      font-size: 14px;
+      // flex-flow: row wrap;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      position: relative;
+      transition: 0.5s;
+      img {
+        max-width: 50px;
+      }
+      a > div {
+      }
+      .image_link {
+        margin-right: 20px;
+      }
+      .flex-row {
+        align-items: center;
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        text-align: center;
+      }
+      .actions {
+        border-right: none;
+        display: flex;
+        flex-basis: 150px;
+        justify-content: flex-start;
+        width: auto;
+        .verPublicacion {
+        }
+      }
+      &.disabled {
+        > a > div {
+          opacity: 0.3;
+        }
+      }
+    }
+  }
+  .report {
+    :global(.Card) {
+      display: flex;
+      .graphic {
+        margin: 0 auto;
+        width: 400px;
+        @media screen and (max-width: 420px) {
+          width: 100%;
+        }
+      }
+      table {
+        font-size: 14px;
+        tr:nth-child(even) {
+          background: #d7ecfb;
+        }
+        td {
+          margin: 0;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .followedPublications {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
 }

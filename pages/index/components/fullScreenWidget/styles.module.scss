@@ -1,33 +1,33 @@
 .BigScreenPublications {
-    background: #942723;
+  background: #942723;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  margin-bottom: 40px;
+  .texts {
+    font-weight: bold;
+    text-align: right;
+    text-shadow: 4px 2px white;
+    margin-left: 40px;
+    position: relative;
+    z-index: 1;
+    .text1 {
+      font-size: 60px;
+      color: #c93530;
+    }
+    .text2 {
+      color: #3095b3;
+      font-size: 40px;
+      display: block;
+    }
+  }
+  .publications {
     display: flex;
     justify-content: space-between;
-    overflow: hidden;
-    margin-bottom: 40px;
-    .texts {
-        font-weight: bold;
-        text-align: right;
-        text-shadow: 4px 2px white;
-        margin-left: 40px;
-        position: relative;
-        z-index: 1;
-        .text1 {
-            font-size: 60px;
-            color: #c93530;
-        }
-        .text2 {
-            color: #3095b3;
-            font-size: 40px;
-            display: block;
-        }
-    }
-    .publications {
-        display: flex;
-        justify-content: space-between;
-        padding-top: 30px;
-        width: 680px;
-    }
-    .video {
-        height: 437px;
-    }
+    padding-top: 30px;
+    width: 680px;
+  }
+  .video {
+    height: 437px;
+  }
 }

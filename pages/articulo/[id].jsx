@@ -5,34 +5,52 @@ import { connect } from 'react-redux'
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 import styles from './styles.module.scss'
 import { IS_MOBILE } from '../../lib/variables'
-import { useQuery, gql } from "@apollo/client"
-
-const ArticlePage = (props) => {
-  const { data: { slug } } = props
+import { useQuery, gql } from '@apollo/client'
+import Articles from '../../components/articles/Articles'
+const ArticlePage = props => {
+  const {
+    data: { slug },
+  } = props
   // const slug = 'pikcoins-que-son-y-como-redimir-cupones'
   const { data, loading, error } = useQuery(GET_ARTICLES, {
     context: {
       headers: {
-        'Operation-Name': 'getArticles'
-      }
+        'Operation-Name': 'getArticles',
+      },
     },
-    variables: { slug }
+    variables: { slug },
   })
 
   if (loading) return <div>Loading...</div>
-  console.log(data)
+
   const { content, mobile_content, summary, title } = data.getArticles[0] || {}
   const article = IS_MOBILE ? mobile_content : content
 
-  return <Layout>
-    <div id={styles.ArticlePage}>
-      <h1 className='Card'>
-        {summary}
-        <small>{title}</small>
-      </h1>
-      <div className="m-b-20 Card post__content" dangerouslySetInnerHTML={{ __html: article }}></div>
-    </div>
-  </Layout>
+  return (
+    <Layout>
+      <section id={styles.ArticleLayout}>
+        <div>
+          <h3>Quizás te interese:</h3>
+          <Articles directionColumn={true} />
+        </div>
+        <article>
+          <div id={styles.ArticlePage}>
+            <>
+              <h1 className='Card'>
+                {summary}
+
+                <small>{title}</small>
+              </h1>
+              <div
+                className='m-b-20 Card post__content'
+                dangerouslySetInnerHTML={{ __html: article }}
+              ></div>
+            </>
+          </div>
+        </article>
+      </section>
+    </Layout>
+  )
 }
 
 ArticlePage.getInitialProps = async ({ query, req, res }) => {
@@ -58,12 +76,12 @@ ArticlePage.getInitialProps = async ({ query, req, res }) => {
   // }
 
   return {
-    data: { slug }
+    data: { slug },
   }
 }
 
-const mapStateToProps = (state) => ({
-  user: state.user
+const mapStateToProps = state => ({
+  user: state.user,
 })
 
 export default connect(mapStateToProps)(ArticlePage)

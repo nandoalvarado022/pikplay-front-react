@@ -1,10 +1,7 @@
 const getNotifications = {
-    "data": {
-        "getArticles": {
-
-        }
-    }
+  data: {
+    getArticles: {},
+  },
 }
 
-export default getNotifications;
-
+export default getNotifications

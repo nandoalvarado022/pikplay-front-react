@@ -1,18 +1,18 @@
 {
-    "gcm_sender_id": "103953800507",
-    "short_name": "Pikajuegos",
-    "name": "Pikajuegos",
-    "version": "1.0.1",
-    "display": "minimal-ui",
-    "description": "Pikajuegos | Videojuegos y accesorios para play station, Xbox y Nintendo Switch, compra los juegos más populares como Mario Kart, Super Smash Bross, Splaton, Animal Crossing, Mortal Kombat 11 y más al mejor precio del mercado",
-    "theme_color": "##476E95",
-    "background_color": "#476E95",
-    "icons": [
-        {
-            "sizes": "48x48",
-            "src": "/images/logos/logo48x48.png",
-            "type": " image/png"
-        }
-    ],
-    "start_url": "/?launcher=true"
+  "gcm_sender_id": "103953800507",
+  "short_name": "Pikajuegos",
+  "name": "Pikajuegos",
+  "version": "1.0.1",
+  "display": "minimal-ui",
+  "description": "Pikajuegos | Videojuegos y accesorios para play station, Xbox y Nintendo Switch, compra los juegos más populares como Mario Kart, Super Smash Bross, Splaton, Animal Crossing, Mortal Kombat 11 y más al mejor precio del mercado",
+  "theme_color": "##476E95",
+  "background_color": "#476E95",
+  "icons": [
+    {
+      "sizes": "48x48",
+      "src": "/images/logos/logo48x48.png",
+      "type": " image/png"
+    }
+  ],
+  "start_url": "/?launcher=true"
 }

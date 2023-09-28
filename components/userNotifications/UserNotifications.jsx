@@ -8,7 +8,7 @@ import {
   DELETE_NOTIFICATION,
   formatNumber,
   GET_NOTIFICATIONS,
-  loadAudio
+  loadAudio,
 } from '../../lib/utils'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faCircle } from '@fortawesome/free-solid-svg-icons'
@@ -25,14 +25,14 @@ import CoinIcon from '../CoinIcon/CoinIcon'
 moment.locale('es-CO')
 
 const UserNotifications = () => {
-  const user = useSelector((state) => state.user)
-  const notifications = useSelector((state) => state.notifications) //.filter(item => item.closed == 0)
+  const user = useSelector(state => state.user)
+  const notifications = useSelector(state => state.notifications) //.filter(item => item.closed == 0)
   const [deleteNotification] = useMutation(DELETE_NOTIFICATION, {
     onCompleted: ({ data, message, status }) => {
       if (status === 200) {
         getNotifications()
       }
-    }
+    },
   })
   const [createCoin] = useMutation(CREATE_COIN)
   const dispatch = useDispatch()
@@ -40,8 +40,8 @@ const UserNotifications = () => {
   const reclamarCoins = async (coins, id_notification) => {
     const req_res = await createCoin({
       variables: {
-        id: id_notification
-      }
+        id: id_notification,
+      },
     })
 
     let { message, status } = req_res.data.createCoin
@@ -57,8 +57,8 @@ const UserNotifications = () => {
     }
   }
 
-  const handleDeleteNotification = (id) => {
-    notifications.find((item) => item.id == id).closed = '1'
+  const handleDeleteNotification = id => {
+    notifications.find(item => item.id == id).closed = '1'
     deleteNotification({ variables: { id, userId: user.id } }) // Delete notification BD
   }
 
@@ -67,20 +67,20 @@ const UserNotifications = () => {
     fetchPolicy: 'no-cache',
     polInterval: 5000,
     variables: {
-      user: user?.id
+      user: user?.id,
     },
     context: {
       headers: {
-        'Operation-Name': 'getNotifications'
-      }
+        'Operation-Name': 'getNotifications',
+      },
     },
     onCompleted: ({ getNotifications }) => {
       getNotifications &&
         dispatch({
           type: 'CHANGE_PROPERTY',
-          payload: { property: 'notifications', value: getNotifications }
+          payload: { property: 'notifications', value: getNotifications },
         })
-    }
+    },
   })
 
   const handleNotification = async ({ coins, disabled, id, link, type }) => {
@@ -96,7 +96,7 @@ const UserNotifications = () => {
     getNotifications()
   }, [])
 
-  const notificationsNotClosed = notifications.filter((item) => !item.closed)
+  const notificationsNotClosed = notifications.filter(item => !item.closed)
 
   return (
     <ul className={`${styles.UserNotifications} UserNotifications`}>
@@ -116,17 +116,17 @@ const UserNotifications = () => {
             id,
             closed,
             link,
-            type
+            type,
           }) => {
             created = moment(created).fromNow()
             const srcNotificationImg =
               type === 'COUPON_GIFT_AVAILABLE'
                 ? './images/type_notification/coupon_gift_available.png'
                 : type === 'COMPLETED_PROFILE'
-                  ? './images/type_notification/completed_profile.png'
-                  : type === 'COINS_BY_PURCHASE'
-                    ? './images/type_notification/coins_by_purchase.png'
-                    : './images/type_notification/coins_by_purchase_completed.png'
+                ? './images/type_notification/completed_profile.png'
+                : type === 'COINS_BY_PURCHASE'
+                ? './images/type_notification/coins_by_purchase.png'
+                : './images/type_notification/coins_by_purchase_completed.png'
             return (
               <Tooltip title={created} key={id}>
                 <ol
@@ -148,7 +148,7 @@ const UserNotifications = () => {
                 </ol>
               </Tooltip>
             )
-          }
+          },
         )}
     </ul>
   )

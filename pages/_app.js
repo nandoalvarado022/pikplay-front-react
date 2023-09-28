@@ -11,7 +11,7 @@ import { versions } from '../lib/utils'
 import Loading from '../components/loading/Loading'
 import '../styles/globalStyles.scss'
 
-const MyApp = (props) => {
+const MyApp = props => {
   const { Component, pageProps, router } = props
   const store = useStore(pageProps.initialReduxState)
   const persistor = persistStore(store, {}, function () {
@@ -21,12 +21,12 @@ const MyApp = (props) => {
   const theme = createMuiTheme({
     palette: {
       primary: {
-        main: '#c93530'
+        main: '#c93530',
       },
       secondary: {
-        main: '#1b95b3'
-      }
-    }
+        main: '#1b95b3',
+      },
+    },
   })
 
   useEffect(() => {
@@ -43,7 +43,19 @@ const MyApp = (props) => {
       if (lastClientVersion !== lastVersion) {
         localStorage.clear() // cleaning localStorage
         // cleaning cache
-        document.cookie.replace(/(?<=^|;).+?(?=\=|;|$)/g, name => location.hostname.split('.').reverse().reduce(domain => (domain = domain.replace(/^\.?[^.]+/, ''), document.cookie = `${name}=;max-age=0;path=/;domain=${domain}`, domain), location.hostname))
+        document.cookie.replace(/(?<=^|;).+?(?=\=|;|$)/g, name =>
+          location.hostname
+            .split('.')
+            .reverse()
+            .reduce(
+              domain => (
+                (domain = domain.replace(/^\.?[^.]+/, '')),
+                (document.cookie = `${name}=;max-age=0;path=/;domain=${domain}`),
+                domain
+              ),
+              location.hostname,
+            ),
+        )
         localStorage.setItem('current_version', lastVersion)
         window.location.reload(true)
       }
@@ -54,8 +66,8 @@ const MyApp = (props) => {
 
   useEffect(() => {
     import('react-facebook-pixel')
-      .then((x) => x.default)
-      .then((ReactPixel) => {
+      .then(x => x.default)
+      .then(ReactPixel => {
         ReactPixel.init('627225011598226') // facebookPixelId
         ReactPixel.pageView()
 
@@ -65,12 +77,14 @@ const MyApp = (props) => {
       })
   }, [router.events])
 
-  return <Provider store={store} >
-    <ApolloProvider client={graphqlClient} >
-      {/* <Loading /> */}
-      < Component {...pageProps} key={router.name} />
-    </ApolloProvider>
-  </Provider >
+  return (
+    <Provider store={store}>
+      <ApolloProvider client={graphqlClient}>
+        {/* <Loading /> */}
+        <Component {...pageProps} key={router.name} />
+      </ApolloProvider>
+    </Provider>
+  )
 
   // return <div>
   //   {process.browser ? <MuiThemeProvider theme={theme}>

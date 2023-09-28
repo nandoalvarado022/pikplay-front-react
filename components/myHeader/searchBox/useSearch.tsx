@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react"
-import { getFeed } from "../../../lib/utils";
+import React, { useState, useEffect } from 'react'
+import { getFeed } from '../../../lib/utils'
 
 const useDebounce = (value, wait = 0) => {
-  const [debounceValue, setDebounceValue] = useState(value);
+  const [debounceValue, setDebounceValue] = useState(value)
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
       setDebounceValue(value)
@@ -21,11 +21,11 @@ const useSearch = () => {
   const [inputText, setInputText] = useState()
   const searchTerm = useDebounce(inputText, 1000)
   const [showSearchModal, setShowSearchModal] = useState(false)
-  const city = null;
+  const city = null
 
-  const searchThisWord = (e) => {
+  const searchThisWord = e => {
     debugger
-    setInputText("")
+    setInputText('')
   }
 
   const handleCity = () => {
@@ -35,7 +35,7 @@ const useSearch = () => {
         setIsLoading(false)
       })
       .catch(err => {
-        setIsLoading(false);
+        setIsLoading(false)
       })
   }
 

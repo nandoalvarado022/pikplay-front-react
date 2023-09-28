@@ -1,12 +1,12 @@
 import { createStore } from 'redux'
 import { createWrapper, HYDRATE } from 'next-redux-wrapper'
 import { gql, useLazyQuery } from '@apollo/client'
-import React, { useContext, useEffect, useReducer } from "react"
-import PikReducer from "./PikReducer"
-import { createContext } from "react"
+import React, { useContext, useEffect, useReducer } from 'react'
+import PikReducer from './PikReducer'
+import { createContext } from 'react'
 import { GET_NOTIFICATIONS } from '../lib/utils'
 
-const PikState = (props) => {
+const PikState = props => {
   const initialState = {
     coins: 0,
     current_date: new Date(),
@@ -15,31 +15,43 @@ const PikState = (props) => {
     isMobile: false,
     isOpenPreviewProfile: false,
     notifications: [],
-    messageModal: { id: "empty" },
-    checkedNotifications: typeof window != "undefined" && localStorage.getItem("checkedNotifications") ? JSON.parse(localStorage.getItem("checkedNotifications")) : [],
+    messageModal: { id: 'empty' },
+    checkedNotifications:
+      typeof window != 'undefined' &&
+      localStorage.getItem('checkedNotifications')
+        ? JSON.parse(localStorage.getItem('checkedNotifications'))
+        : [],
     selectedUser: null,
-    user: typeof window != "undefined" && localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {
-      id: 0
-    },
-    showNotification: true
+    user:
+      typeof window != 'undefined' && localStorage.getItem('user')
+        ? JSON.parse(localStorage.getItem('user'))
+        : {
+            id: 0,
+          },
+    showNotification: true,
   }
 
-  const [state, dispatch] = useReducer(PikReducer, initialState);
+  const [state, dispatch] = useReducer(PikReducer, initialState)
 
-  const [getNotifications] = useLazyQuery(GET_NOTIFICATIONS, { // Obteniendo notificaciones
+  const [getNotifications] = useLazyQuery(GET_NOTIFICATIONS, {
+    // Obteniendo notificaciones
     fetchPolicy: 'no-cache',
     // polInterval: 5000,
     variables: {
-      user: state.user.id
+      user: state.user.id,
     },
     onCompleted: ({ getNotifications }) => {
       debugger
-      getNotifications && dispatch({ type: 'CHANGE_PROPERTY', payload: { property: 'notifications', value: getNotifications } })
-    }
+      getNotifications &&
+        dispatch({
+          type: 'CHANGE_PROPERTY',
+          payload: { property: 'notifications', value: getNotifications },
+        })
+    },
   })
   //
 
-  const customDispatch = (values) => {
+  const customDispatch = values => {
     dispatch(values)
   }
 
@@ -47,7 +59,8 @@ const PikState = (props) => {
     getNotifications()
   }
 
-  useEffect(() => { // Al iniciar
+  useEffect(() => {
+    // Al iniciar
     // sessionStorage.setItem("notifications", "{}")
     // if (!localStorage.getItem("checkedNotifications")) {
     //   localStorage.setItem("checkedNotifications", "[]")
@@ -62,11 +75,11 @@ const PikState = (props) => {
 const reducer = (state = { tick: 'init' }, action) => {
   switch (action.type) {
     case HYDRATE:
-      return { ...state, ...action.payload };
+      return { ...state, ...action.payload }
     case 'TICK':
-      return { ...state, tick: action.payload };
+      return { ...state, tick: action.payload }
     default:
-      return state;
+      return state
   }
 }
 

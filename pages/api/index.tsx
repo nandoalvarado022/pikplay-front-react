@@ -1,5 +1,5 @@
 import getNotifications from './mocks/get/getNotifications'
-import publicationsMock from './mocks/get/publications';
+import publicationsMock from './mocks/get/publications'
 import home from './mocks/get/home'
 import getArticles from './mocks/get/getArticles'
 import getArticlesLimit from './mocks/get/getArticlesLimit'
@@ -9,32 +9,34 @@ import createTransaction from './mocks/post/createTransaction'
 
 export default function handler(req, res) {
   const operationName = req.headers?.['operation-name']
-  const variables = req.headers?.['variables'] ? JSON.parse(req.headers?.['variables']) : {}
+  const variables = req.headers?.['variables']
+    ? JSON.parse(req.headers?.['variables'])
+    : {}
   switch (operationName) {
     case 'createTransaction':
       debugger
-      res.status(200).json(createTransaction);
-      break;
+      res.status(200).json(createTransaction)
+      break
     case 'getArticles':
-      if (variables?.limit === 1) res.status(200).json(getArticlesLimit);
-      res.status(200).json(getArticles);
-      break;
+      if (variables?.limit === 1) res.status(200).json(getArticlesLimit)
+      res.status(200).json(getArticles)
+      break
     case 'getChallenges':
-      res.status(200).json(getChallenges);
-      break;
+      res.status(200).json(getChallenges)
+      break
     case 'validateLogin':
-      res.status(200).json(validateLogin);
-      break;
+      res.status(200).json(validateLogin)
+      break
     case 'getNotifications':
-      res.status(200).json(getNotifications);
-      break;
+      res.status(200).json(getNotifications)
+      break
     case 'publications':
-      res.status(200).json(publicationsMock);
-      break;
+      res.status(200).json(publicationsMock)
+      break
     case 'home':
-      res.status(200).json(home);
-      break;
+      res.status(200).json(home)
+      break
     default:
-      res.status(200).json({});
+      res.status(200).json({})
   }
 }

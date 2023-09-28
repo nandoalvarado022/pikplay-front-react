@@ -1,15 +1,13 @@
 const Testimonials = () => {
-    const getTestimonials = async () => {
-        const res = await fetch('http://localhost:5000/publications')
-        const data = await res.json();
-        debugger;
-    }
+  const getTestimonials = async () => {
+    const res = await fetch('http://localhost:5000/publications')
+    const data = await res.json()
+    debugger
+  }
 
-    getTestimonials()
+  getTestimonials()
 
-    return <div>
-        Testimonios
-    </div>
+  return <div>Testimonios</div>
 }
 
 export default Testimonials

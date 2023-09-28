@@ -14,16 +14,19 @@ function Login(props) {
   const [phone, setPhone] = useState(null)
   const [buttonText, setButtonText] = useState('Enviar código')
   const VALIDATE_QUERY = gql`
-    query v($phone: String, $code: Int){
-        validateLogin(phone: $phone, code: $code)
-    }`
+    query v($phone: String, $code: Int) {
+      validateLogin(phone: $phone, code: $code)
+    }
+  `
 
-  const numberValidated = (phone) => phone.length === 10
+  const numberValidated = phone => phone.length === 10
 
   const handleTengoCodigo = () => {
     const phone = document.getElementById('phoneLogin').value
     if (!phone || !numberValidated(phone)) {
-      alert('Debes escribir un número de celular válido, recuerda que a este número llegará el código de acceso')
+      alert(
+        'Debes escribir un número de celular válido, recuerda que a este número llegará el código de acceso',
+      )
       setButtonText('Enviar código')
       return
     }
@@ -31,49 +34,56 @@ function Login(props) {
     setIsCodeSended(true)
   }
 
-  const [validateLogin, { data: dataValidate, error: errorValidate }] = useLazyQuery(VALIDATE_QUERY, {
-    context: {
-      headers: {
-        'Operation-Name': 'validateLogin'
-      }
-    },
-    onCompleted: (data) => {
-      debugger
-      const { validateLogin } = dataValidate
-      if (validateLogin) {
-        const token = JSON.parse(validateLogin).token
-        dispatch({ type: 'CHANGE_PROPERTY', payload: { property: 'user', value: JSON.parse(validateLogin) } })
-        cookieCutter.set('token', token)
-        router.push('/?action=login') // Es necesario porque cuando se carga la app setea el token en el graphqlClient.js
-      } else {
+  const [validateLogin, { data: dataValidate, error: errorValidate }] =
+    useLazyQuery(VALIDATE_QUERY, {
+      context: {
+        headers: {
+          'Operation-Name': 'validateLogin',
+        },
+      },
+      onCompleted: data => {
+        debugger
+        const { validateLogin } = dataValidate
+        if (validateLogin) {
+          const token = JSON.parse(validateLogin).token
+          dispatch({
+            type: 'CHANGE_PROPERTY',
+            payload: { property: 'user', value: JSON.parse(validateLogin) },
+          })
+          cookieCutter.set('token', token)
+          router.push('/?action=login') // Es necesario porque cuando se carga la app setea el token en el graphqlClient.js
+        } else {
+          document.getElementById('verificationCode').value = ''
+          alert('Código no valido')
+          setButtonText('Validar')
+        }
+      },
+      onError: err => {
         document.getElementById('verificationCode').value = ''
         alert('Código no valido')
         setButtonText('Validar')
-      }
-    },
-    onError: (err) => {
-      document.getElementById('verificationCode').value = ''
-      alert('Código no valido')
-      setButtonText('Validar')
-    }
-  })
+      },
+    })
 
   const LOGIN_MUTATION = gql`
-    mutation Login($phone: String){
-        setLoginCode(phone: $phone)
-    }`
+    mutation Login($phone: String) {
+      setLoginCode(phone: $phone)
+    }
+  `
 
-  const [dispatchLogin, { }] = useMutation(LOGIN_MUTATION);
+  const [dispatchLogin, {}] = useMutation(LOGIN_MUTATION)
 
   const handleEnviar = async () => {
     setButtonText('Enviando...')
     const phone = document.getElementById('phoneLogin').value
     if (!phone || !numberValidated(phone)) {
-      alert('Debes escribir un número de celular válido, recuerda que a este número llegará el código de acceso')
+      alert(
+        'Debes escribir un número de celular válido, recuerda que a este número llegará el código de acceso',
+      )
       setButtonText('Enviar código')
       return false
     }
-    dispatchLogin({ variables: { phone: '57' + phone } });
+    dispatchLogin({ variables: { phone: '57' + phone } })
     setButtonText('Validar')
     setIsCodeSended(true)
   }
@@ -88,20 +98,40 @@ function Login(props) {
     setIsOpen(true)
   }
 
-  const handleKeyUp = async (e) => {
+  const handleKeyUp = async e => {
     const verificationCode = document.getElementById('verificationCode').value
     if (verificationCode) Number(verificationCode)
     if (verificationCode < 999) return
     setButtonText('Validando...')
-    validateLogin({ variables: { phone: '57' + phone, code: parseInt(verificationCode) } })
+    validateLogin({
+      variables: { phone: '57' + phone, code: parseInt(verificationCode) },
+    })
   }
 
-  const onChangeReCaptcha = (value) => {
+  const onChangeReCaptcha = value => {
     value = !!value
     setIsHuman(value)
   }
 
-  return <LoginInterface {...{ buttonText, isCodeSended, isHuman, isOpen, handleClickOpen, handleEnviar, handleKeyUp, handleCloseDialog, handleTengoCodigo, onChangeReCaptcha, phone, setIsCodeSended, setPhone }} />
+  return (
+    <LoginInterface
+      {...{
+        buttonText,
+        isCodeSended,
+        isHuman,
+        isOpen,
+        handleClickOpen,
+        handleEnviar,
+        handleKeyUp,
+        handleCloseDialog,
+        handleTengoCodigo,
+        onChangeReCaptcha,
+        phone,
+        setIsCodeSended,
+        setPhone,
+      }}
+    />
+  )
 }
 
 export default Login
