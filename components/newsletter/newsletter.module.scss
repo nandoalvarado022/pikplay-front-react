@@ -1,51 +1,52 @@
 .Newsletter {
-    position: relative;
-    background: #24292e;
-    height: 40px;
-    line-height: 40px;
-    cursor: pointer;
+  position: relative;
+  background: #24292e;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  @media screen and (max-width: 420px) {
+    height: 250px;
+    display: none;
+  }
+  h3 {
+    color: #dedede;
+    margin: 0;
+  }
+  .content {
+    color: white;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1200px;
     @media screen and (max-width: 420px) {
-        height: 250px;
-        display: none;
+      width: auto;
+      flex-direction: column;
+      padding: 10px;
     }
-    h3 {
-        color: #dedede;
-        margin: 0;
+    input {
     }
-    .content {
-        color: white;
-        position: absolute;
-        margin: 0 auto;
-        left: 0;
-        right: 0;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 1200px;
+    .content_fields {
+      background-color: #ffffffc4;
+      width: 400px;
+      padding: 10px 0;
+      margin: 0px auto 0;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      @media screen and (max-width: 420px) {
+        flex-direction: column;
+      }
+      button {
         @media screen and (max-width: 420px) {
-            width: auto;
-            flex-direction: column;
-            padding: 10px;
+          margin: 10px;
         }
-        input {}
-        .content_fields {
-            background-color: #ffffffc4;
-            width: 400px;
-            padding: 10px 0;
-            margin: 0px auto 0;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            @media screen and (max-width: 420px) {
-                flex-direction: column;
-            }
-            button {
-                @media screen and (max-width: 420px) {
-                    margin: 10px;
-                }
-            }
-        }
+      }
     }
+  }
 }

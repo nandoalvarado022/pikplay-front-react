@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import { Button as ButtonMat } from "@material-ui/core"
+import { Button as ButtonMat } from '@material-ui/core'
 import styles from './button.module.scss'
 
 interface ButtonProps {
@@ -29,28 +29,30 @@ const Button = ({
   id,
   onClick,
   outline,
-  style
+  style,
 }: ButtonProps) => {
   className = `${className} ${animation ? styles.animation : null}`
   color = disabled ? 'disabled' : color
 
-  return <motion.button
-    className={`
+  return (
+    <motion.button
+      className={`
       ${styles.btn} 
       ${styles[color]} 
       ${className} 
       ${outline ? styles.outline : null}
       ${isLink ? styles.link : null}
     `}
-    databutton={databutton}
-    id={id}
-    onClick={disabled ? null : onClick}
-    style={style}
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.9 }}
-  >
-    <ButtonMat>{children}</ButtonMat>
-  </motion.button>
+      databutton={databutton}
+      id={id}
+      onClick={disabled ? null : onClick}
+      style={style}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.9 }}
+    >
+      <ButtonMat>{children}</ButtonMat>
+    </motion.button>
+  )
 }
 
 export default Button

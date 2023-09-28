@@ -1,70 +1,70 @@
 ._modalIngresoInfo {
-    bottom: 200px;
-    left: 0;
-    margin: 0 auto;
-    max-width: 480px;
+  bottom: 200px;
+  left: 0;
+  margin: 0 auto;
+  max-width: 480px;
+  position: fixed;
+  right: 0;
+  top: calc((100vh / 2) - 300px);
+  width: 90%;
+  z-index: 99;
+  .sale_price {
+    color: #c93530;
+  }
+  .background {
+    background: #00000052;
+    height: 100%;
+    top: 0;
     position: fixed;
+    left: 0;
     right: 0;
-    top: calc((100vh / 2) - 300px);
-    width: 90%;
-    z-index: 99;
-    .sale_price {
-        color: #c93530;
+    margin: 0 auto;
+    z-index: 1;
+  }
+  .Card {
+    padding: 10px 20px 20px;
+    position: relative;
+    width: 480px;
+    z-index: 9;
+    @media screen and (max-width: 420px) {
+      width: auto;
     }
-    .background {
-        background: #00000052;
-        height: 100%;
-        top: 0;
-        position: fixed;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-        z-index: 1;
+    .actions {
+      align-items: center;
+      display: flex;
+      justify-content: right;
+      margin-top: 20px;
     }
-    .Card {
-        padding: 10px 20px 20px;
-        position: relative;
-        width: 480px;
-        z-index: 9;
-        @media screen and (max-width: 420px) {
-            width: auto;
-        }
-        .actions {
-            align-items: center;
-            display: flex;
-            justify-content: right;
-            margin-top: 20px;
-        }
-        section {
-            margin: 0;
-            width: initial;
-        }
+    section {
+      margin: 0;
+      width: initial;
     }
-    .contentCiudad {
-        margin: 10px 0;
+  }
+  .contentCiudad {
+    margin: 10px 0;
+  }
+  .bottom {
+    :global(.flex) {
+      align-items: flex-end;
+      justify-content: right;
     }
-    .bottom {
-        :global(.flex) {
-            align-items: flex-end;
-            justify-content: right;
+    .payment_info {
+      border-bottom: dashed 1px #949494;
+      float: right;
+      font-weight: bold;
+      padding-bottom: 8px;
+      width: 100%;
+      > * {
+        > * {
+          margin-left: 10px;
         }
-        .payment_info {
-            border-bottom: dashed 1px #949494;
-            float: right;
-            font-weight: bold;
-            padding-bottom: 8px;
-            width: 100%;
-            > * {
-                > * {
-                    margin-left: 10px;
-                }
-            }
-            tr td:nth-of-type(2) {
-                width: 90px;
-            }
-            .discount {
-                color: #519f55;
-            }
-        }
+      }
+      tr td:nth-of-type(2) {
+        width: 90px;
+      }
+      .discount {
+        color: #519f55;
+      }
     }
+  }
 }

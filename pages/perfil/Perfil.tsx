@@ -15,12 +15,12 @@ import {
   Tab,
   Tabs,
   TextField,
-  Typography
+  Typography,
 } from '@material-ui/core'
 import {
   faQuestionCircle,
   faUser,
-  faBell
+  faBell,
 } from '@fortawesome/free-regular-svg-icons'
 import { toast } from 'react-toastify'
 import { useState } from 'react'
@@ -56,7 +56,7 @@ function TabPanel(props) {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`
+    'aria-controls': `simple-tabpanel-${index}`,
   }
 }
 
@@ -66,9 +66,9 @@ const Interface = ({
   isSaving,
   handleSave,
   handleLogout,
-  setUserData
+  setUserData,
 }) => {
-  const handleFavorite = useSelector((state) => state.handleFavorite)
+  const handleFavorite = useSelector(state => state.handleFavorite)
   const [value, setValue] = React.useState(0)
   const msgSubirCategoria = (
     <div>
@@ -81,13 +81,13 @@ const Interface = ({
   }
 
   const [interests, setInterests] = useState([
-    ...interestsList.map((item) => ({ ...item, selected: false }))
+    ...interestsList.map(item => ({ ...item, selected: false })),
   ])
 
-  const handleInterests = (id) => {
+  const handleInterests = id => {
     const _interests = [...interests]
-    const state = _interests.find((item) => item.id == id).selected
-    _interests.find((item) => item.id == id).selected = !state
+    const state = _interests.find(item => item.id == id).selected
+    _interests.find(item => item.id == id).selected = !state
     setInterests(_interests)
   }
 
@@ -124,8 +124,8 @@ const Interface = ({
           toast(message)
         }}
         className='Card main'
-      // whileHover={{ scale: 1.1 }}
-      // whileTap={{ scale: 0.8 }}
+        // whileHover={{ scale: 1.1 }}
+        // whileTap={{ scale: 0.8 }}
       >
         Perfil
         <FontAwesomeIcon className='svg-question' icon={faQuestionCircle} />
@@ -164,16 +164,14 @@ const Interface = ({
               label='Tú nombre o el nombre de tu tienda'
               margin='normal'
               value={userData?.name}
-              onChange={(e) =>
-                setUserData({ ...userData, name: e.target.value })
-              }
+              onChange={e => setUserData({ ...userData, name: e.target.value })}
             />
             <TextField
               fullWidth={true}
               label='Correo electrónico'
               margin='normal'
               value={userData?.email}
-              onChange={(e) =>
+              onChange={e =>
                 setUserData({ ...userData, email: e.target.value })
               }
             />
@@ -213,7 +211,7 @@ const Interface = ({
               ofrecerle contenido de valor
             </Alert>
             <p className={styles.interests}>
-              {interests.map((item) => {
+              {interests.map(item => {
                 return (
                   <Chip
                     color={item.selected ? 'secondary' : ''}

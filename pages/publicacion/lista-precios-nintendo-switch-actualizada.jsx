@@ -166,10 +166,14 @@ export default () => {
         </table>
         <p>&nbsp;</p>
         <p><span style="vertical-align: inherit;"><span style="vertical-align: inherit;"><br /><br /></span></span></p>
-    </div>`;
-  const title = "Listado de precios de los juegos mas top de nintendo switch, nuevos y usados. (Actulización semanal)"
-  const url = "http://pikajuegos.com/publicacion/lista-precios-nintendo-switch-actualizada";
-  return <Layout meta_title={title} title={title} descripcion={title} meta_url={url}>
-    <ReactMarkdown source={html} escapeHtml={false}></ReactMarkdown>
-  </Layout>
+    </div>`
+  const title =
+    'Listado de precios de los juegos mas top de nintendo switch, nuevos y usados. (Actulización semanal)'
+  const url =
+    'http://pikajuegos.com/publicacion/lista-precios-nintendo-switch-actualizada'
+  return (
+    <Layout meta_title={title} title={title} descripcion={title} meta_url={url}>
+      <ReactMarkdown source={html} escapeHtml={false}></ReactMarkdown>
+    </Layout>
+  )
 }

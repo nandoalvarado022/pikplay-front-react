@@ -1,11 +1,13 @@
-import { useState } from "react";
-import { Discussion } from "../../interfaces/Discussions";
+import { useState } from 'react'
+import { Discussion } from '../../interfaces/Discussions'
 
 const useDiscussions = () => {
-    const [discussionsList, setDiscussionsList] = useState<Discussion[]>([{ title: 'test' }]);
-    return {
-        discussionsList
-    }
+  const [discussionsList, setDiscussionsList] = useState<Discussion[]>([
+    { title: 'test' },
+  ])
+  return {
+    discussionsList,
+  }
 }
 
-export default useDiscussions;
+export default useDiscussions

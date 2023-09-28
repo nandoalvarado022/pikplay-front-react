@@ -1,13 +1,13 @@
-import React from "react"
-import "@testing-library/jest-dom/extend-expect"
-import { render } from "@testing-library/react"
-import Transacciones from "./Transacciones"
+import React from 'react'
+import '@testing-library/jest-dom/extend-expect'
+import { render } from '@testing-library/react'
+import Transacciones from './Transacciones'
 
-test("", () => {
-    const note = {
-        content: "This is a test",
-        important: true
-    }
+test('', () => {
+  const note = {
+    content: 'This is a test',
+    important: true,
+  }
 
-    const component = render(<Transacciones />)
+  const component = render(<Transacciones />)
 })

@@ -1,84 +1,88 @@
 .CategoryBanner {
-    background: linear-gradient(90deg, rgba(244, 119, 133, 1) 0%, rgba(98, 0, 15, 1) 100%);
-    background: #c3dbf330;
-    border-radius: 10px;
-    height: 65px;
-    margin: 0 auto 50px;
-    position: relative;
-    // width: 1366px;
+  background: linear-gradient(
+    90deg,
+    rgba(244, 119, 133, 1) 0%,
+    rgba(98, 0, 15, 1) 100%
+  );
+  background: #c3dbf330;
+  border-radius: 10px;
+  height: 65px;
+  margin: 0 auto 50px;
+  position: relative;
+  // width: 1366px;
+  width: 100%;
+  @media screen and (max-width: 420px) {
+    background: none;
+    display: none;
+    margin: 0;
+    width: auto;
+  }
+  &::after {
+    background: #c9c9c9;
+    box-shadow: 4px 0px 4px #c0c0c4;
+    // content: '';
+    height: calc(100% + 200px);
+    position: absolute;
+    right: 0;
+    top: -100px;
+    width: 1px;
+  }
+  img {
+    display: none;
+    left: 0px;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 160px;
+  }
+  a {
+    // Paralax effect
+    // background-attachment: fixed;
+    // background-position: center;
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    // background-position: 0 -80px;
+    display: block;
+    border-radius: 5px 50px 5px 50px;
+    height: 220px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
     width: 100%;
+    &::before {
+      content: '';
+      background: #3131319c;
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      z-index: 1;
+    }
+  }
+  p {
+    color: white;
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    margin: 34px auto 0;
+    position: relative;
+    text-align: center;
+    width: 480px;
+    z-index: 1;
     @media screen and (max-width: 420px) {
-        background: none;
-        display: none;
-        margin: 0;
-        width: auto;
+      width: auto;
     }
-    &::after {
-        background: #c9c9c9;
-        box-shadow: 4px 0px 4px #c0c0c4;
-        // content: '';
-        height: calc(100% + 200px);
-        position: absolute;
-        right: 0;
-        top: -100px;
-        width: 1px;
+    span {
+      font-size: 32px;
+      font-weight: bold;
+      &.switch {
+        // color: #c83a4f;
+      }
+      &.playstation {
+        // color: #001e66;
+      }
+      &.xbox {
+        // color: #117710;
+      }
     }
-    img {
-        display: none;
-        left: 0px;
-        object-fit: cover;
-        position: absolute;
-        top: 0;
-        width: 160px;
-    }
-    a {
-        // Paralax effect
-        // background-attachment: fixed;
-        // background-position: center;
-        // background-repeat: no-repeat;
-        // background-size: cover;
-        // background-position: 0 -80px;
-        display: block;
-        border-radius: 5px 50px 5px 50px;
-        height: 220px;
-        overflow: hidden;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        &::before {
-            content: "";
-            background: #3131319c;
-            height: 100%;
-            position: absolute;
-            width: 100%;
-            z-index: 1;
-        }
-    }
-    p {
-        color: white;
-        display: block;
-        font-family: "Montserrat", sans-serif;
-        font-size: 22px;
-        margin: 34px auto 0;
-        position: relative;
-        text-align: center;
-        width: 480px;
-        z-index: 1;
-        @media screen and (max-width: 420px) {
-            width: auto;
-        }
-        span {
-            font-size: 32px;
-            font-weight: bold;
-            &.switch {
-                // color: #c83a4f;
-            }
-            &.playstation {
-                // color: #001e66;
-            }
-            &.xbox {
-                // color: #117710;
-            }
-        }
-    }
+  }
 }

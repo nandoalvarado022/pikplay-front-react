@@ -1,11 +1,11 @@
-import { useState } from "react"
+import { useState } from 'react'
 
 const usePublication = () => {
-    const [showNotificationModal, setShowNotificationModal] = useState(false)
+  const [showNotificationModal, setShowNotificationModal] = useState(false)
 
-    return {
-        showNotificationModal,
-    }
+  return {
+    showNotificationModal,
+  }
 }
 
 export default usePublication

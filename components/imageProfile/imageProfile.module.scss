@@ -1,79 +1,79 @@
 .content_image {
-    cursor: pointer;
-    height: 50px;
+  cursor: pointer;
+  height: 50px;
+  margin: 0 auto;
+  position: relative;
+  width: 50px;
+  z-index: 4;
+  &::after {
+    animation: rotate 5s infinite linear;
+    background: white;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: calc(100% + 4px);
+    left: 0px;
     margin: 0 auto;
-    position: relative;
-    width: 50px;
-    z-index: 4;
+    position: absolute;
+    right: 0;
+    top: 0px;
+    width: calc(100% + 4px);
+    z-index: 0;
+  }
+  &.Bronce {
     &::after {
-        animation: rotate 5s infinite linear;
-        background: white;
-        border-radius: 50%;
-        content: "";
-        display: block;
-        height: calc(100% + 4px);
-        left: 0px;
-        margin: 0 auto;
-        position: absolute;
-        right: 0;
-        top: 0px;
-        width: calc(100% + 4px);
-        z-index: 0;
+      background: #945a41;
+      background: linear-gradient(90deg, #945a41 0%, #f1cca7 50%);
+      box-shadow: 0 0 10px #945a41;
     }
-    &.Bronce {
-        &::after {
-            background: #945a41;
-            background: linear-gradient(90deg, #945a41 0%, #f1cca7 50%);
-            box-shadow: 0 0 10px #945a41;
-        }
+  }
+  &.Plata {
+    &::after {
+      background: #d5d5d6;
+      background: linear-gradient(90deg, #d5d5d6 0%, #777779 50%);
+      box-shadow: 0 0 10px #d5d5d6;
     }
-    &.Plata {
-        &::after {
-            background: #d5d5d6;
-            background: linear-gradient(90deg, #d5d5d6 0%, #777779 50%);
-            box-shadow: 0 0 10px #d5d5d6;
-        }
+  }
+  &.Oro {
+    &::after {
+      background: #e7d841;
+      background: linear-gradient(90deg, #e7d841 0%, #c27a0f 50%);
+      box-shadow: 0 0 10px #e7d841;
     }
-    &.Oro {
-        &::after {
-            background: #e7d841;
-            background: linear-gradient(90deg, #e7d841 0%, #c27a0f 50%);
-            box-shadow: 0 0 10px #e7d841;
-        }
+  }
+  .picture {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #24292e;
+    background-size: contain;
+    border-radius: 50%;
+    border: 2px solid white;
+    display: block;
+    height: 100%;
+    margin-right: 10px;
+    margin: 0px auto;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    &.star:before {
+      background-image: url('/images/gifs/stars-colors.gif');
+      background-size: 220px;
+      content: '';
+      display: block;
+      height: 70px;
+      left: -10px;
+      position: relative;
+      top: -10px;
+      width: 70px;
     }
-    .picture {
-        background-position: center;
-        background-repeat: no-repeat;
-        background-color: #24292e;
-        background-size: contain;
-        border-radius: 50%;
-        border: 2px solid white;
-        display: block;
-        height: 100%;
-        margin-right: 10px;
-        margin: 0px auto;
-        position: relative;
-        width: 100%;
-        z-index: 1;
-        &.star:before {
-            background-image: url("/images/gifs/stars-colors.gif");
-            background-size: 220px;
-            content: "";
-            display: block;
-            height: 70px;
-            left: -10px;
-            position: relative;
-            top: -10px;
-            width: 70px;
-        }
-    }
+  }
 }
 
 @keyframes rotate {
-    100% {
-        transform: rotate(365deg);
-    }
-    0% {
-        transform: rotate(0deg);
-    }
+  100% {
+    transform: rotate(365deg);
+  }
+  0% {
+    transform: rotate(0deg);
+  }
 }

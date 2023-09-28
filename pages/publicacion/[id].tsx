@@ -37,9 +37,9 @@ const PublicacionPage = (props: PublicacionPageProps) => {
       setLogIngresarCupon(false)
       setCuponDigitado('')
     } else {
-      const valorCupon = res.valor;
-      toastr.info('Para tí el precio más bajo 😋');
-      const nuevoPrecio = datosPublicacion.precio - valorCupon;
+      const valorCupon = res.valor
+      toastr.info('Para tí el precio más bajo 😋')
+      const nuevoPrecio = datosPublicacion.precio - valorCupon
       setNuevoPrecio(nuevoPrecio)
       setLogIngresarCupon(false)
       setPrecio(nuevoPrecio)
@@ -48,12 +48,14 @@ const PublicacionPage = (props: PublicacionPageProps) => {
 
   const handleHablarVendedor = () => {
     // context = this.context
-    props.user.id !== 0 ? setModalHablarVendedor(true) : document.querySelector('#btnStart').click()
+    props.user.id !== 0
+      ? setModalHablarVendedor(true)
+      : document.querySelector('#btnStart').click()
   }
 
-  const mostrarAlerta = (mensaje) => {
-    toastr.warning(mensaje);
-    return false;
+  const mostrarAlerta = mensaje => {
+    toastr.warning(mensaje)
+    return false
   }
 
   const handleResponder = async () => {
@@ -63,14 +65,14 @@ const PublicacionPage = (props: PublicacionPageProps) => {
         id_usuario: JSON.parse(localStorage.getItem('user')).email,
       },
       id_publicacion: datosPublicacion.id,
-    };
-    const res = await instanciaFunc.saveRespuesta(data);
-    return;
+    }
+    const res = await instanciaFunc.saveRespuesta(data)
+    return
   }
 
   const configUbicacion = () => {
-    localStorage.setItem('url_pendiente', window.location.pathname);
-    Router.push('/ubicacion');
+    localStorage.setItem('url_pendiente', window.location.pathname)
+    Router.push('/ubicacion')
   }
 
   const componentDidMount = () => {
@@ -80,52 +82,63 @@ const PublicacionPage = (props: PublicacionPageProps) => {
   if (!datosPublicacion) return <div>Redireccionando...</div>
   const { description, title, slug } = datosPublicacion
 
-  return <Layout image={datosPublicacion.image_1} title={title} descripcion={description} url={slug}>
-    <div className="_publicacion">
-      <ProductDetail
-        {...{ handleHablarVendedor: handleHablarVendedor }}
-        meta_url={slug}
-        handleResponder={handleResponder}
-        nuevoPrecio={nuevoPrecio}
-        handleCupon={handleCupon}
-        doc_id={datosPublicacion}
-        logDetalle={true}
-        datosPublicacion={datosPublicacion}
-      />
-      {
-        // Modal para confirmar datos
-        modalHablarVendedor && <ModalCheckout {...{
-          datosPublicacion,
-          setIsModalHablarVendedor: () => setModalHablarVendedor(!modalHablarVendedor)
-        }} />
-      }
-      {/* <ModalNotification isOpen={showModalNotification} /> */}
-      {
-        // Modal para ingresar cupón
-        // this.state.logIngresarCupon && (
-        //   <div className="_modalIngresoInfo">
-        //     <div className="background"></div>
-        //     <div className="Card">
-        //       <TextField
-        //         value={this.state.cuponDigitado}
-        //         name="cuponDigitado"
-        //         fullWidth={true}
-        //         onChange={() => setCuponDigitado(e.target.value)}
-        //         label="Cupón"
-        //         margin="normal"
-        //         size={25}
-        //       />
-
-        //       <div className="actions">
-        //         <Button onClick={() => this.setState({ logIngresarCupon: false })} className="yellow small m-l-10" text="Cancelar" />
-        //         <Button onClick={this.handleValidarCupon} className="green small m-l-10" text="Validar cupón" />
-        //       </div>
-        //     </div>
-        //   </div>
-        // )
-      }
-    </div>
-  </Layout>
+  return (
+    <Layout
+      image={datosPublicacion.image_1}
+      title={title}
+      descripcion={description}
+      url={slug}
+    >
+      <div className='_publicacion'>
+        <ProductDetail
+          {...{ handleHablarVendedor: handleHablarVendedor }}
+          meta_url={slug}
+          handleResponder={handleResponder}
+          nuevoPrecio={nuevoPrecio}
+          handleCupon={handleCupon}
+          doc_id={datosPublicacion}
+          logDetalle={true}
+          datosPublicacion={datosPublicacion}
+        />
+        {
+          // Modal para confirmar datos
+          modalHablarVendedor && (
+            <ModalCheckout
+              {...{
+                datosPublicacion,
+                setIsModalHablarVendedor: () =>
+                  setModalHablarVendedor(!modalHablarVendedor),
+              }}
+            />
+          )
+        }
+        {/* <ModalNotification isOpen={showModalNotification} /> */}
+        {
+          // Modal para ingresar cupón
+          // this.state.logIngresarCupon && (
+          //   <div className="_modalIngresoInfo">
+          //     <div className="background"></div>
+          //     <div className="Card">
+          //       <TextField
+          //         value={this.state.cuponDigitado}
+          //         name="cuponDigitado"
+          //         fullWidth={true}
+          //         onChange={() => setCuponDigitado(e.target.value)}
+          //         label="Cupón"
+          //         margin="normal"
+          //         size={25}
+          //       />
+          //       <div className="actions">
+          //         <Button onClick={() => this.setState({ logIngresarCupon: false })} className="yellow small m-l-10" text="Cancelar" />
+          //         <Button onClick={this.handleValidarCupon} className="green small m-l-10" text="Validar cupón" />
+          //       </div>
+          //     </div>
+          //   </div>
+          // )
+        }
+      </div>
+    </Layout>
+  )
 }
 
 PublicacionPage.getInitialProps = async ({ req, query }) => {
@@ -134,8 +147,8 @@ PublicacionPage.getInitialProps = async ({ req, query }) => {
   return { datosPublicacion: datosPublicacion[0] }
 }
 
-const mapStateToProps = (state) => ({
-  user: state.user
+const mapStateToProps = state => ({
+  user: state.user,
 })
 
 export default connect(mapStateToProps)(PublicacionPage)
