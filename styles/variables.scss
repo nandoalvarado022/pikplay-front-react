@@ -4,6 +4,10 @@ $mobile: '480px';
 $primary-color: #ea4d42;
 $secundary-color: #476e96;
 
+#body{
+  color: red;
+}
+
 %floatButton {
   @media screen and (min-width: $desktop) {
   }
