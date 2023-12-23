@@ -95,11 +95,23 @@
             width: 120px;
             height: 120px;
             .head {
+                background-size: contain;
+                background-repeat: no-repeat;
                 position: absolute;
-                top: -50px;
-                left: 16px;
-                width: 100px;
+                top: -34px;
+                left: 20px;
+                height: 80px;
+                width: 80px;
                 z-index: 1;
+                &.neutral {
+                    background-image: url("/images/ia/1.png");
+                }
+                &.happy {
+                    background-image: url("/images/ia/1.png");
+                }
+                &.loved {
+                    background-image: url("/images/ia/5.png");
+                }
             }
             .circle {
                 background: #3e61ac;
@@ -107,12 +119,15 @@
                 border-radius: 50%;
                 position: relative;
                 overflow: hidden;
-                width: 120px;
-                height: 120px;
+                width: 100px;
+                height: 100px;
                 .body {
                     position: relative;
                     margin-top: 20px;
-                    width: 100px;
+                    max-height: initial;
+                    max-width: initial;
+                    height: 140px;
+                    width: 140px;
                 }
                 .rightArm {
                     position: absolute;

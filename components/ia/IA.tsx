@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
 import Button from '../button/Button'
 import ReactTyped from "react-typed"
 import styles from './styles.module.scss'
@@ -8,12 +9,17 @@ const IA = (props) => {
     const { expression } = props;
     const expressionsList = ['happy', 'sad', 'angry', 'surprised', 'confused', 'disgusted', 'fearful', 'neutral'];
     const defaultInitialMessage = "Hola! en que te puedo ayudar?"
-    const [isVisible, setIsvisible] = React.useState(true)
+    const [isVisible, setIsvisible] = useState(false)
     const [IAMessage, setIAMessage] = useState(<></>)
     const [IAOptions, setIAOptions] = useState(<></>)
     const [userMessage, setUserMessage] = useState(null)
     const [containerHeight, setContainerHeight] = useState("250px")
     const [IAHTMLMessage, setIAHTMLMessage] = useState(<></>)
+    const [IAExpression, setIAExpression] = useState('neutral')
+    const teenegerGames = <ul>
+        <Link href="/articulo/conocenos">1. PS5 Disco, Organiza: Blue Panther Medellín</Link>
+    </ul>
+
     const defaultIAOptions = <>
         <Button color='transparent' onClick={() => handleUserMessage('pikcoins')}>
             ¿Que son los Pikcoins?
@@ -30,7 +36,7 @@ const IA = (props) => {
         <Button color='transparent' onClick={() => handleUserMessage('concursos')}>
             Concursos
         </Button>
-        <Button color='transparent' onClick={() => handleUserMessage('otros temas')}>
+        <Button color='transparent' onClick={() => handleUserMessage('otros-temas')}>
             Otros temas
         </Button>
     </>
@@ -51,6 +57,10 @@ const IA = (props) => {
         }, 1000)
     }, [])
 
+    const handleRouter = () => {
+        alert()
+    }
+
     const calculateResponse = (mensaje) => {
         let IAMessageSelected
         let loadingOptions = ["Hmmm...", "Ya veo...", "Que podria ser...", "Ok, te entiendo..."]
@@ -59,19 +69,12 @@ const IA = (props) => {
         let IAOptionsSelected
         let containerHeightSelected
         let IAHTMLMessageSelected = <></>
+        let IAExpressionSelected = 'neutral'
 
         switch (mensaje) {
             case 'regalo/10-15':
-                IAMessageSelected = `Te recomendamos los siguientes juegos, son los más buscados/vendidos para jovenes de 10 a 15 años. 
-                <br /><br />
-                <ul>
-                    <li>
-                        <a target="_BLANK" href="http://localhost/publicacion/jump-force-edicion-de-lujo-nintendo-switch-339">Portal Gamer</a>
-                    </li>
-                    <li>
-                        <a target="_BLANK" href="http://localhost/publicacion/jump-force-edicion-de-lujo-nintendo-switch-339">Portal Gamer</a>
-                    </li>
-                </ul>`
+                IAHTMLMessageSelected = teenegerGames
+                IAMessageSelected = `Te recomendamos los siguientes juegos, son los más buscados/vendidos para jovenes de 10 a 15 años.`
                 IAOptionsSelected = <>
                     <Button color='transparent' onClick={() => handleUserMessage('playstation/juegos-gratis')}>
                         Juegos gratis del mes
@@ -85,20 +88,30 @@ const IA = (props) => {
 
             case 'concursos':
                 IAMessageSelected = `Los concursos son actividades que nuestros aliados realizan para afianzar su marca y premiar a los usuarios que participan. 
-                <br /><br />
-                Actualmente tenemos los siguientes concursos activos: 
-                <ul>
-                    <li>1. PS5 Disco, Organiza: Blue Panther Medellín</li>
-                </ul>`
+                <br /><br />`
+                IAHTMLMessageSelected = <ul>
+                    <Link href="/articulo/conocenos">1. PS5 Disco, Organiza: Blue Panther Medellín</Link>
+                </ul>
+
                 IAOptionsSelected = <>
-                    <Button color='transparent' onClick={() => handleUserMessage('playstation/juegos-gratis')}>
-                        Juegos gratis del mes
-                    </Button>
                     <Button color='transparent' onClick={() => handleUserMessage('inicio')}>
                         Volver al inicio
                     </Button>
                 </>
                 containerHeightSelected = "300px"
+                break;
+
+            case 'otros-temas':
+                IAMessageSelected = "Te interesa algo de esto?"
+                IAOptionsSelected = <>
+                    <Button color='transparent' onClick={() => handleUserMessage('otros-temas/eventos')}>
+                        Eventos activos
+                    </Button>
+                    <Button color='transparent' onClick={() => handleUserMessage('inicio')}>
+                        Volver al inicio
+                    </Button>
+                </>
+                containerHeightSelected = "90px"
                 break;
 
             case 'playstation':
@@ -115,10 +128,10 @@ const IA = (props) => {
                 break;
 
             case 'playstation/juegos-gratis':
-                IAMessageSelected = `Los juegos gratis de Diciembre son: <br /> 
-                1. GTA V <br />
-                2. Juego 2 <br />
-                3. Juego 3 <br />`
+                IAMessageSelected = `Los juegos gratis de Diciembre son: <br /> <br />
+                1. GTA V < br />
+                    2. Juego 2 < br />
+                        3. Juego 3 < br /> `
                 IAOptionsSelected = <>
                     <Button color='transparent' onClick={() => handleUserMessage('inicio')}>
                         Volver al inicio
@@ -129,6 +142,7 @@ const IA = (props) => {
 
             case 'regalo':
                 IAMessageSelected = "Que edad tiene la persona a la cual le quieres dar el obsequio?"
+                IAExpressionSelected = 'loved'
                 IAOptionsSelected = <>
                     <Button color='transparent'>
                         Entre 10 y 15 años
@@ -143,18 +157,18 @@ const IA = (props) => {
                         Volver al inicio
                     </Button>
                 </>
-                containerHeightSelected = "250px"
+                containerHeightSelected = "160px"
                 break;
 
             case 'pikcoins':
                 IAHTMLMessageSelected = <div>
                     <CoinIcon hideNumber />
                 </div>
-                IAMessageSelected = `Claro, te explico. <br /><br />
+                IAMessageSelected = `Claro, te explico. < br /><br />
                 <b>Pikcoins</b> son las monedas que puedes ganar por jugar y participar en los eventos de Pikplay.
-                <br /><br />
-                Puedes canjearlas por premios o redimir en compras. <br /><br />¿Quieres saber más?
-                <a target="_BLANK" href="http://localhost/articulo/pikcoins-que-son-y-como-redimir-cupones">Conoce más sobre los Pikcoins</a>`
+                < br /> <br />
+                Puedes canjearlas por premios o redimir en compras. < br /> <br />¿Quieres saber más ?
+                    <a target="_BLANK" href="http://localhost/articulo/pikcoins-que-son-y-como-redimir-cupones">Conoce más sobre los Pikcoins</a>`
                 IAOptionsSelected = <>
                     <Button color='transparent'>
                         Saber más de Pikcoins
@@ -166,12 +180,11 @@ const IA = (props) => {
                 containerHeightSelected = "280px"
                 break;
 
-            case 'inicio':
+            default:
+                IAExpressionSelected = 'neutral'
                 IAMessageSelected = defaultInitialMessage
                 IAOptionsSelected = defaultIAOptions
                 containerHeightSelected = "210px"
-
-            default:
                 break;
         }
 
@@ -182,11 +195,12 @@ const IA = (props) => {
             setIAMessage(<ReactTyped strings={[IAMessageSelected]} typeSpeed={20} />);
             setIAOptions(IAOptionsSelected)
             setIAHTMLMessage(IAHTMLMessageSelected)
+            setIAExpression(IAExpressionSelected)
         }, 1000)
     }
 
-    return <div className={`${styles.container} ${!isVisible ? styles.hide : null}`}>
-        <div className={`${styles.pacoMin} ${isVisible ? styles.hide : null}`} onClick={() => setIsvisible(true)}>
+    return <div className={`${styles.container} ${!isVisible ? styles.hide : null} `}>
+        <div className={`${styles.pacoMin} ${isVisible ? styles.hide : null} `} onClick={() => setIsvisible(true)}>
             <img src={`/images/ia/4.png`} />
         </div>
         <div className={styles.box}>
@@ -206,10 +220,10 @@ const IA = (props) => {
                 {/* <input placeholder='¿Que te gustaria saber?' onKeyDown={e => enterKey(e)} /> */}
             </div>
             <div className={styles.character}>
-                <img className={styles.head} src="/images/ia/1.png" />
-                <img className={styles.head} src="/images/ia/2.png" />
+                <picture className={`${styles.head} ${styles[IAExpression]} `}>
+                </picture>
                 <div className={styles.circle}>
-                    <img className={styles.body} src="/images/ia/body.png" />
+                    <img className={styles.body} src="/images/ia/cuerpo.png" />
                 </div>
             </div>
         </div>
