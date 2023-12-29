@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-const { motion } = require('framer-motion')
 import Button from '../button/Button'
 import confetti from 'canvas-confetti'
 import styles from './styles.module.scss'
@@ -21,6 +20,8 @@ import moment from 'moment'
 import Link from 'next/link'
 import Router from 'next/router'
 import CoinIcon from '../CoinIcon/CoinIcon'
+
+const { motion } = require('framer-motion')
 
 moment.locale('es-CO')
 
@@ -99,39 +100,42 @@ const UserNotifications = () => {
   const notificationsNotClosed = notifications.filter(item => !item.closed)
 
   return (
-    <ul className={`${styles.UserNotifications} UserNotifications`}>
-      <h4>
+    <div className={`${styles.UserNotifications} UserNotifications`}>
+      <div className={styles.options}>
         <motion.span>
           <FontAwesomeIcon icon={faBell} className='m-r-10' />
+          Mis notificaciones
         </motion.span>
-        Notificaciones
-      </h4>
-      {notifications &&
-        notifications.map(
-          ({
-            closed: disabled,
-            coins,
-            created,
-            detail,
-            id,
-            closed,
-            link,
-            type,
-          }) => {
-            created = moment(created).fromNow()
-            const srcNotificationImg =
-              type === 'COUPON_GIFT_AVAILABLE'
-                ? './images/type_notification/coupon_gift_available.png'
-                : type === 'COMPLETED_PROFILE'
-                ? './images/type_notification/completed_profile.png'
-                : type === 'COINS_BY_PURCHASE'
-                ? './images/type_notification/coins_by_purchase.png'
-                : './images/type_notification/coins_by_purchase_completed.png'
-            return (
-              <Tooltip title={created} key={id}>
+        <span>Marcar todas como leídas</span>
+      </div>
+      <ul>
+        {notifications &&
+          notifications.map(
+            ({
+              closed: disabled,
+              coins,
+              created,
+              detail,
+              id,
+              closed,
+              link,
+              type,
+            }) => {
+              created = moment(created).fromNow()
+              const srcNotificationImg =
+                type === 'COUPON_GIFT_AVAILABLE'
+                  ? './images/type_notification/coupon_gift_available.png'
+                  : type === 'COMPLETED_PROFILE'
+                    ? './images/type_notification/completed_profile.png'
+                    : type === 'COINS_BY_PURCHASE'
+                      ? './images/type_notification/coins_by_purchase.png'
+                      : './images/type_notification/coins_by_purchase_completed.png'
+              return (
+                // <Tooltip title={created} key={id}>
                 <ol
                   // className={classNames(null, { [styles.closed]: disabled })}
                   // className={`${closed && styles.closed}`}
+                  key={id}
                   onClick={() =>
                     handleNotification({ coins, disabled, id, link, type })
                   }
@@ -146,11 +150,12 @@ const UserNotifications = () => {
                   {coins && <CoinIcon isLabel={false} coins={coins} />}
                   {!coins && <div className={styles.content_close}></div>}
                 </ol>
-              </Tooltip>
-            )
-          },
-        )}
-    </ul>
+                // </Tooltip>
+              )
+            },
+          )}
+      </ul>
+    </div>
   )
 }
 

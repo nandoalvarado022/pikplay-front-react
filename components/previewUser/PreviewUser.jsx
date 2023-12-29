@@ -2,21 +2,20 @@ import React, { useState } from 'react'
 import ImageProfile from '../imageProfile/ImageProfile'
 import Link from 'next/link'
 import Login from '../login/Login'
-import UserNotifications from '../userNotifications/UserNotifications'
-import styles from './styles.module.scss'
 import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
+import Switch from '@material-ui/core/Switch'
+
+import styles from './styles.module.scss'
 
 import VARS from '../../lib/variables'
 const { IS_MOBILE } = VARS
 
 const PreviewUser = () => {
   const dispatch = useDispatch()
-  const notifications = useSelector(state => state.notifications)
   const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
   const router = useRouter()
   const user = useSelector(state => state.user)
-  const _notifications = notifications.filter(item => item.closed === 0)
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' })
@@ -37,10 +36,8 @@ const PreviewUser = () => {
           <ImageProfile
             handleClickImage={IS_MOBILE ? handleClickImage : null}
           />
-          <span className={styles.notyQuantity}>{_notifications.length}</span>
           <div className={styles.bg_white}></div>
           <div className={styles.bg_black}>
-            {!IS_MOBILE && <UserNotifications />}
             <ol>
               <Link href='/perfil' as='/perfil'>
                 <a>
@@ -77,6 +74,19 @@ const PreviewUser = () => {
               </Link>
             </ol>
             <ol onClick={() => handleLogout()}>Salir</ol>
+            <ol>Configuración</ol>
+            <ol>
+              Modo nocturno
+              <span style={{ float: 'right', marginTop: '-10px' }}>
+                <Switch
+                  // checked={true}
+                  // onChange={ }
+                  color="primary"
+                  name="checkedB"
+                  inputProps={{ 'aria-label': 'primary checkbox' }}
+                />
+              </span>
+            </ol>
           </div>
         </React.Fragment>
       ) : (
