@@ -1,4 +1,4 @@
-name: Pipeline de Despliegue
+name: My Custom Pipeline
 
 on:
   push:
