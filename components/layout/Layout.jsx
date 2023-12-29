@@ -17,6 +17,7 @@ import { register } from 'next-offline/runtime'
 import Link from 'next/link'
 import Loading from '../loading/Loading'
 import classNames from 'classnames'
+import IA from '../ia/IA'
 
 toastr.options.timeOut = 10000
 
@@ -273,6 +274,7 @@ class Layout extends React.Component {
                 />
               </button>
             </a>
+            <IA />
           </main>
           {!this.state.tenemosCookies && (
             <div className='avisoCookies font-c'>

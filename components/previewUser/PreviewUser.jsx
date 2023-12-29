@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-const { IS_MOBILE } = VARS
 import ImageProfile from '../imageProfile/ImageProfile'
 import Link from 'next/link'
 import Login from '../login/Login'
 import UserNotifications from '../userNotifications/UserNotifications'
-import VARS from '../../lib/variables'
 import styles from './styles.module.scss'
 import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
+
+import VARS from '../../lib/variables'
+const { IS_MOBILE } = VARS
 
 const PreviewUser = () => {
   const dispatch = useDispatch()
@@ -15,7 +16,7 @@ const PreviewUser = () => {
   const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
   const router = useRouter()
   const user = useSelector(state => state.user)
-  const _notifications = notifications.filter(item => item.closed == 0)
+  const _notifications = notifications.filter(item => item.closed === 0)
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' })
@@ -31,7 +32,7 @@ const PreviewUser = () => {
       className={`${styles.PreviewUser} PreviewUser ${isOpenPreviewProfile ? styles.actived : null
         }`}
     >
-      {user.id != 0 ? (
+      {user.id !== 0 ? (
         <React.Fragment>
           <ImageProfile
             handleClickImage={IS_MOBILE ? handleClickImage : null}
