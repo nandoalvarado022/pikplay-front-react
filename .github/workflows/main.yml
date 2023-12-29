@@ -9,6 +9,7 @@ on:
 
 jobs:
   avoid_reduncy:
+    name: Borrando pipelines anteriores en ejecucción
     runs-on: ubuntu-latest
     steps:
       - name: Cancel Previous Redundant Builds
