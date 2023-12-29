@@ -28,9 +28,8 @@ const PreviewUser = () => {
 
   return (
     <div
-      className={`${styles.PreviewUser} PreviewUser ${
-        isOpenPreviewProfile ? styles.actived : null
-      }`}
+      className={`${styles.PreviewUser} PreviewUser ${isOpenPreviewProfile ? styles.actived : null
+        }`}
     >
       {user.id != 0 ? (
         <React.Fragment>
@@ -56,6 +55,13 @@ const PreviewUser = () => {
                   Soy vendedor
                   <br />
                   {/* <Coins /> */}
+                </a>
+              </Link>
+            </ol>
+            <ol>
+              <Link href='/concursos' as='/concursos'>
+                <a>
+                  Concursos
                 </a>
               </Link>
             </ol>

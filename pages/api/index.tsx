@@ -6,6 +6,7 @@ import getArticlesLimit from './mocks/get/getArticlesLimit'
 import validateLogin from './mocks/get/validateLogin'
 import getChallenges from './mocks/get/getChallenges'
 import createTransaction from './mocks/post/createTransaction'
+import getCompetitions from './mocks/get/getCompetitions'
 
 export default function handler(req, res) {
   const operationName = req.headers?.['operation-name']
@@ -13,8 +14,10 @@ export default function handler(req, res) {
     ? JSON.parse(req.headers?.['variables'])
     : {}
   switch (operationName) {
+    case 'getCompetitions':
+      res.status(200).json(getCompetitions)
+      break
     case 'createTransaction':
-      debugger
       res.status(200).json(createTransaction)
       break
     case 'getArticles':
