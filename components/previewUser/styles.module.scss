@@ -2,7 +2,7 @@
 
 .PreviewUser {
   position: relative;
-  margin-left: 100px;
+  margin-left: 20px;
   width: 70px;
   z-index: 4;
   @media screen and (max-width: $tablet) {
@@ -23,6 +23,12 @@
         display: block;
       }
     }
+  }
+
+  .coins{
+    position: absolute;
+    right: -60px;
+    top: 8px;
   }
 
   .bg_black {

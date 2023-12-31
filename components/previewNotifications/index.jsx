@@ -28,7 +28,7 @@ const Notification = () => {
 
   return (
     <>
-      <div className={`${styles.Preview}`}>
+      <div className={`${styles.PreviewNotifications}`}>
         <i className="fa fa-bell-o" aria-hidden="true"></i>
         <span className={styles.notyQuantity}>{_notifications.length}</span>
         <div className={styles.bg_black}>

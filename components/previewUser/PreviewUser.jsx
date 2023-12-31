@@ -5,6 +5,7 @@ import Login from '../login/Login'
 import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
 import Switch from '@material-ui/core/Switch'
+import CoinIcon from '../CoinIcon/CoinIcon'
 
 import styles from './styles.module.scss'
 
@@ -36,6 +37,9 @@ const PreviewUser = () => {
           <ImageProfile
             handleClickImage={IS_MOBILE ? handleClickImage : null}
           />
+          <div className={styles.coins} id="PreviewProfile--Coins">
+            <CoinIcon coins={10} />
+          </div>
           <div className={styles.bg_white}></div>
           <div className={styles.bg_black}>
             <ol>

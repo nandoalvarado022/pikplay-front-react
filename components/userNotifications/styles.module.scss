@@ -65,11 +65,17 @@
       height: 45px;
       object-fit: cover;
     }
+
     &:nth-child(even) {
       background: #476e961a;
     }
+
     &.closed {
       display: none;
+    }
+
+    &.read {
+      opacity: 0.2;
     }
     // &.open {
     //     max-height: initial;
