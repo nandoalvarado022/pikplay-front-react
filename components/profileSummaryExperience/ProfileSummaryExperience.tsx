@@ -24,7 +24,12 @@ const ProfileSummaryExperience = (props) => {
         <div className={classNames("ProfileSummaryExperience", { [styles.ProfileSummaryExperience]: true })}>
             <div className={styles.full_name}>
                 <span>Nandosqui</span>
-                <Insignia data={{ id: "second", name: "On fire" }} />
+                <div className={styles.icons}>
+                    <Tooltip title="Plataforma más utilizada">
+                        <img width={40} className={styles.platform} src="/images/icons/ps-icon.png" />
+                    </Tooltip>
+                    <Insignia data={{ id: "second", name: "On fire" }} />
+                </div>
             </div>
             <div className={styles.box}>
                 <div className={styles.left}>
@@ -98,7 +103,7 @@ const ExperienceBar = () => {
                 <div className={classNames("indicator", { [styles.indicator]: true })}>
                     <label>
                         <span className='number'>154</span>
-                        &nbsp;EXP
+                        &nbsp;/ 1000 EXP
                     </label>
                 </div>
             </div>

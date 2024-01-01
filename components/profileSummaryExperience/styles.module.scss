@@ -13,10 +13,17 @@
         padding: 10px;
         position: relative;
         width: 200px;
-        :global(.Insignia) {
+        .icons {
+            display: flex;
             position: absolute;
             right: 0;
             top: -12px;
+            :global(.Insignia) {
+            }
+            .platform {
+                object-fit: contain;
+                width: 40px;
+            }
         }
     }
     .box {
