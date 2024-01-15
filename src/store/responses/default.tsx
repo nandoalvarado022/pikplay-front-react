@@ -3,7 +3,10 @@ import Button from '../../components/button/Button'
 import { formatNumber } from '../../lib/utils';
 
 const pikcoinTRM = 1200
-const Message = `Hola! en que te puedo ayudar? <br/> El precio de la <b>Pikcoin</b> de hoy es $${formatNumber(pikcoinTRM)}`
+const Message = `Hola! en que te puedo ayudar? <br/> 
+Precio de la <b>Pikcoin</b> de esta semana:<br />
+$${formatNumber(pikcoinTRM)}`
+
 const Expresion = 'neutral'
 const Options = ({ handleUserMessage, set }) => {
     return <>

@@ -25,10 +25,6 @@ interface State {
   setIsvisible: (isVisible: boolean) => void,
 }
 
-const isVisible = true
-let IAMessage = ''
-const IAOptions = <></>
-
 const handleUserMessage = (message, set) => {
   calculateResponse(message, set)
 }
@@ -152,15 +148,14 @@ const calculateResponse = (mensaje, set) => {
 }
 
 const middleWare = (Component, set) => {
-  debugger;
   return <Component handleUserMessage={handleUserMessage} set={set} />
 }
 
 export const useIAStore = create<State>((set, get) => ({
   containerHeight: "210px",
-  IAOptions,
-  isVisible,
-  IAMessage,
+  IAOptions: <></>,
+  isVisible: false,
+  IAMessage: '',
   IAExpression: 'neutral',
   IAHTMLMessage: <></>,
   handleUserMessage: (message) => handleUserMessage(message, set),

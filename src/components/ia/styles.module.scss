@@ -1,25 +1,31 @@
-.container {
+.IAElement {
     bottom: 200px;
     color: white;
     left: 40px;
     position: fixed;
-    width: 500px;
-    z-index: 1;
     transition: 1s ease-in-out;
+    width: 500px;
+    z-index: 4;
+    @media screen and (max-width: 420px) {
+        bottom: 90px;
+        width: 80%;
+    }
     &:before {
-        background: #00000066;
+        background: #0000004d;
         border-radius: 20px;
-        bottom: -5px;
+        bottom: 4px;
         content: "";
-        height: 150px;
+        height: calc(100%);
         position: absolute;
         right: -5px;
         width: 100%;
         z-index: -1;
     }
-
     &.hide {
         left: -510px;
+        @media screen and (max-width: 420px) {
+            left: calc(-100vw + 40px);
+        }
     }
 
     .pacoMin {
@@ -46,13 +52,30 @@
     .box {
         .title {
             background: #f0ba87;
-            box-shadow: inset -4px 2px 11px #b86b22;
+            // box-shadow: inset -4px 2px 11px #b86b22;
             padding: 5px 0 5px 120px;
             border-radius: 20px 20px 0 0;
+            @media screen and (max-width: 420px) {
+                padding: 5px 0 5px 60px;
+            }
             .hide {
-                float: right;
-                margin-right: 16px;
+                background: #ea4d42;
+                border-radius: 50%;
+                box-shadow: 1px 1px #858585;
                 cursor: pointer;
+                float: right;
+                font-weight: bold;
+                line-height: 20px;
+                margin-right: 16px;
+                padding: 1px;
+                position: relative;
+                right: -10px;
+                text-align: center;
+                top: -2px;
+                width: 20px;
+                @media screen and (max-width: 420px) {
+                    top: -20px;
+                }
             }
         }
         .text {
@@ -63,7 +86,9 @@
             justify-content: space-between;
             padding: 20px 10px 20px 20px;
             transition: 1s ease-in-out;
-
+            @media screen and (max-width: 420px) {
+                height: max-content !important;
+            }
             .list {
                 display: flex;
                 flex-direction: column;
@@ -99,6 +124,17 @@
             top: -60px;
             width: 120px;
             height: 120px;
+            &:before {
+                background: #0000004d;
+                border-radius: 50%;
+                bottom: 22px;
+                content: "";
+                height: 100px;
+                position: absolute;
+                right: 16px;
+                width: 100px;
+                z-index: -1;
+            }
             .head {
                 background-size: contain;
                 background-repeat: no-repeat;

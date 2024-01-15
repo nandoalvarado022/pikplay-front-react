@@ -12,7 +12,6 @@ const ConcursosPage = () => {
 
     function TabPanel(props) {
         const { children, value, index, ...other } = props
-
         return (
             <div
                 role='tabpanel'
@@ -31,9 +30,9 @@ const ConcursosPage = () => {
     }
 
     return (
-        <section className={styles.CompetitionsComponent}>
+        <div className={styles.CompetitionsComponent}>
             <Layout title="Concursos">
-                <div className={`page`}>
+                <section className={`page`}>
                     <Card>
                         <Tabs
                             value={value}
@@ -50,9 +49,9 @@ const ConcursosPage = () => {
                             <CompetitionsList />
                         </TabPanel>
                     </Card>
-                </div>
+                </section>
             </Layout>
-        </section>
+        </div>
     )
 }
 

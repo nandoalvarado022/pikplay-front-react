@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 #header {
   background: white;
@@ -23,7 +23,8 @@
       color: #575656;
       display: block;
       font-size: 12px;
-      text-align: center;
+      float: left;
+      margin-left: 10px;
       @media screen and (max-width: $tablet) {
         font-size: 10px;
       }
@@ -129,15 +130,23 @@
           top: 82px;
           width: 100%;
         }
+        @media screen and (max-width: 420px) {
+          left: -30px;
+          top: 30px;
+          width: 100vw;
+        }
       }
       .background {
         background: #2e2e2e75;
-        content: '';
+        content: "";
         height: 100vh;
         right: 0;
         position: fixed;
         width: 100vw;
         z-index: 0;
+        @media screen and (max-width: 420px) {
+          display: none;
+        }
       }
 
       > :global(section > button) {
@@ -213,9 +222,7 @@
           background: #999999;
           margin: 10px 5px 10px 10px;
           padding: 0 10px;
-          :global(
-              .image-gallery-content .image-gallery-slide .image-gallery-image
-            ) {
+          :global(.image-gallery-content .image-gallery-slide .image-gallery-image) {
             max-height: 400px;
             margin-left: 0;
           }
@@ -325,6 +332,6 @@
     margin: 0 0 10px 0;
   }
   .items {
-    margin-right: 10px;
+    margin: 0 10px 10px 0;
   }
 }

@@ -548,7 +548,8 @@ section {
   margin: 20px auto;
   width: 1200px;
   @media screen and (max-width: 420px) {
-    width: 100%;
+    margin: 70px auto 90px;
+    width: calc(100% - 40px);
   }
   > h2 {
     @media screen and (max-width: 420px) {

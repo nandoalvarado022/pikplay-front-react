@@ -14,7 +14,7 @@
   right: 0;
   width: 90%;
   z-index: 3;
-  ol {
+  ol.mainOption {
     align-items: center;
     display: flex;
     flex: 1 1;
@@ -47,12 +47,6 @@
     :global(.content_image) {
       height: 40px;
       width: 40px;
-    }
-    button {
-      background: none;
-      border: none;
-      span {
-      }
     }
   }
 }

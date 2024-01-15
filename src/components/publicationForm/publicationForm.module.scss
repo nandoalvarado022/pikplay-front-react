@@ -132,15 +132,6 @@
   }
 }
 
-.content {
-  margin: 20px auto;
-  width: 1200px;
-  @media screen and (max-width: 420px) {
-    margin-bottom: 120px;
-    width: auto;
-  }
-}
-
 .formAndPreviewPublicacion {
   margin: 10px auto;
   @media screen and (min-width: 768px) {

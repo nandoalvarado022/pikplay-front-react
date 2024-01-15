@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import CountUp from 'react-countup'
 import Articles from '../articles/Articles'
 
-const HolaJuanito = () => {
+const Advertisements = () => {
   const dispatch = useDispatch()
   const { user } = useSelector(state => state)
   const isMobile =
@@ -59,21 +59,7 @@ const HolaJuanito = () => {
     }
   }, [notifications])
 
-  const classButton =
-    isProfileComplete && gotProfileCompletedCoins ? styles.disabled : ''
-
-  const Monedita = () => (
-    <img
-      style={{
-        left: '6px',
-        marginRight: '10px',
-        position: 'relative',
-        width: '20px',
-      }}
-      src='/images/icons/moneda2.svg'
-      alt='Reclamar monedas por completar el perfil'
-    />
-  )
+  const classButton = isProfileComplete && gotProfileCompletedCoins ? styles.disabled : ''
 
   const handleActions = value => {
     let _leftIndicator = leftIndicator + value
@@ -82,7 +68,7 @@ const HolaJuanito = () => {
   }
 
   return (
-    <div className={styles.HolaJuanito}>
+    <div className={styles.Advertisements}>
       <div className={`${styles.content}`}>
         <div>
           {showMainNoitificacion && (
@@ -109,23 +95,6 @@ const HolaJuanito = () => {
                 estos, así que tu compra será confiable, rápida y segura.
               </div>
             </div>
-          )}
-
-          {user.id === 0 && (
-            <button
-              onClick={() => document.getElementById('btnStart').click()}
-              className={styles.reclamar_monedas}
-            >
-              Registrate y obten tus primeros Pikcoins <Monedita />
-            </button>
-          )}
-
-          {!isProfileComplete && user.id != 0 && (
-            <Link href='/perfil'>
-              <a className={styles.reclamar_monedas}>
-                Completar perfil y ganar monedas
-              </a>
-            </Link>
           )}
           <Articles />
         </div>
@@ -162,4 +131,4 @@ const HolaJuanito = () => {
   )
 }
 
-export default HolaJuanito
+export default Advertisements

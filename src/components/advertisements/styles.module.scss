@@ -1,9 +1,8 @@
-.HolaJuanito {
+.Advertisements {
   position: relative;
   margin: 0px auto 50px;
   width: 1300px;
   @media screen and (max-width: 420px) {
-    margin: 10px auto 20px;
     width: auto;
   }
   .content {
@@ -127,30 +126,7 @@
       max-width: 100%;
     }
   }
-  .reclamar_monedas {
-    align-items: center;
-    background-image: linear-gradient(white, white),
-      linear-gradient(
-        270deg,
-        rgb(27, 149, 179),
-        rgb(185, 93, 215) 50%,
-        rgb(201, 53, 48) 100%
-      );
-    background-origin: padding-box, border-box;
-    background-repeat: no-repeat;
-    border: 2px solid transparent;
-    box-shadow: 2px 2px 0px #6767676e;
-    color: #0c596b;
-    cursor: pointer;
-    display: flex;
-    font-size: 12px;
-    justify-content: center;
-    margin: 10px auto 0;
-    padding: 10px 15px;
-    text-align: center;
-    text-transform: uppercase;
-    transform: none;
-  }
+  
   .animated {
     animation: highlight 1s infinite alternate;
     background-image: linear-gradient(white, white),

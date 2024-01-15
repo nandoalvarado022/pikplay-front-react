@@ -7,12 +7,13 @@ import { Provider } from 'react-redux'
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
 import { persistStore } from 'redux-persist'
 import { useStore } from '../src/lib/store'
-import { versions } from '../src/lib/utils'
+import { getScreenOrientation, versions } from '../src/lib/utils'
 import Loading from '../src/components/loading/Loading'
 import '../src/styles/globalStyles.scss'
 
 const MyApp = props => {
   const { Component, pageProps, router } = props
+  const [orientation, setOrientation] = useState('')
   const store = useStore(pageProps.initialReduxState)
   const persistor = persistStore(store, {}, function () {
     persistor.persist()
@@ -30,6 +31,8 @@ const MyApp = props => {
   })
 
   useEffect(() => {
+    getScreenOrientation(setOrientation);
+
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles) {
@@ -81,6 +84,7 @@ const MyApp = props => {
     <Provider store={store}>
       <ApolloProvider client={graphqlClient}>
         {/* <Loading /> */}
+        {/* Orientation: {orientation} */}
         <Component {...pageProps} key={router.name} />
       </ApolloProvider>
     </Provider>

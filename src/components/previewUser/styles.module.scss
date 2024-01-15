@@ -25,10 +25,13 @@
     }
   }
 
-  .coins{
+  .coins {
     position: absolute;
     right: -60px;
     top: 8px;
+    @media screen and (max-width: 420px) {
+      display: none;
+    }
   }
 
   .bg_black {
@@ -47,10 +50,10 @@
     width: 240px;
     z-index: 3;
 
-    @media screen and (max-width: $tablet) {
+    @media screen and (max-width: 420px) {
       border-radius: 10px 10px 0 0;
       bottom: 70px;
-      height: 196px;
+      height: max-content;
       left: 0;
       margin: 0 auto;
       position: fixed;

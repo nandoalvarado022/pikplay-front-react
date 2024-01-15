@@ -2,16 +2,27 @@
 
 import React, { useState } from 'react'
 import styles from '../styles.module.scss'
-import { useIAStore } from '../../../src/store/IA';
+import { useIAStore } from '../../../src/store/IA'
+const { motion } = require('framer-motion')
 
 const competitionsList = [
   {
-    title: "Rifa de Nintendo Switch Oled 2024 + 2 juegos a elección",
+    availableNumbers: 10,
     author: {
       name: "Juan Perez",
-      image: "https://i.pravatar.cc/150?img=1",
     },
-    availableNumbers: 10,
+    image: "/images/others/ps5.png",
+    title: "Rifa de Nintendo Switch Oled 2024 + 2 juegos a elección",
+    right: "-80px"
+  },
+  {
+    availableNumbers: 87,
+    author: {
+      name: "Juancho Fenix",
+    },
+    image: "/images/others/control-switch.png",
+    title: "Control Joy-Con - Rojo Neón y Azul Neón",
+    right: "-120px"
   }
 ]
 
@@ -25,22 +36,38 @@ const CompetitionsList = () => {
     {competitionId == 0
       ?
       <div>
-        <h1>Listado de concursoa activos</h1>
-        {
-          competitionsList.map((competition) => (
-            <div>
-              <h2>{competition.title}</h2>
-              <div>Números disponibles: {competition.availableNumbers}</div>
-              <p>Por: {competition.author.name}</p>
-              <img src={competition.author.image} alt={competition.author.name} />
-              <button onClick={goToDetail}>Pedir número</button>
-            </div>
-          ))}
+        <h1>Listado de concursos activos</h1>
+        <div className={styles.competitionsList}>
+          {
+            competitionsList.map((competition, ind) => (
+              <motion.article
+                className='Card'
+                key={ind}
+                initial={{ y: '100%' }}
+                onClick={goToDetail}
+                whileHover={{ scale: 1.1 }}
+                animate={{
+                  y: 0,
+                }}
+              >
+                <h2>{competition.title}</h2>
+                <div>
+                  Números <br />
+                  disponibles: {competition.availableNumbers}
+                </div>
+                <p>
+                  Organizador: <br />
+                  {competition.author.name}
+                </p>
+                <img width={200} style={{ right: competition.right }} src={competition.image} />
+              </motion.article>
+            ))}
+        </div>
       </div>
       :
       <div>
         Detalle de lal concurso
-        <NumbersBox />
+        <CompetitionDetail />
         <button onClick={() => setCompetitionId(0)}>Volver</button>
       </div>
     }
@@ -52,7 +79,7 @@ type NumberBoxProps = {
   status: string;
 }
 
-const NumbersBox = () => {
+const CompetitionDetail = () => {
   const {
     setIsvisible,
     handleUserMessage

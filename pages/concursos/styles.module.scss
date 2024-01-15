@@ -1,5 +1,34 @@
 .CompetitionsComponent {
+    .competitionsList {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        width: 600px;
+        @media screen and (max-width: 420px) {
+            flex-direction: column;
+            width: initial;
+        }
+    }
+
     .Detail {
+        article {
+            background: linear-gradient(90deg, #6098fb 0%, #76a2ea 100%);
+            color: white;
+            font-size: 14px;
+            position: relative;
+            width: 200px;
+            h2 {
+                color: inherit;
+                line-height: 22px;
+            }
+            img {
+                bottom: -50px;
+                position: absolute;
+            }
+            &:nth-of-type(2) {
+                background: linear-gradient(90deg, #fab674 0%, #efba89 100%);
+            }
+        }
         .contentOptions {
             align-items: center;
             justify-content: center;

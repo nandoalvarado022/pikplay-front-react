@@ -388,6 +388,33 @@ export function shuffle(array) {
   return array
 }
 
+export function getScreenOrientation(setOrientation) {
+  function handleOrientationChange(event) {
+    const { matches, media } = event;
+    if (matches) {
+      setOrientation(media);
+    }
+  }
+
+  const mediaQueryPortrait = window.matchMedia('(orientation: portrait)');
+  const mediaQueryLandscape = window.matchMedia('(orientation: landscape)');
+
+  if (mediaQueryPortrait.matches) {
+    setOrientation('portrait');
+  } else if (mediaQueryLandscape.matches) {
+    setOrientation('landscape');
+  }
+
+  mediaQueryPortrait.addListener(handleOrientationChange);
+  mediaQueryLandscape.addListener(handleOrientationChange);
+
+  return () => {
+    mediaQueryPortrait.removeListener(handleOrientationChange);
+    mediaQueryLandscape.removeListener(handleOrientationChange);
+  };
+
+}
+
 export function formatNumber(input) {
   input = String(input)
   let num = input.replace(/\./g, '')

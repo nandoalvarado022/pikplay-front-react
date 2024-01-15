@@ -27,19 +27,19 @@ const IA = (props) => {
         }, 1000)
     }, [])
 
-    return <div className={`${styles.container} ${!isVisible ? styles.hide : null} `}>
+    return <div className={`${styles.IAElement} ${!isVisible ? styles.hide : null} `}>
         <div className={`${styles.pacoMin} ${isVisible ? styles.hide : null} `} onClick={() => setIsvisible(true)}>
             <img src={`/images/ia/4.png`} />
         </div>
         <div className={styles.box}>
             <div className={styles.title}>
                 Bienvenido a <b>Pikplay Colombia</b>
-                <div className={styles.hide} onClick={() => setIsvisible(false)}>X</div>
+                <div className={styles.hide} onClick={() => setIsvisible(false)}>x</div>
             </div>
             <div className={styles.text} style={{ height: containerHeight }}>
                 <div className={styles.list}>
-                    {IAMessage}
                     {IAHTMLMessage}
+                    {IAMessage}
                 </div>
 
                 <div className={styles.buttons}>

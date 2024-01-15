@@ -43,12 +43,12 @@ const Articles = (props: AticlesProps) => {
         }`}
       >
         {data?.getArticles &&
-          data.getArticles.map(item => {
+          data.getArticles.map((item, ind) => {
             return (
               <Link href={`/articulo/${item.slug}`}>
                 <motion.article
                   className='Card'
-                  key={item.id}
+                  key={ind}
                   whileHover={{ scale: 1.1 }}
                   // whileTap={{ scale: 0.8 }}
                   initial={{ y: '100%' }}
