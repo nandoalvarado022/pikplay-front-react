@@ -1,7 +1,7 @@
 {
   "name": "Pikplay",
   "engines": {
-    "node": ">=14.x.x <=16.x.x"
+    "node": "14.21.3"
   },
   "version": "0.1.1",
   "private": true,
@@ -86,13 +86,6 @@
     "@testing-library/react": "12.1.2",
     "babel-jest": "27.2.4",
     "concurrently": "6.2.0",
-    "eslint": "^8.46.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.28.0",
-    "eslint-plugin-n": "^16.0.1",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.33.1",
     "identity-obj-proxy": "3.0.0",
     "jest": "27.2.4",
     "prettier": "^3.0.3",
