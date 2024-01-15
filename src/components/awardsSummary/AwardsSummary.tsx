@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide } from "@material-ui/core";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide } from "@mui/material";
 import Medals from '../medals/Medals'
 import confetti from 'canvas-confetti'
 import ReactTyped from 'react-typed'
 import styles from './styles.module.scss'
-import zIndex from '@material-ui/core/styles/zIndex';
+import { zIndex } from '@mui/material/styles';
 import CoinIcon from '../CoinIcon/CoinIcon';
 import Button from '../button/Button'
 import { animatePrince } from '../../lib/utils'

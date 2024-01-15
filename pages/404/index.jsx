@@ -1,7 +1,7 @@
 import Button from '../../src/components/button/Button'
 import Layout from '../../src/components/layout/Layout'
 import Link from 'next/link'
-import { Alert } from '@material-ui/lab'
+import { Alert } from '@mui/material';
 
 const Page404 = () => {
   return (

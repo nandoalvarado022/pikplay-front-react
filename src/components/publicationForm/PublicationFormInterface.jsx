@@ -2,13 +2,13 @@ import React from 'react'
 import Button from '../button/Button'
 import Card from '../card/Card'
 import CategoryControl from './CategoryControl/CategoryControl'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
+import FormControlLabel from '@mui/material/FormControlLabel'
 import Link from 'next/link'
-import Switch from '@material-ui/core/Switch'
+import Switch from '@mui/material/Switch'
 import styles from './publicationForm.module.scss'
-import { Alert } from '@material-ui/lab'
+import { Alert } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { TextField } from '@material-ui/core'
+import { TextField } from '@mui/material'
 import {
   faArrowLeft,
   faImage,

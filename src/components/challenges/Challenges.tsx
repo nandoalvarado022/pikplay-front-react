@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client'
 import { GET_CHALLENGES } from '../../lib/utils.jsx'
 import Coins from '../previewUser/old Coins'
 
-import Skeleton from '@material-ui/lab/Skeleton'
+import Skeleton from '@mui/material/Skeleton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import Button from '../button/Button'
@@ -35,7 +35,7 @@ const Challenges = () => {
             .map((_, i) => (
               <Skeleton
                 key={i}
-                variant='rect'
+                variant="rectangular"
                 width='100%'
                 height={120}
                 className='Card'
@@ -100,6 +100,6 @@ const Challenges = () => {
             ),
           )}
     </section>
-  )
+  );
 }
 export default Challenges

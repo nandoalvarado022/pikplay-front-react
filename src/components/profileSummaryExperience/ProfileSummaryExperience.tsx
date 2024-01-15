@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { Link, Tooltip } from '@material-ui/core'
-import Zoom from '@material-ui/core/Zoom'
+import { Link, Tooltip } from '@mui/material'
+import Zoom from '@mui/material/Zoom'
 import { animatePrince } from '../../../src/lib/utils'
 import classNames from 'classnames'
 import CoinIcon from '../CoinIcon/CoinIcon'

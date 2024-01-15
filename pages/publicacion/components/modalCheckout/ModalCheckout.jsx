@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Button from '../../../../src/components/button/Button'
-import TextField from '@material-ui/core/TextField'
+import TextField from '@mui/material/TextField'
 import { gql, useLazyQuery, useMutation } from '@apollo/client'
 import styles from './styles.module.scss'
 import CiudadControl from '../../../../src/components/ciudadControl/CiudadControl'
 import Link from 'next/link'
-import { Alert } from '@material-ui/lab'
+import { Alert } from '@mui/material';
 import { useSelector } from 'react-redux'
 import CouponBox from '../../../../src/components/couponBox/CouponBox'
 import { formatNumber, GET_CLAIMED_COUPONS } from '../../../../src/lib/utils'

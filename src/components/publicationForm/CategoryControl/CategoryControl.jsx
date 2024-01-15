@@ -4,10 +4,10 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
-} from '@material-ui/core'
-import { blue, green, red } from '@material-ui/core/colors'
+} from '@mui/material'
+import { blue, green, red } from '@mui/material/colors'
 import { getCategories } from '../../../lib/utils'
-import { withStyles } from '@material-ui/core/styles'
+import withStyles from '@mui/styles/withStyles';
 
 const CategoryControl = ({ category, handleCategory }) => {
   const GreenRadio = withStyles({

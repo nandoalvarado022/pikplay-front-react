@@ -6,7 +6,7 @@ import { ResultsBox } from '../../src/components/myHeader/searchBox/ResultsBox'
 import Card from '../../src/components/card/Card'
 import { getHome } from '../../src/lib/utils'
 import Button from '../../src/components/button/Button'
-import { Avatar, Chip } from '@material-ui/core'
+import { Avatar, Chip } from '@mui/material'
 import Reviews from './components/Reviews/Reviews'
 import styles from './styles.module.scss'
 

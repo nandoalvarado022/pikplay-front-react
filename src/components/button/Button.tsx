@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import { Button as ButtonMat } from '@material-ui/core'
+import { Button as ButtonMat } from '@mui/material'
 import styles from './button.module.scss'
 
 interface ButtonProps {

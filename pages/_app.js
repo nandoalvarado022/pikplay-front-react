@@ -4,7 +4,7 @@ import graphqlClient from '../src/lib/graphqlClient'
 import { ApolloProvider } from '@apollo/client'
 import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
+import { createTheme, ThemeProvider, StyledEngineProvider, adaptV4Theme } from '@mui/material';
 import { persistStore } from 'redux-persist'
 import { useStore } from '../src/lib/store'
 import { getScreenOrientation, versions } from '../src/lib/utils'
@@ -19,7 +19,7 @@ const MyApp = props => {
     persistor.persist()
   })
 
-  const theme = createMuiTheme({
+  const theme = createTheme(adaptV4Theme({
     palette: {
       primary: {
         main: '#c93530',
@@ -28,7 +28,7 @@ const MyApp = props => {
         main: '#1b95b3',
       },
     },
-  })
+  }))
 
   useEffect(() => {
     getScreenOrientation(setOrientation);

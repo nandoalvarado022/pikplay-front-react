@@ -15,7 +15,7 @@ import {
   Tabs,
   TextField,
   Typography,
-} from '@material-ui/core'
+} from '@mui/material'
 import {
   faQuestionCircle,
   faUser,
@@ -24,7 +24,7 @@ import {
 import { toast } from 'react-toastify'
 import { useState } from 'react'
 import { interestsList } from '../../src/lib/utils'
-import { Alert } from '@material-ui/lab'
+import { Alert } from '@mui/material';
 import classNames from 'classnames'
 import { useSelector } from 'react-redux'
 import Challenges from '../../src/components/challenges/Challenges'

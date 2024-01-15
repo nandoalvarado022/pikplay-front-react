@@ -1,6 +1,6 @@
 import Button from '../button/Button'
 import styles from './styles.module.scss'
-import { Dialog, DialogContent, TextField } from '@material-ui/core'
+import { Dialog, DialogContent, TextField } from '@mui/material'
 import { gql, useMutation } from '@apollo/client'
 import { interestsList } from './../../lib/utils'
 import { useState } from 'react'

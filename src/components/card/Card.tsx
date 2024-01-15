@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import Grow from '@material-ui/core/Grow'
+import Grow from '@mui/material/Grow'
 import { capitalize, formatNumber, getCiudades } from '../../lib/utils'
 import { useQuery, gql } from '@apollo/client'
 import Author from './Author'
@@ -10,7 +10,7 @@ import {
   faHeartBroken,
   faShare,
 } from '@fortawesome/free-solid-svg-icons'
-import { Tooltip } from '@material-ui/core'
+import { Tooltip } from '@mui/material'
 import classNames from 'classnames'
 import { useSelector } from 'react-redux'
 import Image from 'next/image'

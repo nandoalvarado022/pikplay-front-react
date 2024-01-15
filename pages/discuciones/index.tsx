@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../../src/components/layout/Layout'
-import { Card } from '@material-ui/core'
+import { Card } from '@mui/material'
 import List from './List'
 import useDiscussions from './useDiscussions'
 import Recommendations from './Recommendations'
