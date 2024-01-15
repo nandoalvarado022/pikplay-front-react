@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Button from '../button/Button'
 import ReactTyped from "react-typed"
-import CoinIcon from '../CoinIcon/CoinIcon'
+import CoinIcon from '../coinIcon/CoinIcon'
 import { formatNumber } from '../../lib/utils'
 import { useIAStore } from '../../store/IA'
 import styles from './styles.module.scss'
@@ -36,14 +36,14 @@ const IA = (props) => {
                 Bienvenido a <b>Pikplay Colombia</b>
                 <div className={styles.hide} onClick={() => setIsvisible(false)}>x</div>
             </div>
-            <div className={styles.text} style={{ height: containerHeight }}>
+            <div className={styles.text}>
+                {/* style={{ height: containerHeight }} */}
                 <div className={styles.list}>
                     {IAHTMLMessage}
                     {IAMessage}
-                </div>
-
-                <div className={styles.buttons}>
-                    {IAOptions}
+                    <div className={styles.buttons}>
+                        {IAOptions}
+                    </div>
                 </div>
             </div>
             <div className={styles.character}>

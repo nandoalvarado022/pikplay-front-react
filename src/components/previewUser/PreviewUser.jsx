@@ -4,8 +4,8 @@ import Link from 'next/link'
 import Login from '../login/Login'
 import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
-import Switch from '@material-ui/core/Switch'
-import CoinIcon from '../CoinIcon/CoinIcon'
+import Switch from '@mui/material/Switch'
+import CoinIcon from '../coinIcon/CoinIcon'
 
 import styles from './styles.module.scss'
 

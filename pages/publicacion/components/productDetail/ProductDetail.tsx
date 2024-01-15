@@ -4,7 +4,7 @@ import React, { useRef } from 'react'
 import Button from '../../../../src/components/button/Button'
 import CoinsByBuy from '../../../../src/components/coinsByBuy/CoinsByBuy'
 import Footer from '../../../../src/components/footer/Footer'
-import Grow from '@material-ui/core/Grow'
+import Grow from '@mui/material/Grow'
 import ImageGallery from 'react-image-gallery'
 import { formatNumber } from '../../../../src/lib/utils'
 import Link from 'next/link'
@@ -44,7 +44,7 @@ const DetalleProducto = ({
     sale_price,
     slug,
     title,
-  } = datosPublicacion
+  } = datosPublicacion || {}
 
   const ref_descripcion_imagen = useRef(null)
   let images = []

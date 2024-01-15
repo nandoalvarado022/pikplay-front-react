@@ -1,7 +1,7 @@
-import Zoom from '@material-ui/core/Zoom'
+import Zoom from '@mui/material/Zoom'
 import styles from './styles.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Tooltip } from '@material-ui/core'
+import { Tooltip } from '@mui/material'
 import {
   faCheckCircle,
   faStar,

@@ -5,7 +5,7 @@ import Product from '../../../interfaces/Product'
 import Author from '../../card/Author'
 import { motion } from 'framer-motion'
 import { formatNumber, getCiudades, getFeed } from '../../../lib/utils'
-import { TextField } from '@material-ui/core'
+import { TextField } from '@mui/material'
 import { IS_MOBILE } from '../../../lib/variables'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {

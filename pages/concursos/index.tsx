@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Card, Tab, Tabs, Typography } from '@material-ui/core'
+import { Box, Card, Tab, Tabs, Typography } from '@mui/material'
 import Layout from '../../src/components/layout/Layout'
 import CompetitionsList from './components/Competitions'
 import styles from './styles.module.scss'

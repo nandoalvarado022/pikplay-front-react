@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStore } from '@fortawesome/free-solid-svg-icons'
-import { Tooltip } from '@material-ui/core'
+import { Tooltip } from '@mui/material'
 import styles from './styles.module.scss'
 import { getCiudades } from '../../src/lib/utils'
 

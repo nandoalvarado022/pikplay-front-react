@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import styles from './insignias.module.scss'
-import { Tooltip } from '@material-ui/core';
+import { Tooltip } from '@mui/material';
 
 const Insignia = ({ data }) => {
     const { id, name, isNew } = data

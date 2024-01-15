@@ -1,7 +1,7 @@
-import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
 import { useState } from 'react'
 import {
   Button as ButtonMat,
@@ -10,7 +10,7 @@ import {
   MenuItem,
   Select,
   Tooltip,
-} from '@material-ui/core'
+} from '@mui/material'
 import { capitalize, getCiudades } from '../../../lib/utils'
 import { useDispatch, useSelector } from 'react-redux'
 import {

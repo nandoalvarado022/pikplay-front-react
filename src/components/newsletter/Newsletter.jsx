@@ -1,4 +1,4 @@
-import { Button, TextField } from '@material-ui/core'
+import { Button, TextField } from '@mui/material'
 import styles from './newsletter.module.scss'
 
 const handleSuscripcion = () => {

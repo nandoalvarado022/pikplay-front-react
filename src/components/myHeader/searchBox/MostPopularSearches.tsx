@@ -1,6 +1,6 @@
 import React from 'react'
-import Chip from '@material-ui/core/Chip'
-import { Avatar } from '@material-ui/core'
+import Chip from '@mui/material/Chip'
+import { Avatar } from '@mui/material'
 import styles from '../styles.module.scss'
 
 export const MostPopularSearches = ({ setInputText }) => {

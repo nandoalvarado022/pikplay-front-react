@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../../src/components/layout/Layout'
-import ReactMarkdown from 'react-markdown/with-html'
+// import ReactMarkdown from 'react-markdown/with-html'
 // eslint-disable-next-line react/display-name
 export default () => {
     const html = `<div>
@@ -175,7 +175,7 @@ export default () => {
         'http://pikajuegos.com/publicacion/lista-precios-nintendo-switch-actualizada'
     return (
         <Layout meta_title={title} title={title} descripcion={title} meta_url={url}>
-            <ReactMarkdown source={html} escapeHtml={false}></ReactMarkdown>
+            {html}
         </Layout>
     )
 }

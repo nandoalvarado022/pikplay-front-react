@@ -14,7 +14,7 @@ import {
   Tabs,
   TextField,
   Typography,
-} from '@material-ui/core'
+} from '@mui/material'
 import { Doughnut } from 'react-chartjs-2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faRocket } from '@fortawesome/free-solid-svg-icons'
