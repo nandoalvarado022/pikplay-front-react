@@ -44,7 +44,7 @@ const DetalleProducto = ({
     sale_price,
     slug,
     title,
-  } = datosPublicacion
+  } = datosPublicacion || {}
 
   const ref_descripcion_imagen = useRef(null)
   let images = []
