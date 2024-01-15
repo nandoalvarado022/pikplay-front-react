@@ -15,7 +15,7 @@ import ImageGallery from 'react-image-gallery'
 import { Alert } from '@mui/material';
 import classNames from 'classnames'
 import Skeleton from '@mui/material/Skeleton'
-import SearchBox from './searchBox/searchBox'
+import SearchBox from './searchBox/SearchBox'
 import useSearch from './searchBox/useSearch'
 import styles from './styles.module.scss' // eslint-disable-line
 
