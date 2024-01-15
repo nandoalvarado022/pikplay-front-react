@@ -1,5 +1,5 @@
 import React from 'react'
-import ImageProfile from '../../../../components/imageProfile/ImageProfile'
+import ImageProfile from '../../../../src/components/imageProfile/ImageProfile'
 import styles from './styles.module.scss'
 
 const Reviews = () => {

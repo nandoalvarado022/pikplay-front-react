@@ -1,8 +1,7 @@
 import React from 'react'
-import Layout from '../../components/layout/Layout'
-import { getFeed, capitalize } from '../../lib/utils'
+import Layout from '../../src/components/layout/Layout'
+import { getFeed, capitalize , getSubcategories, slugify } from '../../src/lib/utils'
 import Portada from '../index/components/portada/Portada'
-import { getSubcategories, slugify } from '../../lib/utils'
 
 class SubcategoryPage extends React.Component {
   static async getInitialProps({ req, query }) {

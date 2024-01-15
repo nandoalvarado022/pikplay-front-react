@@ -6,7 +6,6 @@ import CouponBox from '../../src/components/couponBox/CouponBox'
 import ImageProfile from '../../src/components/imageProfile/ImageProfile'
 import UserNotifications from '../../src/components/userNotifications/UserNotifications'
 import VARS from '../../src/lib/variables'
-import styles from './perfil.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   Box,
@@ -31,6 +30,7 @@ import { useSelector } from 'react-redux'
 import Challenges from '../../src/components/challenges/Challenges'
 import CoinIcon from '../../src/components/CoinIcon/CoinIcon'
 import ProfileSummaryExperience from '../../src/components/profileSummaryExperience/ProfileSummaryExperience'
+import styles from './perfil.module.scss'
 
 const { IS_MOBILE } = VARS
 

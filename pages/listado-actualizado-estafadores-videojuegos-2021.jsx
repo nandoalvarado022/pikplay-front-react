@@ -1,5 +1,5 @@
-import Card from '../components/card/Card'
-import Layout from '../components/layout/Layout'
+import Card from '../src/components/card/Card'
+import Layout from '../src/components/layout/Layout'
 
 const Page = () => {
   return (

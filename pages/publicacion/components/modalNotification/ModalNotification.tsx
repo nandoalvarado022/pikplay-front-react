@@ -3,10 +3,10 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import { Button as ButtonMat } from '@material-ui/core'
 import DialogActions from '@material-ui/core/DialogActions'
-import CoinIcon from '../../../../components/CoinIcon/CoinIcon'
-import Articles from '../../../../components/articles/Articles'
+import CoinIcon from '../../../../src/components/CoinIcon/CoinIcon'
+import Articles from '../../../../src/components/articles/Articles'
+import Button from '../../../../src/components/button/Button'
 import styles from './styles.module.scss'
-import Button from '../../../../components/button/Button'
 
 interface ModalNotificationProps {
   isOpen: boolean

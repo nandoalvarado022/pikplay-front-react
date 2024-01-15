@@ -1,14 +1,14 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import Layout from '../../components/layout/Layout'
-import styles from './styles.module.scss'
-import ImageProfile from '../../components/imageProfile/ImageProfile'
-import { ResultsBox } from '../../components/myHeader/searchBox/ResultsBox'
-import Card from '../../components/card/Card'
-import { getHome } from '../../lib/utils'
-import Button from '../../components/button/Button'
+import Layout from '../../src/components/layout/Layout'
+import ImageProfile from '../../src/components/imageProfile/ImageProfile'
+import { ResultsBox } from '../../src/components/myHeader/searchBox/ResultsBox'
+import Card from '../../src/components/card/Card'
+import { getHome } from '../../src/lib/utils'
+import Button from '../../src/components/button/Button'
 import { Avatar, Chip } from '@material-ui/core'
 import Reviews from './components/Reviews/Reviews'
+import styles from './styles.module.scss'
 
 const Usuario = props => {
   const { products } = props

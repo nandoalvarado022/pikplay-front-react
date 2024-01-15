@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStore } from '@fortawesome/free-solid-svg-icons'
 import { Tooltip } from '@material-ui/core'
 import styles from './styles.module.scss'
-import { getCiudades } from '../../lib/utils'
+import { getCiudades } from '../../src/lib/utils'
 
 const Places = () => {
   const places = [

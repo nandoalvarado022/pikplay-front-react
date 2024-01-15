@@ -1,6 +1,6 @@
-import Layout from '../../components/layout/Layout'
-import Transacciones from '../../components/transacciones/Transacciones'
-import { validateLoginToken } from '../../lib/utils'
+import Layout from '../../src/components/layout/Layout'
+import Transacciones from '../../src/components/transacciones/Transacciones'
+import { validateLoginToken } from '../../src/lib/utils'
 
 export default function TransaccionesContainer(props) {
   const url = 'https://pikajuegos.com/transacciones'

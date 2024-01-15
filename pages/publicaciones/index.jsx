@@ -1,6 +1,7 @@
-import Layout from '../../components/layout/Layout'
-import Publicaciones from '../../components/publicaciones/Publicaciones'
-import { validateLoginToken } from '../../lib/utils'
+import React from 'react'
+import Layout from '../../src/components/layout/Layout'
+import Publicaciones from '../../src/components/publicaciones/Publicaciones'
+import { validateLoginToken } from '../../src/lib/utils'
 
 export default function MyPublications(props) {
   return (

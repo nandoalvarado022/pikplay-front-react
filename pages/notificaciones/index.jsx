@@ -1,5 +1,5 @@
-import Layout from '../../components/layout/Layout'
-import UserNotifications from '../../components/userNotifications/UserNotifications'
+import Layout from '../../src/components/layout/Layout'
+import UserNotifications from '../../src/components/userNotifications/UserNotifications'
 
 const NotificacionesPage = () => {
   return (

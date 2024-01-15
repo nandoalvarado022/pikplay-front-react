@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Router from 'next/router'
 import toastr from 'toastr'
-import Layout from '../../components/layout/Layout'
-import { getFeed } from '../../lib/utils'
+import Layout from '../../src/components/layout/Layout'
+import { getFeed } from '../../src/lib/utils'
 import ModalCheckout from './components/modalCheckout/ModalCheckout'
 import { connect } from 'react-redux'
 import ProductDetail from './components/productDetail/ProductDetail'
 import ModalNotification from './components/modalNotification/ModalNotification'
-import Product from '../../interfaces/Product'
+import Product from '../../src/interfaces/Product'
 
 interface PublicacionPageProps {
   datosPublicacion: Product

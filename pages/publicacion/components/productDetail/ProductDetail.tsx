@@ -1,17 +1,17 @@
 /* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
 import React, { useRef } from 'react'
-import Button from '../../../../components/button/Button'
-import CoinsByBuy from '../../../../components/coinsByBuy/CoinsByBuy'
-import Footer from '../../../../components/footer/Footer'
+import Button from '../../../../src/components/button/Button'
+import CoinsByBuy from '../../../../src/components/coinsByBuy/CoinsByBuy'
+import Footer from '../../../../src/components/footer/Footer'
 import Grow from '@material-ui/core/Grow'
 import ImageGallery from 'react-image-gallery'
-import styles from './styles.module.scss'
-import { formatNumber } from '../../../../lib/utils'
+import { formatNumber } from '../../../../src/lib/utils'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
-import Author from '../../../../components/card/Author'
-import Product from '../../../../interfaces/Product'
+import Author from '../../../../src/components/card/Author'
+import Product from '../../../../src/interfaces/Product'
+import styles from './styles.module.scss'
 
 interface Props {
   apply_cashback

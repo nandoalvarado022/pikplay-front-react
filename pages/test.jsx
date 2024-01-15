@@ -1,7 +1,7 @@
 import React from 'react'
-import Checkout from '../components/checkout/Checkout'
+import Checkout from '../src/components/checkout/Checkout'
 import dynamic from 'next/dynamic'
-import Layout from '../components/layout/Layout'
+import Layout from '../src/components/layout/Layout'
 import LiteYouTubeEmbed from 'react-lite-youtube-embed'
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 

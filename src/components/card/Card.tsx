@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Grow from '@material-ui/core/Grow'
 import { capitalize, formatNumber, getCiudades } from '../../lib/utils'
 import { useQuery, gql } from '@apollo/client'
-import styles from './card.module.scss'
 import Author from './Author'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -16,6 +15,7 @@ import classNames from 'classnames'
 import { useSelector } from 'react-redux'
 import Image from 'next/image'
 import Product from '../../interfaces/Product'
+import styles from './card.module.scss'
 
 const Card = (props: Product) => {
   const {

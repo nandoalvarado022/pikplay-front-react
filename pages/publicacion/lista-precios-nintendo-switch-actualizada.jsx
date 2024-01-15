@@ -1,7 +1,9 @@
-import Layout from '../../components/layout/Layout'
+import React from 'react'
+import Layout from '../../src/components/layout/Layout'
 import ReactMarkdown from 'react-markdown/with-html'
+// eslint-disable-next-line react/display-name
 export default () => {
-  const html = `<div>
+    const html = `<div>
         <style>
           td{
             padding: 8px;
@@ -167,13 +169,13 @@ export default () => {
         <p>&nbsp;</p>
         <p><span style="vertical-align: inherit;"><span style="vertical-align: inherit;"><br /><br /></span></span></p>
     </div>`
-  const title =
-    'Listado de precios de los juegos mas top de nintendo switch, nuevos y usados. (Actulización semanal)'
-  const url =
-    'http://pikajuegos.com/publicacion/lista-precios-nintendo-switch-actualizada'
-  return (
-    <Layout meta_title={title} title={title} descripcion={title} meta_url={url}>
-      <ReactMarkdown source={html} escapeHtml={false}></ReactMarkdown>
-    </Layout>
-  )
+    const title =
+        'Listado de precios de los juegos mas top de nintendo switch, nuevos y usados. (Actulización semanal)'
+    const url =
+        'http://pikajuegos.com/publicacion/lista-precios-nintendo-switch-actualizada'
+    return (
+        <Layout meta_title={title} title={title} descripcion={title} meta_url={url}>
+            <ReactMarkdown source={html} escapeHtml={false}></ReactMarkdown>
+        </Layout>
+    )
 }
