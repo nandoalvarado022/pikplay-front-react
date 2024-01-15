@@ -28,7 +28,7 @@ import { Alert } from '@mui/material';
 import classNames from 'classnames'
 import { useSelector } from 'react-redux'
 import Challenges from '../../src/components/challenges/Challenges'
-import CoinIcon from '../../src/components/CoinIcon/CoinIcon'
+import CoinIcon from '../../src/components/coinIcon/CoinIcon'
 import ProfileSummaryExperience from '../../src/components/profileSummaryExperience/ProfileSummaryExperience'
 import styles from './perfil.module.scss'
 

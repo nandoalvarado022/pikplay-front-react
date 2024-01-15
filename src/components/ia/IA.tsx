@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Button from '../button/Button'
 import ReactTyped from "react-typed"
-import CoinIcon from '../CoinIcon/CoinIcon'
+import CoinIcon from '../coinIcon/CoinIcon'
 import { formatNumber } from '../../lib/utils'
 import { useIAStore } from '../../store/IA'
 import styles from './styles.module.scss'

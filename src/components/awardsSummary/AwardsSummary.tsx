@@ -5,7 +5,7 @@ import confetti from 'canvas-confetti'
 import ReactTyped from 'react-typed'
 import styles from './styles.module.scss'
 import { zIndex } from '@mui/material/styles';
-import CoinIcon from '../CoinIcon/CoinIcon';
+import CoinIcon from '../coinIcon/CoinIcon';
 import Button from '../button/Button'
 import { animatePrince } from '../../lib/utils'
 import classNames from 'classnames';

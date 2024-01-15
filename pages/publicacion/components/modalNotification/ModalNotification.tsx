@@ -3,7 +3,7 @@
 // import DialogTitle from '@mui/material/DialogTitle'
 // import { Button as ButtonMat } from '@mui/material'
 // import DialogActions from '@mui/material/DialogActions'
-// import CoinIcon from '@/components/CoinIcon/CoinIcon'
+// import CoinIcon from '@/components/coinIcon/CoinIcon'
 // import Articles from '@/components/articles/Articles'
 // import Button from '@/components/button/Button'
 // import styles from './styles.module.scss'

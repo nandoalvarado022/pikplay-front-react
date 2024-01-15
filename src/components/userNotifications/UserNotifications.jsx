@@ -19,7 +19,7 @@ import { Tooltip } from '@mui/material'
 import moment from 'moment'
 import Link from 'next/link'
 import Router from 'next/router'
-import CoinIcon from '../CoinIcon/CoinIcon'
+import CoinIcon from '../coinIcon/CoinIcon'
 import AwardsSummary from '../awardsSummary/AwardsSummary'
 
 const { motion } = require('framer-motion')

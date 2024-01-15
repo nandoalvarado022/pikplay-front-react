@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../../components/button/Button'
-import CoinIcon from '../../components/CoinIcon/CoinIcon';
+import CoinIcon from '../../components/coinIcon/CoinIcon';
 
 const Height = "160px"
 const HtmlMessage = <div>
