@@ -1,4 +1,4 @@
-import CoinIcon from '@components/CoinIcon/CoinIcon'
+import CoinIcon from '../coinIcon/CoinIcon'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 import styles from './styles.module.scss'
