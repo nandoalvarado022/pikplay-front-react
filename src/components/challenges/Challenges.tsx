@@ -1,14 +1,12 @@
 import React from 'react'
-
-import styles from './challenges.module.scss'
 import { useQuery } from '@apollo/client'
-import { GET_CHALLENGES } from '../../lib/utils.jsx'
+import { GET_CHALLENGES } from '../../lib/utils'
 import Coins from '../previewUser/old Coins'
-
 import Skeleton from '@mui/material/Skeleton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import Button from '../button/Button'
+import styles from './challenges.module.scss'
 
 const Challenges = () => {
   const { data, loading } = useQuery(GET_CHALLENGES, {
