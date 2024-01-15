@@ -92,6 +92,12 @@
             .list {
                 display: flex;
                 flex-direction: column;
+
+                background: #ffffffe6;
+                border-radius: 0px 20px 20px 30px;
+                color: black;
+                font-size: 15px;
+                padding: 10px 10px 20px 20px;
                 .user {
                     text-align: right;
                 }
@@ -101,9 +107,12 @@
                 text-decoration: underline;
             }
             .buttons {
-                // display: flex;
                 justify-content: end;
                 margin: 20px 10px 0 10px;
+                button {
+                    border: 1px solid #d0d0d0;
+                    color: #19596b;
+                }
             }
             input {
                 background: transparent;

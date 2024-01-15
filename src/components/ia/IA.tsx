@@ -36,14 +36,14 @@ const IA = (props) => {
                 Bienvenido a <b>Pikplay Colombia</b>
                 <div className={styles.hide} onClick={() => setIsvisible(false)}>x</div>
             </div>
-            <div className={styles.text} style={{ height: containerHeight }}>
+            <div className={styles.text}>
+                {/* style={{ height: containerHeight }} */}
                 <div className={styles.list}>
                     {IAHTMLMessage}
                     {IAMessage}
-                </div>
-
-                <div className={styles.buttons}>
-                    {IAOptions}
+                    <div className={styles.buttons}>
+                        {IAOptions}
+                    </div>
                 </div>
             </div>
             <div className={styles.character}>

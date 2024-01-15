@@ -6,7 +6,7 @@ import { getFeed } from '../../src/lib/utils'
 import ModalCheckout from './components/modalCheckout/ModalCheckout'
 import { connect } from 'react-redux'
 import ProductDetail from './components/productDetail/ProductDetail'
-import ModalNotification from './components/modalNotification/ModalNotification'
+// import ModalNotification from './components/modalNotification/ModalNotification'
 import Product from '../../src/interfaces/Product'
 
 interface PublicacionPageProps {
