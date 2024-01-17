@@ -8,6 +8,7 @@ import getChallenges from './mocks/get/getChallenges'
 import createTransaction from './mocks/post/createTransaction'
 import getCompetitions from './mocks/get/getCompetitions'
 import updateExperience from './mocks/post/updateExperience'
+import getCompetition_Detail from './mocks/get/getCompetition_Detail'
 
 export default function handler(req, res) {
   const operationName = req.headers?.['operation-name']
@@ -16,6 +17,9 @@ export default function handler(req, res) {
     : {}
 
   switch (operationName) {
+    case 'competitionDetail':
+      res.status(200).json(getCompetition_Detail)
+      break
     case 'updateExperience':
       res.status(200).json(updateExperience)
       break

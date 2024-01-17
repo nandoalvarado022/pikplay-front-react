@@ -4,12 +4,14 @@ import React, { useState } from 'react'
 import LoginInterface from './LoginInterface'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
+import { useSystemStore } from '../../store/system'
 
 function Login(props) {
+  const { env } = useSystemStore((state => state))
   const router = useRouter()
   const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState(false)
-  const [isHuman, setIsHuman] = useState(false)
+  const [isHuman, setIsHuman] = useState(env == 'dev' ? true : false)
   const [isCodeSended, setIsCodeSended] = useState(false)
   const [phone, setPhone] = useState(null)
   const [buttonText, setButtonText] = useState('Enviar código')
@@ -71,7 +73,7 @@ function Login(props) {
     }
   `
 
-  const [dispatchLogin, {}] = useMutation(LOGIN_MUTATION)
+  const [dispatchLogin, { }] = useMutation(LOGIN_MUTATION)
 
   const handleEnviar = async () => {
     setButtonText('Enviando...')
@@ -117,6 +119,7 @@ function Login(props) {
     <LoginInterface
       {...{
         buttonText,
+        env,
         isCodeSended,
         isHuman,
         isOpen,

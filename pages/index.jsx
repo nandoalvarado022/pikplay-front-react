@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 
 const Index = props => {
-  const { action, feed } = props
+  const { action, env, feed } = props
   const descripcion =
     'Pikplay es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas e independientes de alta confiabilidad ofreciendo videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch con los mejores precios del mercado en Colombia'
   const image = ''
@@ -43,7 +43,12 @@ const Index = props => {
   }, [])
 
   return (
-    <Layout image={image} descripcion={descripcion} title={title} url={url}>
+    <Layout
+      descripcion={descripcion}
+      env={env}
+      image={image}
+      title={title}
+      url={url}>
       <Portada feed={feed} />
       {/* <Testimonials /> */}
     </Layout>
@@ -51,10 +56,12 @@ const Index = props => {
 }
 
 Index.getInitialProps = async ctx => {
+  const env = process.env.ENVIRONMENT
   const action = ctx.query?.action
   const isSSR = typeof window === 'undefined'
   const feed = await getHome({ isSSR, origin: 'indexPage' })
   return {
+    env,
     action,
     feed,
   }

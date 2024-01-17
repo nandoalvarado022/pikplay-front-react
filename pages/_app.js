@@ -4,11 +4,11 @@ import graphqlClient from '../src/lib/graphqlClient'
 import { ApolloProvider } from '@apollo/client'
 import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
-import { createTheme, ThemeProvider, StyledEngineProvider, adaptV4Theme } from '@mui/material';
 import { persistStore } from 'redux-persist'
 import { useStore } from '../src/lib/store'
 import { getScreenOrientation, versions } from '../src/lib/utils'
 import Loading from '../src/components/loading/Loading'
+import * as amplitude from '@amplitude/analytics-browser'
 import '../src/styles/globalStyles.scss'
 
 const MyApp = props => {
@@ -19,20 +19,11 @@ const MyApp = props => {
     persistor.persist()
   })
 
-  const theme = createTheme(adaptV4Theme({
-    palette: {
-      primary: {
-        main: '#c93530',
-      },
-      secondary: {
-        main: '#1b95b3',
-      },
-    },
-  }))
-
   useEffect(() => {
-    getScreenOrientation(setOrientation);
+    // Amplitude
+    amplitude.init('cb63bafbeb6b78683453bb848954aa1a');
 
+    getScreenOrientation(setOrientation);
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles) {
@@ -85,25 +76,10 @@ const MyApp = props => {
       <ApolloProvider client={graphqlClient}>
         {/* <Loading /> */}
         {/* Orientation: {orientation} */}
-        <Component {...pageProps} key={router.name} />
+        <Component {...pageProps} amplitude={amplitude} key={router.name} />
       </ApolloProvider>
     </Provider>
   )
-
-  // return <div>
-  //   {process.browser ? <MuiThemeProvider theme={theme}>
-  //     <Provider store={store}>
-  //       <PersistGate persistor={persistor}>
-  //         <ApolloProvider client={graphqlClient}>
-  //           <Loading />
-  //           <Component {...pageProps} key={router.name} />
-  //         </ApolloProvider>
-  //       </PersistGate>
-  //     </Provider>
-  //   </MuiThemeProvider>
-  //     : <div />
-  //   }
-  // </div>
 }
 
 export default MyApp

@@ -10,6 +10,12 @@
         }
     }
 
+    .CompetitionDetail {
+        p {
+            text-align: center;
+        }
+    }
+
     .Detail {
         article {
             background: linear-gradient(90deg, #6098fb 0%, #76a2ea 100%);
@@ -29,15 +35,17 @@
                 background: linear-gradient(90deg, #fab674 0%, #efba89 100%);
             }
         }
-        .contentOptions {
+        .contentItems {
             align-items: center;
             justify-content: center;
-            .option {
+            .item {
                 border: dashed 2px #3095b3;
-                margin: 5px;
+                border-radius: 8px;
+
                 cursor: pointer;
                 background: #2eb4a769;
                 height: 40px;
+                margin: 5px;
                 width: 40px;
 
                 display: flex;
@@ -47,11 +55,12 @@
                     background: #ff794e;
                     border: 2px #ff794e solid;
                     color: white;
-                    display: block;
-                    font-size: 12px;
-                    height: 60px;
-                    text-align: center;
-                    width: 60px;
+                    // color: white;
+                    // display: block;
+                    // font-size: 12px;
+                    // height: 60px;
+                    // text-align: center;
+                    // width: 60px;
                 }
             }
         }

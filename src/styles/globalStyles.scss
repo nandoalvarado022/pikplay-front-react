@@ -10,6 +10,18 @@
     format('truetype');
 }
 
+.content_enviroment{
+  background: black;
+  border-radius: 0 0 4px;
+  color: green;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 2px;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
 input,
 textarea,
 button,
@@ -147,7 +159,7 @@ button.image-gallery-thumbnail {
 .page h2.main {
   border-bottom: 2px solid #c93530;
   border-radius: 0 10px 0 10px;
-  margin: 0 auto;
+  margin: 0 auto 20px;
   text-align: center;
   top: 0px;
   width: 300px;

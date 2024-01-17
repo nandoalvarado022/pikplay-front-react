@@ -11,6 +11,7 @@ import Link from 'next/link'
 
 export default function LoginInterface({
   buttonText,
+  env,
   isCodeSended,
   isHuman,
   isOpen,
@@ -66,14 +67,16 @@ export default function LoginInterface({
               fullWidth
             />
           </div>
+
           {!isCodeSended && (
             <center className='m-t-10'>
-              <ReCAPTCHA
+              {env != 'dev' && <ReCAPTCHA
                 sitekey='6Ldyz98eAAAAAFCJEbBSdSRqNu4Kn1XqZugCi9Qg'
                 onChange={onChangeReCaptcha}
-              />
+              />}
             </center>
           )}
+
           {isCodeSended && (
             <>
               <TextField

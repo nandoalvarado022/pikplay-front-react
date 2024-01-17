@@ -33,6 +33,7 @@ const ConcursosPage = () => {
         <div className={styles.CompetitionsComponent}>
             <Layout title="Concursos">
                 <section className={`page`}>
+                    <h2 className='Card main'>Concursos</h2>
                     <Card>
                         <Tabs
                             value={value}

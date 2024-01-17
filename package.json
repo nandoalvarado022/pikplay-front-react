@@ -16,6 +16,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@amplitude/analytics-browser": "^2.3.8",
     "@apollo/client": "3.2.9",
     "@datadog/browser-rum": "^4.46.0",
     "@emotion/react": "^11.11.3",

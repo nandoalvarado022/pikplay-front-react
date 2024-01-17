@@ -107,11 +107,12 @@
                 text-decoration: underline;
             }
             .buttons {
+                display: flex;
                 justify-content: end;
                 margin: 20px 10px 0 10px;
                 button {
-                    border: 1px solid #d0d0d0;
-                    color: #19596b;
+                    // border: 1px solid #d0d0d0;
+                    // color: #19596b;
                 }
             }
             input {
