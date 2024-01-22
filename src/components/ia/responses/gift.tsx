@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from '../../components/button/Button'
+import Button from '../../button/Button'
 
-const Message = `Que edad tiene la persona a la cual le quieres dar el obsequio?`
+const Message = `Que edad tiene la <span class='highlighted-2'>persona</span> a la cual le quieres dar el <span class='highlighted'>obsequio?</span>`
 const Expresion = 'loved'
 const Height = "160px"
 const Options = (handleUserMessage, set) => {

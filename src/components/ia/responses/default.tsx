@@ -1,11 +1,7 @@
 import React from 'react';
-import Button from '../../components/button/Button'
-import { formatNumber } from '../../lib/utils';
+import Button from '../../button/Button'
 
-const pikcoinTRM = 1200
-const Message = `Hola! en que te puedo ayudar? <br/> 
-Precio de la <b>Pikcoin</b> de esta semana:<br />
-$${formatNumber(pikcoinTRM)}`
+const Message = `Hola! en que te puedo ayudar? <br/>`
 
 const Expresion = 'neutral'
 const Options = ({ handleUserMessage, set }) => {

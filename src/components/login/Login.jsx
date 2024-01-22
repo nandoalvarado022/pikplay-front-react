@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import LoginInterface from './LoginInterface'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
-import { useSystemStore } from '../../store/system'
+import { useSystemStore } from '../../hooks/useSystem'
 
 function Login(props) {
   const { env } = useSystemStore((state => state))

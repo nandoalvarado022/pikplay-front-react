@@ -1,39 +1,23 @@
-// @ts-nocheck
-
-import React, { useState } from 'react'
-import { useIAStore } from '../../../src/store/IA'
+import React, { useEffect, useState } from 'react'
+import { useIAStore } from '../../../src/components/ia/IAstore'
 import CompetitionDetail from './Detail'
 import styles from '../styles.module.scss'
 import Button from '../../../src/components/button/Button'
+import useCompetitions from '../useCompetitions'
 
 const { motion } = require('framer-motion')
 
-const competitionsList = [
-  {
-    availableNumbers: 10,
-    author: {
-      name: "Juan Perez",
-    },
-    image: "/images/others/ps5.png",
-    title: "Rifa de Nintendo Switch Oled 2024 + 2 juegos a elección",
-    right: "-80px"
-  },
-  {
-    availableNumbers: 87,
-    author: {
-      name: "Juancho Fenix",
-    },
-    image: "/images/others/control-switch.png",
-    title: "Control Joy-Con - Rojo Neón y Azul Neón",
-    right: "-120px"
-  }
-]
-
 const CompetitionsList = () => {
-  const [competitionId, setCompetitionId] = useState<number>(0);
+  const { competitions, getCompetitions } = useCompetitions()
+  const [competitionId, setCompetitionId] = useState(0);
+
   const goToDetail = () => {
     setCompetitionId(1);
   }
+
+  useEffect(() => {
+    getCompetitions()
+  }, [])
 
   return <div className={styles.Detail}>
     {competitionId == 0
@@ -41,7 +25,7 @@ const CompetitionsList = () => {
       <div>
         <div className={styles.competitionsList}>
           {
-            competitionsList.map((competition, ind) => (
+            competitions.map((competition, ind) => (
               <motion.article
                 className='Card'
                 key={ind}
@@ -55,11 +39,11 @@ const CompetitionsList = () => {
                 <h2>{competition.title}</h2>
                 <div>
                   Números <br />
-                  disponibles: {competition.availableNumbers}
+                  disponibles: {competition.available_numbers}
                 </div>
                 <p>
                   Organizador: <br />
-                  {competition.author.name}
+                  {competition.seller.name}
                 </p>
                 <img width={200} style={{ right: competition.right }} src={competition.image} />
               </motion.article>
@@ -73,11 +57,6 @@ const CompetitionsList = () => {
       </div>
     }
   </div>
-}
-
-type NumberBoxProps = {
-  name: string;
-  status: string;
 }
 
 export default CompetitionsList

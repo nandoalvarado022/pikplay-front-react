@@ -1,35 +1,21 @@
 import React, { useState } from 'react'
 import { create } from 'zustand'
-import { formatNumber } from '../lib/utils'
-import Button from '../components/button/Button'
-import CoinIcon from '../components/coinIcon/CoinIcon'
+import { formatNumber } from '../../lib/utils'
+import Button from '../button/Button'
+import CoinIcon from '../coinIcon/CoinIcon'
 import ReactTyped from 'react-typed'
 import Link from 'next/link'
 import { Message as IAMessageCompetition, Options as IAOptionsCompetition } from './responses/competition/competition'
-import { Message as IAMessageCompetition_Yes, Options as IAOptionsCompetition_Yes } from './responses/competition/yes'
-import { Message as IAMessageCompetition_List, Options as IAOptionsCompetition_List, Html as IAHtmlMessageCompetition_List } from './responses/competition/list'
+import { Message as IAMessageCompetition_Yes, Options as IAOptionsCompetition_Yes } from './responses/competition/yes/yes'
+import { Message as IAMessageCompetition_Yes_Taken, Options as IAOptionsCompetition_Yes_Taken } from './responses/competition/yes/taken'
+import { Message as IAMessageCompetition_List, Options as IAOptionsCompetition_List } from './responses/competition/list'
 import { Message as IAMessageDefault, Options as IAOptionsDefault } from './responses/default'
 import { Message as IAMessageGift, Options as IAOptionsGift, Expresion as IAExpressionGift, Height as IAcontainerHeightGift } from './responses/gift'
 import { HtmlMessage as IAHtmlMessagePikcoins, Message as IAMessagePikcoins, Options as IAOptionsPikcoins, Height as IAcontainerHeightPikcoins } from './responses/pikcoins'
 
-interface State {
-  containerHeight: string,
-  IAOptions: React.ReactNode,
-  isVisible: boolean,
-  IAMessage: string,
-  IAExpression: string,
-  IAHTMLMessage: React.ReactNode,
-  handleUserMessage: (message: string) => void,
-  setIAMessage: (message: string) => void,
-  setIAOptions: (options: React.ReactNode) => void,
-  setIsvisible: (isVisible: boolean) => void,
-}
+const handleUserMessage = (message, set, options) => calculateResponse(message, set, options)
 
-const handleUserMessage = (message, set) => {
-  calculateResponse(message, set)
-}
-
-const calculateResponse = (mensaje, set) => {
+const calculateResponse = (mensaje, set, options) => {
   let IAMessageSelected
   let loadingOptions = ["Hmmm...", "Ya veo...", "Que podria ser...", "Ok, te entiendo..."]
   let seleccionAleatoria = loadingOptions[Math.floor(Math.random() * loadingOptions.length)]
@@ -40,21 +26,24 @@ const calculateResponse = (mensaje, set) => {
   let IAHTMLMessageSelected
 
   switch (mensaje) {
-
     case 'competition':
-      IAMessageSelected = IAMessageCompetition
+      IAMessageSelected = IAMessageCompetition(options)
       IAOptionsSelected = IAOptionsCompetition
       break;
 
     case 'competition/list':
       IAMessageSelected = IAMessageCompetition_List
       IAOptionsSelected = IAOptionsCompetition_List
-      IAHTMLMessageSelected = IAHtmlMessageCompetition_List
       break;
 
     case 'competition/yes':
       IAMessageSelected = IAMessageCompetition_Yes
       IAOptionsSelected = IAOptionsCompetition_Yes
+      break;
+
+    case 'competition/yes/taken':
+      IAMessageSelected = IAMessageCompetition_Yes_Taken
+      IAOptionsSelected = IAOptionsCompetition_Yes_Taken
       break;
 
     case 'regalo/10-15':
@@ -135,11 +124,11 @@ const calculateResponse = (mensaje, set) => {
   }
 
   // Applying actions
-  set({ IAMessage: loadingMessage })
+  set({ IAMessage: loadingMessage, IAHTMLMessage: null }) // Seeting the loading message
   setTimeout(() => {
     set({
       IAMessage: <ReactTyped strings={[IAMessageSelected]} typeSpeed={20} />,
-      IAOptions: middleWare(IAOptionsSelected, set),
+      IAOptions: optionsMiddleWare(IAOptionsSelected, set, options),
       IAExpression: IAExpressionSelected,
       IAHTMLMessage: IAHTMLMessageSelected,
       containerHeight: containerHeightSelected,
@@ -147,19 +136,25 @@ const calculateResponse = (mensaje, set) => {
   }, 1000)
 }
 
-const middleWare = (Component, set) => {
-  return <Component handleUserMessage={handleUserMessage} set={set} />
+const optionsMiddleWare = (Component, set, options = {}) => {
+  return <Component
+    handleUserMessage={handleUserMessage}
+    options={options}
+    set={set}
+  />
 }
 
-export const useIAStore = create<State>((set, get) => ({
+export const useIAStore = create((set, get) => ({
   containerHeight: "210px",
   IAOptions: <></>,
   isVisible: false,
   IAMessage: '',
   IAExpression: 'neutral',
   IAHTMLMessage: <></>,
-  handleUserMessage: (message) => handleUserMessage(message, set),
+  numberChosen: null,
+  handleUserMessage: (message, options) => handleUserMessage(message, set, options),
   setIAMessage: (message) => set({ IAMessage: message }),
   setIAOptions: (options) => set({ IAOptions: options }),
   setIsvisible: (isVisible) => set({ isVisible: isVisible }),
+  setnumberChosen: (numberChosen) => set({ numberChosen: numberChosen }),
 }))

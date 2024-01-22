@@ -1,42 +1,61 @@
 import React, { useEffect, useState } from 'react'
-import { useIAStore } from '../../../src/store/IA'
+import { useIAStore } from '../../../src/components/ia/IAstore'
 import { Tooltip } from '@mui/material'
 import styles from '../styles.module.scss'
 import { set } from 'nprogress'
+import useCompetitions from '../useCompetitions'
 
 const CompetitionDetail = () => {
   const {
     setIsvisible,
-    handleUserMessage
+    handleUserMessage,
+    setnumberChosen
   } = useIAStore((state => state))
 
+  const { postCompetitionMember, getCompetitions, competitions } = useCompetitions()
   const quantityNumbers = 100;
   const [numbersList, setNumbersList] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
+  const numbersListTemplate = Array.from({ length: quantityNumbers }, (_, i) => i + 1).map((number) => (
+    { name: '', status: 'available', isPaid: false, number: null }
+  ))
+
   const handleClick = (number) => {
     setIsvisible(true)
-    handleUserMessage('competition')
+    setnumberChosen(number)
+    const options = { number, sellerPhone: '+573148567146', postCompetitionMember, competitionID: 3 }
+    handleUserMessage('competition', options)
+  }
+
+  const settingTakenNumbers = (competitions) => {
+    const _numbersList = [...numbersListTemplate]
+    competitions.find(item => item.id == 3).members.map(item => { // TODO: get competition id from url
+      _numbersList[item.number] = {
+        ...item,
+        status: 'blocked'
+      }
+    })
+    setNumbersList(_numbersList)
+    setIsLoading(false)
   }
 
   useEffect(() => {
-    const numbersListTemplate = Array.from({ length: quantityNumbers }, (_, i) => i + 1).map((number) => (
-      { name: '', status: 'available', isPaid: false, number: null }
-    ));
-    const _numbersList = [...numbersListTemplate]
-    fetch('http://localhost/api', {
-      headers: {
-        'operation-name': 'competitionDetail',
-      }
-    })
-      .then(data => data.json())
-      .then(({ data }) => {
-        data.map(item => {
-          _numbersList[item.number] = item
-        })
-        setNumbersList(_numbersList)
-        setIsLoading(false)
+    getCompetitions(3)
+      .then(competitions => { // TODO: get competition id from url
+        settingTakenNumbers(competitions)
       })
+
+    const myInterval = setInterval(() => {
+      getCompetitions(3)
+        .then(competitions => { // TODO: get competition id from url
+          settingTakenNumbers(competitions)
+        })
+    }, 10000)
+
+    return () => {
+      clearInterval(myInterval);
+    };
   }, [])
 
   return <div className={styles.CompetitionDetail}>
@@ -54,7 +73,7 @@ const CompetitionDetail = () => {
           <Tooltip title={`Reservar el número ${ind}`}>
             <div
               className={`${styles.item} ${styles[item.status]}`}
-              onClick={handleClick}
+              onClick={() => handleClick(ind)}
             >
               <div>{ind}</div>
               {/* <div>{item?.user?.name}</div> */}

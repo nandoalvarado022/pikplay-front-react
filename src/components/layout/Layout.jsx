@@ -18,7 +18,7 @@ import Link from 'next/link'
 import Loading from '../loading/Loading'
 import classNames from 'classnames'
 import IA from '../ia/IA'
-import { useSystemStore } from '../../store/system'
+import { useSystemStore } from '../../hooks/useSystem.js'
 
 toastr.options.timeOut = 10000
 
