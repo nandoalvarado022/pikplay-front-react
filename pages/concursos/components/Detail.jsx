@@ -59,8 +59,10 @@ const CompetitionDetail = () => {
   }, [])
 
   return <div className={styles.CompetitionDetail}>
-    <p>
+    <div className={`Card ${styles.seller}`}>
       <div>Organiza: <b>BluePanther's</b></div>
+    </div>
+    <p className='Card'>
       <div>Premio: Playstation 5</div>
       <div>Liberacion de cupos el sábado a las 2PM</div>
       <div>Total cupos restantes: 34</div>

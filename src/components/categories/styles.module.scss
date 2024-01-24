@@ -23,7 +23,12 @@
     @media screen and (max-width: 420px) {
       flex-wrap: wrap;
     }
+
     li {
+      list-style: none;
+    }
+
+    li.Category {
       cursor: pointer;
       list-style: none;
       padding: 0px 20px;
@@ -65,6 +70,12 @@
           width: 120px;
         }
       }
+    }
+
+    .Noti__PreviewUser__Content {
+      align-items: center;
+      display: flex;
+      justify-content: center;
     }
   }
 }

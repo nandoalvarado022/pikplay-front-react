@@ -1,4 +1,6 @@
 .ProfileSummaryExperience {
+    display: flex;
+
     .full_name {
         background: linear-gradient(45deg, #f4c376, #ba7821);
         border-radius: 10px 10px 0 0;
@@ -13,6 +15,18 @@
         padding: 10px;
         position: relative;
         width: 200px;
+        &:before {
+            background: #959595;
+            border-radius: inherit;
+            content: "";
+            height: 100%;
+            left: 6px;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: -1;
+        }
+
         .icons {
             display: flex;
             position: absolute;
@@ -26,18 +40,48 @@
             }
         }
     }
+
     .box {
-        position: relative;
-        padding: 20px 20px 0 20px;
-        border-radius: 20px;
         // background: linear-gradient(45deg, #3095b3, #126781);
         background: linear-gradient(45deg, #3095b359, #126781b5);
+        border-radius: 20px;
         box-shadow: inset 5px 5px 4px #505050;
         color: white;
         display: flex;
         margin-bottom: 20px;
+        padding: 20px 20px 0 20px;
+        position: relative;
+        width: 300px;
+        @media screen and (max-width: 420px) {
+            width: calc(100vw - 100px);
+        }
 
         &::before {
+            background: #959595;
+            border-radius: inherit;
+            content: "";
+            height: 100%;
+            left: 3px;
+            position: absolute;
+            top: -3px;
+            width: 100%;
+            z-index: -1;
+        }
+
+        .bg {
+            background-image: url(https://t4.ftcdn.net/jpg/03/85/05/53/360_F_385055380_RnAWgJUqaJzqgh8i3aeleBFULJkLoVM6.jpg);
+            // background-image: url(https://image.slidesdocs.com/responsive-images/background/purple-gradient-mosaic-character-wind-game-cartoon-powerpoint-background_7de580b73e__960_540.jpg);
+            border-radius: inherit;
+            content: "";
+            height: 100%;
+            left: 0;
+            opacity: 0.1;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        &::after {
             content: "";
             position: absolute;
             inset: 0;
@@ -52,36 +96,18 @@
             pointer-events: none;
         }
 
-        picture.profile_image {
-            align-items: center;
-            background: linear-gradient(180deg, #f4c376, #ba7821);
-            border-radius: 50%;
-            box-shadow: inset 3px 2px 4px #454545;
-            display: flex;
-            justify-content: center;
-            height: 120px;
-            margin: 0 auto;
-            width: 120px;
-            img {
-                border-radius: 50%;
-                height: calc(94%);
-                left: 1px;
-                position: relative;
-                width: calc(94%);
-            }
-        }
-
         .right {
             width: 380px;
         }
 
         .experience_status {
-            margin: 20px 0 40px 20px;
+            margin: 20px auto;
         }
 
         .fields {
             column-gap: 20px;
             display: flex;
+            flex-direction: column;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -89,10 +115,12 @@
         .label {
             background: #11495d;
             border-radius: 4px;
+            display: inline-block;
             margin: 10px 10px 20px 10px;
             padding: 2px 6px;
             position: relative;
-            display: inline-block;
+            text-align: right;
+
             .name {
                 font-size: 12px;
                 position: absolute;
@@ -108,15 +136,6 @@
                 top: 90px;
             }
         }
-    }
-
-    .tricks {
-        background: #0000004d;
-        border-radius: 4px;
-        box-shadow: 5px 5px #5c5c5c;
-        color: white;
-        font-size: 14px;
-        padding: 10px;
     }
 }
 
@@ -145,10 +164,12 @@
                 border-radius: 10px 0 10px 0;
                 bottom: 14px;
                 font-size: 12px;
-                font-weight: bold;
+                // font-weight: bold;
                 padding: 2px 4px;
                 position: absolute;
                 right: -20px;
+                text-align: center;
+                width: 90px;
             }
         }
     }

@@ -47,8 +47,8 @@ const Header = () => {
   // const premiumResult = results.length > 0 ? results[0] : null
 
   return (
-    <div id={styles.header}>
-      <ChangeCity handleCity={handleCity} />
+    <div id={styles.CustomHeader}>
+      {/* <ChangeCity handleCity={handleCity} /> */}
       <ul>
         {(!IS_MOBILE || (IS_MOBILE && !showSearchModal)) && (
           <Link href='/'>
@@ -67,12 +67,13 @@ const Header = () => {
             </span>
           </Link>
         )}
-        <SearchBox
+        {/* TODO Descomentar cuando se implementen los productos */}
+        {/* <SearchBox
           inputText={inputText}
           isLoading={isLoading}
           results={results}
           setInputText={setInputText}
-        />
+        /> */}
       </ul>
     </div>
   )

@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
-import ImageProfile from '../imageProfile/ImageProfile'
+import ProfileImage from '../profileImage/ProfileImage'
 import Link from 'next/link'
 import Login from '../login/Login'
 import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
 import Switch from '@mui/material/Switch'
 import CoinIcon from '../coinIcon/CoinIcon'
+import VARS from '../../lib/variables'
 
 import styles from './styles.module.scss'
-
-import VARS from '../../lib/variables'
 const { IS_MOBILE } = VARS
 
 const PreviewUser = () => {
@@ -35,7 +34,8 @@ const PreviewUser = () => {
       {user.id !== 0
         ? (
           <React.Fragment>
-            <ImageProfile
+            <ProfileImage
+              className="previewUser"
               handleClickImage={IS_MOBILE ? handleClickImage : null}
             />
             <div className={styles.coins} id="PreviewProfile--Coins">

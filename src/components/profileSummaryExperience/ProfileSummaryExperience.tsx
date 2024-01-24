@@ -6,6 +6,7 @@ import classNames from 'classnames'
 import CoinIcon from '../coinIcon/CoinIcon'
 import Insignias from '../insignias/Insignias'
 import Insignia from '../insignias/Insignia'
+import ProfileImage from '../profileImage/ProfileImage'
 import styles from './styles.module.scss'
 
 const ProfileSummaryExperience = (props) => {
@@ -22,68 +23,60 @@ const ProfileSummaryExperience = (props) => {
 
     return (
         <div className={classNames("ProfileSummaryExperience", { [styles.ProfileSummaryExperience]: true })}>
-            <div className={styles.full_name}>
-                <span>Nandosqui</span>
-                <div className={styles.icons}>
-                    <Tooltip title="Plataforma más utilizada">
-                        <img width={40} className={styles.platform} src="/images/icons/ps-icon.png" />
-                    </Tooltip>
-                    <Insignia data={{ id: "second", name: "On fire" }} />
-                </div>
-            </div>
-            <div className={styles.box}>
-                <div className={styles.left}>
-                    <picture className={styles.profile_image}>
-                        <img src="/images/users/user1.jpg" />
-                    </picture>
-                    <CoinIcon coins={10} textColor="white" />
-                    <Insignias />
-                </div>
-                <div className={styles.right}>
-                    <div className={styles.experience_status}>
-                        <ExperienceBar />
-                    </div>
-                    <div className={styles.fields}>
-                        <span className={styles.label}>
-                            <div className={styles.name}>Categoria</div>
-                            Bronce
-                        </span>
-                        <span className={styles.label}>
-                            <div className={styles.name}>Nivel</div>
-                            21
-                        </span>
-                        <span className={styles.label}>
-                            <div className={styles.name}>Compras</div>
-                            5
-                        </span>
-                        <span className={styles.label}>
-                            <div className={styles.name}>Ventas</div>
-                            2
-                        </span>
-                        <span className={styles.label}>
-                            <div className={styles.name}>Antiguedad</div>
-                            4 meses
-                        </span>
-                        <Tooltip TransitionComponent={Zoom} title="Última conexión">
-                            <span className={styles.label}>
-                                <div className={styles.name}>U.C.</div>
-                                Ayer
-                            </span>
+            <div>
+                <div className={styles.full_name}>
+                    <span>Nandosqui</span>
+                    <div className={styles.icons}>
+                        <Tooltip title="Plataforma más utilizada">
+                            <img width={40} className={styles.platform} src="/images/icons/ps-icon.png" />
                         </Tooltip>
+                        <Insignia data={{ id: "second", name: "On fire" }} />
                     </div>
-
                 </div>
-            </div>
+                <div className={styles.box}>
+                    <div className={styles.bg}></div>
+                    <div className={styles.left}>
+                        <ProfileImage />
+                        <br />
+                        <div className={styles.experience_status}>
+                            <ExperienceBar />
+                        </div>
+                        <CoinIcon coins={10} textColor="white" />
+                        <Insignias />
+                    </div>
+                    <div className={styles.right}>
 
-            <div className={styles.tricks}>
-                <p>
-                    Algúnos consejos para subir de categoria:
-                </p>
-                - Únete a grupos de tu interes, eso te dará puntos de experiencia sobre tu categoría.
-                <br />
-                <Link href="/articulo/pikcoins-que-son-y-como-redimir-cupones">
-                    <a>¿Que son las categorias en <b>Pikplay</b></a>
-                </Link>
+                        <div className={styles.fields}>
+                            <span className={styles.label}>
+                                <div className={styles.name}>Categoria</div>
+                                Bronce
+                            </span>
+                            <span className={styles.label}>
+                                <div className={styles.name}>Nivel</div>
+                                21
+                            </span>
+                            <span className={styles.label}>
+                                <div className={styles.name}>Compras</div>
+                                5
+                            </span>
+                            <span className={styles.label}>
+                                <div className={styles.name}>Ventas</div>
+                                2
+                            </span>
+                            <span className={styles.label}>
+                                <div className={styles.name}>Antiguedad</div>
+                                4 meses
+                            </span>
+                            <Tooltip TransitionComponent={Zoom} title="Última conexión">
+                                <span className={styles.label}>
+                                    <div className={styles.name}>U.C.</div>
+                                    Ayer
+                                </span>
+                            </Tooltip>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     )

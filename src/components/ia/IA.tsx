@@ -40,7 +40,7 @@ const IA = (props) => {
                 {/* style={{ height: containerHeight }} */}
                 <div className={styles.list}>
                     {IAHTMLMessage}
-                    {IAMessage}
+                    <p className={styles.IAMessage}>{IAMessage}</p>
                     <div className={styles.buttons}>
                         {IAOptions}
                     </div>

@@ -52,8 +52,8 @@ const CompetitionsList = () => {
       </div>
       :
       <div>
-        <Button color="blue" onClick={() => setCompetitionId(0)}>Volver</Button>
         <CompetitionDetail />
+        <Button color="blue" onClick={() => setCompetitionId(0)}>Volver</Button>
       </div>
     }
   </div>

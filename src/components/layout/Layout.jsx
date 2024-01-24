@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Button from '../button/Button'
-import Categorias from '../categorias/Categorias'
+import Categories from '../categories/Categories'
 import Head from 'next/head'
 import MenuMovil from '../menuMovil/MenuMovil'
-import MyHeader from '../myHeader/MyHeader.tsx'
+import CustomHeader from '../customHeader/CustomHeader.tsx'
 import NProgress from 'nprogress'
 import Notification from '../previewNotifications/index.jsx'
 import Router from 'next/router'
@@ -111,14 +111,14 @@ const Layout = (props) => {
       >
         <div className="content_enviroment">Enviroment: {env}</div>
         <main className={styles.main}>
-          <MyHeader />
+          <CustomHeader />
           {false && (
             <div className={styles.announcement}>
               Actualmente estamos en una versión piloto
             </div>
           )}
           <ToastContainer autoClose={5000} hideProgressBar={true} />
-          <Categorias scroll={false} />
+          <Categories scroll={false} />
           <Subcategories />
           <div className={styles.wrapperBanner}>
             <Link href='/articulo/pikcoins-que-son-y-como-redimir-cupones'>

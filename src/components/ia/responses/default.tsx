@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../../button/Button'
 
-const Message = `Hola! en que te puedo ayudar? <br/>`
+const Message = `Hola! en que te puedo ayudar?`
 
 const Expresion = 'neutral'
 const Options = ({ handleUserMessage, set }) => {

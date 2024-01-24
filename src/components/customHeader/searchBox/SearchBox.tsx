@@ -100,13 +100,6 @@ const SearchBox = ({ inputText, isLoading, results, setInputText }) => {
           </motion.div>
         )
       }
-      {
-        !IS_MOBILE &&
-        <>
-          <Notification />
-          <PreviewUser />
-        </>
-      }
     </div>
   )
 }

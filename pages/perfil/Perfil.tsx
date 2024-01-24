@@ -143,7 +143,6 @@ const Interface = ({
             >
               <Tab label='Resumen' {...a11yProps(0)} />
               <Tab label='Información del perfil' {...a11yProps(0)} />
-              <Tab label='Notificaciones' {...a11yProps(1)} />
               <Tab label='Intereses' {...a11yProps(1)} />
               <Tab label='Desafios' {...a11yProps(1)} />
             </Tabs>
@@ -231,19 +230,15 @@ const Interface = ({
             <Challenges />
           </TabPanel>
 
-          <TabPanel value={value} index={2}>
-            <UserNotifications />
-          </TabPanel>
-
           <TabPanel value={value} index={0}>
-            <ProfileSummaryExperience />
+            <div className={styles.ProfileSummaryExperience__UserNotifications__Content}>
+              <ProfileSummaryExperience />
+              <div className='Card' style={{ maxHeight: '410px', maxWidth: '420px', margin: 0 }}>
+                <UserNotifications />
+              </div>
+            </div>
           </TabPanel>
-
-          <div className='f-r'>
-            <CouponBox user={userData} />
-          </div>
         </div>
-
       </div>
     </section>
   )

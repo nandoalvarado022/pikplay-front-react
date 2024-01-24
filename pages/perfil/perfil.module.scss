@@ -31,7 +31,7 @@ section.perfil {
         width: 110px;
         text-transform: uppercase;
         &::before {
-          content: '';
+          content: "";
           height: 1px;
           width: 10px;
           background: #152c4469;
@@ -40,7 +40,7 @@ section.perfil {
           left: 0;
         }
         &::after {
-          content: '';
+          content: "";
           height: 1px;
           width: 10px;
           background: #152c4469;
@@ -94,7 +94,22 @@ section.perfil {
     margin-top: 20px;
     row-gap: 10px;
   }
+
   :global(.f-r) {
     display: flex;
+  }
+
+  .ProfileSummaryExperience__UserNotifications__Content {
+    display: flex;
+    justify-content: space-between;
+
+    @media screen and (max-width: 420px) {
+      flex-direction: column;
+    }
+
+    :global(.Card) {
+      margin: 10px 0px 0px;
+      padding: 0px;
+    }
   }
 }
