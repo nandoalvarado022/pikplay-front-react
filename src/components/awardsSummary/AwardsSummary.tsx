@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide } from "@mui/material";
-import Medals from '../medals/Medals'
 import confetti from 'canvas-confetti'
 import ReactTyped from 'react-typed'
 import styles from './styles.module.scss'
-import { zIndex } from '@mui/material/styles';
 import CoinIcon from '../coinIcon/CoinIcon';
 import Button from '../button/Button'
 import { animatePrince } from '../../lib/utils'
 import classNames from 'classnames';
 import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummaryExperience';
 import { motion, AnimatePresence } from "framer-motion"
-import SpecialButton from '../specialButton/SpecialButton';
 
 const AwardsSummary = ({ callback }) => {
 
@@ -69,7 +66,7 @@ const AwardsSummary = ({ callback }) => {
         callback(1)
     }
 
-    const message = "Recibiste 5 Pikcoins para redimir en productos de la tienda JuanchoFenix. ¡Felicitaciones!"
+    const message = `Recibiste <span class="yellow">5 Pikcoins</span> para redimir en productos de la tienda JuanchoFenix. <span class="blue">¡Felicitaciones!</span>`
     const handlePickRewardUp = () => {
         // Sumando coins al Coins del header
         const element = document.querySelector('#PreviewProfile--Coins .number-coins')
@@ -85,20 +82,43 @@ const AwardsSummary = ({ callback }) => {
     return (
         <>
             <div>
-                <div className={styles.title}>
+                <motion.div
+                    initial={{ y: '200px' }}
+                    animate={{
+                        y: 0,
+                    }}
+                    transition={{
+                        delay: .5
+                    }}
+                    className={styles.title}>
                     ¡Nueva liga!
-                </div>
-                <div className={styles.subtitle}>
+                </motion.div>
+                <motion.div
+                    initial={{ x: '-200px' }}
+                    animate={{
+                        x: 0,
+                    }}
+                    transition={{
+                        delay: .2
+                    }}
+                    className={styles.subtitle}>
                     BRONCE
-                </div>
-                <div className={styles.experienceGained}>
-                    <b>5%</b>
-                    &nbsp;
-                    Experiencia Obtenida
-                </div>
-                <div className={styles.image1}>
-                    <CoinIcon coins={gainedCoins} />
-                    {/* <Medals medal={"bronze"} /> */}
+                </motion.div>
+                <div className={styles.gifts}>
+                    <div className={styles.coinsGained}>
+                        <div className={styles.plusCoin}>
+                            {/* <FontAwesomeIcon icon={faPlus} /> */}
+                        </div>
+                        <CoinIcon coins={gainedCoins} />
+                    </div>
+
+                    <div className={styles.medalsGained}>
+                    </div>
+
+                    <div className={styles.experienceGained}>
+                        5%<br />
+                        experiencia
+                    </div>
                 </div>
             </div>
             <div className={styles.box}>
@@ -109,9 +129,18 @@ const AwardsSummary = ({ callback }) => {
             </div>
 
             <DialogActions>
-                <button className={styles.main_button} color="modal" onClick={handleUpdateExperience}>
-                    RECOGER PREMIOS...
-                </button>
+                <motion.div
+                    initial={{ x: '-500px' }}
+                    animate={{
+                        x: 0,
+                    }}
+                    transition={{
+                        delay: 2
+                    }}>
+                    <Button className={styles.main_button} color="blue" onClick={handleUpdateExperience}>
+                        RECOGER PREMIOS
+                    </Button>
+                </motion.div>
             </DialogActions>
         </>
     )
@@ -178,12 +207,12 @@ const PreviewProfileSummaryExperience = ({ callback, setSummaryAwardsOpen, gainE
     return <motion.div variants={variants}>
         <ProfileSummaryExperience gainExperience={gainExperience} />
         <DialogActions>
-            <button className={styles.main_button} onClick={() => callback(0)}>
-                Atras
-            </button>
-            <button className={styles.main_button}>
-                CONTINUAR...
-            </button>
+            <Button outline color="blue" className={styles.main_button} onClick={() => callback(0)}>
+                ATRAS
+            </Button>
+            <Button color="blue" className={styles.main_button}>
+                CONTINUAR
+            </Button>
         </DialogActions>
     </motion.div>
 }

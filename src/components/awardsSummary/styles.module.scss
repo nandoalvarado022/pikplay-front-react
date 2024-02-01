@@ -1,7 +1,21 @@
 .AwardsSummary {
     --main-color: rgba(0, 0, 0, 0.54);
+    &::before {
+        background: linear-gradient(45deg, #3acfd5, #3a8dd5);
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        border-bottom: 4px solid #167ac6;
+        content: "";
+        height: 120px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
     .bg_city {
-        background-image: url("/images/backgrounds/city.jpg");
+        // background-image: url("/images/backgrounds/city.jpg");
+        background-image: url("/images/backgrounds/campo-bg.jpeg");
         background-size: cover;
         height: 100%;
         width: 100%;
@@ -21,15 +35,11 @@
     }
 
     .main_button {
-        background: transparent;
-        border: none;
-        color: grey;
-        cursor: pointer;
-        font-size: 16px;
-        font-style: italic;
-        font-weight: bold;
-        margin: 10px auto 0;
-        // text-decoration: underline;
+        padding: 10px 0;
+        width: 100%;
+        button {
+            font-size: 14px;
+        }
     }
 
     .content {
@@ -61,30 +71,51 @@
             font-size: 32px;
         }
 
-        .experienceGained {
-            color: #00ab74;
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .image1 {
-            align-items: center;
+        .gifts {
             display: flex;
-            justify-content: center;
-            margin: 20px 0 50px;
-            :global(.Coins) {
+            justify-content: space-evenly;
+            margin: 40px auto 50px;
+
+            .experienceGained {
                 background: #ffffffab;
-                width: 150px;
-                padding: 10px 0;
                 border-radius: 10px;
-                box-shadow: 0px 4px #9b9b9b;
-                // margin: 0 auto;
+                // border: 2px solid #00ab74;
+                color: #00ab74;
+                // margin-top: 10px;
+                text-align: center;
+                width: 120px;
             }
-            .handlePickRewardUp {
-                cursor: pointer;
-                font-size: 14px;
-                margin-left: 10px;
-                text-decoration: underline;
+
+            .coinsGained {
+                align-items: center;
+                background: #ffffffab;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                // :global(.Coins) {
+                padding: 10px 0;
+                width: 120px;
+                // box-shadow: 0px 4px #9b9b9b;
+                // margin: 0 auto;
+                // }
+                position: relative;
+                .handlePickRewardUp {
+                    cursor: pointer;
+                    font-size: 14px;
+                    margin-left: 10px;
+                    text-decoration: underline;
+                }
+                .plusCoin {
+                    color: #d9b200;
+                    left: 42px;
+                    position: absolute;
+                    top: 15px;
+                }
+
+                :global(svg) {
+                    font-size: 14px;
+                }
             }
         }
 
@@ -94,18 +125,19 @@
             width: 330px;
 
             &::before {
-                content: "";
-                position: absolute;
-                inset: 0;
-                border-radius: 50px;
-                padding: 4px; /* control the border thickness */
                 background: linear-gradient(45deg, #3acfd5, #3a8dd5);
+                border-radius: 20px;
+                content: "";
+                display: none;
+                inset: 0;
+                mask-composite: exclude;
+                padding: 4px; /* control the border thickness */
+                pointer-events: none;
+                position: absolute;
                 -webkit-mask:
                     linear-gradient(#fff 0 0) content-box,
                     linear-gradient(#fff 0 0);
                 -webkit-mask-composite: xor;
-                mask-composite: exclude;
-                pointer-events: none;
             }
 
             img {
@@ -119,12 +151,26 @@
                 width: 140px;
             }
             p {
-                color: #616161;
+                color: white;
                 font-weight: bold;
                 margin-top: 110px;
                 padding: 0px 30px 20px;
-                text-shadow: -1px 1px 0px #3fb3e685;
+                text-shadow:
+                    2px 0 #2e2e2e,
+                    -2px 0 #2e2e2e,
+                    0 2px #2e2e2e,
+                    0 -2px #2e2e2e,
+                    1px 1px #2e2e2e,
+                    -1px -1px #2e2e2e,
+                    1px -1px #2e2e2e,
+                    -1px 1px #2e2e2e;
                 text-align: center;
+                :global(.yellow) {
+                    color: #fcfc85;
+                }
+                :global(.blue) {
+                    color: aquamarine;
+                }
             }
         }
     }

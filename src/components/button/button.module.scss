@@ -3,22 +3,25 @@ button.btn {
   border: none;
   color: white;
   font-size: 12px;
-  height: 34px;
+  // height: 34px;
   margin: 5px;
-  padding: 0;
+  padding: 4px 0;
   text-shadow: 1px 1px #5a5a5a;
   text-transform: initial;
   &:hover {
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     cursor: pointer;
   }
+
   &.border {
     border: 1px solid;
   }
+
   &.transparent {
     background-color: transparent;
     border-color: white;
   }
+
   &.normal {
     background: #a9a9a9;
     &.outline {
@@ -31,11 +34,25 @@ button.btn {
       }
     }
   }
+
   &.yellow {
     background: #ff9b51;
   }
+
   &.blue {
     background: #0095b3;
+    &:not(.outline) button {
+      $color: #056d82;
+      text-shadow:
+        2px 0 $color,
+        -2px 0 $color,
+        0 2px $color,
+        0 -2px $color,
+        1px 1px $color,
+        -1px -1px $color,
+        1px -1px $color,
+        -1px 1px $color;
+    }
     &.outline {
       background: transparent;
       border: 1px solid #0095b3;
@@ -46,12 +63,14 @@ button.btn {
       }
     }
   }
+
   &.modal span {
     font-style: italic;
     font-weight: bold;
     letter-spacing: 1px;
     text-transform: uppercase;
   }
+
   &.red {
     background: #f05f70;
     &.outline {
@@ -64,6 +83,7 @@ button.btn {
       }
     }
   }
+
   &.link {
     background: transparent;
     color: #476e96;
@@ -77,15 +97,19 @@ button.btn {
       }
     }
   }
+
   &.green {
     background: #53c060;
   }
+
   &.disabled {
     background: #8a8a8a;
   }
+
   &.remove {
     display: none;
   }
+
   :global(.MuiButtonBase-root) {
     // Boton de material UI
     color: inherit;
@@ -95,6 +119,7 @@ button.btn {
     margin: initial;
     padding: 5px 20px;
   }
+
   .text {
     align-items: center;
     display: flex;
@@ -104,6 +129,7 @@ button.btn {
       transition: 0.2s ease-in;
     }
   }
+
   &.animation:hover {
     .text svg {
       transform: translateX(5px);
