@@ -1,8 +1,22 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
-export const useSystemStore = create((set, get) => ({
+const loadFromLocalStorage = (property) => {
+    let value = null
+    if (typeof window != 'undefined') {
+        value = localStorage.getItem('userLogged') ? JSON.parse(localStorage.getItem('userLogged')) : value
+    }
+    return value
+}
+
+const useSystemStore = create((set, get) => ({
     env: null,
-    userLogged: { userID: 2, fullName: "Test User" },
-    setValue: (property, value) => set({ [property]: value }),
+    userLogged: loadFromLocalStorage() || { id: null },
+    setValue: (property, value) => {
+        debugger;
+        localStorage.setItem([property], JSON.stringify(value))
+        set({ [property]: value })
+    },
     setUserLogged: (user) => set({ userLogged: user })
 }));
+
+export default useSystemStore

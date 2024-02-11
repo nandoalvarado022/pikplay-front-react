@@ -19,7 +19,7 @@ import SearchBox from './searchBox/SearchBox'
 import useSearch from './searchBox/useSearch'
 import styles from './styles.module.scss' // eslint-disable-line
 
-const Header = () => {
+const CustomHeader = () => {
   const user = useSelector(state => state.user)
   const cities = getCiudades()
   const city = user?.city
@@ -79,4 +79,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default CustomHeader

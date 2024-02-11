@@ -12,15 +12,15 @@ import { datadogRum } from '@datadog/browser-rum'
 date.locale('es')
 
 // export default connect(null, useDispatch)(Functions)
+//  DATADOG: https://app.datadoghq.com/rum/list?from_ts=1707527408580&to_ts=1707613808580&live=true
 const env = process.env.NODE_ENV
-/* datadogRum.init({
+datadogRum.init({
   applicationId: 'e070617f-1352-46e4-9c21-4cb715efd297',
   clientToken: 'pubffdccfc89da2b7156acfb7c7e44e317f',
   site: 'datadoghq.com',
-  service: 'pikplay',
+  service: 'Pikplay',
   env,
-  // Specify a version number to identify the deployed version of your application in Datadog
-  // version: '1.0.0',
+  version: '1.0.0',
   sessionSampleRate: 100,
   sessionReplaySampleRate: 50,
   trackUserInteractions: true,
@@ -29,7 +29,7 @@ const env = process.env.NODE_ENV
   defaultPrivacyLevel: 'allow'
 })
 
-datadogRum.startSessionReplayRecording() */
+datadogRum.startSessionReplayRecording()
 
 export const getNotifications = async props => {
   const { closed, user } = props
@@ -579,24 +579,6 @@ export const GET_CLAIMED_COUPONS = gql`
     }
   }
 `
-
-export const validateLoginToken = async ({ token }) => {
-  // const validUser = await fetch(process.env.API_URL, {
-  //   method: "POST",
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify({
-  //     query: `{
-  //       validateLoginToken(token: "${token}")
-  //     }`
-  //   })
-  // })
-
-  // const { data } = await validUser.json()
-  // return data?.validateLoginToken
-  return true
-}
 
 export const GET_FOLLOWED_PUBLICATIONS = gql`
   query getFollowedPublications($user: Int) {

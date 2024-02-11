@@ -1,3 +1,5 @@
+import styles from './perfil.module.scss'
+
 import React from 'react'
 const { motion } = require('framer-motion')
 import Button from '../../src/components/button/Button'
@@ -30,7 +32,6 @@ import { useSelector } from 'react-redux'
 import Challenges from '../../src/components/challenges/Challenges'
 import CoinIcon from '../../src/components/coinIcon/CoinIcon'
 import ProfileSummaryExperience from '../../src/components/profileSummaryExperience/ProfileSummaryExperience'
-import styles from './perfil.module.scss'
 
 const { IS_MOBILE } = VARS
 
@@ -63,7 +64,7 @@ function a11yProps(index) {
 
 const Interface = ({
   dispatch,
-  userData,
+  userLogged,
   isSaving,
   handleSave,
   handleLogout,
@@ -153,16 +154,16 @@ const Interface = ({
               fullWidth={true}
               label='Tú nombre o el nombre de tu tienda'
               margin='normal'
-              value={userData?.name}
-              onChange={e => setUserData({ ...userData, name: e.target.value })}
+              value={userLogged?.name}
+              onChange={e => setUserData({ ...userLogged, name: e.target.value })}
             />
             <TextField
               fullWidth={true}
               label='Correo electrónico'
               margin='normal'
-              value={userData?.email}
+              value={userLogged?.email}
               onChange={e =>
-                setUserData({ ...userData, email: e.target.value })
+                setUserData({ ...userLogged, email: e.target.value })
               }
             />
             <TextField
@@ -170,14 +171,14 @@ const Interface = ({
               fullWidth={true}
               label='Número registrado'
               margin='normal'
-              value={userData?.phone}
+              value={userLogged?.phone}
             />
             <CiudadControl />
             <TextField
               fullWidth={true}
               label='Número de documento de identificacion'
               margin='normal'
-              value={userData?.document_number}
+              value={userLogged?.document_number}
               helperText='Información utilizada para la compras de productos online'
             />
             <p>

@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import date from 'date-and-time'
 import PortadaInterface from './PortadaInterface'
-import { useState } from 'react'
 import { CREATE_FAVORITE } from '../../../../src/lib/utils'
 import 'date-and-time/locale/es'
 import { useSelector } from 'react-redux'
@@ -16,10 +15,10 @@ function Portada({ category, feed: data = [] }) {
   const [open, setOpen] = useState(false)
   const popularyItem = feed ? feed[0] : null
   const starItem = feed && feed.find(item => item.id == 68)
-
-  useEffect(() => {
-    setFeed(data)
-  }, [data])
+  const enviroment = process.env.NEXT_PUBLIC_ENV
+  // useEffect(() => {
+  //   // setFeed(data)
+  // }, [data])
 
   const [handleFavorite] = useMutation(CREATE_FAVORITE, {
     onCompleted: () => {

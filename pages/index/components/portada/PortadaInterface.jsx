@@ -154,7 +154,7 @@ const PortadaInterface = ({
       {/* <SpecialBanner {...{ category, popularyItem, starItem }} /> */}
       {/* <FullScreenWidget /> */}
       {showModalLead && <ModalLead />}
-      {/* <Products /> */}
+      <Products />
     </section>
     <Footer />
   </>

@@ -18,7 +18,7 @@ import Link from 'next/link'
 import Loading from '../loading/Loading'
 import classNames from 'classnames'
 import IA from '../ia/IA'
-import { useSystemStore } from '../../hooks/useSystem.js'
+import useSystemStore from '../../hooks/useSystem.js'
 
 toastr.options.timeOut = 10000
 
@@ -100,8 +100,7 @@ const Layout = (props) => {
           gtag('event', 'conversion', {
             send_to: 'AW-941382150/e71oCMvon-0BEIa08cAD',
           })
-        }}
-        ()
+        }}()
       </Head>
       <body
         className={classNames('App font-a', {

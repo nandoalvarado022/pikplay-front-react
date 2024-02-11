@@ -1,5 +1,5 @@
 import React from 'react'
-import { useQuery } from '@apollo/client'
+// import { useQuery } from '@apollo/client'
 import { GET_CHALLENGES } from '../../lib/utils'
 import Coins from '../previewUser/old Coins'
 import Skeleton from '@mui/material/Skeleton'
@@ -9,13 +9,16 @@ import Button from '../button/Button'
 import styles from './challenges.module.scss'
 
 const Challenges = () => {
-  const { data, loading } = useQuery(GET_CHALLENGES, {
-    context: {
-      headers: {
-        'Operation-Name': 'getChallenges',
-      },
-    },
-  })
+  const data = {
+    getChallenges: []
+  }
+  // const { data, loading } = useQuery(GET_CHALLENGES, {
+  //   context: {
+  //     headers: {
+  //       'Operation-Name': 'getChallenges',
+  //     },
+  //   },
+  // })
 
   return (
     <section className={styles.ChallengeSection}>

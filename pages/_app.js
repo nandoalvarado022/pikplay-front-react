@@ -29,7 +29,11 @@ const MyApp = props => {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles)
     }
+
+    // Start Google Tag Manager
     TagManager.initialize({ gtmId: 'GTM-5WB6P7C' })
+    // End Google Tag Manager
+
     // Cleaning cache if version is not the same
     const lastClientVersion = localStorage.getItem('current_version')
     const lastVersion = versions[0]

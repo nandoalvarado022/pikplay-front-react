@@ -11,7 +11,6 @@ import Link from 'next/link'
 
 export default function LoginInterface({
   buttonText,
-  env,
   isCodeSended,
   isHuman,
   isOpen,
@@ -67,13 +66,12 @@ export default function LoginInterface({
               fullWidth
             />
           </div>
-
           {!isCodeSended && (
             <center className='m-t-10'>
-              {env != 'dev' && <ReCAPTCHA
+              {/* <ReCAPTCHA
                 sitekey='6Ldyz98eAAAAAFCJEbBSdSRqNu4Kn1XqZugCi9Qg'
                 onChange={onChangeReCaptcha}
-              />}
+              /> */}
             </center>
           )}
 
@@ -92,8 +90,7 @@ export default function LoginInterface({
               <small>
                 <a
                   href='https://api.whatsapp.com/send?phone=573054202450&text=Tengo problemas al recibir mi código de ingreso'
-                  target='_BLANK'
-                >
+                  target='_BLANK'>
                   Tengo problemas al recibir mi código de ingreso
                 </a>
               </small>
@@ -115,9 +112,8 @@ export default function LoginInterface({
           </Button>
           {!isCodeSended && (
             <Button
-              onClick={isHuman ? handleTengoCodigo : null}
-              color={isHuman ? 'yellow' : 'normal'}
-            >
+              onClick={true ? handleTengoCodigo : null}
+              color={true ? 'yellow' : 'normal'}>
               Ya tengo código
             </Button>
           )}

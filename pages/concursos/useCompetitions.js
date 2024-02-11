@@ -1,6 +1,7 @@
 import { useState } from "react"
 import VARS from "../../src/lib/variables"
 import { useIAStore } from "../../src/components/ia/IAstore"
+import { getCompetitions as getComptSrv } from '../../src/services/competition/CompetitionService'
 
 const useCompetitions = () => {
   const [competitions, setCompetitions] = useState([])
@@ -9,14 +10,11 @@ const useCompetitions = () => {
     setIAMessage,
   } = useIAStore((state => state))
 
-  const getCompetitions = () => new Promise ((resolve, reject) => {
-    const url = VARS.API_URL + '/competitions'
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setCompetitions(data)
-        resolve(data)
-      })
+  const getCompetitions = () => new Promise((resolve, reject) => {
+    getComptSrv().then((data) => {
+      setCompetitions(data)
+      resolve(data)
+    })
   })
 
   const postCompetitionMember = (competitionID, number) => new Promise((resolve, reject) => {

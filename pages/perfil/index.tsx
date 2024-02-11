@@ -1,11 +1,14 @@
+import React from 'react'
 import Perfil from './Perfil'
 import Layout from '../../src/components/layout/Layout'
 import { gql, useMutation } from '@apollo/client'
-import { subirImagen, validateLoginToken } from '../../src/lib/utils'
+import { subirImagen } from '../../src/lib/utils'
 import { toast } from 'react-toastify'
 import { useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
+import useSystemStore from '../../src/hooks/useSystem'
+import { validateTokenSrv } from '../../src/services/user/userService'
 
 const CHANGE_PROFILE = gql`
   mutation ChangeProfileData($input: UserInput) {
@@ -24,6 +27,7 @@ const Index = props => {
   const showSavedMessage = !!Object.keys(router.query).find(x => x == 'updated')
   const [changeProfileData, { data, error, loading }] =
     useMutation(CHANGE_PROFILE)
+  const { userLogged, setValue } = useSystemStore((state => state))
   const [userData, setUserData] = useState({
     ...user,
     // coins: context?.coins
@@ -75,15 +79,16 @@ const Index = props => {
 
   return (
     <Layout image={image} descripcion={descripcion} title={title} url={url}>
-      <Perfil {...{ dispatch, userData, isSaving, handleSave, setUserData }} />
+      <Perfil {...{ dispatch, userLogged, isSaving, handleSave, setUserData }} />
     </Layout>
   )
 }
 
 export const getServerSideProps = async ctx => {
-  const { token } = ctx.req.cookies
-  const res = await validateLoginToken({ token })
-  if (!res) {
+  const { phone, token } = ctx.req.cookies
+  debugger
+  const data = await validateTokenSrv(phone, token)
+  if (!data) {
     return {
       redirect: {
         destination: '/?action=not_authorized',
