@@ -1,0 +1,52 @@
+.FloatingChallenges {
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #76767691;
+    cursor: pointer;
+    display: flex;
+    left: 0;
+    position: fixed;
+    width: 250px;
+    &::after{
+        background-image: url(/images/gifs/stars-colors.gif);
+        background-size: 300px;
+        content: "";
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: -10px;
+        width: 100%;
+    }
+    .description_content {
+        background: #d6dee6;
+        padding: 10px 15px 5px;
+        span {
+            font-size: 14px;
+        }
+        .progress_bar {
+            background: #417D8C;
+            border-radius: 5px;
+            color: #d5e7fe;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 2px 0;
+            text-align: center;
+        }
+    }
+    .coin_content {
+        background: #3095b3;
+        border-bottom: 2px solid #417d8f;
+        border-radius: 0 10px 10px 0;
+        display: flex;
+        padding: 0 10px;
+        :global(.Coins) {
+            height: initial;
+            flex-direction: column;
+            :global(.number) {
+                color: white;
+                margin-top: 5px;
+                text-shadow: 1px 1px #f9b724;
+            }
+        }
+    }
+}

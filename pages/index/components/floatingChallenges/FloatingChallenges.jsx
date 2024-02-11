@@ -1,19 +1,19 @@
-import 'styles.scss'
-import CoinIcon from 'components/icons/CoinIcon';
+import styles from './styles.module.scss';
+import CoinIcon from '../../../../src/components/coinIcon/CoinIcon'
 
 const FloatingChallenges = () => {
     return (
-        <div className="FloatingChallenges">
-            <div>
-                <div>
-                Comparte tu link de referido con 5 amigos
-                <div className='progress-bar'>
-                    
+        <div className={styles.FloatingChallenges}>
+            <div className={styles.description_content}>
+                <span>
+                    Comparte tu link de referido con 5 amigos
+                </span>
+                <div className={styles.progress_bar}>
+                    0/5
                 </div>
-                </div>
-                <div>
-                    <CoinIcon />
-                </div>
+            </div>
+            <div className={styles.coin_content}>
+                <CoinIcon coins={1000} />
             </div>
         </div>
     );

@@ -94,7 +94,7 @@ const CoinIcon = ({ coins, isLabel, hideNumber, textColor }: CoinsProps) => {
     >
       <picture className={styles.coin} />
       {!hideNumber && <div
-        className={`f-s-14 ${styles.number} number-coins`}
+        className={`f-s-14 ${styles.number} number`}
         style={{ color: textColor ? textColor : '#e5961d' }}
       >
         {formatNumber(coins)}
