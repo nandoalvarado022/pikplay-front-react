@@ -11,7 +11,7 @@ function Login(props) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [isHuman, setIsHuman] = useState(env == 'dev' ? true : false)
-  const [isCodeSended, setIsCodeSended] = useState(false)
+  const [isCodeSent, setIsCodeSent] = useState(false)
   const [phone, setPhone] = useState(null)
   const [buttonText, setButtonText] = useState('Enviar código')
 
@@ -25,10 +25,11 @@ function Login(props) {
       return
     }
     setButtonText('Ingresar')
-    setIsCodeSended(true)
+    setIsCodeSent(true)
   }
 
   const validateLogin = async (code) => {
+    // Numero de telefono y codigo son necesarios
     const contryCode = '57'
     const fullPhone = contryCode + phone
     try {
@@ -42,17 +43,16 @@ function Login(props) {
         cookieCutter.set('phone', phone)
         router.push('/')
       } else {
-        debugger;
         document.getElementById('verificationCode').value = ''
         alert('Código no valido')
         setButtonText('Validar')
       }
     } catch (error) {
-      debugger;
+      console.log(error);
     }
   }
 
-  const handleEnviar = async () => {
+  const handleEnviarCodigo = async () => {
     setButtonText('Enviando...')
     const phone = document.getElementById('phoneLogin').value
     if (!phone || !numberValidated(phone)) {
@@ -60,13 +60,16 @@ function Login(props) {
       setButtonText('Enviar código')
       return false
     }
+    const contryCode = '57'
+    const fullPhone = contryCode + phone
+    const req = await loginSrv(null, fullPhone)
     setButtonText('Validar')
-    setIsCodeSended(true)
+    setIsCodeSent(true)
   }
 
   const handleCloseDialog = () => {
     setIsHuman(false)
-    setIsCodeSended(false)
+    setIsCodeSent(false)
     setIsOpen(false)
   }
 
@@ -84,7 +87,7 @@ function Login(props) {
   }
 
   const onChangeReCaptcha = value => {
-    value = env == 'dev' ? true : !!value
+    value = !!value
     setIsHuman(value)
   }
 
@@ -93,17 +96,17 @@ function Login(props) {
       {...{
         buttonText,
         env,
-        isCodeSended,
+        isCodeSent,
         isHuman,
         isOpen,
         handleClickOpen,
-        handleEnviar,
+        handleEnviarCodigo,
         handleKeyUp,
         handleCloseDialog,
         handleTengoCodigo,
         onChangeReCaptcha,
         phone,
-        setIsCodeSended,
+        setIsCodeSent,
         setPhone,
       }}
     />

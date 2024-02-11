@@ -11,11 +11,11 @@ import Link from 'next/link'
 
 export default function LoginInterface({
   buttonText,
-  isCodeSended,
+  isCodeSent,
   isHuman,
   isOpen,
   handleClickOpen,
-  handleEnviar,
+  handleEnviarCodigo,
   handleKeyUp,
   handleCloseDialog,
   handleTengoCodigo,
@@ -24,6 +24,7 @@ export default function LoginInterface({
   setIsCodeSended,
   setPhone,
 }) {
+  isHuman = true;
   return (
     <div id={styles.LoginComponent}>
       <Button
@@ -47,7 +48,7 @@ export default function LoginInterface({
           {/* Fields */}
           <div
             className={styles.flex}
-            style={{ display: isCodeSended ? 'none' : 'flex' }}
+            style={{ display: isCodeSent ? 'none' : 'flex' }}
           >
             <img
               height='42'
@@ -66,7 +67,7 @@ export default function LoginInterface({
               fullWidth
             />
           </div>
-          {!isCodeSended && (
+          {!isCodeSent && (
             <center className='m-t-10'>
               {/* <ReCAPTCHA
                 sitekey='6Ldyz98eAAAAAFCJEbBSdSRqNu4Kn1XqZugCi9Qg'
@@ -75,7 +76,7 @@ export default function LoginInterface({
             </center>
           )}
 
-          {isCodeSended && (
+          {isCodeSent && (
             <>
               <TextField
                 autoComplete={false}
@@ -110,17 +111,16 @@ export default function LoginInterface({
           <Button onClick={handleCloseDialog} color='normal'>
             Cancelar
           </Button>
-          {!isCodeSended && (
+          {!isCodeSent && (
             <Button
-              onClick={true ? handleTengoCodigo : null}
-              color={true ? 'yellow' : 'normal'}>
+              onClick={isHuman ? handleTengoCodigo : null}
+              color={isHuman ? 'yellow' : 'normal'}>
               Ya tengo código
             </Button>
           )}
           <Button
             color={isHuman ? 'blue' : 'normal'}
-            onClick={!isCodeSended && isHuman ? handleEnviar : null}
-          >
+            onClick={!isCodeSent && isHuman ? handleEnviarCodigo : null}>
             {buttonText}
           </Button>
         </DialogActions>

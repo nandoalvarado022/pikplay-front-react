@@ -9,6 +9,7 @@ import { useLazyQuery } from '@apollo/client'
 import { GET_FOLLOWED_PUBLICATIONS } from '../../../../src/lib/utils'
 import FullScreenWidget from '../fullScreenWidget/FullScreenWidget'
 import styles from './portada.module.scss'
+import FloatingChallenges from '../floatingChallenges/FloatingChallenges.jsx'
 
 const { IS_MOBILE } = '../../lib/variables'
 
@@ -149,6 +150,7 @@ const PortadaInterface = ({
 
   return (<>
     <section>
+      <FloatingChallenges />
       {feed && feed.length < 1 && <Maintenance />}
       {!category && <Advertisements />}
       {/* <SpecialBanner {...{ category, popularyItem, starItem }} /> */}
