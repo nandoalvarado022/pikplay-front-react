@@ -9,6 +9,7 @@ import {
   GET_NOTIFICATIONS,
   loadAudio,
 } from '../../lib/utils'
+import { getNotificationsSrv } from '../../services/user/userService'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faCircle } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'react-toastify'
@@ -21,15 +22,17 @@ import Link from 'next/link'
 import Router from 'next/router'
 import CoinIcon from '../coinIcon/CoinIcon'
 import AwardsSummary from '../awardsSummary/AwardsSummary'
+import useSystemStore from '../../hooks/useSystem.js'
 
 const { motion } = require('framer-motion')
 
 moment.locale('es-CO')
 
 const UserNotifications = () => {
+  const { notifications, setValue } = useSystemStore((state => state))
   const [summaryAwardsOpen, setSummaryAwardsOpen] = useState(false)
   const user = useSelector(state => state.user)
-  const notifications = useSelector(state => state.notifications) //.filter(item => item.closed == 0)
+  // const notifications = useSelector(state => state.notifications) //.filter(item => item.closed == 0)
   const [deleteNotification] = useMutation(DELETE_NOTIFICATION, {
     onCompleted: ({ data, message, status }) => {
       if (status === 200) {
@@ -65,26 +68,12 @@ const UserNotifications = () => {
     deleteNotification({ variables: { id, userId: user.id } }) // Delete notification BD
   }
 
-  const [getNotifications] = useLazyQuery(GET_NOTIFICATIONS, {
-    // Obteniendo notificaciones
-    fetchPolicy: 'no-cache',
-    polInterval: 5000,
-    variables: {
-      user: user?.id,
-    },
-    context: {
-      headers: {
-        'Operation-Name': 'getNotifications',
-      },
-    },
-    onCompleted: ({ getNotifications }) => {
-      getNotifications &&
-        dispatch({
-          type: 'CHANGE_PROPERTY',
-          payload: { property: 'notifications', value: getNotifications },
-        })
-    },
-  })
+  const getNotifications = () => {
+    getNotificationsSrv()
+      .then(res => {
+        setValue('notifications', res)
+      });
+  }
 
   const handleNotification = async ({ coins, disabled, id, link, type }) => {
     if (coins && !disabled) {

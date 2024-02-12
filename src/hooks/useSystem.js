@@ -10,9 +10,9 @@ const loadFromLocalStorage = (property) => {
 
 const useSystemStore = create((set, get) => ({
     env: null,
+    notifications: [],
     userLogged: loadFromLocalStorage() || { id: null },
     setValue: (property, value) => {
-        debugger;
         localStorage.setItem([property], JSON.stringify(value))
         set({ [property]: value })
     },

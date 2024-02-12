@@ -25,9 +25,21 @@ const sendCodeSrv = async (phone) => {
   return data
 }
 
+const getNotificationsSrv = async () => {
+  const data = await get(BASE_URL + "/notifications/2");
+  return data
+}
+
+const readNotificationSrv = async (nid: number) => {
+  const data = await get(BASE_URL + `/${nid}/read`);
+  return data
+}
+
 export {
   getUsersSrv,
   loginSrv,
   validateTokenSrv,
   sendCodeSrv,
+  getNotificationsSrv,
+  readNotificationSrv
 }

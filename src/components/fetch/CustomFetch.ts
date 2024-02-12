@@ -4,7 +4,6 @@ const CustomFetch = () => {
   const get = async (path) => {
     try {
       const response = await fetch(apiUrl + path);
-
       if (!response.ok) {
         throw new Error('Error al obtener datos desde el servicio');
       }
