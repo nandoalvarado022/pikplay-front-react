@@ -99,7 +99,7 @@ const UserNotifications = () => {
         <span>Marcar todas como leídas</span>
       </div>
       <ul>
-        {notifications &&
+        {notifications && false &&
           notifications.map(
             ({
               closed: disabled,

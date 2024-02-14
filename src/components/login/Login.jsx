@@ -36,11 +36,11 @@ function Login(props) {
       const req = await loginSrv(parseInt(code, 10), fullPhone)
       const { data } = req
       if (data) {
-        const { token } = data
+        const { token, uid } = data
         setValue("userLogged", data)
         handleCloseDialog()
-        cookieCutter.set('token', token)
-        cookieCutter.set('phone', phone)
+        cookieCutter.set('X-Auth-Token', token)
+        cookieCutter.set('User-ID', uid)
         router.push('/')
       } else {
         document.getElementById('verificationCode').value = ''

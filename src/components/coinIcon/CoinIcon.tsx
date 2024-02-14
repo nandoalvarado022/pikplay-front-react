@@ -9,10 +9,11 @@ interface CoinsProps {
   coins?: number
   isLabel?: boolean
   hideNumber?: boolean
+  multicoin?: boolean
   textColor?: string
 }
 
-const CoinIcon = ({ coins, isLabel, hideNumber, textColor }: CoinsProps) => {
+const CoinIcon = ({ coins, isLabel, hideNumber, multicoin, textColor }: CoinsProps) => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
   const [isAnimate, setIsAnimate] = useState(false)
@@ -90,13 +91,12 @@ const CoinIcon = ({ coins, isLabel, hideNumber, textColor }: CoinsProps) => {
         [styles.animated]: isAnimate
       }
       )}
-      onMouseEnter={animate}
-    >
+      onMouseEnter={animate}>
       <picture className={styles.coin} />
+      {multicoin && <picture className={`${styles.coin} ${styles.multicoin}`} />}
       {!hideNumber && <div
         className={`f-s-14 ${styles.number} number`}
-        style={{ color: textColor ? textColor : '#e5961d' }}
-      >
+        style={{ color: textColor ? textColor : '#e5961d' }}>
         {formatNumber(coins)}
       </div>
       }

@@ -1,4 +1,5 @@
 import CustomFetch from "../../components/fetch/CustomFetch";
+
 const { get, post } = CustomFetch()
 
 const BASE_URL = "/users"
@@ -11,6 +12,10 @@ const loginSrv = async (code: number, phone: string) => {
   const path = BASE_URL + "/login"
   const data = await post(path, { code, phone });
   return data
+}
+
+const updateProfile = async (phone: string, name: string, lastName: string) => {
+  
 }
 
 const validateTokenSrv = async (phone, token) => {
@@ -26,7 +31,7 @@ const sendCodeSrv = async (phone) => {
 }
 
 const getNotificationsSrv = async () => {
-  const data = await get(BASE_URL + "/notifications/2");
+  const data = await get(BASE_URL + "/notifications");
   return data
 }
 

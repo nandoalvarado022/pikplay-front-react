@@ -32,7 +32,7 @@ Router.onRouteChangeError = () => NProgress.done()
 const Layout = (props) => {
   const [isReady, setIsReady] = useState(false)
   const { children, descripcion, image, title, url } = props
-  const { env, setValue } = useSystemStore((state => state))
+  const { env, setValue, userLogged } = useSystemStore((state => state))
 
   useEffect(() => {
     (setValue && !env && props?.env) && setValue('env', props?.env);
@@ -62,13 +62,11 @@ const Layout = (props) => {
         <meta name='og:site_name' content='Pikplay' />
         <meta
           name='viewport'
-          content='width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0'
-        />
+          content='width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0' />
         <meta name='theme-color' content='#476E95' />
         <meta
           name='google-site-verification'
-          content='4IqXj9YLrm5eo3s_c3cTKcAqBwUhCf8qgJgL2sLtJko'
-        />
+          content='4IqXj9YLrm5eo3s_c3cTKcAqBwUhCf8qgJgL2sLtJko' />
         <meta name='twitter:description' content={descripcion} />
         <meta name='keywords' value='' />
         <meta name='country' content='COL' />
@@ -106,9 +104,10 @@ const Layout = (props) => {
         className={classNames('App font-a', {
           [styles.AppComponent]: true,
           [styles.ready]: isReady,
-        })}
-      >
-        <div className="content_enviroment">Enviroment: {env}</div>
+        })}>
+        <div className={styles.dev_pik_tool}>
+          userLogged: {JSON.stringify(userLogged)}
+        </div>
         <main className={styles.main}>
           <CustomHeader />
           {false && (

@@ -30,7 +30,7 @@ const PreviewUser = () => {
   return (
     <div
       className={`${styles.PreviewUser} PreviewUser ${isOpenPreviewProfile ? styles.actived : null}`}>
-      {userLogged.id ? (
+      {userLogged.uid ? (
         <React.Fragment>
           <ProfileImage
             className="previewUser"

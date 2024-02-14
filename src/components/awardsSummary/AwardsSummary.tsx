@@ -69,13 +69,13 @@ const AwardsSummary = ({ callback }) => {
     const message = `Recibiste <span class="yellow">5 Pikcoins</span> para redimir en productos de la tienda JuanchoFenix. <span class="blue">¡Felicitaciones!</span>`
     const handlePickRewardUp = () => {
         // Sumando coins al Coins del header
-        const element = document.querySelector('#PreviewProfile--Coins .number-coins')
+        const element = document.querySelector('#PreviewProfile--Coins .number')
         const fromNumber = element?.innerHTML
         const targetNumber = currentUserCoins + gainedCoins
         animatePrince(element, targetNumber, fromNumber)
 
         // Restando coins
-        const secondElement = document.querySelector('#AwardsSummary .number-coins')
+        const secondElement = document.querySelector('#AwardsSummary .number')
         animatePrince(secondElement, 0, gainedCoins)
     }
 
@@ -109,7 +109,7 @@ const AwardsSummary = ({ callback }) => {
                         <div className={styles.plusCoin}>
                             {/* <FontAwesomeIcon icon={faPlus} /> */}
                         </div>
-                        <CoinIcon coins={gainedCoins} />
+                        <CoinIcon coins={gainedCoins} multicoin />
                     </div>
 
                     <div className={styles.medalsGained}>
