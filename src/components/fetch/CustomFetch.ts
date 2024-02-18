@@ -48,7 +48,10 @@ const CustomFetch = () => {
   }
 
   const post = async (ctx, path, params, headers = {}) => {
-    return fetch(apiUrl + path, {
+    const url = apiUrl + path
+    console.log("la url es:", url);
+    console.log(process.env);
+    return fetch(url, {
       method: 'POST',
       headers: {
         credentials: 'include',
