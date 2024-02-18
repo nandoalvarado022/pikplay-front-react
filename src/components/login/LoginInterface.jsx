@@ -18,6 +18,7 @@ export default function LoginInterface({
   handleEnviarCodigo,
   handleKeyUp,
   handleCloseDialog,
+  handleFixPhone,
   handleTengoCodigo,
   onChangeReCaptcha,
   phone,
@@ -32,8 +33,7 @@ export default function LoginInterface({
         className={styles.playButton}
         color='blue'
         id='btnStart'
-        onClick={handleClickOpen}
-      >
+        onClick={handleClickOpen}>
         Play
       </Button>
       <Dialog
@@ -48,8 +48,7 @@ export default function LoginInterface({
           {/* Fields */}
           <div
             className={styles.flex}
-            style={{ display: isCodeSent ? 'none' : 'flex' }}
-          >
+            style={{ display: isCodeSent ? 'none' : 'flex' }}>
             <img
               height='42'
               width='40'
@@ -80,17 +79,15 @@ export default function LoginInterface({
             <>
               <TextField
                 autoComplete={false}
-                type='number'
                 disabled={buttonText == 'Validando...' ? true : false}
-                onKeyUp={handleKeyUp}
-                margin='dense'
+                fullWidth
                 id='verificationCode'
                 label={`Código de 4 dígitos`}
-                fullWidth
-              />
+                margin='dense'
+                onKeyUp={handleKeyUp}
+                type='number' />
               <small>
-                <a
-                  href='https://api.whatsapp.com/send?phone=573054202450&text=Tengo problemas al recibir mi código de ingreso'
+                <a href='https://api.whatsapp.com/send?phone=573054202450&text=Tengo problemas al recibir mi código de ingreso'
                   target='_BLANK'>
                   Tengo problemas al recibir mi código de ingreso
                 </a>
@@ -108,6 +105,9 @@ export default function LoginInterface({
           </small>
         </DialogContent>
         <DialogActions>
+          {isCodeSent && <Button onClick={handleFixPhone} color='normal'>
+            Correjir número de celular
+          </Button>}
           <Button onClick={handleCloseDialog} color='normal'>
             Cancelar
           </Button>

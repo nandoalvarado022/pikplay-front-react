@@ -5,14 +5,15 @@ import { useSelector, useDispatch } from 'react-redux'
 import UserNotifications from '../userNotifications/UserNotifications'
 import { IS_MOBILE } from '../../lib/variables'
 import styles from './styles.module.scss'
+import useSystemStore from '../../hooks/useSystem'
 
 const Notification = () => {
   const dispatch = useDispatch()
   const messageModal = useSelector(state => state.messageModal)
   const checkedNotifications = useSelector(state => state.checkedNotifications)
   const isOpen = messageModal.id !== 'empty'
-  const notifications = useSelector(state => state.notifications)
-  const _notifications = notifications.filter(item => item.closed === 0)
+  const { notifications, setValue } = useSystemStore((state => state))
+  const _notifications = notifications.filter(item => item.status === 1)
   const {
     id = null,
     isHiddenButton,

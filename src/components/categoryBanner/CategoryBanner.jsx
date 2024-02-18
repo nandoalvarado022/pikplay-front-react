@@ -59,6 +59,7 @@ const CategoryBanner = ({ categoryId }) => {
         </p>
       )
       break
+
     case 6:
       image = '/images/backgrounds/pc-gamer.jpg'
       link = '/'

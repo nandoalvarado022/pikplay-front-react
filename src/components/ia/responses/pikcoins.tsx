@@ -19,7 +19,7 @@ Puedes canjearlas por premios o redimir en compras. <br /> <br />¿Quieres saber
 `
 const Expresion = 'neutral'
 const Options = ({ handleUserMessage, set }) => {
-    debugger;
+    // debugger;
     return <>
         <Button color='transparent'>
             Saber más de Pikcoins

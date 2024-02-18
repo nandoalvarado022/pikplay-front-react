@@ -32,7 +32,7 @@ Router.onRouteChangeError = () => NProgress.done()
 const Layout = (props) => {
   const [isReady, setIsReady] = useState(false)
   const { children, descripcion, image, title, url } = props
-  const { env, setValue, userLogged } = useSystemStore((state => state))
+  const { env, setValue, userLogged, notifications } = useSystemStore((state => state))
 
   useEffect(() => {
     (setValue && !env && props?.env) && setValue('env', props?.env);
@@ -106,6 +106,7 @@ const Layout = (props) => {
           [styles.ready]: isReady,
         })}>
         <div className={styles.dev_pik_tool}>
+          notifications: {JSON.stringify(notifications)}<br />
           userLogged: {JSON.stringify(userLogged)}
         </div>
         <main className={styles.main}>

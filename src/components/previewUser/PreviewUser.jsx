@@ -13,13 +13,13 @@ import useSystemStore from '../../hooks/useSystem'
 const { IS_MOBILE } = VARS
 
 const PreviewUser = () => {
-  const { userLogged, setValue } = useSystemStore((state => state))
+  const { userLogged, logout } = useSystemStore((state => state))
   const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
   const router = useRouter()
   const { picture } = userLogged
 
   const handleLogout = () => {
-    setValue('userLogged', {})
+    logout()
     router.push('/?action=logout')
   }
 

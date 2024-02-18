@@ -85,10 +85,8 @@ const Index = props => {
 }
 
 export const getServerSideProps = async ctx => {
-  const { phone, token } = ctx.req.cookies
-  debugger
-  const data = await validateTokenSrv(phone, token)
-  if (!data) {
+  const { statusCode } = await validateTokenSrv(ctx)
+  if (statusCode === 403) {
     return {
       redirect: {
         destination: '/?action=not_authorized',
@@ -96,7 +94,9 @@ export const getServerSideProps = async ctx => {
       },
     }
   }
-  return { props: {} }
+  return {
+    props: {}
+  }
 }
 
 export default Index

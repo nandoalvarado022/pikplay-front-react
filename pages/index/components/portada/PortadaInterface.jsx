@@ -93,42 +93,21 @@ const PortadaInterface = ({
   )
 
   const Products = () => {
+    let previousCategory = null
+    let currentCategory = null
     return <div className={styles.PortadaInterfaceComponent}>
       <div className={styles.main}>
         <div className='listadoRodadas'>
           {feed &&
             feed.map((item, ind) => {
-              let categoryId = 0
-              switch (ind) {
-                case 0:
-                  categoryId = 2
-                  break
-                case 6:
-                  categoryId = 3
-                  break
-                case 12:
-                  categoryId = 4
-                  break
-                case 18:
-                  categoryId = 5
-                  break
-                case 24:
-                  categoryId = 1
-                  break
-                case 30:
-                  categoryId = 6
-                  break
-                default:
-                  categoryId = null
-                  break
-              }
-
-              const showCategoryBanner = !IS_MOBILE && categoryId && !category
+              currentCategory = item.category_id
+              const showCategoryBanner = previousCategory !== currentCategory
+              if (showCategoryBanner) previousCategory = currentCategory
 
               return (
                 <>
                   {showCategoryBanner && (
-                    <CategoryBanner categoryId={categoryId} />
+                    <CategoryBanner categoryId={currentCategory} />
                   )}
                   <Card {...{ handleFavorite, ...item }} />
                 </>

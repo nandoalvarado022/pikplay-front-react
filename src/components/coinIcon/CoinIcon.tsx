@@ -7,7 +7,7 @@ import styles from './styles.module.scss'
 
 interface CoinsProps {
   coins?: number
-  isLabel?: boolean
+  isLabel?: boolean // Mostrar en texto "Pikcoins"
   hideNumber?: boolean
   multicoin?: boolean
   textColor?: string

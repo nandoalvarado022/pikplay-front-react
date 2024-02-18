@@ -4,6 +4,7 @@ import Portada from './index/components/portada/Portada'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
+import { getPortadaSrv } from '../src/services/publication/publicationService'
 
 const Index = props => {
   const { action, env, feed } = props
@@ -56,10 +57,11 @@ const Index = props => {
 }
 
 Index.getInitialProps = async ctx => {
-  const env = process.env.ENVIRONMENT
+  const env = process.env.ENV
   const action = ctx.query?.action
   const isSSR = typeof window === 'undefined'
-  const feed = await getHome({ isSSR, origin: 'indexPage' })
+  // const feed = await getHome({ isSSR, origin: 'indexPage' })
+  const feed = await getPortadaSrv()
   return {
     env,
     action,

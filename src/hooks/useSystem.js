@@ -8,8 +8,14 @@ const loadFromLocalStorage = (property) => {
     return value
 }
 
+const logout = (set) => {
+    set({ userLogged: { id: null } })
+    set({ notifications: [] })
+}
+
 const useSystemStore = create((set, get) => ({
     env: null,
+    logout: () => logout(set),
     notifications: [],
     userLogged: loadFromLocalStorage() || { id: null },
     setValue: (property, value) => {

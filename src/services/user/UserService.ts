@@ -8,25 +8,25 @@ const getUsersSrv = async () => {
   return data
 }
 
-const loginSrv = async (code: number, phone: string) => {
+const loginSrv = async (ctx, phone: string, code: number) => {
   const path = BASE_URL + "/login"
-  const data = await post(path, { code, phone });
+  const data = await post(ctx, path, { code, phone });
   return data
 }
 
 const updateProfile = async (phone: string, name: string, lastName: string) => {
-  
+
 }
 
-const validateTokenSrv = async (phone, token) => {
-  const path = BASE_URL + "/validate"
-  const data = await post(path, { phone, token });
+const validateTokenSrv = async (ctx) => {
+  const path = BASE_URL + "/validate-token"
+  const data = await post(ctx, path, {});
   return data
 }
 
-const sendCodeSrv = async (phone) => {
+const sendCodeSrv = async (ctx, phone) => {
   const path = BASE_URL + "/login"
-  const data = await post(path, { phone });
+  const data = await post(ctx, path, { phone });
   return data
 }
 

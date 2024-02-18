@@ -33,7 +33,7 @@ function Login(props) {
     const contryCode = '57'
     const fullPhone = contryCode + phone
     try {
-      const req = await loginSrv(parseInt(code, 10), fullPhone)
+      const req = await loginSrv(null, fullPhone, parseInt(code, 10))
       const { data } = req
       if (data) {
         const { token, uid } = data
@@ -73,6 +73,10 @@ function Login(props) {
     setIsOpen(false)
   }
 
+  const handleFixPhone = () => {
+    setIsCodeSent(false)
+  }
+
   const handleClickOpen = () => {
     setIsOpen(true)
   }
@@ -103,6 +107,7 @@ function Login(props) {
         handleEnviarCodigo,
         handleKeyUp,
         handleCloseDialog,
+        handleFixPhone,
         handleTengoCodigo,
         onChangeReCaptcha,
         phone,
