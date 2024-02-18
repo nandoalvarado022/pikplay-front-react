@@ -1,3 +1,4 @@
+import React from 'react'
 import Zoom from '@mui/material/Zoom'
 import styles from './styles.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

@@ -10,7 +10,7 @@ import { IS_MOBILE } from '../../lib/variables'
 import recommended from '../../public/recommended'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { formatNumber, getCiudades, getFeed } from '../../lib/utils'
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 import ImageGallery from 'react-image-gallery'
 import { Alert } from '@mui/material';
 import classNames from 'classnames'
@@ -20,9 +20,9 @@ import useSearch from './searchBox/useSearch'
 import styles from './styles.module.scss' // eslint-disable-line
 
 const CustomHeader = () => {
-  const user = useSelector(state => state.user)
+  // const user = useSelector(state => state.user)
   const cities = getCiudades()
-  const city = user?.city
+  // const city = user?.city
   const {
     handleCity,
     inputText,

@@ -8,7 +8,7 @@ const getUsersSrv = async () => {
   return data
 }
 
-const loginSrv = async (ctx, phone: string, code: number) => {
+const loginSrv = async (ctx: any, phone: string, code: number) => {
   const path = BASE_URL + "/login"
   const data = await post(ctx, path, { code, phone });
   return data

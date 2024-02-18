@@ -1,9 +1,8 @@
-import { gql, useLazyQuery } from '@apollo/client'
+import styles from './styles.module.scss'
+
 import React, { useEffect, useRef, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import { formatNumber } from '../../../src/lib/utils'
 import classNames from 'classnames'
-import styles from './styles.module.scss'
 
 interface CoinsProps {
   coins?: number
@@ -14,49 +13,19 @@ interface CoinsProps {
 }
 
 const CoinIcon = ({ coins, isLabel, hideNumber, multicoin, textColor }: CoinsProps) => {
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.user)
   const [isAnimate, setIsAnimate] = useState(false)
-  coins = coins ? coins : useSelector(state => state.coins)
+  coins = 100 //coins ? coins : useSelector(state => state.coins)
   const prevCountCoins = useRef()
 
   useEffect(() => {
-    prevCountCoins.current = coins
+    // prevCountCoins.current = coins
   })
 
   const previousCoins = prevCountCoins.current ? prevCountCoins.current : 0
 
   useEffect(() => {
-    getCoins()
+    // getCoins()
   }, [])
-
-  const GET_COINS = gql`
-    query getCoins($user: Int) {
-      getCoins(user: $user) {
-        id
-        user
-        detail
-        value
-        created
-      }
-    }
-  `
-
-  const [getCoins] = useLazyQuery(GET_COINS, {
-    fetchPolicy: 'no-cache',
-    variables: {
-      user: user.id,
-    },
-    onCompleted: ({ getCoins }) => {
-      const coins = getCoins
-        ? getCoins.reduce((total, coin) => coin.value + total, 0)
-        : 0
-      dispatch({
-        type: 'CHANGE_PROPERTY',
-        payload: { property: 'coins', value: coins },
-      })
-    },
-  })
 
   const animate = () => {
     setIsAnimate(true)
@@ -102,8 +71,7 @@ const CoinIcon = ({ coins, isLabel, hideNumber, multicoin, textColor }: CoinsPro
       }
 
       {isLabel && <label
-        style={{ color: textColor ? textColor : '#e5961d' }}
-      >Pikcoins</label>}
+        style={{ color: textColor ? textColor : '#e5961d' }}>Pikcoins</label>}
     </div>
   )
 }

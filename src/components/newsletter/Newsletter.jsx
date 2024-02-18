@@ -1,3 +1,4 @@
+import React from 'react'
 import { Button, TextField } from '@mui/material'
 import styles from './newsletter.module.scss'
 

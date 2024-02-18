@@ -7,13 +7,8 @@ import ModalCheckout from './components/modalCheckout/ModalCheckout'
 import { connect } from 'react-redux'
 import ProductDetail from './components/productDetail/ProductDetail'
 // import ModalNotification from './components/modalNotification/ModalNotification'
-import Product from '../../src/interfaces/Product'
 
-interface PublicacionPageProps {
-  datosPublicacion: Product
-}
-
-const PublicacionPage = (props: PublicacionPageProps) => {
+const PublicacionPage = (props) => {
   const { datosPublicacion } = props
   const [modalHablarVendedor, setModalHablarVendedor] = useState(false)
   const [cuponDigitado, setCuponDigitado] = useState('')
@@ -25,26 +20,26 @@ const PublicacionPage = (props: PublicacionPageProps) => {
     setLogIngresarCupon(true)
   }
 
-  const handleValidarCupon = async () => {
-    const id_publicacion = datosPublicacion.id
-    const res = await instanciaFunc.validarCupon({
-      id_publicacion,
-      cuponDigitado,
-    })
+  // const handleValidarCupon = async () => {
+  //   const id_publicacion = datosPublicacion.id
+  //   const res = await instanciaFunc.validarCupon({
+  //     id_publicacion,
+  //     cuponDigitado,
+  //   })
 
-    if (!res.estado) {
-      toastr.warning('No se pudo validar el cupón 😕')
-      setLogIngresarCupon(false)
-      setCuponDigitado('')
-    } else {
-      const valorCupon = res.valor
-      toastr.info('Para tí el precio más bajo 😋')
-      const nuevoPrecio = datosPublicacion.precio - valorCupon
-      setNuevoPrecio(nuevoPrecio)
-      setLogIngresarCupon(false)
-      setPrecio(nuevoPrecio)
-    }
-  }
+  //   if (!res.estado) {
+  //     toastr.warning('No se pudo validar el cupón 😕')
+  //     setLogIngresarCupon(false)
+  //     setCuponDigitado('')
+  //   } else {
+  //     const valorCupon = res.valor
+  //     toastr.info('Para tí el precio más bajo 😋')
+  //     const nuevoPrecio = datosPublicacion.precio - valorCupon
+  //     setNuevoPrecio(nuevoPrecio)
+  //     setLogIngresarCupon(false)
+  //     setPrecio(nuevoPrecio)
+  //   }
+  // }
 
   const handleHablarVendedor = () => {
     // context = this.context
@@ -58,17 +53,17 @@ const PublicacionPage = (props: PublicacionPageProps) => {
     return false
   }
 
-  const handleResponder = async () => {
-    const data = {
-      comentario: {
-        descripcion: document.getElementById('comentarPublicacion').value,
-        id_usuario: JSON.parse(localStorage.getItem('user')).email,
-      },
-      id_publicacion: datosPublicacion.id,
-    }
-    const res = await instanciaFunc.saveRespuesta(data)
-    return
-  }
+  // const handleResponder = async () => {
+  //   const data = {
+  //     comentario: {
+  //       descripcion: document.getElementById('comentarPublicacion').value,
+  //       id_usuario: JSON.parse(localStorage.getItem('user')).email,
+  //     },
+  //     id_publicacion: datosPublicacion.id,
+  //   }
+  //   const res = await instanciaFunc.saveRespuesta(data)
+  //   return
+  // }
 
   const configUbicacion = () => {
     localStorage.setItem('url_pendiente', window.location.pathname)
@@ -93,7 +88,7 @@ const PublicacionPage = (props: PublicacionPageProps) => {
         <ProductDetail
           {...{ handleHablarVendedor: handleHablarVendedor }}
           meta_url={slug}
-          handleResponder={handleResponder}
+          // handleResponder={handleResponder}
           nuevoPrecio={nuevoPrecio}
           handleCupon={handleCupon}
           doc_id={datosPublicacion}

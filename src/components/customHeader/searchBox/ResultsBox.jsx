@@ -11,10 +11,12 @@ export const ResultsBox = ({ results }) => {
   {
     /* Listado de resultados */
   }
+  const setShowSearchModal = (val) => { }
+
   return (
     <div className={styles.rows}>
       {results &&
-        results.map((item: Product, ind) => {
+        results.map((item, ind) => {
           const cityLabel = cities.find(row => row.id == item.city)
             ? cities.find(row => row.id == item.city)?.label
             : null

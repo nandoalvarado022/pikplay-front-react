@@ -1,7 +1,7 @@
+import React from 'react'
 import Layout from '../src/components/layout/Layout'
 import { getHome } from '../src/lib/utils'
 import Portada from './index/components/portada/Portada'
-import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { getPortadaSrv } from '../src/services/publication/publicationService'
@@ -13,35 +13,6 @@ const Index = props => {
   const image = ''
   const title = 'Pikplay - Compras gamers confiables'
   const url = 'https://pikplay.co'
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    switch (action) {
-      case 'not_authorized':
-        dispatch({ type: 'LOGOUT' })
-        toast('Debes ingresar con tu cuenta de Pikplay', { type: 'warning' })
-        break
-
-      case 'login':
-        const name = JSON.parse(localStorage.getItem('persist:pikplay'))?.user
-          ?.name
-        toast(
-          <div>
-            Bienvenido {name} 😎
-            <br />
-            <small>Cargando tus preferencias 👾 ...</small>
-          </div>,
-        )
-        break
-
-      case 'logout':
-        toast('Regresa pronto 👋')
-        break
-
-      default:
-        break
-    }
-  }, [])
 
   return (
     <Layout

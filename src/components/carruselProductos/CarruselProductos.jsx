@@ -1,3 +1,4 @@
+import React from 'react'
 import AliceCarousel from 'react-alice-carousel'
 
 const handleOnDragStart = e => e.preventDefault()

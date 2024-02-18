@@ -1,3 +1,4 @@
+import React from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 import TextField from '@mui/material/TextField'
 import Dialog from '@mui/material/Dialog'
@@ -88,7 +89,8 @@ export default function LoginInterface({
                 type='number' />
               <small>
                 <a href='https://api.whatsapp.com/send?phone=573054202450&text=Tengo problemas al recibir mi código de ingreso'
-                  target='_BLANK'>
+                  target='_BLANK'
+                  rel="noreferrer">
                   Tengo problemas al recibir mi código de ingreso
                 </a>
               </small>

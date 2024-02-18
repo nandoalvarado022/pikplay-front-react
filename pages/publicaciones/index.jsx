@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../../src/components/layout/Layout'
 import Publicaciones from '../../src/components/publicaciones/Publicaciones'
-import { validateLoginToken } from '../../src/lib/utils'
+import { validateTokenSrv } from '../../src/services/user/userService.ts'
 
 export default function MyPublications(props) {
   return (
@@ -17,7 +17,7 @@ export default function MyPublications(props) {
 
 export const getServerSideProps = async ctx => {
   const { token } = ctx.req.cookies
-  const res = await validateLoginToken({ token })
+  const res = await validateTokenSrv({ token })
   if (!res) {
     return {
       redirect: {

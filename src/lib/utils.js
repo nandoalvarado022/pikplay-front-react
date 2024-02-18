@@ -1,4 +1,4 @@
-/* eslint-disable no-tabs */
+/* eslint-disable */
 import 'date-and-time/locale/es'
 import VARS from './variables'
 import date from 'date-and-time'

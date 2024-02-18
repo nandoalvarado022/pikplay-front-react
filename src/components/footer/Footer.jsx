@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from 'next/link'
 // import Categorias from "../categorias/Categorias"
 import styles from './footer.module.scss'
@@ -26,10 +27,10 @@ const Footer = ({ filtrarRodadas }) => {
       <div className={styles.aliados}>
         <h3>Aliados</h3>
         <div className={styles.list}>
-          <a href='https://juanchofenix.pik.com.co/' target='_BLANK'>
+          <a href='https://juanchofenix.pik.com.co/' target='_BLANK' rel="noreferrer">
             Juancho Fenix
           </a>
-          <a href='https://www.instagram.com/pixelmaker123/' target='_BLANK'>
+          <a href='https://www.instagram.com/pixelmaker123/' target='_BLANK' rel="noreferrer">
             PixelMaker
           </a>
         </div>

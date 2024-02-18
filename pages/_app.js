@@ -1,23 +1,24 @@
+import '../src/styles/globalStyles.scss'
+
 import React, { useEffect, useState } from 'react'
 import TagManager from 'react-gtm-module'
 import graphqlClient from '../src/lib/graphqlClient'
-import { ApolloProvider } from '@apollo/client'
+// import { ApolloProvider } from '@apollo/client'
 import { PersistGate } from 'redux-persist/integration/react'
-import { Provider } from 'react-redux'
-import { persistStore } from 'redux-persist'
-import { useStore } from '../src/lib/store'
+// import { Provider } from 'react-redux'
+// import { persistStore } from 'redux-persist'
+// import { useStore } from '../src/lib/store'
 import { getScreenOrientation, versions } from '../src/lib/utils'
 import Loading from '../src/components/loading/Loading'
 import * as amplitude from '@amplitude/analytics-browser'
-import '../src/styles/globalStyles.scss'
 
 const MyApp = props => {
   const { Component, pageProps, router } = props
   const [orientation, setOrientation] = useState('')
-  const store = useStore(pageProps.initialReduxState)
-  const persistor = persistStore(store, {}, function () {
-    persistor.persist()
-  })
+  // const store = useStore(pageProps.initialReduxState)
+  // const persistor = persistStore(store, {}, function () {
+  //   persistor.persist()
+  // })
 
   useEffect(() => {
     // Amplitude
@@ -41,7 +42,7 @@ const MyApp = props => {
       if (lastClientVersion !== lastVersion) {
         localStorage.clear() // cleaning localStorage
         // cleaning cache
-        document.cookie.replace(/(?<=^|;).+?(?=\=|;|$)/g, name =>
+        document.cookie.replace(/(?<=^|;).+?(?=|;|$)/g, name =>
           location.hostname
             .split('.')
             .reverse()
@@ -75,14 +76,14 @@ const MyApp = props => {
       })
   }, [router.events])
 
-  return (
-    <Provider store={store}>
-      <ApolloProvider client={graphqlClient}>
-        {/* <Loading /> */}
-        {/* Orientation: {orientation} */}
-        <Component {...pageProps} amplitude={amplitude} key={router.name} />
-      </ApolloProvider>
-    </Provider>
+  return (<Component {...pageProps} amplitude={amplitude} key={router.name} />
+    // <Provider store={store}>
+    // <ApolloProvider client={graphqlClient}>
+    // {/* <Loading /> */}
+    // {/* Orientation: {orientation} */}
+    // <Component {...pageProps} amplitude={amplitude} key={router.name} />
+    // </ApolloProvider>
+    // </Provider>
   )
 }
 

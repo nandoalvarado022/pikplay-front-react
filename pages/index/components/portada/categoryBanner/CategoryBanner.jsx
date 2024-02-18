@@ -1,3 +1,5 @@
+import React from 'react'
+
 const { motion } = require('framer-motion')
 
 const VenderButton = () => {

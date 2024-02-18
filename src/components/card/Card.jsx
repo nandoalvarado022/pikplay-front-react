@@ -17,8 +17,9 @@ import Image from 'next/image'
 import Product from '../../interfaces/Product'
 import styles from './card.module.scss'
 import CoinIcon from '../coinIcon/CoinIcon'
+import useSystemStore from '../../hooks/useSystem'
 
-const Card = (props: Product) => {
+const Card = (props) => {
   const {
     accept_changes,
     cashback_available,
@@ -61,15 +62,7 @@ const Card = (props: Product) => {
   let like = null
   if (usuario) like = likes ? !!likes.find(like => like == usuario) : false
   const isDestacada = id_publication == 1 ? true : false
-  const { loading, error, data } = useQuery(gql`
-    {
-      publications {
-        title
-      }
-    }
-  `)
-
-  const loggedUser = useSelector(state => state.user)
+  const { loggedUser } = useSystemStore()
   const cities = getCiudades()
   const cityLabel = cities.find(item => item.id == city)?.label
   const countryLabel = capitalize(cities.find(item => item.id == city)?.pais)
@@ -99,7 +92,7 @@ const Card = (props: Product) => {
             </Link>
           </div>
           <div className={`tags ${styles.tags}`}>
-            {!!!is_new && (
+            {!is_new && (
               <span
                 title='El articulo es de segunda mano'
                 className={styles.condition}>
@@ -154,6 +147,7 @@ const Card = (props: Product) => {
                 <Tooltip title='Compartir en Facebook'>
                   <a
                     href={`https://www.facebook.com/sharer/sharer.php?u=https://pikplay.co/publicacion/${slug}`}
+                    rel="noreferrer"
                     target='_BLANK'>
                     <FontAwesomeIcon
                       icon={faShare}

@@ -10,7 +10,6 @@ const handleTalkToOwner = (sellerPhone, number) => {
 }
 
 const Options = ({ handleUserMessage, set, options }) => {
-    debugger
     const { sellerPhone, number } = options
     return <>
         <Button color='blue' onClick={() => handleTalkToOwner(sellerPhone, number)}>

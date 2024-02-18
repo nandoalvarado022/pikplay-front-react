@@ -1,17 +1,18 @@
+import styles from './challenges.module.scss'
+
 import React from 'react'
 // import { useQuery } from '@apollo/client'
 import { GET_CHALLENGES } from '../../lib/utils'
-import Coins from '../previewUser/old Coins'
 import Skeleton from '@mui/material/Skeleton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import Button from '../button/Button'
-import styles from './challenges.module.scss'
 
 const Challenges = () => {
   const data = {
     getChallenges: []
   }
+  const loading = false;
   // const { data, loading } = useQuery(GET_CHALLENGES, {
   //   context: {
   //     headers: {
@@ -87,7 +88,7 @@ const Challenges = () => {
 
                 <div>
                   <div className={styles.coins_wrapper}>
-                    <Coins coins={prizeCoins} />
+                    {/* <Coins coins={prizeCoins} /> */}
                   </div>
                   <Button
                     className={styles.btnReclamar}

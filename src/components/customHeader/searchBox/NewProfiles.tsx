@@ -1,3 +1,4 @@
+import React from 'react'
 export const NewProfiles = () => {
   return (
     <div>

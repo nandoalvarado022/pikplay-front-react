@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
 import Button from '../button/Button'
 import Categories from '../categories/Categories'
 import Head from 'next/head'
@@ -91,6 +92,7 @@ const Layout = (props) => {
         {() => {
           window.dataLayer = window.dataLayer || []
           function gtag() {
+            // eslint-disable-next-line
             dataLayer.push(arguments)
           }
           gtag('js', new Date())
@@ -119,20 +121,21 @@ const Layout = (props) => {
           <ToastContainer autoClose={5000} hideProgressBar={true} />
           <Categories scroll={false} />
           <Subcategories />
-          <div className={styles.wrapperBanner}>
-            <Link href='/articulo/pikcoins-que-son-y-como-redimir-cupones'>
-              <a>
-                <img src='/images/banners/banner-regalos-descuentos-pikcoins.svg' />
-              </a>
-            </Link>
-          </div>
+          <Link href='/articulo/pikcoins-que-son-y-como-redimir-cupones'>
+            <a>
+              <div className={styles.wrapperBanner}>
+                <Image src='/images/banners/banner-regalos-descuentos-pikcoins.svg' fill={true} layout='fill' />
+              </div>
+            </a>
+          </Link>
           {IS_MOBILE && <MenuMovil />}
           {/* <Notification isOpen={this.context.showNotification} /> */}
           {children}
           <a
-            target='_BLANK'
             className='a_whatsapp'
             href='https://api.whatsapp.com/send?phone=573054202450&text=Hola Pikplay, tengo una consulta sobre los servicios que ofrecen a los Gamers en Colombia'
+            target='_BLANK'
+            rel="noreferrer"
           >
             <button className={styles['btn-whatsapp']}>
               <img

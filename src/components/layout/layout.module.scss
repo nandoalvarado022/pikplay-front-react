@@ -125,12 +125,10 @@
 
 .wrapperBanner {
   background: #fafafa;
+  height: 80px;
   margin-bottom: 20px;
+  position: relative;
   @media screen and (max-width: 420px) {
     display: none;
-  }
-  img {
-    display: block;
-    margin: 0 auto;
   }
 }

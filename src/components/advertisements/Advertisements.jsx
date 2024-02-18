@@ -16,28 +16,27 @@ import {
 } from '../../lib/utils'
 import styles from './styles.module.scss'
 import confetti from 'canvas-confetti'
-import { useDispatch, useSelector } from 'react-redux'
+// import { useDispatch, useSelector } from 'react-redux'
 import CountUp from 'react-countup'
 import Articles from '../articles/Articles'
+import useSystemStore from '../../hooks/useSystem'
 
 const Advertisements = () => {
-  const dispatch = useDispatch()
-  const { user } = useSelector(state => state)
-  const isMobile =
-    typeof window != 'undefined' ? window.screen.width < 420 : false
+  // const dispatch = useDispatch()
+  // const { user } = useSelector(state => state)
+  const { userLogged } = useSystemStore
+  const isMobile = typeof window != 'undefined' ? window.screen.width < 420 : false
   const [leftIndicator, setLeftIndicator] = useState(0)
-  const [deleteNotification] = useMutation(DELETE_NOTIFICATION)
+  // const [deleteNotification] = useMutation(DELETE_NOTIFICATION)
   const [idNotification, setIdNotification] = useState(null)
-  const [createCoin] = useMutation(CREATE_COIN)
-  const name = user.name ? user.name : 'Invitado'
-  const isProfileComplete = user.name && user.email && user.email && user.city
+  // const [createCoin] = useMutation(CREATE_COIN)
+  const name = userLogged?.name ? userLogged.name : 'Invitado'
+  const isProfileComplete = userLogged?.name && userLogged?.email && userLogged?.city
   // const isProfileComplete = true
   const [gotProfileCompletedCoins, setGotProfileCompletedCoins] =
     useState(false)
   const coins = 2500 // monedas que se le dara al usuario por completar el perfil
-  const notifications = useSelector(state => state.notifications).filter(
-    item => item.closed === 0,
-  )
+  const notifications = [] // useSelector(state => state.notifications).filter(item => item.closed === 0)
   const [showMainNoitificacion, setShowMainNoitificacion] = useState(true)
 
   // useQuery(GET_NOTIFICATIONS, {
@@ -112,7 +111,7 @@ const Advertisements = () => {
                     height='315'
                     src='https://www.youtube.com/embed/U_oewgFysiY'
                     title='YouTube video player'
-                    frameborder='0'
+                    frameBorder='0'
                     allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                     allowFullScreen
                   ></iframe>

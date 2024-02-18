@@ -3,7 +3,7 @@ import { useIAStore } from '../../../src/components/ia/IAstore'
 import { Tooltip } from '@mui/material'
 import styles from '../styles.module.scss'
 import { set } from 'nprogress'
-import useCompetitions from '../useCompetitions'
+import useCompetitions from '../hooks/useCompetitions'
 
 const CompetitionDetail = () => {
   const {
@@ -60,7 +60,7 @@ const CompetitionDetail = () => {
 
   return <div className={styles.CompetitionDetail}>
     <div className={`Card ${styles.seller}`}>
-      <div>Organiza: <b>BluePanther's</b></div>
+      <div>Organiza: <b>BluePanther&apos;s</b></div>
     </div>
     <p className='Card'>
       <div>Premio: Playstation 5</div>
@@ -72,11 +72,10 @@ const CompetitionDetail = () => {
       {isLoading && <div>Cargando...</div>}
       {
         !isLoading && numbersList.map((item, ind) => (
-          <Tooltip title={`Reservar el número ${ind}`}>
+          <Tooltip key={ind} title={`Reservar el número ${ind}`}>
             <div
               className={`${styles.item} ${styles[item.status]}`}
-              onClick={() => handleClick(ind)}
-            >
+              onClick={() => handleClick(ind)}>
               <div>{ind}</div>
               {/* <div>{item?.user?.name}</div> */}
               {/* <div>{item.isPaid && 'Pagado'}</div> */}

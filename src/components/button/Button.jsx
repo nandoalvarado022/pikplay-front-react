@@ -4,20 +4,6 @@ import styled from 'styled-components'
 import { Button as ButtonMat } from '@mui/material'
 import styles from './button.module.scss'
 
-interface ButtonProps {
-  animation?: boolean
-  children?: React.ReactNode
-  className?: string
-  color?: string
-  databutton?: string
-  disabled?: boolean
-  id?: string
-  isLink?: boolean
-  onClick?: () => void
-  outline?: boolean
-  style?: React.CSSProperties
-}
-
 const Button = ({
   animation,
   border,
@@ -31,7 +17,7 @@ const Button = ({
   onClick,
   outline,
   style,
-}: ButtonProps) => {
+}) => {
   className = `${className} ${animation ? styles.animation : null}`
 
   return (

@@ -1,3 +1,4 @@
+import React from 'react'
 import WrapperConsumer from '../store'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {

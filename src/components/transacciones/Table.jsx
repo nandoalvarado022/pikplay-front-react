@@ -33,6 +33,8 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ]
 
+const handleConfirmarTransaccion = () => { }
+
 export default function MyTable({ loggedUser, transactions }) {
   const classes = useStyles()
 
@@ -116,6 +118,7 @@ export default function MyTable({ loggedUser, transactions }) {
                         <a
                           href={`https://api.whatsapp.com/send?phone=${u_phone}`}
                           target='_BLANK'
+                          rel="noreferrer"
                         >
                           <FontAwesomeIcon
                             className='p-r t-2'

@@ -7,29 +7,24 @@ import Link from 'next/link'
 import { GET_ARTICLES } from '../../lib/utils'
 import styles from './styles.module.scss'
 
-interface AticlesProps {
-  size?: number
-  id?: number
-  directionColumn: boolean
-}
-
-const Articles = (props: AticlesProps) => {
+const Articles = (props) => {
   const { id, size, directionColumn } = props
   const variables = {
     limit: size ? size : 4,
   }
 
-  const { data } = useQuery(GET_ARTICLES, {
-    variables,
-    context: {
-      headers: {
-        'Operation-Name': 'getArticles',
-        Variables: JSON.stringify(variables),
-      },
-    },
-  })
+  const data = { getArticles: [] }
+  // const { data } = useQuery(GET_ARTICLES, {
+  //   variables,
+  //   context: {
+  //     headers: {
+  //       'Operation-Name': 'getArticles',
+  //       Variables: JSON.stringify(variables),
+  //     },
+  //   },
+  // })
 
-  const handleClick = () => {}
+  const handleClick = () => { }
 
   return (
     <div key={id} id={styles.ArticlesComponent}>
@@ -38,9 +33,8 @@ const Articles = (props: AticlesProps) => {
         <FontAwesomeIcon icon={faArrowRight} onClick={handleClick} />
       </div>
       <section
-        className={`${styles.list} ${
-          directionColumn ? styles.vertical : styles.horizontal
-        }`}
+        className={`${styles.list} ${directionColumn ? styles.vertical : styles.horizontal
+          }`}
       >
         {data?.getArticles &&
           data.getArticles.map((item, ind) => {

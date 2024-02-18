@@ -1,3 +1,4 @@
+import React from 'react'
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
 import { gql, useMutation, useLazyQuery } from '@apollo/client'
@@ -34,11 +35,11 @@ const ChangeSeller = ({ changeSellerHandle, id_publication, user_id }) => {
     },
   })
 
-  const [dispatch, {}] = useMutation(CHANGE_SELLER_MUTATION)
+  // const [dispatch, {}] = useMutation(CHANGE_SELLER_MUTATION)
 
   const handleSubmit = value => {
     if (!value) return
-    dispatch({ variables: { id_publication, id_seller: value.id } })
+    // dispatch({ variables: { id_publication, id_seller: value.id } })
     changeSellerHandle(value)
     setDefaultValue(value)
   }

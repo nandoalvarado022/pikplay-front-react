@@ -7,40 +7,22 @@ import styles from './styles.module.scss'
 import useSystemStore from '../../hooks/useSystem'
 
 const Notification = () => {
-  const messageModal = useSelector(state => state.messageModal)
-  const checkedNotifications = useSelector(state => state.checkedNotifications)
-  const isOpen = messageModal.id !== 'empty'
-  const { notifications, setValue } = useSystemStore((state => state))
-  const {
-    id = null,
-    isHiddenButton,
-    message: htmlMessage = null,
-  } = messageModal
+  const { notifications } = useSystemStore((state => state))
 
-
-  const isNotificationChecked =
-    checkedNotifications && !checkedNotifications.find(item => item === id)
-
-  return (
-    <>
-      <div className={`${styles.PreviewNotifications}`}>
+  return (<div className={`${styles.PreviewNotifications}`}>
+    <i className="fa fa-bell-o" aria-hidden="true"></i>
+    <span className={styles.notyQuantity}>{notifications.length}</span>
+    <div className={styles.bg_black}>
+      <UserNotifications />
+    </div>
+    <div
+      className={`${styles.Notificacion}`}>
+      <div className={styles.bg}></div>
+      <div className={styles.content}>
         <i className="fa fa-bell-o" aria-hidden="true"></i>
-        <span className={styles.notyQuantity}>{notifications.length}</span>
-        <div className={styles.bg_black}>
-          <UserNotifications />
-        </div>
-        <div
-          className={`${styles.Notificacion} ${isOpen && isNotificationChecked && styles.active} ID-${id}`}>
-          <div className={styles.bg}></div>
-          <div className={styles.content}>
-            {htmlMessage}
-            {!isHiddenButton && (
-              <i className="fa fa-bell-o" aria-hidden="true"></i>
-            )}
-          </div>
-        </div>
       </div>
-    </>
+    </div>
+  </div>
   )
 }
 

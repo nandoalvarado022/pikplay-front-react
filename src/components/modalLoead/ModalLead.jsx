@@ -1,3 +1,4 @@
+import React from 'react'
 import Button from '../button/Button'
 import styles from './styles.module.scss'
 import { Dialog, DialogContent, TextField } from '@mui/material'

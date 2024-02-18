@@ -24,7 +24,6 @@ const useSearch = () => {
   const city = null
 
   const searchThisWord = e => {
-    debugger
     setInputText('')
   }
 

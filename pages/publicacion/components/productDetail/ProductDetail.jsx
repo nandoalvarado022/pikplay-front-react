@@ -13,17 +13,6 @@ import Author from '../../../../src/components/card/Author'
 import Product from '../../../../src/interfaces/Product'
 import styles from './styles.module.scss'
 
-interface Props {
-  apply_cashback
-  banner_bottom
-  datosPublicacion: Product
-  description
-  descuento
-  handleHablarVendedor
-  indice_item
-  user
-}
-
 const DetalleProducto = ({
   apply_cashback,
   banner_bottom,
@@ -33,7 +22,7 @@ const DetalleProducto = ({
   handleHablarVendedor,
   indice_item,
   user: seller,
-}: Props) => {
+}) => {
   const {
     image_1,
     image_2,
@@ -55,7 +44,7 @@ const DetalleProducto = ({
   if (image_4) images.push({ original: image_4, thumbnail: image_4 })
   if (image_5) images.push({ original: image_5, thumbnail: image_5 })
   indice_item = indice_item ? indice_item : 1
-  ;(sale_price == sale_price) == 0 || sale_price == '' ? null : sale_price
+    ; (sale_price == sale_price) == 0 || sale_price == '' ? null : sale_price
 
   return (
     <div key={indice_item} className={`Card ${styles.DetalleProducto}`}>
@@ -106,9 +95,7 @@ const DetalleProducto = ({
 
               <div className={styles.content_precio}>
                 {descuento > 0 && (
-                  <span
-                    className={'descuento' + (logDetalle ? ' logDetalle' : '')}
-                  >
+                  <span className='descuento logDetalle'>
                     {' '}
                     -{descuento}%{' '}
                   </span>
@@ -142,9 +129,9 @@ const DetalleProducto = ({
               <p>
                 <a
                   className='underline f-s-12'
-                  target='_BLANK'
                   href='https://api.whatsapp.com/send?phone=573187414972&text=Quiero reportar una publicación de pikplay.co'
-                >
+                  target='_BLANK'
+                  rel="noreferrer">
                   Reportar publicación
                 </a>
               </p>

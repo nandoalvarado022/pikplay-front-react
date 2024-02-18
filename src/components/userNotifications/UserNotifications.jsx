@@ -1,7 +1,7 @@
+import styles from './styles.module.scss'
 import React, { useEffect, useState } from 'react'
 import Button from '../button/Button'
 import confetti from 'canvas-confetti'
-import styles from './styles.module.scss'
 import {
   CREATE_COIN,
   DELETE_NOTIFICATION,
@@ -31,7 +31,7 @@ moment.locale('es-CO')
 const UserNotifications = () => {
   const { notifications, setValue } = useSystemStore((state => state))
   const [summaryAwardsOpen, setSummaryAwardsOpen] = useState(false)
-  const user = useSelector(state => state.user)
+  // const user = useSelector(state => state.user)
   // const notifications = useSelector(state => state.notifications) //.filter(item => item.closed == 0)
   // const [deleteNotification] = useMutation(DELETE_NOTIFICATION, {
   //   onCompleted: ({ data, message, status }) => {
@@ -67,6 +67,8 @@ const UserNotifications = () => {
   //   notifications.find(item => item.id === id).closed = '1'
   //   deleteNotification({ variables: { id, userId: user.id } }) // Delete notification BD
   // }
+
+  const handleDeleteNotification = ( ) => {}
 
   const getNotifications = () => {
     getNotificationsSrv()

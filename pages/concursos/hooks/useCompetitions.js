@@ -1,7 +1,7 @@
 import { useState } from "react"
-import VARS from "../../src/lib/variables"
-import { useIAStore } from "../../src/components/ia/IAstore"
-import { getCompetitions as getComptSrv } from '../../src/services/competition/CompetitionService'
+import VARS from "../../../src/lib/variables"
+import { useIAStore } from "../../../src/components/ia/IAstore"
+import { getCompetitions as getComptSrv } from '../../../src/services/competition/CompetitionService'
 
 const useCompetitions = () => {
   const [competitions, setCompetitions] = useState([])
@@ -12,7 +12,7 @@ const useCompetitions = () => {
 
   const getCompetitions = () => new Promise((resolve, reject) => {
     getComptSrv().then((data) => {
-      setCompetitions(data)
+      setCompetitions(data?.data)
       resolve(data)
     })
   })

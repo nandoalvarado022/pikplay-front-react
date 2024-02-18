@@ -98,9 +98,10 @@ const CakeReport = ({ publications = [] }) => {
                   <td>{item.views}</td>
                   <td>
                     <a
-                      target='_BLANK'
-                      className='a_whatsapp'
                       href='https://api.whatsapp.com/send?phone=573052665725&text=Quiero impulsar una publicación en Pikplay'
+                      className='a_whatsapp'
+                      target='_BLANK'
+                      rel='noopener noreferrer'
                     >
                       <Button color='blue'>
                         Impulsar&nbsp;
@@ -126,7 +127,7 @@ const Publicacion = ({ item, ind, getPublications }) => {
   const [changeSeller, setChangeSeller] = useState(false)
   const [showAdminOptions, setShowAdminOptions] = useState(false)
   const { is_admin } = useSelector(state => state.user)
-  const seller_id = !!item?.user?.id ? item.user.id : 0
+  const seller_id = item?.user?.id ? item.user.id : 0
   const moreOptions = is_admin || true
 
   const changeSellerHandle = sellerUpdated => {
@@ -151,13 +152,13 @@ const Publicacion = ({ item, ind, getPublications }) => {
     }
   `
 
-  const [changeStatePublication, { }] = useMutation(UPDATE_MUTATION)
+  // const [changeStatePublication, { }] = useMutation(UPDATE_MUTATION)
 
   const handleChangeState = status => {
-    changeStatePublication({
-      variables: { id: item.id, status },
-      fetchPolicy: 'no-cache',
-    })
+    // changeStatePublication({
+    //   variables: { id: item.id, status },
+    //   fetchPolicy: 'no-cache',
+    // })
     setTimeout(() => {
       getPublications()
     }, 500)

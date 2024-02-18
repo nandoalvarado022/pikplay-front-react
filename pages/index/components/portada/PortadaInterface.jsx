@@ -51,12 +51,12 @@ const PortadaInterface = ({
   const isOpen =
     typeof sessionStorage != 'undefined' &&
     JSON.parse(sessionStorage.getItem('notifications'))?.home
-  const [showNotification, setShowNotification] = useState(!!!isOpen)
+  const [showNotification, setShowNotification] = useState(!isOpen)
   const [showModalLead, setShowModalLead] = useState(false)
 
   useEffect(() => {
     if (localStorage.getItem('user') == null) setShowVideo(true)
-    getFollowedPublications()
+    // getFollowedPublications()
 
     // show modal lead
     if (!localStorage.getItem('modal_lead')) {
@@ -71,26 +71,27 @@ const PortadaInterface = ({
     )
   }, [])
 
-  const [getFollowedPublications, { data }] = useLazyQuery(
-    GET_FOLLOWED_PUBLICATIONS,
-    {
-      fetchPolicy: 'no-cache',
-      variables: {
-        user: 61,
-      },
-      onCompleted: ({ getFollowedPublications }) => {
-        if (getFollowedPublications.length > 0) {
-          const _publications = feed ? [...feed] : []
-          getFollowedPublications.forEach(item => {
-            let element = _publications.find(p => p.id == item.id)
-            if (element)
-              _publications.find(p => p.id == item.id).following = true
-          })
-          setFeed(_publications)
-        }
-      },
-    },
-  )
+  // TODO cambiar llamado al servicio
+  // const [getFollowedPublications, { data }] = useLazyQuery(
+  //   GET_FOLLOWED_PUBLICATIONS,
+  //   {
+  //     fetchPolicy: 'no-cache',
+  //     variables: {
+  //       user: 61,
+  //     },
+  //     onCompleted: ({ getFollowedPublications }) => {
+  //       if (getFollowedPublications.length > 0) {
+  //         const _publications = feed ? [...feed] : []
+  //         getFollowedPublications.forEach(item => {
+  //           let element = _publications.find(p => p.id == item.id)
+  //           if (element)
+  //             _publications.find(p => p.id == item.id).following = true
+  //         })
+  //         setFeed(_publications)
+  //       }
+  //     },
+  //   },
+  // )
 
   const Products = () => {
     let previousCategory = null

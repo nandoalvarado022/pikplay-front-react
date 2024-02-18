@@ -5,7 +5,6 @@ const { motion } = require('framer-motion')
 import Button from '../../src/components/button/Button'
 import CiudadControl from '../../src/components/ciudadControl/CiudadControl'
 import CouponBox from '../../src/components/couponBox/CouponBox'
-import ImageProfile from '../../src/components/imageProfile/ImageProfile'
 import UserNotifications from '../../src/components/userNotifications/UserNotifications'
 import VARS from '../../src/lib/variables'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -173,7 +172,7 @@ const Interface = ({
               margin='normal'
               value={userLogged?.phone}
             />
-            <CiudadControl />
+            {/* <CiudadControl /> */}
             <TextField
               fullWidth={true}
               label='Número de documento de identificacion'
@@ -187,10 +186,7 @@ const Interface = ({
                 <input
                   type='file'
                   id='profileElement'
-                  label='Cambiar'
-                  placeholder='ad'
-                  text='asd'
-                />
+                  label='Cambiar' />
               </div>
             </p>
             <Button

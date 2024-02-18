@@ -5,7 +5,6 @@ const Message = `Que edad tiene la <span class='highlighted-2'>persona</span> a 
 const Expresion = 'loved'
 const Height = "160px"
 const Options = (handleUserMessage, set) => {
-    debugger;
     return <>
         <Button color='transparent'>
             Entre 10 y 15 años

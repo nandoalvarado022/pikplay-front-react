@@ -1,3 +1,4 @@
+import React from 'react'
 import Head from 'next/head'
 
 const Header = ({ description, image, title, url }) => {
@@ -36,7 +37,7 @@ const Header = ({ description, image, title, url }) => {
       {() => {
         window.dataLayer = window.dataLayer || []
         function gtag() {
-          dataLayer.push(arguments)
+          dataLayer.push(arguments) // eslint-disable-line
         }
         gtag('js', new Date())
         gtag('config', 'AW-941382150')

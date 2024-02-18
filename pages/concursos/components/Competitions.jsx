@@ -3,7 +3,7 @@ import { useIAStore } from '../../../src/components/ia/IAstore'
 import CompetitionDetail from './Detail'
 import styles from '../styles.module.scss'
 import Button from '../../../src/components/button/Button'
-import useCompetitions from '../useCompetitions'
+import useCompetitions from '../hooks/useCompetitions'
 
 const { motion } = require('framer-motion')
 
@@ -25,7 +25,7 @@ const CompetitionsList = () => {
       <div>
         <div className={styles.competitionsList}>
           {
-            competitions.map((competition, ind) => (
+            competitions && competitions.map((competition, ind) => (
               <motion.article
                 className='Card'
                 key={ind}
