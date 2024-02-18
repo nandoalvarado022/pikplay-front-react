@@ -1,14 +1,12 @@
 // Descripción: Notificaciones generales en la aplicacion
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import UserNotifications from '../userNotifications/UserNotifications'
 import { IS_MOBILE } from '../../lib/variables'
 import styles from './styles.module.scss'
 import useSystemStore from '../../hooks/useSystem'
 
 const Notification = () => {
-  const dispatch = useDispatch()
   const messageModal = useSelector(state => state.messageModal)
   const checkedNotifications = useSelector(state => state.checkedNotifications)
   const isOpen = messageModal.id !== 'empty'
@@ -19,9 +17,6 @@ const Notification = () => {
     message: htmlMessage = null,
   } = messageModal
 
-  const handleClose = () => {
-    dispatch({ type: 'SET_MESSAGE', payload: null })
-  }
 
   const isNotificationChecked =
     checkedNotifications && !checkedNotifications.find(item => item === id)

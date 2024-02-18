@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Layout from '../../src/components/layout/Layout'
-import ImageProfile from '../../src/components/imageProfile/ImageProfile'
+// import ImageProfile from '../../src/components/imageProfile/ImageProfile'
 import { ResultsBox } from '../../src/components/myHeader/searchBox/ResultsBox'
 import Card from '../../src/components/card/Card'
 import { getHome } from '../../src/lib/utils'
@@ -45,7 +45,7 @@ const Usuario = props => {
             x: 0,
           }}
         >
-          <ImageProfile {...imageProfileData} />
+          {/* <ImageProfile {...imageProfileData} /> */}
           <h1>Juancho Fenix Store</h1>
           <div className={styles.chips}>
             <Chip

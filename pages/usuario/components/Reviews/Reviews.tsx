@@ -1,5 +1,5 @@
 import React from 'react'
-import ImageProfile from '../../../../src/components/imageProfile/ImageProfile'
+// import ImageProfile from '../../../../src/components/imageProfile/ImageProfile'
 import styles from './styles.module.scss'
 
 const Reviews = () => {
@@ -37,7 +37,7 @@ const Reviews = () => {
         return (
           <article key={index}>
             <div>
-              <ImageProfile url={review.user.photo} />
+              {/* <ImageProfile url={review.user.photo} /> */}
               <h3>{review.user.name}</h3>
               <div className={styles.comment}>
                 Loren ipsum dolor sit amet, consectetur adipiscing elit. Nulla
