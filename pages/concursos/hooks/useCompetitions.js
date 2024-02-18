@@ -1,7 +1,7 @@
 import { useState } from "react"
 import VARS from "../../../src/lib/variables"
 import { useIAStore } from "../../../src/components/ia/IAstore"
-import { getCompetitions as getComptSrv } from '../../../src/services/competition/CompetitionService'
+import { getCompetitions as getComptSrv } from '../../../src/services/competition/competitionService'
 
 const useCompetitions = () => {
   const [competitions, setCompetitions] = useState([])
