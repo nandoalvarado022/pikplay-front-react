@@ -1,7 +1,7 @@
 import cookieCutter from 'cookie-cutter'
 
 const CustomFetch = () => {
-  const apiUrl = process.env.API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   const getCookies = (ctx = { req: { cookies: {} } }) => {
     let cookies = {};
