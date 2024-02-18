@@ -1,19 +1,19 @@
 import React from 'react'
-import Perfil from './Perfil'
+import Perfil from '../../src/components/profile/Perfil'
 import Layout from '../../src/components/layout/Layout'
 import { gql, useMutation } from '@apollo/client'
 import { subirImagen } from '../../src/lib/utils'
 import { toast } from 'react-toastify'
 import { useContext, useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+// import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import useSystemStore from '../../src/hooks/useSystem'
 import { validateTokenSrv } from '../../src/services/user/userService'
 
-const CHANGE_PROFILE = gql`
-  mutation ChangeProfileData($input: UserInput) {
-    changeProfileData(input: $input)
-  }`
+// const CHANGE_PROFILE = gql`
+//   mutation ChangeProfileData($input: UserInput) {
+//     changeProfileData(input: $input)
+//   }`
 
 const Index = props => {
   const descripcion =
@@ -21,15 +21,13 @@ const Index = props => {
   const image = ''
   const title = 'Pikplay | Perfil'
   const url = 'https://pikplay.co/perfil'
-  const user = useSelector(state => state.user)
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const router = useRouter()
   const showSavedMessage = !!Object.keys(router.query).find(x => x == 'updated')
-  const [changeProfileData, { data, error, loading }] =
-    useMutation(CHANGE_PROFILE)
+  // const [changeProfileData, { data, error, loading }] = useMutation(CHANGE_PROFILE)
   const { userLogged, setValue } = useSystemStore((state => state))
   const [userData, setUserData] = useState({
-    ...user,
+    ...userLogged,
     // coins: context?.coins
   })
   const [isSaving, setIsSaving] = useState(false)
@@ -54,21 +52,21 @@ const Index = props => {
       picture = picture[0]
     } else picture = null
 
-    let variables = { id: userData.id }
-    if (user.city) variables.city = user.city
-    if (userData.email) variables.email = userData.email
-    if (userData.name) variables.name = userData.name
-    if (userData.document_number)
-      variables.document_number = userData.document_number
-    if (picture) variables.picture = picture // Setting picture
-    dispatch({
-      type: 'CHANGE_PROPERTY',
-      payload: {
-        property: 'user',
-        value: { ...userData, ...variables },
-      },
-    })
-    changeProfileData({ variables: { input: variables } }) // Guardando en BD
+    // let variables = { id: userData.id }
+    // if (user.city) variables.city = user.city
+    // if (userData.email) variables.email = userData.email
+    // if (userData.name) variables.name = userData.name
+    // if (userData.document_number)
+    //   variables.document_number = userData.document_number
+    // if (picture) variables.picture = picture // Setting picture
+    // dispatch({
+    //   type: 'CHANGE_PROPERTY',
+    //   payload: {
+    //     property: 'user',
+    //     value: { ...userData, ...variables },
+    //   },
+    // })
+    // changeProfileData({ variables: { input: variables } }) // Guardando en BD
 
     // Message to user
     setTimeout(() => {
@@ -79,7 +77,7 @@ const Index = props => {
 
   return (
     <Layout image={image} descripcion={descripcion} title={title} url={url}>
-      <Perfil {...{ dispatch, userLogged, isSaving, handleSave, setUserData }} />
+      <Perfil {...{ userLogged, isSaving, handleSave, setUserData }} />
     </Layout>
   )
 }

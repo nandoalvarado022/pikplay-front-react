@@ -2,11 +2,11 @@ import styles from './perfil.module.scss'
 
 import React from 'react'
 const { motion } = require('framer-motion')
-import Button from '../../src/components/button/Button'
-import CiudadControl from '../../src/components/ciudadControl/CiudadControl'
-import CouponBox from '../../src/components/couponBox/CouponBox'
-import UserNotifications from '../../src/components/userNotifications/UserNotifications'
-import VARS from '../../src/lib/variables'
+import Button from '../button/Button'
+import CiudadControl from '../ciudadControl/CiudadControl'
+import CouponBox from '../couponBox/CouponBox'
+import UserNotifications from '../userNotifications/UserNotifications'
+import VARS from '../../lib/variables'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   Box,
@@ -24,13 +24,13 @@ import {
 } from '@fortawesome/free-regular-svg-icons'
 import { toast } from 'react-toastify'
 import { useState } from 'react'
-import { interestsList } from '../../src/lib/utils'
+import { interestsList } from '../../lib/utils'
 import { Alert } from '@mui/material';
 import classNames from 'classnames'
 import { useSelector } from 'react-redux'
-import Challenges from '../../src/components/challenges/Challenges'
-import CoinIcon from '../../src/components/coinIcon/CoinIcon'
-import ProfileSummaryExperience from '../../src/components/profileSummaryExperience/ProfileSummaryExperience'
+import Challenges from '../challenges/Challenges'
+import CoinIcon from '../coinIcon/CoinIcon'
+import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummaryExperience'
 
 const { IS_MOBILE } = VARS
 
@@ -69,7 +69,7 @@ const Interface = ({
   handleLogout,
   setUserData,
 }) => {
-  const handleFavorite = useSelector(state => state.handleFavorite)
+  // const handleFavorite = useSelector(state => state.handleFavorite)
   const [value, setValue] = React.useState(0)
   const msgSubirCategoria = (
     <div>

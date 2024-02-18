@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { useIAStore } from '../../../src/components/ia/IAstore'
-import CompetitionDetail from './Detail'
 import styles from '../styles.module.scss'
-import Button from '../../../src/components/button/Button'
+
+import React, { useEffect, useState } from 'react'
+import { useIAStore } from '../../ia/IAstore'
+import CompetitionDetail from './Detail'
+import Button from '../../button/Button'
 import useCompetitions from '../hooks/useCompetitions'
 
 const { motion } = require('framer-motion')

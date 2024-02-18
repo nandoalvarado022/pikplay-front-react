@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useIAStore } from '../../../src/components/ia/IAstore'
+import { useIAStore } from '../../ia/IAstore'
 import { Tooltip } from '@mui/material'
 import styles from '../styles.module.scss'
 import { set } from 'nprogress'

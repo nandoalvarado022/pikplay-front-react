@@ -3,9 +3,10 @@ import Router from 'next/router'
 import toastr from 'toastr'
 import Layout from '../../src/components/layout/Layout'
 import { getFeed } from '../../src/lib/utils'
-import ModalCheckout from './components/modalCheckout/ModalCheckout'
+// import ModalCheckout from '../../src/components/modalCheckout/ModalCheckout'
 import { connect } from 'react-redux'
-import ProductDetail from './components/productDetail/ProductDetail'
+import ProductDetail from '../../src/components/publicationDetail/components/ProductDetail'
+// components/productDetail/ProductDetail'
 // import ModalNotification from './components/modalNotification/ModalNotification'
 
 const PublicacionPage = (props) => {
@@ -97,15 +98,15 @@ const PublicacionPage = (props) => {
         />
         {
           // Modal para confirmar datos
-          modalHablarVendedor && (
-            <ModalCheckout
-              {...{
-                datosPublicacion,
-                setIsModalHablarVendedor: () =>
-                  setModalHablarVendedor(!modalHablarVendedor),
-              }}
-            />
-          )
+          /*modalHablarVendedor && (
+            // <ModalCheckout
+            //   {...{
+            //     datosPublicacion,
+            //     setIsModalHablarVendedor: () =>
+            //       setModalHablarVendedor(!modalHablarVendedor),
+            //   }}
+            // />
+          )*/
         }
         {/* <ModalNotification isOpen={showModalNotification} /> */}
         {
