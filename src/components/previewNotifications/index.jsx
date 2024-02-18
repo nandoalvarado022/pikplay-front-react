@@ -13,7 +13,6 @@ const Notification = () => {
   const checkedNotifications = useSelector(state => state.checkedNotifications)
   const isOpen = messageModal.id !== 'empty'
   const { notifications, setValue } = useSystemStore((state => state))
-  const _notifications = notifications.filter(item => item.status === 1)
   const {
     id = null,
     isHiddenButton,
@@ -31,14 +30,12 @@ const Notification = () => {
     <>
       <div className={`${styles.PreviewNotifications}`}>
         <i className="fa fa-bell-o" aria-hidden="true"></i>
-        <span className={styles.notyQuantity}>{_notifications.length}</span>
+        <span className={styles.notyQuantity}>{notifications.length}</span>
         <div className={styles.bg_black}>
           <UserNotifications />
         </div>
         <div
-          className={`${styles.Notificacion} ${isOpen && isNotificationChecked && styles.active
-            } ID-${id}`}
-        >
+          className={`${styles.Notificacion} ${isOpen && isNotificationChecked && styles.active} ID-${id}`}>
           <div className={styles.bg}></div>
           <div className={styles.content}>
             {htmlMessage}
