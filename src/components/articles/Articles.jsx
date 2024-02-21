@@ -1,6 +1,6 @@
 import React from 'react'
 const { motion } = require('framer-motion')
-import { useQuery } from '@apollo/client'
+// import { useQuery } from '@apollo/client'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'

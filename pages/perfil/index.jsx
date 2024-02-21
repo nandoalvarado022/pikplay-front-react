@@ -1,7 +1,7 @@
 import React from 'react'
 import Perfil from '../../src/components/profile/Perfil'
 import Layout from '../../src/components/layout/Layout'
-import { gql, useMutation } from '@apollo/client'
+// import { gql, useMutation } from '@apollo/client'
 import { subirImagen } from '../../src/lib/utils'
 import { toast } from 'react-toastify'
 import { useContext, useEffect, useState } from 'react'

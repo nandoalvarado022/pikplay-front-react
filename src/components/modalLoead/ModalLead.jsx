@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '../button/Button'
 import styles from './styles.module.scss'
 import { Dialog, DialogContent, TextField } from '@mui/material'
-import { gql, useMutation } from '@apollo/client'
+// import { gql, useMutation } from '@apollo/client'
 import { interestsList } from './../../lib/utils'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
@@ -21,28 +21,28 @@ const useField = ({ type }) => {
   }
 }
 
-const MUTATION = gql`
-  mutation createLead(
-    $email: String
-    $interests: String
-    $name: String
-    $phone: String
-  ) {
-    createLead(email: $email, interests: $interests, name: $name, phone: $phone)
-  }
-`
+// const MUTATION = gql`
+//   mutation createLead(
+//     $email: String
+//     $interests: String
+//     $name: String
+//     $phone: String
+//   ) {
+//     createLead(email: $email, interests: $interests, name: $name, phone: $phone)
+//   }
+// `
 
 const ModalLead = () => {
   const [interests, setInterests] = useState([
     ...interestsList.map(item => ({ ...item, selected: false })),
   ])
 
-  const [dispatch] = useMutation(MUTATION, {
-    onCompleted: ({ createLead }) => {
-      toast(createLead.message)
-      setOpen(false)
-    },
-  })
+  // const [dispatch] = useMutation(MUTATION, {
+  //   onCompleted: ({ createLead }) => {
+  //     toast(createLead.message)
+  //     setOpen(false)
+  //   },
+  // })
 
   const name = useField({ type: 'text' })
   const email = useField({ type: 'text' })
@@ -64,14 +64,14 @@ const ModalLead = () => {
       .filter(item => item.selected == true)
       .map(item => item.id)
       .join(',')
-    dispatch({
-      variables: {
-        email: email.value ? email.value : '',
-        interests: _interests,
-        name: name.value ? name.value : '',
-        phone: phone.value ? phone.value : '',
-      },
-    })
+    // dispatch({
+    //   variables: {
+    //     email: email.value ? email.value : '',
+    //     interests: _interests,
+    //     name: name.value ? name.value : '',
+    //     phone: phone.value ? phone.value : '',
+    //   },
+    // })
     localStorage.setItem('modal_lead', true)
   }
 

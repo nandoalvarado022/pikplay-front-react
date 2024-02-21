@@ -2,24 +2,25 @@ import React from 'react'
 import Layout from '../../src/components/layout/Layout'
 import { GET_ARTICLES } from '../../src/lib/utils'
 import { connect } from 'react-redux'
-import { ApolloClient, InMemoryCache } from '@apollo/client'
+// import { ApolloClient, InMemoryCache } from '@apollo/client'
 import styles from './styles.module.scss'
 import { IS_MOBILE } from '../../src/lib/variables'
-import { useQuery, gql } from '@apollo/client'
+// import { useQuery, gql } from '@apollo/client'
 import Articles from '../../src/components/articles/Articles'
 const ArticlePage = props => {
   const {
     data: { slug },
   } = props
   // const slug = 'pikcoins-que-son-y-como-redimir-cupones'
-  const { data, loading, error } = useQuery(GET_ARTICLES, {
-    context: {
-      headers: {
-        'Operation-Name': 'getArticles',
-      },
-    },
-    variables: { slug },
-  })
+  const { data, loading, error } = {}
+  // const { data, loading, error } = useQuery(GET_ARTICLES, {
+  //   context: {
+  //     headers: {
+  //       'Operation-Name': 'getArticles',
+  //     },
+  //   },
+  //   variables: { slug },
+  // })
 
   if (loading) return <div>Loading...</div>
 

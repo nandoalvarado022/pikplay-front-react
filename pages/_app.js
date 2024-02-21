@@ -2,7 +2,7 @@ import '../src/styles/globalStyles.scss'
 
 import React, { useEffect, useState } from 'react'
 import TagManager from 'react-gtm-module'
-import graphqlClient from '../src/lib/graphqlClient'
+// import graphqlClient from '../src/lib/graphqlClient'
 // import { ApolloProvider } from '@apollo/client'
 import { PersistGate } from 'redux-persist/integration/react'
 // import { Provider } from 'react-redux'

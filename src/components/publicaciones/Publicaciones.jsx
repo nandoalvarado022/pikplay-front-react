@@ -26,7 +26,7 @@ import {
   GET_PUBLICATIONS,
 } from '../../lib/utils'
 import { toast } from 'react-toastify'
-import { useQuery, gql, useMutation, useLazyQuery } from '@apollo/client'
+// import { useQuery, gql, useMutation, useLazyQuery } from '@apollo/client'
 import { useSelector, useDispatch } from 'react-redux'
 
 moment.locale('es')
@@ -134,23 +134,23 @@ const Publicacion = ({ item, ind, getPublications }) => {
     item.user = sellerUpdated
   }
 
-  const DELETE_PUBLICATION = gql`
-    mutation deletePublication($id_publication: Int) {
-      deletePublication(id_publication: $id_publication)
-    }
-  `
+  // const DELETE_PUBLICATION = gql`
+  //   mutation deletePublication($id_publication: Int) {
+  //     deletePublication(id_publication: $id_publication)
+  //   }
+  // `
 
-  const VERIFY_PUBLICATION = gql`
-    query verifyPublication($id_publication: Int) {
-      verifyPublication(id_publication: $id_publication)
-    }
-  `
+  // const VERIFY_PUBLICATION = gql`
+  //   query verifyPublication($id_publication: Int) {
+  //     verifyPublication(id_publication: $id_publication)
+  //   }
+  // `
 
-  const UPDATE_MUTATION = gql`
-    mutation ChangeStatePublication($id: Int!, $status: Boolean!) {
-      changeStatePublication(id: $id, status: $status)
-    }
-  `
+  // const UPDATE_MUTATION = gql`
+  //   mutation ChangeStatePublication($id: Int!, $status: Boolean!) {
+  //     changeStatePublication(id: $id, status: $status)
+  //   }
+  // `
 
   // const [changeStatePublication, { }] = useMutation(UPDATE_MUTATION)
 
@@ -168,28 +168,28 @@ const Publicacion = ({ item, ind, getPublications }) => {
     Router.push('/publicacion/' + slug + '/editar')
   }
 
-  const [handleChangeApprove, { loading, error, data }] = useLazyQuery(
-    VERIFY_PUBLICATION,
-    {
-      variables: { id_publication: item.id },
-      fetchPolicy: 'no-cache',
-      onCompleted: () => {
-        setTimeout(() => {
-          getPublications()
-        }, 500)
-      },
-    },
-  )
+  // const [handleChangeApprove, { loading, error, data }] = useLazyQuery(
+  //   VERIFY_PUBLICATION,
+  //   {
+  //     variables: { id_publication: item.id },
+  //     fetchPolicy: 'no-cache',
+  //     onCompleted: () => {
+  //       setTimeout(() => {
+  //         getPublications()
+  //       }, 500)
+  //     },
+  //   },
+  // )
 
-  const [handleDelete] = useMutation(DELETE_PUBLICATION, {
-    variables: { id_publication: item.id },
-    fetchPolicy: 'no-cache',
-    onCompleted: () => {
-      setTimeout(() => {
-        getPublications()
-      }, 500)
-    },
-  })
+  // const [handleDelete] = useMutation(DELETE_PUBLICATION, {
+  //   variables: { id_publication: item.id },
+  //   fetchPolicy: 'no-cache',
+  //   onCompleted: () => {
+  //     setTimeout(() => {
+  //       getPublications()
+  //     }, 500)
+  //   },
+  // })
 
   return (
     <li className={`${item.status ? '' : styles.disabled}`}>
@@ -288,11 +288,11 @@ const Publicacion = ({ item, ind, getPublications }) => {
               <Button
                 disabled={item.is_verified}
                 color='blue'
-                onClick={handleChangeApprove}
+              // onClick={handleChangeApprove}
               >
                 Dar de alta
               </Button>
-              <Button color='red' onClick={handleDelete}>
+              <Button color='red' onClick={() => { }/*handleDelete*/}>
                 Eliminar
               </Button>
             </div>
@@ -309,65 +309,65 @@ const Publicaciones = () => {
   const { id: user_id, is_admin } = useSelector(state => state.user)
   const [followedPublications, setFollowedPublications] = useState([])
 
-  const PUBLICATIONS_QUERY = gql`
-    query Publications(
-      $is_admin: Boolean
-      $order: Boolean
-      $title: String
-      $user_id: Int
-    ) {
-      publications(
-        is_admin: $is_admin
-        is_verified: false
-        limit: 20
-        order: $order
-        status: false
-        title: $title
-        user_id: $user_id
-      ) {
-        accept_changes
-        created
-        id
-        is_verified
-        image_link
-        sale_price
-        slug
-        status
-        title
-        user {
-          id
-        }
-        views
-      }
-    }
-  `
+  // const PUBLICATIONS_QUERY = gql`
+  //   query Publications(
+  //     $is_admin: Boolean
+  //     $order: Boolean
+  //     $title: String
+  //     $user_id: Int
+  //   ) {
+  //     publications(
+  //       is_admin: $is_admin
+  //       is_verified: false
+  //       limit: 20
+  //       order: $order
+  //       status: false
+  //       title: $title
+  //       user_id: $user_id
+  //     ) {
+  //       accept_changes
+  //       created
+  //       id
+  //       is_verified
+  //       image_link
+  //       sale_price
+  //       slug
+  //       status
+  //       title
+  //       user {
+  //         id
+  //       }
+  //       views
+  //     }
+  //   }
+  // `
 
-  const [getFollowedPublications] = useLazyQuery(GET_FOLLOWED_PUBLICATIONS, {
-    variables: { user: user_id },
-    fetchPolicy: 'no-cache',
-    onCompleted: ({ getFollowedPublications }) => {
-      getFollowedPublications.status == 200 &&
-        setFollowedPublications(getFollowedPublications.data)
-    },
-  })
+  // const [getFollowedPublications] = useLazyQuery(GET_FOLLOWED_PUBLICATIONS, {
+  //   variables: { user: user_id },
+  //   fetchPolicy: 'no-cache',
+  //   onCompleted: ({ getFollowedPublications }) => {
+  //     getFollowedPublications.status == 200 &&
+  //       setFollowedPublications(getFollowedPublications.data)
+  //   },
+  // })
 
-  const [
-    getPublications,
-    { loading: loadingPublications, error, data: reqPublications },
-  ] = useLazyQuery(PUBLICATIONS_QUERY, {
-    variables: {
-      is_admin: !!is_admin,
-      user_id,
-      order: true,
-    },
-    fetchPolicy: 'no-cache',
-    onError: error => setTryAgain(true),
-    onCompleted: () => setTryAgain(false),
-  })
+  // const [
+  //   getPublications,
+  //   { loading: loadingPublications, error, data: reqPublications },
+  // ] = useLazyQuery(PUBLICATIONS_QUERY, {
+  //   variables: {
+  //     is_admin: !!is_admin,
+  //     user_id,
+  //     order: true,
+  //   },
+  //   fetchPolicy: 'no-cache',
+  //   onError: error => setTryAgain(true),
+  //   onCompleted: () => setTryAgain(false),
+  // })
 
   useEffect(async () => {
-    getPublications({ variables: { status: false } })
-    getFollowedPublications()
+    // getPublications({ variables: { status: false } })
+    // getFollowedPublications()
   }, [])
 
   const handleChange = (event, newValue) => {
@@ -376,16 +376,16 @@ const Publicaciones = () => {
 
   const [value, setValue] = React.useState(0)
 
-  const [handleFavorite] = useMutation(DELETE_FOLLOWINED_PUBLICATION, {
-    onCompleted: data => {
-      toast(
-        <p className='m-0'>
-          Ya no te llegarán notificaciones sobre esta publicación
-        </p>,
-      )
-      getFollowedPublications()
-    },
-  })
+  // const [handleFavorite] = useMutation(DELETE_FOLLOWINED_PUBLICATION, {
+  //   onCompleted: data => {
+  //     toast(
+  //       <p className='m-0'>
+  //         Ya no te llegarán notificaciones sobre esta publicación
+  //       </p>,
+  //     )
+  //     getFollowedPublications()
+  //   },
+  // })
 
   return (
     <section className={`page ${styles.content}`}>
@@ -422,27 +422,27 @@ const Publicaciones = () => {
           </div>
           <Button
             color='blue'
-            onClick={() =>
-              getPublications({
-                variables: {
-                  title: document.getElementById('box-search-text').value,
-                },
-              })
+            onClick={() => { }
+              // getPublications({
+              //   variables: {
+              //     title: document.getElementById('box-search-text').value,
+              //   },
+              // })
             }
           >
             Buscar
           </Button>
         </div>
-        <center>
+        {/* <center>
           {loadingPublications && <div>Cargando publicaciones...</div>}
           {tryAgain && !loadingPublications && (
             <Button color='normal' onClick={getPublications}>
               Intentar nuevamente
             </Button>
           )}
-        </center>
+        </center> */}
         <ul className=''>
-          {reqPublications?.publications &&
+          {/* {reqPublications?.publications &&
             reqPublications.publications.map((item, ind) => {
               return (
                 <Publicacion
@@ -451,12 +451,12 @@ const Publicaciones = () => {
                   getPublications={getPublications}
                 />
               )
-            })}
+            })} */}
         </ul>
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        <CakeReport {...{ publications: reqPublications?.publications }} />
+        {/* <CakeReport {...{ publications: reqPublications?.publications }} /> */}
       </TabPanel>
 
       <TabPanel value={value} index={2}>
@@ -465,7 +465,7 @@ const Publicaciones = () => {
             followedPublications.map((item, ind) => {
               return (
                 <Card
-                  handleFavorite={handleFavorite}
+                  // handleFavorite={handleFavorite}
                   icon_favorite={false}
                   {...item}
                   ind={ind}

@@ -12,7 +12,7 @@ import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import Button from '../button/Button'
 import Link from 'next/link'
-import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
+// import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
 import {
   getNotifications,
   GET_NOTIFICATIONS,
@@ -34,20 +34,20 @@ const CouponBox = props => {
   const [couponValue, setCouponValue] = useState('')
   const [open, setOpen] = React.useState(false)
 
-  const [getNotifications] = useLazyQuery(GET_NOTIFICATIONS, {
-    // Obteniendo notificaciones
-    fetchPolicy: 'no-cache',
-    variables: {
-      user: user?.id,
-    },
-    onCompleted: ({ getNotifications }) => {
-      getNotifications &&
-        dispatch({
-          type: 'CHANGE_PROPERTY',
-          payload: { property: 'notifications', value: getNotifications },
-        })
-    },
-  })
+  // const [getNotifications] = useLazyQuery(GET_NOTIFICATIONS, {
+  //   // Obteniendo notificaciones
+  //   fetchPolicy: 'no-cache',
+  //   variables: {
+  //     user: user?.id,
+  //   },
+  //   onCompleted: ({ getNotifications }) => {
+  //     getNotifications &&
+  //       dispatch({
+  //         type: 'CHANGE_PROPERTY',
+  //         payload: { property: 'notifications', value: getNotifications },
+  //       })
+  //   },
+  // })
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -57,31 +57,31 @@ const CouponBox = props => {
     setOpen(false)
   }
 
-  const [validateCoupon, { data }] = useMutation(VALIDATE_COUPON, {
-    variables: {
-      coupon: couponValue.toUpperCase(),
-      publication,
-      user: user?.id,
-    },
-    onCompleted: ({ validateCoupon: data }) => {
-      toast(data.message)
-      if (data.status === 200) {
-        setOpen(false)
-        getNotifications()
-        callback && callback({ coupon: couponValue, value: data.couponCoins })
-      }
-    },
-    onError: err => {
-      console.log(err)
-    },
-  })
+  // const [validateCoupon, { data }] = useMutation(VALIDATE_COUPON, {
+  //   variables: {
+  //     coupon: couponValue.toUpperCase(),
+  //     publication,
+  //     user: user?.id,
+  //   },
+  //   onCompleted: ({ validateCoupon: data }) => {
+  //     toast(data.message)
+  //     if (data.status === 200) {
+  //       setOpen(false)
+  //       // getNotifications()
+  //       callback && callback({ coupon: couponValue, value: data.couponCoins })
+  //     }
+  //   },
+  //   onError: err => {
+  //     console.log(err)
+  //   },
+  // })
 
   const handleValidate = async () => {
     if (couponValue.length === 0) {
       alert('Debes ingresar un código')
       return
     }
-    validateCoupon()
+    // validateCoupon()
   }
 
   return (

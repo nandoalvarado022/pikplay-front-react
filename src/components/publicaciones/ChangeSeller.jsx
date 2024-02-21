@@ -1,7 +1,7 @@
 import React from 'react'
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
-import { gql, useMutation, useLazyQuery } from '@apollo/client'
+// import { gql, useMutation, useLazyQuery } from '@apollo/client'
 import styles from './changeSeller.module.scss'
 import { useState } from 'react'
 import { useEffect } from 'react'
@@ -11,29 +11,29 @@ const ChangeSeller = ({ changeSellerHandle, id_publication, user_id }) => {
   const [name, setName] = useState('')
   const [users, setUsers] = useState([])
   const [defaultValue, setDefaultValue] = useState(null)
-  const USERS_QUERY = gql`
-    query getUsers($name: String) {
-      getUsers(name: $name) {
-        id
-        name
-      }
-    }
-  `
+  // const USERS_QUERY = gql`
+  //   query getUsers($name: String) {
+  //     getUsers(name: $name) {
+  //       id
+  //       name
+  //     }
+  //   }
+  // `
 
-  const CHANGE_SELLER_MUTATION = gql`
-    mutation changeSeller($id_seller: Int, $id_publication: Int) {
-      changeSeller(id_seller: $id_seller, id_publication: $id_publication)
-    }
-  `
+  // const CHANGE_SELLER_MUTATION = gql`
+  //   mutation changeSeller($id_seller: Int, $id_publication: Int) {
+  //     changeSeller(id_seller: $id_seller, id_publication: $id_publication)
+  //   }
+  // `
 
-  const [getUsers, { loading, error, data }] = useLazyQuery(USERS_QUERY, {
-    variables: { name },
-    fetchPolicy: 'no-cache',
-    onCompleted: data => {
-      const users = data.getUsers.filter(item => item.name)
-      setUsers(users)
-    },
-  })
+  // const [getUsers, { loading, error, data }] = useLazyQuery(USERS_QUERY, {
+  //   variables: { name },
+  //   fetchPolicy: 'no-cache',
+  //   onCompleted: data => {
+  //     const users = data.getUsers.filter(item => item.name)
+  //     setUsers(users)
+  //   },
+  // })
 
   // const [dispatch, {}] = useMutation(CHANGE_SELLER_MUTATION)
 
@@ -45,7 +45,7 @@ const ChangeSeller = ({ changeSellerHandle, id_publication, user_id }) => {
   }
 
   useEffect(() => {
-    getUsers()
+    // getUsers()
   }, [])
 
   useEffect(() => {

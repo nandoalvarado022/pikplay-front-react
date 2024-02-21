@@ -5,7 +5,7 @@ import date from 'date-and-time'
 import fetch from 'node-fetch'
 import rn from 'random-number'
 import { connect, useDispatch } from 'react-redux'
-import { gql } from '@apollo/client'
+// import { gql } from '@apollo/client'
 import { storage } from './storage'
 import { datadogRum } from '@datadog/browser-rum'
 
@@ -462,35 +462,37 @@ export function checkIsMobile(userAgent) {
   )
 }
 
-export const GET_CHALLENGES = gql`
-  query getChallenges {
-    getChallenges {
-      currentPoints
-      deadLine
-      description
-      finished
-      id
-      image
-      prizeCoins
-      targetPoints
-      title
-    }
-  }
-`
+export const GET_CHALLENGES = () => {}
+// gql`
+//   query getChallenges {
+//     getChallenges {
+//       currentPoints
+//       deadLine
+//       description
+//       finished
+//       id
+//       image
+//       prizeCoins
+//       targetPoints
+//       title
+//     }
+//   }
+// `
 
-export const GET_ARTICLES = gql`
-  query getArticles($id: Int, $limit: Int, $slug: String) {
-    getArticles(id: $id, limit: $limit, slug: $slug) {
-      content
-      mobile_content
-      id
-      image_card
-      slug
-      summary
-      title
-    }
-  }
-`
+export const GET_ARTICLES = () => {}
+// gql`
+//   query getArticles($id: Int, $limit: Int, $slug: String) {
+//     getArticles(id: $id, limit: $limit, slug: $slug) {
+//       content
+//       mobile_content
+//       id
+//       image_card
+//       slug
+//       summary
+//       title
+//     }
+//   }
+// `*/
 
 export function getCategories(id) {
   const categories = [
@@ -526,31 +528,36 @@ export function getSubcategories(id) {
   return subcategories
 }
 
-export const CREATE_COIN = gql`
+export const CREATE_COIN = () => {}
+/*gql`
   mutation createCoin($id: Int) {
     createCoin(id: $id)
   }
-`
+`*/
 
-export const CREATE_FAVORITE = gql`
+export const CREATE_FAVORITE = () => {}
+/*gql`
   mutation createFavorite($publication: Int, $user: Int) {
     createFavorite(publication: $publication, user: $user)
   }
 `
 
-export const DELETE_NOTIFICATION = gql`
+export const DELETE_NOTIFICATION = 
+/*gql`
   mutation deleteNotification($id: Int, $userId: Int) {
     deleteNotification(id: $id, userId: $userId)
   }
-`
+`*/
 
-export const DELETE_FOLLOWINED_PUBLICATION = gql`
+export const DELETE_FOLLOWINED_PUBLICATION = () => {}
+/*gql`
   mutation deleteFollowinedPublication($publication: Int, $user: Int) {
     deleteFollowinedPublication(publication: $publication, user: $user)
   }
-`
+`*/
 
-export const GET_NOTIFICATIONS = gql`
+export const GET_NOTIFICATIONS = () => {}
+/*gql`
   query getNotifications($user: Int, $closed: String) {
     getNotifications(user: $user, closed: $closed) {
       closed
@@ -563,24 +570,27 @@ export const GET_NOTIFICATIONS = gql`
       user
     }
   }
-`
+`*/
 
-export const VALIDATE_COUPON = gql`
+export const VALIDATE_COUPON = () => {}
+/*gql`
   mutation validateCoupon($coupon: String, $publication: Int, $user: Int) {
     validateCoupon(coupon: $coupon, publication: $publication, user: $user)
   }
 `
 
-export const GET_CLAIMED_COUPONS = gql`
+export const GET_CLAIMED_COUPONS = 
+/*gql`
   query getClaimedCoupons($coupon: String, $publication: Int, $user: Int) {
     getClaimedCoupons(coupon: $coupon, publication: $publication, user: $user) {
       coins
       coupon
     }
   }
-`
+`*/
 
-export const GET_FOLLOWED_PUBLICATIONS = gql`
+export const GET_FOLLOWED_PUBLICATIONS = () => {}
+/*gql`
   query getFollowedPublications($user: Int) {
     getFollowedPublications(user: $user)
   }
@@ -591,7 +601,8 @@ const slug = null,
   subcategory = null,
   title = null,
   status = true
-export const GET_PUBLICATIONS = gql`
+export const GET_PUBLICATIONS = 
+/*gql`
   query publications(
     $status: Boolean
     $slug: String
@@ -637,7 +648,7 @@ export const GET_PUBLICATIONS = gql`
       warranty
     }
   }
-`
+`*/
 
 export const notifierOptions = {
   labels: {

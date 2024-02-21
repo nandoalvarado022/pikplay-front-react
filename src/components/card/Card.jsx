@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Grow from '@mui/material/Grow'
 import { capitalize, formatNumber, getCiudades } from '../../lib/utils'
-import { useQuery, gql } from '@apollo/client'
+// import { useQuery, gql } from '@apollo/client'
 import Author from './Author'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
