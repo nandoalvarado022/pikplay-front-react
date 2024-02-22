@@ -1,13 +1,18 @@
+/* eslint-disable @next/next/no-img-element */
+import styles from './menuMovil.module.scss'
+
 import React from 'react'
 import Link from 'next/link'
 import PreviewUser from '../previewUser/PreviewUser'
-import styles from './menuMovil.module.scss'
-import { useSelector } from 'react-redux'
+import useSystemStore from '../../hooks/useSystem'
+// import { useSelector } from 'react-redux'
 
 const { motion } = require('framer-motion')
 
 const MenuMovil = () => {
-  const user = useSelector(state => state.user)
+  // const user = useSelector(state => state.user)
+  const { userLogged } = useSystemStore((state => state))
+
   return (
     <div className={styles.MenuMovil}>
       <ol className={styles.mainOption}>
