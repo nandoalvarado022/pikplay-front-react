@@ -737,6 +737,9 @@ body {
   .MuiTab-root {
     text-transform: initial;
   }
+  &.black{
+    background-color: black;
+  }
 }
 
 body {

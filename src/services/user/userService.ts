@@ -4,7 +4,7 @@ const { get, post } = CustomFetch()
 
 const BASE_URL = "/users"
 const getUsersSrv = async () => {
-  const data = await get(BASE_URL);
+  const data = await get(null, BASE_URL);
   return data
 }
 
@@ -31,12 +31,12 @@ const sendCodeSrv = async (ctx, phone) => {
 }
 
 const getNotificationsSrv = async () => {
-  const data = await get(BASE_URL + "/notifications");
+  const data = await get(null, BASE_URL + "/notifications");
   return data
 }
 
 const readNotificationSrv = async (nid: number) => {
-  const data = await get(BASE_URL + `/${nid}/read`);
+  const data = await get(null, BASE_URL + `/${nid}/read`);
   return data
 }
 

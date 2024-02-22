@@ -17,13 +17,13 @@ const CustomFetch = () => {
     return cookies
   }
 
-  const get = async (path) => {
+  const get = async (ctx, path) => {
     try {
       const response = await fetch(apiUrl + path, {
         // credentials: "same-origin", // TODO averiguar para que sirve
         headers: {
           "Content-Type": "application/json",
-          ...getCookies()
+          ...getCookies(ctx)
         },
       });
       // if (!response.ok) {

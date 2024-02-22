@@ -4,12 +4,12 @@ const { get, post } = CustomFetch()
 
 const BASE_URL = "/publications"
 const getPublicationsSrv = async () => {
-  const data = await get(BASE_URL);
+  const data = await get(null, BASE_URL);
   return data
 }
 
 const getPortadaSrv = async () => {
-  const data = await get(BASE_URL + '/portada');
+  const data = await get(null, BASE_URL + '/portada');
   return data
 }
 

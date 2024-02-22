@@ -35,7 +35,7 @@ const rows = [
 
 const handleConfirmarTransaccion = () => { }
 
-export default function MyTable({ loggedUser, transactions }) {
+export default function MyTable({ userLogged, transactions }) {
   const classes = useStyles()
 
   return (
@@ -77,7 +77,7 @@ export default function MyTable({ loggedUser, transactions }) {
                   </TableCell>
                   <TableCell align='right'>
                     <small className='block'>#PIK{id}</small>
-                    <Link href={`/publicacion/${slug}`}>{p_title}</Link>
+                    {/* <Link href={`/publicacion/${slug}`}>{p_title}</Link> */}
                   </TableCell>
                   <TableCell align='right'>{publication}</TableCell>
                   <TableCell align='right'>
@@ -102,14 +102,14 @@ export default function MyTable({ loggedUser, transactions }) {
                     {status == 2 && 'Transacción cancelada'}
                   </TableCell>
                   <TableCell align='right'>
-                    {user_to == loggedUser.id ? (
+                    {user_to == userLogged.uid ? (
                       <span>Venta</span>
                     ) : (
                       <span>Compra</span>
                     )}
                   </TableCell>
                   <TableCell align='right'>
-                    {user_to == loggedUser.id && (
+                    {user_to == userLogged.uid && (
                       <p className={styles.customer_box}>
                         Cliente:
                         <br />
@@ -135,7 +135,7 @@ export default function MyTable({ loggedUser, transactions }) {
                     )}
                   </TableCell>
                   <TableCell align='right'>
-                    {user_to == loggedUser.id && (
+                    {user_to == userLogged.id && (
                       <>
                         <Button
                           color='blue'

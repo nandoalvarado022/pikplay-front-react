@@ -14,8 +14,9 @@ import useSystemStore from '../../hooks/useSystem'
 moment.locale('es')
 
 const Transacciones = props => {
-  // const { loggedUser } = useSystemStore(state => state.user)
-  const [transactions, setTransactions] = useState([])
+  const { data: transactions } = props;
+  const { userLogged } = useSystemStore((state => state))
+  // const [transactions, setTransactions] = useState([])
   // Mutation confirmar transacción
   // const TRANSACTION_CONFIRMED = gql`
   //   mutation transactionConfirmed(
@@ -123,7 +124,7 @@ const Transacciones = props => {
       </h2>
 
       <div className='content m-t-20'>
-        {/* <MyTable loggedUser={loggedUser} transactions={transactions} /> */}
+        <MyTable userLogged={userLogged} transactions={transactions} />
       </div>
     </section>
   )
