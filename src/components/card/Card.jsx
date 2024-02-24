@@ -158,8 +158,7 @@ const Card = (props) => {
               </div>
               <Link
                 href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
-                as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
-              >
+                as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}>
                 <a className={id_publication == 1 ? styles.destacada_Card : ''}>
                   <h2>
                     {title ? title : 'Espacio para el título de la publicación'}

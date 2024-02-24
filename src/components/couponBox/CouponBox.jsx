@@ -1,9 +1,8 @@
-import TextField from '@mui/material/TextField'
-import { useState } from 'react'
-// import Button from '../button/Button'
 import styles from './styles.module.scss'
 
-import React from 'react'
+import TextField from '@mui/material/TextField'
+import React, { useState } from 'react'
+// import Button from '../button/Button'
 import { Button as ButtonMat } from '@mui/material'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
@@ -19,12 +18,14 @@ import {
   VALIDATE_COUPON,
 } from '../../lib/utils'
 import { toast } from 'react-toastify'
-import { useDispatch, useSelector } from 'react-redux'
+// import { useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames'
+import useSystemStore from '../../hooks/useSystem'
 
 const CouponBox = props => {
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.user)
+  // const dispatch = useDispatch()
+  // const user = useSelector(state => state.user)
+  const { userLogged } = useSystemStore()
   const {
     callback,
     className,
@@ -94,8 +95,7 @@ const CouponBox = props => {
         open={open}
         onClose={handleClose}
         aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
-      >
+        aria-describedby='alert-dialog-description'>
         <DialogTitle id='alert-dialog-title'>
           Redimir cupón promocional para obtener Pikcoins
         </DialogTitle>
@@ -113,8 +113,7 @@ const CouponBox = props => {
               <small>
                 <Link
                   href='/articulo/[id]'
-                  as='/articulo/terminos-y-condiciones'
-                >
+                  as='/articulo/terminos-y-condiciones'>
                   <a>
                     Términos y condiciones acerca de la redención de cupones
                   </a>

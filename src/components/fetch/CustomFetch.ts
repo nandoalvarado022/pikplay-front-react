@@ -17,7 +17,7 @@ const CustomFetch = () => {
     return cookies
   }
 
-  const get = async (path) => {
+  const get = async (path, props = {}) => {
     try {
       const response = await fetch(apiUrl + path, {
         // credentials: "same-origin", // TODO averiguar para que sirve

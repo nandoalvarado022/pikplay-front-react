@@ -17,7 +17,7 @@ const useSystemStore = create((set, get) => ({
     env: null,
     logout: () => logout(set),
     notifications: [],
-    userLogged: loadFromLocalStorage() || { id: null },
+    userLogged: loadFromLocalStorage() || { uid: null },
     setValue: (property, value) => {
         localStorage.setItem([property], JSON.stringify(value))
         set({ [property]: value })

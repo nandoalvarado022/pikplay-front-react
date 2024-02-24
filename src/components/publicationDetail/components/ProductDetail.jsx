@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux'
 import Author from '../../card/Author'
 import Product from '../../../interfaces/Product'
 import styles from './styles.module.scss'
+import useSystemStore from '../../../hooks/useSystem'
 
 const DetalleProducto = ({
   apply_cashback,
@@ -21,28 +22,27 @@ const DetalleProducto = ({
   descuento = 0,
   handleHablarVendedor,
   indice_item,
-  user: seller,
 }) => {
+
   const {
-    image_1,
-    image_2,
-    image_3,
-    image_4,
-    image_5,
-    quantity,
+    images,
+    title,
     sale_price,
     slug,
-    title,
+    quantity,
+    user: seller,
   } = datosPublicacion || {}
-
+  const formattedImages = images.map(item => ({
+    thumbnail: item.url,
+    original: item.url, 
+  }))
   const ref_descripcion_imagen = useRef(null)
-  let images = []
-  const user = useSelector(state => state.user)
-  if (image_1) images.push({ original: image_1, thumbnail: image_1 })
-  if (image_2) images.push({ original: image_2, thumbnail: image_2 })
-  if (image_3) images.push({ original: image_3, thumbnail: image_3 })
-  if (image_4) images.push({ original: image_4, thumbnail: image_4 })
-  if (image_5) images.push({ original: image_5, thumbnail: image_5 })
+  const { userLogged } = useSystemStore(state => state)
+  // if (image_1) images.push({ original: image_1, thumbnail: image_1 })
+  // if (image_2) images.push({ original: image_2, thumbnail: image_2 })
+  // if (image_3) images.push({ original: image_3, thumbnail: image_3 })
+  // if (image_4) images.push({ original: image_4, thumbnail: image_4 })
+  // if (image_5) images.push({ original: image_5, thumbnail: image_5 })
   indice_item = indice_item ? indice_item : 1
     ; (sale_price == sale_price) == 0 || sale_price == '' ? null : sale_price
 
@@ -53,7 +53,7 @@ const DetalleProducto = ({
           <div className={`Card ${styles.left}`}>
             <div className={styles.content_imagen}>
               <ImageGallery
-                items={images}
+                items={formattedImages}
                 lazyLoad={false}
                 showPlayButton={false}
                 showBullets={false}
@@ -77,11 +77,11 @@ const DetalleProducto = ({
           <div className={styles.descripcion}>
             <div className={`Card ${styles.Card}`}>
               <h1>{title}</h1>
-              {!!user.is_admin && (
+              {/* {!!user.is_admin && (
                 <Link href={'/publicacion/' + slug + '/editar'}>
                   <a className='underline'>Editar</a>
                 </Link>
-              )}
+              )} */}
               {/* Si aplica cashback */}
               {apply_cashback && (
                 <span

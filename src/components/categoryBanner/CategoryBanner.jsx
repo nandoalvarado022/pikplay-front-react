@@ -70,6 +70,21 @@ const CategoryBanner = ({ categoryId }) => {
         </p>
       )
       break
+
+    case 7:
+      image = '/images/backgrounds/anime.jpeg'
+      link = '/'
+      text = (
+        <div>
+          <p className={styles.anime}>
+            No podria faltar<span>Anime Fans Section</span>
+          </p>
+          <video>
+            Aquí va el video
+          </video>
+        </div>
+      )
+      break
   }
 
   useEffect(() => {
@@ -84,8 +99,7 @@ const CategoryBanner = ({ categoryId }) => {
             layout='fill'
             className='object-center object-cover pointer-events-none'
             src={image}
-            alt='Categoría'
-          />
+            alt='Categoría' />
           {text}
         </a>
       </Link>

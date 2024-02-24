@@ -3,11 +3,13 @@ import Router from 'next/router'
 import toastr from 'toastr'
 import Layout from '../../src/components/layout/Layout'
 import { getFeed } from '../../src/lib/utils'
-// import ModalCheckout from '../../src/components/modalCheckout/ModalCheckout'
-import { connect } from 'react-redux'
+import ModalCheckout from '../../src/components/modalCheckout/ModalCheckout'
+// import { connect } from 'react-redux'
 import ProductDetail from '../../src/components/publicationDetail/components/ProductDetail'
 // components/productDetail/ProductDetail'
 // import ModalNotification from './components/modalNotification/ModalNotification'
+import { getPublicationsSrv } from '../../src/services/publication/publicationService'
+import useSystemStore from '../../src/hooks/useSystem'
 
 const PublicacionPage = (props) => {
   const { datosPublicacion } = props
@@ -16,6 +18,7 @@ const PublicacionPage = (props) => {
   const [precio, setPrecio] = useState(0)
   const [nuevoPrecio, setNuevoPrecio] = useState(datosPublicacion.price)
   const [logIngresarCupon, setLogIngresarCupon] = useState(false)
+  const { userLogged } = useSystemStore()
 
   const handleCupon = () => {
     setLogIngresarCupon(true)
@@ -43,10 +46,7 @@ const PublicacionPage = (props) => {
   // }
 
   const handleHablarVendedor = () => {
-    // context = this.context
-    props.user.id !== 0
-      ? setModalHablarVendedor(true)
-      : document.querySelector('#btnStart').click()
+    userLogged.uid ? setModalHablarVendedor(true) : document.querySelector('#btnStart').click()
   }
 
   const mostrarAlerta = mensaje => {
@@ -98,15 +98,15 @@ const PublicacionPage = (props) => {
         />
         {
           // Modal para confirmar datos
-          /*modalHablarVendedor && (
-            // <ModalCheckout
-            //   {...{
-            //     datosPublicacion,
-            //     setIsModalHablarVendedor: () =>
-            //       setModalHablarVendedor(!modalHablarVendedor),
-            //   }}
-            // />
-          )*/
+          modalHablarVendedor && (
+            <ModalCheckout
+              {...{
+                datosPublicacion,
+                setIsModalHablarVendedor: () =>
+                  setModalHablarVendedor(!modalHablarVendedor),
+              }}
+            />
+          )
         }
         {/* <ModalNotification isOpen={showModalNotification} /> */}
         {
@@ -139,12 +139,8 @@ const PublicacionPage = (props) => {
 
 PublicacionPage.getInitialProps = async ({ req, query }) => {
   let slug = query.id
-  let datosPublicacion = await getFeed({ slug })
+  let datosPublicacion = await getPublicationsSrv({ slug })
   return { datosPublicacion: datosPublicacion[0] }
 }
 
-const mapStateToProps = state => ({
-  user: state.user,
-})
-
-export default connect(mapStateToProps)(PublicacionPage)
+export default PublicacionPage
