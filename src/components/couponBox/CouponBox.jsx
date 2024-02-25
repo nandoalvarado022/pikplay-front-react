@@ -87,50 +87,24 @@ const CouponBox = props => {
 
   return (
     <div className={classNames('', [className, styles.CouponBox])}>
-      <Button color='link' onClick={handleClickOpen}>
-        {label}
-      </Button>
-
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'>
-        <DialogTitle id='alert-dialog-title'>
-          Redimir cupón promocional para obtener Pikcoins
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id='alert-dialog-description'>
-            <TextField
-              autoFocus={true}
-              autoComplete='couponValue'
-              className='m-b-10 coupon-field'
-              onChange={e => setCouponValue(e.target.value)}
-              label='Digita tu cupón aquí'
-              size='small'
-            />
-            <div>
-              <small>
-                <Link
-                  href='/articulo/[id]'
-                  as='/articulo/terminos-y-condiciones'>
-                  <a>
-                    Términos y condiciones acerca de la redención de cupones
-                  </a>
-                </Link>
-              </small>
-            </div>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <ButtonMat onClick={handleClose} color='primary'>
-            Cancelar
-          </ButtonMat>
-          <ButtonMat onClick={handleValidate} color='primary'>
-            Validar
-          </ButtonMat>
-        </DialogActions>
-      </Dialog>
+      <TextField
+        autoFocus={true}
+        autoComplete='couponValue'
+        className='m-b-10 coupon-field'
+        onChange={e => setCouponValue(e.target.value)}
+        label='Si tienes un cupón aquí lo puedeas digitar'
+        size='small' />
+      <div>
+        <small>
+          <Link
+            href='/articulo/[id]'
+            as='/articulo/terminos-y-condiciones'>
+            <a>
+              Términos y condiciones acerca de la redención de cupones
+            </a>
+          </Link>
+        </small>
+      </div>
     </div>
   )
 }

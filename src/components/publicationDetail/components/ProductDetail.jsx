@@ -37,12 +37,7 @@ const DetalleProducto = ({
     original: item.url, 
   }))
   const ref_descripcion_imagen = useRef(null)
-  const { userLogged } = useSystemStore(state => state)
-  // if (image_1) images.push({ original: image_1, thumbnail: image_1 })
-  // if (image_2) images.push({ original: image_2, thumbnail: image_2 })
-  // if (image_3) images.push({ original: image_3, thumbnail: image_3 })
-  // if (image_4) images.push({ original: image_4, thumbnail: image_4 })
-  // if (image_5) images.push({ original: image_5, thumbnail: image_5 })
+  const { userLogged } = useSystemStore()
   indice_item = indice_item ? indice_item : 1
     ; (sale_price == sale_price) == 0 || sale_price == '' ? null : sale_price
 

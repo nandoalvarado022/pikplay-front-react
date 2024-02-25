@@ -1,3 +1,5 @@
+import styles from './styles.module.scss'
+
 import React, { useEffect } from 'react'
 import { Link, Tooltip } from '@mui/material'
 import Zoom from '@mui/material/Zoom'
@@ -7,7 +9,6 @@ import CoinIcon from '../coinIcon/CoinIcon'
 import Insignias from '../insignias/Insignias'
 import Insignia from '../insignias/Insignia'
 import ProfileImage from '../profileImage/ProfileImage'
-import styles from './styles.module.scss'
 
 const ProfileSummaryExperience = (props) => {
     const { gainExperience } = props

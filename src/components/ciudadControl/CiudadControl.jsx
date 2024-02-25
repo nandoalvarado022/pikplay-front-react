@@ -1,21 +1,18 @@
 import React from 'react'
 import { TextField } from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
-import { useSelector, useDispatch } from 'react-redux'
 import { getCiudades } from '../../lib/utils'
+import useSystemStore from '../../hooks/useSystem'
 
 const CiudadControl = () => {
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.user)
+  const { userLogged } = useSystemStore(state => state)
   const listadoCiudades = getCiudades()
-  const defaultValue = user.city
-    ? listadoCiudades.find(item => item.id === user.city)
+  const defaultValue = userLogged.city
+    ? listadoCiudades.find(item => item.id === userLogged.city)
     : listadoCiudades[0]
   const onInputChange = (event, value) => {
-    dispatch({
-      type: 'CHANGE_PROPERTY',
-      payload: { property: 'user', value: { ...user, city: value.id } },
-    })
+    // value.id es la nueva ciudad
+    // TODO Pendiente guardar ciudad
   }
 
   return (

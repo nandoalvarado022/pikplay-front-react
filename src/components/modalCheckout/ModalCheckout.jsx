@@ -17,12 +17,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment } from '@fortawesome/free-solid-svg-icons'
 import toastr from 'toastr'
 import useSystemStore from '../../hooks/useSystem'
+import { createTransactionsSrv } from '../../services/transaction/transactionService'
 
 const ModalCheckout = props => {
   const [couponValue, setCouponValue] = useState(null)
   const [couponCode, setCouponCode] = useState(null)
   const { userLogged } = useSystemStore()
-  const [showConditions, setShowConditions] = useState(false)
   const { datosPublicacion, setIsModalHablarVendedor } = props
   // const CREATE_TRANSACTION = gql`
   //   mutation createTransaction(
@@ -59,7 +59,7 @@ const ModalCheckout = props => {
   //     }
   //   },
   // })
-  const handleCreateTransaction = () => {
+  const handleCreateTransaction = async () => {
     if (!userLogged.uid) {
       const mensaje = toastr()
       // mensaje.options.onclick = () => Router.push('/login')
@@ -67,20 +67,17 @@ const ModalCheckout = props => {
       return false
     }
 
-    // Mutation para registrar la pre orden
-    // createTransaction({
-    //   variables: {
-    //     user: user.id,
-    //     user_to: datosPublicacion.user.id,
-    //     publication: datosPublicacion.id,
-    //     type: 'PURCHASE',
-    //   },
-    // }).then(data => {
-    //   alert('OK!')
-    // })
-
-    // const identificacion = JSON.parse(localStorage.getItem("user")).identificacion
-    // const direccion = JSON.parse(localStorage.getItem("user")).direccion
+    try {
+      // Registrando la pre orden
+      const resp = await createTransactionsSrv({
+        uid: userLogged.uid,
+        uid_target: datosPublicacion.user.uid,
+        pid: datosPublicacion.pid,
+        type: 'PURCHASE',
+      })
+    } catch (err) {
+      // TODO Loguear error
+    }
   }
 
   const enviarWhatsapp = () => {
@@ -97,10 +94,9 @@ const ModalCheckout = props => {
     )
   }
 
-  const handlePagar = async () => {
+  const handlePagar = () => {
     handleCreateTransaction()
     enviarWhatsapp()
-    return
   }
 
   const handleCoupon = data => {
@@ -129,17 +125,17 @@ const ModalCheckout = props => {
             margin='normal'
             value={userLogged?.name}
           />
-          {/* <CiudadControl /> */}
+          <CiudadControl />
         </section>
         <section className={classNames('m-t-20 f-s-14 t-a-r', [styles.bottom])}>
-          {!!datosPublicacion?.sale_price && (
+          {!!datosPublicacion?.price && (
             <table className={styles.payment_info}>
               {couponValue && (
                 <>
                   <tr>
                     <td>Total:</td>
                     <td>
-                      <del>${formatNumber(datosPublicacion?.sale_price)}</del>
+                      <del>${formatNumber(datosPublicacion?.price)}</del>
                     </td>
                   </tr>
 
@@ -153,7 +149,7 @@ const ModalCheckout = props => {
               <tr className={styles.sale_price}>
                 <td>Total a pagar:</td>
                 <td>
-                  ${formatNumber(datosPublicacion?.sale_price - couponValue)}
+                  ${formatNumber(datosPublicacion?.price - couponValue)}
                 </td>
               </tr>
             </table>
@@ -165,7 +161,7 @@ const ModalCheckout = props => {
           {
             !couponValue && <div className={styles.sale_price}>
               <b>Total a pagar:</b>
-              ${formatNumber(datosPublicacion?.sale_price)}
+              ${formatNumber(datosPublicacion?.price)}
             </div>
           }
 
@@ -183,19 +179,16 @@ const ModalCheckout = props => {
           )}
           <Alert
             className='m-t-10'
-            icon={false}
-            onClick={() => setShowConditions(!showConditions)}
+            icon
             severity='info'>
             <div className='t-a-r'>Terminos y condiciones</div>
-            {showConditions && (
-              <small>
-                El pago del producto y costos asociados como el envío se hablan
-                directamente con el vendedor. Pikplay no te hace cobro adicional
-                de ninguna clase. Si tienes aplicado un cúpon este se verá
-                reflejado en el panel del vendedor y deberá ser aplicado en el
-                momento del pago del producto o servicio.
-              </small>
-            )}
+            <small>
+              El pago del producto y costos asociados como el envío se hablan
+              directamente con el vendedor. Pikplay no te hace cobro adicional
+              de ninguna clase. Si tienes aplicado un cúpon este se verá
+              reflejado en el panel del vendedor y deberá ser aplicado en el
+              momento del pago del producto o servicio.
+            </small>
           </Alert>
         </section>
         <section className={styles.actions}>
@@ -203,8 +196,7 @@ const ModalCheckout = props => {
             onClick={() => {
               setIsModalHablarVendedor()
             }}
-            color='normal'
-          >
+            color='normal'>
             Cancelar
           </Button>
           <Button onClick={handlePagar} color='yellow'>
