@@ -30,6 +30,7 @@
     "@mui/lab": "^5.0.0-alpha.160",
     "@mui/material": "^5.15.4",
     "@mui/styles": "^5.15.4",
+    "@mui/x-charts": "6.19.5",
     "@reduxjs/toolkit": "1.6.2",
     "apollo-boost": "0.4.9",
     "awesome-debounce-promise": "2.1.0",

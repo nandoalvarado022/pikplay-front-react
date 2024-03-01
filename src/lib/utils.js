@@ -8,7 +8,10 @@ import { connect, useDispatch } from 'react-redux'
 // import { gql } from '@apollo/client'
 import { storage } from './storage'
 import { datadogRum } from '@datadog/browser-rum'
+import CustomFetch from '../components/fetch/CustomFetch.ts'
+import toastr from 'toastr'
 
+const { post } = CustomFetch()
 date.locale('es')
 
 // export default connect(null, useDispatch)(Functions)
@@ -245,86 +248,41 @@ export const capitalize = s => {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-export const subirImagen = ({ tipoArchivo, idImageElement }) =>
+export const subirImagen = ({ callback = () => null, folder, idImageElement }) =>
   new Promise(async (resolve, reject) => {
     const arrayURLS = []
     // const $imagenes = document.getElementById("subir_imagen");
-    const $imagenes = document.getElementById(idImageElement)
-    Array.from($imagenes.files).forEach(file => {
-      const d = new Date()
-      const datestring =
-        d.getDate() +
-        '_' +
-        (d.getMonth() + 1) +
-        '_' +
-        d.getFullYear() +
-        '_' +
-        d.getHours() +
-        '_' +
-        d.getMinutes() +
-        '_' +
-        d.getSeconds()
-      const random = rn({ min: 0, max: 100, integer: true })
-      const nombre_archivo = `${datestring}_${random}`
-      let ubicacionGuardar = storage.ref(
-        '/images/' + tipoArchivo + '/' + nombre_archivo + '.jpg',
-      )
-      const uploadTask = ubicacionGuardar.put(file)
-      uploadTask.on(
-        'state_changed',
-        function (snapshot) {
-          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          if (document.querySelector('#progressUploadImage')) {
-            document.querySelector('#progressUploadImage').innerHTML =
-              progress + '%'
-          }
-          console.log('Upload is ' + progress + '% done')
-        },
-        function (err) {
-          reject(err)
-        },
-        async function (snapshot) {
-          const getIURL = async () => {
-            console.log('entro en getIURL')
-            try {
-              return [
-                await ref_thumbnail.getDownloadURL(),
-                await ref_full.getDownloadURL(),
-              ]
-            } catch (err) {
-              return null
-            }
-          }
+    const element = document.getElementById(idImageElement)
+    const file = element.files[0]
+    // Array.from($imagenes.files).forEach(file => {
+    // const d = new Date()
+    // const datestring =
+    //   d.getDate() +
+    //   '_' +
+    //   (d.getMonth() + 1) +
+    //   '_' +
+    //   d.getFullYear() +
+    //   '_' +
+    //   d.getHours() +
+    //   '_' +
+    //   d.getMinutes() +
+    //   '_' +
+    //   d.getSeconds()
 
-          let url_thumbnail
-          let url_full = null
-          const ref_thumbnail = storage.ref(
-            '/images/' + tipoArchivo + '/' + nombre_archivo + '_320x320.jpg',
-          )
-          const ref_full = storage.ref(
-            '/images/' + tipoArchivo + '/' + nombre_archivo + '_1080x1080.jpg',
-          )
-          const myInterval = setInterval(async () => {
-            const images = await getIURL(ref_thumbnail, ref_full)
-            if (images) {
-              console.log('entro e imagenes')
-              clearInterval(myInterval)
-              url_thumbnail = images[0]
-              url_full = images[1]
-              arrayURLS.push(url_thumbnail)
-              arrayURLS.push(url_full)
-              // if (arrayURLS.length == $imagenes.files.length)
-              resolve(arrayURLS)
-              return arrayURLS
-            } else {
-              console.log('entro y no imagenes')
-            }
-          }, 2000)
-          /*const file_name = uploadTask.snapshot.ref.name
-      // uploadTask.snapshot.ref*/
-        },
-      )
-    })
+    // const random = rn({ min: 0, max: 100, integer: true })
+    // const fileName = `${datestring}_${random}`
+    const formData = new FormData();
+    formData.set('file', file);
+    formData.set('folder', folder);
+    post(null, "/v1/do/spaces", null, formData)
+      .then(data => {
+        callback && callback()
+        resolve(data)
+      })
+      .catch(err => {
+        toastr("Error al subir el archivo")
+        reject(null)
+      })
   })
 
 export const loadAudio = function (fuente) {
@@ -462,7 +420,7 @@ export function checkIsMobile(userAgent) {
   )
 }
 
-export const GET_CHALLENGES = () => {}
+export const GET_CHALLENGES = () => { }
 // gql`
 //   query getChallenges {
 //     getChallenges {
@@ -479,7 +437,7 @@ export const GET_CHALLENGES = () => {}
 //   }
 // `
 
-export const GET_ARTICLES = () => {}
+export const GET_ARTICLES = () => { }
 // gql`
 //   query getArticles($id: Int, $limit: Int, $slug: String) {
 //     getArticles(id: $id, limit: $limit, slug: $slug) {
@@ -528,14 +486,14 @@ export function getSubcategories(id) {
   return subcategories
 }
 
-export const CREATE_COIN = () => {}
+export const CREATE_COIN = () => { }
 /*gql`
   mutation createCoin($id: Int) {
     createCoin(id: $id)
   }
 `*/
 
-export const CREATE_FAVORITE = () => {}
+export const CREATE_FAVORITE = () => { }
 /*gql`
   mutation createFavorite($publication: Int, $user: Int) {
     createFavorite(publication: $publication, user: $user)
@@ -549,14 +507,14 @@ export const DELETE_NOTIFICATION =
   }
 `*/
 
-export const DELETE_FOLLOWINED_PUBLICATION = () => {}
+export const DELETE_FOLLOWINED_PUBLICATION = () => { }
 /*gql`
   mutation deleteFollowinedPublication($publication: Int, $user: Int) {
     deleteFollowinedPublication(publication: $publication, user: $user)
   }
 `*/
 
-export const GET_NOTIFICATIONS = () => {}
+export const GET_NOTIFICATIONS = () => { }
 /*gql`
   query getNotifications($user: Int, $closed: String) {
     getNotifications(user: $user, closed: $closed) {
@@ -572,7 +530,7 @@ export const GET_NOTIFICATIONS = () => {}
   }
 `*/
 
-export const VALIDATE_COUPON = () => {}
+export const VALIDATE_COUPON = () => { }
 /*gql`
   mutation validateCoupon($coupon: String, $publication: Int, $user: Int) {
     validateCoupon(coupon: $coupon, publication: $publication, user: $user)
@@ -589,7 +547,7 @@ export const GET_CLAIMED_COUPONS =
   }
 `*/
 
-export const GET_FOLLOWED_PUBLICATIONS = () => {}
+export const GET_FOLLOWED_PUBLICATIONS = () => { }
 /*gql`
   query getFollowedPublications($user: Int) {
     getFollowedPublications(user: $user)
@@ -680,9 +638,11 @@ export const animatePrince = (HTMLElement, targetNumber, fromNumber) => {
     }, 100);
   } else { // Disminuyendo
     var interval = setInterval(function () {
-      HTMLElement.innerHTML = target
-      if (number >= target) clearInterval(interval)
-      target = Number(target - 1)
+      if (HTMLElement) {
+        HTMLElement.innerHTML = target
+        if (number >= target) clearInterval(interval)
+        target = Number(target - 1)
+      }
     }, 80)
   }
 }

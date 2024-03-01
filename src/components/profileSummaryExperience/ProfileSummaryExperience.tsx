@@ -9,11 +9,14 @@ import CoinIcon from '../coinIcon/CoinIcon'
 import Insignias from '../insignias/Insignias'
 import Insignia from '../insignias/Insignia'
 import ProfileImage from '../profileImage/ProfileImage'
+import useSystemStore from '../../hooks/useSystem'
 
 const ProfileSummaryExperience = (props) => {
     const { gainExperience } = props
     const gainedCoins = 5
     const currentUserCoins = 10
+    const { userLogged } = useSystemStore()
+    const { picture } = userLogged
 
     useEffect(() => {
         const element = document.querySelector('.ProfileSummaryExperience .number-coins')
@@ -37,7 +40,7 @@ const ProfileSummaryExperience = (props) => {
                 <div className={styles.box}>
                     <div className={styles.bg}></div>
                     <div className={styles.left}>
-                        <ProfileImage />
+                        <ProfileImage picture={picture} />
                         <br />
                         <div className={styles.experience_status}>
                             <ExperienceBar />

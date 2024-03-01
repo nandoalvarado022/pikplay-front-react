@@ -8,12 +8,7 @@ import { useContext, useEffect, useState } from 'react'
 // import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import useSystemStore from '../../src/hooks/useSystem'
-import { validateTokenSrv } from '../../src/services/user/userService'
-
-// const CHANGE_PROFILE = gql`
-//   mutation ChangeProfileData($input: UserInput) {
-//     changeProfileData(input: $input)
-//   }`
+import { validateTokenSrv, updateProfileSrv } from '../../src/services/user/userService'
 
 const Index = props => {
   const descripcion =
@@ -21,14 +16,11 @@ const Index = props => {
   const image = ''
   const title = 'Pikplay | Perfil'
   const url = 'https://pikplay.co/perfil'
-  // const dispatch = useDispatch()
   const router = useRouter()
   const showSavedMessage = !!Object.keys(router.query).find(x => x == 'updated')
-  // const [changeProfileData, { data, error, loading }] = useMutation(CHANGE_PROFILE)
-  const { userLogged, setValue } = useSystemStore((state => state))
-  const [userData, setUserData] = useState({
+  const { userLogged, setValue } = useSystemStore()
+  const [userDataUpdated, setUserData] = useState({
     ...userLogged,
-    // coins: context?.coins
   })
   const [isSaving, setIsSaving] = useState(false)
   const [isProfileComplete, setIsProfileComplete] = useState(true)
@@ -40,33 +32,31 @@ const Index = props => {
     setUserData(user)
   }
 
-  const handleSave = async () => {
-    setIsSaving(true)
-    // saving image in firebase
+  const handleUploadImage = async (callback) => {
     let picture = document.getElementById('profileElement')
-    if (picture.value) {
-      picture = await subirImagen({
-        tipoArchivo: 'profiles',
+    if (picture.value != '') {
+      const res = await subirImagen({
+        folder: 'users',
         idImageElement: 'profileElement',
       })
-      picture = picture[0]
-    } else picture = null
+      const { url } = res
+      return url
+    } else return null
+  }
 
-    // let variables = { id: userData.id }
-    // if (user.city) variables.city = user.city
-    // if (userData.email) variables.email = userData.email
-    // if (userData.name) variables.name = userData.name
-    // if (userData.document_number)
-    //   variables.document_number = userData.document_number
-    // if (picture) variables.picture = picture // Setting picture
-    // dispatch({
-    //   type: 'CHANGE_PROPERTY',
-    //   payload: {
-    //     property: 'user',
-    //     value: { ...userData, ...variables },
-    //   },
-    // })
-    // changeProfileData({ variables: { input: variables } }) // Guardando en BD
+  const handleSave = async () => {
+    setIsSaving(true)
+
+    const imageUpdated = await handleUploadImage() // Updating Image
+
+    if (imageUpdated) userDataUpdated.picture = imageUpdated
+    updateProfileSrv(userDataUpdated) // Updating Information
+      .then(data => {
+        setValue('userLogged', userDataUpdated);
+      })
+      .catch(err => {
+        toast('Error')
+      })
 
     // Message to user
     setTimeout(() => {
@@ -77,7 +67,12 @@ const Index = props => {
 
   return (
     <Layout image={image} descripcion={descripcion} title={title} url={url}>
-      <Perfil {...{ userLogged, isSaving, handleSave, setUserData }} />
+      <Perfil
+        userLogged={userDataUpdated}
+        isSaving={isSaving}
+        handleSave={handleSave}
+        setUserData={setUserData}
+      />
     </Layout>
   )
 }

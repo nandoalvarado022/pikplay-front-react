@@ -1,4 +1,7 @@
 import React from 'react'
+import { Button as MaterialButton } from '@mui/material/Button';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { styled } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -15,28 +18,35 @@ import { faCheck, faUserFriends } from '@fortawesome/free-solid-svg-icons'
 import styles from './styles.module.scss'
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 
+moment.locale('es')
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
 })
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein }
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-]
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+});
 
 const handleConfirmarTransaccion = () => { }
 
 export default function MyTable({ loggedUser, transactions }) {
   const classes = useStyles()
+  const rowClasses = (status) => {
+    return {
+      [styles.confirmed]: status == 1,
+      [styles.cancelled]: status == 2
+    }
+  }
 
   return (
     <TableContainer component={Paper}>
@@ -44,22 +54,22 @@ export default function MyTable({ loggedUser, transactions }) {
         <TableHead>
           <TableRow>
             <TableCell>&nbsp;</TableCell>
-            <TableCell align='right'>Publicación</TableCell>
-            <TableCell align='right'>Vistas</TableCell>
-            <TableCell align='right'>Estado</TableCell>
-            <TableCell align='right'>Tipo transacción</TableCell>
-            <TableCell align='right'>Otra información</TableCell>
-            <TableCell align='right'>Fecha creación</TableCell>
-            <TableCell align='right'>&nbsp;</TableCell>
+            <TableCell>Publicación</TableCell>
+            <TableCell>Vistas</TableCell>
+            <TableCell>Estado</TableCell>
+            <TableCell>Tipo transacción</TableCell>
+            <TableCell>Cliente</TableCell>
+            <TableCell>Fecha creación</TableCell>
+            <TableCell>Acciones</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {transactions &&
             transactions.map(
               ({
-                created,
+                created_at,
                 detail,
-                id,
+                pid,
                 p_image,
                 p_title,
                 publication,
@@ -71,82 +81,90 @@ export default function MyTable({ loggedUser, transactions }) {
                 user_to,
                 slug,
               }) => (
-                <TableRow key={id}>
-                  <TableCell align='right'>
-                    <img src={p_image} width={100} />
+                <TableRow key={pid}>
+                  <TableCell align='right' className={{ ...rowClasses(status) }}>
+                    <span className={styles.pid}>{publication?.title.substr(0, 3)}{pid}</span>
                   </TableCell>
-                  <TableCell align='right'>
-                    <small className='block'>#PIK{id}</small>
-                    <Link href={`/publicacion/${slug}`}>{p_title}</Link>
+                  <TableCell align='right' className={{ ...rowClasses(status) }}>
+                    <small className='block'></small>
+                    {publication?.title}
+                    {/* <Link href={`/publicacion/${slug}`}>{p_title}</Link> */}
                   </TableCell>
-                  <TableCell align='right'>{publication}</TableCell>
-                  <TableCell align='right'>
+                  <TableCell align='right' className={{ ...rowClasses(status) }}></TableCell>
+                  <TableCell align='right' className={{ ...rowClasses(status) }}>
                     {status == 0 && (
                       <span>
-                        <FontAwesomeIcon
+                        {/* <FontAwesomeIcon
                           className='m-r-10 primary-color'
                           icon={faUserFriends}
-                        />
-                        En conversación
+                        /> */}
+                        Proceso
                       </span>
                     )}
                     {status == 1 && (
                       <span>
-                        <FontAwesomeIcon
+                        {/* <FontAwesomeIcon
                           className='m-r-10 primary-color'
                           icon={faCheck}
-                        />
+                        /> */}
                         Transacción confirmada
                       </span>
                     )}
                     {status == 2 && 'Transacción cancelada'}
                   </TableCell>
-                  <TableCell align='right'>
-                    {user_to == loggedUser.id ? (
+                  <TableCell align='right' className={{ ...rowClasses(status) }}>
+                    {user_to == loggedUser?.uid ? (
                       <span>Venta</span>
                     ) : (
                       <span>Compra</span>
                     )}
                   </TableCell>
-                  <TableCell align='right'>
-                    {user_to == loggedUser.id && (
+                  <TableCell align='right' className={{ ...rowClasses(status) }}>
+                    {user_to == loggedUser?.uid && (
                       <p className={styles.customer_box}>
                         Cliente:
                         <br />
-                        {u_name}
+                        {/* {u_name} */}
+                        Camilo Rodriguez
                         <br />
                         <a
                           href={`https://api.whatsapp.com/send?phone=${u_phone}`}
                           target='_BLANK'
-                          rel="noreferrer"
-                        >
+                          rel="noreferrer">
                           <FontAwesomeIcon
                             className='p-r t-2'
-                            icon={faWhatsapp}
-                          />
-                          &nbsp;Contactar cliente
+                            icon={faWhatsapp} />
+                          &nbsp;
+                          3187414972
                         </a>
                       </p>
                     )}
                   </TableCell>
-                  <TableCell align='right'>
-                    {moment(parseInt(created)).format(
+                  <TableCell align='right' className={{ ...rowClasses(status) }}>
+                    {moment(created_at).format(
                       'MMMM DD YYYY, h:mm:ss a',
                     )}
                   </TableCell>
-                  <TableCell align='right'>
-                    {user_to == loggedUser.id && (
+                  <TableCell align='right' className={{ ...rowClasses(status) }}>
+                    {user_to == loggedUser?.uid && (
                       <>
-                        <Button
+                        {/* <Button
                           color='blue'
                           disabled={status != 0}
-                          onClick={() =>
-                            handleConfirmarTransaccion(id, publication)
-                          }
-                        >
+                          onClick={() => handleConfirmarTransaccion(id, publication)}>
                           Confirmar transacción
-                        </Button>
-                        <Button color='yellow'>Subir comprobante</Button>
+                        </Button> */}
+                        {/* <Button color='yellow'>Subir comprobante</Button> */}
+                        {/* <MaterialButton
+                          component="label"
+                          role={undefined}
+                          variant="contained"
+                          tabIndex={-1}
+                          startIcon={<CloudUploadIcon />}>
+                          Upload file
+                          <VisuallyHiddenInput type="file" />
+                        </MaterialButton> */}
+                        <Button color='red'>Denunciar cliente</Button>
                       </>
                     )}
                   </TableCell>

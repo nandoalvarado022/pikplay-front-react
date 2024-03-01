@@ -9,6 +9,12 @@ const createTransactionsSrv = async (props) => {
   return data
 }
 
+const getTransactionsSrv = async (props) => {
+  const data = await get(BASE_URL);
+  return data
+}
+
 export {
+  getTransactionsSrv,
   createTransactionsSrv,
 }

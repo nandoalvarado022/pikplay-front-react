@@ -6,6 +6,7 @@ module.exports = async (phase, { defaultConfig }) => {
    */
   const nextConfig = {
     /* config options here */
+    transpilePackages: ['@mui/x-charts']
   }
   return nextConfig
 }

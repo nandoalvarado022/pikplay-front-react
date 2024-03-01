@@ -14,8 +14,10 @@ const loginSrv = async (ctx: any, phone: string, code: number) => {
   return data
 }
 
-const updateProfile = async (phone: string, name: string, lastName: string) => {
-
+const updateProfileSrv = async (userDataUpdated: any) => {
+  const path = BASE_URL + "/update"
+  const data = await post(null, path, userDataUpdated);
+  return data
 }
 
 const validateTokenSrv = async (ctx) => {
@@ -41,10 +43,11 @@ const readNotificationSrv = async (nid: number) => {
 }
 
 export {
+  getNotificationsSrv,
   getUsersSrv,
   loginSrv,
-  validateTokenSrv,
+  readNotificationSrv,
   sendCodeSrv,
-  getNotificationsSrv,
-  readNotificationSrv
+  updateProfileSrv,
+  validateTokenSrv,
 }

@@ -1,6 +1,6 @@
 import styles from './perfil.module.scss'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 const { motion } = require('framer-motion')
 import Button from '../button/Button'
 import CiudadControl from '../ciudadControl/CiudadControl'
@@ -8,6 +8,7 @@ import CouponBox from '../couponBox/CouponBox'
 import UserNotifications from '../userNotifications/UserNotifications'
 import VARS from '../../lib/variables'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import CustomFetch from '../fetch/CustomFetch'
 import {
   Box,
   Chip,
@@ -71,15 +72,37 @@ const Interface = ({
 }) => {
   // const handleFavorite = useSelector(state => state.handleFavorite)
   const [value, setValue] = React.useState(0)
+  // const [file, setFile] = useState()
+  // const { post } = CustomFetch()
   const msgSubirCategoria = (
     <div>
       <h2>Subir de categoria en Pikplay</h2>
       <p>No disponible</p>
-    </div>
-  )
+    </div>)
+
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
+
+  // useEffect(() => {
+  //   if (file) {
+  //     // changeImageProfile()
+  //   }
+  // }, [file])
+
+  // const changeImageProfile = async () => {
+  //   try {
+  //     const data = new FormData()
+  //     data.set('file', file)
+  //     const body = data
+  //     const res = await post(null, '/v1/do/spaces', null, body)
+  //     if (!res.ok) throw new Error(await res.text())
+  //     setFile(null)
+  //   } catch (e) {
+  //     setFile(null)
+  //     console.error(e)
+  //   }
+  // }
 
   const [interests, setInterests] = useState([
     ...interestsList.map(item => ({ ...item, selected: false })),
@@ -139,8 +162,7 @@ const Interface = ({
               value={value}
               onChange={handleChange}
               aria-label='basic tabs example'
-              indicatorColor='primary'
-            >
+              indicatorColor='primary'>
               <Tab label='Resumen' {...a11yProps(0)} />
               <Tab label='Información del perfil' {...a11yProps(0)} />
               <Tab label='Intereses' {...a11yProps(1)} />
@@ -149,7 +171,15 @@ const Interface = ({
           </Box>
 
           <TabPanel value={value} index={1}>
+            <div className={styles.actions}>
+              <Button
+                color={!isSaving ? 'blue' : 'disabled'}
+                onClick={handleSave}>
+                {isSaving ? 'Gaurdando...' : 'Guardar'}
+              </Button>
+            </div>
             <TextField
+              disabled={isSaving}
               fullWidth={true}
               label='Tú nombre o el nombre de tu tienda'
               margin='normal'
@@ -157,6 +187,7 @@ const Interface = ({
               onChange={e => setUserData({ ...userLogged, name: e.target.value })}
             />
             <TextField
+              disabled={isSaving}
               fullWidth={true}
               label='Correo electrónico'
               margin='normal'
@@ -174,27 +205,33 @@ const Interface = ({
             />
             {/* <CiudadControl /> */}
             <TextField
+              disabled={isSaving}
               fullWidth={true}
-              label='Número de documento de identificacion'
+              label='Número de documento de identificación (no obligatorio)'
               margin='normal'
               value={userLogged?.document_number}
               helperText='Información utilizada para la compras de productos online'
             />
             <p>
-              <label>Cambiar imagen de perfil</label>
               <div>
-                <input
-                  type='file'
-                  id='profileElement'
-                  label='Cambiar' />
+                <Alert severity="info">
+                  <label>
+                    <b>Imagen de perfil</b>
+                    <br />
+                  </label>
+                  <input
+                    disabled={isSaving}
+                    id='profileElement'
+                    label='Cambiar'
+                    type='file'
+                  />
+                  <p>
+                    La imagen debe ser como mínimo 500 x 500px <br />
+                    Debe ser cuadrada
+                  </p>
+                </Alert>
               </div>
             </p>
-            <Button
-              color={!isSaving ? 'blue' : 'disabled'}
-              onClick={handleSave}
-            >
-              {isSaving ? 'Gaurdando...' : 'Guardar'}
-            </Button>
           </TabPanel>
 
           <TabPanel value={value} index={4}>

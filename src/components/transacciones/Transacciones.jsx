@@ -1,7 +1,10 @@
+import styles from './styles.module.scss'
+
 import React from 'react'
+import Alert from '@mui/material/Alert';
+import { BarChart } from '@mui/x-charts/BarChart'
 import Button from '../button/Button'
 import moment from 'moment'
-import styles from './styles.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
 // import { gql, useLazyQuery, useMutation } from '@apollo/client'
@@ -10,11 +13,14 @@ import { useEffect, useState } from 'react'
 // import { useSelector } from 'react-redux'
 import MyTable from './Table'
 import useSystemStore from '../../hooks/useSystem'
+import { getTransactionsSrv } from '../../services/transaction/transactionService'
+import { LineChart } from '@mui/x-charts/LineChart';
+import { axisClasses } from '@mui/x-charts'
 
 moment.locale('es')
 
 const Transacciones = props => {
-  // const { loggedUser } = useSystemStore(state => state.user)
+  const { loggedUser } = useSystemStore()
   const [transactions, setTransactions] = useState([])
   // Mutation confirmar transacción
   // const TRANSACTION_CONFIRMED = gql`
@@ -87,7 +93,7 @@ const Transacciones = props => {
   // })
 
   useEffect(() => {
-    // getTransactions()
+    getTransactions()
   }, [])
 
   const handlePagarTransaccion = id => {
@@ -101,12 +107,60 @@ const Transacciones = props => {
   //   })
   // }
 
+  const getTransactions = () => {
+    getTransactionsSrv()
+      .then(data => {
+        setTransactions(data)
+      })
+  }
+
+  const dataset = [
+    {
+      london: 59,
+      paris: 57,
+      newYork: 86,
+      seoul: 21,
+      month: 'Enero',
+    },
+    {
+      london: 50,
+      paris: 52,
+      newYork: 78,
+      seoul: 28,
+      month: 'Febrero',
+    },
+    {
+      london: 47,
+      paris: 53,
+      newYork: 106,
+      seoul: 41,
+      month: 'Marzo',
+    },
+  ];
+
+  const chartSetting = {
+    yAxis: [
+      {
+        label: 'Usuarios alcanzados',
+      },
+    ],
+    width: 600,
+    height: 400,
+    // sx: {
+    //   [`.${axisClasses.left} .${axisClasses.label}`]: {
+    //     transform: 'translate(-20px, 0)',
+    //   },
+    // },
+  };
+
+  const valueFormatter = (value) => value;
+
   return (
     <section className={`page ${styles.Transactions}`}>
       <h2 className='Card main'>
-        Transacciones
+        Tablero de Operaciones
         <FontAwesomeIcon
-          class='svg-question'
+          class='svg-question icon'
           icon={faQuestionCircle}
           onClick={() => {
             const message = (
@@ -122,8 +176,54 @@ const Transacciones = props => {
         />
       </h2>
 
-      <div className='content m-t-20'>
-        {/* <MyTable loggedUser={loggedUser} transactions={transactions} /> */}
+      <div className={styles.wrapper}>
+        <div className='content'>
+          {/* Transacciones */}
+          <div className="Card">
+            <Alert className={"m-b-10"} severity="warning">Recuerda siempre confirmar tus ventas haciendo uso del boton "Subir comprobante", con esto aseguras que las Pikcoins llegarán a tus clientes.</Alert>
+            <MyTable loggedUser={loggedUser} transactions={transactions} />
+          </div>
+
+          {/* ADS Impulsa tus ventas */}
+          {/* TODO Pendiente cambiar video */}
+          <div className="Card">
+            <center>
+              <video width="840" height="240" autoPlay>
+                <source src="/videos/video1.mp4" type="video/mp4"></source>
+              </video>
+            </center>
+          </div>
+        </div>
+
+        {/* Graficas */}
+        <div className='Card'>
+          <Alert severity='info' className='m-b-10'>
+            📘 Aprende a como llegar a más clientes aquí
+          </Alert>
+          <BarChart
+            dataset={dataset}
+            xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
+            series={[
+              { dataKey: 'london', label: 'Vistas a publicaciones', valueFormatter },
+              { dataKey: 'paris', label: 'CTA en publicaciones', valueFormatter },
+              { dataKey: 'newYork', label: 'Operaciones confirmadas', valueFormatter },
+              { dataKey: 'seoul', label: 'Pikcoins entregados', valueFormatter },
+            ]}
+            {...chartSetting}
+          />
+
+          <LineChart
+            xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
+            dataset={dataset}
+            series={[
+              {
+                data: [2, 5.5, 2, 8.5, 1.5, 5],
+              },
+            ]}
+            width={500}
+            height={300}
+          />
+        </div>
       </div>
     </section>
   )

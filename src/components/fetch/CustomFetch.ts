@@ -9,7 +9,7 @@ const CustomFetch = () => {
       cookies["User-ID"] = cookieCutter.get('User-ID'),
         cookies["X-Auth-Token"] = cookieCutter.get('X-Auth-Token')
     }
-
+    debugger;
     if (!cookies["User-ID"] && !cookies["X-Auth-Token"] && ctx) { // Obteniendo cookies del lado del server. Generalmente vienen en el ctx.req.cookies
       cookies["User-ID"] = ctx?.req.cookies["User-ID"]
       cookies["X-Auth-Token"] = ctx.req.cookies["X-Auth-Token"]
@@ -47,24 +47,35 @@ const CustomFetch = () => {
     }
   }
 
-  const post = async (ctx, path, params, headers = {}) => {
+  const post = async (ctx, path, params, file?, extraHeaders = {}) => {
     const url = apiUrl + path
-    console.log("la url es:", url);
-    console.log(process.env);
+    // console.log("la url es:", url);
+    // console.log(process.env);
+    let body;
+    const headers = {
+      credentials: 'include',
+      ...getCookies(ctx),
+    }
+    if (params) {
+      body = JSON.stringify({ ...params })
+      headers["Content-type"] = "application/json; charset=UTF-8"
+    }
+    debugger;
+    if (file) body = file;
     return fetch(url, {
       method: 'POST',
-      headers: {
-        credentials: 'include',
-        "Content-type": "application/json; charset=UTF-8",
-        ...getCookies(ctx),
-      },
-      body: JSON.stringify(params)
+      headers,
+      body
     })
-      .then(response => response.json())
+      .then(res => {
+        return res.json()
+      })
       .then(json => {
+        debugger;
         return json
       })
       .catch(error => {
+        debugger;
         console.error(`Error al obtener datos desde el servicio para la ruta ${path} method GET}`);
         throw error;
       })
