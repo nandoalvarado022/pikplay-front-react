@@ -122,11 +122,9 @@ const Layout = (props) => {
           <Categories scroll={false} />
           <Subcategories />
           <Link href='/articulo/pikcoins-que-son-y-como-redimir-cupones'>
-            <a>
-              <div className={styles.wrapperBanner}>
-                <Image src='/images/banners/banner-regalos-descuentos-pikcoins.svg' fill={true} layout='fill' />
-              </div>
-            </a>
+            <div className={styles.wrapperBanner}>
+              <Image src='/images/banners/banner-regalos-descuentos-pikcoins.svg' fill={true} layout='fill' />
+            </div>
           </Link>
           {IS_MOBILE && <MenuMovil />}
           {/* <Notification isOpen={this.context.showNotification} /> */}

@@ -1,6 +1,7 @@
+import styles from './author.module.scss'
+
 import React from 'react'
 import Zoom from '@mui/material/Zoom'
-import styles from './styles.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Tooltip } from '@mui/material'
 import {

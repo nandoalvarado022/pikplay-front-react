@@ -216,10 +216,8 @@ const Publicacion = ({ item, ind, getPublications }) => {
         </div>
         <div className={`${styles['flex-row']} ${styles.actions}`}>
           {item.status && (
-            <Link href='/publicacion/[id]' as={`/publicacion/${item.slug}`}>
-              <a target='_BLANK'>
-                <Button color='blue'>Ver</Button>
-              </a>
+            <Link href='/publicacion/[id]' as={`/publicacion/${item.slug}`} target='_BLANK'>
+              <Button color='blue'>Ver</Button>
             </Link>
           )}
           {!item.status && (

@@ -29,10 +29,8 @@ const Categorias = props => {
                 href='/categoria/[id]'
                 as={'/categoria/' + slugify(category.name)}
               >
-                <a>
-                  {!!image && <img src={image} alt={category.name} />}
-                  {category.name}
-                </a>
+                {!!image && <img src={image} alt={category.name} />}
+                {category.name}
               </Link>
             </li>
           )

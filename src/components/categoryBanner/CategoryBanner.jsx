@@ -94,14 +94,12 @@ const CategoryBanner = ({ categoryId }) => {
   return (
     <div className={styles.CategoryBanner}>
       <Link href={link}>
-        <a>
-          <Image
-            layout='fill'
-            className='object-center object-cover pointer-events-none'
-            src={image}
-            alt='Categoría' />
-          {text}
-        </a>
+        <Image
+          layout='fill'
+          className='object-center object-cover pointer-events-none'
+          src={image}
+          alt='Categoría' />
+        {text}
       </Link>
     </div>
   )

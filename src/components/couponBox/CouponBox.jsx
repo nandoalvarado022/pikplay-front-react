@@ -99,9 +99,7 @@ const CouponBox = props => {
           <Link
             href='/articulo/[id]'
             as='/articulo/terminos-y-condiciones'>
-            <a>
-              Términos y condiciones acerca de la redención de cupones
-            </a>
+            Términos y condiciones acerca de la redención de cupones
           </Link>
         </small>
       </div>

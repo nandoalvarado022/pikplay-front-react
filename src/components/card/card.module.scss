@@ -57,6 +57,7 @@ h3.title_destacada {
       flex-direction: column;
     }
     .content_imagen {
+      overflow: hidden;
       position: relative;
       text-align: center;
       @media screen and (max-width: 420px) {
@@ -291,18 +292,19 @@ h3.title_destacada {
       }
     }
   }
+
   .image_wrapper {
     display: block;
-    height: 280px;
-    margin: 0 auto;
+    height: 220px;
+    margin: 0 auto 20px;
     position: relative;
     width: 280px;
-    &:hover span:nth-of-type(2) {
+    &:hover :nth-of-type(2) {
       left: 300px !important;
       // margin-left: 200px;
       // transition-delay: 2s;
     }
-    span {
+    img {
       transition: 0.5s ease;
     }
   }

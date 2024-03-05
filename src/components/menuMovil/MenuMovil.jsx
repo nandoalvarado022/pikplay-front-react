@@ -18,6 +18,7 @@ const MenuMovil = () => {
       <ol className={styles.mainOption}>
         <Link href='/publicacion/crear' as='/publicacion/crear'>
           <motion.a
+            legacyBehavior
             className={styles.vender}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.8 }}
@@ -33,7 +34,7 @@ const MenuMovil = () => {
       </ol>
       <ol className={styles.mainOption}>
         <Link href='/categoria/[id]' as='/categoria/nintendo-switch'>
-          <motion.a whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
+          <motion.a legacyBehavior whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
             <img style={{ height: '28px' }} src='/images/icons/nintendo.svg' alt='Nintendo switch' />
             <div className='f-s-10'>NINTENDO</div>
           </motion.a>
@@ -44,7 +45,7 @@ const MenuMovil = () => {
       </ol>
       <ol className={styles.mainOption}>
         <Link href='/categoria/[id]' as='/categoria/playstation'>
-          <motion.a whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
+          <motion.a legacyBehavior whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
             <img src='/images/icons/play.svg' alt='Playstation' />
             <div className='f-s-10'>XBOX</div>
           </motion.a>

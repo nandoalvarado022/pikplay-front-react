@@ -1,9 +1,5 @@
 .CategoryBanner {
-  background: linear-gradient(
-    90deg,
-    rgba(244, 119, 133, 1) 0%,
-    rgba(98, 0, 15, 1) 100%
-  );
+  background: linear-gradient(90deg, rgba(244, 119, 133, 1) 0%, rgba(98, 0, 15, 1) 100%);
   background: #c3dbf330;
   border-radius: 10px;
   height: 65px;
@@ -28,7 +24,6 @@
     width: 1px;
   }
   img {
-    display: none;
     left: 0px;
     object-fit: cover;
     position: absolute;
@@ -50,7 +45,7 @@
     top: 0;
     width: 100%;
     &::before {
-      content: '';
+      content: "";
       background: #3131319c;
       height: 100%;
       position: absolute;
@@ -61,7 +56,7 @@
   p {
     color: white;
     display: block;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 22px;
     margin: 34px auto 0;
     position: relative;

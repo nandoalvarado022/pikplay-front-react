@@ -76,19 +76,19 @@ const Card = (props) => {
           <div className={styles.content_imagen}>
             {/* Image */}
             <Link
+              as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
+              className={styles.image_wrapper}
               href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
-              as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}>
-              <a className={styles.image_wrapper}>
-                {
-                  images && images.length > 0 && images.map(image => (
-                    <Image
-                      objectFit='cover'
-                      layout='fill'
-                      src={image?.url}
-                    />
-                  ))
-                }
-              </a>
+            >
+              {
+                images && images.length > 0 && images.map(image => (
+                  <Image
+                    objectFit='cover'
+                    layout='fill'
+                    src={image?.url}
+                  />
+                ))
+              }
             </Link>
           </div>
           <div className={`tags ${styles.tags}`}>
@@ -158,12 +158,11 @@ const Card = (props) => {
               </div>
               <Link
                 href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
-                as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}>
-                <a className={id_publication == 1 ? styles.destacada_Card : ''}>
-                  <h2>
-                    {title ? title : 'Espacio para el título de la publicación'}
-                  </h2>
-                </a>
+                as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
+                className={id_publication == 1 ? styles.destacada_Card : ''}>
+                <h2>
+                  {title ? title : 'Espacio para el título de la publicación'}
+                </h2>
               </Link>
               {user?.name && <Author user={user} />}
               {/* <small className={styles.location}> // TODO Mostrar la ciudad

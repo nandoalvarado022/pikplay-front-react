@@ -1,6 +1,7 @@
 import styles from './styles.module.scss'
 
 import React from 'react'
+import dynamic from 'next/dynamic'
 import Alert from '@mui/material/Alert';
 import { BarChart } from '@mui/x-charts/BarChart'
 import Button from '../button/Button'
@@ -14,10 +15,16 @@ import { useEffect, useState } from 'react'
 import MyTable from './Table'
 import useSystemStore from '../../hooks/useSystem'
 import { getTransactionsSrv } from '../../services/transaction/transactionService'
-import { LineChart } from '@mui/x-charts/LineChart';
-import { axisClasses } from '@mui/x-charts'
 
 moment.locale('es')
+
+// let Grafica;
+// if (typeof window != 'undefined') {
+//   Grafica = dynamic(
+//     () => import('./components/grafica/Grafica'),
+//     { ssr: false },
+//   )
+// }
 
 const Transacciones = props => {
   const { loggedUser } = useSystemStore()
@@ -114,47 +121,6 @@ const Transacciones = props => {
       })
   }
 
-  const dataset = [
-    {
-      london: 59,
-      paris: 57,
-      newYork: 86,
-      seoul: 21,
-      month: 'Enero',
-    },
-    {
-      london: 50,
-      paris: 52,
-      newYork: 78,
-      seoul: 28,
-      month: 'Febrero',
-    },
-    {
-      london: 47,
-      paris: 53,
-      newYork: 106,
-      seoul: 41,
-      month: 'Marzo',
-    },
-  ];
-
-  const chartSetting = {
-    yAxis: [
-      {
-        label: 'Usuarios alcanzados',
-      },
-    ],
-    width: 600,
-    height: 400,
-    // sx: {
-    //   [`.${axisClasses.left} .${axisClasses.label}`]: {
-    //     transform: 'translate(-20px, 0)',
-    //   },
-    // },
-  };
-
-  const valueFormatter = (value) => value;
-
   return (
     <section className={`page ${styles.Transactions}`}>
       <h2 className='Card main'>
@@ -196,34 +162,7 @@ const Transacciones = props => {
         </div>
 
         {/* Graficas */}
-        <div className='Card'>
-          <Alert severity='info' className='m-b-10'>
-            📘 Aprende a como llegar a más clientes aquí
-          </Alert>
-          <BarChart
-            dataset={dataset}
-            xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
-            series={[
-              { dataKey: 'london', label: 'Vistas a publicaciones', valueFormatter },
-              { dataKey: 'paris', label: 'CTA en publicaciones', valueFormatter },
-              { dataKey: 'newYork', label: 'Operaciones confirmadas', valueFormatter },
-              { dataKey: 'seoul', label: 'Pikcoins entregados', valueFormatter },
-            ]}
-            {...chartSetting}
-          />
-
-          <LineChart
-            xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
-            dataset={dataset}
-            series={[
-              {
-                data: [2, 5.5, 2, 8.5, 1.5, 5],
-              },
-            ]}
-            width={500}
-            height={300}
-          />
-        </div>
+        {/* <Grafica /> */}
       </div>
     </section>
   )

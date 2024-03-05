@@ -20,7 +20,7 @@ const Footer = ({ filtrarRodadas }) => {
       <div>
         <h3>Artículos de interes</h3>
         <Link href='/articulo/conocenos'>
-          <a>Quienes somos</a>
+          Quienes somos
         </Link>
       </div>
       <hr />

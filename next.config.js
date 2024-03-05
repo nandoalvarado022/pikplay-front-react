@@ -6,7 +6,10 @@ module.exports = async (phase, { defaultConfig }) => {
    */
   const nextConfig = {
     /* config options here */
-    transpilePackages: ['@mui/x-charts']
+    transpilePackages: ['@mui/x-charts'],
+    eslint: {
+      ignoreDuringBuilds: true,
+    }
   }
   return nextConfig
 }

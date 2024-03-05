@@ -44,27 +44,21 @@ const PreviewUser = () => {
           <div className={styles.bg_black}>
             <ol>
               <Link href='/perfil' as='/perfil'>
-                <a>
-                  Mi cuenta
-                  <br />
-                  {/* <Coins /> */}
-                </a>
+                Mi cuenta
+                <br />
+                {/* <Coins /> */}
               </Link>
             </ol>
             <ol>
               <Link href='/usuario/me' as='/usuario/me'>
-                <a>
-                  Soy vendedor
-                  <br />
-                  {/* <Coins /> */}
-                </a>
+                Soy vendedor
+                <br />
+                {/* <Coins /> */}
               </Link>
             </ol>
             <ol>
               <Link href='/concursos' as='/concursos'>
-                <a>
-                  Concursos
-                </a>
+                Concursos
               </Link>
             </ol>
             <ol>
@@ -74,7 +68,7 @@ const PreviewUser = () => {
             </ol>
             <ol>
               <Link href='/publicaciones' as='/publicaciones'>
-                <a>Publicaciones</a>
+                Publicaciones
               </Link>
             </ol>
             <ol onClick={() => handleLogout()}>Salir</ol>
