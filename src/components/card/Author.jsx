@@ -23,7 +23,8 @@ const Author = ({ user = {}, parentView }) => {
           <FontAwesomeIcon icon={faStore} />
         </div>
       </Tooltip>
-      <p
+      <div
+      className={styles.content}
         title={
           user?.certificate
             ? 'El usuario esta certificado, puedes confiar en esta oferta'
@@ -54,7 +55,7 @@ const Author = ({ user = {}, parentView }) => {
             <span>{user?.transactions} ventas completadas</span>
           </div>
         )}
-      </p>
+      </div>
     </div>
   )
 }

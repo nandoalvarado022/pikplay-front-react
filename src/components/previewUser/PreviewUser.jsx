@@ -31,8 +31,9 @@ const PreviewUser = () => {
     <div
       className={`${styles.PreviewUser} PreviewUser ${isOpenPreviewProfile ? styles.actived : null}`}>
       {userLogged.uid ? (
-        <React.Fragment>
+        <div>
           <ProfileImage
+            suppressHydrationWarning={true}
             className="previewUser"
             handleClickImage={IS_MOBILE ? handleClickImage : null}
             picture={picture}
@@ -86,7 +87,7 @@ const PreviewUser = () => {
               </span>
             </ol>
           </div>
-        </React.Fragment>
+        </div>
       ) : (
         <Login />
       )}

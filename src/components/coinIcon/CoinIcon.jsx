@@ -1,18 +1,18 @@
 import styles from './styles.module.scss'
 
 import React, { useEffect, useRef, useState } from 'react'
-import { formatNumber } from '../../../src/lib/utils'
+import { formatNumber } from '../../lib/utils'
 import classNames from 'classnames'
 
-interface CoinsProps {
-  coins?: number
-  isLabel?: boolean // Mostrar en texto "Pikcoins"
-  hideNumber?: boolean
-  multicoin?: boolean
-  textColor?: string
-}
+// interface CoinsProps {
+//   coins?: number
+//   isLabel?: boolean // Mostrar en texto "Pikcoins"
+//   hideNumber?: boolean
+//   multicoin?: boolean
+//   textColor?: string
+// }
 
-const CoinIcon = ({ coins, isLabel, hideNumber, multicoin, textColor }: CoinsProps) => {
+const CoinIcon = ({ coins, isLabel, hideNumber, multicoin, textColor }) => {
   const [isAnimate, setIsAnimate] = useState(false)
   coins = 100 //coins ? coins : useSelector(state => state.coins)
   const prevCountCoins = useRef()
@@ -63,11 +63,11 @@ const CoinIcon = ({ coins, isLabel, hideNumber, multicoin, textColor }: CoinsPro
       onMouseEnter={animate}>
       <picture className={styles.coin} />
       {multicoin && <picture className={`${styles.coin} ${styles.multicoin}`} />}
-      {!hideNumber && <div
+      {!hideNumber && <span
         className={`f-s-14 ${styles.number} number`}
         style={{ color: textColor ? textColor : '#e5961d' }}>
         {formatNumber(coins)}
-      </div>
+      </span>
       }
 
       {isLabel && <label
