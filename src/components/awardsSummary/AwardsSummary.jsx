@@ -128,20 +128,16 @@ const AwardsSummary = ({ callback }) => {
                 </p>
             </div>
 
-            <DialogActions>
+            <div className={styles.actions}>
                 <motion.div
-                    initial={{ x: '-500px' }}
-                    animate={{
-                        x: 0,
-                    }}
-                    transition={{
-                        delay: 2
-                    }}>
+                    initial={{ x: '-600px' }}
+                    animate={{ x: 0, }}
+                    transition={{ delay: 2 }}>
                     <Button className={styles.main_button} color="blue" onClick={handleUpdateExperience}>
                         RECOGER PREMIOS
                     </Button>
                 </motion.div>
-            </DialogActions>
+            </div>
         </>
     )
 }
@@ -184,20 +180,22 @@ const ModalComponent = (props) => {
         open={true}
         TransitionComponent={Transition}
         onClose={() => setSummaryAwardsOpen(false)}
-    >
+        className={styles.Dialog}>
         <DialogContent>
             <div id="AwardsSummary" className={styles.AwardsSummary}>
                 <div className={styles.bg_city}></div>
-                <DialogContentText id="alert-dialog-slide-description" className={styles.content}>
-                    <AnimatePresence initial={true} custom={direction}>
-                        {page === 0 && <AwardsSummary callback={callback} />}
-                        {page === 1 && <PreviewProfileSummaryExperience
-                            gainExperience={200}
-                            callback={callback}
-                            setSummaryAwardsOpen={setSummaryAwardsOpen}
-                        />}
-                    </AnimatePresence>
-                </DialogContentText>
+                <div className={styles.content}>
+                    <div className={styles.content_child}>
+                        <AnimatePresence initial={true} custom={direction}>
+                            {page === 0 && <AwardsSummary callback={callback} />}
+                            {page === 1 && <PreviewProfileSummaryExperience
+                                gainExperience={200}
+                                callback={callback}
+                                setSummaryAwardsOpen={setSummaryAwardsOpen}
+                            />}
+                        </AnimatePresence>
+                    </div>
+                </div>
             </div>
         </DialogContent>
     </Dialog>
@@ -206,14 +204,19 @@ const ModalComponent = (props) => {
 const PreviewProfileSummaryExperience = ({ callback, setSummaryAwardsOpen, gainExperience }) => {
     return <motion.div variants={variants}>
         <ProfileSummaryExperience gainExperience={gainExperience} />
-        <DialogActions>
-            <Button outline color="blue" className={styles.main_button} onClick={() => callback(0)}>
+        <div className={styles.actions2}>
+            {/* <Button outline color="blue" className={styles.main_button} onClick={() => callback(0)}>
                 ATRAS
-            </Button>
-            <Button color="blue" className={styles.main_button}>
-                CONTINUAR
-            </Button>
-        </DialogActions>
+            </Button> */}
+            <motion.div
+                initial={{ x: '-600px' }}
+                animate={{ x: 0, }}
+                transition={{ delay: 2 }}>
+                <Button color="blue" className={styles.main_button}>
+                    CONTINUAR
+                </Button>
+            </motion.div>
+        </div>
     </motion.div>
 }
 
