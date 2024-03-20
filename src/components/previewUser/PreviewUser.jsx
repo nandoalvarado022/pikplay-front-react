@@ -1,7 +1,7 @@
 import styles from './styles.module.scss'
 
 import React, { useState } from 'react'
-import ProfileImage from '../profileImage/ProfileImage'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import Login from '../login/Login'
 import { useRouter } from 'next/router'
@@ -10,13 +10,16 @@ import CoinIcon from '../coinIcon/CoinIcon'
 import VARS from '../../lib/variables'
 
 import useSystemStore from '../../hooks/useSystem'
+import { slugify } from '../../lib/utils'
+const ProfileImage = dynamic(() => import('../profileImage/ProfileImage'), { ssr: false })
+
 const { IS_MOBILE } = VARS
 
 const PreviewUser = () => {
   const { userLogged, logout } = useSystemStore((state => state))
   const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
   const router = useRouter()
-  const { picture } = userLogged
+  const { picture, name } = userLogged
 
   const handleLogout = () => {
     logout()
@@ -44,7 +47,7 @@ const PreviewUser = () => {
           <div className={styles.bg_white}></div>
           <div className={styles.bg_black}>
             <ol>
-              <Link href='/perfil' as='/perfil'>
+              <Link href={`/perfil/${slugify(name)}`}>
                 Mi cuenta
                 <br />
                 {/* <Coins /> */}

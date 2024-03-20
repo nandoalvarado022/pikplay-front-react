@@ -306,22 +306,22 @@ export function getPaises() {
 export function getCiudades() {
   // Los paises que se coloquen en el campo ID deben ser separados por -
   return [
-    { pais: '', id: 'all', label: 'Cualquier lugar' },
-    { pais: 'colombia', id: 'bogota', label: 'Bogotá' },
-    { pais: 'colombia', id: 'medellin', label: 'Medellín' },
-    { pais: 'colombia', id: 'pereira', label: 'Pereira' },
-    { pais: 'colombia', id: 'cartagena', label: 'Cartagena' },
-    { pais: 'colombia', id: 'barranquilla', label: 'Barranquilla' },
-    { pais: 'colombia', id: 'cali', label: 'Cali' },
-    { pais: 'mexico', id: 'ciudad-mexico', label: 'Ciudad de México' },
-    { pais: 'mexico', id: 'guadalajara', label: 'Guadalajara' },
-    { pais: 'mexico', id: 'puebla-zaragoza', label: 'Puebla de Zaragoza' },
-    { pais: 'mexico', id: 'ecatepec', label: 'Ecatepec' },
-    { pais: 'mexico', id: 'tijuana', label: 'Tijuana' },
-    { pais: 'argentina', id: 'buenos_aires', label: 'Buenos Aires' },
-    { pais: 'españa', id: 'madrid', label: 'Madrid' },
-    { pais: 'salvador', id: 'san_salvador', label: 'San Salvador' },
-    { pais: 'chile', id: 'santiago-chile', label: 'Santiago de Chile' },
+    { id: 1, pais: '', label: 'Cualquier lugar' },
+    { id: 2, pais: 'colombia', label: 'Bogotá' },
+    { id: 3, pais: 'colombia', label: 'Medellín' },
+    { id: 4, pais: 'colombia', label: 'Pereira' },
+    { id: 5, pais: 'colombia', label: 'Cartagena' },
+    { id: 6, pais: 'colombia', label: 'Barranquilla' },
+    { id: 7, pais: 'colombia', label: 'Cali' },
+    { id: 8, pais: 'mexico', label: 'Ciudad de México' },
+    { id: 9, pais: 'mexico', label: 'Guadalajara' },
+    { id: 10, pais: 'mexico', label: 'Puebla de Zaragoza' },
+    { id: 11, pais: 'mexico', label: 'Ecatepec' },
+    { id: 12, pais: 'mexico', label: 'Tijuana' },
+    { id: 13, pais: 'argentina', label: 'Buenos Aires' },
+    { id: 14, pais: 'españa', label: 'Madrid' },
+    { id: 15, pais: 'salvador', label: 'San Salvador' },
+    { id: 16, pais: 'chile', label: 'Santiago de Chile' },
   ]
 }
 

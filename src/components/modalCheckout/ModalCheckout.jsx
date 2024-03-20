@@ -115,7 +115,7 @@ const ModalCheckout = props => {
       <div className={styles.background}></div>
       <div className={`Card ${styles.Card}`}>
         <h2>Tus datos para la entrega y pago</h2>
-        <section>
+        <section className={styles.info_cliente}>
           <TextField
             autoComplete='nombre'
             disabled
@@ -125,9 +125,9 @@ const ModalCheckout = props => {
             margin='normal'
             value={userLogged?.name}
           />
-          <CiudadControl />
+          <CiudadControl userLogged={userLogged} />
         </section>
-        <section className={classNames('m-t-20 f-s-14 t-a-r', [styles.bottom])}>
+        <section className={classNames('m-t-20 f-s-14', [styles.bottom])}>
           {!!datosPublicacion?.price && (
             <table className={styles.payment_info}>
               {couponValue && (
@@ -146,8 +146,8 @@ const ModalCheckout = props => {
                 </>
               )}
 
-              <tr className={styles.sale_price}>
-                <td>Total a pagar:</td>
+              <tr align="right" className={styles.sale_price}>
+                <td>Pagas:</td>
                 <td>
                   ${formatNumber(datosPublicacion?.price - couponValue)}
                 </td>
@@ -155,21 +155,11 @@ const ModalCheckout = props => {
             </table>
           )}
 
-          <div className='clear'></div>
-
-          {/* Sin cupón */}
-          {
-            !couponValue && <div className={styles.sale_price}>
-              <b>Total a pagar:</b>
-              ${formatNumber(datosPublicacion?.price)}
-            </div>
-          }
-
           {/* Cupón */}
-          <CouponBox
+          {/* <CouponBox
             className='block m-t-10'
             callback={handleCoupon}
-            publication={datosPublicacion?.id} />
+            publication={datosPublicacion?.id} /> */}
 
           {couponCode && (
             <Alert className='m-t-10'>
@@ -181,7 +171,7 @@ const ModalCheckout = props => {
             className='m-t-10'
             icon
             severity='info'>
-            <div className='t-a-r'>Terminos y condiciones</div>
+            <div className=''>Terminos y condiciones</div>
             <small>
               El pago del producto y costos asociados como el envío se hablan
               directamente con el vendedor. Pikplay no te hace cobro adicional

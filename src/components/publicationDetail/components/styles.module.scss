@@ -1,4 +1,4 @@
-@import '../../../../src/styles/variables.scss';
+@import "../../../../src/styles/variables.scss";
 
 .DetalleProducto {
   background: #f4f4f4;
@@ -39,13 +39,7 @@
     padding: 0 8px;
   }
   h2.textFlow {
-    background-image: -webkit-gradient(
-      linear,
-      left top,
-      right top,
-      from(#af2896),
-      to(#509bf5)
-    );
+    background-image: -webkit-gradient(linear, left top, right top, from(#af2896), to(#509bf5));
     background-image: linear-gradient(90deg, #af2896, #509bf5);
     width: 100%;
     color: white;
@@ -118,11 +112,7 @@
         padding: 0px 10px;
       }
       .apply_cashback {
-        background: radial-gradient(
-          circle,
-          #fee960 0%,
-          #feb724 100%
-        ) !important;
+        background: radial-gradient(circle, #fee960 0%, #feb724 100%) !important;
         border-radius: 10px;
         display: inline-block;
         font-size: 12px;
@@ -131,7 +121,7 @@
         padding: 5px 10px 5px 20px;
         position: relative;
         .coin {
-          background-image: url('/images/gifs/sprite-monedas-pequenas.png');
+          background-image: url("/images/gifs/sprite-monedas-pequenas.png");
           background-position-x: 0px;
           background-position-y: 0px;
           background-size: 210px;
@@ -313,5 +303,9 @@
         }
       }
     }
+  }
+  .report {
+    align-items: center;
+    display: flex;
   }
 }

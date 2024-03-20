@@ -5,8 +5,8 @@ import styles from './styles.module.scss'
 import { getCategories, slugify } from '../../lib/utils'
 import { IS_MOBILE } from '../../lib/variables'
 import Notification from '../previewNotifications'
-import PreviewUser from '../previewUser/PreviewUser'
 
+const PreviewUser = dynamic(() => import('../previewUser/PreviewUser'), { ssr: false })
 const Categorias = props => {
   const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
   const { scroll } = props

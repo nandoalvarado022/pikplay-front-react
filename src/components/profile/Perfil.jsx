@@ -116,7 +116,7 @@ const Interface = ({
   }
 
   return (
-    <section className={`page ${styles.perfil}`}>
+    <section className={`page ${styles.Perfil}`}>
       <motion.h2
         animate={{ opacity: 1 }}
         transition={{ ease: [0.17, 0.67, 0.83, 0.67] }}
@@ -170,6 +170,7 @@ const Interface = ({
             </Tabs>
           </Box>
 
+          {/*Form para  editar perfil */}
           <TabPanel value={value} index={1}>
             <div className={styles.actions}>
               <Button
@@ -203,7 +204,11 @@ const Interface = ({
               margin='normal'
               value={userLogged?.phone}
             />
-            {/* <CiudadControl /> */}
+            <br /><br />
+            <CiudadControl
+              setUserData={setUserData}
+              userLogged={userLogged}
+            />
             <TextField
               disabled={isSaving}
               fullWidth={true}
@@ -234,8 +239,8 @@ const Interface = ({
             </p>
           </TabPanel>
 
+          {/* Intereses */}
           <TabPanel value={value} index={4}>
-            {/* Intereses */}
             <Alert className='m-t-20' severity='info'>
               En Pikplay utilizamos los intereses para conocer a los usuarios y
               ofrecerle contenido de valor
@@ -260,14 +265,17 @@ const Interface = ({
             </Button>
           </TabPanel>
 
+          {/* Desafios */}
           <TabPanel value={value} index={3}>
             <Challenges />
           </TabPanel>
 
+          {/* Resumen */}
           <TabPanel value={value} index={0}>
             <div className={styles.ProfileSummaryExperience__UserNotifications__Content}>
               <ProfileSummaryExperience />
               <div className='Card' style={{ maxHeight: '410px', maxWidth: '420px', margin: 0 }}>
+                <Alert severity='info'></Alert>
                 <UserNotifications />
               </div>
             </div>

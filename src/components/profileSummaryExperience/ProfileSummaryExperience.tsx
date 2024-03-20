@@ -16,7 +16,7 @@ const ProfileSummaryExperience = (props) => {
     const gainedCoins = 5
     const currentUserCoins = 10
     const { userLogged } = useSystemStore()
-    const { picture } = userLogged
+    const { picture, name } = userLogged
 
     useEffect(() => {
         const element = document.querySelector('.ProfileSummaryExperience .number-coins')
@@ -29,7 +29,7 @@ const ProfileSummaryExperience = (props) => {
         <div className={classNames("ProfileSummaryExperience", { [styles.ProfileSummaryExperience]: true })}>
             <div>
                 <div className={styles.full_name}>
-                    <span>Nandosqui</span>
+                    <span>{name}</span>
                     <div className={styles.icons}>
                         <Tooltip title="Plataforma más utilizada">
                             <img width={40} className={styles.platform} src="/images/icons/ps-icon.png" />

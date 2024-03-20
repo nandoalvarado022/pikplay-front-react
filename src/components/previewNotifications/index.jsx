@@ -8,10 +8,9 @@ import useSystemStore from '../../hooks/useSystem'
 
 const Notification = () => {
   const { notifications } = useSystemStore((state => state))
-
   return (<div className={`${styles.PreviewNotifications}`}>
     <i className="fa fa-bell-o" aria-hidden="true"></i>
-    <span className={styles.notyQuantity}>{notifications.length}</span>
+    <span className={styles.notyQuantity}>{notifications?.length || 0}</span>
     <div className={styles.bg_black}>
       <UserNotifications />
     </div>

@@ -1,5 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
+import styles from './styles.module.scss'
+
 import React, { useRef } from 'react'
 import Button from '../../button/Button'
 import CoinsByBuy from '../../coinsByBuy/CoinsByBuy'
@@ -11,30 +13,30 @@ import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import Author from '../../card/Author'
 import Product from '../../../interfaces/Product'
-import styles from './styles.module.scss'
 import useSystemStore from '../../../hooks/useSystem'
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
 
 const DetalleProducto = ({
   apply_cashback,
   banner_bottom,
   datosPublicacion,
-  description = '',
   descuento = 0,
   handleHablarVendedor,
   indice_item,
 }) => {
 
   const {
+    description,
     images,
-    title,
+    quantity,
     sale_price,
     slug,
-    quantity,
+    title,
     user: seller,
   } = datosPublicacion || {}
   const formattedImages = images.map(item => ({
     thumbnail: item.url,
-    original: item.url, 
+    original: item.url,
   }))
   const ref_descripcion_imagen = useRef(null)
   const { userLogged } = useSystemStore()
@@ -118,15 +120,22 @@ const DetalleProducto = ({
 
               <div className={styles.description}>
                 <p className={styles.title}>Descripción</p>
-                <pre className='font-a'>{description}</pre>
+                <p className='font-a' dangerouslySetInnerHTML={{ __html: description }}>
+                </p>
               </div>
 
               <p>
+                Con esta compra obtendras 1500 EXP para subir a categoria Plata
+              </p>
+
+              <p>
                 <a
-                  className='underline f-s-12'
+                  className={`${styles.report} underline f-s-12`}
                   href='https://api.whatsapp.com/send?phone=573187414972&text=Quiero reportar una publicación de pikplay.co'
                   target='_BLANK'
                   rel="noreferrer">
+                  <ChatBubbleOutlineIcon />
+                  &nbsp;
                   Reportar publicación
                 </a>
               </p>

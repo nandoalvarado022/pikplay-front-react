@@ -24,7 +24,7 @@ const Author = ({ user = {}, parentView }) => {
         </div>
       </Tooltip>
       <div
-      className={styles.content}
+        className={styles.content}
         title={
           user?.certificate
             ? 'El usuario esta certificado, puedes confiar en esta oferta'

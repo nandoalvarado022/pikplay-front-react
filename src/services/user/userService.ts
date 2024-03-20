@@ -32,8 +32,19 @@ const sendCodeSrv = async (ctx, phone) => {
   return data
 }
 
+const saveReferral = async (phone) => {
+  const path = BASE_URL + "/referrals"
+  const data = await post(null, path, { phone });
+  return data
+}
+
 const getNotificationsSrv = async () => {
   const data = await get(BASE_URL + "/notifications");
+  return data
+}
+
+const getReferralsSrv = async () => {
+  const data = await get(BASE_URL + "/referrals");
   return data
 }
 
@@ -44,10 +55,12 @@ const readNotificationSrv = async (nid: number) => {
 
 export {
   getNotificationsSrv,
+  getReferralsSrv,
   getUsersSrv,
   loginSrv,
   readNotificationSrv,
   sendCodeSrv,
   updateProfileSrv,
   validateTokenSrv,
+  saveReferral,
 }

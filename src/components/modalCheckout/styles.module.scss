@@ -9,7 +9,8 @@
   width: 90%;
   z-index: 99;
   .sale_price {
-    color: #c93530;
+    display: block;
+    margin-bottom: 20px;
   }
   .background {
     background: #00000052;
@@ -35,9 +36,16 @@
       justify-content: right;
       margin-top: 20px;
     }
-    section {
-      margin: 0;
+    section.info_cliente {
+      align-items: center;
+      display: flex;
+      justify-content: space-evenly;
+      margin: 50px 0 0;
       width: initial;
+      > * {
+        margin: initial;
+        width: 45%;
+      }
     }
   }
   .contentCiudad {
@@ -49,7 +57,7 @@
       justify-content: right;
     }
     .payment_info {
-      border-bottom: dashed 1px #949494;
+      // border-bottom: dashed 1px #949494;
       float: right;
       font-weight: bold;
       padding-bottom: 8px;

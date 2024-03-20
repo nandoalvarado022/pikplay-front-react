@@ -8,6 +8,7 @@ import { initGA, logPageView } from '../../../public/analytics'
 import { register } from 'next-offline/runtime'
 import useSystemStore from '../../hooks/useSystem.js'
 import Body from './Body.jsx'
+import { useIAStore } from '../ia/IAstore.jsx'
 
 toastr.options.timeOut = 10000
 
@@ -22,8 +23,10 @@ const Layout = (props) => {
   const [isReady, setIsReady] = useState(false)
   const { children, descripcion, image, title, url } = props
   const { env, setValue, userLogged, notifications } = useSystemStore((state => state))
+  const { checkIAMessage, IAMessage } = useIAStore()
 
   useEffect(() => {
+    checkIAMessage(IAMessage); // Check if there is an IA message to show
     (setValue && !env && props?.env) && setValue('env', props?.env);
     register()
     if (!window.GA_INITIALIZED) {

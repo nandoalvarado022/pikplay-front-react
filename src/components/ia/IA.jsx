@@ -22,9 +22,9 @@ const IA = (props) => {
     } = useIAStore((state => state))
 
     useEffect(() => {
-        setTimeout(() => {
-            handleUserMessage("initial")
-        }, 1000)
+        // setTimeout(() => {
+        //     handleUserMessage("initial")
+        // }, 1000)
     }, [])
 
     return <div className={`${styles.IAElement} ${!isVisible ? styles.hide : null} `}>
@@ -39,8 +39,8 @@ const IA = (props) => {
             <div className={styles.text}>
                 {/* style={{ height: containerHeight }} */}
                 <div className={styles.list}>
-                    {IAHTMLMessage}
-                    <p className={styles.IAMessage}>{IAMessage}</p>
+                    {IAHTMLMessage && IAHTMLMessage}
+                    {IAMessage && <p className={styles.IAMessage}>{IAMessage}</p>}
                     <div className={styles.buttons}>
                         {IAOptions}
                     </div>
