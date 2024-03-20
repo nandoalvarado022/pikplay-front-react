@@ -206,6 +206,7 @@ const Interface = ({
             />
             <br /><br />
             <CiudadControl
+              isEditable
               setUserData={setUserData}
               userLogged={userLogged}
             />

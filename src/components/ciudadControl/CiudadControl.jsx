@@ -3,7 +3,7 @@ import { TextField } from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
 import { getCiudades } from '../../lib/utils'
 
-const CiudadControl = ({ setUserData, userLogged }) => {
+const CiudadControl = ({ setUserData, userLogged, isEditable }) => {
   const listadoCiudades = getCiudades()
   const [newValue, setNewValue] = useState(null)
   const defaultValue = userLogged.city
@@ -22,7 +22,7 @@ const CiudadControl = ({ setUserData, userLogged }) => {
   return (
     <div className='contentCiudad'>
       <Autocomplete
-        disabled
+        disabled={isEditable ? false : true}
         options={listadoCiudades}
         defaultValue={defaultValue}
         onChange={(e, value) => onInputChange(value)}
