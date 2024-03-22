@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 ._modalIngresoInfo {
   bottom: 200px;
   left: 0;
@@ -31,10 +33,14 @@
       width: auto;
     }
     .actions {
+      @extend %floatButtons;
       align-items: center;
       display: flex;
       justify-content: right;
       margin-top: 20px;
+      @media screen and (max-width: 420px) {
+        display: block;
+      }
     }
     section.info_cliente {
       align-items: center;

@@ -120,10 +120,12 @@ const DetalleProducto = ({
               </div>
 
               <div className={`flex ${styles.compra_author}`}>
-                <Button color='blue' onClick={handleHablarVendedor}>
-                  {quantity > 0 && 'Lo quiero'}
-                  {quantity == 0 && 'Reservar'}
-                </Button>
+                <div className={styles.content_comprar}>
+                  <Button color='blue' onClick={handleHablarVendedor}>
+                    {quantity > 0 && 'Lo quiero'}
+                    {quantity == 0 && 'Reservar'}
+                  </Button>
+                </div>
                 <div className={styles.content_author}>
                   <Author parentView='CardDetalleProducto' user={seller} />
                 </div>
