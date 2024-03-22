@@ -22,6 +22,7 @@ import { faMapMarker } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { Tooltip } from '@mui/material'
 import CashbackTag from '../../card/CashbackTag/CashbackTag'
+import Articles from '../../articles/Articles'
 
 const DetalleProducto = ({
   apply_cashback,
@@ -133,7 +134,8 @@ const DetalleProducto = ({
               )}
 
               <p className={styles.beneficsPostBought}>
-                Con esta compra obtendras <span>1.500 EXP</span> para subir a categoria Plata
+                Con esta compra obtendras <span>1.500 EXP</span>
+                y ademas <span className={styles.cashback}>1.500 Pikcoins</span>
               </p>
 
               <p>
@@ -146,6 +148,8 @@ const DetalleProducto = ({
                 <p className='font-a' dangerouslySetInnerHTML={{ __html: description }}>
                 </p>
               </div>
+
+              <Articles />
 
               <p>
                 <a

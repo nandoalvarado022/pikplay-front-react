@@ -73,6 +73,9 @@
         -1px -1px $color,
         1px -1px $color,
         -1px 1px $color;
+        &:nth-of-type(2){
+          color: #fcfc85;
+        }
     }
   }
   > .descripcion_imagen {
