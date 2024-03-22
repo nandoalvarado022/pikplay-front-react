@@ -21,7 +21,7 @@ import { faMarker } from '@fortawesome/free-solid-svg-icons'
 import { faMapMarker } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { Tooltip } from '@mui/material'
-import CashbackTag from '../../card/CashbackTag/CashbackTag'
+import CashbackTag from '../../card/cashbackTag/CashbackTag'
 import Articles from '../../articles/Articles'
 
 const DetalleProducto = ({
