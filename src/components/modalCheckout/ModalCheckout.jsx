@@ -181,7 +181,7 @@ const ModalCheckout = props => {
             </small>
           </Alert>
         </section>
-        <section className={styles.actions}>
+        <div className={styles.actions}>
           <Button
             onClick={() => {
               setIsModalHablarVendedor()
@@ -200,7 +200,7 @@ const ModalCheckout = props => {
           name_billing={user?.name}
           number_doc_billing={user?.identificacion}
         /> */}
-        </section>
+        </div>
       </div>
     </div >
   )

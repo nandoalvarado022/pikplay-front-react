@@ -39,7 +39,10 @@
       justify-content: right;
       margin-top: 20px;
       @media screen and (max-width: 420px) {
-        display: block;
+        bottom: 0;
+        display: flex;
+        flex-direction: column-reverse;
+        margin: initial;
       }
     }
     section.info_cliente {
