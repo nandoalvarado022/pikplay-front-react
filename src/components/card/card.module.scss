@@ -111,28 +111,6 @@ h3.title_destacada {
         margin: 0 10px;
         padding: 5px 10px;
         width: min-content;
-        &.apply_cashback {
-          background: radial-gradient(circle, #fee960 0%, #feb724 100%) !important;
-          color: #e8830f;
-          font-weight: bold;
-          padding-left: 20px !important;
-          position: relative;
-          .coin {
-            background-image: url("/images/gifs/sprite-monedas-pequenas.png");
-            background-position-x: 0px;
-            background-position-y: 0px;
-            background-size: 210px;
-            display: inline-block;
-            height: 31px;
-            margin: 0;
-            transform: scale(0.8);
-            transition: 0.5s linear;
-            width: 31px;
-            position: absolute;
-            top: -4px;
-            left: -15px;
-          }
-        }
       }
       :global(.Coins) {
         position: absolute;
@@ -326,14 +304,6 @@ h3.title_destacada {
         box-shadow: none;
         padding: 10px 10px 20px;
       }
-    }
-  }
-
-  &:hover {
-    .apply_cashback .coin {
-      animation:
-        rotate 0.5s steps(6) infinite,
-        appear 1s steps(1);
     }
   }
 }

@@ -40,13 +40,13 @@ const Author = ({ user = {}, parentView }) => {
         )}
         <Tooltip
           TransitionComponent={Zoom}
-          title='Nombre de quien vende el articulo'
-        >
-          <h3>{user?.name}</h3>
-        </Tooltip>
-        <Tooltip TransitionComponent={Zoom} title='Calificación'>
+          title='Nombre de quien vende el articulo'>
+          <h3>
+            {user?.name}
+          </h3>
+
           <div className={styles.calification}>
-            <span>(4,5)</span>
+            {[1, 1, 1].map(item => <FontAwesomeIcon icon={faStar} />)}
           </div>
         </Tooltip>
         {user?.transactions > 0 && (

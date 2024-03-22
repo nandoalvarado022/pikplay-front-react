@@ -18,6 +18,7 @@ import Product from '../../interfaces/Product'
 import styles from './card.module.scss'
 import CoinIcon from '../coinIcon/CoinIcon'
 import useSystemStore from '../../hooks/useSystem'
+import CashbackTag from './CashbackTag/CashbackTag'
 
 const Card = (props) => {
   const {
@@ -100,15 +101,7 @@ const Card = (props) => {
               </span>
             )}
             {/* Si aplica cashback */}
-            {cashback_available && (
-              <span
-                title='Ganarás Pikcoins por hacer esta compra'
-                className={styles.apply_cashback}>
-                <picture className={styles.coin} />
-                ¡Cashback!
-                <CoinIcon hideNumber />
-              </span>
-            )}
+            {cashback_available && <CashbackTag />}
             {accept_changes && (
               <span
                 className={styles.condition}

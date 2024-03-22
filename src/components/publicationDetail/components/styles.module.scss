@@ -54,6 +54,27 @@
       width: calc(100% + 20px);
     }
   }
+  $color: black;
+  .beneficsPostBought {
+    background-color: #19596b;
+    border-radius: 10px;
+    color: white;
+    font-size: 13px;
+    padding: 10px;
+    span {
+      color: aquamarine;
+      margin: 0 5px;
+      text-shadow:
+        2px 0 $color,
+        -2px 0 $color,
+        0 2px $color,
+        0 -2px $color,
+        1px 1px $color,
+        -1px -1px $color,
+        1px -1px $color,
+        -1px 1px $color;
+    }
+  }
   > .descripcion_imagen {
     justify-content: center;
     @media screen and (min-width: 1024px) {
@@ -99,6 +120,10 @@
           font-size: 16px;
           margin-left: 20px;
         }
+      }
+      :global(.CashbackTag) {
+        display: inline-block;
+        margin-left: 20px;
       }
     }
     > .descripcion {

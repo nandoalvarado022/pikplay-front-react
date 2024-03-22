@@ -15,6 +15,13 @@ import Author from '../../card/Author'
 import Product from '../../../interfaces/Product'
 import useSystemStore from '../../../hooks/useSystem'
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLocationArrow } from '@fortawesome/free-solid-svg-icons'
+import { faMarker } from '@fortawesome/free-solid-svg-icons'
+import { faMapMarker } from '@fortawesome/free-solid-svg-icons'
+import { faHeart } from '@fortawesome/free-regular-svg-icons'
+import { Tooltip } from '@mui/material'
+import CashbackTag from '../../card/CashbackTag/CashbackTag'
 
 const DetalleProducto = ({
   apply_cashback,
@@ -29,10 +36,11 @@ const DetalleProducto = ({
     description,
     images,
     quantity,
-    sale_price,
+    price,
     slug,
     title,
     user: seller,
+    cashback_available,
   } = datosPublicacion || {}
   const formattedImages = images.map(item => ({
     thumbnail: item.url,
@@ -41,7 +49,7 @@ const DetalleProducto = ({
   const ref_descripcion_imagen = useRef(null)
   const { userLogged } = useSystemStore()
   indice_item = indice_item ? indice_item : 1
-    ; (sale_price == sale_price) == 0 || sale_price == '' ? null : sale_price
+    ; (price == price) == 0 || price == '' ? null : price
 
   return (
     <div key={indice_item} className={`Card ${styles.DetalleProducto}`}>
@@ -73,7 +81,12 @@ const DetalleProducto = ({
 
           <div className={styles.descripcion}>
             <div className={`Card ${styles.Card}`}>
-              <h1>{title}</h1>
+              <h1>
+                {title}
+                <Tooltip title='Marcar como Favorito'>
+                  <FontAwesomeIcon icon={faHeart} style={{ marginLeft: '10px' }} />
+                </Tooltip>
+              </h1>
               {/* {!!user.is_admin && (
                 <Link href={'/publicacion/' + slug + '/editar'}>
                   <a className='underline'>Editar</a>
@@ -97,11 +110,12 @@ const DetalleProducto = ({
                     -{descuento}%{' '}
                   </span>
                 )}
-                {!!sale_price && (
+                {!!price && (
                   <span className={styles.nuevoPrecio}>
-                    ${formatNumber(sale_price)}
+                    ${formatNumber(price)}
                   </span>
                 )}
+                {cashback_available && <CashbackTag />}
               </div>
 
               <div className={`flex ${styles.compra_author}`}>
@@ -114,19 +128,24 @@ const DetalleProducto = ({
                 </div>
               </div>
 
-              {!!seller?.certificate && sale_price && (
-                <CoinsByBuy price={sale_price} />
+              {!!seller?.certificate && price && (
+                <CoinsByBuy price={price} />
               )}
 
+              <p className={styles.beneficsPostBought}>
+                Con esta compra obtendras <span>1.500 EXP</span> para subir a categoria Plata
+              </p>
+
+              <p>
+                <FontAwesomeIcon icon={faMapMarker} style={{ marginRight: '10px' }} />
+                Solo entrega en tienda fisica
+              </p>
+
               <div className={styles.description}>
-                <p className={styles.title}>Descripción</p>
+                <p className={styles.title}>Sobre este producto</p>
                 <p className='font-a' dangerouslySetInnerHTML={{ __html: description }}>
                 </p>
               </div>
-
-              <p>
-                Con esta compra obtendras 1500 EXP para subir a categoria Plata
-              </p>
 
               <p>
                 <a

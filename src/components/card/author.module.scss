@@ -4,7 +4,7 @@
   border-radius: 5px;
   box-shadow: 1px 1px #e7e7e7;
   display: flex;
-  height: 25px;
+  height: 40px;
   left: 0;
   margin: 10px auto;
   max-width: max-content;
@@ -35,7 +35,7 @@
   }
   div.content {
     align-items: center;
-    display: flex;
+    // display: flex;
     font-size: 12px;
     grid-gap: 5px;
     margin: 0 0 0 10px;
@@ -43,10 +43,19 @@
     padding-left: 10px;
     padding: 0;
     position: relative;
+    h3 {
+      font-size: 13px;
+    }
+    .calification {
+      display: block;
+      svg {
+        color: #fad426;
+      }
+    }
   }
   h3 {
     font-weight: 100;
-    margin: 0;
+    margin: 2px;
   }
   .content-icon-store {
     background: #bad5f0;
@@ -72,7 +81,7 @@
     }
   }
   &.CardDetalleProducto {
-    height: 32px;
+    // height: 32px;
     margin: 0 10px;
     .content-icon-store {
       display: none;
