@@ -53,6 +53,25 @@ const readNotificationSrv = async (nid: number) => {
   return data
 }
 
+const getExperiencesSrv = async () => {
+  const uid = 1;
+  try {
+    const { experiences } = await get(`${BASE_URL}/${uid}/info`);
+    const expTotal = experiences.reduce((total, obj) => total + obj.exp, 0);
+    return {
+      expTotal,
+      experiences,
+    }
+  } catch (err) {
+    // TODO - Implementar un logger
+    console.error("Error al obtener las experiencias del usuario", err);
+    return {
+      expTotal: 0,
+      experiences: [],
+    }
+  }
+}
+
 export {
   getNotificationsSrv,
   getReferralsSrv,
@@ -63,4 +82,5 @@ export {
   updateProfileSrv,
   validateTokenSrv,
   saveReferral,
+  getExperiencesSrv,
 }

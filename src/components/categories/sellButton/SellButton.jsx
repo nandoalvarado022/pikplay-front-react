@@ -5,7 +5,7 @@ import Button from '../../button/Button'
 const VenderButton = () => {
   return (
     <Link href='/publicacion/crear' as='/publicacion/crear'>
-      <Button color='blue' outline>
+      <Button color='blue'>
         Vender
       </Button>
     </Link>

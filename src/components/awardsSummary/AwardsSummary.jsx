@@ -66,7 +66,10 @@ const AwardsSummary = ({ callback }) => {
         callback(1)
     }
 
-    const message = `Recibiste <span class="yellow">5 Pikcoins</span> para redimir en productos de la tienda JuanchoFenix. <span class="blue">¡Felicitaciones!</span>`
+    const message = `Recibiste <span class="yellow">5 Pikcoins</span> 
+    para redimir en productos de la tienda <b>JuanchoFenix</b>. 
+    Además <span class="blue">2.000 EXP</span> ¡Felicitaciones!`
+
     const handlePickRewardUp = () => {
         // Sumando coins al Coins del header
         const element = document.querySelector('#PreviewProfile--Coins .number')
@@ -104,26 +107,11 @@ const AwardsSummary = ({ callback }) => {
                     className={styles.subtitle}>
                     BRONCE
                 </motion.div>
-                <div className={styles.gifts}>
-                    <div className={styles.coinsGained}>
-                        <div className={styles.plusCoin}>
-                            {/* <FontAwesomeIcon icon={faPlus} /> */}
-                        </div>
-                        <CoinIcon coins={gainedCoins} multicoin />
-                    </div>
-
-                    <div className={styles.medalsGained}>
-                    </div>
-
-                    <div className={styles.experienceGained}>
-                        5%<br />
-                        experiencia
-                    </div>
-                </div>
             </div>
             <div className={styles.box}>
-                <img src="/images/type_notification/coupon_gift_available.png" alt="bronze" />
+                {/* <img src="/images/type_notification/coupon_gift_available.png" alt="bronze" /> */}
                 <p className={styles.description}>
+                    <CoinIcon coins={gainedCoins} multicoin />
                     <ReactTyped strings={[message]} typeSpeed={20} />
                 </p>
             </div>
@@ -134,7 +122,7 @@ const AwardsSummary = ({ callback }) => {
                     animate={{ x: 0, }}
                     transition={{ delay: 2 }}>
                     <Button className={styles.main_button} color="blue" onClick={handleUpdateExperience}>
-                        RECOGER PREMIOS
+                        Continuar
                     </Button>
                 </motion.div>
             </div>
@@ -213,7 +201,7 @@ const PreviewProfileSummaryExperience = ({ callback, setSummaryAwardsOpen, gainE
                 animate={{ x: 0, }}
                 transition={{ delay: 2 }}>
                 <Button color="blue" className={styles.main_button}>
-                    CONTINUAR
+                    Continuar
                 </Button>
             </motion.div>
         </div>

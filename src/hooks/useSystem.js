@@ -1,3 +1,4 @@
+import cookieCutter from '@boiseitguru/cookie-cutter'
 import { create } from 'zustand';
 
 const initialNotification = {
@@ -22,6 +23,8 @@ const loadFromLocalStorage = (property) => {
 const logout = (set) => {
     set({ userLogged: { uid: null } })
     set({ notifications: [initialNotification] })
+    cookieCutter.set('X-Auth-Token', null)
+    cookieCutter.set('User-ID', null)
 }
 
 const useSystemStore = create((set, get) => ({

@@ -1,6 +1,8 @@
 .ProfileSummaryExperience {
     display: flex;
-
+    @media screen and (max-width: 420px) {
+        margin: 0 auto;
+    }
     .full_name {
         background: linear-gradient(45deg, #f4c376, #ba7821);
         border-radius: 10px 10px 0 0;
@@ -53,7 +55,8 @@
         position: relative;
         width: 300px;
         @media screen and (max-width: 420px) {
-            width: calc(100vw - 100px);
+            // width: calc(100vw - 100px);
+            width: initial;
         }
 
         &::before {
@@ -98,10 +101,13 @@
 
         .right {
             width: 380px;
+            @media screen and (max-width: 420px) {
+                width: initial;
+            }
         }
 
         .experience_status {
-            margin: 20px auto;
+            margin: 0px auto;
         }
 
         .fields {
@@ -142,12 +148,12 @@
 .ExperienceBar {
     border-radius: 5px;
     box-shadow: inset 4px 5px 8px #29292961;
-    height: 10px;
+    height: 14px;
     width: 100%;
     .bar {
         border-radius: 5px;
         box-shadow: inset 4px 5px 8px #29292900;
-        height: 10px;
+        height: 100%;
         // overflow: hidden;
         width: 100%;
         .indicator {
@@ -160,16 +166,11 @@
             transition-duration: 3s;
             width: 30%;
             label {
-                background: #b0302bd4;
                 border-radius: 10px 0 10px 0;
-                bottom: 14px;
-                font-size: 12px;
-                // font-weight: bold;
-                padding: 2px 4px;
-                position: absolute;
-                right: -20px;
+                display: block;
+                font-size: 11px;
                 text-align: center;
-                width: 90px;
+                width: 160px;
             }
         }
     }
