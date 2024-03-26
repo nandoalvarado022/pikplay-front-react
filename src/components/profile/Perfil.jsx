@@ -152,7 +152,7 @@ const Interface = ({
       // whileTap={{ scale: 0.8 }}
       >
         Perfil
-        <FontAwesomeIcon className='svg-question' icon={faQuestionCircle} />
+        <FontAwesomeIcon className='icon svg-question' icon={faQuestionCircle} />
       </motion.h2>
 
       <div className={styles.content}>

@@ -97,7 +97,7 @@ const UserNotifications = () => {
     <div className={`${styles.UserNotifications} UserNotifications`}>
       <div className={styles.options}>
         <motion.span>
-          <FontAwesomeIcon icon={faBell} className='m-r-10' />
+          <FontAwesomeIcon icon={faBell} className='m-r-10 icon' />
           Mis notificaciones
         </motion.span>
         <span>Marcar todas como leídas</span>
