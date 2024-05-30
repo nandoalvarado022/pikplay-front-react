@@ -11,7 +11,7 @@ import updateExperience from './mocks/post/updateExperience'
 import getCompetition_Detail from './mocks/get/getCompetition_Detail'
 
 export default function handler(req, res) {
-  const operationName = req.headers?.['operation-name']
+  const operationName = req.headers?.['operationname']
   const variables = req.headers?.['variables']
     ? JSON.parse(req.headers?.['variables'])
     : {}

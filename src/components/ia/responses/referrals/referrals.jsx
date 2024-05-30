@@ -45,7 +45,7 @@ const HTML = () => {
   </div>
 }
 
-const Message = `Con cada referidos ganas Pikcoins. <br /> Recuerdale a tus referidos aceptar la invitacion enviada por wsp y por mensaje de texto.`
+const Message = `Con cada referidos ganas Pikcoins. <br /> Recuerdale a tus referidos aceptar la invitacion enviada por wsp ó por mensaje de texto.`
 
 const Options = ({ handleUserMessage, set }) => {
   return <>

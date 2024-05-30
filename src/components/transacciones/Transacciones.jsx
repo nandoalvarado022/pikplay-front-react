@@ -18,13 +18,13 @@ import { getTransactionsSrv } from '../../services/transaction/transactionServic
 
 moment.locale('es')
 
-// let Grafica;
-// if (typeof window != 'undefined') {
-//   Grafica = dynamic(
-//     () => import('./components/grafica/Grafica'),
-//     { ssr: false },
-//   )
-// }
+let Grafica;
+if (typeof window != 'undefined') {
+  Grafica = dynamic(
+    () => import('./components/grafica/Grafica'),
+    { ssr: false },
+  )
+}
 
 const Transacciones = props => {
   const { loggedUser } = useSystemStore()
@@ -116,8 +116,8 @@ const Transacciones = props => {
 
   const getTransactions = () => {
     getTransactionsSrv()
-      .then(data => {
-        setTransactions(data)
+      .then(({ data, status }) => {
+        if (status != 500) setTransactions(data)
       })
   }
 
@@ -146,7 +146,10 @@ const Transacciones = props => {
         <div className='content'>
           {/* Transacciones */}
           <div className="Card">
-            <Alert className={"m-b-10"} severity="warning">Recuerda siempre confirmar tus ventas haciendo uso del boton "Subir comprobante", con esto aseguras que las Pikcoins llegarán a tus clientes.</Alert>
+            <Alert className={"m-b-10"} severity="warning">
+              Recuerda siempre confirmar tus ventas haciendo uso del boton &nbsp;
+              <i>Subir comprobante</i>, con esto aseguras que las Pikcoins llegarán a tus clientes.
+            </Alert>
             <MyTable loggedUser={loggedUser} transactions={transactions} />
           </div>
 
@@ -162,7 +165,7 @@ const Transacciones = props => {
         </div>
 
         {/* Graficas */}
-        {/* <Grafica /> */}
+        <Grafica />
       </div>
     </section>
   )

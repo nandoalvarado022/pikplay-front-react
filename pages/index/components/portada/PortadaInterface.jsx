@@ -10,6 +10,7 @@ import { GET_FOLLOWED_PUBLICATIONS } from '../../../../src/lib/utils'
 import FullScreenWidget from '../fullScreenWidget/FullScreenWidget'
 import styles from './portada.module.scss'
 import FloatingChallenges from '../floatingChallenges/FloatingChallenges.jsx'
+import Author from '../../../../src/components/card/Author.jsx'
 
 const { IS_MOBILE } = '../../lib/variables'
 
@@ -96,6 +97,11 @@ const PortadaInterface = ({
   const Products = () => {
     let previousCategory = null
     let currentCategory = null
+    const adsAuthor = {
+      name: "Hito Tienda Anime",
+      picture: "https://pikplay-bucket.nyc3.cdn.digitaloceanspaces.com/users/hiropicture.jpg",
+    }
+
     return <div className={styles.PortadaInterfaceComponent}>
       <div className={styles.main}>
         <div className='listadoRodadas'>
@@ -110,6 +116,17 @@ const PortadaInterface = ({
                   {showCategoryBanner && (
                     <CategoryBanner categoryId={currentCategory} />
                   )}
+                  {ind == 0 && <div className={styles.ads}>
+                    <h3>
+                      <p>
+                        ¡Micro Hiro <span>Event!</span>
+                      </p>
+                      <span className={styles.store}>
+                        <Author parentView='CardDetalleProducto' user={adsAuthor} />
+                      </span>
+                    </h3>
+                    <video src="/videos/anuncio-hiro.mov" autoPlay controls />
+                  </div>}
                   <Card {...{ handleFavorite, ...item }} />
                 </>
               )

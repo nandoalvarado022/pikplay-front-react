@@ -6,7 +6,7 @@
   "version": "0.1.1",
   "private": true,
   "scripts": {
-    "dev": "next -- -p 80",
+    "dev": "source $HOME/.nvm/nvm.sh; nvm use 16; next -- -p 80",
     "build": "next build",
     "start": "next start -p 80",
     "test": "jest --watch",

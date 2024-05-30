@@ -43,8 +43,9 @@ export default function MyTable({ loggedUser, transactions }) {
   const classes = useStyles()
   const rowClasses = (status) => {
     return {
-      [styles.confirmed]: status == 1,
-      [styles.cancelled]: status == 2
+      [styles.created]: status == 1,
+      [styles.cancelled]: status == 5,
+      [styles.paid]: status == 4
     }
   }
 
@@ -54,7 +55,7 @@ export default function MyTable({ loggedUser, transactions }) {
         <TableHead>
           <TableRow>
             <TableCell>&nbsp;</TableCell>
-            <TableCell>Publicación</TableCell>
+            <TableCell>Publicación ó Concurso</TableCell>
             <TableCell>Vistas</TableCell>
             <TableCell>Estado</TableCell>
             <TableCell>Tipo transacción</TableCell>
@@ -83,7 +84,10 @@ export default function MyTable({ loggedUser, transactions }) {
               }) => (
                 <TableRow key={pid}>
                   <TableCell align='right' className={{ ...rowClasses(status) }}>
-                    <span className={styles.pid}>{publication?.title.substr(0, 3)}{pid}</span>
+                    <span className={styles.pid}>
+                      {publication?.title.substr(0, 3)}
+                      {pid}
+                    </span>
                   </TableCell>
                   <TableCell align='right' className={{ ...rowClasses(status) }}>
                     <small className='block'></small>

@@ -18,11 +18,11 @@ const Author = ({ user = {}, parentView }) => {
         className={styles.user_picture}
         src={user?.picture}
       />
-      <Tooltip TransitionComponent={Zoom} title='Informacion del aliado'>
+      {/* <Tooltip TransitionComponent={Zoom} title='Informacion del aliado'>
         <div className={`content-icon-store ${styles['content-icon-store']}`}>
           <FontAwesomeIcon icon={faStore} />
         </div>
-      </Tooltip>
+      </Tooltip> */}
       <div
         className={styles.content}
         title={

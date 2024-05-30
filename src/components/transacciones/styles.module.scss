@@ -33,6 +33,11 @@ section.Transactions {
     text-transform: uppercase;
   }
 
+  td.created {
+    background: #39b2681c;
+    // border-top: 2px solid red;
+  }
+
   td.confirmed {
     background: #39b2681c;
     border-top: 2px solid #39b2688a;

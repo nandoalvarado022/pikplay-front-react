@@ -1,4 +1,5 @@
 import cookieCutter from '@boiseitguru/cookie-cutter'
+import { convertResponse } from '../../lib/utils';
 
 const CustomFetch = () => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL
@@ -34,11 +35,13 @@ const CustomFetch = () => {
           status: 500
         }
       }
-      return data;
+
+      const resp = convertResponse(data);
+      return resp;
     } catch (error) {
+      // debugger;
       console.error(`Error al obtener datos desde el servicio para la ruta ${path} method GET}`);
-      console.log(error);
-      
+      console.log(error);      
       throw error;
     }
   }
