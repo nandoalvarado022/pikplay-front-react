@@ -18,6 +18,9 @@ const CompetitionsList = ({ competitions, competitionId, setCompetitionId }) => 
         <div className={styles.item}>
           <img src="/images/banners/banner-03.png" />
         </div>
+        <div className={styles.item}>
+          <img src="/images/banners/banner-04.png" />
+        </div>
       </div>
       <div className={styles.news}>
         <span>Últimos movimientos:</span>

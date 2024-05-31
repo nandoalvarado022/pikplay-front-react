@@ -11,6 +11,8 @@ import VARS from '../../lib/variables'
 
 import useSystemStore from '../../hooks/useSystem'
 import { slugify } from '../../lib/utils'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
 const ProfileImage = dynamic(() => import('../profileImage/ProfileImage'), { ssr: false })
 
 const { IS_MOBILE } = VARS
@@ -43,6 +45,10 @@ const PreviewUser = () => {
           />
           <div className={styles.coins} id="PreviewProfile--Coins">
             <CoinIcon coins={10} />
+            <span className={styles.experience}>
+              <FontAwesomeIcon icon={faHeartbeat} />
+              <span>&nbsp;10/20.500</span>
+            </span>
           </div>
           <div className={styles.bg_white}></div>
           <div className={styles.bg_black}>

@@ -8,6 +8,8 @@ import Button from '../../button/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import Marquee from './Marquee'
+import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
+import { faGrinHearts } from '@fortawesome/free-solid-svg-icons'
 
 const CompetitionDetail = (props) => {
   const { setCompetitionId } = props
@@ -84,6 +86,9 @@ const CompetitionDetail = (props) => {
           </div>
         </p>
       </div>
+    </div>
+    <div className="Card">
+      <FontAwesomeIcon icon={faHeartbeat} />
     </div>
     <p className={`Card flex ${styles.description}`}>
       <div>
