@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../../src/components/layout/Layout'
 import Transacciones from '../../src/components/transacciones/Transacciones'
+import { validateTokenSrv } from '../../src/services/user/userService'
 
 export default function TransaccionesContainer(props) {
   const url = 'https://pikajuegos.com/transacciones'
@@ -17,18 +18,16 @@ export default function TransaccionesContainer(props) {
   )
 }
 
-// export const getServerSideProps = async ctx => {
-//   const { token } = ctx.req.cookies
-//   console.log('Cookies: ', ctx.req.cookies)
-//   const res = await validateLoginToken({ token })
-//   if (!res) {
-//     console.log('Token no valido')
-//     return {
-//       redirect: {
-//         destination: '/?action=not_authorized',
-//         permanent: false,
-//       },
-//     }
-//   }
-//   return { props: {} }
-// }
+export const getServerSideProps = async ctx => {
+  const { token } = ctx.req.cookies
+  const res = await validateTokenSrv({ token })
+  if (!res) {
+    return {
+      redirect: {
+        destination: '/?action=not_authorized',
+        permanent: false,
+      },
+    }
+  }
+  return { props: {} }
+}
