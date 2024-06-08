@@ -29,7 +29,7 @@ const { motion } = require('framer-motion')
 moment.locale('es-CO')
 
 const UserNotifications = () => {
-  const { notifications, setValue } = useSystemStore((state => state))
+  const { userLogged, notifications, setValue } = useSystemStore((state => state))
   const [summaryAwardsOpen, setSummaryAwardsOpen] = useState(false)
   // const user = useSelector(state => state.user)
   // const notifications = useSelector(state => state.notifications) //.filter(item => item.closed == 0)
@@ -68,13 +68,15 @@ const UserNotifications = () => {
   //   deleteNotification({ variables: { id, userId: user.id } }) // Delete notification BD
   // }
 
-  const handleDeleteNotification = ( ) => {}
+  const handleDeleteNotification = () => { }
 
   const getNotifications = () => {
-    getNotificationsSrv()
-      .then(res => {
-        setValue('notifications', res.data)
-      });
+    if (userLogged.uid) {
+      getNotificationsSrv()
+        .then(res => {
+          setValue('notifications', res.data)
+        });
+    }
   }
 
   const handleNotification = async ({ coins, disabled, id, link, type }) => {
@@ -95,7 +97,7 @@ const UserNotifications = () => {
     <div className={`${styles.UserNotifications} UserNotifications`}>
       <div className={styles.options}>
         <motion.span>
-          <FontAwesomeIcon icon={faBell} className='m-r-10' />
+          <FontAwesomeIcon icon={faBell} className='m-r-10 icon' />
           Mis notificaciones
         </motion.span>
         <span>Marcar todas como leídas</span>

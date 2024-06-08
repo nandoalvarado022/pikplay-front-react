@@ -1,6 +1,7 @@
+import styles from './author.module.scss'
+
 import React from 'react'
 import Zoom from '@mui/material/Zoom'
-import styles from './styles.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Tooltip } from '@mui/material'
 import {
@@ -17,12 +18,13 @@ const Author = ({ user = {}, parentView }) => {
         className={styles.user_picture}
         src={user?.picture}
       />
-      <Tooltip TransitionComponent={Zoom} title='Informacion del aliado'>
+      {/* <Tooltip TransitionComponent={Zoom} title='Informacion del aliado'>
         <div className={`content-icon-store ${styles['content-icon-store']}`}>
           <FontAwesomeIcon icon={faStore} />
         </div>
-      </Tooltip>
-      <p
+      </Tooltip> */}
+      <div
+        className={styles.content}
         title={
           user?.certificate
             ? 'El usuario esta certificado, puedes confiar en esta oferta'
@@ -38,13 +40,13 @@ const Author = ({ user = {}, parentView }) => {
         )}
         <Tooltip
           TransitionComponent={Zoom}
-          title='Nombre de quien vende el articulo'
-        >
-          <h3>{user?.name}</h3>
-        </Tooltip>
-        <Tooltip TransitionComponent={Zoom} title='Calificación'>
+          title='Nombre de quien vende el articulo'>
+          <h3>
+            {user?.name}
+          </h3>
+
           <div className={styles.calification}>
-            <span>(4,5)</span>
+            {[1, 1, 1].map(item => <FontAwesomeIcon icon={faStar} />)}
           </div>
         </Tooltip>
         {user?.transactions > 0 && (
@@ -53,7 +55,7 @@ const Author = ({ user = {}, parentView }) => {
             <span>{user?.transactions} ventas completadas</span>
           </div>
         )}
-      </p>
+      </div>
     </div>
   )
 }

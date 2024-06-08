@@ -5,7 +5,7 @@
     position: fixed;
     transition: 1s ease-in-out;
     width: 500px;
-    z-index: 4;
+    z-index: 9;
     @media screen and (max-width: 420px) {
         bottom: 90px;
         width: 80%;
@@ -99,11 +99,11 @@
                 flex-direction: column;
 
                 background: #18181870;
-                border-radius: 0px 20px 20px 30px;
+                border-radius: 50px 20px 20px 30px;
                 color: white;
                 font-size: 15px;
-                font-style: italic;
-                font-weight: bold;
+                // font-style: italic;
+                // font-weight: bold;
                 padding: 10px 10px 20px 20px;
 
                 // Border text
@@ -131,6 +131,9 @@
                 :global(.highlighted-2) {
                     color: aquamarine;
                 }
+                :global(.not_shadow) {
+                    text-shadow: none;
+                }
             }
             a {
                 color: white;
@@ -152,7 +155,7 @@
                 border: none;
                 color: white;
                 border-bottom: #ffffff52 solid 1px;
-                width: 350px;
+                // width: 350px;
                 padding: 5px 0;
                 margin: 20px 0 20px 0;
                 &::placeholder {

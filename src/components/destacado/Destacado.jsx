@@ -41,10 +41,8 @@ const Destacado = props => {
               as={datosMostrar.as}
               className='font-b'
             >
-              <a>
-                {datosMostrar.link_texto}
-                <FontAwesomeIcon className='' icon={faArrowRight} />
-              </a>
+              {datosMostrar.link_texto}
+              <FontAwesomeIcon className='' icon={faArrowRight} />
             </Link>
           )}
         </p>

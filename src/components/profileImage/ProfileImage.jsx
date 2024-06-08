@@ -1,5 +1,6 @@
-import React from 'react'
 import styles from './styles.module.scss'
+
+import React from 'react'
 
 const ProfileImage = ({ className, handleClickImage, picture }) => {
     return <picture className={`${styles.ProfileImage} ${styles[className]}`} onClick={handleClickImage}>

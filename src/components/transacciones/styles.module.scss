@@ -1,6 +1,15 @@
 section.Transactions {
-  margin: 20px auto;
-  width: 1200px;
+  margin: 0 auto;
+  width: 1600px;
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    > :nth-of-type(1) {
+      width: 900px;
+    }
+  }
 
   .customer_box {
     background: #f4f4f4;
@@ -9,5 +18,33 @@ section.Transactions {
     padding: 6px 10px;
     text-align: center;
     width: 100px;
+
+    a {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .pid{
+    background: #3095b34a;
+    border-radius: 10px;
+    padding: 5px 10px 6px;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  td.created {
+    background: #39b2681c;
+    // border-top: 2px solid red;
+  }
+
+  td.confirmed {
+    background: #39b2681c;
+    border-top: 2px solid #39b2688a;
+  }
+
+  td.cancelled {
+    background: #ff000014;
+    border-top: 2px solid #ff000061;
   }
 }

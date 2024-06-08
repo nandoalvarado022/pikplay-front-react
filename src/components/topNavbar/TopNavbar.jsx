@@ -83,18 +83,16 @@ const TopNavbar = props => {
               item.tipo_coleccion != 'recomendaciones' &&
               href && (
                 <Link key={ind} href={href} as={ass}>
-                  <a ind={ind}>
-                    {
-                      // ind == 0 && <div className="elementoPrueba"></div>
-                    }
-                    <img src={`${item.imagenes[0]}_400x400.jpg?alt=media`} />
-                    {/* <span className="tipo">
+                  {
+                    // ind == 0 && <div className="elementoPrueba"></div>
+                  }
+                  <img src={`${item.imagenes[0]}_400x400.jpg?alt=media`} />
+                  {/* <span className="tipo">
                                     {icono}
                                 </span> */}
-                    <span className='title'>
-                      {item.descripcion.substr(0, 15)}
-                    </span>
-                  </a>
+                  <span className='title'>
+                    {item.descripcion.substr(0, 15)}
+                  </span>
                 </Link>
               )
             )

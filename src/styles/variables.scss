@@ -1,28 +1,30 @@
-$desktop: '1024px';
-$tablet: '768px';
-$mobile: '480px';
+$desktop: "1024px";
+$tablet: "768px";
+$mobile: "480px";
 $primary-color: #ea4d42;
 $secundary-color: #476e96;
 
-#body{
-  color: red;
+#body {
 }
 
-%floatButton {
+%floatButtons {
   @media screen and (min-width: $desktop) {
   }
   @media screen and (max-width: $mobile) {
-    bottom: 80px;
-    box-shadow: 0px 2px 4px 2px #51515157;
-    height: 42px;
+    background: white;
+    bottom: 60px;
     left: 0;
-    margin: 0 auto;
+    min-height: 60px;
+    padding: 10px 0 20px;
     position: fixed;
-    right: 0;
-    width: 90%;
+    width: 100%;
     z-index: 2;
-    button {
-      padding: 5px 20px;
+    > button {
+      width: 80%;
+      display: block;
+      font-size: 16px;
+      height: 38px;
+      margin: 10px auto 0;
     }
   }
 }

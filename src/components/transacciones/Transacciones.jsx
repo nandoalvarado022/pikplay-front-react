@@ -1,7 +1,11 @@
+import styles from './styles.module.scss'
+
 import React from 'react'
+import dynamic from 'next/dynamic'
+import Alert from '@mui/material/Alert';
+import { BarChart } from '@mui/x-charts/BarChart'
 import Button from '../button/Button'
 import moment from 'moment'
-import styles from './styles.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
 // import { gql, useLazyQuery, useMutation } from '@apollo/client'
@@ -10,12 +14,21 @@ import { useEffect, useState } from 'react'
 // import { useSelector } from 'react-redux'
 import MyTable from './Table'
 import useSystemStore from '../../hooks/useSystem'
+import { getTransactionsSrv } from '../../services/transaction/transactionService'
 
 moment.locale('es')
 
+let Grafica;
+if (typeof window != 'undefined') {
+  Grafica = dynamic(
+    () => import('./components/grafica/Grafica'),
+    { ssr: false },
+  )
+}
+
 const Transacciones = props => {
   const { data: transactions } = props;
-  const { userLogged } = useSystemStore((state => state))
+  const { loggedUser } = useSystemStore()
   // const [transactions, setTransactions] = useState([])
   // Mutation confirmar transacción
   // const TRANSACTION_CONFIRMED = gql`
@@ -88,7 +101,7 @@ const Transacciones = props => {
   // })
 
   useEffect(() => {
-    // getTransactions()
+    getTransactions()
   }, [])
 
   const handlePagarTransaccion = id => {
@@ -102,12 +115,19 @@ const Transacciones = props => {
   //   })
   // }
 
+  const getTransactions = () => {
+    getTransactionsSrv()
+      .then(({ data, status }) => {
+        if (status != 500) setTransactions(data)
+      })
+  }
+
   return (
     <section className={`page ${styles.Transactions}`}>
       <h2 className='Card main'>
-        Transacciones
+        Tablero de Operaciones
         <FontAwesomeIcon
-          class='svg-question'
+          class='svg-question icon'
           icon={faQuestionCircle}
           onClick={() => {
             const message = (
@@ -123,8 +143,32 @@ const Transacciones = props => {
         />
       </h2>
 
-      <div className='content m-t-20'>
-        <MyTable userLogged={userLogged} transactions={transactions} />
+      {/*  <div className='content m-t-20'>
+          <MyTable userLogged={userLogged} transactions={transactions} /> */}
+      <div className={styles.wrapper}>
+        <div className='content'>
+          {/* Transacciones */}
+          <div className="Card">
+            <Alert className={"m-b-10"} severity="warning">
+              Recuerda siempre confirmar tus ventas haciendo uso del boton &nbsp;
+              <i>Subir comprobante</i>, con esto aseguras que las Pikcoins llegarán a tus clientes.
+            </Alert>
+            <MyTable loggedUser={loggedUser} transactions={transactions} />
+          </div>
+
+          {/* ADS Impulsa tus ventas */}
+          {/* TODO Pendiente cambiar video */}
+          <div className="Card">
+            <center>
+              <video width="840" height="240" autoPlay>
+                <source src="/videos/video1.mp4" type="video/mp4"></source>
+              </video>
+            </center>
+          </div>
+        </div>
+
+        {/* Graficas */}
+        <Grafica />
       </div>
     </section>
   )

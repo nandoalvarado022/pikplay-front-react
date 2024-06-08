@@ -21,8 +21,11 @@ export default function TransaccionesContainer(props) {
 }
 
 export const getServerSideProps = async ctx => {
-  const { statusCode } = await validateTokenSrv(ctx)
-  if (statusCode === 403) {
+  // const { statusCode } = await validateTokenSrv(ctx)
+  // if (statusCode === 403) {
+  const { token } = ctx.req.cookies
+  const res = await validateTokenSrv({ token })
+  if (!res) {
     return {
       redirect: {
         destination: '/?action=not_authorized',

@@ -1,29 +1,26 @@
-import cookieCutter from 'cookie-cutter'
+import cookieCutter from '@boiseitguru/cookie-cutter'
+import { convertResponse } from '../../lib/utils';
 
 const CustomFetch = () => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   const getCookies = (ctx = { req: { cookies: {} } }) => {
-    let cookies = {};
-    if (typeof window != 'undefined') { // Solo funciona para peticiones del lado de client 
-      cookies["User-ID"] = cookieCutter.get('User-ID'),
-        cookies["X-Auth-Token"] = cookieCutter.get('X-Auth-Token')
-    }
-
-    if (!cookies["User-ID"] && !cookies["X-Auth-Token"] && ctx) { // Obteniendo cookies del lado del server. Generalmente vienen en el ctx.req.cookies
-      cookies["User-ID"] = ctx?.req.cookies["User-ID"]
-      cookies["X-Auth-Token"] = ctx.req.cookies["X-Auth-Token"]
-    }
-    return cookies
+    let headers = {};
+    // Obteniendo cookies del lado del server. Generalmente vienen en el ctx.req.cookies
+    headers["User-ID"] = ctx?.req.cookies["User-ID"] || (typeof window != 'undefined' && cookieCutter.get("User-ID")) || null
+    headers["X-Auth-Token"] = ctx?.req.cookies["X-Auth-Token"] || (typeof window != 'undefined' && cookieCutter.get("X-Auth-Token")) || null
+    return headers
   }
 
-  const get = async (ctx, path) => {
+  const get = async (ctx, path, props = {}) => {
     try {
+      const headers = getCookies()
       const response = await fetch(apiUrl + path, {
         // credentials: "same-origin", // TODO averiguar para que sirve
         headers: {
           "Content-Type": "application/json",
-          ...getCookies(ctx)
+          ...getCookies(ctx),
+          ...headers
         },
       });
       // if (!response.ok) {
@@ -39,28 +36,40 @@ const CustomFetch = () => {
           status: 500
         }
       }
-      return data;
+
+      const resp = convertResponse(data);
+      return resp;
     } catch (error) {
       // debugger;
       console.error(`Error al obtener datos desde el servicio para la ruta ${path} method GET}`);
+      console.log(error);
       throw error;
     }
   }
 
-  const post = async (ctx, path, params, headers = {}) => {
+  const post = async (ctx, path, params, file?, extraHeaders = {}) => {
     const url = apiUrl + path
-    console.log("la url es:", url);
-    console.log(process.env);
+    // console.log("la url es:", url);
+    // console.log(process.env);
+    let body;
+    const headers = {
+      credentials: 'include',
+      ...getCookies(ctx),
+    }
+    if (params) {
+      body = JSON.stringify({ ...params })
+      headers["Content-type"] = "application/json; charset=UTF-8"
+    }
+
+    if (file) body = file;
     return fetch(url, {
       method: 'POST',
-      headers: {
-        credentials: 'include',
-        "Content-type": "application/json; charset=UTF-8",
-        ...getCookies(ctx),
-      },
-      body: JSON.stringify(params)
+      headers,
+      body
     })
-      .then(response => response.json())
+      .then(res => {
+        return res.json()
+      })
       .then(json => {
         return json
       })

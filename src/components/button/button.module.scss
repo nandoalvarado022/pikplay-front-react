@@ -41,7 +41,7 @@ button.btn {
 
   &.blue {
     background: #0095b3;
-    &:not(.outline) button {
+    &.outline button {
       $color: #056d82;
       text-shadow:
         2px 0 $color,

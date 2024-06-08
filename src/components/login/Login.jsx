@@ -1,4 +1,4 @@
-import cookieCutter from 'cookie-cutter'
+import cookieCutter from '@boiseitguru/cookie-cutter'
 import React, { useState } from 'react'
 import LoginInterface from './LoginInterface'
 import { useDispatch } from 'react-redux'

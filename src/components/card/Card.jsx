@@ -18,6 +18,7 @@ import Product from '../../interfaces/Product'
 import styles from './card.module.scss'
 import CoinIcon from '../coinIcon/CoinIcon'
 import useSystemStore from '../../hooks/useSystem'
+import CashbackTag from './cashbackTag/CashbackTag'
 
 const Card = (props) => {
   const {
@@ -76,19 +77,19 @@ const Card = (props) => {
           <div className={styles.content_imagen}>
             {/* Image */}
             <Link
+              as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
+              className={styles.image_wrapper}
               href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
-              as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}>
-              <a className={styles.image_wrapper}>
-                {
-                  images && images.length > 0 && images.map(image => (
-                    <Image
-                      objectFit='cover'
-                      layout='fill'
-                      src={image?.url}
-                    />
-                  ))
-                }
-              </a>
+            >
+              {
+                images && images.length > 0 && images.map(image => (
+                  <Image
+                    objectFit='cover'
+                    layout='fill'
+                    src={image?.url}
+                  />
+                ))
+              }
             </Link>
           </div>
           <div className={`tags ${styles.tags}`}>
@@ -100,15 +101,7 @@ const Card = (props) => {
               </span>
             )}
             {/* Si aplica cashback */}
-            {cashback_available && (
-              <span
-                title='Ganarás Pikcoins por hacer esta compra'
-                className={styles.apply_cashback}>
-                <picture className={styles.coin} />
-                ¡Cashback!
-                <CoinIcon hideNumber />
-              </span>
-            )}
+            {cashback_available && <CashbackTag />}
             {accept_changes && (
               <span
                 className={styles.condition}
@@ -159,12 +152,10 @@ const Card = (props) => {
               <Link
                 href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
                 as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
-              >
-                <a className={id_publication == 1 ? styles.destacada_Card : ''}>
-                  <h2>
-                    {title ? title : 'Espacio para el título de la publicación'}
-                  </h2>
-                </a>
+                className={id_publication == 1 ? styles.destacada_Card : ''}>
+                <h2>
+                  {title ? title : 'Espacio para el título de la publicación'}
+                </h2>
               </Link>
               {user?.name && <Author user={user} />}
               {/* <small className={styles.location}> // TODO Mostrar la ciudad

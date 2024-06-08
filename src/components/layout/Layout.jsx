@@ -1,25 +1,14 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
-import Button from '../button/Button'
-import Categories from '../categories/Categories'
 import Head from 'next/head'
-import MenuMovil from '../menuMovil/MenuMovil'
-import CustomHeader from '../customHeader/CustomHeader.tsx'
 import NProgress from 'nprogress'
-import Notification from '../previewNotifications/index.jsx'
 import Router from 'next/router'
-import Subcategories from '../subcategories/Subcategories'
-import { IS_MOBILE } from '../../lib/variables'
-import styles from './layout.module.scss'
 import toastr from 'toastr'
-import { ToastContainer } from 'react-toastify'
 import { initGA, logPageView } from '../../../public/analytics'
 import { register } from 'next-offline/runtime'
-import Link from 'next/link'
-import Loading from '../loading/Loading'
-import classNames from 'classnames'
-import IA from '../ia/IA'
 import useSystemStore from '../../hooks/useSystem.js'
+import Body from './Body.jsx'
+import { useIAStore } from '../ia/IAstore.jsx'
 
 toastr.options.timeOut = 10000
 
@@ -34,8 +23,10 @@ const Layout = (props) => {
   const [isReady, setIsReady] = useState(false)
   const { children, descripcion, image, title, url } = props
   const { env, setValue, userLogged, notifications } = useSystemStore((state => state))
+  const { checkIAMessage, IAMessage } = useIAStore()
 
   useEffect(() => {
+    checkIAMessage(IAMessage); // Check if there is an IA message to show
     (setValue && !env && props?.env) && setValue('env', props?.env);
     register()
     if (!window.GA_INITIALIZED) {
@@ -85,11 +76,19 @@ const Layout = (props) => {
         />
         <link rel='manifest' href={`/manifest.json`} />
         <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css"></link>
-        <script
-          type='text/javascript'
-          src='https://checkout.epayco.co/checkout.js'
-        ></script>
+        <script type='text/javascript' src='https://checkout.epayco.co/checkout.js'></script>
+        <script src="https://cdn.amplitude.com/libs/analytics-browser-2.7.4-min.js.gz"></script>
+        <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.2.3-min.js.gz"></script>
+        <script src="https://cdn.amplitude.com/libs/plugin-autocapture-browser-0.9.0-min.js.gz"></script>
         {() => {
+          // Amplitude
+          window.amplitude.add(window.sessionReplay.plugin({ sampleRate: 1 }))
+            .promise.then(() => {
+              window.amplitude.add(window.amplitudeAutocapturePlugin.plugin());
+              window.amplitude.init('30684c35f0937bb29637b9d69e2fa2f7');
+            })
+
+          // Google Analytics
           window.dataLayer = window.dataLayer || []
           function gtag() {
             // eslint-disable-next-line
@@ -102,69 +101,10 @@ const Layout = (props) => {
           })
         }}()
       </Head>
-      <body
-        className={classNames('App font-a', {
-          [styles.AppComponent]: true,
-          [styles.ready]: isReady,
-        })}>
-        <div className={styles.dev_pik_tool}>
-          notifications: {JSON.stringify(notifications)}<br />
-          userLogged: {JSON.stringify(userLogged)}
-        </div>
-        <main className={styles.main}>
-          <CustomHeader />
-          {false && (
-            <div className={styles.announcement}>
-              Actualmente estamos en una versión piloto
-            </div>
-          )}
-          <ToastContainer autoClose={5000} hideProgressBar={true} />
-          <Categories scroll={false} />
-          <Subcategories />
-          <Link href='/articulo/pikcoins-que-son-y-como-redimir-cupones'>
-            <a>
-              <div className={styles.wrapperBanner}>
-                <Image src='/images/banners/banner-regalos-descuentos-pikcoins.svg' fill={true} layout='fill' />
-              </div>
-            </a>
-          </Link>
-          {IS_MOBILE && <MenuMovil />}
-          {/* <Notification isOpen={this.context.showNotification} /> */}
-          {children}
-          <a
-            className='a_whatsapp'
-            href='https://api.whatsapp.com/send?phone=573054202450&text=Hola Pikplay, tengo una consulta sobre los servicios que ofrecen a los Gamers en Colombia'
-            target='_BLANK'
-            rel="noreferrer"
-          >
-            <button className={styles['btn-whatsapp']}>
-              <img
-                className={styles['we-are-here']}
-                src='/images/others/we-are-here.svg'
-              />
-              <img
-                src='/images/icons/whatsapp.png'
-                alt='Hablar con un asesor vía Whatsapp'
-              />
-            </button>
-          </a>
-          <IA />
-        </main>
-        <div className='avisoCookies font-c'>
-          Pikajuegos utiliza cookies para medir el uso del sitio web,
-          ofrecerte publicidad relacionada con tus intereses y habilitar
-          funciones de redes sociales. Para más información y ajustar tu
-          configuración de cookies, haz clic aquí.
-          <p>
-            <Button
-              className='blue small m-l-10'
-              text='Aceptar'
-              onClick=''
-            />
-          </p>
-        </div>
-      </body>
-    </React.Fragment>
+      <Body isReady={isReady} notifications={notifications} userLogged={userLogged}>
+        {children}
+      </Body>
+    </React.Fragment >
   )
 }
 

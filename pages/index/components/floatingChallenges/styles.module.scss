@@ -6,6 +6,7 @@
     left: 0;
     position: fixed;
     width: 250px;
+    z-index: 2;
     &::after{
         background-image: url(/images/gifs/stars-colors.gif);
         background-size: 300px;

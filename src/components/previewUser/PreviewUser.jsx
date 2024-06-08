@@ -1,7 +1,7 @@
 import styles from './styles.module.scss'
 
 import React, { useState } from 'react'
-import ProfileImage from '../profileImage/ProfileImage'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import Login from '../login/Login'
 import { useRouter } from 'next/router'
@@ -10,13 +10,18 @@ import CoinIcon from '../coinIcon/CoinIcon'
 import VARS from '../../lib/variables'
 
 import useSystemStore from '../../hooks/useSystem'
+import { slugify } from '../../lib/utils'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
+const ProfileImage = dynamic(() => import('../profileImage/ProfileImage'), { ssr: false })
+
 const { IS_MOBILE } = VARS
 
 const PreviewUser = () => {
   const { userLogged, logout } = useSystemStore((state => state))
   const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
   const router = useRouter()
-  const { picture } = userLogged
+  const { picture, name } = userLogged
 
   const handleLogout = () => {
     logout()
@@ -31,40 +36,39 @@ const PreviewUser = () => {
     <div
       className={`${styles.PreviewUser} PreviewUser ${isOpenPreviewProfile ? styles.actived : null}`}>
       {userLogged.uid ? (
-        <React.Fragment>
+        <div>
           <ProfileImage
+            suppressHydrationWarning={true}
             className="previewUser"
             handleClickImage={IS_MOBILE ? handleClickImage : null}
             picture={picture}
           />
           <div className={styles.coins} id="PreviewProfile--Coins">
             <CoinIcon coins={10} />
+            <span className={styles.experience}>
+              <FontAwesomeIcon icon={faHeartbeat} />
+              <span>&nbsp;10/20.500</span>
+            </span>
           </div>
           <div className={styles.bg_white}></div>
           <div className={styles.bg_black}>
             <ol>
-              <Link href='/perfil' as='/perfil'>
-                <a>
-                  Mi cuenta
-                  <br />
-                  {/* <Coins /> */}
-                </a>
+              <Link href={`/perfil/${slugify(name)}`}>
+                Mi cuenta
+                <br />
+                {/* <Coins /> */}
               </Link>
             </ol>
             <ol>
               <Link href='/usuario/me' as='/usuario/me'>
-                <a>
-                  Soy vendedor
-                  <br />
-                  {/* <Coins /> */}
-                </a>
+                Soy vendedor
+                <br />
+                {/* <Coins /> */}
               </Link>
             </ol>
             <ol>
               <Link href='/concursos' as='/concursos'>
-                <a>
-                  Concursos
-                </a>
+                Concursos
               </Link>
             </ol>
             <ol>
@@ -74,7 +78,7 @@ const PreviewUser = () => {
             </ol>
             <ol>
               <Link href='/publicaciones' as='/publicaciones'>
-                <a>Publicaciones</a>
+                Publicaciones
               </Link>
             </ol>
             <ol onClick={() => handleLogout()}>Salir</ol>
@@ -92,7 +96,7 @@ const PreviewUser = () => {
               </span>
             </ol>
           </div>
-        </React.Fragment>
+        </div>
       ) : (
         <Login />
       )}

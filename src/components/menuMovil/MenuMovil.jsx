@@ -1,18 +1,24 @@
+/* eslint-disable @next/next/no-img-element */
+import styles from './menuMovil.module.scss'
+
 import React from 'react'
 import Link from 'next/link'
 import PreviewUser from '../previewUser/PreviewUser'
-import styles from './menuMovil.module.scss'
-import { useSelector } from 'react-redux'
+import useSystemStore from '../../hooks/useSystem'
+// import { useSelector } from 'react-redux'
 
 const { motion } = require('framer-motion')
 
 const MenuMovil = () => {
-  const user = useSelector(state => state.user)
+  // const user = useSelector(state => state.user)
+  const { userLogged } = useSystemStore((state => state))
+
   return (
     <div className={styles.MenuMovil}>
       <ol className={styles.mainOption}>
         <Link href='/publicacion/crear' as='/publicacion/crear'>
           <motion.a
+            legacyBehavior
             className={styles.vender}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.8 }}
@@ -28,7 +34,7 @@ const MenuMovil = () => {
       </ol>
       <ol className={styles.mainOption}>
         <Link href='/categoria/[id]' as='/categoria/nintendo-switch'>
-          <motion.a whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
+          <motion.a legacyBehavior whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
             <img style={{ height: '28px' }} src='/images/icons/nintendo.svg' alt='Nintendo switch' />
             <div className='f-s-10'>NINTENDO</div>
           </motion.a>
@@ -39,7 +45,7 @@ const MenuMovil = () => {
       </ol>
       <ol className={styles.mainOption}>
         <Link href='/categoria/[id]' as='/categoria/playstation'>
-          <motion.a whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
+          <motion.a legacyBehavior whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
             <img src='/images/icons/play.svg' alt='Playstation' />
             <div className='f-s-10'>XBOX</div>
           </motion.a>

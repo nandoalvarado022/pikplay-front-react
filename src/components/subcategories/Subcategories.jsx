@@ -9,10 +9,8 @@ const Subcategories = () => {
     <div className={styles.subcategories}>
       <ul>
         {list.map(item => (
-          <Link href={item.url}>
-            <a className='' key={item.id}>
-              <h2>{item.name}</h2>
-            </a>
+          <Link href={item.url} className='' key={item.id}>
+            <h2>{item.name}</h2>
           </Link>
         ))}
       </ul>

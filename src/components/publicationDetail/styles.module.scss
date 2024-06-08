@@ -1,0 +1,341 @@
+@import "../../styles/variables.scss";
+
+.DetalleProducto {
+  background: #f4f4f4;
+  padding-top: 20px;
+  position: relative;
+  z-index: 1;
+  margin: 0px 0 10px;
+  padding: 0 0 10px;
+  @media screen and (min-width: 1024px) {
+    box-sizing: border-box;
+  }
+  h1 {
+    margin: 5px 0;
+    line-height: 30px;
+  }
+  &.actividades {
+    h2 {
+      color: white;
+      font-size: 42px;
+      padding: 5px 10px;
+      position: absolute;
+      text-shadow: 2px 3px 5px #232323;
+      top: 60px;
+      width: 290px;
+      z-index: 1;
+    }
+  }
+  .banner_bottom {
+    margin-top: 30px;
+    width: 1280px;
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    box-shadow: -2px 0px 5px 0px #575757b5;
+    background-color: #ffffffcc;
+    border-radius: 50%;
+    background-size: 10px;
+    padding: 0 8px;
+  }
+  h2.textFlow {
+    background-image: -webkit-gradient(linear, left top, right top, from(#af2896), to(#509bf5));
+    background-image: linear-gradient(90deg, #af2896, #509bf5);
+    width: 100%;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: lighter;
+    box-sizing: border-box;
+    background: linear-gradient(46deg, #3f5efb, #fc466b);
+    background-size: 300% 400%;
+    @media screen and (min-width: 1024px) {
+      margin: -10px;
+      width: calc(100% + 20px);
+    }
+  }
+  $color: black;
+  .beneficsPostBought {
+    background-color: #19596b;
+    border-radius: 10px;
+    color: white;
+    font-size: 13px;
+    padding: 10px;
+    span {
+      color: aquamarine;
+      margin: 0 5px;
+      text-shadow:
+        2px 0 $color,
+        -2px 0 $color,
+        0 2px $color,
+        0 -2px $color,
+        1px 1px $color,
+        -1px -1px $color,
+        1px -1px $color,
+        -1px 1px $color;
+      &:nth-of-type(2) {
+        color: #fcfc85;
+      }
+    }
+  }
+  > .descripcion_imagen {
+    justify-content: center;
+    @media screen and (min-width: 1024px) {
+      display: flex;
+    }
+    .left {
+      background: white;
+      margin: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      @media screen and (min-width: 1024px) {
+        width: 800px;
+      }
+      @media screen and (max-width: 420px) {
+        margin: 15px 10px;
+      }
+      .content_imagen {
+        text-align: center;
+      }
+    }
+    .Card {
+      height: initial;
+    }
+    .content_precio {
+      margin: 15px 0;
+      font-size: 20px;
+      .nuevoPrecio {
+        color: #ea4d42;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      .tachado {
+        font-size: 16px;
+      }
+      .tags {
+        position: absolute;
+        bottom: -10px;
+        right: 20px;
+        span {
+          color: white;
+          border-radius: 20px 20px 5px 20px;
+          padding: 8px 20px;
+          font-size: 16px;
+          margin-left: 20px;
+        }
+      }
+      :global(.CashbackTag) {
+        display: inline-block;
+        margin-left: 20px;
+      }
+    }
+    > .descripcion {
+      font-size: 14px;
+      padding: 20px 10px 0;
+      @media screen and (min-width: 1024px) {
+        margin: 0 20px;
+        width: 450px;
+      }
+      @media screen and (max-width: 420px) {
+        padding: 0px 10px;
+      }
+      .apply_cashback {
+        background: radial-gradient(circle, #fee960 0%, #feb724 100%) !important;
+        border-radius: 10px;
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        margin: 10px 0 0 14px;
+        padding: 5px 10px 5px 20px;
+        position: relative;
+        .coin {
+          background-image: url("/images/gifs/sprite-monedas-pequenas.png");
+          background-position-x: 0px;
+          background-position-y: 0px;
+          background-size: 210px;
+          display: inline-block;
+          height: 31px;
+          margin: 0;
+          transition: 0.5s linear;
+          width: 31px;
+          position: absolute;
+          top: -2px;
+          left: -15px;
+        }
+      }
+      .description {
+        font-size: 14px;
+        margin: 10px 20px 0 0;
+        overflow: hidden;
+        .title {
+          font-weight: bold;
+        }
+      }
+    }
+    .compra_author {
+      @media screen and (max-width: 420px) {
+        align-items: center;
+        flex-direction: column;
+        row-gap: 20px;
+      }
+      > :global(button) {
+        margin: 0;
+        width: 110px;
+        @media screen and (max-width: 420px) {
+          box-sizing: content-box;
+          margin: 0 auto;
+          width: 200px;
+        }
+        button {
+          @media screen and (max-width: 420px) {
+          }
+        }
+      }
+      @media screen and (max-width: 420px) {
+        :global(.autor) {
+          margin-top: 10px;
+          width: initial;
+        }
+      }
+      .content_comprar {
+        @extend %floatButtons;
+      }
+    }
+    .social_media {
+      display: flex;
+      a {
+        margin-right: 20px;
+        &:nth-of-type(1) {
+          margin-right: 25px;
+        }
+        img {
+          height: 25px;
+        }
+      }
+    }
+    .content_cupon {
+      button {
+        background: none;
+        font-size: 14px;
+        margin: 20px 0 10px 0;
+        border: 1px dashed #ea4d42;
+        padding: 5px 10px;
+        color: #ea4d42;
+      }
+    }
+  }
+  .tipo {
+    border-radius: 50%;
+    background: white;
+    padding: 6px;
+    box-shadow: 2px 1px 2px 0 #1e1e1e4f;
+    height: 28px;
+    width: 28px;
+    box-sizing: border-box;
+    color: #696969;
+    display: inline-block;
+    text-align: center;
+  }
+  .fecha_sistema {
+    margin-left: 10px;
+  }
+  h2 {
+    margin: 10px 0 10px 20px;
+    font-size: 18px;
+  }
+  .date {
+    margin: 10px 0 20px 10px;
+    span {
+      margin-left: 10px;
+    }
+  }
+  .actions {
+    // float: left;
+    margin: 10px 0 0 10px;
+    color: dimgrey;
+    display: flex;
+    align-items: center;
+    .content_like {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      &.active {
+        * {
+          color: rgb(237, 73, 86);
+          animation: effect_dylan 1s ease-in-out;
+        }
+      }
+      .num {
+        position: absolute;
+        font-size: 8px;
+        left: 5px;
+        top: 8px;
+        color: white;
+        width: 18px;
+        text-align: center;
+      }
+      .like {
+        padding: 10px;
+        right: 20px;
+        font-size: 20px;
+        vertical-align: middle;
+        &.active {
+          // outline: 0;
+          // color: #fff;
+          // &:before {
+          //   animation: effect_dylan 0.8s ease-out;
+          // }
+        }
+      }
+    }
+    .respuestas {
+      color: initial;
+      margin-left: 10px;
+      font-size: 12px;
+    }
+  }
+  .cant_users {
+    float: right;
+    margin: 0 20px 0 0;
+  }
+  .caja_usuarios {
+    img {
+      border-radius: 50%;
+      float: left;
+      width: 50px;
+      height: 50px;
+      &:not(:first-child) {
+        margin-left: -20px;
+      }
+    }
+  }
+  .bottom_block {
+    width: 1200px;
+    margin: 0 auto;
+  }
+  .medios_pago {
+    margin-top: 20px;
+    display: block;
+  }
+  .Card.productos-relacionados {
+    display: none;
+    margin: 20px 20px 0 0;
+    width: 100%;
+    @media screen and (max-width: 420px) {
+      display: none;
+    }
+    .listadoRodadas {
+      .Card {
+        width: 300px;
+        .descripcion {
+          border-left: none;
+          background: none;
+        }
+      }
+    }
+  }
+  .report {
+    align-items: center;
+    display: flex;
+  }
+}

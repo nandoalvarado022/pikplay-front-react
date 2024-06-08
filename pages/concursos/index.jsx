@@ -1,15 +1,23 @@
 import styles from '../../src/components/competitions/styles.module.scss'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Card, Tab, Tabs, Typography } from '@mui/material'
 import Layout from '../../src/components/layout/Layout'
 import CompetitionsList from '../../src/components/competitions/components/CompetitionsList'
+import useCompetitions from '../../src/components/competitions/hooks/useCompetitions'
+import CompetitionDetail from '../../src/components/competitions/components/CompetitionDetail'
 
 const ConcursosPage = () => {
+  const { competitions, getCompetitions, selectedNumber, setSelectedNumber } = useCompetitions()
+  const [competitionId, setCompetitionId] = useState(null);
   const [value, setValue] = useState(0)
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
+
+  useEffect(() => {
+    getCompetitions()
+  }, [])
 
   function TabPanel(props) {
     const { children, value, index, ...other } = props
@@ -32,7 +40,7 @@ const ConcursosPage = () => {
   return (
     <div className={styles.CompetitionsComponent}>
       <Layout title="Concursos">
-        <section className={`page`}>
+        <section className={styles.page}>
           <h2 className='Card main'>Concursos</h2>
           <Card>
             <Tabs
@@ -40,13 +48,29 @@ const ConcursosPage = () => {
               onChange={handleChange}
               aria-label='basic tabs example'
               indicatorColor='primary'>
-              <Tab label='Listado de Concursos' />
-              <Tab label='Mis Concursos' />
-              <Tab label='Crear Concurso' />
+              <Tab label={competitionId ? 'Organiza: BluePanther' : 'Listado de Concursos'} />
+              <Tab label='¿Como funcionan los concursos?' />
             </Tabs>
 
             <TabPanel value={value} index={0}>
-              <CompetitionsList />
+              {!competitionId &&
+                <CompetitionsList
+                  selectedNumber={selectedNumber}
+                  competitions={competitions}
+                  competitionId={competitionId}
+                  setCompetitionId={setCompetitionId}
+                  setSelectedNumber={setSelectedNumber}
+                />}
+              {!!competitionId &&
+                <CompetitionDetail
+                  selectedNumber={selectedNumber}
+                  competitions={competitions}
+                  competitionId={competitionId}
+                  setCompetitionId={setCompetitionId}
+                  setSelectedNumber={setSelectedNumber}
+                />}
+            </TabPanel>
+            <TabPanel value={value} index={1}>
             </TabPanel>
           </Card>
         </section>

@@ -23,28 +23,31 @@ export const ResultsBox = ({ results }) => {
           const link = `/publicacion/${item.slug}`
           if (ind > -1) {
             return (
-              <Link href={link} key={item.slug}>
-                <a className='Card' onClick={() => setShowSearchModal(false)}>
-                  <article className={styles.row}>
-                    <img
-                      className={styles.product}
-                      src={item.image_link}
-                      alt=''
-                    />
-                    <div>
-                      <h2>{item.title}</h2>
-                      {!!item.sale_price && (
-                        <div className={styles.price}>
-                          ${formatNumber(item.sale_price)}
-                        </div>
-                      )}
-                      {item.user && (
-                        <Author parentView='HeaderSearch' user={item.user} />
-                      )}
-                      <small className={styles.location}>{cityLabel}</small>
-                    </div>
-                  </article>
-                </a>
+              <Link
+                className='Card'
+                href={link}
+                key={item.slug}
+                onClick={() => setShowSearchModal(false)}
+              >
+                <article className={styles.row}>
+                  <img
+                    className={styles.product}
+                    src={item.image_link}
+                    alt=''
+                  />
+                  <div>
+                    <h2>{item.title}</h2>
+                    {!!item.sale_price && (
+                      <div className={styles.price}>
+                        ${formatNumber(item.sale_price)}
+                      </div>
+                    )}
+                    {item.user && (
+                      <Author parentView='HeaderSearch' user={item.user} />
+                    )}
+                    <small className={styles.location}>{cityLabel}</small>
+                  </div>
+                </article>
               </Link>
             )
           }

@@ -1,13 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
-@import url('react-toastify/dist/ReactToastify.css');
-@import url('react-image-gallery/styles/css/image-gallery.css');
-@import './variables.scss';
+@import url("https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap");
+@import url("react-toastify/dist/ReactToastify.css");
+@import url("react-image-gallery/styles/css/image-gallery.css");
+@import "./variables.scss";
 
 @font-face {
-  font-family: 'Righteous';
-  src: /* Modern Browsers */ url('/fonts/Righteous-Regular.ttf')
-    format('truetype');
+  font-family: "Righteous";
+  src: /* Modern Browsers */ url("/fonts/Righteous-Regular.ttf") format("truetype");
 }
 
 input,
@@ -241,7 +240,7 @@ span.MuiBadge-badge {
 }
 
 #toast-container {
-  font-family: 'Staatliches', cursive;
+  font-family: "Staatliches", cursive;
   > div {
     top: 65px;
   }
@@ -296,7 +295,7 @@ span.MuiBadge-badge {
   top: 0;
   &:before {
     background: #353535b0;
-    content: '';
+    content: "";
     width: 100%;
     height: calc(100% - 210px);
     position: fixed;
@@ -340,7 +339,7 @@ span.MuiBadge-badge {
     transition: 0.3s ease;
   }
   &.true {
-    svg[data-icon='plus'] {
+    svg[data-icon="plus"] {
       transform: rotate(45deg);
     }
     .content_plus {
@@ -564,7 +563,7 @@ section {
   position: relative;
   margin-top: 30px !important;
   > h2 {
-    font-family: 'Staatliches', cursive;
+    font-family: "Staatliches", cursive;
     letter-spacing: 1px;
     z-index: 2;
     background: #4d9afa;
@@ -721,13 +720,12 @@ html {
   top: 2px;
 }
 
-html,
 body {
   background: #f4f4f4;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   // "Rowdies", cursive;
   font-weight: 300;
-  margin: 31px auto 0;
+  margin: 95px auto 0;
   min-height: 100vh;
   overflow-x: hidden;
   padding: 0;
@@ -745,7 +743,7 @@ body {
 body {
   &:before {
     // background-color: rgba(105, 105, 105, 0.8);
-    content: '';
+    content: "";
     display: block;
     height: 100%;
     position: absolute;
@@ -759,11 +757,11 @@ body {
 }
 
 .font-a {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .font-b {
-  font-family: 'Righteous', sans-serif;
+  font-family: "Righteous", sans-serif;
 }
 
 .t-a-l {
@@ -831,7 +829,8 @@ img {
   max-height: 100%;
 }
 
-svg {
+svg.icon {
+  // for icons
   max-width: 36px;
   max-height: 36px;
   width: 15px;

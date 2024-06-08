@@ -57,11 +57,9 @@ const PublicationForminterface = ({
       <section className={classNames('page', { [styles.content]: true })}>
         {/* <Notification isOpen={showDescription} setIsOpen={setShowDescription} message={message} /> */}
         {!IS_MOBILE && (
-          <Link href='/publicaciones'>
-            <a className='f-s-14'>
-              {/* <FontAwesomeIcon className="svg-question m-r-5" icon={faArrowLeft} /> */}
-              Ir al listado de publicaciones
-            </a>
+          <Link href='/publicaciones' className='f-s-14'>
+            {/* <FontAwesomeIcon className="svg-question m-r-5" icon={faArrowLeft} /> */}
+            Ir al listado de publicaciones
           </Link>
         )}
         <h2 className='Card main m-b-20'>

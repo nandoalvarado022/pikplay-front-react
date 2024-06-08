@@ -64,6 +64,49 @@
     padding: 0;
   }
   .main {
+    .ads {
+      position: relative;
+      z-index: 1;
+      @media screen and (max-width: 420px) {
+        margin: 0 0px 20px;
+      }
+      video {
+        border-radius: 10px;
+        height: 450px;
+        @media screen and (max-width: 420px) {
+          height: initial;
+          margin: 0 auto;
+        }
+      }
+      > h3 {
+        background: #ffffffd6;
+        border-radius: 10px;
+        box-shadow: -2px -2px 2px #919191;
+        left: 0;
+        margin: 0 auto;
+        padding: 5px 10px;
+        position: absolute;
+        right: 0;
+        top: -20px;
+        width: 200px;
+        p {
+          color: #c93530;
+          display: block;
+          margin-top: 0;
+          margin-bottom: 8px;
+          text-align: center;
+          span {
+            color: #3095b3;
+          }
+        }
+
+        // span {
+        //   color: black;
+        //   display: block;
+        //   font-size: 12px;
+        // }
+      }
+    }
     > img {
       margin: 0 auto;
       display: block;

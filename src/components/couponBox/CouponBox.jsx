@@ -1,9 +1,8 @@
-import TextField from '@mui/material/TextField'
-import { useState } from 'react'
-// import Button from '../button/Button'
 import styles from './styles.module.scss'
 
-import React from 'react'
+import TextField from '@mui/material/TextField'
+import React, { useState } from 'react'
+// import Button from '../button/Button'
 import { Button as ButtonMat } from '@mui/material'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
@@ -19,12 +18,14 @@ import {
   VALIDATE_COUPON,
 } from '../../lib/utils'
 import { toast } from 'react-toastify'
-import { useDispatch, useSelector } from 'react-redux'
+// import { useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames'
+import useSystemStore from '../../hooks/useSystem'
 
 const CouponBox = props => {
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.user)
+  // const dispatch = useDispatch()
+  // const user = useSelector(state => state.user)
+  const { userLogged } = useSystemStore()
   const {
     callback,
     className,
@@ -86,52 +87,22 @@ const CouponBox = props => {
 
   return (
     <div className={classNames('', [className, styles.CouponBox])}>
-      <Button color='link' onClick={handleClickOpen}>
-        {label}
-      </Button>
-
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
-      >
-        <DialogTitle id='alert-dialog-title'>
-          Redimir cupón promocional para obtener Pikcoins
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id='alert-dialog-description'>
-            <TextField
-              autoFocus={true}
-              autoComplete='couponValue'
-              className='m-b-10 coupon-field'
-              onChange={e => setCouponValue(e.target.value)}
-              label='Digita tu cupón aquí'
-              size='small'
-            />
-            <div>
-              <small>
-                <Link
-                  href='/articulo/[id]'
-                  as='/articulo/terminos-y-condiciones'
-                >
-                  <a>
-                    Términos y condiciones acerca de la redención de cupones
-                  </a>
-                </Link>
-              </small>
-            </div>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <ButtonMat onClick={handleClose} color='primary'>
-            Cancelar
-          </ButtonMat>
-          <ButtonMat onClick={handleValidate} color='primary'>
-            Validar
-          </ButtonMat>
-        </DialogActions>
-      </Dialog>
+      <TextField
+        autoFocus={true}
+        autoComplete='couponValue'
+        className='m-b-10 coupon-field'
+        onChange={e => setCouponValue(e.target.value)}
+        label='Si tienes un cupón aquí lo puedeas digitar'
+        size='small' />
+      <div>
+        <small>
+          <Link
+            href='/articulo/[id]'
+            as='/articulo/terminos-y-condiciones'>
+            Términos y condiciones acerca de la redención de cupones
+          </Link>
+        </small>
+      </div>
     </div>
   )
 }

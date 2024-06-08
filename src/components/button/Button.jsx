@@ -1,8 +1,9 @@
+import styles from './button.module.scss'
+
 import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import { Button as ButtonMat } from '@mui/material'
-import styles from './button.module.scss'
 
 const Button = ({
   animation,

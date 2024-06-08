@@ -57,6 +57,7 @@ h3.title_destacada {
       flex-direction: column;
     }
     .content_imagen {
+      overflow: hidden;
       position: relative;
       text-align: center;
       @media screen and (max-width: 420px) {
@@ -94,7 +95,7 @@ h3.title_destacada {
     .tags {
       display: flex;
       justify-content: center;
-      margin-top: 10px;
+      // margin-top: 10px;
       right: 0;
       z-index: 2;
       @media screen and (max-width: 420px) {
@@ -110,28 +111,6 @@ h3.title_destacada {
         margin: 0 10px;
         padding: 5px 10px;
         width: min-content;
-        &.apply_cashback {
-          background: radial-gradient(circle, #fee960 0%, #feb724 100%) !important;
-          color: #e8830f;
-          font-weight: bold;
-          padding-left: 20px !important;
-          position: relative;
-          .coin {
-            background-image: url("/images/gifs/sprite-monedas-pequenas.png");
-            background-position-x: 0px;
-            background-position-y: 0px;
-            background-size: 210px;
-            display: inline-block;
-            height: 31px;
-            margin: 0;
-            transform: scale(0.8);
-            transition: 0.5s linear;
-            width: 31px;
-            position: absolute;
-            top: -4px;
-            left: -15px;
-          }
-        }
       }
       :global(.Coins) {
         position: absolute;
@@ -291,18 +270,19 @@ h3.title_destacada {
       }
     }
   }
+
   .image_wrapper {
     display: block;
-    height: 280px;
-    margin: 0 auto;
+    height: 220px;
+    margin: 0 auto 20px;
     position: relative;
     width: 280px;
-    &:hover span:nth-of-type(2) {
+    &:hover :nth-of-type(2) {
       left: 300px !important;
       // margin-left: 200px;
       // transition-delay: 2s;
     }
-    span {
+    img {
       transition: 0.5s ease;
     }
   }
@@ -324,14 +304,6 @@ h3.title_destacada {
         box-shadow: none;
         padding: 10px 10px 20px;
       }
-    }
-  }
-
-  &:hover {
-    .apply_cashback .coin {
-      animation:
-        rotate 0.5s steps(6) infinite,
-        appear 1s steps(1);
     }
   }
 }
