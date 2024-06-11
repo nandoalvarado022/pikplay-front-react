@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useIAStore } from '../../ia/IAstore'
-import { Tooltip } from '@mui/material'
+import { Checkbox, Divider, FormControlLabel, List, ListItem, ListItemText, Tooltip } from '@mui/material'
 import styles from '../styles.module.scss'
 import { set } from 'nprogress'
 import useCompetitions from '../hooks/useCompetitions'
@@ -10,10 +10,12 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 import Marquee from './Marquee'
 import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
 import { faGrinHearts } from '@fortawesome/free-solid-svg-icons'
+import { formatNumber } from '../../../lib/utils'
 
 const CompetitionDetail = (props) => {
-  const { setCompetitionId } = props
+  const { competitionDetail } = props
   const {
+    setCompetitionsDetail,
     setIsvisible,
     handleUserMessage,
     setnumberChosen
@@ -27,6 +29,7 @@ const CompetitionDetail = (props) => {
     setSelectedNumber,
     deleteNotPaidNumbers,
   } = useCompetitions()
+
   const quantityNumbers = 100;
   const [numbersList, setNumbersList] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -43,9 +46,11 @@ const CompetitionDetail = (props) => {
     setSelectedNumber(number)
   }
 
-  const settingTakenNumbers = (competitions) => {
+  const settingTakenNumbers = () => { // Seteando números tomados a not available
+    debugger;
     const _numbersList = [...numbersListTemplate]
-    competitions.find(item => item.id == 3).members.map(item => { // TODO: get competition id from url
+    competitionDetail.members.map(item => { // TODO: get competition id from url
+      debugger;
       _numbersList[item.number] = {
         ...item,
         status: 'blocked'
@@ -56,15 +61,20 @@ const CompetitionDetail = (props) => {
   }
 
   useEffect(() => {
-    getCompetitions(3)
-      .then(competitions => { // TODO: get competition id from url
-        settingTakenNumbers(competitions)
-      })
+    // getCompetitions(3)
+    //   .then(competitions => { // TODO: get competition id from url
+    //     settingTakenNumbers()
+    //   })
 
     const myInterval = setInterval(() => {
-      getCompetitions(3)
+      debugger;
+      getCompetitions(competitionDetail.slug)
         .then(competitions => { // TODO: get competition id from url
-          settingTakenNumbers(competitions)
+          debugger;
+          settingTakenNumbers()
+        }).catch(err => {
+          debugger;
+          console.log(err)
         })
     }, 10000)
 
@@ -87,20 +97,22 @@ const CompetitionDetail = (props) => {
         </p>
       </div>
     </div>
-    <div className="Card">
-      <FontAwesomeIcon icon={faHeartbeat} />
-    </div>
+
     <p className={`Card flex ${styles.description}`}>
       <div>
-        <div>Premio: Playstation 5</div>
-        <div>Liberación de cupos el sábado a las 2PM</div>
+        <div>Premio: {competitionDetail?.award}</div>
+        <div>Liberación de cupos el {competitionDetail?.dateReleaseQuotas}</div>
         <div>Total números disponibles:
-          <span className={styles.availableNumbers}>34</span>
+          <span className={styles.availableNumbers}>
+            {competitionDetail?.availableNumbers}
+          </span>
         </div>
-        <div>Valor de la boleta: $25.000</div>
+        <div>
+          Valor de la boleta: ${formatNumber(competitionDetail?.quotaValue)}
+        </div>
       </div>
       <div className={styles.actions}>
-        <Button color="yellow" onClick={() => setCompetitionId(0)}>
+        <Button color="yellow" onClick={() => setCompetitionsDetail(null)}>
           Volver al listado de concursos
         </Button>
         <Button color="blue" onClick={deleteNotPaidNumbers}>
@@ -115,6 +127,9 @@ const CompetitionDetail = (props) => {
       <span>Últimos movimientos:</span>
       <Marquee />
     </div>
+    <div>
+      <FormControlLabel control={<Checkbox defaultChecked />} label="Mostrar solo números disponibles" />
+    </div>
     <div className={styles.contentItems} style={{ display: 'flex', flexWrap: 'wrap' }}>
       {isLoading && <div>Cargando...</div>}
       {
@@ -122,16 +137,14 @@ const CompetitionDetail = (props) => {
           <Tooltip key={ind} title={`Reservar el número ${ind}`}>
             <div
               className={`${styles.item} ${styles[item.status]} ${selectedNumber == ind && styles.selected}`}
-              onClick={() => handleClick(ind)}>
+              onClick={() => item.status != 'blocked' ? handleClick(ind) : null}>
               <div>{ind}</div>
-              {/* <div>{item?.user?.name}</div> */}
-              {/* <div>{item.isPaid && 'Pagado'}</div> */}
             </div>
           </Tooltip>
         ))
       }
     </div>
-  </div>
+  </div >
 }
 
 export default CompetitionDetail

@@ -1,9 +1,9 @@
 import CustomFetch from "../../components/fetch/CustomFetch";
 const { get, post } = CustomFetch()
 
-const getComptSrv = async (ctx) => {
-  const path = "/competitions"
-  const data = await get(ctx, path);
+const getComptSrv = async (ctx, slug = null) => {
+  const path = slug ? `/competitions/${slug}` : '/competitions'
+  return get(ctx, path);
 }
 
 const deleteCompetitionMemberSrv = async (competitionID, number) => {

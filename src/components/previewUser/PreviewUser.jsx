@@ -45,10 +45,10 @@ const PreviewUser = () => {
           />
           <div className={styles.coins} id="PreviewProfile--Coins">
             <CoinIcon coins={10} />
-            <span className={styles.experience}>
+            {/* <span className={styles.experience}>
               <FontAwesomeIcon icon={faHeartbeat} />
               <span>&nbsp;10/20.500</span>
-            </span>
+            </span> */}
           </div>
           <div className={styles.bg_white}></div>
           <div className={styles.bg_black}>
@@ -68,7 +68,7 @@ const PreviewUser = () => {
             </ol>
             <ol>
               <Link href='/concursos' as='/concursos'>
-                Concursos
+                Actividades
               </Link>
             </ol>
             <ol>

@@ -4,21 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 const { motion } = require('framer-motion')
 
-const CompetitionItem = ({ competition, ind, setCompetitionId }) => {
-    const goToDetail = () => setCompetitionId(1)
+const CompetitionItem = ({ competition, ind, handleCompetitionClick }) => {
     const goToastNotAvailable = () => toast('Esta actividad ya ha pasado')
 
     return <motion.article
         className={`Card ${styles.CompetitionItem}`}
         key={ind}
         initial={{ y: '100%' }}
-        onClick={competition.isActive ? goToDetail : goToastNotAvailable}
+        onClick={() => competition.isActive ? handleCompetitionClick(competition) : goToastNotAvailable}
         whileHover={{ scale: 1.1 }}
         animate={{ y: 0 }}>
         <h2>{competition.title}</h2>
         <div>
-            Números
-            disponibles:
+            Números disponibles:
             <span className={styles.availableNumbers}>
                 {competition.availableNumbers}
             </span>

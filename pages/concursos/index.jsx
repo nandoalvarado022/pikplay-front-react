@@ -8,8 +8,16 @@ import useCompetitions from '../../src/components/competitions/hooks/useCompetit
 import CompetitionDetail from '../../src/components/competitions/components/CompetitionDetail'
 
 const ConcursosPage = () => {
-  const { competitions, getCompetitions, selectedNumber, setSelectedNumber } = useCompetitions()
-  const [competitionId, setCompetitionId] = useState(null);
+  const {
+    competitions,
+    getCompetitions,
+    selectedNumber,
+    setSelectedNumber,
+    competitionDetail,
+    setCompetitionDetail,
+    handleCompetitionClick
+  } = useCompetitions()
+
   const [value, setValue] = useState(0)
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -40,33 +48,32 @@ const ConcursosPage = () => {
   return (
     <div className={styles.CompetitionsComponent}>
       <Layout title="Concursos">
-        <section className={styles.page}>
-          <h2 className='Card main'>Concursos</h2>
+        <section className="page">
+          <h2 className="main">Concursos</h2>
+          {/* competitionDetail: {JSON.stringify(competitionDetail)} */}
           <Card>
             <Tabs
               value={value}
               onChange={handleChange}
               aria-label='basic tabs example'
               indicatorColor='primary'>
-              <Tab label={competitionId ? 'Organiza: BluePanther' : 'Listado de Concursos'} />
+              <Tab label={competitionDetail ? 'Organiza: BluePanther' : 'Listado de Concursos'} />
               <Tab label='¿Como funcionan los concursos?' />
             </Tabs>
 
             <TabPanel value={value} index={0}>
-              {!competitionId &&
+              {!competitionDetail &&
                 <CompetitionsList
                   selectedNumber={selectedNumber}
                   competitions={competitions}
-                  competitionId={competitionId}
-                  setCompetitionId={setCompetitionId}
+                  handleCompetitionClick={handleCompetitionClick}
                   setSelectedNumber={setSelectedNumber}
                 />}
-              {!!competitionId &&
+              {!!competitionDetail &&
                 <CompetitionDetail
+                  competitionDetail={competitionDetail}
                   selectedNumber={selectedNumber}
                   competitions={competitions}
-                  competitionId={competitionId}
-                  setCompetitionId={setCompetitionId}
                   setSelectedNumber={setSelectedNumber}
                 />}
             </TabPanel>

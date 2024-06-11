@@ -9,13 +9,24 @@ import { toast } from 'react-toastify'
 const useCompetitions = () => {
   const [competitions, setCompetitions] = useState([])
   const [selectedNumber, setSelectedNumber] = useState(null)
+  const [competitionDetail, setCompetitionDetail] = useState(null)
 
-  const getCompetitions = () => new Promise((resolve, reject) => {
-    getComptSrv().then((data) => {
-      setCompetitions(data)
-      resolve(data)
+  const getCompetitions = (slug = null) => {
+    debugger;
+    return new Promise((resolve, reject) => {
+      getComptSrv(slug)
+      .then((data) => {
+        competitionDetail ? setCompetitionDetail(data) : setCompetitions(data)
+        resolve(data)
+      })
     })
-  })
+  }
+
+  const handleCompetitionClick = (competitionData) => {
+    getComptSrv(null, competitionData?.slug).then((data) => {
+      setCompetitionDetail(data)
+    })
+  }
 
   const postCompetitionMember = (competitionID, number) => new Promise((resolve, reject) => {
     const url = `${VARS.API_URL}/competitions-member/register`
@@ -70,13 +81,15 @@ const useCompetitions = () => {
   }
 
   return {
+    competitionDetail,
     competitions,
+    deleteNotPaidNumbers,
     getCompetitions,
+    handleCompetitionClick,
     liberarNumero,
     postCompetitionMember,
     selectedNumber,
     setSelectedNumber,
-    deleteNotPaidNumbers
   }
 }
 

@@ -19,7 +19,6 @@ const CustomFetch = () => {
         // credentials: "same-origin", // TODO averiguar para que sirve
         headers: {
           "Content-Type": "application/json",
-          ...getCookies(ctx),
           ...headers
         },
       });

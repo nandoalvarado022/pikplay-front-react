@@ -33,7 +33,7 @@ const IA = (props) => {
         </div>
         <div className={styles.box}>
             <div className={styles.title}>
-                Bienvenido a <b>Pikplay Colombia</b>
+                <b>Pikplay Colombia</b> ¡Hola!
                 <div className={styles.hide} onClick={() => setIsvisible(false)}>x</div>
             </div>
             <div className={styles.text}>
