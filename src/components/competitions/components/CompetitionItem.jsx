@@ -29,7 +29,7 @@ const CompetitionItem = ({ competition, ind, handleCompetitionClick }) => {
                 {/* <img width={200} style={{ right: competition.right }} src={competition.image} /> */}
                 {competition.seller.name}
                 <div className={styles.calification}>
-                    {[1, 1, 1].map(item => <FontAwesomeIcon icon={faStar} />)}
+                    {[1, 1, 1].map(item => <FontAwesomeIcon className='icon' icon={faStar} />)}
                 </div>
                 <div>Ha realizado 5 concursos en los últimos 3 meses</div>
             </div>
