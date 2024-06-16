@@ -31,10 +31,13 @@ export default function LoginInterface({
     <div id={styles.LoginComponent}>
       <Button
         alt='Ingersar con número de teléfono'
-        className={styles.playButton}
+        className={`${styles.playButton}`}
         color='blue'
         id='btnStart'
-        onClick={handleClickOpen}>
+        onClick={handleClickOpen}
+        realistic
+        shine
+        >
         Play
       </Button>
       <Dialog
@@ -110,9 +113,9 @@ export default function LoginInterface({
           {isCodeSent && <Button onClick={handleFixPhone} color='normal'>
             Correjir número de celular
           </Button>}
-          <Button onClick={handleCloseDialog} color='normal'>
+          {/* <Button onClick={handleCloseDialog} color='normal'>
             Cancelar
-          </Button>
+          </Button> */}
           {!isCodeSent && (
             <Button
               onClick={isHuman ? handleTengoCodigo : null}

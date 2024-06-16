@@ -18,6 +18,8 @@ const Button = ({
   onClick,
   outline,
   style,
+  shine,
+  realistic,
 }) => {
   className = `${className} ${animation ? styles.animation : null}`
 
@@ -25,11 +27,13 @@ const Button = ({
     <motion.button
       className={`
       ${styles.btn} 
-      ${border ? styles.border : null}
+      ${realistic ? styles.realistic : ''}
+      ${shine ? styles.shine : ''}
+      ${border ? styles.border : ''}
       ${styles[color]}
       ${className}
-      ${outline ? styles.outline : null}
-      ${isLink ? styles.link : null}
+      ${outline ? styles.outline : ''}
+      ${isLink ? styles.link : ''}
     `}
       databutton={databutton}
       id={id}

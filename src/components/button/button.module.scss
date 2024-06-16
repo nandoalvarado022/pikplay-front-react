@@ -5,12 +5,55 @@ button.btn {
   font-size: 12px;
   // height: 34px;
   margin: 5px;
+  overflow: hidden;
   padding: 4px 0;
+  position: relative;
   text-shadow: 1px 1px #5a5a5a;
   text-transform: initial;
   &:hover {
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     cursor: pointer;
+  }
+
+  &.realistic {
+    box-shadow:
+      #0a6f84 0 5px 2px,
+      #0a6f84b3 0 6px 4px;
+  }
+
+  &.realistic:active {
+    transform: translateY(8px);
+    box-shadow:
+      #0a6f84 0 0 0,
+      #0a6f84b3 0 0 3px;
+  }
+
+  &.shine:before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    background-image: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0) 70%
+    );
+    top: 0;
+    left: -100px;
+    animation: shine 3s infinite linear;
+  }
+
+  @keyframes shine {
+    0% {
+      left: -100px;
+    }
+    20% {
+      left: 100%;
+    }
+    100% {
+      left: 100%;
+    }
   }
 
   &.border {
@@ -138,5 +181,9 @@ button.btn {
 
   button {
     font-family: "Montserrat", sans-serif;
+    span {
+      top: -4px;
+      height: 32px;
+    }
   }
 }

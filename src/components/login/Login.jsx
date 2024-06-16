@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 import useSystemStore from '../../hooks/useSystem'
 import { loginSrv } from '../../services/user/userService'
+import toastr from 'toastr'
 
 function Login(props) {
   const { env, setValue } = useSystemStore((state => state))
@@ -20,7 +21,7 @@ function Login(props) {
   const handleTengoCodigo = () => {
     const phone = document.getElementById('phoneLogin').value
     if (!phone || !numberValidated(phone)) {
-      alert('Debes escribir un número de celular válido, recuerda que a este número llegará el código de acceso')
+      toastr.warning('Debes escribir un número de celular válido, recuerda que a este número llegará el código de acceso')
       setButtonText('Enviar código')
       return
     }
