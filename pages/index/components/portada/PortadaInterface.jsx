@@ -11,6 +11,7 @@ import FullScreenWidget from '../fullScreenWidget/FullScreenWidget'
 import styles from './portada.module.scss'
 import FloatingChallenges from '../floatingChallenges/FloatingChallenges.jsx'
 import Author from '../../../../src/components/card/Author.jsx'
+import Link from 'next/link.js'
 
 const { IS_MOBILE } = '../../lib/variables'
 
@@ -148,8 +149,18 @@ const PortadaInterface = ({
   return (<>
     <section>
       <FloatingChallenges />
+      <Link href='/concursos' as='/concursos'>
+        <video
+          autoPlay
+          className={styles.video}
+          id='background-video'
+          muted
+          src='/videos/llegaron_los_concursos.mp4'
+        />
+      </Link>
       {feed && feed.length < 1 && <Maintenance />}
       {!category && <Advertisements />}
+      {/* Aquí se llama un video que esta en la carpeta public */}
       {/* <SpecialBanner {...{ category, popularyItem, starItem }} /> */}
       {/* <FullScreenWidget /> */}
       {showModalLead && <ModalLead />}

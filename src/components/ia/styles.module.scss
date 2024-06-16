@@ -33,6 +33,7 @@
         background: #f89b52;
         border-radius: 50%;
         cursor: pointer;
+        display: none;
         opacity: 1;
         position: absolute;
         right: -101px;
@@ -41,9 +42,10 @@
         transition: 1s;
         width: 60px;
         @media screen and (max-width: 420px) {
-            bottom: 80px;
-            right: -82px;
-            top: initial;
+            display: block;
+            right: 10px;
+            position: fixed;
+            top: 90px;
         }
         &.hide {
             opacity: 0;

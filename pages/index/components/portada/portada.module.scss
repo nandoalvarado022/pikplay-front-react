@@ -8,6 +8,15 @@
   }
 }
 
+video.video {
+  display: none;
+  margin: 36px 0 20px 0;
+  width: 100%;
+  @media screen and (max-width: 420px) {
+    display: block;
+  }
+}
+
 #SpecialBanner {
   display: flex;
   height: 450px;

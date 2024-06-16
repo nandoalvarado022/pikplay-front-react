@@ -11,13 +11,7 @@ const CompetitionsList = ({ competitions, handleCompetitionClick }) => {
     <div className={styles.content}>
       <div className={styles.ads}>
         <div className={styles.item} onClick={() => handleCompetitionClick({ id: 1 })}>
-          <img src="/images/banners/banner-01.png" />
-        </div>
-        <div className={styles.item}>
           <img src="/images/banners/banner-02.png" />
-        </div>
-        <div className={styles.item}>
-          <img src="/images/banners/banner-03.png" />
         </div>
         <div className={styles.item}>
           <img src="/images/banners/banner-04.png" />
