@@ -41,7 +41,7 @@ function Login(props) {
         handleCloseDialog()
         cookieCutter.set('X-Auth-Token', token)
         cookieCutter.set('User-ID', uid)
-        router.push('/')
+        router.push('?login=true')
       } else {
         document.getElementById('verificationCode').value = ''
         alert('Código no valido')

@@ -21,6 +21,7 @@ const loadFromLocalStorage = (property) => {
 }
 
 const logout = (set) => {
+    localStorage.clear()
     set({ userLogged: { uid: null } })
     set({ notifications: [initialNotification] })
     cookieCutter.set('X-Auth-Token', null)

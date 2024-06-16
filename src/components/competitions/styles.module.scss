@@ -237,6 +237,13 @@
     margin: 20px 0 10px 0;
     position: relative;
     width: 600px;
+    @media screen and (max-width: 420px) {
+      bottom: 50px;
+      height: initial;
+      position: fixed;
+      z-index: 2;
+      left: 0;
+    }
     > span:nth-of-type(1) {
       position: absolute;
       // background: white;
@@ -244,6 +251,10 @@
       z-index: 1;
       background: rgb(46, 48, 61);
       background: linear-gradient(270deg, rgba(46, 48, 61, 0) 3%, rgba(255, 255, 255, 1) 20%);
+      @media screen and (max-width: 420px) {
+        padding: 2px 6px;
+        width: 160px;
+      }
     }
     .content {
       display: inline;

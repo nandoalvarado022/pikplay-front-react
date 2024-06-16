@@ -26,25 +26,20 @@ const CompetitionDetail = (props) => {
   } = useIAStore((state => state))
 
   const {
-    competitionMembers,
     competitions,
     deleteNotPaidNumbers,
     getCompetitions,
     isOnlyAvailableNumbers,
     postCompetitionMember,
     selectedNumber,
-    setCompetitionMembers,
     setIsOnlyAvailableNumbers,
     setSelectedNumber,
   } = useCompetitions()
 
-  useEffect(() => {
-    console.log("competitionMembers on competitionDetail.jsx updated!");
-    console.log(competitionMembers);
-  }, [competitionMembers])
 
   var updatesQuantity = 0
   const MAX_REQUEST_UPDATE = 10
+  const [competitionMembers, setCompetitionMembers] = useState(competitionDetail.members)
   const [updatingIn, setUpdatingIn] = useState(null)
   const [numbersList, setNumbersList] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -114,7 +109,6 @@ const CompetitionDetail = (props) => {
     let myVisualInterval
     const myFetchInterval = setInterval(() => {
       updatesQuantity++
-      console.log('updatesQuantity:', updatesQuantity)
       if (updatesQuantity >= MAX_REQUEST_UPDATE) {
         setUpdatingIn(null)
         clearInterval(myVisualInterval);
@@ -145,7 +139,7 @@ const CompetitionDetail = (props) => {
       <div className={styles.controlAvailablenumbers}>
         <FormControlLabel
           control={
-            <Checkbox id="check_available_numbers" value={isOnlyAvailableNumbers} onClick={(e) => settingTakenNumbers(competitionDetail.members)} />
+            <Checkbox id="check_available_numbers" value={isOnlyAvailableNumbers} onClick={(e) => settingTakenNumbers(competitionMembers)} />
           }
           label="Mostrar sólo números disponibles" />
       </div>
