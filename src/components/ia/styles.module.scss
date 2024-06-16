@@ -1,8 +1,9 @@
 .IAElement {
     bottom: 200px;
     color: white;
-    left: 40px;
+    // left: 40px;
     position: fixed;
+    right: 20px;
     transition: 1s ease-in-out;
     width: 500px;
     z-index: 9;
@@ -22,7 +23,7 @@
         z-index: -1;
     }
     &.hide {
-        left: -510px;
+        right: -510px;
         @media screen and (max-width: 420px) {
             left: calc(-100vw + 40px);
         }

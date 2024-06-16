@@ -6,16 +6,19 @@ import Layout from '../../src/components/layout/Layout'
 import CompetitionsList from '../../src/components/competitions/components/CompetitionsList'
 import useCompetitions from '../../src/components/competitions/hooks/useCompetitions'
 import CompetitionDetail from '../../src/components/competitions/components/CompetitionDetail'
+import { isEmpty } from '../../src/lib/utils'
 
 const ConcursosPage = () => {
   const {
     competitions,
+    competitionDetail,
+    competitionMembers,
     getCompetitions,
+    handleCompetitionClick,
     selectedNumber,
     setSelectedNumber,
-    competitionDetail,
     setCompetitionDetail,
-    handleCompetitionClick
+    setCompetitionMembers,
   } = useCompetitions()
 
   const [value, setValue] = useState(0)
@@ -24,7 +27,7 @@ const ConcursosPage = () => {
   }
 
   useEffect(() => {
-    getCompetitions()
+    getCompetitions(null)
   }, [])
 
   function TabPanel(props) {
@@ -62,19 +65,24 @@ const ConcursosPage = () => {
             </Tabs>
 
             <TabPanel value={value} index={0}>
-              {!competitionDetail &&
+              {isEmpty(competitionDetail) &&
                 <CompetitionsList
-                  selectedNumber={selectedNumber}
                   competitions={competitions}
                   handleCompetitionClick={handleCompetitionClick}
+                  selectedNumber={selectedNumber}
                   setSelectedNumber={setSelectedNumber}
                 />}
-              {!!competitionDetail &&
+              {!isEmpty(competitionDetail) &&
                 <CompetitionDetail
-                  competitionDetail={competitionDetail}
-                  selectedNumber={selectedNumber}
-                  competitions={competitions}
-                  setSelectedNumber={setSelectedNumber}
+                  {...{
+                    competitions,
+                    competitionDetail,
+                    setCompetitionDetail,
+                    competitionMembers,
+                    setCompetitionMembers,
+                    setSelectedNumber,
+                    selectedNumber
+                  }}
                 />}
             </TabPanel>
             <TabPanel value={value} index={1}>

@@ -7,6 +7,7 @@ import Marquee from './Marquee'
 
 const CompetitionsList = ({ competitions, handleCompetitionClick }) => {
   return <div className={styles.CompetitionsList}>
+    {/* Competitions: {JSON.stringify(competitions)} */}
     <div className={styles.content}>
       <div className={styles.ads}>
         <div className={styles.item} onClick={() => handleCompetitionClick({ id: 1 })}>

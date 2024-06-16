@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import VARS from "../../../lib/variables"
 import { useIAStore } from "../../ia/IAstore"
 import { getComptSrv } from '../../../services/competition/competitionService'
@@ -9,21 +9,26 @@ import { toast } from 'react-toastify'
 const useCompetitions = () => {
   const [competitions, setCompetitions] = useState([])
   const [selectedNumber, setSelectedNumber] = useState(null)
-  const [competitionDetail, setCompetitionDetail] = useState(null)
+  const [competitionDetail, setCompetitionDetail] = useState({})
+  const [competitionMembers, setCompetitionMembers] = useState([])
+  const [isOnlyAvailableNumbers, setIsOnlyAvailableNumbers] = useState(false)
 
-  const getCompetitions = (slug = null) => {
-    debugger;
+  const getCompetitions = (slug) => {
     return new Promise((resolve, reject) => {
-      getComptSrv(slug)
-      .then((data) => {
-        competitionDetail ? setCompetitionDetail(data) : setCompetitions(data)
-        resolve(data)
-      })
+      getComptSrv(null, slug)
+        .then((data) => {
+          if (slug) {
+            setCompetitionMembers(data.competitionMembers)
+          } else {
+            setCompetitions(data)
+          }
+          resolve(data)
+        })
     })
   }
 
-  const handleCompetitionClick = (competitionData) => {
-    getComptSrv(null, competitionData?.slug).then((data) => {
+  const handleCompetitionClick = (slug) => {
+    getComptSrv(null, slug).then((data) => {
       setCompetitionDetail(data)
     })
   }
@@ -80,16 +85,29 @@ const useCompetitions = () => {
       })
   }
 
+  useEffect(() => {
+    console.log("competitionDetail updated!");
+  }, [competitionDetail])
+
+  useEffect(() => {
+    console.log("competitionMembers updated!");
+  }, [competitionMembers])
+
   return {
     competitionDetail,
     competitions,
+    competitionMembers,
     deleteNotPaidNumbers,
     getCompetitions,
     handleCompetitionClick,
     liberarNumero,
+    isOnlyAvailableNumbers,
     postCompetitionMember,
+    setCompetitionDetail,
+    setCompetitionMembers,
     selectedNumber,
     setSelectedNumber,
+    setIsOnlyAvailableNumbers,
   }
 }
 

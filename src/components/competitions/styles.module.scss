@@ -1,4 +1,21 @@
 .CompetitionsComponent {
+  .left {
+    width: 800px;
+    @media screen and (max-width: 420px) {
+      width: auto;
+    }
+    .controlAvailablenumbers {
+      span {
+        font-size: 14px;
+      }
+    }
+    .btnUpdateDashboard {
+      background-color: white;
+      border: none;
+      text-decoration: underline;
+    }
+  }
+
   .page {
     margin: 0 auto;
     width: 1100px;
@@ -125,6 +142,11 @@
 
   // Detalle de un concurso
   .CompetitionDetail {
+    column-gap: 40px;
+    display: flex;
+    @media screen and (max-width: 420px) {
+      flex-direction: column-reverse;
+    }
     .seller {
       img {
         border-radius: 50%;
@@ -161,6 +183,7 @@
 
     .contentItems {
       align-items: center;
+      height: max-content;
       justify-content: center;
       .item {
         border: dashed 1px #3095b3;
@@ -207,10 +230,12 @@
 
   // Transversal elements
   .news {
-    position: relative;
-    font-style: italic;
+    background: #f4f4f4;
     font-size: 12px;
+    // font-style: italic;
+    height: 18px;
     margin: 20px 0 10px 0;
+    position: relative;
     width: 600px;
     > span:nth-of-type(1) {
       position: absolute;

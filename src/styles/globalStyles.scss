@@ -550,8 +550,9 @@ main {
   top: 200px;
 }
 
-section {
+section.page {
   margin: 20px auto;
+  width: 90%;
   @media screen and (max-width: 420px) {
     margin: 90px auto 90px;
     width: calc(100% - 40px);
@@ -809,7 +810,8 @@ body {
 .Card {
   background: white;
   border-radius: 10px;
-  box-shadow: 2px 2px 5px 0 #ababab52;
+  // box-shadow: 2px 2px 5px 0 #ababab52;
+  box-shadow: 0px 0px 20px -2px #ababab52;
   box-sizing: border-box;
   color: #585858;
   display: block;

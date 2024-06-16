@@ -11,7 +11,7 @@ const CompetitionItem = ({ competition, ind, handleCompetitionClick }) => {
         className={`Card ${styles.CompetitionItem}`}
         key={ind}
         initial={{ y: '100%' }}
-        onClick={() => competition.isActive ? handleCompetitionClick(competition) : goToastNotAvailable}
+        onClick={() => competition.isActive ? handleCompetitionClick(competition.slug) : goToastNotAvailable}
         whileHover={{ scale: 1.1 }}
         animate={{ y: 0 }}>
         <h2>{competition.title}</h2>
