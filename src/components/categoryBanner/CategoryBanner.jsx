@@ -88,7 +88,7 @@ const CategoryBanner = ({ categoryId }) => {
   }
 
   useEffect(() => {
-    console.log('se ejecuto')
+    // console.log('se ejecuto')
   }, [])
 
   return (

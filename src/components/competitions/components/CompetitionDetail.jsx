@@ -10,6 +10,7 @@ import Marquee from './Marquee'
 import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
 import { faGrinHearts } from '@fortawesome/free-solid-svg-icons'
 import { formatNumber } from '../../../lib/utils'
+import AdminActions from './AdminActions'
 
 const CompetitionDetail = (props) => {
   const {
@@ -36,9 +37,9 @@ const CompetitionDetail = (props) => {
     setSelectedNumber,
   } = useCompetitions()
 
-
   var updatesQuantity = 0
   const MAX_REQUEST_UPDATE = 10
+  const [showMembersNames, setShowMembersNames] = useState(false)
   const [competitionMembers, setCompetitionMembers] = useState(competitionDetail.members)
   const [updatingIn, setUpdatingIn] = useState(null)
   const [numbersList, setNumbersList] = useState([])
@@ -145,12 +146,14 @@ const CompetitionDetail = (props) => {
       </div>
       <div className={`Card ${styles.contentItems}`} style={{ display: 'flex', flexWrap: 'wrap' }}>
         {
+          // Iterando los numeros de la actividad
           numbersList.map((item, ind) => {
             return !item.hidden ? <Tooltip key={ind} title={`Reservar el número ${ind}`}>
               <div
                 className={`${styles.item} ${styles[item.status]} ${selectedNumber == ind && styles.selected}`}
                 onClick={() => item.status != 'blocked' ? handleClick(ind) : null}>
                 <div>{ind}</div>
+                <div>{item.name}</div>
               </div>
             </Tooltip> : <></>
           })
@@ -186,18 +189,13 @@ const CompetitionDetail = (props) => {
         </div>
       </p>
       <Divider />
-      <h4>Operaciones de Administrador</h4>
-      <div className={styles.actions}>
-        <Button color="yellow" onClick={() => setCompetitionDetail({})}>
-          Volver al listado de concursos
-        </Button>
-        <Button color="blue" onClick={deleteNotPaidNumbers}>
-          Liberar números no pagados
-        </Button>
-        {/* <Button color="blue">
-            <Link color="blue" href='/concursos/367267/config'>Administrar</Link>
-          </Button> */}
-      </div>
+      <AdminActions
+        {...{
+          competitionDetail,
+          deleteNotPaidNumbers,
+          setShowMembersNames,
+        }}
+      />
     </div>
   </div>
 }

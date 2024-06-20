@@ -16,7 +16,7 @@ const PublicacionPage = (props) => {
   const [modalHablarVendedor, setModalHablarVendedor] = useState(false)
   const [cuponDigitado, setCuponDigitado] = useState('')
   const [precio, setPrecio] = useState(0)
-  const [nuevoPrecio, setNuevoPrecio] = useState(datosPublicacion.price)
+  const [nuevoPrecio, setNuevoPrecio] = useState(datosPublicacion?.price)
   const [logIngresarCupon, setLogIngresarCupon] = useState(false)
   const { userLogged } = useSystemStore()
 

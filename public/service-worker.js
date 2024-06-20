@@ -1,3 +1,5 @@
+importScripts("https://js.pusher.com/beams/service-worker.js");
+
 /* const VERSION = 'v1';
 
 self.addEventListener('install', event => {

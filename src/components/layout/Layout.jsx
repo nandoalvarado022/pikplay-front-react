@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable @next/next/no-sync-scripts */
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
@@ -40,6 +41,42 @@ const Layout = (props) => {
     }, 1000)
   });
 
+  const loadAmplitude = () => {
+    // Amplitude
+    window.amplitude.add(window.sessionReplay.plugin({ sampleRate: 1 }))
+      .promise.then(() => {
+        window.amplitude.add(window.amplitudeAutocapturePlugin.plugin());
+        window.amplitude.init('30684c35f0937bb29637b9d69e2fa2f7');
+      })
+  }
+
+  const loadPusherScript = (src) => {
+    let script = document.createElement('script');
+    script.src = 'https://js.pusher.com/beams/1.0/push-notifications-cdn.js';
+
+    script.onload = function () {
+      // Pusher https://pusher.com
+      const beamsClient = new PusherPushNotifications.Client({
+        instanceId: "97987026-b7c4-4f54-9269-626ab15765c5",
+      });
+
+      beamsClient
+        .start()
+        .then((beamsClient) => beamsClient.getDeviceId())
+        .then((deviceId) => {
+          console.log("Successfully registered with Beams. Device ID:", deviceId)
+        })
+        .catch((err) => {
+        });
+    };
+    document.head.appendChild(script);
+  }
+
+  useEffect(() => {
+    loadPusherScript()
+    loadAmplitude()
+  }, [])
+
   return (
     <React.Fragment>
       <Head>
@@ -69,24 +106,17 @@ const Layout = (props) => {
         {/* Global site tag (gtag.js) - Google Ads: 941382150 */}
         <link rel='alternate' href={url} hrefLang='es-CO' />
         <link rel='canonical' href={url} />
-        <link
-          rel='icon'
-          type='image/png'
-          href='/images/logos/logo48x48.png'
-        />
+        <link rel='icon' type='image/png' href='/images/logos/logo48x48.png' />
         <link rel='manifest' href={`/manifest.json`} />
         <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css"></link>
         <script type='text/javascript' src='https://checkout.epayco.co/checkout.js'></script>
         <script src="https://cdn.amplitude.com/libs/analytics-browser-2.7.4-min.js.gz"></script>
         <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.2.3-min.js.gz"></script>
         <script src="https://cdn.amplitude.com/libs/plugin-autocapture-browser-0.9.0-min.js.gz"></script>
+
         {() => {
-          // Amplitude
-          window.amplitude.add(window.sessionReplay.plugin({ sampleRate: 1 }))
-            .promise.then(() => {
-              window.amplitude.add(window.amplitudeAutocapturePlugin.plugin());
-              window.amplitude.init('30684c35f0937bb29637b9d69e2fa2f7');
-            })
+          alert()
+          loadPusherScript()
 
           // Google Analytics
           window.dataLayer = window.dataLayer || []

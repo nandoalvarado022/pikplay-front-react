@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 import useSystemStore from '../../hooks/useSystem'
 import { loginSrv } from '../../services/user/userService'
-import toastr from 'toastr'
+import { toast } from 'react-toastify'
 
 function Login(props) {
   const { env, setValue } = useSystemStore((state => state))
@@ -21,7 +21,7 @@ function Login(props) {
   const handleTengoCodigo = () => {
     const phone = document.getElementById('phoneLogin').value
     if (!phone || !numberValidated(phone)) {
-      toastr.warning('Debes escribir un número de celular válido, recuerda que a este número llegará el código de acceso')
+      toast('Debes escribir un número de celular válido, recuerda que a este número llegará el código de acceso')
       setButtonText('Enviar código')
       return
     }
@@ -45,7 +45,7 @@ function Login(props) {
         router.push('?login=true')
       } else {
         document.getElementById('verificationCode').value = ''
-        alert('Código no valido')
+        toast('Código no valido')
         setButtonText('Validar')
       }
     } catch (error) {
@@ -57,7 +57,7 @@ function Login(props) {
     setButtonText('Enviando...')
     const phone = document.getElementById('phoneLogin').value
     if (!phone || !numberValidated(phone)) {
-      alert('Debes escribir un número de celular válido, recuerda que a este número llegará el código de acceso')
+      toast('Debes escribir un número de celular válido, recuerda que a este número llegará el código de acceso')
       setButtonText('Enviar código')
       return false
     }
