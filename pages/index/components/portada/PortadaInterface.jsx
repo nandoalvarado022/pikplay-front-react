@@ -117,7 +117,7 @@ const PortadaInterface = ({
                   {showCategoryBanner && (
                     <CategoryBanner categoryId={currentCategory} />
                   )}
-                  {ind == 0 && <div className={styles.ads}>
+                  {/* {ind == 0 && <div className={styles.ads}>
                     <h3>
                       <p>
                         ¡Micro Hiro <span>Event!</span>
@@ -127,7 +127,7 @@ const PortadaInterface = ({
                       </span>
                     </h3>
                     <video src="/videos/anuncio-hiro.mov" autoPlay controls />
-                  </div>}
+                  </div>} */}
                   <Card {...{ handleFavorite, ...item }} />
                 </>
               )

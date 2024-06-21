@@ -50,7 +50,7 @@ const Layout = (props) => {
       })
   }
 
-  const loadPusherScript = (src) => {
+  const loadPusherScript = () => {
     let script = document.createElement('script');
     script.src = 'https://js.pusher.com/beams/1.0/push-notifications-cdn.js';
 
@@ -67,6 +67,7 @@ const Layout = (props) => {
           console.log("Successfully registered with Beams. Device ID:", deviceId)
         })
         .then(() => beamsClient.addDeviceInterest("hello"))
+        .then(() => beamsClient.addDeviceInterest("debug-hello"))
         .then(() => beamsClient.getDeviceInterests())
         .then((interests) => console.log("Current interests:", interests))
         .catch((err) => {
@@ -118,9 +119,6 @@ const Layout = (props) => {
         <script src="https://cdn.amplitude.com/libs/plugin-autocapture-browser-0.9.0-min.js.gz"></script>
 
         {() => {
-          alert()
-          loadPusherScript()
-
           // Google Analytics
           window.dataLayer = window.dataLayer || []
           function gtag() {

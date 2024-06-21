@@ -4,8 +4,8 @@ const { get, post } = CustomFetch()
 
 const BASE_URL = "/publications"
 const getPublicationsSrv = async (props) => {
-  const { slug } = props
-  const data = await get(`${BASE_URL}/${slug}`);
+  const { ctx, slug } = props
+  const data = await get(ctx, `${BASE_URL}/${slug}`);
   return data
 }
 

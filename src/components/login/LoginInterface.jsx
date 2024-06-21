@@ -9,6 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle'
 import Button from '../button/Button'
 import styles from './login.module.scss'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function LoginInterface({
   buttonText,
@@ -36,8 +37,7 @@ export default function LoginInterface({
         id='btnStart'
         onClick={handleClickOpen}
         realistic
-        shine
-        >
+        shine>
         Play
       </Button>
       <Dialog
@@ -45,15 +45,16 @@ export default function LoginInterface({
         maxWidth='sm'
         open={isOpen}
         onClose={handleCloseDialog}
-        aria-labelledby='form-dialog-title'
-      >
+        aria-labelledby='form-dialog-title'>
         <DialogContent>
-          <DialogContentText>Ingresa a tu cuenta</DialogContentText>
+          <DialogContentText>
+            Solo con tu número de teléfono puedes crear tu cuenta y empezar a ganar <b>¡Pikcoins!</b>
+          </DialogContentText>
           {/* Fields */}
           <div
             className={styles.flex}
             style={{ display: isCodeSent ? 'none' : 'flex' }}>
-            <img
+            <Image
               height='42'
               width='40'
               className={styles.icon_colombia}
@@ -100,7 +101,7 @@ export default function LoginInterface({
             </>
           )}
           <small className={styles.terminos_condiciones}>
-            Al ingresar en Pikplay aceptas nuestros
+            Al ingresar en Pikplay aceptas nuestros &nbsp;
             <Link href='/articulo/[id]' as='/articulo/terminos-y-condiciones'>
               términos y condiciones
             </Link>

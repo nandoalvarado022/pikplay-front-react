@@ -121,7 +121,7 @@ const DetalleProducto = ({
 
               <div className={`flex ${styles.compra_author}`}>
                 <div className={styles.content_comprar}>
-                  <Button color='blue' onClick={handleHablarVendedor}>
+                  <Button realistic color='blue' onClick={handleHablarVendedor}>
                     {quantity > 0 && 'Lo quiero'}
                     {quantity == 0 && 'Reservar'}
                   </Button>
