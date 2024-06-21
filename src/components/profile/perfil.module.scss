@@ -1,6 +1,6 @@
 .Perfil {
   margin: 20px auto;
-  width: 1200px;
+  // width: 1200px;
   @media screen and (max-width: 420px) {
     width: auto;
   }
@@ -10,7 +10,7 @@
   .content {
     display: flex;
     margin: 20px auto 0;
-    width: 1080px;
+    // width: 1080px;
     @media screen and (max-width: 420px) {
       margin: 0px auto 0;
       flex-direction: column;
@@ -57,6 +57,10 @@
       height: 15px;
       width: 15px;
     }
+
+    :global([role="tabpanel"]) {
+      padding-left: 120px;
+    }
   }
   h3 {
     margin: 18px 0 0;
@@ -81,7 +85,7 @@
     }
   }
   .profile-content {
-    width: 900px;
+    // width: 900px;
     @media screen and (max-width: 420px) {
       width: 100%;
     }
@@ -102,7 +106,7 @@
   .ProfileSummaryExperience__UserNotifications__Content {
     display: flex;
     justify-content: space-between;
-
+    column-gap: 40px;
     @media screen and (max-width: 420px) {
       flex-direction: column;
     }
@@ -115,5 +119,28 @@
 
   .actions {
     float: right;
+  }
+
+  .IAContentLeft {
+    font-size: 14px;
+    margin: 100px 20px 0 0;
+    position: absolute;
+    width: 120px;
+    :global(.Card) {
+      &:before {
+        // Flechita del dialogo
+        border-bottom: 12px solid #3095b3;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        content: "";
+        height: 0;
+        width: 0;
+        position: absolute;
+        top: -12px;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+      }
+    }
   }
 }

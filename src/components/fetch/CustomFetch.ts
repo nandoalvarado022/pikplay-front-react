@@ -14,7 +14,7 @@ const CustomFetch = () => {
 
   const get = async (ctx, path, props = {}) => {
     try {
-      const headers = getCookies()
+      const headers = getCookies(ctx)
       const response = await fetch(apiUrl + path, {
         // credentials: "same-origin", // TODO averiguar para que sirve
         headers: {

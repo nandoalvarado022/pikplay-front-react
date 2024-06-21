@@ -61,9 +61,7 @@
     transition: 0.5s ease;
     gap: 8px;
     .img_notification {
-      width: 45px;
-      height: 45px;
-      object-fit: cover;
+      object-fit: contain;
     }
 
     &:nth-child(even) {

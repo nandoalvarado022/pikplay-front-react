@@ -6,6 +6,7 @@ import CoinIcon from '../coinIcon/CoinIcon'
 import { formatNumber } from '../../lib/utils'
 import { useIAStore } from './IAstore'
 import styles from './styles.module.scss'
+import IACharacter from './IACharacter'
 
 const IA = (props) => {
     const {
@@ -46,13 +47,7 @@ const IA = (props) => {
                     </div>
                 </div>
             </div>
-            <div className={styles.character} onClick={() => setIsvisible(true)}>
-                <picture className={`${styles.head} ${styles[IAExpression]} `}>
-                </picture>
-                <div className={styles.circle}>
-                    <img className={styles.body} src="/images/ia/cuerpo.png" />
-                </div>
-            </div>
+            <IACharacter {...{ IAExpression, setIsvisible }} />
         </div>
     </div>
 }

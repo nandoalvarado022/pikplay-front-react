@@ -8,7 +8,7 @@ import { useContext, useEffect, useState } from 'react'
 // import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import useSystemStore from '../../src/hooks/useSystem'
-import { validateTokenSrv, updateProfileSrv } from '../../src/services/user/userService'
+import { validateTokenSrv, updateProfileSrv, getExperiencesSrv } from '../../src/services/user/userService'
 
 const Index = props => {
   const descripcion =
@@ -78,7 +78,9 @@ const Index = props => {
 }
 
 export const getServerSideProps = async ctx => {
-  const { statusCode } = await validateTokenSrv(ctx)
+  // const { statusCode } = await validateTokenSrv(ctx)
+  const statusCode = 200
+  const resp = await getExperiencesSrv(ctx)
   if (statusCode === 403) {
     return {
       redirect: {
@@ -88,7 +90,9 @@ export const getServerSideProps = async ctx => {
     }
   }
   return {
-    props: {}
+    props: {
+      ...resp,
+    }
   }
 }
 

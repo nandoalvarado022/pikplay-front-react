@@ -32,6 +32,7 @@ import { useSelector } from 'react-redux'
 import Challenges from '../challenges/Challenges'
 import CoinIcon from '../coinIcon/CoinIcon'
 import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummaryExperience'
+import IACharacter from '../ia/IACharacter'
 
 const { IS_MOBILE } = VARS
 
@@ -169,6 +170,14 @@ const Interface = ({
               <Tab label='Desafios' {...a11yProps(1)} />
             </Tabs>
           </Box>
+          <div className={styles.IAContentLeft}>
+            <IACharacter
+              className='Perfil'
+              IAExpression='happy' />
+            <div className='Card'>
+              Tienes notificaciones pendientes, da clic y recibe tus premios!
+            </div>
+          </div>
 
           {/*Form para  editar perfil */}
           <TabPanel value={value} index={1}>

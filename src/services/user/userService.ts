@@ -44,7 +44,7 @@ const getNotificationsSrv = async () => {
 }
 
 const getReferralsSrv = async () => {
-  const data = await get(BASE_URL + "/referrals");
+  const data = await get(null, BASE_URL + "/referrals");
   return data
 }
 
@@ -53,11 +53,10 @@ const readNotificationSrv = async (nid: number) => {
   return data
 }
 
-const getExperiencesSrv = async () => {
-  const uid = 1;
+const getExperiencesSrv = async (ctx) => {
   try {
-    const { experiences } = await get(`${BASE_URL}/${uid}/info`);
-    const expTotal = experiences.reduce((total, obj) => total + obj.exp, 0);
+    const { code, data: experiences } = await get(ctx, `${BASE_URL}/experiences`);
+    const expTotal = experiences.reduce((total, obj) => total + obj.value, 0);
     return {
       expTotal,
       experiences,
@@ -73,6 +72,7 @@ const getExperiencesSrv = async () => {
 }
 
 export {
+  getExperiencesSrv,
   getNotificationsSrv,
   getReferralsSrv,
   getUsersSrv,
@@ -82,5 +82,4 @@ export {
   updateProfileSrv,
   validateTokenSrv,
   saveReferral,
-  getExperiencesSrv,
 }

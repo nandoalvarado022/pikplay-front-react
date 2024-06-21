@@ -23,6 +23,7 @@ import Router from 'next/router'
 import CoinIcon from '../coinIcon/CoinIcon'
 import AwardsSummary from '../awardsSummary/AwardsSummary'
 import useSystemStore from '../../hooks/useSystem.js'
+import Image from 'next/image.js'
 
 const { motion } = require('framer-motion')
 
@@ -117,12 +118,12 @@ const UserNotifications = () => {
             created = moment(created).fromNow()
             const srcNotificationImg =
               type === 'COUPON_GIFT_AVAILABLE'
-                ? './images/type_notification/coupon_gift_available.png'
+                ? '/images/type_notification/coupon_gift_available.png'
                 : type === 'COMPLETED_PROFILE'
-                  ? './images/type_notification/completed_profile.png'
+                  ? '/images/type_notification/completed_profile.png'
                   : type === 'COINS_BY_PURCHASE'
-                    ? './images/type_notification/coins_by_purchase.png'
-                    : './images/type_notification/coins_by_purchase_completed.png'
+                    ? '/images/type_notification/coins_by_purchase.png'
+                    : '/images/type_notification/coins_by_purchase_completed.png'
             return (
               // <Tooltip title={created} key={id}>
               <ol
@@ -133,10 +134,12 @@ const UserNotifications = () => {
                 }
               >
                 {/* {!disabled && <FontAwesomeIcon icon={faCircle} />} */}
-                <img
-                  className={styles.img_notification}
-                  src={srcNotificationImg}
+                <Image
                   alt='icon-notification'
+                  className={styles.img_notification}
+                  height={35}
+                  src={srcNotificationImg}
+                  width={48}
                 />
                 <span>{detail}</span>
                 {coins && <CoinIcon isLabel={false} coins={coins} />}

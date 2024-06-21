@@ -11,6 +11,9 @@ import Insignia from '../insignias/Insignia'
 import ProfileImage from '../profileImage/ProfileImage'
 import useSystemStore from '../../hooks/useSystem'
 import { getExperiencesSrv } from '../../services/user/userService'
+import Character from '../ia/IACharacter'
+import PreviewCharacter from '../ia/IACharacter'
+import { useIAStore } from '../ia/IAstore'
 
 const ProfileSummaryExperience = (props) => {
   const { gainExperience } = props
@@ -25,6 +28,10 @@ const ProfileSummaryExperience = (props) => {
     const targetNumber = currentUserCoins + gainedCoins
     animatePrince(element, targetNumber, fromNumber)
   }, [])
+
+  const {
+    IAExpression,
+  } = useIAStore((state => state))
 
   return (
     <div className={classNames("ProfileSummaryExperience", { [styles.ProfileSummaryExperience]: true })}>

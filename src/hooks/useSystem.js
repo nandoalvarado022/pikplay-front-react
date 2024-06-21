@@ -15,7 +15,7 @@ const initialNotification = {
 const loadFromLocalStorage = (property) => {
     let value = null
     if (typeof window != 'undefined') {
-        value = localStorage.getItem('userLogged') ? JSON.parse(localStorage.getItem('userLogged')) : value
+        value = localStorage.getItem(property) ? JSON.parse(localStorage.getItem(property)) : value
     }
     return value
 }
@@ -30,9 +30,10 @@ const logout = (set) => {
 
 const useSystemStore = create((set, get) => ({
     env: null,
+    experiences: [],
     logout: () => logout(set),
     notifications: [initialNotification],
-    userLogged: loadFromLocalStorage() || { uid: null },
+    userLogged: loadFromLocalStorage('userLogged') || { uid: null },
     setValue: (property, value) => {
         localStorage.setItem([property], JSON.stringify(value))
         set({ [property]: value })
