@@ -16,7 +16,7 @@ import PreviewCharacter from '../ia/IACharacter'
 import { useIAStore } from '../ia/IAstore'
 
 const ProfileSummaryExperience = (props) => {
-  const { gainExperience } = props
+  const { gainExperience, showDetails } = props
   const gainedCoins = 5
   const currentUserCoins = 10
   const { userLogged } = useSystemStore()
@@ -56,8 +56,7 @@ const ProfileSummaryExperience = (props) => {
             <CoinIcon coins={10} textColor="white" />
             <Insignias />
           </div>
-          <div className={styles.right}>
-
+          {showDetails && <div className={styles.right}>
             <div className={styles.fields}>
               <span className={styles.label}>
                 <div className={styles.name}>Categoria</div>
@@ -86,8 +85,7 @@ const ProfileSummaryExperience = (props) => {
                 </span>
               </Tooltip>
             </div>
-
-          </div>
+          </div>}
         </div>
       </div>
     </div>

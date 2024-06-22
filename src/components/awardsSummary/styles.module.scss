@@ -107,7 +107,7 @@
             width: calc(100% - 50px);
             @media screen and (max-width: 420px) {
                 height: 400px;
-                overflow-y: initial;
+                overflow-y: hidden;
             }
             :global(.ProfileSummaryExperience) {
                 display: block;

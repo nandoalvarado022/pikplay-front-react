@@ -280,9 +280,9 @@ const Interface = ({
           </TabPanel>
 
           {/* Resumen */}
-          <TabPanel value={value} index={0}>
+          <TabPanel value={value} index={0} className="">
             <div className={styles.ProfileSummaryExperience__UserNotifications__Content}>
-              <ProfileSummaryExperience />
+              <ProfileSummaryExperience showDetails />
               <div className='Card' style={{ maxHeight: '410px', maxWidth: '420px', margin: 0 }}>
                 <Alert severity='info'></Alert>
                 <UserNotifications />
