@@ -148,10 +148,9 @@ const Interface = ({
           )
           toast(message)
         }}
-        className='Card main'
-      // whileHover={{ scale: 1.1 }}
-      // whileTap={{ scale: 0.8 }}
-      >
+        className='Card main'>
+        {/* whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.8 }} */}
         Perfil
         <FontAwesomeIcon className='icon svg-question' icon={faQuestionCircle} />
       </motion.h2>

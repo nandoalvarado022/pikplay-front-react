@@ -15,10 +15,10 @@
     // --main-color: rgba(0, 0, 0, 0.54);
     // overflow: hidden;
     height: 500px;
-    width: 600px;
     overflow: hidden;
+    width: 600px;
     @media screen and (max-width: 420px) {
-        width: 350px;
+        width: 290px;
     }
     &:after {
         background-image: url(/images/backgrounds/marco-bronce-inf.png);
@@ -57,6 +57,11 @@
         top: 30px;
         width: calc(100% - 50px);
         z-index: 0;
+        @media screen and (max-width: 420px) {
+            left: 14px;
+            top: 15px;
+            width: 264px;
+        }
         &::before {
             background-image: url(/images/backgrounds/campo-bg.jpeg);
             background-size: cover;
@@ -78,19 +83,20 @@
     }
 
     .content {
-        // width: 100%;
         background-image: url(/images/backgrounds/marco-bronce-sup.png);
-        background-position: center top;
+        background-position: 0px 0px;
         background-repeat: no-repeat;
         background-size: contain;
         min-height: 390px;
         overflow: hidden;
         padding: 70px 0px 0;
         position: relative;
+        // width: 100%;
         @media screen and (max-width: 420px) {
             padding: 50px 0px 0;
         }
         .content_child {
+            // display: none;
             // border: 1px solid red;
             height: 350px;
             margin: 0 auto;
@@ -101,6 +107,7 @@
             width: calc(100% - 50px);
             @media screen and (max-width: 420px) {
                 height: 400px;
+                overflow-y: initial;
             }
             :global(.ProfileSummaryExperience) {
                 display: block;
@@ -252,6 +259,7 @@
         top: 300px;
         @media screen and (max-width: 420px) {
             background: white;
+            box-sizing: border-box;
             bottom: 0;
             left: 0;
             padding: 20px;
@@ -264,7 +272,6 @@
                 width: 80%;
             }
         }
-        
     }
     .actions2 {
         float: right;

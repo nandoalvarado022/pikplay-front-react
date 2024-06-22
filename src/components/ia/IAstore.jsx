@@ -29,7 +29,7 @@ export const useIAStore = create((set, get) => ({
   IAOptions: <></>,
   isVisible: false,
   IAMessage: null,
-  IAExpression: 'neutral',
+  IAExpression: 'happy',
   IAHTMLMessage: <></>,
   numberChosen: null,
   handleUserMessage: (message, options) => middleHandleUserMessage(message, set, options),

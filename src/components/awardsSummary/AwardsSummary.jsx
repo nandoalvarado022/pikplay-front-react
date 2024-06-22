@@ -200,7 +200,7 @@ const PreviewProfileSummaryExperience = ({ callback, setSummaryAwardsOpen, gainE
                 initial={{ x: '-600px' }}
                 animate={{ x: 0, }}
                 transition={{ delay: 2 }}>
-                <Button color="blue" className={styles.main_button}>
+                <Button color="blue" className={styles.main_button} realistic>
                     Continuar
                 </Button>
             </motion.div>

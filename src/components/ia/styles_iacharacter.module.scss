@@ -31,6 +31,7 @@
             background-image: url("/images/ia/3.png");
         }
         &.happy {
+            animation: abrirCerrar 4s infinite;
             background-image: url("/images/ia/4.png");
         }
         &.happy_2 {
@@ -62,6 +63,7 @@
     }
 
     &.Perfil {
+        // Character en el perfil
         // margin: 100px 20px 0 0;
         // position: absolute;
         height: 170px;

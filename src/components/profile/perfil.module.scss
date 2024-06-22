@@ -60,6 +60,9 @@
 
     :global([role="tabpanel"]) {
       padding-left: 120px;
+      @media screen and (max-width: 420px) {
+        padding-left: initial;
+      }
     }
   }
   h3 {
@@ -126,6 +129,9 @@
     margin: 100px 20px 0 0;
     position: absolute;
     width: 120px;
+    @media screen and (max-width: 420px) {
+      display: none;
+    }
     :global(.Card) {
       &:before {
         // Flechita del dialogo

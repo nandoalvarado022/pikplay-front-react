@@ -1,25 +1,68 @@
+/* eslint-disable jsx-a11y/alt-text */
 import styles from './challenges.module.scss'
 
-import React from 'react'
-// import { useQuery } from '@apollo/client'
-import { GET_CHALLENGES } from '../../lib/utils'
+import React, { useState, useEffect } from 'react'
 import Skeleton from '@mui/material/Skeleton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import Button from '../button/Button'
+import Image from 'next/image'
+import { getChallengeUserSrv } from '../../services/challenge/challengeService'
 
 const Challenges = () => {
-  const data = {
-    getChallenges: []
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    getChallengeUserSrv().then(data => {
+      setData(data)
+      setLoading(false)
+    })
+  }, [])
+
+  const Item = (props) => {
+    // debugger;
+    const { data: { completed, detail, id, image, title } } = props
+    if (!data) return <></>
+    return <article key={id} className={`${styles.challenge}`}>
+      {completed && <FontAwesomeIcon icon={faCheck} className={styles.challengeCompleteIcon} />}
+      <picture className={styles.image}>
+        <img className={styles.image} src={image} />
+      </picture>
+      <div className={styles.challengeDetails}>
+        <h4 className={styles.challengeTitle}>{title}</h4>
+        <div className={styles.progressContainer}>
+          <span
+            className={styles.progressBar}
+            style={{
+              width: `calc((100% * 12) / 40)`,
+            }}></span>
+          <span className={styles.progressScore}>
+            12/40
+          </span>
+        </div>
+        <p>{detail}</p>
+        <p>
+          {' '}
+          Expires on: {''}
+          <span className={styles.deadLine}>
+            Miercoles
+          </span>
+        </p>
+      </div>
+
+      <div>
+        <div className={styles.coins_wrapper}>
+          {/* <Coins coins={prizeCoins} /> */}
+        </div>
+        <Button
+          className={styles.btnReclamar}
+          color='blue'>
+          Reclamar
+        </Button>
+      </div>
+    </article>
   }
-  const loading = false;
-  // const { data, loading } = useQuery(GET_CHALLENGES, {
-  //   context: {
-  //     headers: {
-  //       'Operation-Name': 'getChallenges',
-  //     },
-  //   },
-  // })
 
   return (
     <section className={styles.ChallengeSection}>
@@ -33,74 +76,10 @@ const Challenges = () => {
 
       {loading
         ? new Array(3)
-            .fill(null)
-            .map((_, i) => (
-              <Skeleton
-                key={i}
-                variant="rectangular"
-                width='100%'
-                height={120}
-                className='Card'
-              />
-            ))
-        : data.getChallenges.map(
-            ({
-              id,
-              title,
-              targetPoints,
-              currentPoints,
-              prizeCoins,
-              deadLine,
-              image,
-              description,
-              finished,
-            }) => (
-              <article key={id} className={`${styles.challenge}`}>
-                {finished && (
-                  <FontAwesomeIcon
-                    icon={faCheck}
-                    className={styles.challengeCompleteIcon}
-                  />
-                )}
-                <picture className={styles.image}>
-                  <img className={styles.image} src={image} />
-                </picture>
-                <div className={styles.challengeDetails}>
-                  <h4 className={styles.challengeTitle}>{title}</h4>
-                  <div className={styles.progressContainer}>
-                    <span
-                      className={styles.progressBar}
-                      style={{
-                        width: `calc((100% * ${currentPoints}) / ${targetPoints})`,
-                      }}
-                    ></span>
-                    <span className={styles.progressScore}>
-                      {currentPoints}/{targetPoints}
-                    </span>
-                  </div>
-                  <p>{description}</p>
-                  <p>
-                    {' '}
-                    Expires on: {''}
-                    <span className={styles.deadLine}>{deadLine}</span>
-                  </p>
-                </div>
-
-                <div>
-                  <div className={styles.coins_wrapper}>
-                    {/* <Coins coins={prizeCoins} /> */}
-                  </div>
-                  <Button
-                    className={styles.btnReclamar}
-                    color='blue'
-                    disabled={!finished}
-                  >
-                    Reclamar
-                  </Button>
-                </div>
-              </article>
-            ),
-          )}
+          .fill(null)
+          .map((_, i) => (<Skeleton key={i} variant="rectangular" width='100%' height={120} className='Card' />))
+        : data.map((data) => <Item {...{ data }} />,
+        )}
     </section>
   );
 }

@@ -1,5 +1,5 @@
 import CustomFetch from "../../components/fetch/CustomFetch";
-
+import cookieCutter from '@boiseitguru/cookie-cutter'
 const { get, post } = CustomFetch()
 
 const BASE_URL = "/users"
@@ -10,8 +10,20 @@ const getUsersSrv = async () => {
 
 const loginSrv = async (ctx: any, phone: string, code: number) => {
   const path = BASE_URL + "/login"
-  const data = await post(ctx, path, { code, phone });
-  return data
+  try {
+    const data = await post(ctx, path, { code, phone });
+    const { token, uid } = data.data
+    cookieCutter.set('X-Auth-Token', token)
+    cookieCutter.set('User-ID', uid)
+    return data
+  }
+  catch (err) {
+    return {
+      data: null,
+      status: 400,
+      message: "Error al iniciar sesión",
+    }
+  }
 }
 
 const updateProfileSrv = async (userDataUpdated: any) => {

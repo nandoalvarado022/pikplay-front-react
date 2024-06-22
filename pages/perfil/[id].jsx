@@ -80,7 +80,7 @@ const Index = props => {
 export const getServerSideProps = async ctx => {
   // const { statusCode } = await validateTokenSrv(ctx)
   const statusCode = 200
-  const resp = await getExperiencesSrv(ctx)
+  const experiencesResponse = await getExperiencesSrv(ctx)
   if (statusCode === 403) {
     return {
       redirect: {
@@ -91,7 +91,7 @@ export const getServerSideProps = async ctx => {
   }
   return {
     props: {
-      ...resp,
+      ...experiencesResponse,
     }
   }
 }

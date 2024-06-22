@@ -40,8 +40,8 @@ function Login(props) {
         const { token, uid } = data
         setValue("userLogged", data)
         handleCloseDialog()
-        cookieCutter.set('X-Auth-Token', token)
-        cookieCutter.set('User-ID', uid)
+        // cookieCutter.set('X-Auth-Token', token)
+        // cookieCutter.set('User-ID', uid)
         router.push('?login=true')
       } else {
         document.getElementById('verificationCode').value = ''

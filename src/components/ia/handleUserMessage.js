@@ -28,7 +28,7 @@ export const handleUserMessage = (mensaje, set, options) => {
     const loadingMessage = <span>{seleccionAleatoria}</span>
     let IAOptionsSelected = <></>
     let containerHeightSelected
-    let IAExpressionSelected = 'neutral'
+    let IAExpressionSelected = 'happy'
     let IAHTMLMessageSelected
 
     switch (mensaje) {
@@ -134,7 +134,7 @@ export const handleUserMessage = (mensaje, set, options) => {
             break;
 
         default:
-            IAExpressionSelected = 'neutral'
+            IAExpressionSelected = 'happy'
             IAMessageSelected = IAMessageDefault
             IAOptionsSelected = IAOptionsDefault
             containerHeightSelected = "210px"
