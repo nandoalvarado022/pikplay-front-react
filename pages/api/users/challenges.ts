@@ -22,7 +22,7 @@ export default function handler(req, res) {
             "completed": false,
             "target": 5,
             "reward": "",
-            "rewardImage": "https://png.pngtree.com/png-clipart/20230811/original/pngtree-sunglasses-pixel-style-vector-icon-style-glasses-sunglasses-vector-picture-image_10320558.png",
+            "rewardImage": "/images/icons/gafas.webp",
             height: 60,
             width: 60,
         },

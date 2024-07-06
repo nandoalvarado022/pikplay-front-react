@@ -33,7 +33,7 @@ import Challenges from '../challenges/Challenges'
 import CoinIcon from '../coinIcon/CoinIcon'
 import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummaryExperience'
 import IACharacter from '../ia/IACharacter'
-import { PhonelinkLockOutlined } from '@mui/icons-material'
+import { ChargingStation, EditNote, NotificationAdd, NotificationImportant, Notifications, Person, PhonelinkLockOutlined, PowerOffOutlined } from '@mui/icons-material'
 import { Gamepad } from '@mui/icons-material'
 
 const { IS_MOBILE } = VARS
@@ -128,10 +128,11 @@ const Interface = ({
               onChange={handleChange}
               aria-label='basic tabs example'
               indicatorColor='primary'>
-              <Tab icon={<PhonelinkLockOutlined />} label='Resumen' {...a11yProps(0)} />
-              <Tab icon={<PhonelinkLockOutlined />} label='Perfil' {...a11yProps(0)} />
+              <Tab icon={<Person />} label='Perfil' {...a11yProps(0)} />
+              <Tab icon={<Notifications />} label='Noti' {...a11yProps(0)} />
+              <Tab icon={<ChargingStation />} label='Desafios' {...a11yProps(0)} />
               {/* <Tab label='Intereses' {...a11yProps(1)} /> */}
-              <Tab icon={<Gamepad />} label='Desafios' {...a11yProps(1)} />
+              <Tab icon={<EditNote />} label='Editar' {...a11yProps(1)} />
             </Tabs>
           </Box>
           <div className={styles.IAContentLeft}>
@@ -143,8 +144,12 @@ const Interface = ({
             </div>
           </div>
 
-          {/*Form para  editar perfil */}
           <TabPanel value={value} index={1}>
+            <UserNotifications />
+          </TabPanel>
+
+          {/*Form para  editar perfil */}
+          <TabPanel value={value} index={3}>
             <div className={styles.actions}>
               <Button
                 className={styles.saveProfileButton}
@@ -159,8 +164,7 @@ const Interface = ({
               label='Tú nombre o el nombre de tu tienda'
               margin='normal'
               value={userLogged?.name}
-              onChange={e => setUserData({ ...userLogged, name: e.target.value })}
-            />
+              onChange={e => setUserData({ ...userLogged, name: e.target.value })} />
             <TextField
               disabled={isSaving}
               fullWidth={true}
@@ -169,29 +173,25 @@ const Interface = ({
               value={userLogged?.email}
               onChange={e =>
                 setUserData({ ...userLogged, email: e.target.value })
-              }
-            />
+              } />
             <TextField
               disabled={true}
               fullWidth={true}
               label='Número registrado'
               margin='normal'
-              value={userLogged?.phone}
-            />
+              value={userLogged?.phone} />
             <br /><br />
             <CiudadControl
               isEditable
               setUserData={setUserData}
-              userLogged={userLogged}
-            />
+              userLogged={userLogged} />
             <TextField
               disabled={isSaving}
               fullWidth={true}
               label='Número de documento de identificación (no obligatorio)'
               margin='normal'
               value={userLogged?.document_number}
-              helperText='Información utilizada para la compras de productos online'
-            />
+              helperText='Información utilizada para la compras de productos online' />
             <p>
               <div>
                 <Alert severity="info">
@@ -249,10 +249,6 @@ const Interface = ({
           <TabPanel value={value} index={0} className="">
             <div className={styles.ProfileSummaryExperience__UserNotifications__Content}>
               <ProfileSummaryExperience showDetails />
-              <div className='Card' style={{ maxHeight: '410px', maxWidth: '420px', margin: 0 }}>
-                <Alert severity='info'></Alert>
-                <UserNotifications />
-              </div>
             </div>
           </TabPanel>
         </div>
