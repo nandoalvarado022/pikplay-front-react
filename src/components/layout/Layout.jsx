@@ -10,6 +10,7 @@ import { register } from 'next-offline/runtime'
 import useSystemStore from '../../hooks/useSystem.js'
 import Body from './Body.jsx'
 import { useIAStore } from '../ia/IAstore.jsx'
+import { dragElement } from '../../lib/utils.js'
 
 toastr.options.timeOut = 10000
 
@@ -79,6 +80,7 @@ const Layout = (props) => {
   useEffect(() => {
     loadPusherScript()
     loadAmplitude()
+    dragElement(document.getElementById("pacoMin"));
   }, [])
 
   return (

@@ -28,35 +28,6 @@
             left: calc(-100vw + 40px);
         }
     }
-
-    .pacoMin {
-        background: #f89b52;
-        border-radius: 50%;
-        cursor: pointer;
-        display: none;
-        opacity: 1;
-        position: absolute;
-        right: -101px;
-        top: 0;
-        transition-delay: 2s;
-        transition: 1s;
-        width: 60px;
-        @media screen and (max-width: 420px) {
-            display: block;
-            right: 10px;
-            position: fixed;
-            top: 90px;
-        }
-        &.hide {
-            opacity: 0;
-        }
-        img {
-            position: relative;
-            top: -2px;
-            right: -4px;
-        }
-    }
-
     .box {
         .title {
             background: #f0ba87;

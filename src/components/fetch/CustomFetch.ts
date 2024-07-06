@@ -1,8 +1,9 @@
 import cookieCutter from '@boiseitguru/cookie-cutter'
 import { convertResponse } from '../../lib/utils';
+import { API_URL } from '../../lib/variables';
 
 const CustomFetch = () => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL
+  const apiUrl = API_URL
 
   const getCookies = (ctx = { req: { cookies: {} } }) => {
     let headers = {};

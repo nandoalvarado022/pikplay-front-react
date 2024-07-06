@@ -5,6 +5,7 @@ import React from 'react'
 import Link from 'next/link'
 import PreviewUser from '../previewUser/PreviewUser'
 import useSystemStore from '../../hooks/useSystem'
+import { useIAStore } from '../ia/IAstore'
 // import { useSelector } from 'react-redux'
 
 const { motion } = require('framer-motion')
@@ -12,6 +13,9 @@ const { motion } = require('framer-motion')
 const MenuMovil = () => {
   // const user = useSelector(state => state.user)
   const { userLogged } = useSystemStore((state => state))
+  const {
+    setIsvisible,
+  } = useIAStore((state => state))
 
   return (
     <div className={styles.MenuMovil}>
@@ -51,17 +55,16 @@ const MenuMovil = () => {
           </motion.a>
         </Link>
       </ol>
-      <ol className={styles.mainOption}>
-        <motion.a
-          target='_BLANK'
-          href='https://api.whatsapp.com/send?phone=573054202450&text=Escribe%20aqu%C3%AD%20tu%20pregunta'
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.8 }}
-        >
-          <img src='https://www.iconpacks.net/icons/1/free-whatsapp-icon-103-thumb.png' />
+      <motion.ol
+        className={styles.mainOption}
+        onClick={() => setIsvisible(true)}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.8 }}>
+        <a>
+          <img src='images/ia/4.png' />
           <div className='f-s-10'>AYUDA</div>
-        </motion.a>
-      </ol>
+        </a>
+      </motion.ol>
     </div>
   )
 }

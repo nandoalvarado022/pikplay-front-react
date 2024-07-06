@@ -29,9 +29,6 @@ const IA = (props) => {
     }, [])
 
     return <div className={`${styles.IAElement} ${!isVisible ? styles.hide : null} `}>
-        <div className={`${styles.pacoMin} ${isVisible ? styles.hide : null} `} onClick={() => setIsvisible(true)}>
-            <img src={`/images/ia/4.png`} />
-        </div>
         <div className={styles.box}>
             <div className={styles.title}>
                 <b>Pikplay Colombia</b> ¡Hola!
