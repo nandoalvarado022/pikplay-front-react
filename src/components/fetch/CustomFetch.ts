@@ -1,8 +1,8 @@
 import cookieCutter from '@boiseitguru/cookie-cutter'
 import { convertResponse } from '../../lib/utils';
-import { API_URL } from '../../lib/variables';
 
 const CustomFetch = () => {
+  const API_URL = process.env.NEXT_PUBLIC_VERCEL_ENV == 'production' ? process.env.NEXT_PUBLIC_API_URL_PRODUCTION : process.env.NEXT_PUBLIC_API_URL_DEVELOP
   const getCookies = (ctx = { req: { cookies: {} } }) => {
     let headers = {};
     // Obteniendo cookies del lado del server. Generalmente vienen en el ctx.req.cookies
@@ -17,6 +17,7 @@ const CustomFetch = () => {
   const get = async (ctx, path, props = {}) => {
     try {
       const headers = getCookies(ctx)
+      console.log(API_URL + path);
       const response = await fetch(API_URL + path, {
         // credentials: "same-origin", // TODO averiguar para que sirve
         headers: {
@@ -50,8 +51,7 @@ const CustomFetch = () => {
 
   const post = async (ctx, path, params, file?, extraHeaders = {}) => {
     const url = API_URL + path
-    // console.log("la url es:", url);
-    // console.log(process.env);
+    console.log(API_URL + path);
     let body;
     const headers = {
       credentials: 'include',
