@@ -7,15 +7,13 @@ import Login from '../login/Login'
 import { useRouter } from 'next/router'
 import Switch from '@mui/material/Switch'
 import CoinIcon from '../coinIcon/CoinIcon'
-import VARS from '../../lib/variables'
+import { IS_MOBILE } from '../../lib/variables'
 
 import useSystemStore from '../../hooks/useSystem'
 import { slugify } from '../../lib/utils'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
 const ProfileImage = dynamic(() => import('../profileImage/ProfileImage'), { ssr: false })
-
-const { IS_MOBILE } = VARS
 
 const PreviewUser = () => {
   const { userLogged, logout } = useSystemStore((state => state))

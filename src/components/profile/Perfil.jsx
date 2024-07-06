@@ -36,8 +36,6 @@ import IACharacter from '../ia/IACharacter'
 import { ChargingStation, EditNote, NotificationAdd, NotificationImportant, Notifications, Person, PhonelinkLockOutlined, PowerOffOutlined } from '@mui/icons-material'
 import { Gamepad } from '@mui/icons-material'
 
-const { IS_MOBILE } = VARS
-
 function TabPanel(props) {
   const { children, value, index, ...other } = props
 

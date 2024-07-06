@@ -1,6 +1,6 @@
 /* eslint-disable */
 import 'date-and-time/locale/es'
-import VARS from './variables'
+import VARS, { API_URL } from './variables'
 import date from 'date-and-time'
 import fetch from 'node-fetch'
 import rn from 'random-number'
@@ -49,7 +49,7 @@ export const getNotifications = async props => {
   }`
 
   try {
-    const res = await fetch(VARS.API_URL, {
+    const res = await fetch(API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ export const getHome = async props => {
   let data = []
   try {
     console.log('No entro por SSR')
-    const res = await fetch(VARS.API_URL, {
+    const res = await fetch(API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -211,7 +211,7 @@ export const getFeed = async props => {
     if (isSSR && false) {
       console.log('Entro por SSR')
       // Haciendo fetch al JSON cacheado de productos
-      const url = VARS.API_URL + '/products'
+      const url = API_URL + '/products'
       const res = await fetch(url, {
         method: 'GET',
         headers: {
@@ -221,7 +221,7 @@ export const getFeed = async props => {
       data = await res.json()
     } else {
       console.log('No entro por SSR')
-      const res = await fetch(VARS.API_URL, {
+      const res = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

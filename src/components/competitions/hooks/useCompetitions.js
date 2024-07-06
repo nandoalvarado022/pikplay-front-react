@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import VARS from "../../../lib/variables"
+import { API_URL } from "../../../lib/variables"
 import { getComptSrv } from '../../../services/competition/competitionService'
 import { deleteCompetitionMemberSrv } from '../../../services/competition/competitionService';
 import { toast } from 'react-toastify'
@@ -32,7 +32,7 @@ const useCompetitions = () => {
   }
 
   const postCompetitionMember = (competitionID, number, uid) => new Promise((resolve, reject) => {
-    const url = `${VARS.API_URL}/competition-members/register`
+    const url = `${API_URL}/competition-members/register`
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
