@@ -274,6 +274,7 @@
         }
     }
     .actions2 {
+        box-sizing: border-box;
         float: right;
         margin-right: 20px;
         @media screen and (max-width: 420px) {

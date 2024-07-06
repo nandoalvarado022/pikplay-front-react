@@ -61,15 +61,14 @@ const CoinIcon = ({ coins, isLabel, hideNumber, multicoin, textColor }) => {
       }
       )}
       onMouseEnter={animate}>
-      <picture className={styles.coin} />
-      {multicoin && <picture className={`${styles.coin} ${styles.multicoin}`} />}
       {!hideNumber && <span
         className={`f-s-14 ${styles.number} number`}
         style={{ color: textColor ? textColor : '#e5961d' }}>
         {formatNumber(coins)}
       </span>
       }
-
+      <picture className={`shine ${styles.coin}`} />
+      {multicoin && <picture className={`${styles.coin} ${styles.multicoin}`} />}
       {isLabel && <label
         style={{ color: textColor ? textColor : '#e5961d' }}>Pikcoins</label>}
     </div>

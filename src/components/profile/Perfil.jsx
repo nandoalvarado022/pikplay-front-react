@@ -33,6 +33,8 @@ import Challenges from '../challenges/Challenges'
 import CoinIcon from '../coinIcon/CoinIcon'
 import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummaryExperience'
 import IACharacter from '../ia/IACharacter'
+import { PhonelinkLockOutlined } from '@mui/icons-material'
+import { Gamepad } from '@mui/icons-material'
 
 const { IS_MOBILE } = VARS
 
@@ -118,43 +120,6 @@ const Interface = ({
 
   return (
     <section className={`page ${styles.Perfil}`}>
-      <motion.h2
-        animate={{ opacity: 1 }}
-        transition={{ ease: [0.17, 0.67, 0.83, 0.67] }}
-        onClick={() => {
-          const message = (
-            <div>
-              <p>
-                Lo que tienes saber sobre tu <b>Perfil</b>
-              </p>
-              <p>
-                <h4>Coins</h4>
-                <p>
-                  En Pikplay te premiamos por cada cosa que haces, por eso cada
-                  vez que realices una compra recibiras un % del valor del
-                  articulo o servicio comprado.
-                </p>
-              </p>
-              <p>
-                <h4>Cupónes</h4>
-                <p>
-                  Son códigos que te ofrecen Pikcoins de regalo de parte de tus
-                  sellers favoritos y tambien de Pikplay. Sigue atento a
-                  nuestras redes sociales que a veces lanzamos un par por ahí 😏{' '}
-                </p>
-              </p>
-              <p style={{ textAlign: 'right' }}>Juntos somos mejor 🤝</p>
-            </div>
-          )
-          toast(message)
-        }}
-        className='Card main'>
-        {/* whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.8 }} */}
-        Perfil
-        <FontAwesomeIcon className='icon svg-question' icon={faQuestionCircle} />
-      </motion.h2>
-
       <div className={styles.content}>
         <div className={classNames('Card', styles['profile-content'])}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -163,10 +128,10 @@ const Interface = ({
               onChange={handleChange}
               aria-label='basic tabs example'
               indicatorColor='primary'>
-              <Tab label='Resumen' {...a11yProps(0)} />
-              <Tab label='Información del perfil' {...a11yProps(0)} />
-              <Tab label='Intereses' {...a11yProps(1)} />
-              <Tab label='Desafios' {...a11yProps(1)} />
+              <Tab icon={<PhonelinkLockOutlined />} label='Resumen' {...a11yProps(0)} />
+              <Tab icon={<PhonelinkLockOutlined />} label='Perfil' {...a11yProps(0)} />
+              {/* <Tab label='Intereses' {...a11yProps(1)} /> */}
+              <Tab icon={<Gamepad />} label='Desafios' {...a11yProps(1)} />
             </Tabs>
           </Box>
           <div className={styles.IAContentLeft}>
@@ -182,6 +147,7 @@ const Interface = ({
           <TabPanel value={value} index={1}>
             <div className={styles.actions}>
               <Button
+                className={styles.saveProfileButton}
                 color={!isSaving ? 'blue' : 'disabled'}
                 onClick={handleSave}>
                 {isSaving ? 'Gaurdando...' : 'Guardar'}
@@ -249,7 +215,7 @@ const Interface = ({
           </TabPanel>
 
           {/* Intereses */}
-          <TabPanel value={value} index={4}>
+          {/* <TabPanel value={value} index={4}>
             <Alert className='m-t-20' severity='info'>
               En Pikplay utilizamos los intereses para conocer a los usuarios y
               ofrecerle contenido de valor
@@ -272,10 +238,10 @@ const Interface = ({
             >
               {isSaving ? 'Gaurdando...' : 'Guardar'}
             </Button>
-          </TabPanel>
+          </TabPanel> */}
 
           {/* Desafios */}
-          <TabPanel value={value} index={3}>
+          <TabPanel value={value} index={2}>
             <Challenges />
           </TabPanel>
 
