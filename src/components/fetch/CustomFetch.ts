@@ -3,8 +3,6 @@ import { convertResponse } from '../../lib/utils';
 import { API_URL } from '../../lib/variables';
 
 const CustomFetch = () => {
-  const apiUrl = API_URL
-
   const getCookies = (ctx = { req: { cookies: {} } }) => {
     let headers = {};
     // Obteniendo cookies del lado del server. Generalmente vienen en el ctx.req.cookies
@@ -19,7 +17,7 @@ const CustomFetch = () => {
   const get = async (ctx, path, props = {}) => {
     try {
       const headers = getCookies(ctx)
-      const response = await fetch(apiUrl + path, {
+      const response = await fetch(API_URL + path, {
         // credentials: "same-origin", // TODO averiguar para que sirve
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +49,7 @@ const CustomFetch = () => {
   }
 
   const post = async (ctx, path, params, file?, extraHeaders = {}) => {
-    const url = apiUrl + path
+    const url = API_URL + path
     // console.log("la url es:", url);
     // console.log(process.env);
     let body;
