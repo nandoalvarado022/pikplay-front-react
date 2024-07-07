@@ -6,6 +6,10 @@ const getComptSrv = async (ctx, slug = null) => {
   return get(ctx, path);
 }
 
+const getEnvVariables = async (ctx, slug = null) => {
+  return get(ctx, "");
+}
+
 const deleteCompetitionMemberSrv = async (competitionID, number) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -20,5 +24,6 @@ const deleteCompetitionMemberSrv = async (competitionID, number) => {
 
 export {
   deleteCompetitionMemberSrv,
-  getComptSrv
+  getComptSrv,
+  getEnvVariables
 }
