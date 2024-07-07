@@ -165,4 +165,10 @@
       }
     }
   }
+
+  :global(.MuiTabs-scroller) {
+    overflow-x: scroll !important;
+    scrollbar-color: hotpink blue;
+    // scrollbar-width: thin;
+  }
 }

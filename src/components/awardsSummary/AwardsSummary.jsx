@@ -63,7 +63,7 @@ const AwardsSummary = ({ callback }) => {
 
     const handleUpdateExperience = () => {
         handlePickRewardUp()
-        callback(1)
+        // callback(1)
     }
 
     const message = `Recibiste <span class="yellow">5 Pikcoins</span> 
@@ -130,27 +130,6 @@ const AwardsSummary = ({ callback }) => {
     )
 }
 
-const variants = {
-    enter: (direction) => {
-        return {
-            x: direction > 0 ? 100 : -100,
-            opacity: 0
-        };
-    },
-    center: {
-        zIndex: 1,
-        x: 0,
-        opacity: 1
-    },
-    exit: (direction) => {
-        return {
-            zIndex: 0,
-            x: direction < 0 ? 100 : -100,
-            opacity: 0
-        };
-    }
-}
-
 const ModalComponent = (props) => {
     const { setSummaryAwardsOpen } = props
     const [[page, direction], setPage] = useState([0, 0]);
@@ -176,36 +155,12 @@ const ModalComponent = (props) => {
                     <div className={styles.content_child}>
                         <AnimatePresence initial={true} custom={direction}>
                             {page === 0 && <AwardsSummary callback={callback} />}
-                            {page === 1 && <PreviewProfileSummaryExperience
-                                gainExperience={200}
-                                callback={callback}
-                                setSummaryAwardsOpen={setSummaryAwardsOpen}
-                            />}
                         </AnimatePresence>
                     </div>
                 </div>
             </div>
         </DialogContent>
     </Dialog>
-}
-
-const PreviewProfileSummaryExperience = ({ callback, setSummaryAwardsOpen, gainExperience }) => {
-    return <motion.div variants={variants}>
-        <ProfileSummaryExperience gainExperience={gainExperience} />
-        <div className={styles.actions2}>
-            {/* <Button outline color="blue" className={styles.main_button} onClick={() => callback(0)}>
-                ATRAS
-            </Button> */}
-            <motion.div
-                initial={{ x: '-600px' }}
-                animate={{ x: 0, }}
-                transition={{ delay: 2 }}>
-                <Button color="blue" className={styles.main_button} realistic>
-                    Continuar
-                </Button>
-            </motion.div>
-        </div>
-    </motion.div>
 }
 
 export default ModalComponent;

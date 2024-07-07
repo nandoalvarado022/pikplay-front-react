@@ -33,7 +33,7 @@ import Challenges from '../challenges/Challenges'
 import CoinIcon from '../coinIcon/CoinIcon'
 import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummaryExperience'
 import IACharacter from '../ia/IACharacter'
-import { ChargingStation, EditNote, NotificationAdd, NotificationImportant, Notifications, Person, PhonelinkLockOutlined, PowerOffOutlined } from '@mui/icons-material'
+import { ChargingStation, EditNote, NotificationAdd, NotificationImportant, Notifications, NotificationsActive, Person, PhonelinkLockOutlined, PowerOffOutlined } from '@mui/icons-material'
 import { Gamepad } from '@mui/icons-material'
 
 function TabPanel(props) {
@@ -45,8 +45,7 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
+      {...other}>
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
@@ -54,13 +53,6 @@ function TabPanel(props) {
       )}
     </div>
   )
-}
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  }
 }
 
 const Interface = ({
@@ -116,6 +108,12 @@ const Interface = ({
     setInterests(_interests)
   }
 
+  const NotificationIcon = () => {
+    const newNotifications = []
+    if (newNotifications.length > 0) return <NotificationsActive className='red' />
+    else return <NotificationsActive />
+  }
+
   return (
     <section className={`page ${styles.Perfil}`}>
       <div className={styles.content}>
@@ -126,11 +124,11 @@ const Interface = ({
               onChange={handleChange}
               aria-label='basic tabs example'
               indicatorColor='primary'>
-              <Tab icon={<Person />} label='Perfil' {...a11yProps(0)} />
-              <Tab icon={<Notifications />} label='Noti' {...a11yProps(0)} />
-              <Tab icon={<ChargingStation />} label='Desafios' {...a11yProps(0)} />
+              <Tab icon={<Person />} label='Perfil' />
+              <Tab icon={<NotificationIcon />} label='Notificaciones' />
+              <Tab icon={<ChargingStation />} label='Desafios' />
               {/* <Tab label='Intereses' {...a11yProps(1)} /> */}
-              <Tab icon={<EditNote />} label='Editar' {...a11yProps(1)} />
+              <Tab icon={<EditNote />} label='Editar' />
             </Tabs>
           </Box>
           <div className={styles.IAContentLeft}>

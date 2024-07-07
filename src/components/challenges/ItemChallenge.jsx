@@ -28,7 +28,7 @@ const ItemChallenge = (props) => {
         <div className={styles.challengeDetails}>
             <h4 className={`shadow-text ${styles.challengeTitle}`}>
                 {title}
-                {completed && <FontAwesomeIcon icon={faCheck} className={styles.challengeCompleteIcon} />}
+                {completed && <FontAwesomeIcon icon={faCheck} className={`icon ${styles.challengeCompleteIcon}`} />}
             </h4>
             {target > 1 && <div className={styles.progressContainer}>
                 <span
