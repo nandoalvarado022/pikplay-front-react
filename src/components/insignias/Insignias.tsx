@@ -11,11 +11,14 @@ const data = {
 const Insignias = () => {
 
   const [insignias, setInsignias] = useState(data.insignias)
+  const dataInsignias = [
+    { image: "/images/icons/calendar-hierva.svg", name: "Ingreso diario" }
+  ]
 
   useEffect(() => {
     setTimeout(() => {
       const newInsignia = { id: 'second', name: 'Segunda compra', isNew: true }
-      setInsignias([ ...insignias, newInsignia ])
+      setInsignias([...insignias, newInsignia])
     }, 1000)
   }, [])
 
@@ -24,7 +27,7 @@ const Insignias = () => {
       <h4>Insignias</h4>
       <div className={styles.list}>
         {
-          insignias.map(item => {
+          dataInsignias.map(item => {
             return <Insignia data={item} id={item.id} key={item.id} />
           })
         }

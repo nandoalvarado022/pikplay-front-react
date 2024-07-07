@@ -80,7 +80,6 @@ const Layout = (props) => {
   useEffect(() => {
     loadPusherScript()
     loadAmplitude()
-    dragElement(document.getElementById("pacoMin"));
   }, [])
 
   return (

@@ -15,6 +15,10 @@ const CustomFetch = () => {
   }
 
   const get = async (ctx, path, props = {}) => {
+    if (!API_URL) return {
+      message: "API_URL no esta definida en el archivo .env",
+      status: 404
+    }
     try {
       const headers = getCookies(ctx)
       console.log(API_URL + path);
@@ -50,6 +54,10 @@ const CustomFetch = () => {
   }
 
   const post = async (ctx, path, params, file?, extraHeaders = {}) => {
+    if (!API_URL) return {
+      message: "API_URL no esta definida en el archivo .env",
+      status: 404
+    }
     const url = API_URL + path
     console.log(API_URL + path);
     let body;

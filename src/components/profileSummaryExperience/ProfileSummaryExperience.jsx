@@ -38,12 +38,11 @@ const ProfileSummaryExperience = (props) => {
       <div>
         <div className={styles.full_name}>
           <span>{name}</span>
-          <div className={styles.icons}>
+          {/* <div className={styles.icons}>
             <Tooltip title="Plataforma más utilizada">
               <img width={40} className={styles.platform} src="/images/icons/ps-icon.png" />
             </Tooltip>
-            <Insignia data={{ id: "second", name: "On fire" }} />
-          </div>
+          </div> */}
         </div>
         <div className={styles.box}>
           <div className={styles.bg}></div>

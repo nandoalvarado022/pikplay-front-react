@@ -61,7 +61,7 @@ const MenuMovil = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.8 }}>
         <a>
-          <img src='images/ia/4.png' />
+          <img src='/images/ia/4.svg' />
           <div className='f-s-10'>AYUDA</div>
         </a>
       </motion.ol>
