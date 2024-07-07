@@ -21,7 +21,7 @@
   .challenge {
     // gap: 12px;
     // grid-template-columns: repeat(4, 1fr);
-    background: #57549e;
+    background: #3095b3;
     border-radius: 10px;
     box-shadow: 2px 2px 5px 0 #ababab52;
     box-sizing: border-box;
@@ -61,8 +61,8 @@
     .challengeDetails {
       // background-color: red;
       box-sizing: border-box;
-      display: grid;
-      grid-column: 2/4;
+      // display: grid;
+      // grid-column: 2/4;
       height: 100%;
       padding: 12px 20px;
       row-gap: 8px;
@@ -70,7 +70,7 @@
       .challengeTitle {
         // font-size: 1rem;
         font-size: 18px;
-        margin: 0;
+        margin: 0 0 20px 0;
       }
 
       .challengeDescription {
@@ -143,7 +143,7 @@
 }
 
 .rewardsContent {
-  background-color: #635fa7;
+  background-color: #57549e;
   color: white;
   height: 100%;
   padding: 20px 10px;

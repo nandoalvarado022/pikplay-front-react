@@ -4,6 +4,7 @@ import React from 'react'
 import CoinIcon from '../../../../src/components/coinIcon/CoinIcon'
 
 const FloatingChallenges = () => {
+    // Cuadro 
     return (
         <div className={styles.FloatingChallenges}>
             <div className={styles.description_content}>

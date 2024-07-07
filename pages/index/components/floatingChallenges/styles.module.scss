@@ -8,7 +8,7 @@
     position: fixed;
     width: 250px;
     z-index: 2;
-    &::after{
+    &::after {
         background-image: url(/images/gifs/stars-colors.gif);
         background-size: 300px;
         content: "";
@@ -25,7 +25,7 @@
             font-size: 14px;
         }
         .progress_bar {
-            background: #417D8C;
+            background: #417d8c;
             border-radius: 5px;
             color: #d5e7fe;
             font-size: 14px;

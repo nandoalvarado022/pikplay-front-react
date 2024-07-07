@@ -8,7 +8,7 @@ const Insignia = ({ data }) => {
     const { id, name, isNew, insigniaClass } = data
     return (
         <Tooltip title={name} placement="top">
-            <div className={classNames("Insignia animated", {
+            <div className={classNames("Insignia animatedZoom", {
                 [styles[id]]: true,
                 [styles.new]: isNew,
                 [styles.insigniaClass]: true,                

@@ -942,13 +942,15 @@ a {
   }
 }
 
-.animated {
-  animation: animated 3s alternate ease-in-out;
+.animatedZoom {
+  // Animar un elemento ampliando y reduciendo su tamaño con transición
+  animation: animatedZoom 3s infinite ease-in-out alternate-reverse;
+  transform: scale(1, 1);
 }
 
-@keyframes animated {
+@keyframes animatedZoom {
   0% {
-    transform: scale(0, 0);
+    transform: scale(0.5, 0.5);
   }
   20% {
     transform: scale(1.2, 1.2);
@@ -961,5 +963,26 @@ a {
   }
   60% {
     transform: scale(1, 1);
+  }
+}
+
+.MuiTabs-scroller {
+  // Scroll horizontal
+  overflow-x: scroll !important;
+  scrollbar-color: hotpink blue;
+  // scrollbar-width: thin;
+}
+
+.starsFallingDown {
+  // Estrellas de colores callendo sobre el elemento que tenga la clase
+  &::after {
+    background-image: url(/images/gifs/stars-colors.gif);
+    background-size: 300px;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: -10px;
+    width: 100%;
   }
 }

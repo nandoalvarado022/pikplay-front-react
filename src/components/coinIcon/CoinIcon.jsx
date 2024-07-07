@@ -14,7 +14,7 @@ import classNames from 'classnames'
 
 const CoinIcon = ({ coins, isLabel, hideNumber, multicoin, textColor }) => {
   const [isAnimate, setIsAnimate] = useState(false)
-  coins = 100 //coins ? coins : useSelector(state => state.coins)
+  // coins = 100 //coins ? coins : useSelector(state => state.coins)
   const prevCountCoins = useRef()
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const CoinIcon = ({ coins, isLabel, hideNumber, multicoin, textColor }) => {
     <div
       className={classNames("Coins", {
         [styles.Coins]: true,
-        [styles.animated]: isAnimate
+        [styles.animatedZoom]: isAnimate
       }
       )}
       onMouseEnter={animate}>

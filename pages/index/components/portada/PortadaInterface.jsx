@@ -148,7 +148,6 @@ const PortadaInterface = ({
 
   return (<>
     <section>
-      <FloatingChallenges />
       <Link href='/concursos' as='/concursos'>
         <video
           autoPlay
