@@ -27,7 +27,7 @@ const ItemChallenge = (props) => {
     const maxCharacteres = 50
     const isDescriptionExtended = (detail.trim().length) > maxCharacteres
     const shortedDetail = isDescriptionExtended ? detail.substring(0, maxCharacteres) : false
-
+    const labelButton = "Obtener recompensa"
     return <article key={id} className={`${!completed ? 'dark' : ''} ${starsEffect ? 'starsFallingDown' : ''} ${styles.challenge}`}>
         {/* <picture className={styles.image}>
             <img className={styles.image} src={image} />
@@ -69,7 +69,7 @@ const ItemChallenge = (props) => {
                 realistic
                 className={styles.btnReclamar}
                 color='blue'>
-                {buttonText ? buttonText : 'Reclamar'}
+                {buttonText ? buttonText : labelButton}
             </Button>
         </div>
     </article>

@@ -25,8 +25,7 @@ const MenuMovil = () => {
             legacyBehavior
             className={styles.vender}
             whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.8 }}
-          >
+            whileTap={{ scale: 0.8 }}>
             <img
               style={{ height: '38px' }}
               src='https://icons.veryicon.com/png/o/miscellaneous/very-thin-linear-icon/camera-310.png'

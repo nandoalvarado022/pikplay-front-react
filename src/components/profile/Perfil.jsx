@@ -38,7 +38,6 @@ import { Gamepad } from '@mui/icons-material'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
-
   return (
     <div
       role='tabpanel'
@@ -126,8 +125,6 @@ const Interface = ({
               indicatorColor='primary'>
               <Tab icon={<Person />} label='Perfil' />
               <Tab icon={<NotificationIcon />} label='Notificaciones' />
-              <Tab icon={<ChargingStation />} label='Desafios' />
-              {/* <Tab label='Intereses' {...a11yProps(1)} /> */}
               <Tab icon={<EditNote />} label='Editar' />
             </Tabs>
           </Box>
@@ -145,7 +142,7 @@ const Interface = ({
           </TabPanel>
 
           {/*Form para  editar perfil */}
-          <TabPanel value={value} index={3}>
+          <TabPanel value={value} index={2}>
             <div className={styles.actions}>
               <Button
                 className={styles.saveProfileButton}
@@ -235,11 +232,6 @@ const Interface = ({
               {isSaving ? 'Gaurdando...' : 'Guardar'}
             </Button>
           </TabPanel> */}
-
-          {/* Desafios */}
-          <TabPanel value={value} index={2}>
-            <Challenges />
-          </TabPanel>
 
           {/* Resumen */}
           <TabPanel value={value} index={0} className="">

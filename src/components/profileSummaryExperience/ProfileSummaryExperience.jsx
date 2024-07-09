@@ -16,11 +16,11 @@ import PreviewCharacter from '../ia/IACharacter'
 import { useIAStore } from '../ia/IAstore'
 
 const ProfileSummaryExperience = (props) => {
-  const { gainExperience, showDetails } = props
+  const { isUserLogued, userInfoData, gainExperience, showDetails } = props
   const gainedCoins = 5
   const currentUserCoins = 10
   const { userLogged } = useSystemStore()
-  const { picture, name } = userLogged
+  const { exp, name, picture } = isUserLogued ? userLogged : userInfoData
 
   useEffect(() => {
     const element = document.querySelector('.ProfileSummaryExperience .number-coins')
@@ -50,7 +50,7 @@ const ProfileSummaryExperience = (props) => {
             <ProfileImage picture={picture} />
             <br />
             <div className={styles.experience_status}>
-              <ExperienceBar />
+              <ExperienceBar {...{ exp }} />
             </div>
             <CoinIcon coins={10} textColor="white" />
             <Insignias />
@@ -93,18 +93,21 @@ const ProfileSummaryExperience = (props) => {
 
 export default ProfileSummaryExperience
 
-const ExperienceBar = () => {
-  const [currentExp, setCurrentExp] = useState(0)
+const ExperienceBar = (props) => {
+  const { exp } = props;
+  const [currentExp, setCurrentExp] = useState(exp)
   const [widtBar, setWidthBar] = useState("0%")
 
   useEffect(() => {
-    getExperiencesSrv()
-      .then(data => {
-        const { expTotal } = data
-        setCurrentExp(expTotal)
-        const widthBar = (expTotal / 10000) * 100;
-        setWidthBar(widthBar + "%")
-      });
+    // getExperiencesSrv()
+    //   .then(data => {
+    //     const { expTotal } = data
+    //     setCurrentExp(expTotal)
+    //     const widthBar = (expTotal / 10000) * 100;
+    //     setWidthBar(widthBar + "%")
+    //   });
+    const widthBar = (exp / 1000) * 100;
+    setWidthBar(widthBar + "%")
   }, [])
 
   return (
@@ -113,7 +116,7 @@ const ExperienceBar = () => {
         <div className={classNames("indicator", { [styles.indicator]: true })} style={{ width: widtBar }}>
           <label>
             <span className='number'>{formatNumber(currentExp)}</span>
-            &nbsp;/ 10.000 EXP
+            &nbsp;/ 1.000 EXP
           </label>
         </div>
       </div>

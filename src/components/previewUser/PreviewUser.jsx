@@ -58,6 +58,11 @@ const PreviewUser = () => {
               </Link>
             </ol>
             <ol>
+              <Link href={`/desafios-y-ranking`}>
+                Desafios y Ranking
+              </Link>
+            </ol>
+            <ol>
               <Link href='/usuario/me' as='/usuario/me'>
                 Soy vendedor
                 <br />

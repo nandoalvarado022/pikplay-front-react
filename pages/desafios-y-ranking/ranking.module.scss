@@ -1,0 +1,44 @@
+.RankingComponent {
+    .list {
+        // display: grid;
+        // grid-template-columns: repeat(4, 1fr);
+        // grid-template-rows: repeat(100px);
+        // display: flex;
+        column-gap: 50px;
+        overflow-x: scroll;
+        .item {
+            position: relative;
+            // &:nth-of-type(1),
+            // &:nth-of-type(2) {
+            //     grid-column: span 4;
+            // }
+            // &:nth-child(n + 3) {
+            //     grid-column: span 2;
+            // }
+            &.me {
+            }
+            &:not(.me) {
+                transform: scale(0.5);
+            }
+            .number {
+                background: #c68836;
+                border-radius: 50%;
+                box-shadow: 0px 0px 4px 0px #000000e8;
+                color: white;
+                font-family: "Dirtyboy";
+                font-size: 64px;
+                height: 60px;
+                left: 0px;
+                line-height: 68px;
+                position: absolute;
+                text-align: center;
+                top: -10px;
+                width: 60px;
+                z-index: 0;
+            }
+            :global(.ProfileSummaryExperience) {
+                margin-left: 30px;
+            }
+        }
+    }
+}
