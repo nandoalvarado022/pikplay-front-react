@@ -18,7 +18,7 @@ const Challenges = ({ limit }) => {
   }, [])
 
   return (
-    <section className={styles.ChallengeSection}>
+    <section className={`ChallengeSection ${styles.ChallengeSection}`}>
       {/* <div className={styles.challengeHeader}>
         <h3>¡Ve por más!</h3>
         <p>

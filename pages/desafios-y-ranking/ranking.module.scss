@@ -1,9 +1,17 @@
 .RankingComponent {
+    .alert {
+        margin: 0 auto;
+        width: 80%;
+    }
     .list {
         column-gap: 50px;
         overflow-x: scroll;
-        padding: 14px 0 0 5px;
+        padding: 14px 0 0 0px;
         .item {
+            // background: #ecb96b6e;
+            // border-bottom: 2px solid #c07f2cb8;
+            box-shadow: 0px 4px 4px #c3832f52;
+            padding: 20px 0 10px 0;
             position: relative;
             &.me {
             }
@@ -11,7 +19,6 @@
                 transform: scale(0.5);
             }
             .number {
-                background: #c68836;
                 border-radius: 50%;
                 box-shadow: 0px 0px 4px 0px #000000e8;
                 color: white;
@@ -25,6 +32,12 @@
                 top: -10px;
                 width: 60px;
                 z-index: 0;
+                &.oro {
+                    background: #c68836;
+                }
+                &.plata {
+                    background: linear-gradient(45deg, #cecdd2, #9b9b9d);
+                }
             }
             :global(.ProfileSummaryExperience) {
                 margin-left: 30px;

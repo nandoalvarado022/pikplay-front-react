@@ -4,19 +4,26 @@
         margin: 0 auto;
     }
     .full_name {
-        background: linear-gradient(45deg, #f4c376, #ba7821);
-        border-radius: 10px 10px 0 0;
-        border: 2px solid #c1812e;
-        border-bottom: 0;
         bottom: 0px;
+        border-radius: 10px 10px 0 0;
+        border-bottom: transparent !important;
         box-shadow: inset 4px 4px 2px #5252524f;
         color: white;
         font-weight: bold;
         height: 18px;
+        line-height: 20px;
         left: 20px;
-        padding: 10px;
+        padding: 10px 0px 10px 20px;
         position: relative;
         width: 200px;
+        &.plata {
+            background: linear-gradient(45deg, #cecdd2, #9b9b9d);
+            border: 2px solid #9b9b9d;
+        }
+        &.oro {
+            background: linear-gradient(45deg, #f4c376, #ba7821);
+            border: 2px solid #c1812e;
+        }
         &:before {
             background: #959595;
             border-radius: inherit;
@@ -27,6 +34,9 @@
             top: 0;
             width: 100%;
             z-index: -1;
+        }
+        span {
+            text-shadow: 2px 1px 3px #565656;
         }
 
         .icons {
@@ -65,9 +75,9 @@
             border-radius: inherit;
             content: "";
             height: 100%;
-            left: 3px;
+            left: 1px;
             position: absolute;
-            top: -3px;
+            top: 0px;
             width: 100%;
             z-index: -1;
         }
@@ -91,13 +101,20 @@
             inset: 0;
             border-radius: 20px;
             padding: 4px; /* control the border thickness */
-            background: linear-gradient(45deg, #f4c376, #ba7821);
             -webkit-mask:
                 linear-gradient(#fff 0 0) content-box,
                 linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
             pointer-events: none;
+        }
+
+        &.oro::after {
+            background: linear-gradient(45deg, #f4c376, #ba7821);
+        }
+
+        &.plata::after {
+            background: linear-gradient(45deg, #cecdd2, #9b9b9d);
         }
 
         .right {

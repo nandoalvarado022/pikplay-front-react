@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Insignia from './Insignia'
 import styles from './insignias.module.scss'
+import { Skeleton } from '@mui/material'
 
 const data = {
   insignias: [
@@ -9,6 +10,7 @@ const data = {
 }
 
 const Insignias = (props) => {
+  const [isReady, setIsReady] = useState(false)
   const { title, favoriteInsignia } = props
   const dataInsignias = [
     { id: "daily-login", image: "/images/icons/calendar-hierva.svg", name: "Ingreso diario", hidden: false },
@@ -21,8 +23,8 @@ const Insignias = (props) => {
       // const newInsignia = { id: 'second', name: 'Segunda compra', isNew: true }
       if (favoriteInsignia) {
         const insigniasFormatted = dataInsignias.map(item => (item.hidden = item.id != favoriteInsignia, item))
-        debugger;
         setInsignias(insigniasFormatted)
+        setIsReady(true)
       }
     }, 1000)
   }, [])
@@ -31,8 +33,11 @@ const Insignias = (props) => {
     <div className={styles.Insignias}>
       <h4>{title}</h4>
       <div className={styles.list}>
+        <div className="">
+          {!isReady && <Skeleton variant="rectangular" width={80} height={118} style={{ margin: " 10px auto" }} />}
+        </div>
         {
-          insignias.map(item => {
+          isReady && insignias.map(item => {
             return !item.hidden ? <Insignia data={item} key={item.id} /> : <></>
           })
         }

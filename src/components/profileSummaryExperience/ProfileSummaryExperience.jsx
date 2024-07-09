@@ -27,6 +27,7 @@ const ProfileSummaryExperience = (props) => {
     name,
     picture,
     coins,
+    league,
   } = isUserLogued ? userLogged : userInfoData
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const ProfileSummaryExperience = (props) => {
   return (
     <div className={classNames("ProfileSummaryExperience", { [styles.ProfileSummaryExperience]: true })}>
       <div>
-        <div className={styles.full_name}>
+        <div className={`shine ${styles[league]} ${league == 'oro' && 'starsFallingDown'} ${styles.full_name}`}>
           <span>{name}</span>
           {/* <div className={styles.icons}>
             <Tooltip title="Plataforma más utilizada">
@@ -51,7 +52,7 @@ const ProfileSummaryExperience = (props) => {
             </Tooltip>
           </div> */}
         </div>
-        <div className={styles.box} style={{ background: backgroundColor }}>
+        <div className={`${styles[league]} ${styles.box}`} style={{ background: backgroundColor }}>
           <div className={styles.bg}></div>
           <div className={styles.left}>
             <ProfileImage picture={picture} />

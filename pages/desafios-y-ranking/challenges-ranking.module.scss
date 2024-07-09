@@ -1,5 +1,6 @@
 section.ChallengesRanking {
-    padding: 0 10px;
+    box-shadow: 0px -2px 4px #4b99b13d;
+    padding: 0 0px;
     width: 100%;
     :global([role="tabpanel"]) {
         padding-left: 120px;
@@ -11,5 +12,15 @@ section.ChallengesRanking {
                 padding: 24px 0;
             }
         }
+    }
+    :global(.Mui-selected) {
+        color: #3095b3;
+    }
+    :global(.MuiTabs-indicator) {
+        background-color: transparent;
+    }
+    :global(.ChallengeSection) {
+        margin: 0 auto;
+        width: 80%;
     }
 }

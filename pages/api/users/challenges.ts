@@ -5,7 +5,7 @@ export default function handler(req, res) {
             "detail": "Realiza 20 compras en nuestro sitio, c/u debe ser por mínimo 100 mil pesos",
             "id": 1,
             "reward": "",
-            "rewardImage": "/images/icons/gif-bn.svg",
+            "rewardImage": "/images/icons/gif.svg",
             "title": "Realiza 20 compras en Pikplay",
             buttonText: "Regalo sorpresa",
             height: 60,
