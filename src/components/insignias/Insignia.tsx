@@ -5,7 +5,7 @@ import { Tooltip } from '@mui/material';
 import Image from 'next/image';
 
 const Insignia = ({ data }) => {
-    const { id, name, isNew, insigniaClass } = data
+    const { id, name, isNew, insigniaClass, image } = data
     return (
         <Tooltip title={name} placement="top">
             <div className={classNames("Insignia animatedZoom", {
@@ -13,7 +13,7 @@ const Insignia = ({ data }) => {
                 [styles.new]: isNew,
                 [styles.insigniaClass]: true,                
             })}>
-                <Image alt="Imagen de insignia" src={'/images/icons/calendar-hierva.svg'} width={200} height={120} />
+                <Image alt="Imagen de insignia" src={image} width={200} height={120} />
             </div>
         </Tooltip>
     );

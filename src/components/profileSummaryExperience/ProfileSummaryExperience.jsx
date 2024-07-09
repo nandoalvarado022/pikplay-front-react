@@ -16,11 +16,18 @@ import PreviewCharacter from '../ia/IACharacter'
 import { useIAStore } from '../ia/IAstore'
 
 const ProfileSummaryExperience = (props) => {
-  const { isUserLogued, userInfoData, gainExperience, showDetails } = props
+  const { isUserLogued, userInfoData, showDetails } = props
   const gainedCoins = 5
   const currentUserCoins = 10
   const { userLogged } = useSystemStore()
-  const { exp, name, picture } = isUserLogued ? userLogged : userInfoData
+  const {
+    backgroundColor,
+    exp,
+    insignia,
+    name,
+    picture,
+    coins,
+  } = isUserLogued ? userLogged : userInfoData
 
   useEffect(() => {
     const element = document.querySelector('.ProfileSummaryExperience .number-coins')
@@ -44,7 +51,7 @@ const ProfileSummaryExperience = (props) => {
             </Tooltip>
           </div> */}
         </div>
-        <div className={styles.box}>
+        <div className={styles.box} style={{ background: backgroundColor }}>
           <div className={styles.bg}></div>
           <div className={styles.left}>
             <ProfileImage picture={picture} />
@@ -52,14 +59,17 @@ const ProfileSummaryExperience = (props) => {
             <div className={styles.experience_status}>
               <ExperienceBar {...{ exp }} />
             </div>
-            <CoinIcon coins={10} textColor="white" />
-            <Insignias />
+            <Insignias title="Insignia Favorita" favoriteInsignia={insignia} />
           </div>
           {showDetails && <div className={styles.right}>
             <div className={styles.fields}>
               <span className={styles.label}>
                 <div className={styles.name}>Categoria</div>
                 Bronce
+              </span>
+              <span className={styles.label}>
+                <div className={styles.name}>Pikcoins</div>
+                <CoinIcon coins={coins} />
               </span>
               <span className={styles.label}>
                 <div className={styles.name}>Nivel</div>
