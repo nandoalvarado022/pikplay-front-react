@@ -11,7 +11,9 @@
     width: 80%;
     &.actived {
       .bg_black {
+        box-shadow: 90px 0px 2px #76767673;
         display: block;
+        left: 0;
       }
     }
   }
@@ -56,24 +58,19 @@
     padding-top: 10px;
     right: 40px;
     top: 40px;
-    transition: 0.8s ease;
+    transition: 0.5s ease-in-out;
     width: 240px;
     z-index: -1;
-
     @media screen and (max-width: 420px) {
-      border-radius: 10px 10px 0 0;
+      border-radius: 0px 10px 10px 0px;
       bottom: 60px;
-      height: max-content;
-      left: 0;
-      margin: 0 auto;
-      position: fixed;
-      right: 0;
-      top: initial;
-      width: 80%;
-    }
-
-    &.activated {
+      box-shadow: 6px 0px 2px #76767673;
       display: block;
+      height: calc(90% - 78px);
+      left: -322px;
+      position: fixed;
+      top: 75px;
+      width: 80%;
     }
 
     :global(.UserNotifications) {
@@ -95,6 +92,18 @@
       a {
         color: white !important;
         justify-content: center;
+        .icon {
+          margin-right: 10px;
+        }
+        .coinContent {
+          display: inline-block;
+          margin-left: 10px;
+        }
+        :global(svg) {
+          height: 20px;
+          margin-right: 10px;
+          width: 20px;
+        }
       }
 
       .flex {
@@ -110,6 +119,7 @@
         font-size: 12px;
         margin-top: 10px;
       }
+
       :global(.number-coins) span {
         display: none;
       }

@@ -13,13 +13,25 @@ import useSystemStore from '../../hooks/useSystem'
 import { slugify } from '../../lib/utils'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
+import Image from 'next/image'
+import { faTools } from '@fortawesome/free-solid-svg-icons'
+import { faFantasyFlightGames } from '@fortawesome/free-brands-svg-icons'
+import { faGamepad } from '@fortawesome/free-solid-svg-icons'
+import { faMonero } from '@fortawesome/free-brands-svg-icons'
+import { faMoneyBill } from '@fortawesome/free-solid-svg-icons'
+import { faDiceD20 } from '@fortawesome/free-solid-svg-icons'
+import { faDiceD6 } from '@fortawesome/free-solid-svg-icons'
+import { faDiceFive } from '@fortawesome/free-solid-svg-icons'
+import { faStore } from '@fortawesome/free-solid-svg-icons'
+import { faAlignRight } from '@fortawesome/free-solid-svg-icons'
+import { faCity } from '@fortawesome/free-solid-svg-icons'
 const ProfileImage = dynamic(() => import('../profileImage/ProfileImage'), { ssr: false })
 
 const PreviewUser = () => {
   const { userLogged, logout } = useSystemStore((state => state))
   const [isOpenPreviewProfile, setIsOpenPreviewProfile] = useState(false)
   const router = useRouter()
-  const { picture, name } = userLogged
+  const { picture, name, coins } = userLogged
 
   const handleLogout = () => {
     logout()
@@ -42,7 +54,7 @@ const PreviewUser = () => {
             picture={picture}
           />
           <div className={styles.coins} id="PreviewProfile--Coins">
-            <CoinIcon coins={10} />
+            <CoinIcon coins={coins} />
             {/* <span className={styles.experience}>
               <FontAwesomeIcon icon={faHeartbeat} />
               <span>&nbsp;10/20.500</span>
@@ -53,17 +65,21 @@ const PreviewUser = () => {
             <ol>
               <Link href={`/perfil/${slugify(name)}`}>
                 Mi cuenta
-                <br />
-                {/* <Coins /> */}
+                <div className={styles.coinContent}>
+                  <CoinIcon coins={coins} />
+                </div>
               </Link>
             </ol>
             <ol>
               <Link href={`/desafios-y-ranking`}>
+                <FontAwesomeIcon icon={faGamepad} />
+                {/* <Image className={styles.icon} src="/images/icons/ranking.png" width={20} height={20} /> */}
                 Desafios y Ranking
               </Link>
             </ol>
             <ol>
               <Link href='/usuario/me' as='/usuario/me'>
+                <FontAwesomeIcon icon={faStore} />
                 Soy vendedor
                 <br />
                 {/* <Coins /> */}
@@ -71,33 +87,43 @@ const PreviewUser = () => {
             </ol>
             <ol>
               <Link href='/concursos' as='/concursos'>
+                <FontAwesomeIcon icon={faDiceFive} />
                 Actividades
               </Link>
             </ol>
             <ol>
               <Link href='/transacciones' as='/transacciones'>
+                <FontAwesomeIcon icon={faMoneyBill} />
                 Transacciones
               </Link>
             </ol>
             <ol>
               <Link href='/publicaciones' as='/publicaciones'>
-                Publicaciones
+                Mis Publicaciones
               </Link>
             </ol>
-            <ol onClick={() => handleLogout()}>Salir</ol>
-            <ol>Configuración</ol>
             <ol>
-              Modo nocturno
-              <span style={{ float: 'right', marginTop: '-10px' }}>
-                <Switch
-                  // checked={true}
-                  // onChange={ }
-                  color="primary"
-                  name="checkedB"
-                  inputProps={{ 'aria-label': 'primary checkbox' }}
-                />
-              </span>
+              <a>
+                <FontAwesomeIcon icon={faTools} />
+                Configuración
+              </a>
             </ol>
+            <ol>
+              <a>
+                <FontAwesomeIcon icon={faCity} />
+                Modo nocturno
+                <span style={{ float: 'right', marginTop: '-10px' }}>
+                  <Switch
+                    // checked={true}
+                    // onChange={ }
+                    color="primary"
+                    name="checkedB"
+                    inputProps={{ 'aria-label': 'primary checkbox' }}
+                  />
+                </span>
+              </a>
+            </ol>
+            <ol onClick={() => handleLogout()}>Salir</ol>
           </div>
         </div>
       ) : (
