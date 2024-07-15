@@ -131,6 +131,9 @@
 
         .experience_status {
             margin: 0px auto;
+            @media screen and (max-width: 420px) {
+                margin: 0px auto 10px 20px;
+            }
         }
 
         .fields {
@@ -223,6 +226,7 @@
         right: initial;
         top: -76px;
         width: 100%;
+        z-index: 2;
         &.active {
             top: 76px;
         }

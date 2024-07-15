@@ -136,6 +136,7 @@ const Interface = ({
               IAExpression='happy' />
             <div className='Card'>
               Tienes notificaciones pendientes, da clic y recibe tus premios!
+              <br />
               <a onClick={() => setIsEditProfile(true)}>Personalizar perfil</a>
             </div>
           </div>
