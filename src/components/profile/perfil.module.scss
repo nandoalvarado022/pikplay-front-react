@@ -65,7 +65,7 @@
       }
       > div {
         @media screen and (max-width: 420px) {
-          padding: 24px 0;
+          padding: 0px 0;
         }
       }
     }
@@ -146,7 +146,7 @@
     position: absolute;
     width: 120px;
     @media screen and (max-width: 420px) {
-      display: flex;
+      // display: flex;
       margin: initial;
       position: relative;
       width: 100%;
@@ -154,7 +154,17 @@
         display: none;
       }
     }
+    :global(.IACharacter) {
+      position: absolute;
+      top: 50px;
+      z-index: 2;
+    }
     :global(.Card) {
+      margin-top: 220px;
+      @media screen and (max-width: 420px) {
+        margin-top: 20px;
+        padding-left: 110px;
+      }
       &:before {
         // Flechita del dialogo
         border-bottom: 12px solid #3095b3;

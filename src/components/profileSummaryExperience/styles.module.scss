@@ -69,7 +69,7 @@
         transition: 1s ease-in-out;
         width: 300px;
         @media screen and (max-width: 420px) {
-            // width: calc(100vw - 100px);
+            padding: 20px 0px 0 0px;
             width: initial;
         }
 
