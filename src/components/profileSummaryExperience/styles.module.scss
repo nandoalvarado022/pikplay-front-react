@@ -1,5 +1,6 @@
 .ProfileSummaryExperience {
     display: flex;
+    position: relative;
     @media screen and (max-width: 420px) {
         margin: 0 auto;
     }
@@ -61,9 +62,11 @@
         box-shadow: inset 5px 5px 4px #505050;
         color: white;
         display: flex;
+        height: 409px;
         margin-bottom: 20px;
         padding: 20px 20px 0 20px;
         position: relative;
+        transition: 1s ease-in-out;
         width: 300px;
         @media screen and (max-width: 420px) {
             // width: calc(100vw - 100px);
@@ -83,13 +86,15 @@
         }
 
         .bg {
-            background-image: url(https://t4.ftcdn.net/jpg/03/85/05/53/360_F_385055380_RnAWgJUqaJzqgh8i3aeleBFULJkLoVM6.jpg);
+            // background-image: url(https://t4.ftcdn.net/jpg/03/85/05/53/360_F_385055380_RnAWgJUqaJzqgh8i3aeleBFULJkLoVM6.jpg);
             // background-image: url(https://image.slidesdocs.com/responsive-images/background/purple-gradient-mosaic-character-wind-game-cartoon-powerpoint-background_7de580b73e__960_540.jpg);
+            background-size: cover;
+            background-position: center;
             border-radius: inherit;
             content: "";
             height: 100%;
             left: 0;
-            opacity: 0.1;
+            opacity: 0.3;
             position: absolute;
             top: 0;
             width: 100%;
@@ -189,6 +194,75 @@
                 font-size: 11px;
                 text-align: center;
                 width: 160px;
+            }
+        }
+    }
+}
+
+.EditProfileSummary {
+    background: linear-gradient(45deg, #68b4c8, #19596b);
+    border-radius: 0 10px 10px 0;
+    border: 1px solid #056d82;
+    border-left: transparent;
+    box-shadow: 4px 4px 8px 0px #919191;
+    color: white;
+    height: max-content;
+    opacity: 0;
+    padding: 10px 20px;
+    position: absolute;
+    right: 0;
+    top: 59px;
+    transition: 1s ease-in-out;
+    z-index: 1;
+    @media screen and (max-width: 420px) {
+        // border-left: 1px solid #056d82;
+        border-radius: 0 10px 0px 0;
+        box-sizing: border-box;
+        left: 0px;
+        position: fixed;
+        right: initial;
+        top: -76px;
+        width: 100%;
+        &.active {
+            top: 76px;
+        }
+    }
+    &.active {
+        opacity: 1;
+        right: -222px;
+    }
+    .borderColor {
+        .items {
+            column-gap: 10px;
+            display: flex;
+            margin-top: 5px;
+        }
+        .item {
+            border-radius: 50%;
+            box-shadow: 0px 0px 4px 2px #cdcdcd;
+            cursor: pointer;
+            height: 20px;
+            margin-bottom: 10px;
+            width: 20px;
+        }
+    }
+
+    .backgroundImage {
+        .items {
+            column-gap: 15px;
+            display: flex;
+            margin-top: 5px;
+            @media screen and (max-width: 420px) {
+                // display: block;
+            }
+            .item img {
+                // box-shadow: 0px 0px 4px 2px #cdcdcd;
+                // border: #c93530 4px solid;
+                border-radius: 0 10px;
+                cursor: pointer;
+                height: 50px;
+                margin-bottom: 10px;
+                width: 50px;
             }
         }
     }

@@ -35,6 +35,7 @@ import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummary
 import IACharacter from '../ia/IACharacter'
 import { ChargingStation, EditNote, NotificationAdd, NotificationImportant, Notifications, NotificationsActive, Person, PhonelinkLockOutlined, PowerOffOutlined } from '@mui/icons-material'
 import { Gamepad } from '@mui/icons-material'
+import EditProfileSummary from '../profileSummaryExperience/EditProfileSummary'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -64,6 +65,7 @@ const Interface = ({
 }) => {
   // const handleFavorite = useSelector(state => state.handleFavorite)
   const [value, setValue] = React.useState(0)
+  const [isEditProfile, setIsEditProfile] = useState(false)
   // const [file, setFile] = useState()
   // const { post } = CustomFetch()
   const msgSubirCategoria = (
@@ -134,6 +136,7 @@ const Interface = ({
               IAExpression='happy' />
             <div className='Card'>
               Tienes notificaciones pendientes, da clic y recibe tus premios!
+              <a onClick={() => setIsEditProfile(true)}>Personalizar perfil</a>
             </div>
           </div>
 
@@ -236,7 +239,11 @@ const Interface = ({
           {/* Resumen */}
           <TabPanel value={value} index={0} className="">
             <div className={styles.ProfileSummaryExperience__UserNotifications__Content}>
-              <ProfileSummaryExperience showDetails />
+              <ProfileSummaryExperience
+                isEditProfile={isEditProfile}
+                setIsEditProfile={setIsEditProfile}
+                showDetails
+              />
             </div>
           </TabPanel>
         </div>

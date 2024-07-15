@@ -14,22 +14,24 @@ import { getExperiencesSrv } from '../../services/user/userService'
 import Character from '../ia/IACharacter'
 import PreviewCharacter from '../ia/IACharacter'
 import { useIAStore } from '../ia/IAstore'
+import EditProfileSummary from './EditProfileSummary'
 
 const ProfileSummaryExperience = (props) => {
-  const { isUserLogued, userInfoData, showDetails } = props
+  const { isEditProfile, userInfoData, setIsEditProfile, showDetails } = props
+  // userInfoData: Props que se utiliza para mostrar la información de un usuario en particular
   const gainedCoins = 5
   const currentUserCoins = 10
-  const { userLogged } = useSystemStore()
+  const userLogged = useSystemStore(state => state.userLogged)
   const {
     backgroundColor,
+    backgroundImage,
     exp,
     insignia,
     name,
     picture,
     coins,
     league,
-  } = isUserLogued ? userLogged : userInfoData
-
+  } = userInfoData ? userInfoData : userLogged
   useEffect(() => {
     const element = document.querySelector('.ProfileSummaryExperience .number-coins')
     const fromNumber = element?.innerHTML
@@ -43,6 +45,7 @@ const ProfileSummaryExperience = (props) => {
 
   return (
     <div className={classNames("ProfileSummaryExperience", { [styles.ProfileSummaryExperience]: true })}>
+      {userLogged.uid && <EditProfileSummary isEditProfile={isEditProfile} setIsEditProfile={setIsEditProfile} />}
       <div>
         <div className={`shine ${styles[league]} ${league == 'oro' && 'starsFallingDown'} ${styles.full_name}`}>
           <span>{name}</span>
@@ -53,7 +56,7 @@ const ProfileSummaryExperience = (props) => {
           </div> */}
         </div>
         <div className={`${styles[league]} ${styles.box}`} style={{ background: backgroundColor }}>
-          <div className={styles.bg}></div>
+          <div asd={backgroundImage} className={styles.bg} style={{ backgroundImage: `url( ${backgroundImage})` }}></div>
           <div className={styles.left}>
             <ProfileImage picture={picture} />
             <br />

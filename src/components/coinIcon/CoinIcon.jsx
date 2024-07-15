@@ -13,7 +13,6 @@ import classNames from 'classnames'
 // }
 
 const CoinIcon = ({ coins, isLabel, hideNumber, multicoin, textColor }) => {
-  const [isAnimate, setIsAnimate] = useState(false)
   // coins = 100 //coins ? coins : useSelector(state => state.coins)
   const prevCountCoins = useRef()
 
@@ -26,13 +25,6 @@ const CoinIcon = ({ coins, isLabel, hideNumber, multicoin, textColor }) => {
   useEffect(() => {
     // getCoins()
   }, [])
-
-  const animate = () => {
-    setIsAnimate(true)
-    setTimeout(() => {
-      setIsAnimate(false)
-    }, 2000)
-  }
 
   const animateValue = (start, end, duration) => {
     let startTimestamp = null
@@ -50,17 +42,16 @@ const CoinIcon = ({ coins, isLabel, hideNumber, multicoin, textColor }) => {
   useEffect(() => {
     const initialCoins = 0
     animateValue(previousCoins, initialCoins, 1000)
-    animate()
   }, [])
 
   return (
     <div
       className={classNames("Coins", {
         [styles.Coins]: true,
-        [styles.animatedZoom]: isAnimate
+        [styles.animatedZoom]: true,
+        [styles.animated]: true
       }
-      )}
-      onMouseEnter={animate}>
+      )}>
       {!hideNumber && <span
         className={`f-s-14 ${styles.number} number`}
         style={{ color: textColor ? textColor : '#e5961d' }}>

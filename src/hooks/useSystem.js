@@ -38,7 +38,9 @@ const useSystemStore = create((set, get) => ({
         localStorage.setItem([property], JSON.stringify(value))
         set({ [property]: value })
     },
-    setUserLogged: (user) => set({ userLogged: user })
+    setUserLogged: (data) => {
+        set(state => ({ userLogged: { ...state.userLogged, ...data } }))
+    }
 }));
 
 export default useSystemStore

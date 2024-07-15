@@ -6,8 +6,10 @@
   &.animated {
     .coin {
       animation:
-        rotate 0.5s steps(6) infinite,
-        appear 1s steps(1);
+        rotate 0.6s steps(6) 2,
+        appear 2s ease-in-out,
+        pause 5s;
+      // animation-iteration-count: infinite;
     }
   }
   .coin {
@@ -63,7 +65,19 @@
   40% {
     top: 0px;
   }
+  50% {
+    top: -15px;
+  }
+  70% {
+    top: 0px;
+  }
+}
+
+@keyframes pause {
+  0% {
+    opacity: 1;
+  }
   100% {
-    top: -20px;
+    opacity: 1;
   }
 }

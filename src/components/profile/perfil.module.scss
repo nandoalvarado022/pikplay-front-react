@@ -146,7 +146,13 @@
     position: absolute;
     width: 120px;
     @media screen and (max-width: 420px) {
-      display: none;
+      display: flex;
+      margin: initial;
+      position: relative;
+      width: 100%;
+      :global(.circle) {
+        display: none;
+      }
     }
     :global(.Card) {
       &:before {

@@ -77,11 +77,10 @@ const CustomFetch = () => {
       headers,
       body
     })
-      .then(res => {
-        return res.json()
-      })
-      .then(json => {
-        return json
+      .then(async res => {
+        const json = await res.json()
+        const formated = convertResponse(json);
+        return formated
       })
       .catch(error => {
         console.error(`Error al obtener datos desde el servicio para la ruta ${path} method GET}`);
