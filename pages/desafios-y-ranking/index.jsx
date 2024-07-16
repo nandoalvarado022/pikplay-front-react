@@ -9,7 +9,7 @@ import Ranking from './Ranking'
 import Layout from '../../src/components/layout/Layout'
 
 const ChallengesRanking = () => {
-  const [value, setValue] = useState()
+  const [value, setValue] = useState(0)
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }

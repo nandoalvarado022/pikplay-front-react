@@ -786,6 +786,7 @@ body {
 }
 
 * {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
   font-display: swap;
   outline: none !important;
   &::-webkit-scrollbar-track {

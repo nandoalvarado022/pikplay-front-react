@@ -204,7 +204,7 @@
 
 .EditProfileSummary {
     background: white;
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 20px 20px 0;
     box-shadow: 4px 4px 8px 0px #92919129;
     color: white;
     height: max-content;
@@ -216,9 +216,9 @@
     transition: 1s ease-in-out;
     z-index: 1;
     @media screen and (max-width: 420px) {
-        border-radius: 10px 10px 0px 0;
+        border-radius: 20px 20px 0px 0;
         box-shadow: 4px 4px 8px 0px #929191;
-        bottom: 0;
+        bottom: -240px;
         box-sizing: border-box;
         left: 0px;
         padding: 10px 0 20px;
@@ -251,6 +251,10 @@
     }
 
     .borderColor {
+        align-items: center;
+        column-gap: 20px;
+        display: flex;
+        justify-content: center;
         margin: 10px auto 0;
         padding: 10px 0;
         text-align: center;
@@ -276,10 +280,14 @@
     }
 
     .backgroundImage {
+        display: flex;
         margin: 0px auto;
         padding: 0px 0 10px;
         text-align: center;
         width: max-content;
+        align-items: center;
+        column-gap: 20px;
+        justify-content: center;
         .items {
             column-gap: 15px;
             display: flex;

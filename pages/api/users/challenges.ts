@@ -2,6 +2,17 @@ export default function handler(req, res) {
     const response = [
         {
             "completed": false,
+            "detail": "",
+            "id": 1,
+            "reward": "",
+            "rewardImage": "/images/icons/gif.svg",
+            "title": "Prueba el modo oscuro",
+            buttonText: "Regalo sorpresa",
+            height: 60,
+            width: 60,
+        },
+        {
+            "completed": false,
             "detail": "Realiza 20 compras en nuestro sitio, c/u debe ser por mínimo 100 mil pesos",
             "id": 1,
             "reward": "",
