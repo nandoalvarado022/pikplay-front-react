@@ -1,6 +1,6 @@
 import styles from './styles.module.scss'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import Login from '../login/Login'
@@ -25,6 +25,7 @@ import { faDiceFive } from '@fortawesome/free-solid-svg-icons'
 import { faStore } from '@fortawesome/free-solid-svg-icons'
 import { faAlignRight } from '@fortawesome/free-solid-svg-icons'
 import { faCity } from '@fortawesome/free-solid-svg-icons'
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
 const ProfileImage = dynamic(() => import('../profileImage/ProfileImage'), { ssr: false })
 
 const PreviewUser = () => {
@@ -44,7 +45,8 @@ const PreviewUser = () => {
 
   return (
     <div
-      className={`${styles.PreviewUser} PreviewUser ${isOpenPreviewProfile ? styles.actived : null}`}>
+      className={`${styles.PreviewUser} PreviewUser ${isOpenPreviewProfile ? styles.actived : null}`}
+    >
       {userLogged.uid ? (
         <div>
           <ProfileImage
@@ -61,7 +63,7 @@ const PreviewUser = () => {
             </span> */}
           </div>
           <div className={styles.bg_white}></div>
-          <div className={styles.bg_black}>
+          <div id="bg_black" className={styles.bg_black}>
             <ol>
               <Link href={`/perfil/${slugify(name)}`}>
                 Mi cuenta
@@ -112,7 +114,7 @@ const PreviewUser = () => {
               <a>
                 <FontAwesomeIcon icon={faCity} />
                 Modo nocturno
-                <span style={{ float: 'right', marginTop: '-10px' }}>
+                <span style={{ marginLeft: '20px' }}>
                   <Switch
                     // checked={true}
                     // onChange={ }
@@ -123,8 +125,14 @@ const PreviewUser = () => {
                 </span>
               </a>
             </ol>
-            <ol onClick={() => handleLogout()}>Salir</ol>
+            <ol onClick={() => handleLogout()}>
+              <a>
+                <FontAwesomeIcon icon={faPowerOff} />
+                Salir
+              </a>
+            </ol>
           </div>
+          <div className={styles.elementToCloseBgBlack} onClick={() => setIsOpenPreviewProfile(false)}></div>
         </div>
       ) : (
         <Login />
