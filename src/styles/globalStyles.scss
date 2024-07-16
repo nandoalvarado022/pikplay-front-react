@@ -787,7 +787,7 @@ body {
 
 * {
   font-display: swap;
-  outline: none;
+  outline: none !important;
   &::-webkit-scrollbar-track {
     background-color: #f4f4f4;
   }
