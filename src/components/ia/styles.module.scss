@@ -116,13 +116,12 @@
             }
             .buttons {
                 display: flex;
-                justify-content: end;
+                justify-content: start;
                 margin: 20px 10px 0 10px;
                 flex-wrap: wrap;
-
-                button {
-                    // border: 1px solid #d0d0d0;
-                    // color: #19596b;
+                button button {
+                    padding: 6px 4px;
+                    text-align: left;
                 }
             }
             input {

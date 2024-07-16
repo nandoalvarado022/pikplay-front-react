@@ -1,11 +1,7 @@
 .Referrals {
     color: white;
-    display: flex;
+    // display: flex;
     justify-content: space-around;
-    :global(.Card) {
-        background: #00000057;
-        margin: 0;
-    }
     h2 {
         color: white;
     }

@@ -44,7 +44,7 @@ const Options = ({ handleUserMessage, set, options }) => {
     <Button color='transparent' onClick={() => handleUserMessage('referrals', set, options)}>
       Referidos
     </Button>
-    <Button color='transparent' onClick={() => handleUserMessage('initial', set, options)}>
+    <Button color='transparent' onClick={() => handleUserMessage('welcome', set, options)}>
       Más opciones
     </Button>
   </>

@@ -22,12 +22,6 @@ const IA = (props) => {
         IAHTMLMessage,
     } = useIAStore((state => state))
 
-    useEffect(() => {
-        // setTimeout(() => {
-        //     handleUserMessage("initial")
-        // }, 1000)
-    }, [])
-
     return <div className={`${styles.IAElement} ${!isVisible ? styles.hide : null} `}>
         <div className={styles.box}>
             <div className={styles.title}>

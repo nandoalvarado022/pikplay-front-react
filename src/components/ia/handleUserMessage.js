@@ -4,7 +4,8 @@ import CoinIcon from '../coinIcon/CoinIcon'
 import ReactTyped from 'react-typed'
 import Link from 'next/link'
 import { Message as IAMessageWelcome, Options as IAOptionsWelcome, HTML as HTMLwelcome } from './responses/welcome'
-import HTMLReferrals, { Message as IAMessageReferrals, Options as IAOptionsReferrals } from './responses/referrals/referrals'
+import { Message as IAMessageReferrals, Options as IAOptionsReferrals } from './responses/referrals/referrals'
+import HTMLAddReferrals, { Message as IAMessageAddReferrals, Options as IAOptionsAddReferrals } from './responses/referrals/addReferral'
 import { Message as IAMessageCompetition, Options as IAOptionsCompetition } from './responses/competition/competition'
 import { Message as IAMessageCompetition_Yes, Options as IAOptionsCompetition_Yes } from './responses/competition/yes/yes'
 import { Message as IAMessageCompetition_Yes_Taken, Options as IAOptionsCompetition_Yes_Taken } from './responses/competition/yes/taken'
@@ -35,10 +36,15 @@ export const handleUserMessage = (mensaje, set, options) => {
         case 'referrals':
             IAMessageSelected = IAMessageReferrals
             IAOptionsSelected = IAOptionsReferrals
-            IAHTMLMessageSelected = <HTMLReferrals />
             break;
 
-        case 'welcome':
+        case 'referrals/add':
+            IAMessageSelected = IAMessageAddReferrals
+            IAOptionsSelected = IAOptionsAddReferrals
+            IAHTMLMessageSelected = <HTMLAddReferrals />
+            break;
+
+        case 'guide':
             IAMessageSelected = IAMessageWelcome
             IAOptionsSelected = IAOptionsWelcome
             IAHTMLMessageSelected = HTMLwelcome
@@ -108,9 +114,9 @@ export const handleUserMessage = (mensaje, set, options) => {
 
         case 'playstation/juegos-gratis':
             IAMessageSelected = `Los juegos gratis de Diciembre son: <br /> <br />
-              1. GTA V < br />
-                  2. Juego 2 < br />
-                      3. Juego 3 < br /> `
+            1. GTA V < br />
+            2. Juego 2 < br />
+            3. Juego 3 < br /> `
             IAOptionsSelected = <>
                 <Button color='transparent' onClick={() => handleUserMessage('inicio')}>
                     Volver al inicio
@@ -134,6 +140,7 @@ export const handleUserMessage = (mensaje, set, options) => {
             break;
 
         default:
+            IAHTMLMessageSelected = null
             IAExpressionSelected = 'happy'
             IAMessageSelected = IAMessageDefault
             IAOptionsSelected = IAOptionsDefault
@@ -145,6 +152,7 @@ export const handleUserMessage = (mensaje, set, options) => {
     set({ IAMessage: loadingMessage, IAHTMLMessage: null }) // Seeting the loading message
     setTimeout(() => {
         set({
+            isVisible: true,
             IAMessage: IAMessageSelected ? <ReactTyped strings={[IAMessageSelected]} typeSpeed={20} /> : null,
             IAOptions: optionsMiddleWare(IAOptionsSelected, set, options),
             IAExpression: IAExpressionSelected,

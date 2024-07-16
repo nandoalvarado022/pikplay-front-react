@@ -1,5 +1,6 @@
 import styles from './styles.module.scss'
 
+import React, { useEffect } from 'react'
 import useSystemStore from '../../hooks/useSystem'
 import Button from '../button/Button'
 import CloseButton from '../closeButton/CloseButton'
@@ -23,8 +24,15 @@ const EditProfileSummary = (props) => {
 		setUserLogged(data);
 	}
 
+	useEffect(() => {
+		const source = document.getElementById("draggable");
+		source.addEventListener("drag", (event) => {
+			console.log("dragging");
+		});
+	}, [])
+
 	return <div className={`${isEditProfile ? styles.active : ''} ${styles.EditProfileSummary}`}>
-		<div className={styles.topLine} onClick={() => setIsEditProfile(false)}></div>
+		<div id="draggable" draggable="true" className={styles.topLine} onDrag={() => setIsEditProfile(false)} onClick={() => setIsEditProfile(false)}></div>
 		{/* <CloseButton onClick={() => setIsEditProfile(false)} /> */}
 		<div className={styles.borderColor}>
 			<label htmlFor="">Color del borde</label>

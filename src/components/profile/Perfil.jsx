@@ -36,6 +36,7 @@ import IACharacter from '../ia/IACharacter'
 import { ChargingStation, EditNote, NotificationAdd, NotificationImportant, Notifications, NotificationsActive, Person, PhonelinkLockOutlined, PowerOffOutlined } from '@mui/icons-material'
 import { Gamepad } from '@mui/icons-material'
 import EditProfileSummary from '../profileSummaryExperience/EditProfileSummary'
+import { faPaintBrush } from '@fortawesome/free-solid-svg-icons'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -137,7 +138,10 @@ const Interface = ({
             <div className='Card'>
               Tienes notificaciones pendientes, da clic y recibe tus premios!
               <br />
-              <a onClick={() => setIsEditProfile(true)}>Personalizar perfil</a>
+              <a onClick={() => setIsEditProfile(true)}>
+                <FontAwesomeIcon icon={faPaintBrush} style={{ margin: "5px 5px 0 0" }} />
+                Personalizar perfil
+              </a>
             </div>
           </div>
 

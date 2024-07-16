@@ -9,8 +9,7 @@ import { initGA, logPageView } from '../../../public/analytics'
 import { register } from 'next-offline/runtime'
 import useSystemStore from '../../hooks/useSystem.js'
 import Body from './Body.jsx'
-import { useIAStore } from '../ia/IAstore.jsx'
-import { dragElement } from '../../lib/utils.js'
+import { useIAStore } from '../ia/IAstore.js'
 
 toastr.options.timeOut = 10000
 

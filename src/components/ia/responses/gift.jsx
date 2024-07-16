@@ -15,7 +15,7 @@ const Options = (handleUserMessage, set) => {
         <Button color='transparent' onClick={() => handleUserMessage('')}>
             Más de 18 años
         </Button>
-        <Button color='transparent' onClick={() => handleUserMessage('inicio')}>
+        <Button color='transparent' onClick={() => handleUserMessage('welcome')}>
             Volver al inicio
         </Button>
     </>
