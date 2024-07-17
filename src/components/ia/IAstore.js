@@ -8,7 +8,7 @@ const checkIAMessage = (set, IAMessage) => {
   if (IAMessage) return false // Si ya hay un mensaje mostrandose en IA, entonces no se muestra otro
   if (message) {
     handleUserMessage(message, set)
-  } else handleUserMessage('referrals', set)
+  }
 }
 
 const setIAMessage = (message, options, set) => {
@@ -30,7 +30,7 @@ export const useIAStore = create((set, get) => ({
   isVisible: false,
   IAMessage: null,
   IAExpression: 'happy',
-  IAHTMLMessage: 'asdasdasd',
+  IAHTMLMessage: null,
   numberChosen: null,
   handleUserMessage: (message, options) => middleHandleUserMessage(message, set, options),
   setIAMessage: (message, options) => setIAMessage(message, options, set),

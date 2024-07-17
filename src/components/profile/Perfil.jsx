@@ -139,7 +139,7 @@ const Interface = ({
               Tienes notificaciones pendientes, da clic y recibe tus premios!
               <br />
               <a onClick={() => setIsEditProfile(true)}>
-                <FontAwesomeIcon icon={faPaintBrush} style={{ margin: "5px 5px 0 0" }} />
+                <FontAwesomeIcon className='icon' icon={faPaintBrush} style={{ margin: "5px 5px 0 0" }} />
                 Personalizar perfil
               </a>
             </div>

@@ -19,7 +19,7 @@ const MenuMovil = () => {
   // const user = useSelector(state => state.user)
   const { userLogged } = useSystemStore((state => state))
   const {
-    setIsvisible,
+    handleUserMessage,
   } = useIAStore((state => state))
 
   return (
@@ -61,7 +61,7 @@ const MenuMovil = () => {
       </ol>
       <motion.ol
         className={styles.mainOption}
-        onClick={() => setIsvisible(true)}
+        onClick={() => handleUserMessage('welcome')}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.8 }}>
         <a>
