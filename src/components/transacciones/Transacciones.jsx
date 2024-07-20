@@ -116,10 +116,10 @@ const Transacciones = props => {
   // }
 
   const getTransactions = () => {
-    getTransactionsSrv()
-      .then(({ data, status }) => {
-        if (status != 500) setTransactions(data)
-      })
+    // getTransactionsSrv()
+    //   .then(({ data, status }) => {
+    //     if (status != 500) setTransactions(data)
+    //   })
   }
 
   return (

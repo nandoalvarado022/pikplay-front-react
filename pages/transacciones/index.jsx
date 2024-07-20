@@ -23,8 +23,8 @@ export default function TransaccionesContainer(props) {
 export const getServerSideProps = async ctx => {
   // const { statusCode } = await validateTokenSrv(ctx)
   // if (statusCode === 403) {
-  const { token } = ctx.req.cookies
-  const res = await validateTokenSrv({ token })
+  const token = ctx.req.cookies["X-Auth-Token"] || null
+  const res = await validateTokenSrv(ctx)
   if (!res) {
     return {
       redirect: {

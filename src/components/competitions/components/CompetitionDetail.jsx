@@ -193,6 +193,7 @@ const CompetitionDetail = (props) => {
         {...{
           competitionDetail,
           deleteNotPaidNumbers,
+          setCompetitionDetail,
           setShowMembersNames,
         }}
       />

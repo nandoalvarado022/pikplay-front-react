@@ -9,6 +9,7 @@ import UserNotifications from '../userNotifications/UserNotifications'
 import VARS from '../../lib/variables'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CustomFetch from '../fetch/CustomFetch'
+import Joyride from 'react-joyride'
 import {
   Box,
   Chip,
@@ -67,6 +68,16 @@ const Interface = ({
   // const handleFavorite = useSelector(state => state.handleFavorite)
   const [value, setValue] = React.useState(0)
   const [isEditProfile, setIsEditProfile] = useState(false)
+  const steps = [
+    {
+      target: '.starsFallingDown',
+      content: 'Este es tu nickname, puedes cambiarlo en cualquier momento',
+    },
+    // {
+    //   target: '.my-other-step',
+    //   content: 'This another awesome feature!',
+    // },
+  ]
   // const [file, setFile] = useState()
   // const { post } = CustomFetch()
   const msgSubirCategoria = (
@@ -118,6 +129,7 @@ const Interface = ({
 
   return (
     <section className={`page ${styles.Perfil}`}>
+      <Joyride steps={steps} />
       <div className={styles.content}>
         <div className={classNames('Card', styles['profile-content'])}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

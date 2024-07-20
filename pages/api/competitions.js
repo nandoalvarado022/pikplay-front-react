@@ -1,15 +1,16 @@
 export default function handler(req, res) {
     const response = [
         {
-            "id": 3,
-            "title": "Act 34 Consola Multi-Juegos",
-            "slug": "test-1",
-            "is_active": true,
-            "description": "la mejor",
-            "created_at": "2024-01-17T02:56:34.000Z",
-            "user_id": 2,
             "available_numbers": 82,
+            "created_at": "2024-01-17T02:56:34.000Z",
+            "description": "la mejor",
+            "id": 3,
             "image": "/images/others/ps5.png",
+            "is_active": true,
+            "slug": "test-1",
+            "title": "Act 34 Consola Multi-Juegos",
+            "user_id": 2,
+            members_capacity: 52,
             "members": [
                 {
                     "id": 58,
@@ -39,15 +40,16 @@ export default function handler(req, res) {
             }
         },
         {
-            "id": 3,
-            "title": "Act 33 Playstation 5",
-            "slug": "test-1",
-            "is_active": true,
-            "description": "la mejor",
-            "created_at": "2024-01-17T02:56:34.000Z",
-            "user_id": 2,
             "available_numbers": 82,
+            "created_at": "2024-01-17T02:56:34.000Z",
+            "description": "la mejor",
+            "id": 3,
             "image": "/images/others/ps5.png",
+            "is_active": true,
+            "slug": "test-1",
+            "title": "Act 33 Playstation 5",
+            "user_id": 2,
+            members_capacity: 52,
             "members": [
                 {
                     "id": 58,

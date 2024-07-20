@@ -7,6 +7,12 @@ import CompetitionsList from '../../src/components/competitions/components/Compe
 import useCompetitions from '../../src/components/competitions/hooks/useCompetitions'
 import CompetitionDetail from '../../src/components/competitions/components/CompetitionDetail'
 import { isEmpty } from '../../src/lib/utils'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ArrowBack } from '@mui/icons-material'
+import { ArrowBackIos } from '@mui/icons-material'
+import { ArrowBackIosNew } from '@mui/icons-material'
+import { ArrowBackIosNewOutlined } from '@mui/icons-material'
+import Link from 'next/link'
 
 const ConcursosPage = () => {
   const {
@@ -52,7 +58,12 @@ const ConcursosPage = () => {
     <div className={styles.CompetitionsComponent}>
       <Layout title="Concursos">
         <section className="page">
-          <h2 className="main">Concursos</h2>
+          <div className="contentTitle">
+            <Link href='/'>
+              <ArrowBackIosNew className='icon backIcon' />
+            </Link>
+            <h2 className="main">Concursos</h2>
+          </div>
           {/* competitionDetail: {JSON.stringify(competitionDetail)} */}
           <Card>
             <Tabs

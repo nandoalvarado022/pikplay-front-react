@@ -1,17 +1,18 @@
 export default function handler(req, res) {
     res.status(200).json({
         "id": 3,
-        "title": "Act 3. Playstation 5 Slim",
-        "slug": "test-3",
-        "description": "la mejor",
-        "created_at": "2024-01-17T02:56:34.000Z",
-        "is_active": true,
-        "date_release_quotas": "Sábado 12 de Junio",
-        "award": "Playstation 5 Slim 1 TB",
-        "quota_value": 25900,
-        "uid": 2,
         "available_numbers": 82,
+        "award": "Playstation 5 Slim 1 TB",
+        "created_at": "2024-01-17T02:56:34.000Z",
+        "date_release_quotas": "Sábado 12 de Junio",
+        "description": "la mejor",
         "image": "/images/others/ps5.png",
+        "is_active": true,
+        "quota_value": 25900,
+        "slug": "test-3",
+        "title": "Act 3. Playstation 5 Slim",
+        "uid": 2,
+        members_capacity: 52,
         "members": [
             {
                 "id": 113,

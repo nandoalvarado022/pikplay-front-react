@@ -23,8 +23,7 @@ const Body = ({ children, isReady, userLogged, notifications }) => {
         [styles.main]: true,
         [styles.AppComponent]: true,
         [styles.ready]: isReady,
-      })}
-    >
+      })}>
       <CustomHeader />
       {false && (
         <div className={styles.announcement}>
@@ -45,8 +44,7 @@ const Body = ({ children, isReady, userLogged, notifications }) => {
         className='a_whatsapp'
         href='https://api.whatsapp.com/send?phone=573054202450&text=Hola Pikplay, tengo una consulta sobre los servicios que ofrecen a los Gamers en Colombia'
         target='_BLANK'
-        rel="noreferrer"
-      >
+        rel="noreferrer">
         <button className={styles['btn-whatsapp']}>
           <Image
             className={styles['we-are-here']}
