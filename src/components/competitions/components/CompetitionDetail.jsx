@@ -1,7 +1,8 @@
+import styles from '../styles.module.scss'
+
 import React, { useEffect, useState, useRef } from 'react'
 import { useIAStore } from '../../ia/IAstore'
-import { Checkbox, Divider, FormControlLabel, List, ListItem, ListItemText, Tooltip } from '@mui/material'
-import styles from '../styles.module.scss'
+import { Alert, Checkbox, Divider, FormControlLabel, List, ListItem, ListItemText, Tooltip } from '@mui/material'
 import useCompetitions from '../hooks/useCompetitions'
 import Button from '../../button/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,6 +12,11 @@ import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
 import { faGrinHearts } from '@fortawesome/free-solid-svg-icons'
 import { formatNumber } from '../../../lib/utils'
 import AdminActions from './AdminActions'
+import { Gif } from '@mui/icons-material'
+import { GifBox } from '@mui/icons-material'
+import { GifBoxSharp } from '@mui/icons-material'
+import { CardGiftcard } from '@mui/icons-material'
+import { Money } from '@mui/icons-material'
 
 const CompetitionDetail = (props) => {
   const {
@@ -18,7 +24,11 @@ const CompetitionDetail = (props) => {
     // competitionMembers,
     setCompetitionDetail,
     // setCompetitionMembers,
+    userPicture,
+    uidLogged,
   } = props
+
+  const { availableNumbers, price, title } = competitionDetail
 
   const {
     handleUserMessage,
@@ -44,7 +54,7 @@ const CompetitionDetail = (props) => {
   const [updatingIn, setUpdatingIn] = useState(null)
   const [numbersList, setNumbersList] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [availableNumbers, setAvailableNumbers] = useState(0)
+  // const [availableNumbers, setAvailableNumbers] = useState(0)
   const [count, setCount] = useState(0);
   const refButtonUpdateDash = useRef()
   // const interval = useRef();
@@ -79,8 +89,8 @@ const CompetitionDetail = (props) => {
     setNumbersList(_numbersList)
     setIsLoading(false)
     // Seteando números disponibles
-    const _availableNumbers = competitionDetail.membersCapacity - competitionMembers.length
-    setAvailableNumbers(_availableNumbers)
+    // const _availableNumbers = competitionDetail.membersCapacity - competitionMembers.length
+    // setAvailableNumbers(_availableNumbers)
   }
 
   const initVisualInterval = (myVisualInterval) => {
@@ -133,26 +143,32 @@ const CompetitionDetail = (props) => {
         <span>Últimos movimientos:</span>
         <Marquee />
       </div>
-      <button ref={refButtonUpdateDash} className={styles.btnUpdateDashboard} onClick={handleUpodateDashboard}>
-        Actualizar tablero<br />
-      </button>
-      {updatingIn && <small>Automaticamente en {updatingIn}</small>}
+      <Alert severity="info" className={styles.alert}>
+        <button ref={refButtonUpdateDash} className={styles.btnUpdateDashboard} onClick={handleUpodateDashboard}>
+          Actualizar tablero<br />
+        </button>
+        {updatingIn && <small>Automaticamente en {updatingIn}</small>}
+      </Alert>
       <div className={styles.controlAvailablenumbers}>
         <FormControlLabel
-          control={
-            <Checkbox id="check_available_numbers" value={isOnlyAvailableNumbers} onClick={(e) => settingTakenNumbers(competitionMembers)} />
-          }
+          control={<Checkbox id="check_available_numbers" value={isOnlyAvailableNumbers} onClick={(e) => settingTakenNumbers(competitionMembers)} />}
           label="Mostrar sólo números disponibles" />
       </div>
       <div className={`Card ${styles.contentItems}`} style={{ display: 'flex', flexWrap: 'wrap' }}>
         {
           // Iterando los numeros de la actividad
           numbersList.map((item, ind) => {
+            const { uid } = item
             return !item.hidden ? <Tooltip key={ind} title={`Reservar el número ${ind}`}>
               <div
                 className={`${styles.item} ${styles[item.status]} ${selectedNumber == ind && styles.selected}`}
                 onClick={() => item.status != 'blocked' ? handleClick(ind) : null}>
-                <div>{ind}</div>
+                {uid != ind && <div>
+                  {ind}
+                </div>}
+                {uid == uidLogged && <div className={styles.takenByMe}>
+                  <img src={userPicture} />
+                </div>}
                 <div>{item.name}</div>
               </div>
             </Tooltip> : <></>
@@ -175,17 +191,23 @@ const CompetitionDetail = (props) => {
       </div>
 
       <p className={`Card flex ${styles.description}`}>
+        <div><b>{title}</b></div>
         <div>
-          <div>Premio: {competitionDetail?.award}</div>
-          <div>Liberación de cupos el {competitionDetail?.dateReleaseQuotas}</div>
-          <div>Total números disponibles:
-            <span className={styles.availableNumbers}>
-              {availableNumbers}
-            </span>
-          </div>
-          <div>
-            Valor de la boleta: ${formatNumber(competitionDetail?.price)}
-          </div>
+          <CardGiftcard />
+          {competitionDetail?.award}
+        </div>
+        <div>
+          <span className={styles.availableNumbers}>
+            {availableNumbers}
+          </span>
+          números disponibles
+        </div>
+        <div>
+          <Money />
+          <span>${formatNumber(price)}</span>
+        </div>
+        <div>
+          <small>Liberación de cupos el {competitionDetail?.dateReleaseQuotas}</small>
         </div>
       </p>
       <Divider />

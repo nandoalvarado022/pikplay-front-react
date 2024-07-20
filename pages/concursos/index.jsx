@@ -13,6 +13,7 @@ import { ArrowBackIos } from '@mui/icons-material'
 import { ArrowBackIosNew } from '@mui/icons-material'
 import { ArrowBackIosNewOutlined } from '@mui/icons-material'
 import Link from 'next/link'
+import useSystemStore from '../../src/hooks/useSystem'
 
 const ConcursosPage = () => {
   const {
@@ -26,6 +27,8 @@ const ConcursosPage = () => {
     setCompetitionDetail,
     setCompetitionMembers,
   } = useCompetitions()
+
+  const { userLogged: { picture: userPicture, uid: uidLogged } } = useSystemStore()
 
   const [value, setValue] = useState(0)
   const handleChange = (event, newValue) => {
@@ -92,7 +95,9 @@ const ConcursosPage = () => {
                     competitionMembers,
                     setCompetitionMembers,
                     setSelectedNumber,
-                    selectedNumber
+                    selectedNumber,
+                    userPicture,
+                    uidLogged,
                   }}
                 />}
             </TabPanel>

@@ -27,8 +27,7 @@ const Categorias = props => {
               <Link
                 scroll={scroll}
                 href='/categoria/[id]'
-                as={'/categoria/' + slugify(category.name)}
-              >
+                as={'/categoria/' + slugify(category.name)}>
                 {!!image && <img src={image} alt={category.name} />}
                 {category.name}
               </Link>

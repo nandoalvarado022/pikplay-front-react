@@ -4,15 +4,17 @@
     @media screen and (max-width: 420px) {
       width: auto;
     }
+    .alert {
+      .btnUpdateDashboard {
+        background-color: transparent;
+        border: none;
+        text-decoration: underline;
+      }
+    }
     .controlAvailablenumbers {
       span {
         font-size: 14px;
       }
-    }
-    .btnUpdateDashboard {
-      background-color: white;
-      border: none;
-      text-decoration: underline;
     }
   }
 
@@ -167,12 +169,20 @@
       @media screen and (max-width: 420px) {
         display: block;
       }
+      > div {
+        align-items: center;
+        column-gap: 4px;
+        display: flex;
+        margin: 4px 0;
+      }
       .availableNumbers {
         background-color: #3c68b1;
         border-radius: 50%;
         color: white;
-        margin-left: 5px;
+        line-height: 20px;
         padding: 5px;
+        text-align: center;
+        width: 20px;
       }
       .actions {
         button {
@@ -185,6 +195,7 @@
       align-items: center;
       height: max-content;
       justify-content: center;
+      padding: 8px 0;
       .item {
         border: dashed 1px #3095b3;
         border-radius: 8px;
@@ -238,7 +249,7 @@
     position: relative;
     width: 600px;
     @media screen and (max-width: 420px) {
-      bottom: 50px;
+      bottom: 44px;
       height: initial;
       position: fixed;
       z-index: 2;

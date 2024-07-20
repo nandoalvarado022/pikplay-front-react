@@ -7,8 +7,9 @@ export default function handler(req, res) {
             "id": 3,
             "image": "/images/others/ps5.png",
             "is_active": true,
+            price: 32000,
             "slug": "test-1",
-            "title": "Act 34 Consola Multi-Juegos",
+            "title": "Act 1. Consola Multi-Juegos",
             "user_id": 2,
             members_capacity: 52,
             "members": [
@@ -18,7 +19,8 @@ export default function handler(req, res) {
                     "slug": "test-1",
                     "description": "la mejor",
                     "created_at": "2024-05-27T03:23:13.000Z",
-                    "user_id": "1",
+                    "user_id": 2,
+                    "uid": 2,
                     "competition_id": 3,
                     "number": 12,
                     "is_paid": 1

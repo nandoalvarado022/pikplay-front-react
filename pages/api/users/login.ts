@@ -45,7 +45,7 @@ export default function handler(req, res) {
             phone: "573187414972",
             picture: "https://pikplay-bucket.nyc3.cdn.digitaloceanspaces.com/users/1710547479718-descarga.jpeg",
             token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjU3MzE4NzQxNDk3MiIsImNvZGUiOjExMzEsImlhdCI6MTcyMDI3NDQ0MSwiZXhwIjoxNzIwMjc0NTAxfQ.14F8g_YRrfeXbzR6tWIGirhvwTNeImiU7hpaQ9th9nY",
-            uid: 1,
+            uid: 2,
         },
         "message": "Ingresó con exito"
     }

@@ -88,7 +88,6 @@
       margin: 10px 0;
       padding: 0 20px 10px;
       text-align: left;
-
       &:nth-of-type(1) {
         // margin-top: 20px;
       }
@@ -96,6 +95,10 @@
       a {
         color: white !important;
         justify-content: flex-start;
+        @media screen and (max-width: 420px) {
+          display: flex;
+          align-items: center;
+        }
         .icon {
           margin-right: 10px;
         }
