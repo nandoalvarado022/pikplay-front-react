@@ -86,15 +86,10 @@ const useCompetitions = () => {
   }
 
   useEffect(() => {
-    console.log("competitionDetail updated!");
-  }, [competitionDetail])
-
-  useEffect(() => {
     console.log("competitionMembers updated!");
   }, [competitionMembers])
 
   return {
-    competitionDetail,
     competitionMembers,
     competitions,
     deleteNotPaidNumbers,

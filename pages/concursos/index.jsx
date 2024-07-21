@@ -14,20 +14,20 @@ import { ArrowBackIosNew } from '@mui/icons-material'
 import { ArrowBackIosNewOutlined } from '@mui/icons-material'
 import Link from 'next/link'
 import useSystemStore from '../../src/hooks/useSystem'
+import { competitionsStore } from '../../src/components/competitions/hooks/competitionsStore'
 
 const ConcursosPage = () => {
   const {
     competitions,
-    competitionDetail,
     competitionMembers,
     getCompetitions,
     handleCompetitionClick,
     selectedNumber,
     setSelectedNumber,
-    setCompetitionDetail,
     setCompetitionMembers,
   } = useCompetitions()
 
+  const { competitionDetail, setCompetitionDetail } = competitionsStore()
   const { userLogged: { picture: userPicture, uid: uidLogged } } = useSystemStore()
 
   const [value, setValue] = useState(0)
@@ -79,27 +79,12 @@ const ConcursosPage = () => {
             </Tabs>
 
             <TabPanel value={value} index={0}>
-              {isEmpty(competitionDetail) &&
-                <CompetitionsList
-                  competitions={competitions}
-                  handleCompetitionClick={handleCompetitionClick}
-                  selectedNumber={selectedNumber}
-                  setSelectedNumber={setSelectedNumber}
-                />}
-              {!isEmpty(competitionDetail) &&
-                <CompetitionDetail
-                  {...{
-                    competitions,
-                    competitionDetail,
-                    setCompetitionDetail,
-                    competitionMembers,
-                    setCompetitionMembers,
-                    setSelectedNumber,
-                    selectedNumber,
-                    userPicture,
-                    uidLogged,
-                  }}
-                />}
+              <CompetitionsList
+                competitions={competitions}
+                handleCompetitionClick={handleCompetitionClick}
+                selectedNumber={selectedNumber}
+                setSelectedNumber={setSelectedNumber}
+              />
             </TabPanel>
             <TabPanel value={value} index={1}>
             </TabPanel>

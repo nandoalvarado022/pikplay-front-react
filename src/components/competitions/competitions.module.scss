@@ -250,21 +250,15 @@
     }
   }
 
-  // Transversal elements
   .news {
     background: #f4f4f4;
     font-size: 12px;
-    // font-style: italic;
     height: 18px;
     margin: 20px 0 10px 0;
     position: relative;
     width: 600px;
     @media screen and (max-width: 420px) {
-      bottom: 44px;
-      height: initial;
-      position: fixed;
-      z-index: 2;
-      left: 0;
+      margin: 10px 0 20px;
     }
     > span:nth-of-type(1) {
       position: absolute;

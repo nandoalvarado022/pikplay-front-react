@@ -28,7 +28,7 @@ const CompetitionDetail = (props) => {
     uidLogged,
   } = props
 
-  const { availableNumbers, price, title } = competitionDetail
+  const { availableNumbers, price, title, seller } = competitionDetail
 
   const {
     handleUserMessage,
@@ -95,13 +95,13 @@ const CompetitionDetail = (props) => {
 
   const initVisualInterval = (myVisualInterval) => {
     let demo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    myVisualInterval = setInterval(() => {
-      const number = demo.shift()
-      const newNumber = Number(Math.floor(Math.abs(number - 10)))
-      console.log(newNumber)
-      setUpdatingIn(newNumber == 0 ? '¡Tablero actualizado!' : newNumber + ' segundos...')
-      if (demo.length == 0) clearInterval(myVisualInterval);
-    }, 1000)
+    // myVisualInterval = setInterval(() => {
+    const number = demo.shift()
+    const newNumber = Number(Math.floor(Math.abs(number - 10)))
+    console.log(newNumber)
+    setUpdatingIn(newNumber == 0 ? '¡Tablero actualizado!' : newNumber + ' segundos...')
+    if (demo.length == 0) clearInterval(myVisualInterval);
+    // }, 1000)
   }
 
   const handleUpodateDashboard = () => {
@@ -118,23 +118,40 @@ const CompetitionDetail = (props) => {
   useEffect(() => {
     settingTakenNumbers(competitionDetail.members,)
     let myVisualInterval
-    const myFetchInterval = setInterval(() => {
-      updatesQuantity++
-      if (updatesQuantity >= MAX_REQUEST_UPDATE) {
-        setUpdatingIn(null)
-        clearInterval(myVisualInterval);
-        clearInterval(myFetchInterval);
-        return
-      }
-      initVisualInterval(myVisualInterval)
-      refButtonUpdateDash.current.click()
-    }, 10000)
+    // const myFetchInterval = setInterval(() => {
+    updatesQuantity++
+    if (updatesQuantity >= MAX_REQUEST_UPDATE) {
+      setUpdatingIn(null)
+      clearInterval(myVisualInterval);
+      // clearInterval(myFetchInterval);
+      return
+    }
+    initVisualInterval(myVisualInterval)
+    refButtonUpdateDash.current.click()
+    // }, 10000)
 
     return () => {
       clearInterval(myVisualInterval);
-      clearInterval(myFetchInterval);
+      // clearInterval(myFetchInterval);
     };
   }, [])
+
+  const NumberComponent = ({ ind, item, number, uidNumber }) => {
+    return !item.hidden ? <Tooltip key={ind} title={`Reservar el número ${ind}`}>
+      <div
+        className={`${styles.item} ${styles[item.status]} ${selectedNumber == ind && styles.selected}`}
+        onClick={() => item.status != 'blocked' ? handleClick(ind) : null}>
+        {(!uidLogged || !uidNumber) && <div>
+          {ind}
+        </div>}
+        {uidLogged && uidNumber == uidLogged && <div className={styles.takenByMe}>
+          <img src={userPicture} />
+          <span className={styles.number}>{ind}</span>
+        </div>}
+        <div>{item.name}</div>
+      </div>
+    </Tooltip> : <></>
+  }
 
   return <div className={styles.CompetitionDetail}>
     {/* competitionDetail: {JSON.stringify(competitionDetail)} */}
@@ -147,7 +164,7 @@ const CompetitionDetail = (props) => {
         <button ref={refButtonUpdateDash} className={styles.btnUpdateDashboard} onClick={handleUpodateDashboard}>
           Actualizar tablero<br />
         </button>
-        {updatingIn && <small>Automaticamente en {updatingIn}</small>}
+        {/* {updatingIn && <small>Automaticamente en {updatingIn}</small>} */}
       </Alert>
       <div className={styles.controlAvailablenumbers}>
         <FormControlLabel
@@ -158,21 +175,8 @@ const CompetitionDetail = (props) => {
         {
           // Iterando los numeros de la actividad
           numbersList.map((item, ind) => {
-            const { uid } = item
-            return !item.hidden ? <Tooltip key={ind} title={`Reservar el número ${ind}`}>
-              <div
-                className={`${styles.item} ${styles[item.status]} ${selectedNumber == ind && styles.selected}`}
-                onClick={() => item.status != 'blocked' ? handleClick(ind) : null}>
-                {uid != ind && <div>
-                  {ind}
-                </div>}
-                {uid == uidLogged && <div className={styles.takenByMe}>
-                  <img src={userPicture} />
-                  <span className={styles.number}>{ind}</span>
-                </div>}
-                <div>{item.name}</div>
-              </div>
-            </Tooltip> : <></>
+            const { number, uid: uidNumber } = item
+            return <NumberComponent {...{ ind, item, number, uidNumber }} />
           })
         }
       </div>
@@ -212,14 +216,14 @@ const CompetitionDetail = (props) => {
         </div>
       </p>
       <Divider />
-      <AdminActions
+      {(uidLogged && uidLogged == seller.uid) && <AdminActions
         {...{
           competitionDetail,
           deleteNotPaidNumbers,
           setCompetitionDetail,
           setShowMembersNames,
         }}
-      />
+      />}
     </div>
   </div>
 }

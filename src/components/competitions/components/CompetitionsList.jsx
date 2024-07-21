@@ -1,7 +1,6 @@
 import styles from '../competitions.module.scss'
 
 import React, { useEffect, useState } from 'react'
-import CompetitionDetail from './CompetitionDetail'
 import CompetitionItem from './CompetitionItem'
 import Marquee from './Marquee'
 import Joyride from 'react-joyride'
