@@ -17,6 +17,7 @@ import { GifBox } from '@mui/icons-material'
 import { GifBoxSharp } from '@mui/icons-material'
 import { CardGiftcard } from '@mui/icons-material'
 import { Money } from '@mui/icons-material'
+import Link from 'next/link'
 
 const CompetitionDetail = (props) => {
   const {
@@ -79,7 +80,7 @@ const CompetitionDetail = (props) => {
   const settingTakenNumbers = (members) => { // Seteando números tomados a not available
     const isOnlyAvailableNumbers = document.querySelector('#check_available_numbers').checked
     const _numbersList = [...numbersListTemplate]
-    members.map(item => { // TODO: get competition id from url
+    members && members.map(item => { // TODO: get competition id from url
       _numbersList[item.number] = {
         ...item,
         status: 'blocked',
@@ -199,7 +200,9 @@ const CompetitionDetail = (props) => {
         <div><b>{title}</b></div>
         <div>
           <CardGiftcard />
-          {competitionDetail?.award}
+          <Link href='/publicacion/nuevas-figuritas-de-kimetsu-no-yaiba-pregunta-por-tu-favorita'>
+            {competitionDetail?.award}
+          </Link>
         </div>
         <div>
           <span className={styles.availableNumbers}>

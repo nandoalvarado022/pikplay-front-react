@@ -155,7 +155,7 @@ const DetalleProducto = ({
 
               <p>
                 <a
-                  className={`${styles.report} underline f-s-12`}
+                  className={`${styles.report} underline`}
                   href='https://api.whatsapp.com/send?phone=573187414972&text=Quiero reportar una publicación de pikplay.co'
                   target='_BLANK'
                   rel="noreferrer">
