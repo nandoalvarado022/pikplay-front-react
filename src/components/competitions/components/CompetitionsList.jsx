@@ -1,4 +1,4 @@
-import styles from '../styles.module.scss'
+import styles from '../competitions.module.scss'
 
 import React, { useEffect, useState } from 'react'
 import CompetitionDetail from './CompetitionDetail'
@@ -15,6 +15,7 @@ const CompetitionsList = ({ competitions, handleCompetitionClick }) => {
     target: '#adsItems',
     content: 'Esto es un acceso directo a los concursos más vistos, no te los pierdas!',
   }]
+
   return <div className={styles.CompetitionsList}>
     <Joyride
       showProgress

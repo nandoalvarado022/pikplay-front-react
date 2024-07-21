@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import useSystemStore from '../../hooks/useSystem'
 import Button from '../button/Button'
 import CloseButton from '../closeButton/CloseButton'
+import BottomSheets from '../bottomSheets/BottomSheets'
 
 const EditProfileSummary = (props) => {
 	const { isEditProfile, setIsEditProfile } = props
@@ -26,43 +27,44 @@ const EditProfileSummary = (props) => {
 
 	useEffect(() => {
 		const source = document.getElementById("draggable");
-		source.addEventListener("drag", (event) => {
-			console.log("dragging");
-		});
+		// source.addEventListener("drag", (event) => {
+		// 	console.log("dragging");
+		// });
 	}, [])
 
 	return <div className={`${isEditProfile ? styles.active : ''} ${styles.EditProfileSummary}`}>
-		<div id="draggable" draggable="true" className={styles.topLine} onDrag={() => setIsEditProfile(false)} onClick={() => setIsEditProfile(false)}></div>
-		{/* <CloseButton onClick={() => setIsEditProfile(false)} /> */}
-		<div className={styles.borderColor}>
-			<label htmlFor="">Color del borde</label>
-			<div className={styles.items}>
-				{colors.map(item => {
-					return <div
-						className={`${backgroundColor == item ? styles.selected : ''} ${styles.item}`}
-						onClick={() => handleChange({ backgroundColor: item })}
-						style={{ background: item }}></div>
-				})}
-			</div>
-		</div>
-		<hr />
-		<div className={styles.backgroundImage}>
-			<label>Fondo</label>
-			<div className={styles.items}>
-				{
-					backgrounds.map(item => {
+		<BottomSheets isBottomSheets={isEditProfile} setIsBottomSheets={setIsEditProfile}>
+			{/* <CloseButton onClick={() => setIsEditProfile(false)} /> */}
+			<div className={styles.borderColor}>
+				<label htmlFor="">Color del borde</label>
+				<div className={styles.items}>
+					{colors.map(item => {
 						return <div
-							className={`${backgroundImage == item ? styles.selected : ''} ${styles.item}`}
-							onClick={() => handleChange({ backgroundImage: item })}>
-							<img src={item} alt="" />
-						</div>
-					})
-				}
+							className={`${backgroundColor == item ? styles.selected : ''} ${styles.item}`}
+							onClick={() => handleChange({ backgroundColor: item })}
+							style={{ background: item }}></div>
+					})}
+				</div>
 			</div>
-		</div>
-		{/* <div className={styles.actions}>
+			<hr />
+			<div className={styles.backgroundImage}>
+				<label>Fondo</label>
+				<div className={styles.items}>
+					{
+						backgrounds.map(item => {
+							return <div
+								className={`${backgroundImage == item ? styles.selected : ''} ${styles.item}`}
+								onClick={() => handleChange({ backgroundImage: item })}>
+								<img src={item} alt="" />
+							</div>
+						})
+					}
+				</div>
+			</div>
+			{/* <div className={styles.actions}>
 			<Button color="blue">Guardar</Button>
 		</div> */}
+		</BottomSheets>
 	</div>
 }
 

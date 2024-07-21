@@ -1,5 +1,6 @@
+import styles from '../competitions.module.scss'
+
 import { toast } from 'react-toastify'
-import styles from '../styles.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 const { motion } = require('framer-motion')

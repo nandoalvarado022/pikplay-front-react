@@ -1,4 +1,4 @@
-import styles from '../styles.module.scss'
+import styles from '../competitions.module.scss'
 
 const Marquee = () => {
     return <marquee className="content">

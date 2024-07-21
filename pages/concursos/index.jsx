@@ -1,4 +1,4 @@
-import styles from '../../src/components/competitions/styles.module.scss'
+import styles from '../../src/components/competitions/competitions.module.scss'
 
 import React, { useEffect, useState } from 'react'
 import { Box, Card, Tab, Tabs, Typography } from '@mui/material'

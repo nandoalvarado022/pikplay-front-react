@@ -3,11 +3,13 @@ import { API_URL } from "../../../lib/variables"
 import { getComptSrv } from '../../../services/competition/competitionService'
 import { deleteCompetitionMemberSrv } from '../../../services/competition/competitionService';
 import { toast } from 'react-toastify'
+import { create } from "zustand";
+import { competitionsStore } from "./competitionsStore";
 
 const useCompetitions = () => {
+  const { competitionDetail, setCompetitionDetail } = competitionsStore()
   const [competitions, setCompetitions] = useState([])
   const [selectedNumber, setSelectedNumber] = useState(null)
-  const [competitionDetail, setCompetitionDetail] = useState({})
   const [competitionMembers, setCompetitionMembers] = useState([])
   const [isOnlyAvailableNumbers, setIsOnlyAvailableNumbers] = useState(false)
 
@@ -93,19 +95,18 @@ const useCompetitions = () => {
 
   return {
     competitionDetail,
-    competitions,
     competitionMembers,
+    competitions,
     deleteNotPaidNumbers,
     getCompetitions,
     handleCompetitionClick,
-    liberarNumero,
     isOnlyAvailableNumbers,
+    liberarNumero,
     postCompetitionMember,
-    setCompetitionDetail,
-    setCompetitionMembers,
     selectedNumber,
-    setSelectedNumber,
+    setCompetitionMembers,
     setIsOnlyAvailableNumbers,
+    setSelectedNumber,
   }
 }
 

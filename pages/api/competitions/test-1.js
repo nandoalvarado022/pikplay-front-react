@@ -27,7 +27,7 @@ export default function handler(req, res) {
                 "created_at": "2024-06-09T04:23:08.000Z",
                 "user_id": 2,
                 "competition_id": 3,
-                "number": 4,
+                "number": 2,
                 "is_paid": 0
             }
         ],

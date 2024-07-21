@@ -1,4 +1,4 @@
-import styles from '../styles.module.scss'
+import styles from '../competitions.module.scss'
 
 import React, { useEffect, useState, useRef } from 'react'
 import { useIAStore } from '../../ia/IAstore'
@@ -168,6 +168,7 @@ const CompetitionDetail = (props) => {
                 </div>}
                 {uid == uidLogged && <div className={styles.takenByMe}>
                   <img src={userPicture} />
+                  <span className={styles.number}>{ind}</span>
                 </div>}
                 <div>{item.name}</div>
               </div>
@@ -185,7 +186,7 @@ const CompetitionDetail = (props) => {
         <p>
           <b>BluePanther&apos;s</b>
           <div className={styles.calification}>
-            {[1, 1, 1].map(item => <FontAwesomeIcon className='icon' icon={faStar} />)}
+            {[1, 1, 1].map(item => <FontAwesomeIcon className='icon stars' icon={faStar} />)}
           </div>
         </p>
       </div>
