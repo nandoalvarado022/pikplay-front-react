@@ -7,12 +7,13 @@ const BottomSheets = (props) => {
     isBottomSheets,
     setIsBottomSheets
   } = props
-  return (
+  return (<>
     <div className={`${isBottomSheets ? styles.active : ''} ${styles.BottomSheets}`}>
-      <CloseButton onClick={() => setIsBottomSheets(false)} />
       <div id="draggable" draggable="true" className={styles.topLine} onDrag={() => setIsBottomSheets(false)} onClick={() => setIsBottomSheets(false)}></div>
       {children}
     </div>
+    <div className={`${isBottomSheets ? styles.active : ''} ${styles.elementToClose}`} onClick={() => setIsBottomSheets(false)}></div>
+  </>
   )
 }
 
