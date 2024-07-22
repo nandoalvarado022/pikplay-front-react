@@ -1,6 +1,4 @@
-import { formatNumber } from '../../lib/utils'
 import Button from '../button/Button'
-import CoinIcon from '../coinIcon/CoinIcon'
 import ReactTyped from 'react-typed'
 import Link from 'next/link'
 import { Message as IAMessageWelcome, Options as IAOptionsWelcome, HTML as HTMLwelcome } from './responses/welcome'
@@ -14,7 +12,7 @@ import { Message as IAMessageDefault, Options as IAOptionsDefault } from './resp
 import { Message as IAMessageGift, Options as IAOptionsGift, Expresion as IAExpressionGift, Height as IAcontainerHeightGift } from './responses/gift'
 import { HtmlMessage as IAHtmlMessagePikcoins, Message as IAMessagePikcoins, Options as IAOptionsPikcoins, Height as IAcontainerHeightPikcoins } from './responses/pikcoins'
 
-const optionsMiddleWare = (Component, set, options = {}) => {
+const renderMiddleWare = (Component, set, options = {}) => {
     return <Component
         handleUserMessage={handleUserMessage}
         options={options}
@@ -154,7 +152,7 @@ export const handleUserMessage = (mensaje, set, options) => {
         set({
             isVisible: true,
             IAMessage: IAMessageSelected ? <ReactTyped strings={[IAMessageSelected]} typeSpeed={20} /> : null,
-            IAOptions: optionsMiddleWare(IAOptionsSelected, set, options),
+            IAOptions: renderMiddleWare(IAOptionsSelected, set, options),
             IAExpression: IAExpressionSelected,
             IAHTMLMessage: IAHTMLMessageSelected,
             containerHeight: containerHeightSelected,

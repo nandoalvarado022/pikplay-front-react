@@ -33,16 +33,12 @@ const Options = ({ handleUserMessage, set, options }) => {
   const { userLogged: { uid } } = useSystemStore()
   const { competitionDetail } = competitionsStore()
   const { seller: { uid: uidSeller } } = competitionDetail
-  debugger;
   options.uid = uid
   const element: HTMLElement | null = document.querySelector('#btnStart');
   options.element = element
   if (!uid && element) element.click()
   const { liberarNumero, getCompetitions } = useCompetitions();
   return <>
-    <Button color='blue' onClick={() => handleYes(handleUserMessage, set, options)}>
-      Si
-    </Button>
     {uid == uidSeller && <>
       <Button color='blue'>
         <DoneAll className='icon' />
@@ -53,15 +49,20 @@ const Options = ({ handleUserMessage, set, options }) => {
         handleUserMessage('hideIA', set)
       }}>
         <DeleteOutlined className='icon' />
-        Liberar número
+        &nbsp;Liberar número
       </Button>
     </>}
-    <Link target='_BLANK' href='https://api.whatsapp.com/send?phone=573113306911'>
-      <Button color='yellow'>
-        <MessageOutlined className='icon' />
-        &nbsp;Envíar mensaje
+    {uid != uidSeller && <>
+      <Button color='blue' onClick={() => handleYes(handleUserMessage, set, options)}>
+        Si
       </Button>
-    </Link>
+      <Link target='_BLANK' href='https://api.whatsapp.com/send?phone=573113306911'>
+        <Button color='yellow'>
+          <MessageOutlined className='icon' />
+          &nbsp;Envíar mensaje
+        </Button>
+      </Link>
+    </>}
   </>
 }
 
