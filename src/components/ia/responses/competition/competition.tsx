@@ -31,7 +31,8 @@ const handleYes = async (handleUserMessage, set, options) => {
 
 const Options = ({ handleUserMessage, set, options }) => {
   const { userLogged: { uid } } = useSystemStore()
-  const { competitionDetail: { seller: { uid: uidSeller } } } = competitionsStore()
+  const { competitionDetail } = competitionsStore()
+  const { seller: { uid: uidSeller } } = competitionDetail
   debugger;
   options.uid = uid
   const element: HTMLElement | null = document.querySelector('#btnStart');

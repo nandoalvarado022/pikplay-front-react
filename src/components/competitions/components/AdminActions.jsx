@@ -11,7 +11,6 @@ import BottomSheets from '../../bottomSheets/BottomSheets'
 const AdminActions = ({
     deleteNotPaidNumbers,
     setShowMembersNames,
-    setCompetitionDetail
 }) => {
     const [isShowOptions, setIsShowOptions] = useState(false)
     return (

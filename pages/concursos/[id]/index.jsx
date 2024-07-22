@@ -15,89 +15,99 @@ import { ArrowBackIosNewOutlined } from '@mui/icons-material'
 import Link from 'next/link'
 import useSystemStore from '../../../src/hooks/useSystem'
 import { competitionsStore } from '../../../src/components/competitions/hooks/competitionsStore'
+import { getPublicationsSrv } from '../../../src/services/publication/publicationService'
+import { getComptSrv } from '../../../src/services/competition/competitionService'
 
-const ConcursoDetailPage = () => {
-    const {
-        competitions,
-        competitionMembers,
-        getCompetitions,
-        handleCompetitionClick,
-        selectedNumber,
-        setSelectedNumber,
-        setCompetitionMembers,
-    } = useCompetitions()
+const ConcursoDetailPage = (props) => {
+  const {
+    competitionDetail
+  } = props
 
-    const { competitionDetail, setCompetitionDetail } = competitionsStore()
-    const { userLogged: { picture: userPicture, uid: uidLogged } } = useSystemStore()
+  const {
+    competitions,
+    competitionMembers,
+    getCompetitions,
+    handleCompetitionClick,
+    selectedNumber,
+    setSelectedNumber,
+    setCompetitionMembers,
+  } = useCompetitions()
 
-    const [value, setValue] = useState(0)
-    const handleChange = (event, newValue) => {
-        setValue(newValue)
-    }
+  const { setCompetitionDetail } = competitionsStore()
+  const { userLogged: { picture: userPicture, uid: uidLogged } } = useSystemStore()
 
-    useEffect(() => {
-        getCompetitions(null)
-    }, [])
+  const [value, setValue] = useState(0)
+  const handleChange = (event, newValue) => {
+    setValue(newValue)
+  }
 
-    function TabPanel(props) {
-        const { children, value, index, ...other } = props
-        return (
-            <div
-                role='tabpanel'
-                hidden={value !== index}
-                id={`simple-tabpanel-${index}`}
-                aria-labelledby={`simple-tab-${index}`}
-                {...other}>
-                {value === index && (
-                    <Box sx={{ p: 3 }}>
-                        <Typography>{children}</Typography>
-                    </Box>
-                )}
-            </div>
-        )
-    }
+  useEffect(() => {
+    setCompetitionDetail(competitionDetail)
+    getCompetitions(null)
+  }, [])
 
+  function TabPanel(props) {
+    const { children, value, index, ...other } = props
     return (
-        <div className={styles.CompetitionsComponent}>
-            <Layout title="Concursos">
-                <section className="page">
-                    <div className="contentTitle">
-                        <Link href='/concursos'>
-                            <ArrowBackIosNew className='icon backIcon' />
-                        </Link>
-                        <h2 className="main">Concursos</h2>
-                    </div>
-                    <Card>
-                        <Tabs
-                            value={value}
-                            onChange={handleChange}
-                            aria-label='basic tabs example'
-                            indicatorColor='primary'>
-                            <Tab label={competitionDetail ? 'Organiza: BluePanther' : 'Listado de Concursos'} />
-                            <Tab label='¿Como funcionan los concursos?' />
-                        </Tabs>
-                        <TabPanel value={value} index={0}>
-                            <CompetitionDetail
-                                {...{
-                                    competitions,
-                                    competitionDetail,
-                                    setCompetitionDetail,
-                                    competitionMembers,
-                                    setCompetitionMembers,
-                                    setSelectedNumber,
-                                    selectedNumber,
-                                    userPicture,
-                                    uidLogged,
-                                }}
-                            />
-                        </TabPanel>
-                        <TabPanel value={value} index={1}>
-                        </TabPanel>
-                    </Card>
-                </section>
-            </Layout>
-        </div>
+      <div
+        role='tabpanel'
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}>
+        {value === index && (
+          <Box sx={{ p: 3 }}>
+            <Typography>{children}</Typography>
+          </Box>
+        )}
+      </div>
     )
+  }
+
+  return <div className={styles.CompetitionsComponent}>
+    <Layout title="Concursos">
+      <section className="page">
+        <div className="contentTitle">
+          <Link href='/concursos'>
+            <ArrowBackIosNew className='icon backIcon' />
+          </Link>
+          <h2 className="main">Concursos</h2>
+        </div>
+        <Card>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label='basic tabs example'
+            indicatorColor='primary'>
+            <Tab label={competitionDetail ? 'Organiza: BluePanther' : 'Listado de Concursos'} />
+            <Tab label='¿Como funcionan los concursos?' />
+          </Tabs>
+          <TabPanel value={value} index={0}>
+            <CompetitionDetail
+              {...{
+                competitions,
+                competitionDetail,
+                competitionMembers,
+                setCompetitionMembers,
+                setSelectedNumber,
+                selectedNumber,
+                userPicture,
+                uidLogged,
+              }}
+            />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+          </TabPanel>
+        </Card>
+      </section>
+    </Layout>
+  </div>
+}
+
+ConcursoDetailPage.getInitialProps = async (ctx) => {
+  const { query: { id: slug } } = ctx
+  let res = await getComptSrv(ctx, slug)
+  return { competitionDetail: res }
 }
 
 export default ConcursoDetailPage

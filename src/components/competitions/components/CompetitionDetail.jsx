@@ -23,7 +23,6 @@ const CompetitionDetail = (props) => {
   const {
     competitionDetail,
     // competitionMembers,
-    setCompetitionDetail,
     // setCompetitionMembers,
     userPicture,
     uidLogged,
@@ -219,11 +218,10 @@ const CompetitionDetail = (props) => {
         </div>
       </p>
       <Divider />
-      {(uidLogged && uidLogged == seller.uid) && <AdminActions
+      {(uidLogged && uidLogged == seller?.uid) && <AdminActions
         {...{
           competitionDetail,
           deleteNotPaidNumbers,
-          setCompetitionDetail,
           setShowMembersNames,
         }}
       />}
