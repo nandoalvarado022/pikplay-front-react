@@ -22,7 +22,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import CoinIcon from '../coinIcon/CoinIcon'
 import AwardsSummary from '../awardsSummary/AwardsSummary'
-import useSystemStore from '../../hooks/useSystem.js'
+import useSystemStore from '../../hooks/storeSystem.js'
 import Image from 'next/image.js'
 
 const { motion } = require('framer-motion')

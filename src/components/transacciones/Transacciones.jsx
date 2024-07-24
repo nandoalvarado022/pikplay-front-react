@@ -13,7 +13,7 @@ import { toast } from 'react-toastify'
 import { useEffect, useState } from 'react'
 // import { useSelector } from 'react-redux'
 import MyTable from './Table'
-import useSystemStore from '../../hooks/useSystem'
+import useSystemStore from '../../hooks/storeSystem'
 import { getTransactionsSrv } from '../../services/transaction/transactionService'
 
 moment.locale('es')

@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 import { useContext, useEffect, useState } from 'react'
 // import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
-import useSystemStore from '../../src/hooks/useSystem'
+import useSystemStore from '../../src/hooks/storeSystem'
 import { validateTokenSrv, updateProfileSrv, getExperiencesSrv } from '../../src/services/user/userService'
 
 const Index = props => {

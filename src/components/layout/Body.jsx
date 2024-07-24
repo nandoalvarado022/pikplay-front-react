@@ -16,7 +16,7 @@ import Subcategories from '../subcategories/Subcategories'
 import { IS_MOBILE } from '../../lib/variables'
 import { ToastContainer } from 'react-toastify'
 
-const Body = ({ children, isReady, userLogged, notifications }) => {
+const Body = ({ children, isReady, userLogged, notifications, mobileMenuHidden }) => {
   return <>
     <main
       className={classNames('App font-a', {
@@ -38,7 +38,7 @@ const Body = ({ children, isReady, userLogged, notifications }) => {
           <Image src='/images/banners/banner-regalos-descuentos-pikcoins.svg' fill={true} layout='fill' />
         </div>
       </Link>
-      {IS_MOBILE && <MenuMovil />}
+      {IS_MOBILE && !mobileMenuHidden && <MenuMovil />}
       {children}
       <a
         className='a_whatsapp'

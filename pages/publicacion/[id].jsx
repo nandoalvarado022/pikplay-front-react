@@ -9,7 +9,7 @@ import ProductDetail from '../../src/components/publicationDetail/ProductDetail'
 // components/productDetail/ProductDetail'
 // import ModalNotification from './components/modalNotification/ModalNotification'
 import { getPublicationsSrv } from '../../src/services/publication/publicationService'
-import useSystemStore from '../../src/hooks/useSystem'
+import useSystemStore from '../../src/hooks/storeSystem'
 
 const PublicacionPage = (props) => {
   const { datosPublicacion } = props

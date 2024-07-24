@@ -29,7 +29,7 @@ const Options = ({ handleUserMessage, set }) => {
         </Button>
         <Button color='transparent' onClick={() => handleUserMessage('gift', set)}>
             <CardGiftcardIcon className='icon' />
-            &nbsp;Asesoria para un regalo
+            &nbsp;&nbsp;Asesoria para un regalo
         </Button>
         <Button color='transparent' onClick={() => handleUserMessage('referrals', set)}>
             <GroupIcon className='icon m-t-5' style={{ marginTop: '-2px' }} />

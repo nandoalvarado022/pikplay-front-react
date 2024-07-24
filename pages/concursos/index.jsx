@@ -13,7 +13,7 @@ import { ArrowBackIos } from '@mui/icons-material'
 import { ArrowBackIosNew } from '@mui/icons-material'
 import { ArrowBackIosNewOutlined } from '@mui/icons-material'
 import Link from 'next/link'
-import useSystemStore from '../../src/hooks/useSystem'
+import useSystemStore from '../../src/hooks/storeSystem'
 import { competitionsStore } from '../../src/components/competitions/hooks/competitionsStore'
 
 const ConcursosPage = () => {

@@ -1,0 +1,189 @@
+section.Onboarding {
+    background: #19596b;
+    background-image: url(/images/backgrounds/tetris-texture.png);
+    height: calc(100vh);
+    margin: 74px auto 90px;
+    width: calc(100%);
+    &::after {
+        content: "";
+        position: fixed;
+        top: 76px;
+        left: 0;
+        background: #0b2c5aad;
+        height: 100%;
+        width: 100%;
+    }
+    .titleContent,
+    .texts {
+        padding: 20px 0 0 40px;
+        .background {
+            // background: linear-gradient(77deg, #c93530, #db7d79);
+            background: linear-gradient(270deg, #7a0ba1 0%, #003875 100%);
+            box-shadow: 2px 2px 0px #f8a713;
+            border-radius: 40px;
+            height: 200px;
+            position: absolute;
+            top: 10px;
+            transform: rotate(45deg);
+            width: 200px;
+            z-index: 1;
+        }
+        h1 {
+            color: white;
+            font-size: 24px;
+            margin-top: 0px;
+            position: relative;
+            z-index: 2;
+            small {
+                display: block;
+                font-size: 14px;
+                font-weight: lighter;
+                margin: 10px 0 0 0;
+                width: 260px;
+            }
+        }
+    }
+    .items {
+        column-gap: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+        position: relative;
+        row-gap: 20px;
+        width: 100%;
+        z-index: 3;
+        .item {
+            align-items: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            height: 200px;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+            width: 40%;
+
+            text-shadow:
+                2px 0 #2e2e2e,
+                -2px 0 #2e2e2e,
+                0 2px #2e2e2e,
+                0 -2px #2e2e2e,
+                1px 1px #2e2e2e,
+                -1px -1px #2e2e2e,
+                1px -1px #2e2e2e,
+                -1px 1px #2e2e2e;
+            &:nth-of-type(1) {
+                overflow: hidden;
+                .html {
+                    bottom: 20px;
+                    position: absolute;
+                }
+                img {
+                    color: transparent;
+                    height: 240px;
+                    left: -50px;
+                    max-height: initial;
+                    max-width: initial;
+                    position: relative;
+                    top: 40px;
+                    width: 230px;
+                }
+            }
+            .html {
+            }
+            .background {
+                // filter: blur(4px);
+                position: absolute;
+                z-index: -1;
+            }
+            .black_bg {
+                // display: none;
+                border-radius: 10px;
+                background: #3095b391;
+                // filter: blur(2px);
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                z-index: -1;
+            }
+            img.image {
+                margin: 0 auto 10px;
+                max-height: 70px;
+                width: 80px;
+            }
+            .green {
+                color: aquamarine;
+            }
+            .yellow {
+                color: #fcfc85;
+            }
+            .isCompleted {
+                position: absolute;
+                background: #245092;
+                border-radius: 50%;
+                border: 2px solid #2c7da6;
+                box-shadow: 0px 0px 2px 1px #4e4e4e;
+                height: 20px;
+                right: 5px;
+                top: 5px;
+                width: 20px;
+                svg {
+                    position: relative;
+                    top: -2px;
+                    width: 20px;
+                }
+            }
+        }
+    }
+    img {
+        // height: 390px;
+    }
+
+    h2 {
+        position: fixed;
+        z-index: 11;
+        top: 120px;
+        color: white;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 36px;
+        $color: rgb(46, 46, 46);
+        text-shadow:
+            2px 0 $color,
+            -2px 0 $color,
+            0 2px $color,
+            0 -2px $color,
+            1px 1px $color,
+            -1px -1px $color,
+            1px -1px $color,
+            -1px 1px $color;
+        > span {
+            display: block;
+            font-size: 20px;
+            .text1 {
+                color: aquamarine;
+            }
+        }
+    }
+
+    .texts {
+        color: white;
+        position: relative;
+        width: calc(100% - 80px);
+        z-index: 1;
+        p {
+            font-size: 14px;
+            padding: 20px;
+        }
+        .background {
+            top: 60px;
+            right: -70px;
+            z-index: -1;
+        }
+    }
+}

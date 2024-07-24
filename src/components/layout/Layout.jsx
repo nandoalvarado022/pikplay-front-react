@@ -7,7 +7,7 @@ import Router from 'next/router'
 import toastr from 'toastr'
 import { initGA, logPageView } from '../../../public/analytics'
 import { register } from 'next-offline/runtime'
-import useSystemStore from '../../hooks/useSystem.js'
+import useSystemStore from '../../hooks/storeSystem.js'
 import Body from './Body.jsx'
 import { useIAStore } from '../ia/IAstore.js'
 
@@ -22,7 +22,7 @@ Router.onRouteChangeError = () => NProgress.done()
 
 const Layout = (props) => {
   const [isReady, setIsReady] = useState(false)
-  const { children, descripcion, image, title, url } = props
+  const { children, descripcion, image, title, url, mobileMenuHidden } = props
   const { env, setValue, userLogged, notifications } = useSystemStore((state => state))
   const { checkIAMessage, IAMessage } = useIAStore()
 
@@ -132,7 +132,7 @@ const Layout = (props) => {
           })
         }}()
       </Head>
-      <Body isReady={isReady} notifications={notifications} userLogged={userLogged}>
+      <Body isReady={isReady} notifications={notifications} userLogged={userLogged} mobileMenuHidden={mobileMenuHidden}>
         {children}
       </Body>
     </React.Fragment >

@@ -4,7 +4,7 @@ import React from 'react'
 import UserNotifications from '../userNotifications/UserNotifications'
 import { IS_MOBILE } from '../../lib/variables'
 import styles from './styles.module.scss'
-import useSystemStore from '../../hooks/useSystem'
+import useSystemStore from '../../hooks/storeSystem'
 
 const Notification = () => {
   const { notifications } = useSystemStore((state => state))

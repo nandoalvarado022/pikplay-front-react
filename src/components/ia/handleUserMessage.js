@@ -3,11 +3,13 @@ import ReactTyped from 'react-typed'
 import Link from 'next/link'
 import { Message as IAMessageWelcome, Options as IAOptionsWelcome, HTML as HTMLwelcome } from './responses/welcome'
 import { Message as IAMessageReferrals, Options as IAOptionsReferrals } from './responses/referrals/referrals'
+import { HTMLOnboarding, Message as IAMessageOnboarding, Options as IAOptionsOnboarding } from './responses/onboarding/onboarding'
 import HTMLAddReferrals, { Message as IAMessageAddReferrals, Options as IAOptionsAddReferrals } from './responses/referrals/addReferral'
 import { Message as IAMessageCompetition, Options as IAOptionsCompetition } from './responses/competition/competition'
 import { Message as IAMessageCompetition_Yes, Options as IAOptionsCompetition_Yes } from './responses/competition/yes/yes'
 import { Message as IAMessageCompetition_Yes_Taken, Options as IAOptionsCompetition_Yes_Taken } from './responses/competition/yes/taken'
 import { Message as IAMessageCompetition_List, Options as IAOptionsCompetition_List } from './responses/competition/list'
+import { Message as IAMessageCompetition_Admin, Options as IAOptionsCompetition_Admin } from './responses/competition/admin'
 import { Message as IAMessageDefault, Options as IAOptionsDefault } from './responses/default'
 import { Message as IAMessageGift, Options as IAOptionsGift, Expresion as IAExpressionGift, Height as IAcontainerHeightGift } from './responses/gift'
 import { HtmlMessage as IAHtmlMessagePikcoins, Message as IAMessagePikcoins, Options as IAOptionsPikcoins, Height as IAcontainerHeightPikcoins } from './responses/pikcoins'
@@ -29,8 +31,15 @@ export const handleUserMessage = (mensaje, set, options) => {
     let containerHeightSelected
     let IAExpressionSelected = 'happy'
     let IAHTMLMessageSelected
+    let IAHTMLSecondMessageSelected
 
     switch (mensaje) {
+        case 'onboarding':
+            IAMessageSelected = IAMessageOnboarding
+            IAOptionsSelected = IAOptionsOnboarding
+            IAHTMLSecondMessageSelected = <HTMLOnboarding />
+            break;
+
         case 'referrals':
             IAMessageSelected = IAMessageReferrals
             IAOptionsSelected = IAOptionsReferrals
@@ -46,6 +55,11 @@ export const handleUserMessage = (mensaje, set, options) => {
             IAMessageSelected = IAMessageWelcome
             IAOptionsSelected = IAOptionsWelcome
             IAHTMLMessageSelected = HTMLwelcome
+            break;
+
+        case 'competition/admin':
+            IAMessageSelected = "Que deseas hacer?"
+            IAOptionsSelected = IAOptionsCompetition_Admin
             break;
 
         case 'competition':
@@ -155,6 +169,7 @@ export const handleUserMessage = (mensaje, set, options) => {
             IAOptions: renderMiddleWare(IAOptionsSelected, set, options),
             IAExpression: IAExpressionSelected,
             IAHTMLMessage: IAHTMLMessageSelected,
+            IAHTMLSecondMessage: IAHTMLSecondMessageSelected,
             containerHeight: containerHeightSelected,
         })
     }, 1000)

@@ -19,7 +19,7 @@ import confetti from 'canvas-confetti'
 // import { useDispatch, useSelector } from 'react-redux'
 import CountUp from 'react-countup'
 import Articles from '../articles/Articles'
-import useSystemStore from '../../hooks/useSystem'
+import useSystemStore from '../../hooks/storeSystem'
 import Challenges from '../challenges/Challenges'
 
 const Advertisements = () => {

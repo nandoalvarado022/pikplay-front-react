@@ -63,17 +63,24 @@ const CompetitionDetail = (props) => {
     { name: '', status: 'available', isPaid: false, number: null }
   ))
 
-  const handleClick = (number) => {
-    setIsvisible(true)
-    // setnumberChosen(number)
-    const options = {
-      competitionID: competitionDetail.id,
-      number,
-      postCompetitionMember,
-      sellerPhone: competitionDetail.seller.phone,
+  const handleClick = (item, number) => {
+    if (seller.uid != uidLogged) {
+      setIsvisible(true)
+      // setnumberChosen(number)
+      const options = {
+        competitionID: competitionDetail.id,
+        number,
+        postCompetitionMember,
+        sellerPhone: competitionDetail.seller.phone,
+      }
+      handleUserMessage('competition', options)
+      setSelectedNumber(number)
     }
-    handleUserMessage('competition', options)
-    setSelectedNumber(number)
+    else {
+      handleUserMessage('competition/admin')
+      setIsvisible(true)
+      setSelectedNumber(number)
+    }
   }
 
   const settingTakenNumbers = (members) => { // Seteando números tomados a not available
@@ -140,7 +147,7 @@ const CompetitionDetail = (props) => {
     return !item.hidden ? <Tooltip key={ind} title={`Reservar el número ${ind}`}>
       <div
         className={`${styles.item} ${styles[item.status]} ${selectedNumber == ind && styles.selected}`}
-        onClick={() => item.status != 'blocked' ? handleClick(ind) : null}>
+        onClick={() => handleClick(item, ind)}>
         {(!uidLogged || !uidNumber) && <div>
           {ind}
         </div>}

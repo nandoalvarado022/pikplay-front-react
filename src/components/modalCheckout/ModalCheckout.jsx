@@ -16,7 +16,7 @@ import Checkout from '../checkout/Checkout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment } from '@fortawesome/free-solid-svg-icons'
 import toastr from 'toastr'
-import useSystemStore from '../../hooks/useSystem'
+import useSystemStore from '../../hooks/storeSystem'
 import { createTransactionsSrv } from '../../services/transaction/transactionService'
 
 const ModalCheckout = props => {

@@ -17,7 +17,7 @@ import Image from 'next/image'
 import Product from '../../interfaces/Product'
 import styles from './card.module.scss'
 import CoinIcon from '../coinIcon/CoinIcon'
-import useSystemStore from '../../hooks/useSystem'
+import useSystemStore from '../../hooks/storeSystem'
 import CashbackTag from './cashbackTag/CashbackTag'
 
 const Card = (props) => {

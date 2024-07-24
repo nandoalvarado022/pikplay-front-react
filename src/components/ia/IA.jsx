@@ -20,6 +20,7 @@ const IA = (props) => {
         IAExpression,
         containerHeight,
         IAHTMLMessage,
+        IAHTMLSecondMessage
     } = useIAStore((state => state))
 
     return <div className={`${styles.IAElement} ${!isVisible ? styles.hide : null} `}>
@@ -33,6 +34,7 @@ const IA = (props) => {
                 <div className={styles.list}>
                     {IAHTMLMessage && IAHTMLMessage}
                     {IAMessage && <p className={styles.IAMessage}>{IAMessage}</p>}
+                    {IAHTMLSecondMessage && IAHTMLSecondMessage}
                     <div className={styles.buttons}>
                         {IAOptions}
                     </div>

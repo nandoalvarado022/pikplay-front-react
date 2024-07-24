@@ -9,7 +9,7 @@ import Switch from '@mui/material/Switch'
 import { styled } from '@mui/material/styles';
 import CoinIcon from '../coinIcon/CoinIcon'
 import { IS_MOBILE } from '../../lib/variables'
-import useSystemStore from '../../hooks/useSystem'
+import useSystemStore from '../../hooks/storeSystem'
 import { slugify } from '../../lib/utils'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
@@ -170,6 +170,11 @@ const PreviewUser = () => {
                     name="checkedB"
                     inputProps={{ 'aria-label': 'primary checkbox' }}
                   /> */}
+            </ol>
+            <ol>
+              <Link href="/onboarding">
+                Onboarding
+              </Link>
             </ol>
             <ol onClick={() => handleLogout()}>
               <a>

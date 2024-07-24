@@ -1,7 +1,7 @@
 import styles from './styles.module.scss'
 
 import React, { useEffect } from 'react'
-import useSystemStore from '../../hooks/useSystem'
+import useSystemStore from '../../hooks/storeSystem'
 import Button from '../button/Button'
 import CloseButton from '../closeButton/CloseButton'
 import BottomSheets from '../bottomSheets/BottomSheets'
