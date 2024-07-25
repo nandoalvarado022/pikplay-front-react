@@ -83,11 +83,11 @@ section.Onboarding {
                     color: transparent;
                     height: 240px;
                     left: -50px;
-                    max-height: initial;
+                    max-height: initial !important;
                     max-width: initial;
                     position: relative;
                     top: 40px;
-                    width: 230px;
+                    width: 230px !important;
                 }
             }
             .html {
@@ -110,6 +110,7 @@ section.Onboarding {
                 z-index: -1;
             }
             img.image {
+                filter: grayscale(100%);
                 margin: 0 auto 10px;
                 max-height: 70px;
                 width: 80px;
@@ -134,6 +135,12 @@ section.Onboarding {
                     position: relative;
                     top: -2px;
                     width: 20px;
+                }
+            }
+            &.isCompleted,
+            &.active {
+                img {
+                    filter: grayscale(0%);
                 }
             }
         }
