@@ -1,5 +1,5 @@
 export default function handler(req, res) {
-    const response = [
+    let response = [
         {
             "completed": false,
             "detail": "",
@@ -63,5 +63,7 @@ export default function handler(req, res) {
             width: 60,
         },
     ]
+    const limit = req.query?.limit
+    if (limit) response = response.slice(0, limit)
     res.status(200).json(response)
 }

@@ -147,7 +147,12 @@ const PortadaInterface = ({
   }
 
   return (<>
-    <section>
+    <section className='page'>
+      {feed && feed.length < 1 && <Maintenance />}
+      {!category && <Advertisements />}
+      <Link href='/concursos' as='/concursos'>
+        <img className={`shine ${styles.membresiaSellerBanner}`} src="/images/banners/banner_membresia_de_cortesia_seller.png" />
+      </Link>
       <Link href='/concursos' as='/concursos'>
         <video
           autoPlay
@@ -157,8 +162,6 @@ const PortadaInterface = ({
           src='/videos/llegaron_los_concursos.mp4'
         />
       </Link>
-      {feed && feed.length < 1 && <Maintenance />}
-      {!category && <Advertisements />}
       {/* Aquí se llama un video que esta en la carpeta public */}
       {/* <SpecialBanner {...{ category, popularyItem, starItem }} /> */}
       {/* <FullScreenWidget /> */}

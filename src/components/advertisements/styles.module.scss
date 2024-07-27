@@ -1,9 +1,12 @@
 .Advertisements {
   position: relative;
-  margin: 0px auto 50px;
+  margin: 0px auto 0px;
   width: 1300px;
   @media screen and (max-width: 420px) {
     width: auto;
+  }
+  :global(.ChallengeSection) {
+    margin: 20px 0 0;
   }
   .content {
     display: flex;
@@ -126,11 +129,10 @@
       max-width: 100%;
     }
   }
-  
+
   .animated {
     animation: highlight 1s infinite alternate;
-    background-image: linear-gradient(white, white),
-      linear-gradient(180deg, cornflowerblue, purple 50%, cornflowerblue);
+    background-image: linear-gradient(white, white), linear-gradient(180deg, cornflowerblue, purple 50%, cornflowerblue);
     background-origin: padding-box, border-box;
     background-position:
       0 0,

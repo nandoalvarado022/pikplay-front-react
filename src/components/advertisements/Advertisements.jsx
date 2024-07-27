@@ -70,43 +70,41 @@ const Advertisements = () => {
   return (
     <div className={styles.Advertisements}>
       <div className={`${styles.content}`}>
-        <div>
-          {showMainNoitificacion && (
-            <div className={`${styles.texts}`}>
-              {/* <FontAwesomeIcon
+
+        {showMainNoitificacion && (
+          <div className={`${styles.texts}`}>
+            {/* <FontAwesomeIcon
               className="close_icon"
               icon={faPlus}
               onClick={() => setShowMainNoitificacion(false)}
             /> */}
-              <div className={`${styles.text1} font-c`}>
-                Hola,
-                <div>
-                  <b className='font-a'>{name}</b>
-                </div>
+            <div className={`${styles.text1} font-c`}>
+              Hola,
+              <div>
+                <b className='font-a'>{name}</b>
               </div>
-              <div className={`${styles.text2} font-a`}>
-                <p className={styles['contigo-somos']}>Contigo ya somos&nbsp;
-                  <span>
-                    <b><CountUp end={165} /></b>
-                  </span> gamers en Pikplay.
-                </p>
-                💙 &nbsp;Recuerda que puedes confiar en nuestros aliados
-                certificados. Entregamos garantía por las compras que realices a
-                estos, así que tu compra será confiable, rápida y segura.
-              </div>
-              <Challenges limit={1} />
             </div>
-          )}
-          <Articles />
-        </div>
+            <div className={`${styles.text2} font-a`}>
+              <p className={styles['contigo-somos']}>Contigo ya somos&nbsp;
+                <span>
+                  <b><CountUp end={165} /></b>
+                </span> gamers en Pikplay.
+              </p>
+              💙 &nbsp;Recuerda que puedes confiar en nuestros aliados
+              certificados. Entregamos garantía por las compras que realices a
+              estos, así que tu compra será confiable, rápida y segura.
+            </div>
+            <Challenges limit={1} />
+          </div>
+        )}
+        {/* <Articles /> */}
 
         <div className={styles.ads}>
           <ul>
             <ol>
               <Link
                 href='/publicacion/[id]'
-                as='/publicacion/preventa-fifa-22-juanchofenix-502'
-              >
+                as='/publicacion/preventa-fifa-22-juanchofenix-502'>
                 <iframe
                   width='560'
                   height='315'

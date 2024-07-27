@@ -18,6 +18,7 @@ import Skeleton from '@mui/material/Skeleton'
 import SearchBox from './searchBox/SearchBox'
 import useSearch from './searchBox/useSearch'
 import styles from './styles.module.scss' // eslint-disable-line
+import Image from 'next/image'
 
 const CustomHeader = () => {
   // const user = useSelector(state => state.user)
@@ -53,17 +54,18 @@ const CustomHeader = () => {
         {(!IS_MOBILE || (IS_MOBILE && !showSearchModal)) && (
           <Link href='/'>
             <span>
-              <img
+              <Image
                 alt='Logo de Pikplay'
                 className={styles.logo}
+                height={43}
                 src='/images/logos/logo.svg'
-                width={210}
+                width={160}
               />
-              <div className={styles.slogan}>
+              {/* <div className={styles.slogan}>
                 <span>
                   Compra y vende como <b>Gamer</b>
                 </span>
-              </div>
+              </div> */}
             </span>
           </Link>
         )}

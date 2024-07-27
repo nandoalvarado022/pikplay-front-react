@@ -1,6 +1,13 @@
 #TwoBlocksWelcome {
 }
 
+.membresiaSellerBanner {
+  border-radius: 10px;
+  box-shadow: 4px 4px #03596b;
+  margin: 0px 10px 0;
+  width: calc(100% - 20px);
+}
+
 .videoContent {
   cursor: pointer;
   @media screen and (max-width: 420px) {
@@ -10,7 +17,7 @@
 
 video.video {
   display: none;
-  margin: 36px 0 20px 0;
+  margin: 20px 0 20px 0;
   width: 100%;
   @media screen and (max-width: 420px) {
     display: block;
