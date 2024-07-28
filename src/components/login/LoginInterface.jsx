@@ -105,9 +105,9 @@ export default function LoginInterface({
             <Link href='/articulo/[id]' as='/articulo/terminos-y-condiciones'>
               términos y condiciones
             </Link>
-            <br />
+            {/* <br />
             Es posible que te enviemos notificaciones por SMS, que puedes
-            desactivar cuando quieras.
+            desactivar cuando quieras. */}
           </small>
         </DialogContent>
         <DialogActions>
