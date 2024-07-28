@@ -40,7 +40,6 @@
     .contigo-somos {
       font-size: 14px;
       margin: -10px 0 20px;
-      text-align: right;
       span {
         display: inline-block;
         text-align: center;
@@ -68,7 +67,9 @@
       }
     }
   }
+
   .ads {
+    display: none;
     overflow: hidden;
     padding-top: 0;
     width: 50%;
@@ -111,11 +112,7 @@
           }
         }
         .description {
-          // border-radius: 0 0 10px 10px;
-          font-size: 14px;
-          // font-weight: 500;
           margin: 15px 15px;
-          // padding: 10px;
           @media screen and (max-width: 420px) {
             width: auto;
           }

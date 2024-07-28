@@ -91,9 +91,8 @@ const Advertisements = () => {
                   <b><CountUp end={165} /></b>
                 </span> gamers en Pikplay.
               </p>
-              💙 &nbsp;Recuerda que puedes confiar en nuestros aliados
-              certificados. Entregamos garantía por las compras que realices a
-              estos, así que tu compra será confiable, rápida y segura.
+              <b>Recuerda</b>, puedes confiar en nuestros aliados certificados.
+              Entregamos <b>garantía</b> por las compras que realices a estos, así que tu compra será confiable, rápida y segura.
             </div>
             <Challenges limit={1} />
           </div>
@@ -101,7 +100,7 @@ const Advertisements = () => {
         {/* <Articles /> */}
 
         <div className={styles.ads}>
-          <Link
+          {/* <Link
             href='/publicacion/[id]'
             as='/publicacion/preventa-fifa-22-juanchofenix-502'>
             <iframe
@@ -113,7 +112,7 @@ const Advertisements = () => {
               allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
               allowFullScreen
             ></iframe>
-          </Link>
+          </Link> */}
           {/* <p className={styles.description}>
                 Lost Judgement es una entrega de acción y aventura desarrollada
                 por Ryu Ga Gotoku Studio y publicada por Sega, estrenada el 21

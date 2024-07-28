@@ -150,8 +150,8 @@ const PortadaInterface = ({
     <section className='page'>
       {feed && feed.length < 1 && <Maintenance />}
       {!category && <Advertisements />}
-      <Link href='/concursos' as='/concursos'>
-        <img className={`shine ${styles.membresiaSellerBanner}`} src="/images/banners/banner_membresia_de_cortesia_seller.png" />
+      <Link className={styles.membresiaSellerBanner} href='/concursos' as='/concursos'>
+        <img className={`shine`} src="/images/banners/banner_membresia_de_cortesia_seller.png" />
       </Link>
       <Link className={styles.videoPortada} href='/concursos' as='/concursos'>
         <video
