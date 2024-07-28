@@ -19,9 +19,7 @@
   }
 
   .challenge {
-    // gap: 12px;
-    // grid-template-columns: repeat(4, 1fr);
-    background: #3095b3;
+    background-image: url(/images/backgrounds/tetris-texture.png);
     border-radius: 10px;
     box-shadow: 2px 2px 5px 0 #ababab52;
     box-sizing: border-box;
@@ -143,7 +141,7 @@
 }
 
 .rewardsContent {
-  background-color: #57549e;
+  background-color: #57549e8a;
   color: white;
   height: 100%;
   padding: 20px 10px;

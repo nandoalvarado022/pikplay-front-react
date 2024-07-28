@@ -166,7 +166,7 @@ const MenuMobileOptions = () => {
 			</Link>
 		</motion.ol>
 		<motion.ol variants={item} onClick={() => handleLogout()}>
-			<FontAwesomeIcon icon={faPowerOff} />
+			<FontAwesomeIcon className='icon m-r-10' icon={faPowerOff} />
 			Salir
 		</motion.ol>
 	</motion.div>

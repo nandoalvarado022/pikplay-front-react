@@ -2,7 +2,7 @@ export default function handler(req, res) {
     let response = [
         {
             "completed": false,
-            "detail": "",
+            "detail": "Completa este desafio para obtener tu primer regalo!",
             "id": 1,
             "reward": "",
             "rewardImage": "/images/icons/gif.svg",
