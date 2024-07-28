@@ -7,6 +7,7 @@ import { formatNumber } from '../../lib/utils'
 import { useIAStore } from './IAstore'
 import styles from './styles.module.scss'
 import IACharacter from './IACharacter'
+import { motion } from "framer-motion"
 
 const IA = (props) => {
     const {
@@ -23,6 +24,17 @@ const IA = (props) => {
         IAHTMLSecondMessage
     } = useIAStore((state => state))
 
+    const container = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                delayChildren: 0.3,
+                staggerChildren: 1 // Tiempo para que cada elemento hijo empiece a salir
+            }
+        }
+    };
+
     return <div className={`${styles.IAElement} ${!isVisible ? styles.hide : null} `}>
         <div className={styles.box}>
             <div className={styles.title}>
@@ -35,9 +47,14 @@ const IA = (props) => {
                     {IAHTMLMessage && IAHTMLMessage}
                     {IAMessage && <p className={styles.IAMessage}>{IAMessage}</p>}
                     {IAHTMLSecondMessage && IAHTMLSecondMessage}
-                    <div className={styles.buttons}>
+                    <motion.div
+                        animate="visible"
+                        className={styles.buttons}
+                        initial="hidden"
+                        variants={container}
+                    >
                         {IAOptions}
-                    </div>
+                    </motion.div>
                 </div>
             </div>
             <IACharacter {...{ IAExpression, setIsvisible }} />

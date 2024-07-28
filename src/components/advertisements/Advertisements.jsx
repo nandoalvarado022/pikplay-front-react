@@ -1,3 +1,5 @@
+import styles from './advertisements.module.scss'
+
 /* eslint-disable quotes */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -14,7 +16,6 @@ import {
   getNotifications,
   GET_NOTIFICATIONS,
 } from '../../lib/utils'
-import styles from './styles.module.scss'
 import confetti from 'canvas-confetti'
 // import { useDispatch, useSelector } from 'react-redux'
 import CountUp from 'react-countup'
@@ -100,28 +101,24 @@ const Advertisements = () => {
         {/* <Articles /> */}
 
         <div className={styles.ads}>
-          <ul>
-            <ol>
-              <Link
-                href='/publicacion/[id]'
-                as='/publicacion/preventa-fifa-22-juanchofenix-502'>
-                <iframe
-                  width='560'
-                  height='315'
-                  src='https://www.youtube.com/embed/U_oewgFysiY'
-                  title='YouTube video player'
-                  frameBorder='0'
-                  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                  allowFullScreen
-                ></iframe>
-              </Link>
-              <p className={styles.description}>
+          <Link
+            href='/publicacion/[id]'
+            as='/publicacion/preventa-fifa-22-juanchofenix-502'>
+            <iframe
+              width='560'
+              height='315'
+              src='https://www.youtube.com/embed/U_oewgFysiY'
+              title='YouTube video player'
+              frameBorder='0'
+              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+              allowFullScreen
+            ></iframe>
+          </Link>
+          {/* <p className={styles.description}>
                 Lost Judgement es una entrega de acción y aventura desarrollada
                 por Ryu Ga Gotoku Studio y publicada por Sega, estrenada el 21
                 de septiembre de 2021 a nivel mundial.
-              </p>
-            </ol>
-          </ul>
+              </p> */}
         </div>
       </div>
     </div>

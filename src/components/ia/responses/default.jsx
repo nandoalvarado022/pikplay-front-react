@@ -5,6 +5,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook'
 import CoinIcon from '../../coinIcon/CoinIcon'
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard'
 import PaidIcon from '@mui/icons-material/Paid'
+import { motion } from "framer-motion"
 
 const MessageFunc = () => {
     let name = ''
@@ -18,24 +19,41 @@ const Message = MessageFunc()
 
 const Expresion = 'neutral'
 const Options = ({ handleUserMessage, set }) => {
+    const item = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1
+        }
+    };
+
     return <>
-        <Button color='transparent' onClick={() => handleUserMessage('guide', set)}>
-            <MenuBookIcon className='icon' />
-            &nbsp;&nbsp;Guía para nuevos usuarios
-        </Button>
-        <Button color='transparent' onClick={() => handleUserMessage('pikcoins', set)}>
-            <PaidIcon className='icon' />
-            &nbsp;&nbsp;¿Que son los Pikcoins?
-        </Button>
-        <Button color='transparent' onClick={() => handleUserMessage('gift', set)}>
-            <CardGiftcardIcon className='icon' />
-            &nbsp;&nbsp;Asesoria para un regalo
-        </Button>
-        <Button color='transparent' onClick={() => handleUserMessage('referrals', set)}>
-            <GroupIcon className='icon m-t-5' style={{ marginTop: '-2px' }} />
-            &nbsp;&nbsp;
-            Referidos
-        </Button>
+        <motion.div variants={item}>
+            <Button
+                color='transparent' onClick={() => handleUserMessage('guide', set)}>
+                <MenuBookIcon className='icon' />
+                &nbsp;&nbsp;Guía para nuevos usuarios
+            </Button>
+        </motion.div>
+        <motion.div variants={item}>
+            <Button color='transparent' onClick={() => handleUserMessage('pikcoins', set)}>
+                <PaidIcon className='icon' />
+                &nbsp;&nbsp;¿Que son los Pikcoins?
+            </Button>
+        </motion.div>
+        <motion.div variants={item}>
+            <Button color='transparent' onClick={() => handleUserMessage('gift', set)}>
+                <CardGiftcardIcon className='icon' />
+                &nbsp;&nbsp;Asesoria para un regalo
+            </Button>
+        </motion.div>
+        <motion.div variants={item}>
+            <Button color='transparent' onClick={() => handleUserMessage('referrals', set)}>
+                <GroupIcon className='icon m-t-5' style={{ marginTop: '-2px' }} />
+                &nbsp;&nbsp;
+                Referidos
+            </Button>
+        </motion.div>
         {/* <Button color='transparent' onClick={() => handleUserMessage('playstation', set)}>
             Jugadores Playstation
         </Button>

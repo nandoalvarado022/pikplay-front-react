@@ -30,7 +30,7 @@
       width: 50%;
       z-index: 1;
       @media screen and (max-width: 420px) {
-        margin: 0px 20px 20px;
+        margin: 0px 10px 20px;
         width: 100%;
       }
       ol {
@@ -51,7 +51,7 @@
       width: 500px;
       z-index: 2;
       @media screen and (max-width: 420px) {
-        width: calc(100% - 20px);
+        // width: calc(100% - 20px);
       }
       :global(.close_icon) {
         right: 0;

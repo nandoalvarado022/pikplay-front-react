@@ -153,7 +153,7 @@ const PortadaInterface = ({
       <Link href='/concursos' as='/concursos'>
         <img className={`shine ${styles.membresiaSellerBanner}`} src="/images/banners/banner_membresia_de_cortesia_seller.png" />
       </Link>
-      <Link href='/concursos' as='/concursos'>
+      <Link className={styles.videoPortada} href='/concursos' as='/concursos'>
         <video
           autoPlay
           className={styles.video}
