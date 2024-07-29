@@ -33,15 +33,14 @@
     background-repeat: no-repeat;
     background-position: center;
   }
-  div.content {
+  .content {
     align-items: center;
     // display: flex;
     font-size: 12px;
     grid-gap: 5px;
-    margin: 0 0 0 10px;
+    // margin: 0 0 0 10px;
     opacity: 1;
-    padding-left: 10px;
-    padding: 0;
+    padding: 0 2px 6px 10px;
     position: relative;
     h3 {
       font-size: 13px;

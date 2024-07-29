@@ -6,7 +6,7 @@ import { Message as IAMessageReferrals, Options as IAOptionsReferrals } from './
 import { HTMLOnboarding, Message as IAMessageOnboarding, Options as IAOptionsOnboarding } from './responses/onboarding/onboarding'
 import HTMLAddReferrals, { Message as IAMessageAddReferrals, Options as IAOptionsAddReferrals } from './responses/referrals/addReferral'
 import { Message as IAMessageCompetition, Options as IAOptionsCompetition } from './responses/competition/competition'
-import { Message as IAMessageCompetition_Yes, Options as IAOptionsCompetition_Yes } from './responses/competition/yes/yes'
+import { Message as IAMessageCompetition_Yes, Options as IAOptionsCompetition_Yes, HTMLMessage as HTMLMEssage_Competition_Yes } from './responses/competition/yes/yes'
 import { Message as IAMessageCompetition_Yes_Taken, Options as IAOptionsCompetition_Yes_Taken } from './responses/competition/yes/taken'
 import { Message as IAMessageCompetition_List, Options as IAOptionsCompetition_List } from './responses/competition/list'
 import { Message as IAMessageCompetition_Admin, Options as IAOptionsCompetition_Admin } from './responses/competition/admin'
@@ -75,6 +75,7 @@ export const handleUserMessage = (mensaje, set, options) => {
         case 'competition/yes':
             IAMessageSelected = IAMessageCompetition_Yes
             IAOptionsSelected = IAOptionsCompetition_Yes
+            IAHTMLMessageSelected = HTMLMEssage_Competition_Yes
             break;
 
         case 'competition/yes/taken':
