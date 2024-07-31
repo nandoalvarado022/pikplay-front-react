@@ -11,6 +11,8 @@ module.exports = async (phase, { defaultConfig }) => {
       ignoreDuringBuilds: true,
     },
     images: {
+      unoptimized: true,
+      domains: [],
       remotePatterns: [
         {
           protocol: 'https',

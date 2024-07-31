@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
+import Button from '../../button/Button'
 const { motion } = require('framer-motion')
 
 const CompetitionItem = ({ competition, ind, handleCompetitionClick }) => {
@@ -24,7 +25,7 @@ const CompetitionItem = ({ competition, ind, handleCompetitionClick }) => {
                     {competition.availableNumbers}
                 </span>
             </div>
-            <p className={styles.seller}>
+            <div className={styles.seller}>
                 <div>
                     <img width={80} src={competition.seller.picture} />
                 </div>
@@ -36,7 +37,10 @@ const CompetitionItem = ({ competition, ind, handleCompetitionClick }) => {
                     </div>
                     <div>Ha realizado 5 concursos en los últimos 3 meses</div>
                 </div>
-            </p>
+            </div>
+            <Link href="/publicacion/nuevas-figuritas-de-kimetsu-no-yaiba-pregunta-por-tu-favorita?origin=/concursos">
+                <Button shine realistic color='blue' className={styles.award}>Ver premio</Button>
+            </Link>
         </motion.article>
     </Link>
 }

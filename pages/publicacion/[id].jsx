@@ -12,7 +12,7 @@ import { getPublicationsSrv } from '../../src/services/publication/publicationSe
 import useSystemStore from '../../src/hooks/storeSystem'
 
 const PublicacionPage = (props) => {
-  const { datosPublicacion } = props
+  const { datosPublicacion, origin } = props
   const [modalHablarVendedor, setModalHablarVendedor] = useState(false)
   const [cuponDigitado, setCuponDigitado] = useState('')
   const [precio, setPrecio] = useState(0)
@@ -83,11 +83,10 @@ const PublicacionPage = (props) => {
       image={datosPublicacion.image_1}
       title={title}
       descripcion={description}
-      url={slug}
-    >
+      url={slug}>
       <div className='_publicacion'>
         <ProductDetail
-          {...{ handleHablarVendedor: handleHablarVendedor }}
+          {...{ handleHablarVendedor: handleHablarVendedor, origin }}
           meta_url={slug}
           // handleResponder={handleResponder}
           nuevoPrecio={nuevoPrecio}
@@ -138,9 +137,9 @@ const PublicacionPage = (props) => {
 }
 
 PublicacionPage.getInitialProps = async ({ req, query }) => {
-  let slug = query.id
+  let { id: slug, origin } = query
   let datosPublicacion = await getPublicationsSrv({ slug })
-  return { datosPublicacion: datosPublicacion[0] }
+  return { datosPublicacion: datosPublicacion[0], origin }
 }
 
 export default PublicacionPage

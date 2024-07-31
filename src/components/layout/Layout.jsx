@@ -126,9 +126,9 @@ const Layout = (props) => {
             dataLayer.push(arguments)
           }
           gtag('js', new Date())
-          gtag('config', 'AW-941382150')
+          gtag('config', 'G-ME3M1RK114')
           gtag('event', 'conversion', {
-            send_to: 'AW-941382150/e71oCMvon-0BEIa08cAD',
+            send_to: 'G-ME3M1RK114/e71oCMvon-0BEIa08cAD',
           })
         }}()
       </Head>

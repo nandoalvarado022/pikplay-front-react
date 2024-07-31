@@ -15,12 +15,6 @@ button.btn {
     cursor: pointer;
   }
 
-  &.realistic {
-    box-shadow:
-      #0a6f84 0 5px 2px,
-      #0a6f84b3 0 6px 0px;
-  }
-
   &.realistic:active {
     transform: translateY(8px);
     box-shadow:
@@ -80,6 +74,11 @@ button.btn {
 
   &.yellow {
     background: #ff9b51;
+    &.realistic {
+      box-shadow:
+        rgb(226, 125, 46) 0px 5px 2px,
+        rgb(234, 174, 127) 0px 6px 0px;
+    }
   }
 
   &.blue {
@@ -104,6 +103,11 @@ button.btn {
         background: #0095b3;
         color: white;
       }
+    }
+    &.realistic {
+      box-shadow:
+        #0a6f84 0 5px 2px,
+        #0a6f84b3 0 6px 0px;
     }
   }
 

@@ -1,6 +1,6 @@
 // Se coloca aquí porque se va a reutilizar para modal de pagos de productos, suscripciones de categorias etc.
 
-import styles from './styles.module.scss'
+import styles from './modal-checkout.module.scss'
 
 import React, { useEffect, useState } from 'react'
 import Button from '../button/Button'
@@ -18,6 +18,8 @@ import { faComment } from '@fortawesome/free-solid-svg-icons'
 import toastr from 'toastr'
 import useSystemStore from '../../hooks/storeSystem'
 import { createTransactionsSrv } from '../../services/transaction/transactionService'
+import Image from 'next/image'
+import CoinIcon from '../coinIcon/CoinIcon'
 
 const ModalCheckout = props => {
   const [couponValue, setCouponValue] = useState(null)
@@ -147,9 +149,20 @@ const ModalCheckout = props => {
               )}
 
               <tr align="right" className={styles.sale_price}>
-                <td>Pagas:</td>
+                <td>
+                  <b>Pagas</b>
+                </td>
                 <td>
                   ${formatNumber(datosPublicacion?.price - couponValue)}
+                </td>
+              </tr>
+
+              <tr align="right">
+                <td>
+                  <b>Recibes</b>
+                </td>
+                <td>
+                  <CoinIcon multicoin coins={56} />
                 </td>
               </tr>
             </table>
@@ -167,7 +180,10 @@ const ModalCheckout = props => {
               <b>{couponCode.toUpperCase()}</b>
             </Alert>
           )}
-          <Alert
+          <div className={styles.paymentImage}>
+            <Image src='/images/sellers/bluepanther/medios_de_pago_blue_panther.jpeg' height='200' width='200' />
+          </div>
+          {/* <Alert
             className='m-t-10'
             icon
             severity='info'>
@@ -179,17 +195,17 @@ const ModalCheckout = props => {
               reflejado en el panel del vendedor y deberá ser aplicado en el
               momento del pago del producto o servicio.
             </small>
-          </Alert>
+          </Alert> */}
         </section>
         <div className={styles.actions}>
           <Button
             onClick={() => {
               setIsModalHablarVendedor()
             }}
-            color='normal'>
+            color='link'>
             Cancelar
           </Button>
-          <Button onClick={handlePagar} color='yellow'>
+          <Button onClick={handlePagar} color='yellow' realistic>
             <FontAwesomeIcon className='m-r-10' icon={faComment} />
             Contactar
           </Button>

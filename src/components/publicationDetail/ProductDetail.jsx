@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
-import styles from './styles.module.scss'
+import styles from './product-detail.module.scss'
 
 import React, { useRef } from 'react'
 import Button from '../button/Button'
@@ -31,6 +31,7 @@ const DetalleProducto = ({
   descuento = 0,
   handleHablarVendedor,
   indice_item,
+  origin,
 }) => {
 
   const {
@@ -51,6 +52,14 @@ const DetalleProducto = ({
   const { userLogged } = useSystemStore()
   indice_item = indice_item ? indice_item : 1
     ; (price == price) == 0 || price == '' ? null : price
+
+  let buttonLabel, buttonLink;
+  if (origin == '/concursos') {
+    buttonLabel = 'Volver a los concursos'
+    buttonLink = '/concursos'
+  } else {
+    buttonLabel = quantity > 0 ? 'Lo quiero' : 'Reservar'
+  }
 
   return (
     <div key={indice_item} className={`Card ${styles.DetalleProducto}`}>
@@ -121,10 +130,17 @@ const DetalleProducto = ({
 
               <div className={`flex ${styles.compra_author}`}>
                 <div className={styles.content_comprar}>
-                  <Button realistic color='blue' onClick={handleHablarVendedor}>
-                    {quantity > 0 && 'Lo quiero'}
-                    {quantity == 0 && 'Reservar'}
+                  <Button color='link'>
+                    Preguntar sobre este producto
                   </Button>
+                  {!buttonLink && <Button realistic color='blue' onClick={handleHablarVendedor}>
+                    {buttonLabel}
+                  </Button>}
+                  {buttonLink && <Link href={buttonLink}>
+                    <Button realistic color='blue'>
+                      {buttonLabel}
+                    </Button>
+                  </Link>}
                 </div>
                 <div className={styles.content_author}>
                   <Author parentView='CardDetalleProducto' user={seller} />
@@ -150,9 +166,7 @@ const DetalleProducto = ({
                 <p className='font-a' dangerouslySetInnerHTML={{ __html: description }}>
                 </p>
               </div>
-
               <Articles />
-
               <p>
                 <a
                   className={`${styles.report} underline`}

@@ -49,7 +49,7 @@ const CoinIcon = ({ coins, isLabel, hideNumber, multicoin, textColor }) => {
       className={classNames("Coins", {
         [styles.Coins]: true,
         [styles.animatedZoom]: true,
-        [styles.animated]: true
+        // [styles.animated]: true
       }
       )}>
       {!hideNumber && <span
@@ -59,7 +59,7 @@ const CoinIcon = ({ coins, isLabel, hideNumber, multicoin, textColor }) => {
       </span>
       }
       <picture className={`shine ${styles.coin}`} />
-      {multicoin && <picture className={`${styles.coin} ${styles.multicoin}`} />}
+      {multicoin && <picture className={`shine ${styles.coin} ${styles.multicoin}`} />}
       {isLabel && <label
         style={{ color: textColor ? textColor : '#e5961d' }}>Pikcoins</label>}
     </div>
