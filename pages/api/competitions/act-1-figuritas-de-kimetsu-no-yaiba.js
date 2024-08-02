@@ -9,7 +9,7 @@ export default function handler(req, res) {
         "image": "/images/others/ps5.png",
         "is_active": true,
         "price": 25900,
-        "slug": "act-1-consola-multi-juegos",
+        "slug": "act-1-figuritas-de-kimetsu-no-yaiba",
         "title": "Act 1. Consola Multi-Juegos",
         "uid": 2,
         members_capacity: 52,

@@ -28,7 +28,7 @@ const CompetitionDetail = (props) => {
     uidLogged,
   } = props
 
-  const { availableNumbers, price, title, seller } = competitionDetail
+  const { availableNumbers, price, title, seller, slug: competitionSlug } = competitionDetail
 
   const {
     handleUserMessage,
@@ -202,11 +202,10 @@ const CompetitionDetail = (props) => {
         </p>
       </div>
 
-      <p className={`Card flex ${styles.description}`}>
-        <div><b>{title}</b></div>
+      <p className={`flex ${styles.description}`}>
         <div>
           <CardGiftcard />
-          <Link href='/publicacion/nuevas-figuritas-de-kimetsu-no-yaiba-pregunta-por-tu-favorita'>
+          <Link href={`/publicacion/nuevas-figuritas-de-kimetsu-no-yaiba-pregunta-por-tu-favorita?origin=/concursos/${competitionSlug}`}>
             {competitionDetail?.award}
           </Link>
         </div>

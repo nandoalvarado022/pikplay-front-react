@@ -2,26 +2,23 @@ export default function handler(req, res) {
     const response = [
         {
             "available_numbers": 82,
+            "award_link": "http://localhost/publicacion/nuevas-figuritas-de-kimetsu-no-yaiba-pregunta-por-tu-favorita",
             "created_at": "2024-01-17T02:56:34.000Z",
             "description": "la mejor",
             "id": 3,
             "image": "/images/others/ps5.png",
             "is_active": true,
             price: 32000,
-            "slug": "act-1-consola-multi-juegos",
-            "title": "Act 1. Consola Multi-Juegos",
+            "slug": "act-1-figuritas-de-kimetsu-no-yaiba",
+            "title": "Act 1. Figuritas De Kimetsu No Yaiba",
             "user_id": 2,
             members_capacity: 52,
             "members": [
                 {
                     "id": 58,
-                    "title": "Act 1. Consola Multi-Juegos",
-                    "slug": "act-1-consola-multi-juegos",
-                    "description": "la mejor",
                     "created_at": "2024-05-27T03:23:13.000Z",
                     "user_id": 2,
                     "uid": 2,
-                    "competition_id": 3,
                     "number": 12,
                     "is_paid": 1
                 }

@@ -10,6 +10,8 @@ const { motion } = require('framer-motion')
 
 const CompetitionItem = ({ competition, ind }) => {
   const goToastNotAvailable = () => toast('Esta actividad ya ha pasado')
+  const link = `/concursos/${competition.slug}`
+  const awardLink = competition?.awardLink ? competition?.awardLink + '?origin=/concursos' : ''
 
   return <motion.article
     className={`Card ${styles.CompetitionItem}`}
@@ -20,7 +22,7 @@ const CompetitionItem = ({ competition, ind }) => {
     animate={{ y: 0 }}
   >
     <h2>
-      <Link href={`/concursos/${competition.slug}`}>{competition.title}</Link>
+      <Link href={link}>{competition.title}</Link>
     </h2>
     <div>
       Números disponibles:
@@ -42,14 +44,14 @@ const CompetitionItem = ({ competition, ind }) => {
       </div>
     </div>
     <div className={styles.actions}>
-      <Link href='/concursos/test-1'>
+      <Link href={link}>
         <Button shine realistic color='yellow' className={styles.award}>Participar</Button>
       </Link>
-      <Link href="/publicacion/nuevas-figuritas-de-kimetsu-no-yaiba-pregunta-por-tu-favorita?origin=/concursos">
+      <Link href={awardLink}>
         <Button shine realistic color='blue' className={styles.award}>Ver premio</Button>
       </Link>
     </div>
-  </motion.article>
+  </motion.article >
 }
 
 export default CompetitionItem

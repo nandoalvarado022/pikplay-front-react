@@ -33,7 +33,7 @@ const Card = (props) => {
     handleFavorite,
     handleShare,
     icon_favorite = true,
-    id: id_publication,
+    id: publicationId,
     images,
     image_1,
     is_new,
@@ -62,16 +62,16 @@ const Card = (props) => {
       : null
   let like = null
   if (usuario) like = likes ? !!likes.find(like => like == usuario) : false
-  const isDestacada = id_publication == 1 ? true : false
+  const isDestacada = publicationId == 1 ? true : false
   const { loggedUser } = useSystemStore()
   const cities = getCiudades()
   const cityLabel = cities.find(item => item.id == city)?.label
   const countryLabel = capitalize(cities.find(item => item.id == city)?.pais)
 
   return (
-    <Grow key={id_publication} in={true} style={{ opacity: 1 }}>
+    <Grow key={publicationId} in={true} style={{ opacity: 1 }}>
       <div
-        key={id_publication}
+        key={publicationId}
         className={`${styles.Card} ${isDestacada ? styles.isDestacada : ''}`}>
         <div className={styles.descripcion_imagen}>
           <div className={styles.content_imagen}>
@@ -79,6 +79,7 @@ const Card = (props) => {
             <Link
               as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
               className={styles.image_wrapper}
+              key={publicationId}
               href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
             >
               {
@@ -128,7 +129,7 @@ const Card = (props) => {
                         loggedUser?.id != 0
                           ? handleFavorite({
                             variables: {
-                              publication: id_publication,
+                              publication: publicationId,
                               user: loggedUser?.id,
                             },
                           })
@@ -150,9 +151,9 @@ const Card = (props) => {
                 </Tooltip>
               </div>
               <Link
-                href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
                 as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
-                className={id_publication == 1 ? styles.destacada_Card : ''}>
+                className={publicationId == 1 ? styles.destacada_Card : ''}
+                href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}>
                 <h2>
                   {title ? title : 'Espacio para el título de la publicación'}
                 </h2>

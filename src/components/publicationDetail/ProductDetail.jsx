@@ -25,7 +25,7 @@ import CashbackTag from '../card/cashbackTag/CashbackTag'
 import Articles from '../articles/Articles'
 import { ArrowBackIosNew } from '@mui/icons-material'
 
-const DetalleProducto = ({
+const ProductDetail = ({
   apply_cashback,
   banner_bottom,
   datosPublicacion,
@@ -55,26 +55,27 @@ const DetalleProducto = ({
     ; (price == price) == 0 || price == '' ? null : price
 
   let buttonLabel, buttonLink;
-  if (origin == '/concursos') {
+  if ((origin || '').includes('concursos')) {
     buttonLabel = 'Volver a los concursos'
-    buttonLink = '/concursos'
-  } else {
-    buttonLabel = quantity > 0 ? 'Lo quiero' : 'Reservar'
-  }
+    buttonLink = origin
+  } else buttonLabel = quantity > 0 ? 'Lo quiero' : 'Reservar'
+  debugger
 
   return (
-    <div key={indice_item} className={`Card ${styles.DetalleProducto}`}>
+    <div key={indice_item} className={`${styles.ProductDetail}`}>
       <Grow key={indice_item} timeout={500} in={true} style={{ opacity: 1 }}>
-        <div ref={ref_descripcion_imagen} className={`contentTitle ${styles.descripcion_imagen}`}>
-          <h1>
+        <div ref={ref_descripcion_imagen} className={`${styles.descripcion_imagen}`}>
+          <div className="contentTitle">
             <Link href='/'>
               <ArrowBackIosNew className='icon backIcon' />
             </Link>
-            {title}
-            <Tooltip title='Marcar como Favorito'>
-              <FontAwesomeIcon className='icon' icon={faHeart} style={{ marginLeft: '10px' }} />
-            </Tooltip>
-          </h1>
+            <h1>
+              {title}
+              <Tooltip title='Marcar como Favorito'>
+                <FontAwesomeIcon className='icon' icon={faHeart} style={{ marginLeft: '10px' }} />
+              </Tooltip>
+            </h1>
+          </div>
           <div className={`Card ${styles.left}`}>
             <div className={styles.content_imagen}>
               <ImageGallery
@@ -198,4 +199,4 @@ const DetalleProducto = ({
   )
 }
 
-export default DetalleProducto
+export default ProductDetail

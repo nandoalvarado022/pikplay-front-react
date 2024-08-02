@@ -30,7 +30,7 @@ const { motion } = require('framer-motion')
 moment.locale('es-CO')
 
 const UserNotifications = () => {
-  const { userLogged, notifications, setValue } = useSystemStore((state => state))
+  const { userLogged, notifications, setStoreValue } = useSystemStore((state => state))
   const [summaryAwardsOpen, setSummaryAwardsOpen] = useState(false)
   // const user = useSelector(state => state.user)
   // const notifications = useSelector(state => state.notifications) //.filter(item => item.closed == 0)
@@ -75,7 +75,7 @@ const UserNotifications = () => {
     if (userLogged.uid) {
       getNotificationsSrv()
         .then(res => {
-          setValue('notifications', res.data)
+          setStoreValue('notifications', res.data)
         });
     }
   }
@@ -150,7 +150,6 @@ const UserNotifications = () => {
           },
         )}
       </ul>
-      {summaryAwardsOpen && <AwardsSummary setSummaryAwardsOpen={setSummaryAwardsOpen} />}
     </div>
   )
 }

@@ -9,6 +9,7 @@ import { animatePrince } from '../../lib/utils'
 import classNames from 'classnames';
 import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummaryExperience';
 import { motion, AnimatePresence } from "framer-motion"
+import useSystemStore from '../../hooks/storeSystem';
 
 const AwardsSummary = ({ callback }) => {
 
@@ -121,17 +122,30 @@ const AwardsSummary = ({ callback }) => {
                     initial={{ x: '-600px' }}
                     animate={{ x: 0, }}
                     transition={{ delay: 2 }}>
-                    <Button className={styles.main_button} color="blue" onClick={handleUpdateExperience}>
-                        Continuar
+                    <Button
+                        className={styles.main_button}
+                        color="yellow"
+                        onClick={handleUpdateExperience}
+                        realistic
+                        shine>
+                        Ir a mi perfil
                     </Button>
+                    {/* <Button
+                        className={styles.main_button}
+                        color="blue"
+                        onClick={handleUpdateExperience}
+                        realistic
+                        shine>
+                        Ir a mi perfil
+                    </Button> */}
                 </motion.div>
             </div>
         </>
     )
 }
 
-const ModalComponent = (props) => {
-    const { setSummaryAwardsOpen } = props
+const AwardsSummaryModal = (props) => {
+    const { setStoreValue } = useSystemStore((state => state))
     const [[page, direction], setPage] = useState([0, 0]);
     const Transition = React.forwardRef(function Transition(props, ref) {
         return <Slide direction="left" ref={ref} {...props} />;
@@ -146,7 +160,7 @@ const ModalComponent = (props) => {
     return <Dialog
         open={true}
         TransitionComponent={Transition}
-        onClose={() => setSummaryAwardsOpen(false)}
+        onClose={() => setStoreValue('isAwardsSummaryModalOpen', false)}
         className={styles.Dialog}>
         <DialogContent>
             <div id="AwardsSummary" className={styles.AwardsSummary}>
@@ -163,4 +177,4 @@ const ModalComponent = (props) => {
     </Dialog>
 }
 
-export default ModalComponent;
+export default AwardsSummaryModal;

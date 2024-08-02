@@ -29,12 +29,14 @@ const logout = (set) => {
 }
 
 const useSystemStore = create((set, get) => ({
+    isAwardsSummaryModalOpen: false,
     env: null,
     experiences: [],
     logout: () => logout(set),
     notifications: [initialNotification],
     userLogged: loadFromLocalStorage('userLogged') || { uid: null },
-    setValue: (property, value) => {
+    setStoreValue: (property, value) => {
+        debugger;
         localStorage.setItem([property], JSON.stringify(value))
         set({ [property]: value })
     },

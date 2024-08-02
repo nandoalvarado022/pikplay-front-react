@@ -71,7 +71,7 @@ const ConcursoDetailPage = (props) => {
           <Link href='/concursos'>
             <ArrowBackIosNew className='icon backIcon' />
           </Link>
-          <h2 className="main">Concursos</h2>
+          <h1 className="main">{competitionDetail.title}</h1>
         </div>
         <Card>
           <Tabs

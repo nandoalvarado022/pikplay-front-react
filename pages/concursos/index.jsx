@@ -66,10 +66,10 @@ const ConcursosPage = () => {
             <Link href='/'>
               <ArrowBackIosNew className='icon backIcon' />
             </Link>
-            <h2 className="main">
+            <h1>
               <FontAwesomeIcon  className="icon" icon={faDiceFive} />
               &nbsp;Concursos
-            </h2>
+            </h1>
           </div>
           {/* competitionDetail: {JSON.stringify(competitionDetail)} */}
           <Card>

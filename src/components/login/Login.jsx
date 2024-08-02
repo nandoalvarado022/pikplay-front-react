@@ -8,7 +8,7 @@ import { loginSrv } from '../../services/user/userService'
 import { toast } from 'react-toastify'
 
 function Login(props) {
-  const { env, setValue } = useSystemStore((state => state))
+  const { env, setStoreValue } = useSystemStore((state => state))
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [isHuman, setIsHuman] = useState(env == 'dev' ? true : false)
@@ -38,7 +38,7 @@ function Login(props) {
       const { data } = req
       if (data) {
         const { token, uid } = data
-        setValue("userLogged", data)
+        setStoreValue("userLogged", data)
         handleCloseDialog()
         // cookieCutter.set('X-Auth-Token', token)
         // cookieCutter.set('User-ID', uid)

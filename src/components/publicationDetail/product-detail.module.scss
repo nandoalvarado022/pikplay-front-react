@@ -1,6 +1,6 @@
 @import "../../styles/variables.scss";
 
-.DetalleProducto {
+.ProductDetail {
   background: #f4f4f4;
   padding-top: 20px;
   position: relative;
@@ -92,7 +92,7 @@
         width: 800px;
       }
       @media screen and (max-width: 420px) {
-        margin: 15px 10px;
+        margin: 15px 0px;
       }
       .content_imagen {
         text-align: center;

@@ -254,7 +254,7 @@
     }
 
     .actions {
-        position: absolute;
+        // position: absolute;
         right: 10px;
         top: 300px;
         @media screen and (max-width: 420px) {
@@ -263,7 +263,7 @@
             bottom: 0;
             left: 0;
             padding: 20px;
-            position: fixed;
+            // position: fixed;
             right: initial;
             text-align: center;
             top: initial;

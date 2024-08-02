@@ -10,6 +10,7 @@ import { register } from 'next-offline/runtime'
 import useSystemStore from '../../hooks/storeSystem.js'
 import Body from './Body.jsx'
 import { useIAStore } from '../ia/IAstore.js'
+import AwardsSummaryModal from '../awardsSummary/AwardsSummary.jsx'
 
 toastr.options.timeOut = 10000
 
@@ -23,12 +24,12 @@ Router.onRouteChangeError = () => NProgress.done()
 const Layout = (props) => {
   const [isReady, setIsReady] = useState(false)
   const { children, descripcion, image, title, url, mobileMenuHidden } = props
-  const { env, setValue, userLogged, notifications } = useSystemStore((state => state))
+  const { env, setStoreValue, userLogged, notifications, isAwardsSummaryModalOpen } = useSystemStore((state => state))
   const { checkIAMessage, IAMessage } = useIAStore()
 
   useEffect(() => {
     checkIAMessage(IAMessage); // Check if there is an IA message to show
-    (setValue && !env && props?.env) && setValue('env', props?.env);
+    (setStoreValue && !env && props?.env) && setStoreValue('env', props?.env);
     register()
     if (!window.GA_INITIALIZED) {
       initGA()
@@ -134,8 +135,9 @@ const Layout = (props) => {
       </Head>
       <Body isReady={isReady} notifications={notifications} userLogged={userLogged} mobileMenuHidden={mobileMenuHidden}>
         {children}
+        {isAwardsSummaryModalOpen && <AwardsSummaryModal />}
       </Body>
-    </React.Fragment >
+    </React.Fragment>
   )
 }
 

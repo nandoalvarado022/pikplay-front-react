@@ -47,14 +47,6 @@ const CompetitionsList = ({ competitions }) => {
               <CompetitionItem {...{ ind, competition }} />
             ))}
         </div>
-        {/* <div className={`${styles.done}`}>
-          <h3>PASADOS</h3>
-          {competitions && competitions
-            .filter(item => item.isActive == false)
-            .map((competition, ind) => (
-              <CompetitionItem {...{ ind, competition, handleCompetitionClick }} />
-            ))}
-        </div> */}
       </div>
     </div>
   </div>
