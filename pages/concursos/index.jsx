@@ -67,7 +67,7 @@ const ConcursosPage = () => {
               <ArrowBackIosNew className='icon backIcon' />
             </Link>
             <h2 className="main">
-              <FontAwesomeIcon icon={faDiceFive} />
+              <FontAwesomeIcon  className="icon" icon={faDiceFive} />
               &nbsp;Concursos
             </h2>
           </div>

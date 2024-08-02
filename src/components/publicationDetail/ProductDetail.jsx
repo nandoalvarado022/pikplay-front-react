@@ -23,6 +23,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { Tooltip } from '@mui/material'
 import CashbackTag from '../card/cashbackTag/CashbackTag'
 import Articles from '../articles/Articles'
+import { ArrowBackIosNew } from '@mui/icons-material'
 
 const DetalleProducto = ({
   apply_cashback,
@@ -64,7 +65,16 @@ const DetalleProducto = ({
   return (
     <div key={indice_item} className={`Card ${styles.DetalleProducto}`}>
       <Grow key={indice_item} timeout={500} in={true} style={{ opacity: 1 }}>
-        <div ref={ref_descripcion_imagen} className={styles.descripcion_imagen}>
+        <div ref={ref_descripcion_imagen} className={`contentTitle ${styles.descripcion_imagen}`}>
+          <h1>
+            <Link href='/'>
+              <ArrowBackIosNew className='icon backIcon' />
+            </Link>
+            {title}
+            <Tooltip title='Marcar como Favorito'>
+              <FontAwesomeIcon className='icon' icon={faHeart} style={{ marginLeft: '10px' }} />
+            </Tooltip>
+          </h1>
           <div className={`Card ${styles.left}`}>
             <div className={styles.content_imagen}>
               <ImageGallery
@@ -76,9 +86,7 @@ const DetalleProducto = ({
               />
             </div>
 
-            <div
-              className={`${styles.Card} ${styles['productos-relacionados']}`}
-            >
+            <div className={`${styles.Card} ${styles['productos-relacionados']}`}>
               {/* <h3 className="text-center">Productos que te pueden interesar</h3> */}
               {/* <div className="listadoRodadas">
               {["", "", ""].map((current, ind) => {
@@ -91,12 +99,6 @@ const DetalleProducto = ({
 
           <div className={styles.descripcion}>
             <div className={`Card ${styles.Card}`}>
-              <h1>
-                {title}
-                <Tooltip title='Marcar como Favorito'>
-                  <FontAwesomeIcon className='icon' icon={faHeart} style={{ marginLeft: '10px' }} />
-                </Tooltip>
-              </h1>
               {/* {!!user.is_admin && (
                 <Link href={'/publicacion/' + slug + '/editar'}>
                   <a className='underline'>Editar</a>

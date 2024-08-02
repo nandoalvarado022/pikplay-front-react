@@ -84,7 +84,7 @@ const PublicacionPage = (props) => {
       title={title}
       descripcion={description}
       url={slug}>
-      <div className='_publicacion'>
+      <section className='page _publicacion'>
         <ProductDetail
           {...{ handleHablarVendedor: handleHablarVendedor, origin }}
           meta_url={slug}
@@ -131,7 +131,7 @@ const PublicacionPage = (props) => {
           //   </div>
           // )
         }
-      </div>
+      </section>
     </Layout>
   )
 }

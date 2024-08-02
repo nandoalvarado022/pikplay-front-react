@@ -5,7 +5,7 @@ export default function handler(req, res) {
         "competition": {
             "id": 3,
             "title": "Act 3. Playstation 5 Slim",
-            "slug": "test-3",
+            "slug": "test-1",
             "description": "la mejor",
             "created_at": "2024-01-16T21:56:34.000Z",
             "is_active": true,
