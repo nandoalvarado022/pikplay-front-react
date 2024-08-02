@@ -1,13 +1,11 @@
 section.Onboarding {
     background: #19596b;
     background-image: url(/images/backgrounds/tetris-texture.png);
-    height: calc(100vh);
-    margin: 74px auto 90px;
     width: calc(100%);
     &::after {
         content: "";
         position: fixed;
-        top: 76px;
+        top: 60px;
         left: 0;
         background: #0b2c5aad;
         height: 100%;

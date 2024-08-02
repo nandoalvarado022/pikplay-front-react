@@ -116,109 +116,109 @@ const ModalCheckout = props => {
     <div className={styles._modalIngresoInfo}>
       <div className={styles.background}></div>
       <div className={`Card ${styles.Card}`}>
-        <h2>Tus datos para la entrega y pago</h2>
-        <section className={styles.info_cliente}>
-          <TextField
-            autoComplete='nombre'
-            disabled
-            fullWidth={true}
-            label='Nombre'
-            name='nombre_completo'
-            margin='normal'
-            value={userLogged?.name}
-          />
-          <CiudadControl userLogged={userLogged} />
-        </section>
-        <section className={classNames('m-t-20 f-s-14', [styles.bottom])}>
-          {!!datosPublicacion?.price && (
-            <table className={styles.payment_info}>
-              {couponValue && (
-                <>
-                  <tr>
-                    <td>Total:</td>
-                    <td>
-                      <del>${formatNumber(datosPublicacion?.price)}</del>
-                    </td>
-                  </tr>
+        <div className={styles.content}>
+          <h2>Tus datos para la entrega y pago</h2>
+          {/* <section className={styles.info_cliente}>
+            <TextField
+              autoComplete='nombre'
+              disabled
+              fullWidth={true}
+              label='Nombre'
+              name='nombre_completo'
+              margin='normal'
+              value={userLogged?.name}
+            />
+            <CiudadControl userLogged={userLogged} />
+          </section> */}
+          <section className={classNames('m-t-20 f-s-14', [styles.bottom])}>
+            {!!datosPublicacion?.price && (
+              <table className={`Card m-b-10 ${styles.payment_info}`} style={{ marginBottom: '6ppx' }}>
+                {couponValue && (
+                  <>
+                    <tr>
+                      <td>Total:</td>
+                      <td>
+                        <del>${formatNumber(datosPublicacion?.price)}</del>
+                      </td>
+                    </tr>
+                    <tr className={styles.discount}>
+                      <td>Descuento:</td>
+                      <td>-${formatNumber(couponValue)}</td>
+                    </tr>
+                  </>
+                )}
 
-                  <tr className={styles.discount}>
-                    <td>Descuento:</td>
-                    <td>-${formatNumber(couponValue)}</td>
-                  </tr>
-                </>
-              )}
+                <tr align="right" className={styles.sale_price}>
+                  <td>
+                    <b>Total a pagar (sin incluir envío)</b>
+                  </td>
+                  <td>
+                    <b>${formatNumber(datosPublicacion?.price - couponValue)}</b>
+                  </td>
+                </tr>
 
-              <tr align="right" className={styles.sale_price}>
-                <td>
-                  <b>Pagas</b>
-                </td>
-                <td>
-                  ${formatNumber(datosPublicacion?.price - couponValue)}
-                </td>
-              </tr>
+                <tr align="right">
+                  <td>
+                    <b>Recibes</b>
+                  </td>
+                  <td>
+                    <CoinIcon multicoin coins={56} />
+                  </td>
+                </tr>
+              </table>
+            )}
 
-              <tr align="right">
-                <td>
-                  <b>Recibes</b>
-                </td>
-                <td>
-                  <CoinIcon multicoin coins={56} />
-                </td>
-              </tr>
-            </table>
-          )}
-
-          {/* Cupón */}
-          {/* <CouponBox
+            {/* Cupón */}
+            {/* <CouponBox
             className='block m-t-10'
             callback={handleCoupon}
             publication={datosPublicacion?.id} /> */}
 
-          {couponCode && (
-            <Alert className='m-t-10'>
-              Tienes un cupón activo para esta compra:{' '}
-              <b>{couponCode.toUpperCase()}</b>
-            </Alert>
-          )}
-          <div className={styles.paymentImage}>
-            <Image src='/images/sellers/bluepanther/medios_de_pago_blue_panther.jpeg' height='200' width='200' />
-          </div>
-          {/* <Alert
-            className='m-t-10'
-            icon
-            severity='info'>
-            <div className=''>Terminos y condiciones</div>
-            <small>
-              El pago del producto y costos asociados como el envío se hablan
-              directamente con el vendedor. Pikplay no te hace cobro adicional
-              de ninguna clase. Si tienes aplicado un cúpon este se verá
-              reflejado en el panel del vendedor y deberá ser aplicado en el
-              momento del pago del producto o servicio.
-            </small>
-          </Alert> */}
-        </section>
-        <div className={styles.actions}>
-          <Button
-            onClick={() => {
-              setIsModalHablarVendedor()
-            }}
-            color='link'>
-            Cancelar
-          </Button>
-          <Button onClick={handlePagar} color='yellow' realistic>
-            <FontAwesomeIcon className='m-r-10' icon={faComment} />
-            Contactar
-          </Button>
-          {/* <Checkout
+            {couponCode && (
+              <Alert className='m-t-10'>
+                Tienes un cupón activo para esta compra:{' '}
+                <b>{couponCode.toUpperCase()}</b>
+              </Alert>
+            )}
+            <div className={styles.paymentImageStep}>
+              <Image src='/images/sellers/bluepanther/medios_de_pago_blue_panther.jpeg' height='200' width='200' />
+            </div>
+            <div className={styles.talkToSellerStep}>
+              <Alert
+                className='m-t-10'
+                icon
+                severity='info'>
+                <div className=''>Estás a un saludo de obtener tus <b>Pikcoins!</b> 🤝</div>
+                <p>
+                  🛒 Una vez el seller acepte la compra se verán reflejadas tus Pikcoins en tu perfil. <br /><br />
+                  🚛 Ponte de acuerdo con el para el envío del producto y avisanos cuando tengas el producto.
+                </p>
+              </Alert>
+            </div>
+          </section>
+          <div className={styles.actions}>
+            <Button
+              onClick={() => {
+                setIsModalHablarVendedor()
+              }}
+              color='link'>
+              Cancelar
+            </Button>
+            <Button onClick={handlePagar} color='yellow' realistic>
+              <FontAwesomeIcon className='m-r-10' icon={faComment} />
+              Contactar
+            </Button>
+            {/* <Checkout
           amount={datosPublicacion?.sale_price}
           invoice={datosPublicacion?.sale_price}
           name={datosPublicacion?.title}
           name_billing={user?.name}
           number_doc_billing={user?.identificacion}
         /> */}
+          </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }
 

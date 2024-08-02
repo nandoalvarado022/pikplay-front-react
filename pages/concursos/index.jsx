@@ -15,6 +15,7 @@ import { ArrowBackIosNewOutlined } from '@mui/icons-material'
 import Link from 'next/link'
 import useSystemStore from '../../src/hooks/storeSystem'
 import { competitionsStore } from '../../src/components/competitions/hooks/competitionsStore'
+import { faDiceFive } from '@fortawesome/free-solid-svg-icons'
 
 const ConcursosPage = () => {
   const {
@@ -65,7 +66,10 @@ const ConcursosPage = () => {
             <Link href='/'>
               <ArrowBackIosNew className='icon backIcon' />
             </Link>
-            <h2 className="main">Concursos</h2>
+            <h2 className="main">
+              <FontAwesomeIcon icon={faDiceFive} />
+              &nbsp;Concursos
+            </h2>
           </div>
           {/* competitionDetail: {JSON.stringify(competitionDetail)} */}
           <Card>

@@ -5,7 +5,7 @@ import CompetitionItem from './CompetitionItem'
 import Marquee from './Marquee'
 import Joyride from 'react-joyride'
 
-const CompetitionsList = ({ competitions, handleCompetitionClick }) => {
+const CompetitionsList = ({ competitions }) => {
   const steps = [{
     target: '#activitiesList',
     content: 'Te presentamos los concursos Activos!, aquí podras participar para ganar consolas, juegos y mucho más!',
@@ -16,7 +16,7 @@ const CompetitionsList = ({ competitions, handleCompetitionClick }) => {
   }]
 
   return <div className={styles.CompetitionsList}>
-    <Joyride
+    {/* <Joyride
       showProgress
       showSkipButton
       steps={steps}
@@ -24,11 +24,11 @@ const CompetitionsList = ({ competitions, handleCompetitionClick }) => {
         options: {
           zIndex: 10000,
         },
-      }} />
+      }} /> */}
     {/* Competitions: {JSON.stringify(competitions)} */}
     <div className={styles.content}>
       <div id="adsItems" className={styles.ads}>
-        <div className={styles.item} onClick={() => handleCompetitionClick({ id: 1 })}>
+        <div className={styles.item}>
           <img src="/images/banners/banner-02.png" />
         </div>
         <div className={styles.item}>
@@ -41,21 +41,20 @@ const CompetitionsList = ({ competitions, handleCompetitionClick }) => {
       </div>
       <div className={`${styles.list} flex`}>
         <div className={`${styles.active}`}>
-          <h3 id="activitiesList">ACTIVOS</h3>
           {competitions && competitions
             .filter(item => item.isActive == true)
             .map((competition, ind) => (
-              <CompetitionItem {...{ ind, competition, handleCompetitionClick }} />
+              <CompetitionItem {...{ ind, competition }} />
             ))}
         </div>
-        <div className={`${styles.done}`}>
+        {/* <div className={`${styles.done}`}>
           <h3>PASADOS</h3>
-          {/* {competitions && competitions
+          {competitions && competitions
             .filter(item => item.isActive == false)
             .map((competition, ind) => (
               <CompetitionItem {...{ ind, competition, handleCompetitionClick }} />
-            ))} */}
-        </div>
+            ))}
+        </div> */}
       </div>
     </div>
   </div>

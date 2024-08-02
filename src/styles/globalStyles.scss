@@ -164,9 +164,9 @@ button.image-gallery-thumbnail {
   }
 
   svg {
-    float: right;
-    margin-top: 2px;
-    transform: scale(1.2);
+    // float: right;
+    // margin-top: 2px;
+    // transform: scale(1.2);
   }
 }
 
@@ -559,7 +559,7 @@ section.page {
   margin: 20px auto;
   width: 1200px;
   @media screen and (max-width: 420px) {
-    margin: 80px auto 90px;
+    margin: 60px auto 90px;
     width: calc(100% - 40px);
   }
   .contentTitle {
@@ -568,9 +568,9 @@ section.page {
       background: white;
       border-radius: 50%;
       color: #19596b;
-      float: left;
-      margin: -6px 10px 0 0;
       padding: 8px;
+      position: relative;
+      top: 10px;
     }
     h2.main {
       @media screen and (max-width: 420px) {

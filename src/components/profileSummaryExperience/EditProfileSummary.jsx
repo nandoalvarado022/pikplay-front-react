@@ -17,7 +17,7 @@ const EditProfileSummary = (props) => {
 
 	const backgrounds = [
 		"/images/backgrounds/bg-gamer.jpg",
-		"/images/backgrounds/anime.jpeg",
+		"/images/backgrounds/bg-profile-01.svg",
 		"/images/backgrounds/dog-and-guy.png"
 	]
 
