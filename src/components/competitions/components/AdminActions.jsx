@@ -23,7 +23,7 @@ const AdminActions = ({
                         Mostrar nombre de los participantes
                     </div> */}
                     <Button color="yellow">Cancelar concurso</Button>
-                    <Button color="blue" onClick={deleteNotPaidNumbers}>Liberar números no pagados</Button>
+                    <Button color="blue" onClick={deleteNotPaidNumbers}>Liberar números<br />no pagados</Button>
                 </div>
             </BottomSheets>}
         </div>

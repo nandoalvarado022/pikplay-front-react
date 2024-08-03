@@ -3,16 +3,17 @@ import styles from './bottomSheets.module.scss'
 
 const BottomSheets = (props) => {
   const {
+    backgroundBlocked = true,
     children,
     isBottomSheets,
-    setIsBottomSheets
+    setIsBottomSheets,
   } = props
   return (<>
-    <div className={`${isBottomSheets ? styles.active : ''} ${styles.BottomSheets}`}>
+    <div className={`${isBottomSheets ? styles.active : ''} ${styles.BottomSheets} `}>
       <div id="draggable" draggable="true" className={styles.topLine} onDrag={() => setIsBottomSheets(false)} onClick={() => setIsBottomSheets(false)}></div>
       {children}
     </div>
-    <div className={`${isBottomSheets ? styles.active : ''} ${styles.elementToClose}`} onClick={() => setIsBottomSheets(false)}></div>
+    {backgroundBlocked && <div className={`${isBottomSheets ? styles.active : ''} ${styles.elementToClose}`} onClick={() => setIsBottomSheets(false)}></div>}
   </>
   )
 }

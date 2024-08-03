@@ -24,6 +24,7 @@ import { Tooltip } from '@mui/material'
 import CashbackTag from '../card/cashbackTag/CashbackTag'
 import Articles from '../articles/Articles'
 import { ArrowBackIosNew } from '@mui/icons-material'
+import BottomSheets from '../bottomSheets/BottomSheets'
 
 const ProductDetail = ({
   apply_cashback,
@@ -132,19 +133,21 @@ const ProductDetail = ({
               </div>
 
               <div className={`flex ${styles.compra_author}`}>
-                <div className={styles.content_comprar}>
-                  <Button color='link'>
-                    Preguntar sobre este producto
-                  </Button>
-                  {!buttonLink && <Button realistic color='blue' onClick={handleHablarVendedor}>
-                    {buttonLabel}
-                  </Button>}
-                  {buttonLink && <Link href={buttonLink}>
-                    <Button realistic color='blue'>
-                      {buttonLabel}
+                <BottomSheets isBottomSheets backgroundBlocked={false}>
+                  <div className={styles.content_comprar}>
+                    <Button color='link'>
+                      Preguntar sobre <br />este producto
                     </Button>
-                  </Link>}
-                </div>
+                    {!buttonLink && <Button realistic color='blue' onClick={handleHablarVendedor}>
+                      {buttonLabel}
+                    </Button>}
+                    {buttonLink && <Link href={buttonLink}>
+                      <Button realistic color='blue'>
+                        {buttonLabel}
+                      </Button>
+                    </Link>}
+                  </div>
+                </BottomSheets>
                 <div className={styles.content_author}>
                   <Author parentView='CardDetalleProducto' user={seller} />
                 </div>
