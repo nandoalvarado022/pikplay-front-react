@@ -1,4 +1,13 @@
 .CompetitionsComponent {
+  .activeIcon {
+    background: #4ab405;
+    border-radius: 50%;
+    display: inline-block;
+    height: 10px;
+    margin-right: 8px;
+    width: 10px;
+  }
+
   .left {
     width: 800px;
     @media screen and (max-width: 420px) {

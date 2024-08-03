@@ -15,15 +15,26 @@ import Notification from '../previewNotifications/index.jsx'
 import Subcategories from '../subcategories/Subcategories'
 import { IS_MOBILE } from '../../lib/variables'
 import { ToastContainer } from 'react-toastify'
+import useSystemStore from '../../hooks/storeSystem.js'
 
-const Body = ({ children, isReady, userLogged, notifications, mobileMenuHidden }) => {
+const Body = ({
+  children,
+  isReady,
+  mobileMenuHidden,
+  notifications,
+  userLogged,
+}) => {
+  const { darkMode } = useSystemStore((state => state))
+
   return <>
     <main
       className={classNames('App font-a', {
+        'darkMode': darkMode,
         [styles.main]: true,
         [styles.AppComponent]: true,
         [styles.ready]: isReady,
       })}>
+      darkMode:{darkMode}
       <CustomHeader />
       {false && (
         <div className={styles.announcement}>

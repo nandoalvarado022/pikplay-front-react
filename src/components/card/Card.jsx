@@ -85,8 +85,9 @@ const Card = (props) => {
               {
                 images && images.length > 0 && images.map(image => (
                   <Image
-                    objectFit='cover'
+                    alt="imagen del producto"
                     layout='fill'
+                    objectFit='cover'
                     src={image?.url}
                   />
                 ))

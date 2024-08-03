@@ -20,7 +20,7 @@ import useSystemStore from '../../hooks/storeSystem'
 
 const MenuMobileOptions = () => {
 	const router = useRouter()
-	const { userLogged, logout } = useSystemStore((state => state))
+	const { darkMode, userLogged, logout, setStoreValue } = useSystemStore((state => state))
 	const { name, coins } = userLogged
 	const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 		width: 62,
@@ -149,7 +149,7 @@ const MenuMobileOptions = () => {
 		</motion.ol>
 		<motion.ol variants={item}>
 			<FormControlLabel
-				control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
+				control={<MaterialUISwitch sx={{ m: 1 }} checked={darkMode} onChange={(e) => setStoreValue("darkMode", e.target.checked)} />}
 				label="Modo nocturno"
 			/>
 			{/* <Switch

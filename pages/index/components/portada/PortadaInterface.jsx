@@ -168,7 +168,7 @@ const PortadaInterface = ({
       {showModalLead && <ModalLead />}
       <Products />
     </section>
-    <Footer />
+    {/* <Footer /> */}
   </>
   )
 }

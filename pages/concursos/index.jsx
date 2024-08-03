@@ -16,6 +16,8 @@ import Link from 'next/link'
 import useSystemStore from '../../src/hooks/storeSystem'
 import { competitionsStore } from '../../src/components/competitions/hooks/competitionsStore'
 import { faDiceFive } from '@fortawesome/free-solid-svg-icons'
+import { TrafficRounded } from '@mui/icons-material'
+import { green } from '@mui/material/colors'
 
 const ConcursosPage = () => {
   const {
@@ -67,7 +69,7 @@ const ConcursosPage = () => {
               <ArrowBackIosNew className='icon backIcon' />
             </Link>
             <h1>
-              <FontAwesomeIcon  className="icon" icon={faDiceFive} />
+              <FontAwesomeIcon className="icon" icon={faDiceFive} />
               &nbsp;Concursos
             </h1>
           </div>
@@ -78,8 +80,10 @@ const ConcursosPage = () => {
               onChange={handleChange}
               aria-label='basic tabs example'
               indicatorColor='primary'>
-              <Tab label={competitionDetail ? 'Organiza: BluePanther' : 'Listado de Concursos'} />
-              <Tab label='¿Como funcionan los concursos?' />
+              <Tab label={<div>
+                <span className={`shine ${styles.activeIcon}`} />
+                Concursos Activos
+              </div>} />
             </Tabs>
 
             <TabPanel value={value} index={0}>
@@ -89,8 +93,6 @@ const ConcursosPage = () => {
                 selectedNumber={selectedNumber}
                 setSelectedNumber={setSelectedNumber}
               />
-            </TabPanel>
-            <TabPanel value={value} index={1}>
             </TabPanel>
           </Card>
         </section>

@@ -1,7 +1,7 @@
 @import "../../styles/variables.scss";
 
 .ProductDetail {
-  background: #f4f4f4;
+  // background: #f4f4f4;
   padding-top: 20px;
   position: relative;
   z-index: 1;
@@ -10,10 +10,7 @@
   @media screen and (min-width: 1024px) {
     box-sizing: border-box;
   }
-  h1 {
-    margin: 5px 0;
-    line-height: 30px;
-  }
+
   &.actividades {
     h2 {
       color: white;

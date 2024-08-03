@@ -80,7 +80,7 @@ const ConcursoDetailPage = (props) => {
             aria-label='basic tabs example'
             indicatorColor='primary'>
             <Tab label={competitionDetail ? 'Organiza: BluePanther' : 'Listado de Concursos'} />
-            <Tab label='¿Como funcionan los concursos?' />
+            <Tab label='Administrar' />
           </Tabs>
           <TabPanel value={value} index={0}>
             <CompetitionDetail

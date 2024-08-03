@@ -30,7 +30,7 @@ export default function handler(req, res) {
             }
         ],
         "seller": {
-            "uid": 2,
+            "uid": 1,
             "name": "Blue Panther's",
             "is_certificated": false,
             "login_code": 1234,

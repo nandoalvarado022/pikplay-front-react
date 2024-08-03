@@ -11,6 +11,7 @@ import useSystemStore from '../../hooks/storeSystem.js'
 import Body from './Body.jsx'
 import { useIAStore } from '../ia/IAstore.js'
 import AwardsSummaryModal from '../awardsSummary/AwardsSummary.jsx'
+import classNames from 'classnames'
 
 toastr.options.timeOut = 10000
 
@@ -24,7 +25,8 @@ Router.onRouteChangeError = () => NProgress.done()
 const Layout = (props) => {
   const [isReady, setIsReady] = useState(false)
   const { children, descripcion, image, title, url, mobileMenuHidden } = props
-  const { env, setStoreValue, userLogged, notifications, isAwardsSummaryModalOpen } = useSystemStore((state => state))
+  const { darkMode, env, setStoreValue, userLogged, notifications, isAwardsSummaryModalOpen } = useSystemStore((state => state))
+  debugger;
   const { checkIAMessage, IAMessage } = useIAStore()
 
   useEffect(() => {
@@ -98,9 +100,7 @@ const Layout = (props) => {
           name='viewport'
           content='width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0' />
         <meta name='theme-color' content='#476E95' />
-        <meta
-          name='google-site-verification'
-          content='4IqXj9YLrm5eo3s_c3cTKcAqBwUhCf8qgJgL2sLtJko' />
+        <meta name='google-site-verification' content='4IqXj9YLrm5eo3s_c3cTKcAqBwUhCf8qgJgL2sLtJko' />
         <meta name='twitter:description' content={descripcion} />
         <meta name='keywords' value='' />
         <meta name='country' content='COL' />
@@ -133,7 +133,12 @@ const Layout = (props) => {
           })
         }}()
       </Head>
-      <Body isReady={isReady} notifications={notifications} userLogged={userLogged} mobileMenuHidden={mobileMenuHidden}>
+      <Body
+        isReady={isReady}
+        mobileMenuHidden={mobileMenuHidden}
+        notifications={notifications}
+        userLogged={userLogged}
+      >
         {children}
         {isAwardsSummaryModalOpen && <AwardsSummaryModal />}
       </Body>

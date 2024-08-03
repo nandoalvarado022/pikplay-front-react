@@ -194,7 +194,7 @@ const ProductDetail = ({
           />
         </div>
       )}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }
