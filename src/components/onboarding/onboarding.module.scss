@@ -1,6 +1,7 @@
 section.Onboarding {
     background: #19596b;
     background-image: url(/images/backgrounds/tetris-texture.png);
+    margin: 40px auto 90px;
     width: calc(100%);
     &::after {
         content: "";
@@ -130,6 +131,7 @@ section.Onboarding {
                 top: 5px;
                 width: 20px;
                 svg {
+                    color: #21e509;
                     position: relative;
                     top: -2px;
                     width: 20px;

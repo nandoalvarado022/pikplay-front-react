@@ -1,3 +1,5 @@
+import styles from './ia.module.scss'
+
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Button from '../button/Button'
@@ -5,7 +7,6 @@ import ReactTyped from "react-typed"
 import CoinIcon from '../coinIcon/CoinIcon'
 import { formatNumber } from '../../lib/utils'
 import { useIAStore } from './IAstore'
-import styles from './styles.module.scss'
 import IACharacter from './IACharacter'
 import { motion } from "framer-motion"
 

@@ -6,18 +6,21 @@ import Button from '../button/Button'
 import Image from 'next/image'
 import CoinIcon from '../coinIcon/CoinIcon'
 import useSystemStore from '../../hooks/storeSystem'
+import Router from 'next/router'
 
 const ItemChallenge = (props) => {
   const { data } = props
   const { userLogged, setStoreValue } = useSystemStore(state => state)
   const { data: {
     buttonText,
-    completed,
+    isCompleted,
     coins,
     detail,
     height,
     id,
     image,
+    linkBeforeCompleted,
+    buttonAfterCompleted,
     reward,
     rewardImage,
     starsEffect,
@@ -33,18 +36,20 @@ const ItemChallenge = (props) => {
 
   const handleReclamar = () => {
     userLogged.uid
-      ? setStoreValue('isAwardsSummaryModalOpen', true)
+      ? isCompleted
+        ? setStoreValue('isAwardsSummaryModalOpen', true)
+        : Router.push(linkBeforeCompleted)
       : document.querySelector('#btnStart').click()
   }
 
-  return <article key={id} className={`${!completed ? 'dark' : ''} ${starsEffect ? 'starsFallingDown' : ''} ${styles.challenge}`}>
+  return <article key={id} className={`${!isCompleted ? 'dark' : ''} ${starsEffect ? 'starsFallingDown' : ''} ${styles.challenge}`}>
     {/* <picture className={styles.image}>
             <img className={styles.image} src={image} />
         </picture> */}
     <div className={styles.challengeDetails}>
       <h4 className={`shadow-text ${styles.challengeTitle}`}>
         {title}
-        {/* {completed && <FontAwesomeIcon icon={faCheck} className={`icon ${styles.challengeCompleteIcon}`} />} */}
+        {/* {isCompleted && <FontAwesomeIcon icon={faCheck} className={`icon ${styles.challengeCompleteIcon}`} />} */}
       </h4>
       {target > 1 && <div className={styles.progressContainer}>
         <span className={styles.progressBar}
@@ -67,7 +72,7 @@ const ItemChallenge = (props) => {
     </div>
 
     <div className={styles.rewardsContent}>
-      <b className='shadow-text'>Recompensas</b>
+      <b className='shadow-text'>Recompensa</b>
       {reward == 'coins' && <div className={styles.coins}>
         <CoinIcon coins={coins} multicoin />
       </div>}

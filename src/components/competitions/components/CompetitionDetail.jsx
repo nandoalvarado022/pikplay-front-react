@@ -206,18 +206,20 @@ const CompetitionDetail = (props) => {
         <div>
           <CardGiftcard />
           <Link href={`/publicacion/nuevas-figuritas-de-kimetsu-no-yaiba-pregunta-por-tu-favorita?origin=/concursos/${competitionSlug}`}>
-            {competitionDetail?.award}
+            &nbsp;&nbsp;{competitionDetail?.award}
           </Link>
         </div>
         <div>
           <span className={styles.availableNumbers}>
             {availableNumbers}
           </span>
-          números disponibles
+          &nbsp;Números disponibles
         </div>
         <div>
           <Money />
-          <span>${formatNumber(price)}</span>
+          <span>
+            &nbsp;&nbsp;${formatNumber(price)}
+          </span>
         </div>
         <div>
           <small>Liberación de cupos el {competitionDetail?.dateReleaseQuotas}</small>

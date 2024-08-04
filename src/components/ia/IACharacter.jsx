@@ -1,4 +1,4 @@
-import styles from './styles_iacharacter.module.scss'
+import styles from './iacharacter.module.scss'
 
 import React from 'react'
 

@@ -1,13 +1,15 @@
 export default function handler(req, res) {
     let response = [
         {
-            "completed": false,
-            "detail": "Completa este desafio para obtener tu primer regalo!",
+            "isCompleted": false,
+            "detail": "Completa el onboarding y recibe tus primeros Pikcoins!",
             "id": 1,
+            "linkBeforeCompleted": "/onboarding",
             "reward": "",
             "rewardImage": "/images/icons/gif.svg",
-            "title": "Prueba el modo oscuro",
-            buttonText: "Regalo sorpresa",
+            "title": "Completa el Onboarding",
+            buttonText: "Continuar",
+            buttonAfterCompleted: "Reclamar",
             height: 60,
             width: 60,
         },

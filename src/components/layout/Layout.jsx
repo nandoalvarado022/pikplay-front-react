@@ -26,7 +26,6 @@ const Layout = (props) => {
   const [isReady, setIsReady] = useState(false)
   const { children, descripcion, image, title, url, mobileMenuHidden } = props
   const { darkMode, env, setStoreValue, userLogged, notifications, isAwardsSummaryModalOpen } = useSystemStore((state => state))
-  debugger;
   const { checkIAMessage, IAMessage } = useIAStore()
 
   useEffect(() => {

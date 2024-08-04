@@ -1,7 +1,6 @@
 import styles from './referrals.module.scss'
 
 import React, { useState, useEffect } from 'react';
-import TextField from '@mui/material/TextField'
 import Button from '../../../button/Button'
 import { getReferralsSrv, saveReferral } from '../../../../services/user/userService'
 

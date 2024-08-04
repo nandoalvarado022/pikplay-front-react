@@ -141,6 +141,7 @@
       .actions {
         column-gap: 10px;
         display: flex;
+        justify-content: center;
       }
     }
     .active {
@@ -305,4 +306,7 @@
 
 .AdminActions {
   padding-top: 20px;
+  > button {
+    float: right;
+  }
 }

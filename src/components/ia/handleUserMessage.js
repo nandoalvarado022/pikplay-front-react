@@ -1,9 +1,11 @@
+/* eslint-disable no-case-declarations */
 import Button from '../button/Button'
 import ReactTyped from 'react-typed'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { Message as IAMessageWelcome, Options as IAOptionsWelcome, HTML as HTMLwelcome } from './responses/welcome'
 import { Message as IAMessageReferrals, Options as IAOptionsReferrals } from './responses/referrals/referrals'
-import { HTMLOnboarding, Message as IAMessageOnboarding, Options as IAOptionsOnboarding } from './responses/onboarding/onboarding'
+import { HTMLOnboarding, Message as IAMessageOnboarding, Options as IAOptionsOnboarding, HTMLOnboardingNameSaved } from './responses/onboarding/onboarding'
 import HTMLAddReferrals, { Message as IAMessageAddReferrals, Options as IAOptionsAddReferrals } from './responses/referrals/addReferral'
 import { Message as IAMessageCompetition, Options as IAOptionsCompetition } from './responses/competition/competition'
 import { Message as IAMessageCompetition_Yes, Options as IAOptionsCompetition_Yes, HTMLMessage as HTMLMEssage_Competition_Yes } from './responses/competition/yes/yes'
@@ -22,12 +24,12 @@ const renderMiddleWare = (Component, set, options = {}) => {
     />
 }
 
-export const handleUserMessage = (mensaje, set, options) => {
+export const handleUserMessage = async (mensaje, set, options) => {
     let IAMessageSelected
     let loadingOptions = ["Hmmm...", "Ya veo...", "Que podria ser...", "Ok, te entiendo..."]
     let seleccionAleatoria = loadingOptions[Math.floor(Math.random() * loadingOptions.length)]
     const loadingMessage = <span>{seleccionAleatoria}</span>
-    let IAOptionsSelected = <></>
+    let IAOptionsSelected = () => <></>
     let containerHeightSelected
     let IAExpressionSelected = 'happy'
     let IAHTMLMessageSelected
@@ -40,6 +42,12 @@ export const handleUserMessage = (mensaje, set, options) => {
             IAHTMLSecondMessageSelected = <HTMLOnboarding />
             break;
 
+        case 'onboarding/name-saved':
+            // IAHTMLSecondMessageSelected = <HTMLOnboardingNameSaved />
+            IAMessageSelected = HTMLOnboardingNameSaved()
+            // IAOptionsSelected = <></>
+            break;
+
         case 'referrals':
             IAMessageSelected = IAMessageReferrals
             IAOptionsSelected = IAOptionsReferrals
@@ -49,6 +57,13 @@ export const handleUserMessage = (mensaje, set, options) => {
             IAMessageSelected = IAMessageAddReferrals
             IAOptionsSelected = IAOptionsAddReferrals
             IAHTMLMessageSelected = <HTMLAddReferrals />
+            break;
+
+        case 'referrals/onboarding':
+            const { HTML, Message, Options } = await import('./responses/referrals/onboardingReferrals.jsx')
+            IAHTMLMessageSelected = HTML
+            IAMessageSelected = Message
+            IAOptionsSelected = Options
             break;
 
         case 'guide':
