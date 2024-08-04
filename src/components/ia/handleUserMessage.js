@@ -1,12 +1,11 @@
+/* eslint-disable no-empty-pattern */
 /* eslint-disable no-case-declarations */
 import Button from '../button/Button'
 import ReactTyped from 'react-typed'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { Message as IAMessageWelcome, Options as IAOptionsWelcome, HTML as HTMLwelcome } from './responses/welcome'
-import { Message as IAMessageReferrals, Options as IAOptionsReferrals } from './responses/referrals/referrals'
 import { HTMLOnboarding, Message as IAMessageOnboarding, Options as IAOptionsOnboarding, HTMLOnboardingNameSaved } from './responses/onboarding/onboarding'
-import HTMLAddReferrals, { Message as IAMessageAddReferrals, Options as IAOptionsAddReferrals } from './responses/referrals/addReferral'
 import { Message as IAMessageCompetition, Options as IAOptionsCompetition } from './responses/competition/competition'
 import { Message as IAMessageCompetition_Yes, Options as IAOptionsCompetition_Yes, HTMLMessage as HTMLMEssage_Competition_Yes } from './responses/competition/yes/yes'
 import { Message as IAMessageCompetition_Yes_Taken, Options as IAOptionsCompetition_Yes_Taken } from './responses/competition/yes/taken'
@@ -34,8 +33,16 @@ export const handleUserMessage = async (mensaje, set, options) => {
     let IAExpressionSelected = 'happy'
     let IAHTMLMessageSelected
     let IAHTMLSecondMessageSelected
+    var HTML, Message, Options
 
     switch (mensaje) {
+        case 'ranking':
+            var { } = { HTML, Message, Options } = await import('./responses/ranking.jsx')
+            IAHTMLMessageSelected = HTML
+            IAMessageSelected = Message
+            IAOptionsSelected = Options
+            break;
+
         case 'onboarding':
             IAMessageSelected = IAMessageOnboarding
             IAOptionsSelected = IAOptionsOnboarding
@@ -48,19 +55,15 @@ export const handleUserMessage = async (mensaje, set, options) => {
             // IAOptionsSelected = <></>
             break;
 
+        case 'referrals/added':
+            var { } = { HTML, Message, Options } = await import('./responses/referrals/added.jsx')
+            IAHTMLMessageSelected = HTML
+            IAMessageSelected = Message
+            IAOptionsSelected = Options
+            break;
+
         case 'referrals':
-            IAMessageSelected = IAMessageReferrals
-            IAOptionsSelected = IAOptionsReferrals
-            break;
-
-        case 'referrals/add':
-            IAMessageSelected = IAMessageAddReferrals
-            IAOptionsSelected = IAOptionsAddReferrals
-            IAHTMLMessageSelected = <HTMLAddReferrals />
-            break;
-
-        case 'referrals/onboarding':
-            const { HTML, Message, Options } = await import('./responses/referrals/onboardingReferrals.jsx')
+            var { } = { HTML, Message, Options } = await import('./responses/referrals/referrals.jsx')
             IAHTMLMessageSelected = HTML
             IAMessageSelected = Message
             IAOptionsSelected = Options

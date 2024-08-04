@@ -23,14 +23,15 @@ const Onboarding = () => {
     },
     {
       background: "https://i.pinimg.com/564x/f4/d4/b9/f4d4b991d2bccaf2202b8a07bae108de.jpg",
-      html: <>Alcanza la <span className={styles.green}>liga</span> más top</>,
+      html: <>Alcanza la <span className={styles.green}>liga</span> <br />más top</>,
       image: "/images/icons/liga-oro-hiervas.svg",
+      messageCode: "ranking",
     },
     {
       background: "https://i.pinimg.com/564x/f4/d4/b9/f4d4b991d2bccaf2202b8a07bae108de.jpg",
       html: <>¡Refiere y gana!</>,
       image: "/images/icons/gif.svg",
-      messageCode: "referrals/onboarding",
+      messageCode: "referrals",
     }
   ]
   const {

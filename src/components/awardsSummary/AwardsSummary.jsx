@@ -1,60 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide } from "@mui/material";
-import confetti from 'canvas-confetti'
 import ReactTyped from 'react-typed'
 import styles from './styles.module.scss'
 import CoinIcon from '../coinIcon/CoinIcon';
 import Button from '../button/Button'
-import { animatePrince } from '../../lib/utils'
+import { animatePrince, startConfetti } from '../../lib/utils'
 import classNames from 'classnames';
 import ProfileSummaryExperience from '../profileSummaryExperience/ProfileSummaryExperience';
 import { motion, AnimatePresence } from "framer-motion"
 import useSystemStore from '../../hooks/storeSystem';
 
 const AwardsSummary = ({ callback }) => {
-
     const gainedCoins = 5
     const currentUserCoins = 10
-
-    const startConfetti = () => {
-        var count = 200;
-        var defaults = {
-            origin: { y: 0.7 },
-            zIndex: 1301
-        };
-
-        function fire(particleRatio, opts) {
-            confetti({
-                ...defaults,
-                ...opts,
-                particleCount: Math.floor(count * particleRatio)
-            });
-        }
-
-        fire(0.25, {
-            spread: 26,
-            startVelocity: 55,
-        });
-        fire(0.2, {
-            spread: 60,
-        });
-        fire(0.35, {
-            spread: 100,
-            decay: 0.91,
-            scalar: 0.8
-        });
-        fire(0.1, {
-            spread: 120,
-            startVelocity: 25,
-            decay: 0.92,
-            scalar: 1.2
-        });
-        fire(0.1, {
-            spread: 120,
-            startVelocity: 45,
-        });
-        confetti({ ...defaults })
-    }
 
     useEffect(() => {
         setTimeout(() => {
