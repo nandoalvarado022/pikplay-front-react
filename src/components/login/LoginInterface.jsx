@@ -30,7 +30,6 @@ export default function LoginInterface({
   setPhone,
   setName,
 }) {
-  isHuman = true;
   const [contry, setContry] = useState('57')
   return (
     <div className={styles.LoginComponent}>
@@ -138,7 +137,7 @@ export default function LoginInterface({
                   onKeyUp={handleKeyUp}
                   type='number' />
                 <small>
-                  <a href='https://api.whatsapp.com/send?phone=573054202450&text=Tengo problemas al recibir mi código de ingreso'
+                  <a href='https://api.whatsapp.com/send?phone=573187414972&text=Tengo problemas al recibir mi código de ingreso'
                     target='_BLANK'
                     rel="noreferrer">
                     Tengo problemas al recibir mi código de ingreso
@@ -159,8 +158,7 @@ export default function LoginInterface({
         </DialogContent >
         <DialogActions>
           {isCodeSent && <Button onClick={handleFixPhone} color='normal'>
-            Corregir número <br />
-            de celular
+            Corregir número
           </Button>}
           {/* <Button onClick={handleCloseDialog} color='normal'>
             Cancelar
