@@ -119,7 +119,6 @@
         padding: 5px;
       }
       .seller {
-        bottom: -14px;
         column-gap: 10px;
         display: flex;
         // left: -20px;
@@ -142,6 +141,7 @@
         column-gap: 10px;
         display: flex;
         justify-content: center;
+        margin-top: 15px;
       }
     }
     .active {
@@ -167,6 +167,7 @@
       flex-direction: column-reverse;
     }
     .seller {
+      margin-top: 10px;
       img {
         border-radius: 50%;
         width: 60px;

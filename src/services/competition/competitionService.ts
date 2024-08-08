@@ -6,8 +6,13 @@ const getComptSrv = async (ctx, slug = null) => {
   return get(ctx, path);
 }
 
-const getEnvVariables = async (ctx, slug = null) => {
+const getEnvVariablesSrv = async (ctx, slug = null) => {
   return get(ctx, "");
+}
+
+const postCompetitionMemberSrv = async (ctx, competitionID, number, uid) => {
+  const path = '/competition-members/register'
+  return post(ctx, path, { competitionID, number, uid })
 }
 
 const deleteCompetitionMemberSrv = async (competitionID, number) => {
@@ -25,5 +30,6 @@ const deleteCompetitionMemberSrv = async (competitionID, number) => {
 export {
   deleteCompetitionMemberSrv,
   getComptSrv,
-  getEnvVariables
+  getEnvVariablesSrv,
+  postCompetitionMemberSrv
 }

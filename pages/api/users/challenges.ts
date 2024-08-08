@@ -2,7 +2,7 @@ export default function handler(req, res) {
     let response = [
         {
             "isCompleted": false,
-            "detail": "Completa el onboarding y recibe tus primeros Pikcoins!",
+            "detail": "Completa el Onboarding y recibe tus primeros Pikcoins!",
             "id": 1,
             "linkBeforeCompleted": "/onboarding",
             "reward": "",

@@ -11,7 +11,7 @@ const data = {
 
 const Insignias = (props) => {
   const [isReady, setIsReady] = useState(false)
-  const { title, favoriteInsignia } = props
+  const { title, favoriteBadge } = props
   const dataInsignias = [
     { id: "daily-login", image: "/images/icons/calendar-hierva.svg", name: "Ingreso diario", hidden: false },
     { id: "liga-oro", image: "/images/icons/liga-oro-hiervas.svg", name: "Liga Oro", hidden: false }
@@ -21,8 +21,8 @@ const Insignias = (props) => {
   useEffect(() => {
     setTimeout(() => {
       // const newInsignia = { id: 'second', name: 'Segunda compra', isNew: true }
-      if (favoriteInsignia) {
-        const insigniasFormatted = dataInsignias.map(item => (item.hidden = item.id != favoriteInsignia, item))
+      if (favoriteBadge) {
+        const insigniasFormatted = dataInsignias.map(item => (item.hidden = item.id != favoriteBadge, item))
         setInsignias(insigniasFormatted)
         setIsReady(true)
       }

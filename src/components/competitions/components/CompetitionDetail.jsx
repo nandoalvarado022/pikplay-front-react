@@ -18,32 +18,34 @@ import { GifBoxSharp } from '@mui/icons-material'
 import { CardGiftcard } from '@mui/icons-material'
 import { Money } from '@mui/icons-material'
 import Link from 'next/link'
+import { postCompetitionMemberSrv } from '../../../services/competition/competitionService'
 
 const CompetitionDetail = (props) => {
   const {
     competitionDetail,
-    // competitionMembers,
-    // setCompetitionMembers,
     userPicture,
     uidLogged,
   } = props
 
-  const { availableNumbers, price, title, seller, slug: competitionSlug } = competitionDetail
+  const {
+    availableNumbers,
+    price,
+    seller,
+    slug: competitionSlug,
+    freeNumbers,
+    paidNumbers,
+    takenNumbers } = competitionDetail
 
   const {
     handleUserMessage,
     setIsvisible,
-    setNumberChosen,
   } = useIAStore((state => state))
 
   const {
-    competitions,
     deleteNotPaidNumbers,
     getCompetitions,
     isOnlyAvailableNumbers,
-    postCompetitionMember,
     selectedNumber,
-    setIsOnlyAvailableNumbers,
     setSelectedNumber,
   } = useCompetitions()
 
@@ -70,7 +72,7 @@ const CompetitionDetail = (props) => {
       const options = {
         competitionID: competitionDetail.id,
         number,
-        postCompetitionMember,
+        postCompetitionMemberSrv,
         sellerPhone: competitionDetail.seller.phone,
       }
       handleUserMessage('competition', options)
@@ -228,8 +230,10 @@ const CompetitionDetail = (props) => {
       <Divider />
       {(uidLogged && uidLogged == seller?.uid) && <AdminActions
         {...{
-          competitionDetail,
           deleteNotPaidNumbers,
+          freeNumbers,
+          paidNumbers,
+          takenNumbers,
           setShowMembersNames,
         }}
       />}

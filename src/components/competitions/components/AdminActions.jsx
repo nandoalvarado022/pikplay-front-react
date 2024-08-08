@@ -10,16 +10,20 @@ import BottomSheets from '../../bottomSheets/BottomSheets'
 import { PieChart } from '@mui/x-charts'
 import { pieArcLabelClasses } from '@mui/x-charts/PieChart'
 
-const Grafica = () => {
+const Grafica = ({
+  freeNumbers,
+  paidNumbers,
+  takenNumbers,
+}) => {
   return <PieChart
     legend={{ hidden: true }}
     series={[
       {
         arcLabel: (item) => `${item.label} ${item.value}`,
         data: [
-          { id: 0, value: 10, label: 'Tomados' },
-          { id: 1, value: 15, label: 'Pagados' },
-          { id: 2, value: 20, label: 'Libres' },
+          { id: 0, value: takenNumbers, label: 'Tomados' },
+          { id: 1, value: paidNumbers, label: 'Pagados' },
+          { id: 2, value: freeNumbers, label: 'Libres' },
         ],
       },
     ]}
@@ -36,6 +40,9 @@ const Grafica = () => {
 }
 
 const AdminActions = ({
+  freeNumbers,
+  paidNumbers,
+  takenNumbers,
   deleteNotPaidNumbers,
   setShowMembersNames,
 }) => {
@@ -43,7 +50,11 @@ const AdminActions = ({
   return (
     <div className={`AdminActions ${styles.AdminActions}`}>
       <Button color="blue" onClick={() => setIsShowOptions(true)}>Opciones de<br /> organizador</Button>
-      <Grafica />
+      <Grafica {...{
+        freeNumbers,
+        paidNumbers,
+        takenNumbers,
+      }} />
       {isShowOptions && <BottomSheets isBottomSheets setIsBottomSheets={setIsShowOptions}>
         <div className={styles.actions}>
           {/* <div>

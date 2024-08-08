@@ -9,7 +9,7 @@ type Response = {
         email: string,
         exp: number
         identification_number: string | null,
-        insignia: string
+        badge: string
         is_admin: boolean,
         is_certificated: boolean,
         league: string,
@@ -36,7 +36,7 @@ export default function handler(req, res) {
             email: "nandoalvarado022@gmail.com",
             exp: 490,
             identification_number: null,
-            insignia: "liga-oro",
+            badge: "liga-oro",
             is_admin: true,
             is_certificated: true,
             league: "oro",

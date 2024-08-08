@@ -14,6 +14,7 @@ function Login(props) {
   const [isHuman, setIsHuman] = useState(env == 'dev' ? true : false)
   const [isCodeSent, setIsCodeSent] = useState(false)
   const [phone, setPhone] = useState(null)
+  const [name, setName] = useState(null)
   const [buttonText, setButtonText] = useState('Enviar código')
 
   const numberValidated = phone => phone.length === 10
@@ -63,7 +64,7 @@ function Login(props) {
     }
     const contryCode = '57'
     const fullPhone = contryCode + phone
-    const req = await loginSrv(null, fullPhone)
+    const req = await loginSrv(null, fullPhone, null, name)
     setButtonText('Validar')
     setIsCodeSent(true)
   }
@@ -114,6 +115,7 @@ function Login(props) {
         phone,
         setIsCodeSent,
         setPhone,
+        setName
       }}
     />
   )

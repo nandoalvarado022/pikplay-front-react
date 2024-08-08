@@ -2,7 +2,7 @@ export default function handler(req, res) {
     res.status(200).json({
         "id": 3,
         "available_numbers": 82,
-        "award": "Consola Multi-Juegos",
+        "award": "Figuritas de Kimetsu No Yaiba",
         "created_at": "2024-01-17T02:56:34.000Z",
         "date_release_quotas": "Sábado 12 de Junio",
         "description": "la mejor",
@@ -10,7 +10,7 @@ export default function handler(req, res) {
         "is_active": true,
         "price": 25900,
         "slug": "act-1-figuritas-de-kimetsu-no-yaiba",
-        "title": "Act 1. Consola Multi-Juegos",
+        "title": "Act 1. Figuritas de Kimetsu No Yaiba",
         "uid": 2,
         members_capacity: 52,
         "members": [

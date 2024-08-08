@@ -25,7 +25,7 @@ Router.onRouteChangeError = () => NProgress.done()
 const Layout = (props) => {
   const [isReady, setIsReady] = useState(false)
   const { children, descripcion, image, title, url, mobileMenuHidden } = props
-  const { darkMode, env, setStoreValue, userLogged, notifications, isAwardsSummaryModalOpen } = useSystemStore((state => state))
+  const { darkMode, env, setStoreValue, userLogged, notifications, isAwardSummaryModalOpen } = useSystemStore((state => state))
   const { checkIAMessage, IAMessage } = useIAStore()
 
   useEffect(() => {
@@ -139,7 +139,7 @@ const Layout = (props) => {
         userLogged={userLogged}
       >
         {children}
-        {isAwardsSummaryModalOpen && <AwardsSummaryModal />}
+        {isAwardSummaryModalOpen && <AwardsSummaryModal />}
       </Body>
     </React.Fragment>
   )

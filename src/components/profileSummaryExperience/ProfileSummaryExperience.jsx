@@ -26,7 +26,7 @@ const ProfileSummaryExperience = (props) => {
     backgroundColor,
     backgroundImage,
     exp,
-    insignia,
+    badge,
     name,
     picture,
     coins,
@@ -63,7 +63,7 @@ const ProfileSummaryExperience = (props) => {
             <div className={styles.experience_status}>
               <ExperienceBar {...{ exp }} />
             </div>
-            <Insignias title="Insignia Favorita" favoriteInsignia={insignia} />
+            <Insignias title="Insignia Favorita" favoriteBadge={badge} />
           </div>
           {showDetails && <div className={styles.right}>
             <div className={styles.fields}>

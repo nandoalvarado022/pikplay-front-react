@@ -7,6 +7,7 @@ import { create } from "zustand";
 import { competitionsStore } from "./competitionsStore";
 
 const useCompetitions = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const { competitionDetail, setCompetitionDetail } = competitionsStore()
   const [competitions, setCompetitions] = useState([])
   const [selectedNumber, setSelectedNumber] = useState(null)
@@ -14,9 +15,11 @@ const useCompetitions = () => {
   const [isOnlyAvailableNumbers, setIsOnlyAvailableNumbers] = useState(false)
 
   const getCompetitions = (slug) => {
+    setIsLoading(true)
     return new Promise((resolve, reject) => {
       getComptSrv(null, slug)
         .then((data) => {
+          setIsLoading(false)
           if (slug) {
             setCompetitionMembers(data.competitionMembers)
           } else {
@@ -32,27 +35,6 @@ const useCompetitions = () => {
       setCompetitionDetail(data)
     })
   }
-
-  const postCompetitionMember = (competitionID, number, uid) => new Promise((resolve, reject) => {
-    const url = `${API_URL}/competition-members/register`
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        "user_id": uid,
-        number
-      })
-    };
-
-    fetch(url, requestOptions)
-      .then((res) => res.json())
-      .then((data) => {
-        resolve(data)
-      })
-      .catch((error) => {
-        reject(error)
-      });
-  });
 
   const liberarNumero = () => {
     toast.promise(deleteCompetitionMemberSrv(1, 2)
@@ -95,9 +77,9 @@ const useCompetitions = () => {
     deleteNotPaidNumbers,
     getCompetitions,
     handleCompetitionClick,
+    isLoading,
     isOnlyAvailableNumbers,
     liberarNumero,
-    postCompetitionMember,
     selectedNumber,
     setCompetitionMembers,
     setIsOnlyAvailableNumbers,

@@ -1,4 +1,6 @@
-import React from 'react'
+import styles from './login.module.scss'
+
+import React, { useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 import TextField from '@mui/material/TextField'
 import Dialog from '@mui/material/Dialog'
@@ -7,9 +9,9 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import Button from '../button/Button'
-import styles from './login.module.scss'
 import Link from 'next/link'
 import Image from 'next/image'
+import { MenuItem, Select } from '@mui/material'
 
 export default function LoginInterface({
   buttonText,
@@ -26,10 +28,12 @@ export default function LoginInterface({
   phone,
   setIsCodeSended,
   setPhone,
+  setName,
 }) {
   isHuman = true;
+  const [contry, setContry] = useState('57')
   return (
-    <div id={styles.LoginComponent}>
+    <div className={styles.LoginComponent}>
       <Button
         alt='Ingersar con número de teléfono'
         className={`${styles.playButton}`}
@@ -51,17 +55,56 @@ export default function LoginInterface({
             Solo con tu número de teléfono puedes crear tu cuenta y empezar a ganar <b>¡Pikcoins!</b>
           </DialogContentText>
           {/* Fields */}
+          {!isCodeSent && <TextField
+            onKeyUp={e => setName(e.target.value)}
+            margin='dense'
+            label='¿Como te gustaria que te llamemos?'
+            type='text'
+            fullWidth
+          />}
           <div
-            className={styles.flex}
+            className={styles.contryAndPhone}
             style={{ display: isCodeSent ? 'none' : 'flex' }}>
-            <Image
-              height='42'
-              width='40'
-              className={styles.icon_colombia}
-              src='/images/icons/colombia.png'
-              alt=''
-            />
-            <span>(+57)</span>
+            <Select
+              className="selectCountry"
+              class="selectCountry"
+              labelId="demo-controlled-open-select-label"
+              id="demo-controlled-open-select"
+              value={contry}
+              onChange={event => setContry(event.target.value)}
+              label="Pais"
+              style={{
+                height: '56px',
+                marginRight: '10px',
+                marginTop: '8px',
+                width: '120px'
+              }}>
+              <MenuItem value="57">
+                <Image
+                  height='42'
+                  width='40'
+                  className={styles.icon_colombia}
+                  src='/images/icons/colombia.png'
+                  alt='' />
+              </MenuItem>
+              <MenuItem value="54">
+                <Image
+                  height='42'
+                  width='40'
+                  className={styles.icon_colombia}
+                  src='/images/icons/argentina_flag.webp'
+                  alt='' />
+              </MenuItem>
+              <MenuItem value="52">
+                <Image
+                  height='42'
+                  width='40'
+                  className={styles.icon_colombia}
+                  src='/images/icons/mexico_flag.png'
+                  alt='' />
+                {/* <em>+57</em> */}
+              </MenuItem>
+            </Select>
             <TextField
               onKeyUp={e => setPhone(e.target.value)}
               margin='dense'
@@ -71,48 +114,53 @@ export default function LoginInterface({
               fullWidth
             />
           </div>
-          {!isCodeSent && (
-            <center className='m-t-10'>
-              {/* <ReCAPTCHA
-                sitekey='6Ldyz98eAAAAAFCJEbBSdSRqNu4Kn1XqZugCi9Qg'
-                onChange={onChangeReCaptcha}
-              /> */}
-            </center>
-          )}
+          {
+            !isCodeSent && (
+              <center className={`m-t-10 ${styles.capchaContent}`}>
+                <ReCAPTCHA
+                  sitekey='6Ldyz98eAAAAAFCJEbBSdSRqNu4Kn1XqZugCi9Qg'
+                  onChange={onChangeReCaptcha}
+                />
+              </center>
+            )
+          }
 
-          {isCodeSent && (
-            <>
-              <TextField
-                autoComplete={false}
-                disabled={buttonText == 'Validando...' ? true : false}
-                fullWidth
-                id='verificationCode'
-                label={`Código de 4 dígitos`}
-                margin='dense'
-                onKeyUp={handleKeyUp}
-                type='number' />
-              <small>
-                <a href='https://api.whatsapp.com/send?phone=573054202450&text=Tengo problemas al recibir mi código de ingreso'
-                  target='_BLANK'
-                  rel="noreferrer">
-                  Tengo problemas al recibir mi código de ingreso
-                </a>
-              </small>
-            </>
-          )}
-          <small className={styles.terminos_condiciones}>
+          {
+            isCodeSent && (
+              <>
+                <TextField
+                  autoComplete={false}
+                  disabled={buttonText == 'Validando...' ? true : false}
+                  fullWidth
+                  id='verificationCode'
+                  label={`Código de 4 dígitos`}
+                  margin='dense'
+                  onKeyUp={handleKeyUp}
+                  type='number' />
+                <small>
+                  <a href='https://api.whatsapp.com/send?phone=573054202450&text=Tengo problemas al recibir mi código de ingreso'
+                    target='_BLANK'
+                    rel="noreferrer">
+                    Tengo problemas al recibir mi código de ingreso
+                  </a>
+                </small>
+              </>
+            )
+          }
+          {/* <small className={styles.terminos_condiciones}>
             Al ingresar en Pikplay aceptas nuestros &nbsp;
-            <Link href='/articulo/[id]' as='/articulo/terminos-y-condiciones'>
+            <Link href='/articulo/[id]' as='/articulo/terminos-y-condiciones' target="_BLANK">
               términos y condiciones
             </Link>
-            {/* <br />
+            <br />
             Es posible que te enviemos notificaciones por SMS, que puedes
-            desactivar cuando quieras. */}
-          </small>
-        </DialogContent>
+            desactivar cuando quieras.
+          </small> */}
+        </DialogContent >
         <DialogActions>
           {isCodeSent && <Button onClick={handleFixPhone} color='normal'>
-            Correjir número de celular
+            Corregir número <br />
+            de celular
           </Button>}
           {/* <Button onClick={handleCloseDialog} color='normal'>
             Cancelar
@@ -130,7 +178,7 @@ export default function LoginInterface({
             {buttonText}
           </Button>
         </DialogActions>
-      </Dialog>
-    </div>
+      </Dialog >
+    </div >
   )
 }

@@ -37,7 +37,7 @@ const ItemChallenge = (props) => {
   const handleReclamar = () => {
     userLogged.uid
       ? isCompleted
-        ? setStoreValue('isAwardsSummaryModalOpen', true)
+        ? setStoreValue('isAwardSummaryModalOpen', true)
         : Router.push(linkBeforeCompleted)
       : document.querySelector('#btnStart').click()
   }
@@ -77,7 +77,7 @@ const ItemChallenge = (props) => {
         <CoinIcon coins={coins} multicoin />
       </div>}
       {reward != 'coins' && <div className={`shine animatedZoom ${styles.rewardImage}`}>
-        <Image src={rewardImage} alt={reward} width={width} height={height} />
+        <Image src={rewardImage} alt={reward} width={width || 60} height={height || 60} />
       </div>}
       <Button
         shine

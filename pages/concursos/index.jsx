@@ -18,6 +18,7 @@ import { competitionsStore } from '../../src/components/competitions/hooks/compe
 import { faDiceFive } from '@fortawesome/free-solid-svg-icons'
 import { TrafficRounded } from '@mui/icons-material'
 import { green } from '@mui/material/colors'
+import Skeleton from '@mui/material/Skeleton'
 
 const ConcursosPage = () => {
   const {
@@ -28,6 +29,7 @@ const ConcursosPage = () => {
     selectedNumber,
     setSelectedNumber,
     setCompetitionMembers,
+    isLoading
   } = useCompetitions()
 
   const { competitionDetail, setCompetitionDetail } = competitionsStore()
@@ -87,17 +89,21 @@ const ConcursosPage = () => {
             </Tabs>
 
             <TabPanel value={value} index={0}>
-              <CompetitionsList
+              {!isLoading && competitions.length > 0 && <CompetitionsList
+                isLoading={isLoading}
                 competitions={competitions}
                 handleCompetitionClick={handleCompetitionClick}
                 selectedNumber={selectedNumber}
                 setSelectedNumber={setSelectedNumber}
-              />
+              />}
+              {isLoading && <div> {
+                new Array(3).fill(null).map((_, i) => (<Skeleton key={i} variant="rectangular" width='100%' height={120} className='Card' />))}
+              </div>}
             </TabPanel>
           </Card>
         </section>
       </Layout>
-    </div>
+    </div >
   )
 }
 

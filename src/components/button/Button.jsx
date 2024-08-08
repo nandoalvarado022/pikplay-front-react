@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { Button as ButtonMat } from '@mui/material'
 
 const Button = ({
-  animation,
+  animation = false,
   border,
   children,
   className,
@@ -24,9 +24,9 @@ const Button = ({
   className = `${className} ${animation ? styles.animation : null}`
 
   return (
-    <motion.button
+    <motion.span
       className={`
-      ${styles.btn} 
+      ${styles.ButtonComponent} 
       ${realistic ? styles.realistic : ''}
       ${shine ? styles.shine : ''}
       ${border ? styles.border : ''}
@@ -40,10 +40,9 @@ const Button = ({
       onClick={disabled ? null : onClick}
       style={style}
       whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.9 }}
-    >
+      whileTap={{ scale: 0.9 }}>
       <ButtonMat>{children}</ButtonMat>
-    </motion.button>
+    </motion.span>
   )
 }
 

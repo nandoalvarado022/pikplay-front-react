@@ -2,7 +2,7 @@ export default function handler(req, res) {
     const response = [
         {
             "available_numbers": 82,
-            "award_link": "http://localhost/publicacion/nuevas-figuritas-de-kimetsu-no-yaiba-pregunta-por-tu-favorita",
+            "award_link": "/publicacion/nuevas-figuritas-de-kimetsu-no-yaiba-pregunta-por-tu-favorita",
             "created_at": "2024-01-17T02:56:34.000Z",
             "description": "la mejor",
             "id": 3,
