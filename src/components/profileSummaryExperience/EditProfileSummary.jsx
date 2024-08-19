@@ -1,4 +1,4 @@
-import styles from './styles.module.scss'
+import styles from './profileSummaryExperience.module.scss'
 
 import React, { useEffect } from 'react'
 import useSystemStore from '../../hooks/storeSystem'

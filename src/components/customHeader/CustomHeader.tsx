@@ -1,3 +1,5 @@
+import styles from './custom_header.module.scss' // eslint-disable-line
+
 import Author from '../card/Author'
 import Button from '../button/Button'
 import ChangeCity from './changeCity/ChangeCity'
@@ -7,7 +9,7 @@ import PreviewUser from '../previewUser/PreviewUser'
 import React, { useState, useEffect } from 'react'
 import TextField from '@mui/material/TextField'
 import { IS_MOBILE } from '../../lib/variables'
-import recommended from '../../public/recommended'
+// import recommended from '../../public/recommended'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { formatNumber, getCiudades, getFeed } from '../../lib/utils'
 // import { useSelector } from 'react-redux'
@@ -17,7 +19,6 @@ import classNames from 'classnames'
 import Skeleton from '@mui/material/Skeleton'
 import SearchBox from './searchBox/SearchBox'
 import useSearch from './searchBox/useSearch'
-import styles from './styles.module.scss' // eslint-disable-line
 import Image from 'next/image'
 
 const CustomHeader = () => {

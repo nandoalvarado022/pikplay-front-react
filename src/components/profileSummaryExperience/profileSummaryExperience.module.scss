@@ -17,6 +17,10 @@
         padding: 10px 0px 10px 20px;
         position: relative;
         width: 200px;
+        &.bronce {
+            background: linear-gradient(45deg, #cecdd2, #9b9b9d);
+            border: 2px solid #9b9b9d;
+        }
         &.plata {
             background: linear-gradient(45deg, #cecdd2, #9b9b9d);
             border: 2px solid #9b9b9d;
@@ -157,6 +161,7 @@
                 font-size: 12px;
                 position: absolute;
                 top: -20px;
+                left: 0;
             }
         }
 

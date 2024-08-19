@@ -31,7 +31,6 @@ moment.locale('es-CO')
 
 const UserNotifications = () => {
   const { userLogged, notifications, setStoreValue } = useSystemStore((state => state))
-  const [summaryAwardsOpen, setSummaryAwardsOpen] = useState(false)
   // const user = useSelector(state => state.user)
   // const notifications = useSelector(state => state.notifications) //.filter(item => item.closed == 0)
   // const [deleteNotification] = useMutation(DELETE_NOTIFICATION, {
@@ -83,7 +82,7 @@ const UserNotifications = () => {
   const handleNotification = async ({ coins, disabled, id, link, type }) => {
     if (coins && !disabled) {
       // reclamarCoins(coins, id)
-      setSummaryAwardsOpen(true)
+      setStoreValue('isAwardSummaryModalOpen', true)
     } else {
       handleDeleteNotification(id)
     }

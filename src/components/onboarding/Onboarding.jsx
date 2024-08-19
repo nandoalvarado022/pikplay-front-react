@@ -5,8 +5,11 @@ import Button from '../button/Button'
 import Image from "next/image"
 import { useIAStore } from '../ia/IAstore'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import useSystemStore from '../../hooks/storeSystem'
+import { motion } from 'framer-motion'
 
 const Onboarding = () => {
+  const { setStoreValue } = useSystemStore()
   const items = [
     {
       background: "https://i.pinimg.com/564x/f4/d4/b9/f4d4b991d2bccaf2202b8a07bae108de.jpg",
@@ -40,6 +43,7 @@ const Onboarding = () => {
 
   useEffect(() => {
     // handleUserMessage('onboarding', {})
+    setStoreValue('isOnboardingProcess', true)
   }, [])
 
   return <section className={`page ${styles.Onboarding}`}>
@@ -50,15 +54,20 @@ const Onboarding = () => {
       </h1>
     </div>
     <div className={styles.items}>
-      {items.map((item, ind) => <div className={`${styles.item} ${ind < 1 && styles.active}`} onClick={() => handleUserMessage(item.messageCode, {})}>
+      {items.map((item, ind) => <motion.div
+        className={`${styles.item} 
+        ${ind < 1 && styles.active}`}
+        onClick={() => handleUserMessage(item.messageCode, {})}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.9 }}>
         {/* <Image className={styles.background} src={item.background} width={564} height={564} /> */}
         <div className={styles.black_bg}></div>
         <Image className={styles.image} src={item.image} width={200} height={200} />
         <div className={styles.html}>{item.html}</div>
-        <span className={styles.isCompleted}>
+        {/* <span className={styles.isCompleted}>
           {item.isCompleted && <CheckCircleIcon />}
-        </span>
-      </div>)}
+        </span> */}
+      </motion.div>)}
     </div>
 
     <div className={styles.texts}>

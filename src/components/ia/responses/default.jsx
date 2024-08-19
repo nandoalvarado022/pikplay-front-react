@@ -6,6 +6,7 @@ import CoinIcon from '../../coinIcon/CoinIcon'
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard'
 import PaidIcon from '@mui/icons-material/Paid'
 import { motion } from "framer-motion"
+import Link from 'next/link';
 
 const MessageFunc = () => {
     let name = ''
@@ -29,11 +30,13 @@ const Options = ({ handleUserMessage, set }) => {
 
     return <>
         <motion.div variants={item}>
-            <Button
-                color='transparent' onClick={() => handleUserMessage('guide', set)}>
-                <MenuBookIcon className='icon' />
-                &nbsp;&nbsp;Guía para nuevos usuarios
-            </Button>
+            <Link href='/onboarding'>
+                <Button
+                    color='transparent'>
+                    <MenuBookIcon className='icon' />
+                    &nbsp;&nbsp;Guía para nuevos usuarios
+                </Button>
+            </Link>
         </motion.div>
         <motion.div variants={item}>
             <Button color='transparent' onClick={() => handleUserMessage('pikcoins', set)}>

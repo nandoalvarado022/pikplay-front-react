@@ -1,4 +1,4 @@
-import styles from './styles.module.scss'
+import styles from './profileSummaryExperience.module.scss'
 
 import React, { useEffect, useState } from 'react'
 import { Link, Tooltip } from '@mui/material'

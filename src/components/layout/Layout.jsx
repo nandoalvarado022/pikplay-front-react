@@ -12,21 +12,31 @@ import Body from './Body.jsx'
 import { useIAStore } from '../ia/IAstore.js'
 import AwardsSummaryModal from '../awardsSummary/AwardsSummary.jsx'
 import classNames from 'classnames'
+import { useRouter } from 'next/router'
 
 toastr.options.timeOut = 10000
 
-Router.onRouteChangeStart = url => {
-  NProgress.start()
-}
 Router.onRouteBeforeHistoryChange = url => NProgress.start()
 Router.onRouteChangeComplete = () => NProgress.done()
 Router.onRouteChangeError = () => NProgress.done()
 
 const Layout = (props) => {
+  const router = useRouter()
+  const { query } = router
+  const { action, origin } = query
   const [isReady, setIsReady] = useState(false)
   const { children, descripcion, image, title, url, mobileMenuHidden } = props
   const { darkMode, env, setStoreValue, userLogged, notifications, isAwardSummaryModalOpen } = useSystemStore((state => state))
-  const { checkIAMessage, IAMessage } = useIAStore()
+  const { checkIAMessage, IAMessage, setIsvisible } = useIAStore()
+
+  Router.onRouteChangeStart = url => {
+    setIsvisible(false) // Ocultando a la IA
+    NProgress.start()
+    if (url.includes('perfil')) { // Si va al perfil y no esta logueado
+      if (!userLogged?.uid) Router.push('/?action=play-button&origin=onboarding')
+      // else Router.push('/perfil' + userLogged?.name)
+    }
+  }
 
   useEffect(() => {
     checkIAMessage(IAMessage); // Check if there is an IA message to show
@@ -37,11 +47,10 @@ const Layout = (props) => {
       window.GA_INITIALIZED = true
     }
     logPageView()
-  }, () => {
-    setTimeout(() => {
-      setIsReady(true)
-    }, 1000)
-  });
+    if (action == 'play-button') {
+      document.querySelector('#btnStart').click()
+    }
+  }, []);
 
   const loadAmplitude = () => {
     // Amplitude

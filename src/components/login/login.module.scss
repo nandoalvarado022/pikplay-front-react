@@ -15,6 +15,9 @@
   }
 
   .capchaContent {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 270px;
     iframe {
       width: 320px;
     }

@@ -26,6 +26,7 @@ const logout = (set) => {
     set({ notifications: [initialNotification] })
     cookieCutter.set('X-Auth-Token', null)
     cookieCutter.set('User-ID', null)
+    cookieCutter.set('userLogged', { uid: 0 })
 }
 
 const useSystemStore = create((set, get) => ({
@@ -33,11 +34,17 @@ const useSystemStore = create((set, get) => ({
     env: null,
     experiences: [],
     isAwardSummaryModalOpen: false,
+    isOnboardingProcess: false,
     awardsSummaryModalHTML: null,
     logout: () => logout(set),
     notifications: [initialNotification],
+    newNotifications: true,
     userLogged: loadFromLocalStorage('userLogged') || { uid: null },
+    perfilPage: {
+        messageIA: null
+    },
     setStoreValue: (property, value) => {
+        debugger;
         localStorage.setItem([property], JSON.stringify(value))
         set({ [property]: value })
     },

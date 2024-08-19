@@ -9,6 +9,10 @@
   top: 0;
   width: 100%;
   z-index: 9;
+
+  // background: #3f2260;
+  // border-bottom: 2px solid #3b0f6e;
+
   @media screen and (max-width: $tablet) {
     padding: 10px 0 5px;
     position: fixed;
@@ -19,8 +23,7 @@
   @media screen and (min-width: 1024px) {
     height: 70px;
   }
-  &.sticked{
-
+  &.sticked {
   }
   .slogan {
     span {

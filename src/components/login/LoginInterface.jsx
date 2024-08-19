@@ -1,6 +1,7 @@
 import styles from './login.module.scss'
 
-import React, { useState } from 'react'
+import cookieCutter from '@boiseitguru/cookie-cutter'
+import React, { useEffect, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 import TextField from '@mui/material/TextField'
 import Dialog from '@mui/material/Dialog'
@@ -31,6 +32,14 @@ export default function LoginInterface({
   setName,
 }) {
   const [contry, setContry] = useState('57')
+  const onboardingName = typeof window != 'undefined' ? localStorage.getItem('onboardingName') : ''
+
+  useEffect(() => {
+    setName(onboardingName)
+    const element = document.querySelector('#loginModal__name')
+    if (element) element.value = onboardingName
+  }, [])
+
   return (
     <div className={styles.LoginComponent}>
       <Button
@@ -55,11 +64,13 @@ export default function LoginInterface({
           </DialogContentText>
           {/* Fields */}
           {!isCodeSent && <TextField
-            onKeyUp={e => setName(e.target.value)}
-            margin='dense'
-            label='¿Como te gustaria que te llamemos?'
-            type='text'
+            defaultValue={onboardingName}
             fullWidth
+            id="loginModal__name"
+            label='¿Como te gustaria que te llamemos?'
+            margin='dense'
+            onKeyUp={e => setName(e.target.value)}
+            type='text'
           />}
           <div
             className={styles.contryAndPhone}

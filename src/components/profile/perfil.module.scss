@@ -127,17 +127,7 @@
 
   .actions {
     float: right;
-    .saveProfileButton {
-      @media screen and (max-width: 420px) {
-        position: fixed;
-        bottom: 56px;
-        left: -5px;
-        width: 100%;
-        border-radius: 0;
-        font-size: 14px;
-        padding: 10px 0;
-      }
-    }
+    margin: 10px 0 0 0;
   }
 
   .IAContentLeft {
@@ -156,29 +146,31 @@
     }
     :global(.IACharacter) {
       position: absolute;
-      top: 50px;
+      left: 10px;
+      top: 10px;
+      transform: scale(0.7);
       z-index: 2;
     }
     :global(.Card) {
       margin-top: 220px;
       @media screen and (max-width: 420px) {
         margin-top: 20px;
-        padding: 20px 0 20px 110px;
+        padding: 10px 10px 10px 90px;
       }
-      &:before {
-        // Flechita del dialogo
-        border-bottom: 12px solid #3095b3;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        content: "";
-        height: 0;
-        width: 0;
-        position: absolute;
-        top: -12px;
-        margin: 0 auto;
-        left: 0;
-        right: 0;
-      }
+      // &:before {
+      //   // Flechita del dialogo
+      //   border-bottom: 12px solid #3095b3;
+      //   border-left: 10px solid transparent;
+      //   border-right: 10px solid transparent;
+      //   content: "";
+      //   height: 0;
+      //   width: 0;
+      //   position: absolute;
+      //   top: -12px;
+      //   margin: 0 auto;
+      //   left: 0;
+      //   right: 0;
+      // }
     }
   }
 }

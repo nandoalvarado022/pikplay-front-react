@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import Button from '../../../button/Button'
-import { getReferralsSrv } from '../../../../services/user/userService';
-import { startConfetti } from '../../../../lib/utils';
+import { getReferralsSrv } from '../../../../services/user/userService'
+import { startConfetti } from '../../../../lib/utils'
+import Link from 'next/link'
+import Router from 'next/router'
 
 const saveReferralContacts = (referrals) => {
   // alert(JSON.stringify(referrals))
@@ -23,22 +25,27 @@ async function getContacts(handleUserMessage, set) {
       phone: item.tel[0].replace(/ /g, "")
     }))
     saveReferralContacts(formattedContacts)
-    handleUserMessage('referrals/added', set)
+    Router.push('/perfil#notificationes')
+    // handleUserMessage('referrals/added', set)
   } catch (ex) {
     // Handle any errors here.
   }
 }
 
-const HTML = <>
-  <img src="/images/icons/ranking-icon.png" style={{ margin: '20px auto 0', width: '140px' }} />
-</>
+const HTML = <></>
 
-const Message = `Con cada referido ganas Pikcoins. <br /> Recuerdale a tus referidos aceptar la invitacion enviada por wsp ó por mensaje de texto.`
+const Message = `Con cada referido ganas Pikcoins. <br /><br />
+Recuerdale a tus referidos aceptar la invitacion enviada por wsp ó por mensaje de texto.`
 const Options = ({ handleUserMessage, set }) => {
   return <>
     <Button color='blue' realistic onClick={() => getContacts(handleUserMessage, set)}>
-      &nbsp;Agregar primer referido 🎉&nbsp;
+      Agregar referidos y ganar Pikcoins 🎉
     </Button>
+    <Link href='/perfil'>
+      <Button color='yellow' realistic>
+        Ver premios por completar Onboarding
+      </Button>
+    </Link>
   </>
 }
 

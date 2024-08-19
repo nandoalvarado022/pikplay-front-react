@@ -12,6 +12,7 @@ const loginSrv = async (ctx: any, phone: string, code: number, name: string) => 
   const path = BASE_URL + "/login"
   try {
     const data = await post(ctx, path, { code, phone, name });
+    debugger;
     const { token, uid } = data.data
     cookieCutter.set('X-Auth-Token', token)
     cookieCutter.set('User-ID', uid)

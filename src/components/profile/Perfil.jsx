@@ -38,6 +38,8 @@ import { ChargingStation, EditNote, NotificationAdd, NotificationImportant, Noti
 import { Gamepad } from '@mui/icons-material'
 import EditProfileSummary from '../profileSummaryExperience/EditProfileSummary'
 import { faPaintBrush } from '@fortawesome/free-solid-svg-icons'
+import useSystemStore from '../../hooks/storeSystem'
+import NotificationsNewIcon from '../notificationsNewIcon/NotificationsNewIcon'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -66,8 +68,9 @@ const Interface = ({
   setUserData,
 }) => {
   // const handleFavorite = useSelector(state => state.handleFavorite)
-  const [value, setValue] = React.useState(0)
+  const [tabValue, setTabValue] = useState(0)
   const [isEditProfile, setIsEditProfile] = useState(false)
+  const { newNotifications, perfilPage: { messageIA }, setStoreValue } = useSystemStore(state => state)
   const steps = [
     {
       target: '.starsFallingDown',
@@ -87,7 +90,10 @@ const Interface = ({
     </div>)
 
   const handleChange = (event, newValue) => {
-    setValue(newValue)
+    if (newValue == 0) setStoreValue("perfilPage", { messageIA: <div>Dale un look diferente a tu perfil y muestrale a todos tus logros</div> })
+    if (newValue == 1) setStoreValue("perfilPage", { messageIA: <div>No tienes notificaciones nuevas<br /><br /></div> })
+    if (newValue == 2) setStoreValue("perfilPage", { messageIA: null })
+    setTabValue(newValue)
   }
 
   // useEffect(() => {
@@ -122,8 +128,7 @@ const Interface = ({
   }
 
   const NotificationIcon = () => {
-    const newNotifications = []
-    if (newNotifications.length > 0) return <NotificationsActive className='red' />
+    if (newNotifications) return <NotificationsNewIcon style={{ marginBottom: '6px' }} />
     else return <NotificationsActive />
   }
 
@@ -134,7 +139,7 @@ const Interface = ({
         <div className={classNames('Card', styles['profile-content'])}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs
-              value={value}
+              value={tabValue}
               onChange={handleChange}
               aria-label='basic tabs example'
               indicatorColor='primary'>
@@ -143,32 +148,32 @@ const Interface = ({
               <Tab icon={<EditNote />} label='Editar' />
             </Tabs>
           </Box>
-          <div className={styles.IAContentLeft}>
+
+          {messageIA && <div className={styles.IAContentLeft}>
             <IACharacter
               className='Perfil'
               IAExpression='happy' />
             <div className='Card'>
-              Tienes notificaciones pendientes, da clic y recibe tus premios!
-              <br />
-              <a onClick={() => setIsEditProfile(true)}>
+              {messageIA}
+              {tabValue == 0 && <a onClick={() => setIsEditProfile(true)}>
                 <FontAwesomeIcon className='icon' icon={faPaintBrush} style={{ margin: "5px 5px 0 0" }} />
                 Personalizar perfil
-              </a>
+              </a>}
             </div>
-          </div>
+          </div>}
 
-          <TabPanel value={value} index={1}>
+          <TabPanel value={tabValue} index={1}>
             <UserNotifications />
           </TabPanel>
 
-          {/*Form para  editar perfil */}
-          <TabPanel value={value} index={2}>
+          {/*Form para editar perfil */}
+          <TabPanel value={tabValue} index={2}>
             <div className={styles.actions}>
               <Button
-                className={styles.saveProfileButton}
+                // className={styles.saveProfileButton}
                 color={!isSaving ? 'blue' : 'disabled'}
                 onClick={handleSave}>
-                {isSaving ? 'Gaurdando...' : 'Guardar'}
+                {isSaving ? 'Gaurdando...' : 'Guardar cambios'}
               </Button>
             </div>
             <TextField
@@ -254,7 +259,7 @@ const Interface = ({
           </TabPanel> */}
 
           {/* Resumen */}
-          <TabPanel value={value} index={0} className="">
+          <TabPanel value={tabValue} index={0} className="">
             <div className={styles.ProfileSummaryExperience__UserNotifications__Content}>
               <ProfileSummaryExperience
                 isEditProfile={isEditProfile}

@@ -12,6 +12,7 @@ import styles from './portada.module.scss'
 import FloatingChallenges from '../floatingChallenges/FloatingChallenges.jsx'
 import Author from '../../../../src/components/card/Author.jsx'
 import Link from 'next/link.js'
+import useSystemStore from '../../../../src/hooks/storeSystem.js'
 
 const { IS_MOBILE } = '../../lib/variables'
 
@@ -49,6 +50,7 @@ const PortadaInterface = ({
   setFeed,
   starItem,
 }) => {
+  const { setStoreValue } = useSystemStore()
   const [showVideo, setShowVideo] = useState(false)
   const isOpen =
     typeof sessionStorage != 'undefined' &&
@@ -71,6 +73,7 @@ const PortadaInterface = ({
       () => import('../../../../src/components/modalLoead/ModalLead'),
       { ssr: false },
     )
+    setStoreValue('isOnboardingProcess', false)
   }, [])
 
   // TODO cambiar llamado al servicio
