@@ -191,4 +191,8 @@
       height: 32px;
     }
   }
+  // Iconos dentro del botón
+  :global(svg) {
+    margin: -2px 2px -2px -2px;
+  }
 }

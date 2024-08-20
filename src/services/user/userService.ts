@@ -3,8 +3,10 @@ import cookieCutter from '@boiseitguru/cookie-cutter'
 const { get, post } = CustomFetch()
 
 const BASE_URL = "/users"
+
 const getUsersSrv = async () => {
   const data = await get(null, BASE_URL);
+  debugger;
   return data
 }
 

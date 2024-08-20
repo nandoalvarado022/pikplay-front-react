@@ -44,11 +44,11 @@ const CompetitionItem = ({ competition, ind }) => {
       </div>
     </div>
     <div className={styles.actions}>
-      <Link href={link}>
-        <Button shine realistic color='yellow' className={styles.award}>Participar</Button>
-      </Link>
       <Link href={awardLink}>
-        <Button shine realistic color='blue' className={styles.award}>Ver premio</Button>
+        <Button color='link' className={styles.award}>Ver premio</Button>
+      </Link>
+      <Link href={link}>
+        <Button shine realistic color='blue' className={styles.award}>Participar</Button>
       </Link>
     </div>
   </motion.article >

@@ -1,9 +1,10 @@
+import styles from './styles.module.scss'
+
 import React from 'react'
 import Layout from '../../src/components/layout/Layout'
 import { GET_ARTICLES } from '../../src/lib/utils'
 import { connect } from 'react-redux'
 // import { ApolloClient, InMemoryCache } from '@apollo/client'
-import styles from './styles.module.scss'
 import { IS_MOBILE } from '../../src/lib/variables'
 // import { useQuery, gql } from '@apollo/client'
 import Articles from '../../src/components/articles/Articles'

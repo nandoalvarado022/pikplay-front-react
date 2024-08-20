@@ -1,6 +1,7 @@
 import React from 'react'
+import { redirect } from 'next/navigation'
 import Layout from '../src/components/layout/Layout'
-import { getHome } from '../src/lib/utils'
+import { checkIsMobile, getHome } from '../src/lib/utils'
 import Portada from './index/components/portada/Portada'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
@@ -27,16 +28,32 @@ const Index = props => {
   )
 }
 
-Index.getInitialProps = async ctx => {
+export const getServerSideProps = async ctx => {
+  const agent = ctx.req.headers["user-agent"]
+  const isMobile = checkIsMobile(agent)
+  // debugger;
+  if (!isMobile && ctx.req.url === '/') {
+    return {
+      redirect: {
+        destination: '/desktop',
+        permanent: false,
+      },
+      props: {},
+    }
+  }
+
   const env = process.env.ENV
-  const action = ctx.query?.action
+  const action = ctx.query?.action || null
   const isSSR = typeof window === 'undefined'
   // const feed = await getHome({ isSSR, origin: 'indexPage' })
   const feed = await getPortadaSrv()
   return {
-    env,
-    action,
-    feed,
+    props: {
+      env,
+      action,
+      feed,
+      // redirection: "/desktop"
+    }
   }
 }
 

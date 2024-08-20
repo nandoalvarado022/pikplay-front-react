@@ -1,7 +1,7 @@
 .Perfil {
   margin: 20px auto;
   // width: 1200px;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 480px) {
     width: auto;
   }
   h2 {
@@ -11,14 +11,14 @@
     display: flex;
     margin: 20px auto 0;
     // width: 1080px;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       margin: 0px auto 0;
       flex-direction: column;
       width: auto;
     }
     .imageAndLevel {
       width: 200px;
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         margin: 20px auto 20px;
       }
       label#category {
@@ -60,11 +60,11 @@
 
     :global([role="tabpanel"]) {
       padding-left: 120px;
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         padding-left: initial;
       }
       > div {
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: 480px) {
           padding: 0px 0;
         }
       }
@@ -94,7 +94,7 @@
   }
   .profile-content {
     // width: 900px;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       width: 100%;
     }
   }
@@ -115,7 +115,7 @@
     display: flex;
     justify-content: space-between;
     column-gap: 40px;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       flex-direction: column;
     }
 
@@ -135,7 +135,7 @@
     margin: 100px 20px 0 0;
     position: absolute;
     width: 120px;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       // display: flex;
       margin: initial;
       position: relative;
@@ -153,7 +153,7 @@
     }
     :global(.Card) {
       margin-top: 220px;
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         margin-top: 20px;
         padding: 10px 10px 10px 90px;
       }

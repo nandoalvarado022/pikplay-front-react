@@ -39,15 +39,15 @@ const Options = ({ handleUserMessage, set, options }) => {
   if (!uid && element) element.click()
   const { liberarNumero, getCompetitions } = useCompetitions();
   return <>
-    <Button color='blue' onClick={() => handleYes(handleUserMessage, set, options, setStoreValue)}>
-      Si
-    </Button>
     <Link target='_BLANK' href='https://api.whatsapp.com/send?phone=573113306911'>
       <Button color='yellow'>
         <MessageOutlined className='icon' />
         &nbsp;Envíar mensaje
       </Button>
     </Link>
+    <Button color='blue' onClick={() => handleYes(handleUserMessage, set, options, setStoreValue)}>
+      Si
+    </Button>
   </>
 }
 

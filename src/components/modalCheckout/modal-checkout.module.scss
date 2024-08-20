@@ -10,7 +10,7 @@
   top: calc((100vh / 2) - 300px);
   width: 90%;
   z-index: 99;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 480px) {
     height: calc(100vh - 40%);
     top: 80px;
   }
@@ -41,7 +41,7 @@
     position: relative;
     width: 480px;
     z-index: 9;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       height: inherit;
       width: auto;
     }
@@ -51,7 +51,7 @@
       display: flex;
       justify-content: right;
       margin-top: 20px;
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         bottom: 0;
         display: flex;
         margin: initial;

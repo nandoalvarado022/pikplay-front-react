@@ -2,11 +2,11 @@ section.ChallengesRanking {
     padding: 0 0px;
     :global([role="tabpanel"]) {
         padding-left: 120px;
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: 480px) {
             padding-left: initial;
         }
         > div {
-            @media screen and (max-width: 420px) {
+            @media screen and (max-width: 480px) {
                 padding: 24px 0;
             }
         }

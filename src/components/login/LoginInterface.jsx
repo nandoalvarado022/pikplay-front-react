@@ -16,6 +16,7 @@ import { MenuItem, Select } from '@mui/material'
 
 export default function LoginInterface({
   buttonText,
+  env,
   isCodeSent,
   isHuman,
   isOpen,
@@ -33,6 +34,7 @@ export default function LoginInterface({
 }) {
   const [contry, setContry] = useState('57')
   const onboardingName = typeof window != 'undefined' ? localStorage.getItem('onboardingName') : ''
+  const buttonsBlocked = !isHuman && env != 'dev'
 
   useEffect(() => {
     setName(onboardingName)
@@ -60,6 +62,8 @@ export default function LoginInterface({
         aria-labelledby='form-dialog-title'>
         <DialogContent>
           <DialogContentText>
+            {/* Env:{env}
+            isHuman:{String(isHuman)}<br /> */}
             Solo con tu número de teléfono puedes crear tu cuenta y empezar a ganar <b>¡Pikcoins!</b>
           </DialogContentText>
           {/* Fields */}
@@ -124,17 +128,14 @@ export default function LoginInterface({
               fullWidth
             />
           </div>
-          {
-            !isCodeSent && (
-              <center className={`m-t-10 ${styles.capchaContent}`}>
-                <ReCAPTCHA
-                  sitekey='6Ldyz98eAAAAAFCJEbBSdSRqNu4Kn1XqZugCi9Qg'
-                  onChange={onChangeReCaptcha}
-                />
-              </center>
-            )
-          }
-
+          {!isCodeSent && env != 'dev' && (
+            <center className={`m-t-10 ${styles.capchaContent}`}>
+              <ReCAPTCHA
+                sitekey='6Ldyz98eAAAAAFCJEbBSdSRqNu4Kn1XqZugCi9Qg'
+                onChange={onChangeReCaptcha}
+              />
+            </center>
+          )}
           {
             isCodeSent && (
               <>
@@ -176,14 +177,14 @@ export default function LoginInterface({
           </Button> */}
           {!isCodeSent && (
             <Button
-              onClick={isHuman ? handleTengoCodigo : null}
-              color={isHuman ? 'yellow' : 'normal'}>
+              onClick={!buttonsBlocked ? handleTengoCodigo : null}
+              color={!buttonsBlocked ? 'link' : 'normal'}>
               Ya tengo código
             </Button>
           )}
           <Button
-            color={isHuman ? 'blue' : 'normal'}
-            onClick={!isCodeSent && isHuman ? handleEnviarCodigo : null}>
+            color={!buttonsBlocked ? 'blue' : 'normal'}
+            onClick={!isCodeSent && !buttonsBlocked ? handleEnviarCodigo : null}>
             {buttonText}
           </Button>
         </DialogActions>

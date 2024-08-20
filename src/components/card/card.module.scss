@@ -14,7 +14,7 @@ h3.title_destacada {
   position: relative;
   z-index: 1;
   width: 280px;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 480px) {
     margin: 0px auto 20px;
     padding-bottom: 40px;
     width: 320px;
@@ -60,7 +60,7 @@ h3.title_destacada {
       overflow: hidden;
       position: relative;
       text-align: center;
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         margin-bottom: 10px;
         width: auto;
       }
@@ -79,7 +79,7 @@ h3.title_destacada {
         position: relative;
         z-index: 1;
         transition: 0.2s ease;
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: 480px) {
           margin: initial;
         }
         &.image-back {
@@ -98,7 +98,7 @@ h3.title_destacada {
       // margin-top: 10px;
       right: 0;
       z-index: 2;
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         bottom: 10px;
         margin-bottom: 10px;
       }
@@ -193,7 +193,7 @@ h3.title_destacada {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: 480px) {
           margin: 20px 20px 0 10px;
         }
       }

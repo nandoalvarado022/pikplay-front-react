@@ -1,0 +1,28 @@
+.Desktop {
+    .content_iframe {
+        background-image: url("/images/backgrounds/phone.png");
+        background-repeat: no-repeat;
+        // bottom: 0;
+        box-sizing: border-box;
+        height: 740px;
+        padding: 29px 0 0 33px;
+        position: fixed;
+        width: 530px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        iframe {
+            border: none;
+            border-radius: 54px 54px 0 0;
+            height: 100%;
+            width: calc(100% - 34px);
+        }
+    }
+    .bottom {
+        background: linear-gradient(45deg, #3095b359, #dc1919b5);
+        bottom: 0;
+        height: 72px;
+        position: fixed;
+        width: 100%;
+    }
+}

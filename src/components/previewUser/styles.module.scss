@@ -11,7 +11,7 @@
     width: 80%;
     &.actived {
       .bg_black {
-        box-shadow: 90px 8px 2px #76767673;
+        box-shadow: 90px 3px 2px #76767673;
         display: block;
         left: 0;
       }
@@ -41,7 +41,7 @@
     right: -40px;
     top: -2px;
     z-index: 4;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       display: none;
     }
 
@@ -70,7 +70,7 @@
     // transition: 0.5s ease-in-out;
     width: 240px;
     z-index: -1;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       border-radius: 0px 10px 10px 0px;
       bottom: 60px;
       box-shadow: 6px 0px 2px #76767673;
@@ -100,7 +100,7 @@
       a {
         color: white !important;
         justify-content: flex-start;
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: 480px) {
           display: flex;
           align-items: center;
         }

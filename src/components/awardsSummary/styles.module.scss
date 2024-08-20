@@ -17,7 +17,7 @@
     height: 500px;
     overflow: hidden;
     width: 600px;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
         width: 290px;
     }
     &:after {
@@ -57,7 +57,7 @@
         top: 30px;
         width: calc(100% - 50px);
         z-index: 0;
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: 480px) {
             left: 14px;
             top: 15px;
             width: 264px;
@@ -92,7 +92,7 @@
         padding: 70px 0px 0;
         position: relative;
         // width: 100%;
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: 480px) {
             padding: 50px 0px 0;
         }
         .content_child {
@@ -105,7 +105,7 @@
             // padding-top: 50px;
             position: relative;
             width: calc(100% - 50px);
-            @media screen and (max-width: 420px) {
+            @media screen and (max-width: 480px) {
                 height: 400px;
                 overflow-y: hidden;
             }
@@ -194,7 +194,7 @@
             position: relative;
             width: 320px;
             // width: 330px;
-            @media screen and (max-width: 420px) {
+            @media screen and (max-width: 480px) {
                 box-sizing: border-box;
                 padding: 0 20px;
                 width: initial;
@@ -257,7 +257,7 @@
         // position: absolute;
         right: 10px;
         top: 300px;
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: 480px) {
             // background: white;
             box-sizing: border-box;
             bottom: 0;
@@ -277,7 +277,7 @@
         box-sizing: border-box;
         float: right;
         margin-right: 20px;
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: 480px) {
             background: white;
             bottom: 0;
             left: 0;

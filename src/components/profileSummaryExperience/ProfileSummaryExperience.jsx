@@ -25,7 +25,7 @@ const ProfileSummaryExperience = (props) => {
   const {
     backgroundColor,
     backgroundImage,
-    exp,
+    experienceValue,
     badge,
     name,
     picture,
@@ -61,7 +61,7 @@ const ProfileSummaryExperience = (props) => {
             <ProfileImage picture={picture} />
             <br />
             <div className={styles.experience_status}>
-              <ExperienceBar {...{ exp }} />
+              <ExperienceBar {...{ exp: experienceValue }} />
             </div>
             <Insignias title="Insignia Favorita" favoriteBadge={badge} />
           </div>

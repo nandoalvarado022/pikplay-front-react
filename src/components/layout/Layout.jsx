@@ -40,7 +40,16 @@ const Layout = (props) => {
 
   useEffect(() => {
     checkIAMessage(IAMessage); // Check if there is an IA message to show
-    (setStoreValue && !env && props?.env) && setStoreValue('env', props?.env);
+    // START Setting env variable
+    if (setStoreValue && !env) {
+      const url = window.location.href
+      if (env) setStoreValue('env', env)
+      else if (url.includes('devtunnels')) {
+        setStoreValue('env', 'dev')
+      }
+    }
+    // END setting env variable
+
     register()
     if (!window.GA_INITIALIZED) {
       initGA()

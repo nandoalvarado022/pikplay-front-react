@@ -10,7 +10,7 @@ const HTML = <>
 const Message = `Ir a tu perfil`
 const Options = ({ handleUserMessage, set }) => {
   const { userLogged } = useSystemStore()
-  alert(JSON.stringify(userLogged))
+  // alert(JSON.stringify(userLogged))
 
   return <>
     <Link href="/perfil">

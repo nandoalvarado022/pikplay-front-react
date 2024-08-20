@@ -7,7 +7,7 @@
     transition: 1s ease-in-out;
     width: 500px;
     z-index: 9;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
         bottom: 10px;
         width: 80%;
     }
@@ -24,7 +24,7 @@
     }
     &.hide {
         right: -510px;
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: 480px) {
             left: calc(-100vw + 40px);
         }
     }
@@ -35,7 +35,7 @@
             // box-shadow: inset -4px 2px 11px #b86b22;
             overflow: hidden;
             padding: 5px 0 5px 120px;
-            @media screen and (max-width: 420px) {
+            @media screen and (max-width: 480px) {
                 padding: 5px 0 5px 60px;
             }
             .hide {
@@ -53,7 +53,7 @@
                 text-align: center;
                 top: -2px;
                 width: 20px;
-                @media screen and (max-width: 420px) {
+                @media screen and (max-width: 480px) {
                     top: 0px;
                 }
             }
@@ -66,7 +66,7 @@
             justify-content: space-between;
             padding: 10px 10px 10px 10px;
             transition: 1s ease-in-out;
-            @media screen and (max-width: 420px) {
+            @media screen and (max-width: 480px) {
                 height: max-content !important;
             }
             .list {

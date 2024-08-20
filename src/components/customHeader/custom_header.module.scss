@@ -3,7 +3,7 @@
 #CustomHeader {
   background: white;
   border-bottom: 1px solid #dcdcdcb5;
-  padding: 10px 0 14px;
+  padding: 5px 0 14px;
   position: fixed;
   text-align: center;
   top: 0;
@@ -35,7 +35,7 @@
       @media screen and (max-width: $tablet) {
         font-size: 10px;
       }
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         float: none;
       }
     }
@@ -64,6 +64,8 @@
 
   .logo {
     cursor: pointer;
+    float: left;
+    margin: 0 0 0 10px;
     max-width: 100%;
     @media screen and (min-width: 1024px) {
       &.desktop {
@@ -140,7 +142,7 @@
           top: 82px;
           width: 100%;
         }
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: 480px) {
           left: -30px;
           top: 30px;
           width: 100vw;
@@ -154,7 +156,7 @@
         position: fixed;
         width: 100vw;
         z-index: 0;
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: 480px) {
           display: none;
         }
       }

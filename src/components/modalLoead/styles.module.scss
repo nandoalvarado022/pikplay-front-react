@@ -1,5 +1,5 @@
 .modal_lead {
-  [role='dialog'] {
+  [role="dialog"] {
     height: 400px;
     overflow: hidden;
     width: 570px;
@@ -9,7 +9,7 @@
   overflow: hidden;
   :global(.Card) {
     width: 400px;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       margin: 0;
       width: auto;
     }
@@ -40,7 +40,7 @@
     font-weight: 500;
   }
   button {
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       margin-top: 20px;
     }
   }
@@ -65,7 +65,7 @@
     position: absolute;
     top: 0;
     width: 720px;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       left: -190px;
     }
   }
@@ -88,7 +88,7 @@
     justify-content: center;
     margin: 10px 20px;
     row-gap: 10px;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       margin: 20px 0 0;
     }
   }

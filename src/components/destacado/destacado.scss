@@ -29,7 +29,7 @@
   }
   .textos {
     margin-left: 100px;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       box-sizing: border-box;
       padding: 20px;
       text-align: center;
@@ -41,7 +41,7 @@
     }
     p {
       max-width: 420px;
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         color: white;
       }
       h2 {

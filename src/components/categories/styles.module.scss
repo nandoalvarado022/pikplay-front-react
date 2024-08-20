@@ -2,13 +2,13 @@
   background-color: white;
   width: calc(100vw - 8px);
   z-index: 2;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 480px) {
     top: -215px;
     position: absolute;
     width: initial;
   }
   &.active {
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       top: 60px;
     }
   }
@@ -20,7 +20,7 @@
     margin: 0 auto;
     padding: 12px 0 8px;
     width: 1366px;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       flex-wrap: wrap;
     }
 

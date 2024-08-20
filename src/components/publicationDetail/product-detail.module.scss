@@ -88,7 +88,7 @@
       @media screen and (min-width: 1024px) {
         width: 800px;
       }
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         margin: 15px 0px;
       }
       .content_imagen {
@@ -133,7 +133,7 @@
         margin: 0 20px;
         width: 450px;
       }
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         padding: 0px 10px;
       }
       .apply_cashback {
@@ -170,7 +170,7 @@
       }
     }
     .compra_author {
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         align-items: center;
         flex-direction: column;
         row-gap: 20px;
@@ -178,17 +178,17 @@
       > :global(button) {
         margin: 0;
         width: 110px;
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: 480px) {
           box-sizing: content-box;
           margin: 0 auto;
           width: 200px;
         }
         button {
-          @media screen and (max-width: 420px) {
+          @media screen and (max-width: 480px) {
           }
         }
       }
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         :global(.autor) {
           margin-top: 10px;
           width: initial;
@@ -317,7 +317,7 @@
     display: none;
     margin: 20px 20px 0 0;
     width: 100%;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       display: none;
     }
     .listadoRodadas {

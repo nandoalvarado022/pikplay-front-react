@@ -22,7 +22,7 @@ a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 480px) {
   .actions button.nextStep {
     bottom: 80px;
     position: fixed;
@@ -40,13 +40,13 @@ a {
 
 .mobile {
   display: none;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 480px) {
     display: block;
   }
 }
 
 .desktop {
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 480px) {
     display: none;
   }
 }
@@ -91,14 +91,14 @@ button.MuiButton-containedPrimary {
 
 .image-gallery-content.bottom {
   display: flex;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 480px) {
     flex-direction: column;
   }
 }
 
 .image-gallery-thumbnails-wrapper {
   margin: 0 -10px 0 10px;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 480px) {
     display: none;
   }
 }
@@ -113,7 +113,7 @@ button.image-gallery-thumbnail {
   position: relative;
   margin: 20px 0px 40px;
   padding: 0px 10px 0;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 480px) {
     margin: 0;
     padding: 0;
   }
@@ -156,7 +156,7 @@ button.image-gallery-thumbnail {
   top: 0px;
   // width: 300px;
   z-index: 2;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 480px) {
     border-left: 4px solid #3095b3;
     margin-left: 10px;
     padding-left: 10px;
@@ -554,7 +554,7 @@ main {
     .contentTitle h1 {
       color: white;
     }
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       // margin-top: 82px;
     }
 
@@ -575,9 +575,10 @@ main {
 
 section.page {
   margin: 20px auto;
+  padding-bottom: 60px;
   position: relative;
   width: 1200px;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 480px) {
     margin: 70px auto 90px;
     width: calc(100% - 40px);
   }
@@ -601,7 +602,7 @@ section.page {
       width: calc(100% - 60px);
     }
     h2.main {
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         display: inline;
         padding-left: 20px;
         text-align: initial;
@@ -782,7 +783,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   padding: 0;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 480px) {
     margin-top: 0px;
   }
 
@@ -863,7 +864,7 @@ body {
   @media screen and (min-width: 1024px) {
     width: auto;
   }
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 480px) {
     height: auto;
   }
 }
@@ -909,7 +910,7 @@ a {
 }
 
 .image-gallery-thumbnails-container {
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 480px) {
     display: flex;
     justify-content: space-around;
   }
@@ -922,7 +923,7 @@ a {
 
 .image-gallery-slide-wrapper {
   width: 698px;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 480px) {
     width: initial;
   }
 }

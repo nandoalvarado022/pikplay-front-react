@@ -82,7 +82,7 @@ const MenuMobileOptions = () => {
 			x: 0,
 			transition: {
 				delayChildren: 0.3,
-				staggerChildren: 0.2 // Tiempo para que cada elemento hijo empiece a salir
+				staggerChildren: 0.1 // Tiempo para que cada elemento hijo empiece a salir
 			}
 		}
 	};

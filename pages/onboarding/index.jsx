@@ -7,7 +7,7 @@ const OnboardingPage = () => {
     const title = 'Te presentamos Pikplay Latam'
     const url = ''
     return <Layout
-        mobileMenuHidden={true}
+        // mobileMenuHidden={true}
         image={image}
         descripcion={descripcion}
         title={title}

@@ -26,7 +26,7 @@ import Challenges from '../challenges/Challenges'
 const Advertisements = () => {
   // const dispatch = useDispatch()
   // const { user } = useSelector(state => state)
-  const { userLogged } = useSystemStore
+  const { userLogged } = useSystemStore()
   const isMobile = typeof window != 'undefined' ? window.screen.width < 420 : false
   const [leftIndicator, setLeftIndicator] = useState(0)
   // const [deleteNotification] = useMutation(DELETE_NOTIFICATION)

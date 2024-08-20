@@ -1,7 +1,7 @@
 .ProfileSummaryExperience {
     display: flex;
     position: relative;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
         margin: 0 auto;
     }
     .full_name {
@@ -72,7 +72,7 @@
         position: relative;
         transition: 1s ease-in-out;
         width: 300px;
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: 480px) {
             padding: 20px 0px 0 0px;
             width: initial;
         }
@@ -128,14 +128,14 @@
 
         .right {
             width: 380px;
-            @media screen and (max-width: 420px) {
+            @media screen and (max-width: 480px) {
                 width: initial;
             }
         }
 
         .experience_status {
             margin: 0px auto;
-            @media screen and (max-width: 420px) {
+            @media screen and (max-width: 480px) {
                 margin: 0px auto 10px 20px;
             }
         }
@@ -220,7 +220,7 @@
     top: 59px;
     transition: 1s ease-in-out;
     z-index: -1;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
         border-radius: 20px 20px 0px 0;
         box-shadow: 4px 4px 8px 0px #929191;
         bottom: -240px;
@@ -289,7 +289,7 @@
             display: flex;
             margin: 10px auto 0;
             width: max-content;
-            @media screen and (max-width: 420px) {
+            @media screen and (max-width: 480px) {
                 // display: block;
             }
             .item {

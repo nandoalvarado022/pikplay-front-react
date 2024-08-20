@@ -10,7 +10,7 @@
 
   .left {
     width: 800px;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       width: auto;
     }
     .alert {
@@ -35,13 +35,13 @@
     }
     margin: 0 auto;
     width: 1100px;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       margin: 90px auto 0;
       width: auto;
     }
   }
   .list {
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       display: block;
     }
     .active,
@@ -54,7 +54,7 @@
       // padding: 20px 20px 20px 80px;
       position: relative;
       width: 600px;
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         flex-direction: column;
         margin-bottom: 20px;
         // padding: 20px 20px 20px 80px;
@@ -68,11 +68,11 @@
       column-gap: 20px;
       display: flex;
       margin: 0 0 15px 0;
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         display: block;
       }
       .item {
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width: 480px) {
           display: block;
           margin: 0 auto 10px;
           width: max-content;
@@ -94,7 +94,7 @@
       font-size: 14px;
       position: relative;
       // width: 200px;
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         margin: 0 auto 20px;
       }
       h2 a {
@@ -163,7 +163,7 @@
   .CompetitionDetail {
     column-gap: 40px;
     display: flex;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       flex-direction: column-reverse;
     }
     .seller {
@@ -184,7 +184,7 @@
     .description {
       display: flex;
       justify-content: space-between;
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         display: block;
       }
       > div {
@@ -275,7 +275,7 @@
     margin: 20px 0 10px 0;
     position: relative;
     width: 600px;
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 480px) {
       margin: 10px 0 20px;
     }
     > span:nth-of-type(1) {
@@ -285,7 +285,7 @@
       z-index: 1;
       background: rgb(46, 48, 61);
       background: linear-gradient(270deg, rgba(46, 48, 61, 0) 3%, rgba(255, 255, 255, 1) 20%);
-      @media screen and (max-width: 420px) {
+      @media screen and (max-width: 480px) {
         padding: 2px 6px;
         width: 160px;
       }

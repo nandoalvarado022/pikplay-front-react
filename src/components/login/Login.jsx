@@ -1,3 +1,5 @@
+'use client'
+
 import cookieCutter from '@boiseitguru/cookie-cutter'
 import React, { useState } from 'react'
 import LoginInterface from './LoginInterface'
@@ -8,10 +10,10 @@ import { loginSrv } from '../../services/user/userService'
 import { toast } from 'react-toastify'
 
 function Login(props) {
-  const { env, setStoreValue } = useSystemStore((state => state))
+  const { env, setStoreValue } = useSystemStore()
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
-  const [isHuman, setIsHuman] = useState(env == 'dev' ? true : false)
+  const [isHuman, setIsHuman] = useState(env == 'dev')
   const [isCodeSent, setIsCodeSent] = useState(false)
   const [phone, setPhone] = useState(null)
   const [name, setName] = useState(null)
@@ -98,28 +100,26 @@ function Login(props) {
     setIsHuman(value)
   }
 
-  return (
-    <LoginInterface
-      {...{
-        buttonText,
-        env,
-        isCodeSent,
-        isHuman,
-        isOpen,
-        handleClickOpen,
-        handleEnviarCodigo,
-        handleKeyUp,
-        handleCloseDialog,
-        handleFixPhone,
-        handleTengoCodigo,
-        onChangeReCaptcha,
-        phone,
-        setIsCodeSent,
-        setPhone,
-        setName
-      }}
-    />
-  )
+  return (<LoginInterface
+    {...{
+      buttonText,
+      env,
+      isCodeSent,
+      isHuman,
+      isOpen,
+      handleClickOpen,
+      handleEnviarCodigo,
+      handleKeyUp,
+      handleCloseDialog,
+      handleFixPhone,
+      handleTengoCodigo,
+      onChangeReCaptcha,
+      phone,
+      setIsCodeSent,
+      setPhone,
+      setName
+    }}
+  />)
 }
 
 export default Login

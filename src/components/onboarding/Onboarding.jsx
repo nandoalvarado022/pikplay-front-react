@@ -58,8 +58,8 @@ const Onboarding = () => {
         className={`${styles.item} 
         ${ind < 1 && styles.active}`}
         onClick={() => handleUserMessage(item.messageCode, {})}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.9 }}>
+        whileHover={{ scale: 1 }}
+        whileTap={{ scale: 0.7 }}>
         {/* <Image className={styles.background} src={item.background} width={564} height={564} /> */}
         <div className={styles.black_bg}></div>
         <Image className={styles.image} src={item.image} width={200} height={200} />

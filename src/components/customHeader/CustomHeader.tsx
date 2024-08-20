@@ -20,6 +20,7 @@ import Skeleton from '@mui/material/Skeleton'
 import SearchBox from './searchBox/SearchBox'
 import useSearch from './searchBox/useSearch'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 const CustomHeader = () => {
   // const user = useSelector(state => state.user)
@@ -54,7 +55,8 @@ const CustomHeader = () => {
       <ul>
         {(!IS_MOBILE || (IS_MOBILE && !showSearchModal)) && (
           <Link href='/'>
-            <span>
+            <motion.span
+              whileTap={{ scale: 0.7 }}>
               <Image
                 alt='Logo de Pikplay'
                 className={styles.logo}
@@ -67,7 +69,7 @@ const CustomHeader = () => {
                   Compra y vende como <b>Gamer</b>
                 </span>
               </div> */}
-            </span>
+            </motion.span>
           </Link>
         )}
         {/* TODO Descomentar cuando se implementen los productos */}

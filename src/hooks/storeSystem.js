@@ -44,7 +44,7 @@ const useSystemStore = create((set, get) => ({
         messageIA: null
     },
     setStoreValue: (property, value) => {
-        debugger;
+        console.log("-------- 🚓 LOGGING -------- setStoreValue", property, value);
         localStorage.setItem([property], JSON.stringify(value))
         set({ [property]: value })
     },
