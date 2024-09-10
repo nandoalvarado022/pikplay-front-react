@@ -1,7 +1,7 @@
 .CategoryBanner {
   background: linear-gradient(90deg, rgba(244, 119, 133, 1) 0%, rgba(98, 0, 15, 1) 100%);
   background: #c3dbf330;
-  border-radius: 10px;
+  // border-radius: 10px;
   height: 135px;
   margin: 0 auto 35px;
   position: relative;
@@ -29,13 +29,12 @@
   }
   a {
     // Paralax effect
-    // background-attachment: fixed;
-    // background-position: center;
-    // background-repeat: no-repeat;
-    // background-size: cover;
-    // background-position: 0 -80px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 700px;
+    background-position: center;
     display: block;
-    // border-radius: 5px 50px 5px 50px;
     height: 220px;
     overflow: hidden;
     position: absolute;

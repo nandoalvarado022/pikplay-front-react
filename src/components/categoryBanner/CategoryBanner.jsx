@@ -1,11 +1,11 @@
+import styles from './categoryBanner.module.scss'
+
 import React from 'react'
 import Link from 'next/link'
 import { useEffect } from 'react'
-import styles from './styles.module.scss'
 import Image from 'next/image'
 
 const CategoryBanner = ({ categoryId }) => {
-  debugger;
   let image = '',
     link = '',
     text = ''
@@ -94,12 +94,12 @@ const CategoryBanner = ({ categoryId }) => {
 
   return (
     <div className={styles.CategoryBanner}>
-      <Link href={link}>
-        <Image
+      <Link href={link} style={{ backgroundImage: `url(${image})` }}>
+        {/* <Image
           layout='fill'
           className='object-center object-cover pointer-events-none'
           src={image}
-          alt='Categoría' />
+          alt='Categoría' /> */}
         {text}
       </Link>
     </div>
