@@ -2,16 +2,13 @@
   background: linear-gradient(90deg, rgba(244, 119, 133, 1) 0%, rgba(98, 0, 15, 1) 100%);
   background: #c3dbf330;
   border-radius: 10px;
-  height: 65px;
-  margin: 0 auto 75px;
+  height: 135px;
+  margin: 0 auto 35px;
   position: relative;
-  // width: 1366px;
+  overflow: hidden;
   width: 100%;
   @media screen and (max-width: 480px) {
-    background: none;
-    display: none;
-    margin: 0;
-    width: auto;
+    width: 100vw;
   }
   &::after {
     background: #c9c9c9;
@@ -38,7 +35,7 @@
     // background-size: cover;
     // background-position: 0 -80px;
     display: block;
-    border-radius: 5px 50px 5px 50px;
+    // border-radius: 5px 50px 5px 50px;
     height: 220px;
     overflow: hidden;
     position: absolute;

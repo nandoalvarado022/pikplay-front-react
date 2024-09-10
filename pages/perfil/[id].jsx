@@ -2,15 +2,16 @@ import React from 'react'
 import Perfil from '../../src/components/profile/Perfil'
 import Layout from '../../src/components/layout/Layout'
 // import { gql, useMutation } from '@apollo/client'
-import { subirImagen } from '../../src/lib/utils'
+import { cookiesToObject, subirImagen } from '../../src/lib/utils'
 import { toast } from 'react-toastify'
 import { useContext, useEffect, useState } from 'react'
 // import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import useSystemStore from '../../src/hooks/storeSystem'
-import { validateTokenSrv, updateProfileSrv, getExperiencesSrv } from '../../src/services/user/userService'
+import { validateTokenSrv, updateProfileSrv, getExperiencesSrv, getUsersSrv } from '../../src/services/user/userService'
 
 const Index = props => {
+  const { userInfoFromServer } = props
   const descripcion =
     'Pikplay es un sitio web de comercio electrónico, un marketplace donde se encuentran tiendas e independientes de alta confiabilidad ofreciendo videojuegos, artículos y consolas de Playstation, Xbox y Nintendo Switch con los mejores precios del mercado en Colombia'
   const image = ''
@@ -23,14 +24,14 @@ const Index = props => {
     ...userLogged,
   })
   const [isSaving, setIsSaving] = useState(false)
-  const [isProfileComplete, setIsProfileComplete] = useState(true)
-  const loadUserInformation = () => {
-    const user = user
-    delete user.login_code
-    if (!user.name || !user.email || !user.picture) setIsProfileComplete(false)
-    else setIsProfileComplete(true)
-    setUserData(user)
-  }
+  // const [isProfileComplete, setIsProfileComplete] = useState(true)
+  // const loadUserInformation = () => {
+  //   const user = user
+  //   delete user.login_code
+  //   if (!user.name || !user.email || !user.picture) setIsProfileComplete(false)
+  //   else setIsProfileComplete(true)
+  //   setUserData(user)
+  // }
 
   const handleUploadImage = async (callback) => {
     let picture = document.getElementById('profileElement')
@@ -46,9 +47,7 @@ const Index = props => {
 
   const handleSave = async () => {
     setIsSaving(true)
-
     const imageUpdated = await handleUploadImage() // Updating Image
-
     if (imageUpdated) userDataUpdated.picture = imageUpdated
     updateProfileSrv(userDataUpdated) // Updating Information
       .then(data => {
@@ -65,6 +64,10 @@ const Index = props => {
     }, 1000)
   }
 
+  useEffect(() => {
+    setStoreValue('userLogged', userInfoFromServer)
+  }, [userInfoFromServer])
+
   return (
     <Layout image={image} descripcion={descripcion} title={title} url={url}>
       <Perfil
@@ -80,7 +83,8 @@ const Index = props => {
 export const getServerSideProps = async ctx => {
   // const { statusCode } = await validateTokenSrv(ctx)
   const statusCode = 200
-  const experiencesResponse = await getExperiencesSrv(ctx)
+  const uid = cookiesToObject(ctx.req.headers?.cookie)['User-ID']
+  const userInfoFromServer = await getUsersSrv(ctx, uid)
   if (statusCode === 403) {
     return {
       redirect: {
@@ -91,7 +95,7 @@ export const getServerSideProps = async ctx => {
   }
   return {
     props: {
-      ...experiencesResponse,
+      userInfoFromServer,
     }
   }
 }

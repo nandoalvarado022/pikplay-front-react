@@ -146,17 +146,12 @@ const CompetitionDetail = (props) => {
   }, [])
 
   const NumberComponent = ({ ind, item, number, uidNumber }) => {
+    const takenByMeClass = uidLogged && uidNumber == uidLogged ? styles.takenByMe : ''
     return !item.hidden ? <Tooltip key={ind} title={`Reservar el número ${ind}`}>
       <div
-        className={`${styles.item} ${styles[item.status]} ${selectedNumber == ind && styles.selected}`}
+        className={`${styles.item} ${styles[item.status]} ${selectedNumber == ind && styles.selected} ${takenByMeClass}`}
         onClick={() => handleClick(item, ind)}>
-        {(!uidLogged || !uidNumber) && <div>
-          {ind}
-        </div>}
-        {uidLogged && uidNumber == uidLogged && <div className={styles.takenByMe}>
-          <img src={userPicture} />
-          <span className={styles.number}>{ind}</span>
-        </div>}
+        {ind}
         <div>{item.name}</div>
       </div>
     </Tooltip> : <></>

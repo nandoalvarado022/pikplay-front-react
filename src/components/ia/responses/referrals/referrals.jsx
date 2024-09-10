@@ -41,11 +41,11 @@ const Options = ({ handleUserMessage, set }) => {
     <Button color='blue' realistic onClick={() => getContacts(handleUserMessage, set)}>
       Agregar referidos y ganar Pikcoins 🎉
     </Button>
-    <Link href='/perfil'>
+    {/* <Link href='/perfil'>
       <Button color='yellow' realistic>
         Ver premios por completar Onboarding
       </Button>
-    </Link>
+    </Link> */}
   </>
 }
 

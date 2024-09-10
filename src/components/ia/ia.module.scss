@@ -118,9 +118,15 @@
                 justify-content: end;
                 margin: 0px 10px 0 -10px;
                 flex-wrap: wrap;
-                button button {
-                    padding: 6px 4px;
-                    text-align: left;
+                text-align: center;
+                > a,
+                > a > span,
+                > span {
+                    width: 100%;
+                    button {
+                        padding: 6px 4px;
+                        text-align: left;
+                    }
                 }
             }
             input {

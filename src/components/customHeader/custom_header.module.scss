@@ -1,8 +1,10 @@
 @import "../../styles/variables.scss";
 
 #CustomHeader {
-  background: white;
-  border-bottom: 1px solid #dcdcdcb5;
+  // background: white;
+  background: #0d0e32;
+  // border-bottom: 1px solid #dcdcdcb5;
+  order-bottom: 2px solid #1d1d1db5;
   padding: 5px 0 14px;
   position: fixed;
   text-align: center;

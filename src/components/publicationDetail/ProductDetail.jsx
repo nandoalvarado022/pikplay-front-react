@@ -60,7 +60,6 @@ const ProductDetail = ({
     buttonLabel = 'Volver a los concursos'
     buttonLink = origin
   } else buttonLabel = quantity > 0 ? 'Lo quiero' : 'Reservar'
-  debugger
 
   return (
     <div key={indice_item} className={`${styles.ProductDetail}`}>
@@ -90,7 +89,7 @@ const ProductDetail = ({
 
             <div className={`${styles.Card} ${styles['productos-relacionados']}`}>
               {/* <h3 className="text-center">Productos que te pueden interesar</h3> */}
-              {/* <div className="listadoRodadas">
+              {/* <div className="product_list">
               {["", "", ""].map((current, ind) => {
                 const item = feed[ind]
                 return <Card key={ind} special_title="Más vendido" destacada={true} doc_id={item.id} permitirLink={true} {...item} coleccion={item.coleccion} indice_item={ind} />

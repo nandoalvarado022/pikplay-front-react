@@ -4,9 +4,9 @@ const { get, post } = CustomFetch()
 
 const BASE_URL = "/users"
 
-const getUsersSrv = async () => {
-  const data = await get(null, BASE_URL);
-  debugger;
+const getUsersSrv = async (ctx, uid) => {
+  const url = BASE_URL + (uid ? `/${uid}/info` : "")
+  const data = await get(ctx, url);
   return data
 }
 
@@ -14,7 +14,6 @@ const loginSrv = async (ctx: any, phone: string, code: number, name: string) => 
   const path = BASE_URL + "/login"
   try {
     const data = await post(ctx, path, { code, phone, name });
-    debugger;
     const { token, uid } = data.data
     cookieCutter.set('X-Auth-Token', token)
     cookieCutter.set('User-ID', uid)

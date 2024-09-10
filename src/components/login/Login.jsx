@@ -39,7 +39,6 @@ function Login(props) {
     try {
       const req = await loginSrv(null, fullPhone, parseInt(code, 10))
       const { data } = req
-      debugger;
       if (data) {
         const { token, uid } = data
         setStoreValue("userLogged", data)

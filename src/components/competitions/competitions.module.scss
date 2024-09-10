@@ -243,13 +243,16 @@
           // text-align: center;
           // width: 60px;
         }
-        .takenByMe {
-          img {
-            margin: 5px 0 0 -5px;
-            max-height: initial;
-            max-width: initial;
-            width: calc(100% + 10px);
-          }
+        &.takenByMe::after {
+          background: #3095b3;
+          border-radius: 50%;
+          content: "";
+          font-size: 12px;
+          height: 8px;
+          position: absolute;
+          right: 3px;
+          top: 4px;
+          width: 8px;
           .number {
             color: white;
             left: 15px;

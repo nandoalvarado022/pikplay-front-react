@@ -108,10 +108,10 @@ const PortadaInterface = ({
 
     return <div className={styles.PortadaInterfaceComponent}>
       <div className={styles.main}>
-        <div className='listadoRodadas'>
+        <div className='product_list'>
           {feed &&
             feed.map((item, ind) => {
-              currentCategory = item.category_id
+              currentCategory = item.categoryId
               const showCategoryBanner = previousCategory !== currentCategory
               if (showCategoryBanner) previousCategory = currentCategory
 
@@ -153,9 +153,9 @@ const PortadaInterface = ({
     <section className='page'>
       {feed && feed.length < 1 && <Maintenance />}
       {!category && <Advertisements />}
-      <Link className={styles.membresiaSellerBanner} href='/concursos' as='/concursos'>
+      {/* <Link className={styles.membresiaSellerBanner} href='/concursos' as='/concursos'>
         <img className={`shine`} src="/images/banners/banner_membresia_de_cortesia_seller.png" />
-      </Link>
+      </Link> */}
       <Link className={styles.videoPortada} href='/concursos' as='/concursos'>
         <video
           autoPlay
@@ -168,7 +168,7 @@ const PortadaInterface = ({
       {/* Aquí se llama un video que esta en la carpeta public */}
       {/* <SpecialBanner {...{ category, popularyItem, starItem }} /> */}
       {/* <FullScreenWidget /> */}
-      {showModalLead && <ModalLead />}
+      {/* {showModalLead && <ModalLead />} */}
       <Products />
     </section>
     {/* <Footer /> */}

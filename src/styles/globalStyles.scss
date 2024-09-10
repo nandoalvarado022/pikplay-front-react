@@ -109,7 +109,7 @@ button.image-gallery-thumbnail {
   margin: 10px 0;
 }
 
-.listadoRodadas {
+.product_list {
   position: relative;
   margin: 20px 0px 40px;
   padding: 0px 10px 0;
@@ -544,7 +544,7 @@ main {
     background-attachment: fixed;
     &::before {
       content: "";
-      background: #19596bde;
+      background: #0d0e32bf;
       height: 100%;
       position: fixed;
       top: 0;

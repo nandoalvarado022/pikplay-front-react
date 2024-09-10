@@ -5,6 +5,7 @@ import styles from './styles.module.scss'
 import Image from 'next/image'
 
 const CategoryBanner = ({ categoryId }) => {
+  debugger;
   let image = '',
     link = '',
     text = ''

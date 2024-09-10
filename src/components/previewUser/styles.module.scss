@@ -111,11 +111,12 @@
           display: inline-block;
           margin-left: 10px;
         }
-        :global(svg) {
-          height: 20px;
-          margin-right: 10px;
-          width: 20px;
-        }
+      }
+
+      :global(svg) {
+        height: 20px;
+        margin-right: 10px;
+        width: 20px;
       }
 
       .flex {

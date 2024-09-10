@@ -17,11 +17,15 @@ import Switch from '@mui/material/Switch'
 import { styled } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import useSystemStore from '../../hooks/storeSystem'
+import { useIAStore } from '../ia/IAstore'
 
 const MenuMobileOptions = () => {
 	const router = useRouter()
 	const { darkMode, userLogged, logout, setStoreValue } = useSystemStore((state => state))
 	const { name, coins } = userLogged
+	const {
+		handleUserMessage,
+	} = useIAStore((state => state))
 	const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 		width: 62,
 		height: 34,
@@ -124,6 +128,10 @@ const MenuMobileOptions = () => {
 				{/* <Coins /> */}
 			</Link>
 		</motion.ol>
+		<motion.ol variants={item} onClick={() => handleUserMessage('referrals', {})}>
+			<FontAwesomeIcon icon={faDiceFive} />
+			Recomendar amigo
+		</motion.ol>
 		<motion.ol variants={item}>
 			<Link href='/concursos' as='/concursos'>
 				<FontAwesomeIcon icon={faDiceFive} />
@@ -149,8 +157,12 @@ const MenuMobileOptions = () => {
 		</motion.ol>
 		<motion.ol variants={item}>
 			<FormControlLabel
-				control={<MaterialUISwitch sx={{ m: 1 }} checked={darkMode} onChange={(e) => setStoreValue("darkMode", e.target.checked)} />}
-				label="Modo nocturno"
+				checked={darkMode}
+				control={<MaterialUISwitch sx={{ m: 1 }}
+					label="Modo nocturno"
+					onChange={(e) => setStoreValue("darkMode", e.target.checked)}
+					// style={{ margin: 0 }}
+				/>}
 			/>
 			{/* <Switch
             // checked={true}

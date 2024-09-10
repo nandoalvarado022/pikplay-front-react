@@ -73,27 +73,28 @@ const AwardsSummary = ({ callback }) => {
       </div>
 
       <div className={styles.actions}>
-        <motion.div
+        {/* <motion.div
           initial={{ x: '-600px' }}
           animate={{ x: 0, }}
           transition={{ delay: 2 }}>
-          <Button
+          {/* <Button
             className={styles.main_button}
             color="yellow"
             onClick={handleUpdateExperience}
             realistic
             shine>
             Ir a mi perfil
+          </Button> */}
+          {/* 
+          <Button
+            className={styles.main_button}
+            color="blue"
+            onClick={handleUpdateExperience}
+            realistic
+            shine>
+            Ir a mi perfil
           </Button>
-          {/* <Button
-                        className={styles.main_button}
-                        color="blue"
-                        onClick={handleUpdateExperience}
-                        realistic
-                        shine>
-                        Ir a mi perfil
-                    </Button> */}
-        </motion.div>
+        </motion.div> */}
       </div>
     </>
   )

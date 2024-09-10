@@ -762,3 +762,14 @@ export function startConfetti() {
   });
   confetti({ ...defaults })
 }
+
+export function cookiesToObject(cookies) {
+  // Tested in getServerSideProps
+  const cookiesArray = cookies.split(';')
+  const cookiesObject = {}
+  cookiesArray.forEach(cookie => {
+    const [key, value] = cookie.split('=')
+    cookiesObject[key.trim()] = value
+  })
+  return cookiesObject
+}
