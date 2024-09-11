@@ -5,12 +5,12 @@
   "version": "1.0.1",
   "display": "minimal-ui",
   "description": "Pikplay | Videojuegos y accesorios para play station, Xbox y Nintendo Switch, compra los juegos más populares como Mario Kart, Super Smash Bross, Splaton, Animal Crossing, Mortal Kombat 11 y más al mejor precio del mercado",
-  "theme_color": "##476E95",
-  "background_color": "#476E95",
+  "theme_color": "#0d0e32",
+  "background_color": "#0d0e32",
   "icons": [
     {
       "sizes": "48x48",
-      "src": "/images/logos/logo48x48.png",
+      "src": "./images/logos/logo48x48.png",
       "type": " image/png"
     }
   ],
