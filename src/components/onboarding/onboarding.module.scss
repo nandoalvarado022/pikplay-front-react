@@ -86,7 +86,7 @@ section.Onboarding {
                     max-width: initial;
                     position: relative;
                     top: 40px;
-                    width: 230px !important;
+                    width: 120px !important;
                 }
             }
             .html {
@@ -110,9 +110,10 @@ section.Onboarding {
             }
             img.image {
                 // filter: grayscale(100%);
+                height: auto;
                 margin: 0 auto 10px;
-                max-height: 70px;
-                width: 80px;
+                // max-height: 70px;
+                width: 100px;
             }
             .green {
                 color: aquamarine;
