@@ -64,9 +64,9 @@ const Onboarding = () => {
   return <section className={`page ${styles.Onboarding}`}>
     <div className={styles.titleContent}>
       <div className={styles.background}></div>
-      <h1>Conócenos
+      <h2>Conócenos
         <small>Abre cada tarjeta para conocer lo que tenemos para ti 🎁</small>
-      </h1>
+      </h2>
     </div>
     <div className={styles.items}>
       {
@@ -95,8 +95,31 @@ const Onboarding = () => {
         La idea inicial de <b>Pikplay Latam</b> sigue siendo reducir los fraudes en la compra y venta de consolas y videojuegos de manera online.
       </p>
       <p>
-        Por ello en Pikplay solo encontraras <b>Aliados certificados</b>. Tiendas que han sido estudiadas y validadas por nuestro equipo. Tienen nuestro total respaldo y confianza.
+        Por ello en Pikplay solo encontraras <b>Aliados certificados</b>. 
+        <br />Tiendas que han sido estudiadas y validadas por nuestro equipo. Tienen nuestro total respaldo y confianza.
       </p>
+    </div>
+
+    <div className={styles.aliados}>
+      <h2>Aliados</h2>
+      <div className={styles.items}>
+        <div className="Card">
+          <img src='/images/users/bluepanther.jpg' />
+          <p>
+            <b>Bluepanther</b>
+            <div>Gaming</div>
+            Medellín, Colombia
+          </p>
+        </div>
+        <div className="Card">
+          <img src='/images/users/hiro.jpeg' />
+          <p>
+            <b>Hiro</b>
+            <div>Anime, Cosplay</div>
+            Barranquilla, Colombia
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 }

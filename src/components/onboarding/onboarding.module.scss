@@ -6,7 +6,7 @@ section.Onboarding {
     &::after {
         content: "";
         position: fixed;
-        top: 60px;
+        top: 56px;
         left: 0;
         background: #0b2c5aad;
         height: 100%;
@@ -14,32 +14,18 @@ section.Onboarding {
     }
     .titleContent,
     .texts {
-        padding: 20px 0 0 40px;
         .background {
             // background: linear-gradient(77deg, #c93530, #db7d79);
             background: linear-gradient(270deg, #7a0ba1 0%, #003875 100%);
             box-shadow: 2px 2px 0px #f8a713;
             border-radius: 40px;
             height: 200px;
+            opacity: .5;
             position: absolute;
             top: 10px;
             transform: rotate(45deg);
             width: 200px;
             z-index: 1;
-        }
-        h1 {
-            color: white;
-            font-size: 24px;
-            margin-top: 0px;
-            position: relative;
-            z-index: 2;
-            small {
-                display: block;
-                font-size: 14px;
-                font-weight: lighter;
-                margin: 10px 0 0 0;
-                width: 260px;
-            }
         }
     }
     .items {
@@ -149,18 +135,61 @@ section.Onboarding {
     img {
         // height: 390px;
     }
-
-    h2 {
-        position: fixed;
-        z-index: 11;
-        top: 120px;
+    .texts {
         color: white;
-        margin: 0 auto;
-        left: 0;
-        right: 0;
-        text-align: center;
-        font-size: 36px;
+        margin-top: 30px;
+        position: relative;
+        width: calc(100% - 80px);
+        z-index: 1;
+        p {
+            font-size: 16px;
+            padding: 10px 20px;
+        }
+        .background {
+            top: 0px;
+            opacity: 0.5;
+            right: -160px;
+            z-index: -1;
+        }
+    }
+    .aliados {
+        margin: 0 0 40px;
+        position: relative;
+        z-index: 1;
+        .items {
+            display: flex;
+        }
+        :global(.Card) {
+            background: linear-gradient(270deg, #7a0ba1 0%, #003875 100%);
+            box-shadow: initial;
+            color: white;
+            font-size: 14px;
+            margin: 0 10px;
+            text-align: center;
+            width: 120px;
+            b {
+                display: block;
+            }
+            img {
+                border-radius: 50%;
+            }
+        }
+    }
+    h2 {
+        color: white;
+        font-size: 24px;
+        margin: 20px 0 0 40px;
+        padding-top: 20px;
+        position: relative;
+        z-index: 2;
+        // position: fixed;
         $color: rgb(46, 46, 46);
+        // left: 0;
+        // margin: 0 auto;
+        // right: 0;
+        // text-align: center;
+        // top: 120px;
+        color: white;
         text-shadow:
             2px 0 $color,
             -2px 0 $color,
@@ -177,21 +206,12 @@ section.Onboarding {
                 color: aquamarine;
             }
         }
-    }
-
-    .texts {
-        color: white;
-        position: relative;
-        width: calc(100% - 80px);
-        z-index: 1;
-        p {
+        small {
+            display: block;
             font-size: 14px;
-            padding: 20px;
-        }
-        .background {
-            top: 60px;
-            right: -70px;
-            z-index: -1;
+            font-weight: lighter;
+            margin: 10px 0 0 0;
+            width: 260px;
         }
     }
 }

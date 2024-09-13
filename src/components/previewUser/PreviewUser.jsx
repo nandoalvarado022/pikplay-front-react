@@ -9,6 +9,8 @@ import useSystemStore from '../../hooks/storeSystem'
 import { Email } from '@mui/icons-material'
 import { AlternateEmail } from '@mui/icons-material'
 import NotificationsNewIcon from '../notificationsNewIcon/NotificationsNewIcon'
+import UserNotifications from '../userNotifications/UserNotifications'
+import Button from '../button/Button'
 const ProfileImage = dynamic(() => import('../profileImage/ProfileImage'), { ssr: false })
 const MenuMobileOptions = dynamic(() => import('./MenuMobileOptions'), { ssr: false })
 
@@ -40,7 +42,11 @@ const PreviewUser = () => {
             </span> */}
           </div>
           <div className={styles.bg_white}></div>
-          {isOpenPreviewProfile && <MenuMobileOptions />}
+          {isOpenPreviewProfile && <>
+            <MenuMobileOptions />
+            <UserNotifications />
+            <Button className={styles.close_button} color="blue" onClick={() => setIsOpenPreviewProfile(false)}>Cerrar</Button>
+          </>}
           <div className={styles.elementToCloseBgBlack} onClick={() => setIsOpenPreviewProfile(false)}></div>
         </div>
       ) : (

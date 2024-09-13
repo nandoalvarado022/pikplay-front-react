@@ -11,7 +11,7 @@
     width: 80%;
     &.actived {
       .bg_black {
-        box-shadow: 90px 3px 2px #76767673;
+        // box-shadow: 90px 3px 2px #76767673;
         display: block;
         left: 0;
       }
@@ -59,7 +59,7 @@
   .bg_black {
     background: radial-gradient(circle, rgb(82 89 95) 0%, rgba(36, 41, 46, 1) 100%);
     border-radius: 10px;
-    box-shadow: 0px 2px 2px #5252522e;
+    // box-shadow: 0px 2px 2px #5252522e;
     color: white;
     display: none;
     font-size: 14px;
@@ -73,12 +73,12 @@
     @media screen and (max-width: 480px) {
       border-radius: 0px 10px 10px 0px;
       bottom: 60px;
-      box-shadow: 6px 0px 2px #76767673;
+      // box-shadow: 6px 0px 2px #76767673;
       display: block;
       height: 100%;
       position: fixed;
       top: 55px;
-      width: 80%;
+      width: 50%;
       z-index: 2;
     }
 
@@ -137,6 +137,21 @@
         display: none;
       }
     }
+  }
+
+  :global(.UserNotifications) {
+    box-sizing: border-box;
+    padding: 0 10px;
+    position: fixed;
+    right: 0;
+    top: 38px;
+    width: 50%;
+  }
+
+  .close_button {
+    position: fixed;
+    right: 6px;
+    top: 6px;
   }
 
   .elementToCloseBgBlack {

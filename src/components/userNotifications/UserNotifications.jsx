@@ -1,4 +1,5 @@
-import styles from './styles.module.scss'
+import styles from './userNotifications.module.scss'
+
 import React, { useEffect, useState } from 'react'
 import Button from '../button/Button'
 import confetti from 'canvas-confetti'
@@ -96,11 +97,11 @@ const UserNotifications = () => {
   return (
     <div className={`${styles.UserNotifications} UserNotifications`}>
       <div className={styles.options}>
+        <FontAwesomeIcon icon={faBell} className='m-r-10 icon' />
         <motion.span>
-          <FontAwesomeIcon icon={faBell} className='m-r-10 icon' />
           Mis notificaciones
         </motion.span>
-        <span>Marcar todas como leídas</span>
+        {/* <span>Marcar todas como leídas</span> */}
       </div>
       <ul>
         {notifications && notifications.map(
@@ -130,16 +131,15 @@ const UserNotifications = () => {
                 key={id}
                 onClick={() =>
                   !disabled && handleNotification({ coins, disabled, id, link, type })
-                }
-              >
+                }>
                 {/* {!disabled && <FontAwesomeIcon icon={faCircle} />} */}
-                <Image
+                {/* <Image
                   alt='icon-notification'
                   className={styles.img_notification}
                   height={35}
                   src={srcNotificationImg}
                   width={48}
-                />
+                /> */}
                 <span>{detail}</span>
                 {coins && <CoinIcon isLabel={false} coins={coins} />}
                 {!coins && <div className={styles.content_close}></div>}
