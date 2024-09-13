@@ -773,3 +773,32 @@ export function cookiesToObject(cookies) {
   })
   return cookiesObject
 }
+
+export const timeAgo = (prevDate) => {
+  debugger;
+  const prevDateFormatted = Number(new Date(prevDate));
+  const today = Number(new Date());
+  const diff = today - prevDateFormatted;
+  const minute = 60 * 1000;
+  const hour = minute * 60;
+  const day = hour * 24;
+  const month = day * 30;
+  const year = day * 365;
+  switch (true) {
+    case diff < minute:
+      const seconds = Math.round(diff / 1000);
+      return `${seconds} ${seconds > 1 ? 'segundos' : 'segundo'}`
+    case diff < hour:
+      return Math.round(diff / minute) + ' minutos';
+    case diff < day:
+      return Math.round(diff / hour) + ' horas';
+    case diff < month:
+      return Math.round(diff / day) + ' días';
+    case diff < year:
+      return Math.round(diff / month) + ' meses';
+    case diff > year:
+      return Math.round(diff / year) + ' años';
+    default:
+      return "";
+  }
+};

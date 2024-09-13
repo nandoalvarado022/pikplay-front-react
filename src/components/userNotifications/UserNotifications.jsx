@@ -1,30 +1,17 @@
 import styles from './userNotifications.module.scss'
 
 import React, { useEffect, useState } from 'react'
-import Button from '../button/Button'
-import confetti from 'canvas-confetti'
 import {
-  CREATE_COIN,
-  DELETE_NOTIFICATION,
-  formatNumber,
-  GET_NOTIFICATIONS,
-  loadAudio,
+  timeAgo,
 } from '../../lib/utils'
 import { getNotificationsSrv } from '../../services/user/userService'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBell, faCircle } from '@fortawesome/free-solid-svg-icons'
-import { toast } from 'react-toastify'
-// import { useLazyQuery, useMutation } from '@apollo/client'
-// import { useSelector, useDispatch } from 'react-redux'
+import { faBell } from '@fortawesome/free-solid-svg-icons'
 import classNames from 'classnames'
-import { Tooltip } from '@mui/material'
 import moment from 'moment'
-import Link from 'next/link'
 import Router from 'next/router'
 import CoinIcon from '../coinIcon/CoinIcon'
-import AwardsSummary from '../awardsSummary/AwardsSummary'
 import useSystemStore from '../../hooks/storeSystem.js'
-import Image from 'next/image.js'
 
 const { motion } = require('framer-motion')
 
@@ -165,6 +152,9 @@ const UserNotifications = () => {
                   src={srcNotificationImg}
                   width={48}
                 /> */}
+                <small>
+                  hace {timeAgo("2024-09-12T16:30:00-05:00")}
+                </small>
                 <span>{detail}</span>
                 {coins && <CoinIcon isLabel={false} coins={coins} />}
                 {!coins && <div className={styles.content_close}></div>}
