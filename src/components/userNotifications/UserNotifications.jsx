@@ -94,6 +94,27 @@ const UserNotifications = () => {
     getNotifications()
   }, [])
 
+  const container = {
+    hidden: { opacity: 1, scale: 1, x: "-100vw" },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.1 // Tiempo para que cada elemento hijo empiece a salir
+      }
+    }
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1
+    }
+  };
+
   return (
     <div className={`${styles.UserNotifications} UserNotifications`}>
       <div className={styles.options}>
@@ -103,7 +124,10 @@ const UserNotifications = () => {
         </motion.span>
         {/* <span>Marcar todas como leídas</span> */}
       </div>
-      <ul>
+      <motion.ul
+        animate="visible"
+        initial="hidden"
+        variants={container}>
         {notifications && notifications.map(
           ({
             closed: disabled,
@@ -126,9 +150,10 @@ const UserNotifications = () => {
                     : '/images/type_notification/coins_by_purchase_completed.png'
             return (
               // <Tooltip title={created} key={id}>
-              <ol
-                className={classNames(null, { [styles.read]: disabled })}
+              <motion.li
+                className={classNames('Card', { [styles.read]: disabled })}
                 key={id}
+                variants={item}
                 onClick={() =>
                   !disabled && handleNotification({ coins, disabled, id, link, type })
                 }>
@@ -143,12 +168,12 @@ const UserNotifications = () => {
                 <span>{detail}</span>
                 {coins && <CoinIcon isLabel={false} coins={coins} />}
                 {!coins && <div className={styles.content_close}></div>}
-              </ol>
+              </motion.li>
               // </Tooltip>
             )
           },
         )}
-      </ul>
+      </motion.ul>
     </div>
   )
 }

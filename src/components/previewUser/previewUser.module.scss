@@ -89,6 +89,7 @@
 
     > ol {
       border-bottom: 1px solid #424950;
+      display: flex;
       font-weight: bold;
       margin: 10px 0;
       padding: 0 20px 10px;
@@ -146,6 +147,28 @@
     right: 0;
     top: 38px;
     width: 50%;
+    :global(ul) {
+      overflow: initial;
+    }
+    :global(li) {
+      display: block;
+      margin-bottom: 10px;
+      overflow: initial;
+      padding: 10px 10px 58px;
+      span {
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+      :global(.Coins) {
+        background: #eaeaea;
+        border-radius: 10px 0 0 10px;
+        box-shadow: 0px 2px 0px 0px #f8af06;
+        float: right;
+        padding: 8px 15px;
+        position: relative;
+        right: -26px;
+      }
+    }
   }
 
   .close_button {
@@ -154,13 +177,13 @@
     top: 6px;
   }
 
-  .elementToCloseBgBlack {
-    height: 100vh;
-    position: fixed;
-    right: -100vw;
-    top: 75px;
-    width: 30%;
-  }
+  // .elementToCloseBgBlack {
+  //   height: 100vh;
+  //   position: fixed;
+  //   right: -100vw;
+  //   top: 75px;
+  //   width: 30%;
+  // }
 }
 
 @keyframes like {

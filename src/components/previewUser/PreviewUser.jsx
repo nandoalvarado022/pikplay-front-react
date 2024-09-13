@@ -1,4 +1,4 @@
-import styles from './styles.module.scss'
+import styles from './previewUser.module.scss'
 
 import React, { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
@@ -45,9 +45,9 @@ const PreviewUser = () => {
           {isOpenPreviewProfile && <>
             <MenuMobileOptions />
             <UserNotifications />
-            <Button className={styles.close_button} color="blue" onClick={() => setIsOpenPreviewProfile(false)}>Cerrar</Button>
+            <Button realistic className={styles.close_button} color="blue" onClick={() => setIsOpenPreviewProfile(false)}>Cerrar</Button>
           </>}
-          <div className={styles.elementToCloseBgBlack} onClick={() => setIsOpenPreviewProfile(false)}></div>
+          {/* <div className={styles.elementToCloseBgBlack} onClick={() => setIsOpenPreviewProfile(false)}></div> */}
         </div>
       ) : (
         <Login />

@@ -1,4 +1,4 @@
-import styles from './styles.module.scss'
+import styles from './previewUser.module.scss'
 
 import React from 'react'
 import { motion } from "framer-motion"
@@ -130,7 +130,9 @@ const MenuMobileOptions = () => {
 		</motion.ol>
 		<motion.ol variants={item} onClick={() => handleUserMessage('referrals', {})}>
 			<FontAwesomeIcon icon={faDiceFive} />
-			Recomendar amigo
+			<span>
+				Recomendar amigo
+			</span>
 		</motion.ol>
 		<motion.ol variants={item}>
 			<Link href='/concursos' as='/concursos'>
@@ -161,7 +163,7 @@ const MenuMobileOptions = () => {
 				control={<MaterialUISwitch sx={{ m: 1 }}
 					label="Modo nocturno"
 					onChange={(e) => setStoreValue("darkMode", e.target.checked)}
-					// style={{ margin: 0 }}
+				// style={{ margin: 0 }}
 				/>}
 			/>
 			{/* <Switch
