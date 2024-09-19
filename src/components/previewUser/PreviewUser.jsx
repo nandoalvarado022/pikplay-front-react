@@ -25,7 +25,11 @@ const PreviewUser = () => {
 
   return (
     <div
-      className={`${styles.PreviewUser} PreviewUser ${isOpenPreviewProfile ? styles.actived : null}`}>
+      className={`
+      ${styles.PreviewUser} PreviewUser
+      ${isOpenPreviewProfile ? styles.actived : null}
+      ${userLogged.uid ? styles.userLogged : null}
+      `}>
       {userLogged?.uid ? (
         <div>
           <ProfileImage

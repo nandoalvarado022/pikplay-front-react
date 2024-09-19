@@ -69,9 +69,12 @@
       &.closed {
         display: none;
       }
-
-      &.read {
-        opacity: 0.2;
+      &:not(.read) {
+        border-left: 2px solid #3095b3;
+        border-radius: 0;
+      }
+      &.read { // leidas
+        opacity: 0.5 !important;
       }
       // &.open {
       //     max-height: initial;

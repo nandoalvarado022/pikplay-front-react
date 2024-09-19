@@ -117,13 +117,14 @@ const UserNotifications = () => {
         variants={container}>
         {notifications && notifications.map(
           ({
+            closed,
             closed: disabled,
             coins,
             created,
             detail,
             id,
-            closed,
             link,
+            status,
             type,
           }) => {
             created = moment(created).fromNow()
@@ -138,7 +139,7 @@ const UserNotifications = () => {
             return (
               // <Tooltip title={created} key={id}>
               <motion.li
-                className={classNames('Card', { [styles.read]: disabled })}
+                className={classNames('Card', { [styles.read]: status })}
                 key={id}
                 variants={item}
                 onClick={() =>

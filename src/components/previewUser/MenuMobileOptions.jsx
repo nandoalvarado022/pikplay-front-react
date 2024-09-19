@@ -18,6 +18,7 @@ import { styled } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import useSystemStore from '../../hooks/storeSystem'
 import { useIAStore } from '../ia/IAstore'
+import { WhatsApp } from '@mui/icons-material'
 
 const MenuMobileOptions = () => {
 	const router = useRouter()
@@ -129,9 +130,9 @@ const MenuMobileOptions = () => {
 			</Link>
 		</motion.ol>
 		<motion.ol variants={item} onClick={() => handleUserMessage('referrals', {})}>
-			<FontAwesomeIcon icon={faDiceFive} />
+			<WhatsApp />
 			<span>
-				Recomendar amigo
+				Referir
 			</span>
 		</motion.ol>
 		<motion.ol variants={item}>
