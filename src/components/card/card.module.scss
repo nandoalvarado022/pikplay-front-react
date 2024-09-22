@@ -167,15 +167,19 @@ h3.title_destacada {
             position: relative;
             top: -2px;
           }
-        }
-        svg {
-          background: white;
-          border-radius: 50%;
-          font-size: 20px;
-          padding: 5px;
-          transition: 0.5s ease;
-          &:hover {
-            transform: scale(1.4);
+          svg {
+            background: white;
+            border-radius: 50%;
+            // font-size: 20px;
+            box-sizing: border-box;
+            height: 30px;
+            padding: 5px;
+            transition: 0.5s ease;
+            // width: 30px;
+            width: 30px;
+            &:hover {
+              transform: scale(1.4);
+            }
           }
         }
       }
