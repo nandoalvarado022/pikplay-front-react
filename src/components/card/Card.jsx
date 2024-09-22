@@ -19,6 +19,7 @@ import styles from './card.module.scss'
 import CoinIcon from '../coinIcon/CoinIcon'
 import useSystemStore from '../../hooks/storeSystem'
 import CashbackTag from './cashbackTag/CashbackTag'
+import { ShareOutlined } from '@mui/icons-material'
 
 const Card = (props) => {
   const {
@@ -32,7 +33,7 @@ const Card = (props) => {
     following,
     handleFavorite,
     handleShare,
-    icon_favorite = true,
+    iconFavorite = false,
     id: publicationId,
     images,
     image_1,
@@ -121,9 +122,9 @@ const Card = (props) => {
                 <Tooltip title='Seguir publicación'>
                   <a>
                     <FontAwesomeIcon
-                      icon={icon_favorite ? faHeart : faHeartBroken}
+                      icon={iconFavorite ? faHeart : faHeartBroken}
                       className={classNames(styles.faHeart, {
-                        [styles.active]: following || !icon_favorite,
+                        [styles.active]: following || !iconFavorite,
                       })}
                       onClick={() => {
                         loggedUser?.id != 0
@@ -138,15 +139,17 @@ const Card = (props) => {
                     />
                   </a>
                 </Tooltip>
-                <Tooltip title='Compartir en Facebook'>
+                <Tooltip title='Compartir'>
                   <a
-                    href={`https://www.facebook.com/sharer/sharer.php?u=https://pikplay.co/publicacion/${slug}`}
+                    href={`https://api.whatsapp.com/send?phone=&text=Revisa%20esta%20publicacion%20en%20Pikplay%20que%20esta%20potente%20https://pikplay.co/publicacion/${slug}`}
                     rel="noreferrer"
                     target='_BLANK'>
-                    <FontAwesomeIcon
+                    <ShareOutlined
+                      className={styles.faShare} />
+                    {/* <FontAwesomeIcon
                       icon={faShare}
                       className={styles.faShare}
-                    />
+                    /> */}
                   </a>
                 </Tooltip>
               </div>
