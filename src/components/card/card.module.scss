@@ -306,6 +306,23 @@ h3.title_destacada {
       }
     }
   }
+  .contentAddi {
+    span {
+      color: #4e7dff;
+      font-weight: bold;
+      position: relative;
+      right: -50px;
+      top: 44px;
+      z-index: 1;
+    }
+    img {
+      border-radius: 10px;
+      bottom: 0;
+      position: absolute;
+      right: 0px;
+      width: 120px;
+    }
+  }
 }
 
 @keyframes rotate {

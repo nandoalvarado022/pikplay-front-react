@@ -78,7 +78,23 @@ const CategoryBanner = ({ categoryId }) => {
       text = (
         <div>
           <p className={styles.anime}>
-            No podria faltar<span>Anime Fans Section</span>
+            <span>Anime Fans</span>
+          </p>
+          <video>
+            Aquí va el video
+          </video>
+        </div>
+      )
+      break
+
+    case 8:
+      image = '/images/backgrounds/colombia-background.jpeg'
+      link = '/'
+      text = (
+        <div>
+          <p className={styles.anime}>
+            Apoya lo<br />
+            <span>Colombiano</span>
           </p>
           <video>
             Aquí va el video

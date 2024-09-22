@@ -103,7 +103,7 @@ const UserNotifications = () => {
   };
 
   return (
-    <div className={`${styles.UserNotifications} UserNotifications`}>
+    <div className={`UserNotifications ${styles.UserNotifications}`}>
       <div className={styles.options}>
         <FontAwesomeIcon icon={faBell} className='m-r-10 icon' />
         <motion.span>

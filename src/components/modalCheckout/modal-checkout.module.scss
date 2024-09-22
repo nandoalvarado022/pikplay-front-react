@@ -52,7 +52,7 @@
       justify-content: right;
       margin-top: 20px;
       @media screen and (max-width: 480px) {
-        bottom: 0;
+        bottom: -1px;
         display: flex;
         margin: initial;
       }

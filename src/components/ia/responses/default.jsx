@@ -57,6 +57,13 @@ const Options = ({ handleUserMessage, set }) => {
                 Referidos
             </Button>
         </motion.div>
+        <motion.div variants={item}>
+            <Button color='transparent' onClick={() => handleUserMessage('referrals', set)}>
+                <GroupIcon className='icon m-t-5' style={{ marginTop: '-2px' }} />
+                &nbsp;&nbsp;
+                <span>Hablar con asesor</span>
+            </Button>
+        </motion.div>
         {/* <Button color='transparent' onClick={() => handleUserMessage('playstation', set)}>
             Jugadores Playstation
         </Button>

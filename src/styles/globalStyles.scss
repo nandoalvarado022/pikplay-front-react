@@ -585,13 +585,14 @@ section.page {
   .contentTitle {
     margin: -8px 0 16px 0;
     position: relative;
-    .backIcon {
+    .backIcon,
+    .heartIcon {
       background: white;
       border-radius: 50%;
       color: #19596b;
       margin-right: 10px;
       padding: 8px;
-      position: absolute;
+      // position: absolute;
       top: -6px;
     }
     h1 {

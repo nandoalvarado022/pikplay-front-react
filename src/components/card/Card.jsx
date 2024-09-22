@@ -80,8 +80,7 @@ const Card = (props) => {
               as={slug ? `/publicacion/${slug}` : 'javascript:void(0)'}
               className={styles.image_wrapper}
               key={publicationId}
-              href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}
-            >
+              href={slug ? '/publicacion/[id]' : 'javascript:void(0)'}>
               {
                 images && images.length > 0 && images.map(image => (
                   <Image
@@ -179,6 +178,12 @@ const Card = (props) => {
                     )
                   }
                 </div>
+              </div>
+              <div className={styles.contentAddi}>
+                <span>
+                  Llévatelo con
+                </span>
+                <img src="https://finanzasplus.co/wp-content/uploads/2024/03/addi-1024x575.webp" />
               </div>
             </div>
           }

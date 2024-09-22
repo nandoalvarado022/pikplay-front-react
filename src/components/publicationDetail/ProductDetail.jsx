@@ -23,7 +23,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { Tooltip } from '@mui/material'
 import CashbackTag from '../card/cashbackTag/CashbackTag'
 import Articles from '../articles/Articles'
-import { ArrowBackIosNew } from '@mui/icons-material'
+import { ArrowBackIosNew, ShareOutlined } from '@mui/icons-material'
 import BottomSheets from '../bottomSheets/BottomSheets'
 
 const ProductDetail = ({
@@ -66,17 +66,18 @@ const ProductDetail = ({
       <Grow key={indice_item} timeout={500} in={true} style={{ opacity: 1 }}>
         <div ref={ref_descripcion_imagen} className={`${styles.descripcion_imagen}`}>
           <div className="contentTitle">
-            <Link href='/'>
-              <ArrowBackIosNew className='icon backIcon' />
-            </Link>
+            <div className={styles.actions}>
+              <Link href='/'>
+                <ArrowBackIosNew className='icon backIcon' />
+              </Link>
+              {/* <Tooltip title='Marcar como Favorito'> */}
+              {/* </Tooltip> */}
+            </div>
             <h1>
               {title}
-              <Tooltip title='Marcar como Favorito'>
-                <FontAwesomeIcon className='icon' icon={faHeart} style={{ marginLeft: '10px' }} />
-              </Tooltip>
             </h1>
           </div>
-          <div className={`Card ${styles.left}`}>
+          <div className={`${styles.left}`}>
             <div className={styles.content_imagen}>
               <ImageGallery
                 items={formattedImages}
@@ -109,8 +110,7 @@ const ProductDetail = ({
               {apply_cashback && (
                 <span
                   title='Ganarás Pikcoins por hacer esta compra'
-                  className={styles.apply_cashback}
-                >
+                  className={styles.apply_cashback}>
                   <picture className={styles.coin} />
                   ¡Cashback!
                 </span>
@@ -145,6 +145,8 @@ const ProductDetail = ({
                         {buttonLabel}
                       </Button>
                     </Link>}
+                    <FontAwesomeIcon className='icon heartIcon' icon={faHeart} />
+                    <ShareOutlined className='icon shareIcon' />
                   </div>
                 </BottomSheets>
                 <div className={styles.content_author}>

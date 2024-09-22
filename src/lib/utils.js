@@ -461,6 +461,8 @@ export function getCategories(id) {
     { id: 4, name: 'Xbox', image: '/images/icons/xbox.svg' },
     { id: 5, name: 'Otros', image: '/images/icons/otros1.svg' },
     { id: 6, name: 'PC Gamer', image: '/images/icons/desktop.svg' },
+    { id: 7, name: 'PC Gamer', image: '/images/icons/desktop.svg', bannerImage: '/images/banners/pc-gamer.jpg', bannerText: 'Te presento mi Emprendimiento' },
+    { id: 7, name: 'Apoya lo Colombiano', image: '/images/icons/desktop.svg', bannerImage: '/images/banners/pc-gamer.jpg', bannerText: 'Te presento mi Emprendimiento' },
   ]
   if (id) return categories.find(item => item.id == id)
   return categories
