@@ -2,7 +2,7 @@ import cookieCutter from '@boiseitguru/cookie-cutter'
 import { convertResponse } from '../../lib/utils';
 
 const CustomFetch = () => {
-  const API_URL = process.env.NEXT_PUBLIC_VERCEL_ENV == 'production' ? process.env.NEXT_PUBLIC_API_URL_PRODUCTION : process.env.NEXT_PUBLIC_API_URL_DEVELOP
+  const API_URL = process.env.NEXT_PUBLIC_API_URL
   const getCookies = (ctx = { req: { cookies: {} } }) => {
     let headers = {};
     // Obteniendo cookies del lado del server. Generalmente vienen en el ctx.req.cookies
