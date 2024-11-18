@@ -1,4 +1,9 @@
 .LoginComponent {
+  .playButton {
+    position: fixed;
+    right: 10px;
+    top: 4px;
+  }
   .contryAndPhone {
     display: flex;
     [role="combobox"] {

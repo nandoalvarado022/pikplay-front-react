@@ -777,7 +777,6 @@ export function cookiesToObject(cookies) {
 }
 
 export const timeAgo = (prevDate) => {
-  debugger;
   const prevDateFormatted = Number(new Date(prevDate));
   const today = Number(new Date());
   const diff = today - prevDateFormatted;

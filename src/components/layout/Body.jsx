@@ -73,7 +73,7 @@ const Body = ({
       </a>
       <IA />
     </main>
-    <div className='avisoCookies font-c'>
+    {/* <div className='avisoCookies font-c'>
       Pikajuegos utiliza cookies para medir el uso del sitio web,
       ofrecerte publicidad relacionada con tus intereses y habilitar
       funciones de redes sociales. Para más información y ajustar tu
@@ -83,9 +83,9 @@ const Body = ({
           className='blue small m-l-10'
           text='Aceptar'
           onClick=''
-        /> */}
+        /> }
       </p>
-    </div>
+    </div> */}
   </>
 }
 
